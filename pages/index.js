@@ -88,7 +88,16 @@ export default function Home() {
             <Container>
               <Row>
                 <Col xs={24}>
-                  <h3 className={styles.x_title}>Sản phẩm & Dịch vụ cho bạn</h3>
+                  <h3 className={styles.x_title_no_margin}>Sản phẩm & Dịch vụ cho bạn</h3>
+                  <div style={{maxWidth: '640px', margin: 'auto'}}>
+                  <p style={{textAlign: 'center', fontSize: '14px'}} className={styles.description}>Chúng tôi cung cấp các sản phẩm mẫu hỗ trợ các nội dung số để bạn có thể đưa thông tin doanh nghiệp và sản phẩm của mình lên mạng Internet một cách nhanh chóng và dễ dàng. Điều này giúp bạn gia tăng hiệu quả hoạt động với chi phí thấp nhất</p>
+                  </div>
+                </Col>
+                <Col xs={12} className={styles.x_padding_cta}>
+                    <div className={styles.x_creeper_box}>
+                        <h4 className={styles.x_creeper_title}>Digital Content</h4>
+                        <p className={styles.x_creeper_content}>Chúng tôi cung cấp các sản phẩm mẫu hỗ trợ các nội dung số để bạn có thể đưa thông tin doanh nghiệp và sản phẩm của mình lên mạng Internet một cách nhanh chóng và dễ dàng</p>
+                    </div>
                 </Col>
 
               </Row>

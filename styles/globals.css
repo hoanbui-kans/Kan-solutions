@@ -71,6 +71,6 @@ a:active, a:focus, a:hover {
 
 @media (min-width: 1200px){
   .rs-grid-container {
-      width: 1280px !important;
+      width: 1180px !important;
   }
 }

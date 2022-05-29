@@ -135,6 +135,10 @@
     margin: 1rem 0rem 3.5rem 0rem;
     font-size: 34px;
   }
+  .x_title_no_margin{
+    text-align: center;
+    font-size: 34px;
+  }
   .x_services_box_title{
     font-size: 22px;
     margin-bottom: 12px;
@@ -159,6 +163,40 @@
     pointer-events: none;
     opacity: .5;
     filter: blur(8px);
+  }
+  .x_creeper_box{
+    display: -ms-flexbox;
+    display: flex;
+    min-height: 240px;
+    min-width: 240px;
+    padding-top: 64px;
+    padding-right: 72px;
+    padding-left: 72px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: hidden;
+    border-radius: 32px;
+    transition: box-shadow .2s;
+    object-fit: cover;
+    background: white
+  }
+  .x_padding_cta{
+    padding: 0rem 2.25rem;
+  }
+  .x_creeper_title{
+    color: #222;
+    font-size: 34px;
+    line-height: 1.2;
+    font-weight: 900;
+    letter-spacing: -.6px;
+    margin-bottom: 24px;
+  }
+  .x_creeper_content{
+    font-size: 18px;
+    line-height: 30px;
+    letter-spacing: -.5px;
+    font-weight: 300;
   }
   .grid {
     display: flex;
