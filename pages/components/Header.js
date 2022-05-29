@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import Brand from '../../public/logo.svg'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Grid, Row, Col, Nav, Container } from 'rsuite'
+import { Grid, Row, Col, Nav, Container, Form, Button } from 'rsuite'
 import SearchIcon from '@rsuite/icons/Search';
+import CloseIcon from '@rsuite/icons/Close';
 import ArrowDownLineIcon from '@rsuite/icons/ArrowDownLine';
 import { useSpring, animated, useChain, useSpringRef, useTransition, config } from "@react-spring/web";
 import styles from '../../styles/header.module.css';
@@ -71,6 +72,9 @@ const Right = () => {
 const Header = () => {
 
     const [open, setOpen] = useState(false);
+    const [search, setSearchForm] = useState(false);
+    const [focusSearch, setFocus] = useState(false);
+    const [keySearch, setKeySearch] = useState('');
 
     const dropdownMenu = [Left, Right];
 
@@ -179,9 +183,14 @@ const Header = () => {
                     </Nav>
                     </Col>
                     <Col xs={4}>
-                        <Nav>
-                            <Nav.Item><SearchIcon width={22} height={22}/></Nav.Item>
-                        </Nav>
+                            <Button onClick={() => { setSearchForm(!search) }}>
+                            {
+                            search ? 
+                                    <CloseIcon width={22} height={22}/> 
+                                    :
+                                    <SearchIcon width={22} height={22}/> 
+                                }
+                            </Button>
                     </Col>
                 </Row>
         </Container>
@@ -212,6 +221,33 @@ const Header = () => {
             </Grid>
         </Container> 
     </div>
+    { 
+        search ?
+            <div 
+                className={styles.x_dropdown_x3_menu}>
+                    <div className={styles.x_search_modal}>
+                        <div className={styles.x_search_section}>
+                            <Form className={!focusSearch ? styles.x_searchHeader : styles.x_searchHeader_devide}>
+                                <div className={styles.x_searchController}>
+                                    <button className={styles.x_searchButton}><SearchIcon color="#a4a4a4" width={24} height={24} /></button>
+                                    <input 
+                                    onFocus={() => { setFocus(true) }}
+                                    onBlur={() => { !keySearch ? setFocus(false) : setFocus(true) }}
+                                    className={styles.x_searchForm} value={keySearch} onChange={(e) => { setKeySearch(e.target.value)}} placeHolder="Tìm kiếm thông tin..." />
+                                </div>
+                            </Form>
+                            <div className={  focusSearch ?  styles.x_search_result  + ' ' + styles.x_search_result_showing :  styles.x_search_result  + ' ' + styles.x_search_result_hidden}>
+                                <h3 className={styles.x_search_quest_title}>
+                                    {
+                                        keySearch ? 
+                                        `Kết quả tìm kiếm cho: "${keySearch}"`:
+                                        `Bạn đang tìm gì?`
+                                    }</h3>
+                            </div>
+                        </div>
+                    </div>
+            </div> : ''
+         }   
     </>
   )
 }

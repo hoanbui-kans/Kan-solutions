@@ -14,27 +14,27 @@ export const listServices = [
     {
         name: 'Wordpress',
         image: Wordpress,
-        link: '/'
+        link: '/lap-trinh/wordpress'
     },{
         name: 'React app',
         image: ReactIcons,
-        link: '/'
+        link: '/lap-trinh/react-app'
     },{
         name: 'Next Js với mã nguồn mở',
         image: NextJs,
-        link: '/'
+        link: '/lap-trinh/next-js'
     },{
         name: 'API/ SDK',
         image: API,
-        link: '/'
+        link: '/lap-trinh/api-sdk'
     },{
         name: 'Native Mobile app',
         image: NativeApp,
-        link: '/'
+        link: '/lap-trinh/native-mobile-app'
     },{
         name: 'CRM doanh nghiệp',
         image: CRM,
-        link: '/'
+        link: '/lap-trinh/crm-doanh-nghiep'
     },
 ]
 

@@ -22,7 +22,87 @@
     padding: 10px 20px;
     cursor: pointer;
 }
+.x_search_button{
+    position: absolute;
+    left: 10px;
+    top: 6px;
+}
+.x_searchController{
+    position: relative;
+    width: 100%;
+}
+.x_search_button_container{
+    position: relative;
+}
+.x_searchForm:focus{
+    border: unset;
+}
+.x_searchForm{
+    border: unset;
+    outline: none;
+    width: 100%;
+    height: 48px;
+    padding-left: 55px;
 
+}
+.x_searchButton{
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    z-index: 2;
+    background-color: unset;
+}
+.x_searchHeader{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.x_searchHeader_devide{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    border-bottom: 1px solid #f7f7f7;
+}
+.x_search_result{
+    width: 100%;
+    padding: .25rem;
+    transition: all .45s ease-in-out;
+    display: block;
+}
+.x_search_result_showing{
+    max-height: 999px;
+    transition: all .45s ease-in-out;
+}
+.x_search_result_hidden{
+    max-height: 0px;
+    pointer-events: none;
+    transition: all .45s ease-in-out;
+}
+.x_search_quest_title{
+    margin: 2rem 0rem;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+    width: 100%;
+    display: block;
+}
+.x_search_modal{
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    top: 100px;
+}
+.x_search_section{
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    max-width: 540px;
+    border-radius: 0.35rem;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0px 30px 25px -2px rgb(0 0 0 / 4%);
+}
 .x_dropdownMenu {
     position: relative;
     width: 100%;
@@ -125,10 +205,12 @@
       font-weight: 300;
   }
   .arrow{
-      width: 30px;
-      height: 30px;
-      text-align: center;
-      display: inline-block;
+    width: 22px;
+    height: 22px;
+    text-align: center;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .animationHeader{
