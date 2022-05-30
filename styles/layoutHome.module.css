@@ -1,10 +1,15 @@
 .x_section_one{
-    padding: 75px 0px;
+    padding: 65px 0px 100px 0px;
 }
 .x_section_two{
   padding: 50px 0px;
 }
-
+.x_section_three{
+  padding: 50px 0px;
+}
+.x_section_four {
+  padding: 50px 0px;
+}
 .container {
     padding: 0rem;
   }
@@ -62,7 +67,7 @@
     margin: 2rem 0;
     line-height: 1.5;
     font-size: 1.2rem;
-    font-weight: 300;
+    font-weight: 400;
   }
   .x_seperator{
     background: #f7f7f7;
@@ -79,7 +84,9 @@
     border: 1px solid #d4d4d4;
     border-radius: 20px;
     transition: all .3s ease-in-out;
-    color: #111
+    color: #111;
+    margin-bottom: 35px;
+    display: block;
   }
   .x_services_box:hover{
     background: white;
@@ -100,6 +107,8 @@
     display: block;
     margin-bottom: 15px;
     text-align: center;
+    position: relative;
+    width: 100px;
   }
   .x_slider{
     height: 300px;
@@ -127,8 +136,17 @@
     max-width: 46%;
     animation: jumpTwo 5s linear infinite;
     pointer-events: none;
-    opacity: .5;
-    filter: blur(1px);
+    opacity: .95;
+    filter: blur(8px);
+  }
+  .x_rotate_180deg{
+    transform: rotate(180deg);
+  }
+  .x_creeper_button{
+    border-radius: 35px;
+    padding: 5px 25px;
+    border: 2px solid #ffffff;
+    background: unset
   }
   .x_title{
     text-align: center;
@@ -140,6 +158,10 @@
     font-size: 34px;
   }
   .x_services_box_title{
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+  .x_features_box_title{
     font-size: 22px;
     margin-bottom: 12px;
   }
@@ -161,8 +183,8 @@
     animation: jumpTwo 3s linear infinite;
     animation-delay: .1;
     pointer-events: none;
-    opacity: .5;
-    filter: blur(8px);
+    opacity: .95;
+    filter: blur(12px);
   }
   .x_creeper_box{
     display: -ms-flexbox;
@@ -179,24 +201,104 @@
     border-radius: 32px;
     transition: box-shadow .2s;
     object-fit: cover;
-    background: white
+    background: white;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 2.3rem;
+  }
+  .x_creeper_box_1{
+    padding-bottom: 420px;
+    background-color: #378cf1;
+  }
+  .x_creeper_box_2{
+    padding-bottom: 210px;
+    background: #616cf0;
+  }
+  .x_creeper_box_3{
+    padding-bottom: 210px;
+    background: #24cbc6;
+  }
+  .x_creeper_box_4{
+    padding-bottom: 420px;
+    background: #909cff;
+  }
+  .x_features_box{
+    background: white;
+    margin-bottom: 2.3rem;
+    min-height: 250px;
+    padding: 24px 32px;
+    border-radius: 20px;
+    transition: all .3s ease-in-out;
+    color: #111;
+    display: block;
+  }
+  .x_creeper_box:hover{
+    box-shadow: 0 15px 30px 0 rgb(0 0 0 / 20%);
+    opacity: 1;
+  }
+  .x_creeper_image_1{
+    position: absolute;
+    bottom: -20%;
+    right: -30%;
+    width: 110%;
+    pointer-events: none;
+    display: block;
+    animation: jumpTwo 9s linear infinite;
+    animation-delay: 1s;
+    z-index: 0;
+  }
+
+  .x_creeper_image_2{
+    position: absolute;
+    bottom: -5px;
+    left: 10%;
+    width: 80%;
+    pointer-events: none;
+    animation: jumpThree 7s linear infinite;
+    animation-delay: .5s;
+    z-index: 0;
+  }
+  .x_creeper_image_3{
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 80%;
+    pointer-events: none;
+    animation: jumpThree 8s linear infinite;
+    z-index: 0;
+  }
+  .x_creeper_image_4{
+    position: absolute;
+    bottom: -35px;
+    right: 0px;
+    width: 80%;
+    pointer-events: none;
+    animation: jumpTwo 9s linear infinite;
+    z-index: 0;
   }
   .x_padding_cta{
-    padding: 0rem 2.25rem;
+    padding: 0rem 1.15rem;
   }
   .x_creeper_title{
-    color: #222;
+    color: white;
     font-size: 34px;
     line-height: 1.2;
     font-weight: 900;
     letter-spacing: -.6px;
     margin-bottom: 24px;
   }
+  .x_creeper_box_section{
+    position: relative;
+    z-index: 2;
+  }
   .x_creeper_content{
-    font-size: 18px;
-    line-height: 30px;
+    font-size: 16px;
+    line-height: 26px;
     letter-spacing: -.5px;
-    font-weight: 300;
+    font-weight: 400;
+    margin-bottom: 35px;
+    position: relative;
+    color: white;
   }
   .grid {
     display: flex;
@@ -253,7 +355,19 @@
       transform: translateZ(0);
     }
       40% {
-        transform: translate3d(0,20px,0);
+        transform: translate3d(10px,20px,-5px);
+    }
+    100% {
+        transform: translateZ(0);
+    }
+  }
+
+  @keyframes jumpThree {
+    0% {
+      transform: translateZ(0);
+    }
+      40% {
+        transform: translate3d(-10px,20px,5px);
     }
     100% {
         transform: translateZ(0);

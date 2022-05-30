@@ -56,3 +56,31 @@ export const ServicesBox = [
         link: '/',
     },
 ]
+
+export const features = [
+    {
+        title: 'Nhanh chóng',
+        content: 'Đảm bảo tiến độ với yêu cầu nhanh nhất với quy trình đã thống nhất với khách hàng',
+        image: '/icons/time-01.svg'
+    },{
+        title: 'Chất lượng',
+        content: 'Đảm bảo các tiêu chuẩn kỹ thuật về tốc độ, chuẩn SEO, thẩm mỹ trên cơ sở công nghệ cập nhật',
+        image: '/icons/duotone_line.svg'
+    },{
+        title: 'Dễ sử dụng',
+        content: 'Dễ sử dụng, quản trị với tài liệu hướng dẫn đầy đủ và hỗ trợ từ đội ngũ của chúng tôi',
+        image: '/icons/Img_out-box-01.svg'
+    },{
+        title: 'Hợp lý',
+        content: 'Hợp lý trong cách xây dựng sản phẩm, triển khai dịch vụ và ngân sách cho dự án',
+        image: '/icons/time-01.svg'
+    },{
+        title: 'Hỗ trợ',
+        content: 'Tùy biến, chỉnh sửa theo yêu cầu và hướng đến giải quyết vấn đề nhằm đảm bảo sự hài lòng',
+        image: '/icons/time-01.svg'
+    },{
+        title: 'Ứng dụng và cập nhật',
+        content: 'Khả năng ứng dụng giải quyết vấn đề và mở rộng, phát triển trong tương lai',
+        image: '/icons/time-01.svg'
+    }
+]

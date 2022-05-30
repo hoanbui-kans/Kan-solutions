@@ -183,13 +183,8 @@ const Header = () => {
                     </Nav>
                     </Col>
                     <Col xs={4}>
-                            <Button onClick={() => { setSearchForm(!search) }}>
-                            {
-                            search ? 
-                                    <CloseIcon width={22} height={22}/> 
-                                    :
-                                    <SearchIcon width={22} height={22}/> 
-                                }
+                            <Button onClick={() => { setSearchForm(true); setOpen(false) }}>
+                                <SearchIcon width={22} height={22}/> 
                             </Button>
                     </Col>
                 </Row>
@@ -226,6 +221,11 @@ const Header = () => {
             <div 
                 className={styles.x_dropdown_x3_menu}>
                     <div className={styles.x_search_modal}>
+                        <div className={styles.x_close_button}>
+                            <Button onClick={() => { setSearchForm(false) }}> 
+                                <CloseIcon color='#3d3d3d' width={22} height={22}/>  
+                            </Button>
+                        </div>
                         <div className={styles.x_search_section}>
                             <Form className={!focusSearch ? styles.x_searchHeader : styles.x_searchHeader_devide}>
                                 <div className={styles.x_searchController}>

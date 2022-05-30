@@ -5,7 +5,7 @@ import Header from './components/Header'
 import { Grid, Container, Row, Col, Button, IconButton} from 'rsuite'
 import ArowBackIcon from '@rsuite/icons/ArowBack'
 import EmailFillIcon from '@rsuite/icons/EmailFill'
-import { ServicesBox } from './api/services'
+import { features, ServicesBox } from './api/services'
 import Link from 'next/link'
 // Images 
 
@@ -53,7 +53,9 @@ export default function Home() {
             </Container>
           </Grid>
         </div>
-        <hr className={styles.x_seperator} />
+        <div className='rs-grid-container'>
+          <hr className={styles.x_seperator}/>
+        </div>
         <div className={styles.x_section_two}>
           <Grid className='x_container'>
             <Container>
@@ -64,11 +66,12 @@ export default function Home() {
                 {
                   ServicesBox.map((val , index) => {
                       return(
-                        <Col xs={24} md={8} key={index}>
+                        <Col xs={24} md={8} key={index} className={styles.x_padding_cta}>
                             <Link href={val.link}>
                               <a>
                                 <div className={styles.x_services_box}>
-                                    <span className={styles.x_service_icon}><Image src={val.image} width={58} height={58}/></span>
+                                    <span className={styles.x_service_icon}>
+                                      <Image src={val.image} width={60} height={60}/></span>
                                     <h4 className={styles.x_services_box_title}>{val.title}</h4>
                                     <p className={styles.x_services_box_content}>{val.content}</p>
                                 </div>
@@ -90,16 +93,81 @@ export default function Home() {
                 <Col xs={24}>
                   <h3 className={styles.x_title_no_margin}>Sản phẩm & Dịch vụ cho bạn</h3>
                   <div style={{maxWidth: '640px', margin: 'auto'}}>
-                  <p style={{textAlign: 'center', fontSize: '14px'}} className={styles.description}>Chúng tôi cung cấp các sản phẩm mẫu hỗ trợ các nội dung số để bạn có thể đưa thông tin doanh nghiệp và sản phẩm của mình lên mạng Internet một cách nhanh chóng và dễ dàng. Điều này giúp bạn gia tăng hiệu quả hoạt động với chi phí thấp nhất</p>
+                  <p style={{textAlign: 'center', fontSize: '14px', margin: '1.25rem 0 2.75rem 0rem'}} className={styles.description}>Chúng tôi cung cấp các sản phẩm mẫu hỗ trợ các nội dung số để bạn có thể đưa thông tin doanh nghiệp và sản phẩm của mình lên mạng Internet một cách nhanh chóng và dễ dàng. Điều này giúp bạn gia tăng hiệu quả hoạt động với chi phí thấp nhất</p>
                   </div>
                 </Col>
                 <Col xs={12} className={styles.x_padding_cta}>
-                    <div className={styles.x_creeper_box}>
-                        <h4 className={styles.x_creeper_title}>Digital Content</h4>
-                        <p className={styles.x_creeper_content}>Chúng tôi cung cấp các sản phẩm mẫu hỗ trợ các nội dung số để bạn có thể đưa thông tin doanh nghiệp và sản phẩm của mình lên mạng Internet một cách nhanh chóng và dễ dàng</p>
+                    <div className={styles.x_creeper_box + ' ' + styles.x_creeper_box_1}>
+                       <div class={styles.x_creeper_box_section}>
+                          <h4 className={styles.x_creeper_title}>Digital Content</h4>
+                          <p className={styles.x_creeper_content}>Chúng tôi cung cấp các sản phẩm mẫu hỗ trợ các nội dung số để bạn có thể đưa thông tin doanh nghiệp và sản phẩm của mình lên mạng Internet một cách nhanh chóng và dễ dàng</p>
+                          <Button className={styles.x_creeper_button}><ArowBackIcon color={"white"} className={styles.x_rotate_180deg} width={24} height={24}/></Button>
+                        </div>
+                        <div className={styles.x_creeper_image_1}>
+                          <Image src={'/layout/design_1-01.svg'} width={600} height={631}/>
+                        </div>
+                    </div>
+                    <div className={styles.x_creeper_box + ' '  + styles.x_creeper_box_3}>
+                        <div class={styles.x_creeper_box_section}>
+                          <h4 className={styles.x_creeper_title}>Viết bài chuẩn SEO</h4>
+                          <p className={styles.x_creeper_content}>Chúng tôi cung cấp các sản phẩm mẫu hỗ trợ các nội dung số để bạn có thể đưa thông tin doanh nghiệp và sản phẩm của mình lên mạng Internet một cách nhanh chóng và dễ dàng</p>
+                          <Button className={styles.x_creeper_button}><ArowBackIcon color={"white"} className={styles.x_rotate_180deg} width={24} height={24}/></Button>
+                        </div>
+                        <div className={styles.x_creeper_image_3}>
+                          <Image src={'/layout/design_3-01.svg'} width={600} height={631}/>
+                        </div>
                     </div>
                 </Col>
+                <Col xs={12} className={styles.x_padding_cta}>
+                    <div className={styles.x_creeper_box + ' ' + styles.x_creeper_box_2}>
+                        <div class={styles.x_creeper_box_section}>
+                          <h4 className={styles.x_creeper_title}>Online Marketing</h4>
+                          <p className={styles.x_creeper_content}>Chúng tôi cung cấp các sản phẩm mẫu hỗ trợ các nội dung số để bạn có thể đưa thông tin doanh nghiệp và sản phẩm của mình lên mạng Internet một cách nhanh chóng và dễ dàng</p>
+                          <Button className={styles.x_creeper_button}><ArowBackIcon color={"white"} className={styles.x_rotate_180deg} width={24} height={24}/></Button>
+                        </div>
+                        <div className={styles.x_creeper_image_4}>
+                          <Image src={'/layout/design_4-01.svg'} width={600} height={631}/>
+                        </div>
+                    </div>
+                    <div className={styles.x_creeper_box + ' ' + styles.x_creeper_box_4}>
+                        <div class={styles.x_creeper_box_section}>
+                            <h4 className={styles.x_creeper_title}>Tư vấn - Đào tạo</h4>
+                            <p className={styles.x_creeper_content}>Chúng tôi cung cấp các sản phẩm mẫu hỗ trợ các nội dung số để bạn có thể đưa thông tin doanh nghiệp và sản phẩm của mình lên mạng Internet một cách nhanh chóng và dễ dàng</p>
+                            <Button className={styles.x_creeper_button}><ArowBackIcon color={"white"} className={styles.x_rotate_180deg} width={24} height={24}/></Button>
+                        </div>
+                        <div className={styles.x_creeper_image_2}>
+                          <Image src={'/layout/design_2-01.svg'} width={600} height={631}/>
+                        </div>
+                    </div>
+                </Col>
+              </Row>
+            </Container>
+          </Grid>
+        </div>
 
+        <div className={styles.x_section_four}>
+          <Grid className='x_container'>
+            <Container>
+              <Row>
+                <Col xs={24}>
+                  <h3 className={styles.x_title_no_margin}>Tại sao chọn chúng tôi?</h3>
+                  <div style={{maxWidth: '640px', margin: 'auto'}}>
+                  <p style={{textAlign: 'center', fontSize: '14px', margin: '1.25rem 0 2.75rem 0rem'}} className={styles.description}>Sản phẩm & dịch vụ của chúng tôi hướng đến sự tiện dụng và dễ dàng để doanh nghiệp tiếp cận khách hàng trên internet mà vẫn đảm bảo chất lượng và hiệu quả</p>
+                  </div>
+                </Col>
+                {
+                  features.map((val, index) => {
+                    return(
+                      <Col xs={24} md={8} className={styles.x_padding_cta}>
+                        <div className={styles.x_features_box}>
+                              <span className={styles.x_features_box_icon}><Image src={val.image} width={60} height={60} /></span>
+                              <h4 className={styles.x_features_box_title}>{val.title}</h4>
+                              <p className={styles.x_features_box_content}>{val.content}</p>
+                        </div>
+                    </Col>
+                    )
+                  })
+                }
               </Row>
             </Container>
           </Grid>

@@ -1,5 +1,5 @@
 :root{
-  --rs-text-primary: #111 !important
+  --rs-text-primary: #333 !important
 }
 
 html,
@@ -71,6 +71,6 @@ a:active, a:focus, a:hover {
 
 @media (min-width: 1200px){
   .rs-grid-container {
-      width: 1180px !important;
+      width: 1200px !important;
   }
 }
