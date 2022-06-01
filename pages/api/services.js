@@ -73,14 +73,14 @@ export const features = [
     },{
         title: 'Hợp lý',
         content: 'Hợp lý trong cách xây dựng sản phẩm, triển khai dịch vụ và ngân sách cho dự án',
-        image: '/icons/time-01.svg'
+        image: '/icons/Folder_alt_duotone_fill-01.svg'
     },{
         title: 'Hỗ trợ',
         content: 'Tùy biến, chỉnh sửa theo yêu cầu và hướng đến giải quyết vấn đề nhằm đảm bảo sự hài lòng',
-        image: '/icons/time-01.svg'
+        image: '/icons/Message_open_fill-01.svg'
     },{
         title: 'Ứng dụng và cập nhật',
         content: 'Khả năng ứng dụng giải quyết vấn đề và mở rộng, phát triển trong tương lai',
-        image: '/icons/time-01.svg'
+        image: '/icons/Folder_dublicate_duotone-01.svg'
     }
 ]
