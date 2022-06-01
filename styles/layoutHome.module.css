@@ -10,6 +10,10 @@
 .x_section_four {
   padding: 50px 0px;
 }
+.x_section_five{
+  padding: 50px 0px;
+  position: relative;
+}
 .container {
     padding: 0rem;
   }
@@ -24,23 +28,7 @@
     align-items: center;
     background: #f7f7f7;
   }
-  
-  .footer {
-    display: flex;
-    flex: 1;
-    padding: 2rem 0;
-    border-top: 1px solid #eaeaea;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .footer a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
-  }
-  
+
   .title a {
     color: #0070f3;
     text-decoration: none;
@@ -139,6 +127,29 @@
     opacity: .95;
     filter: blur(8px);
   }
+  .lBox_0{
+    position: absolute;
+    right: 70px;
+    top: 100px;
+    z-index: 0;
+    animation: jumpTwo 5s linear infinite;
+    pointer-events: none;
+    opacity: .95;
+    filter: blur(8px);
+  }
+  .lBox_1{
+    position: absolute;
+    right: 230px;
+    top: 210px;
+    z-index: 0;
+    animation: jumpThree 5s linear infinite;
+    pointer-events: none;
+    opacity: .95;
+    filter: blur(8px);
+  }
+  .bannerImage{
+    height: 460px;
+  }
   .x_rotate_180deg{
     transform: rotate(180deg);
   }
@@ -155,6 +166,10 @@
   }
   .x_title_no_margin{
     text-align: center;
+    font-size: 34px;
+  }
+  .x_title_no_margin_left{
+    text-align: left;
     font-size: 34px;
   }
   .x_services_box_title{
