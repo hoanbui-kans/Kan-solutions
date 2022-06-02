@@ -173,7 +173,7 @@ const Header = () => {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href={'/'}>Tin tức</Link>
+                                    <Link href={'/tin-tuc'}>Tin tức</Link>
                                 </li>
                                 <li>
                                     <Link href={'/'}>Liên hệ</Link>
