@@ -1,0 +1,20 @@
+.x_footer_container{
+    padding: 50px 0px;
+}
+
+.x_newsletter_button{
+    background: black;
+    position: absolute;
+    right: 5px;
+    top: 10px;
+    color: white
+}
+
+.x_form_newsletter input{
+    border: 1px solid whitesmoke;
+    padding: 1.25rem 1.75rem;
+}
+
+.x_footer_form{
+    position: relative;
+}
