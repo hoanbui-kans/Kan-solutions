@@ -1,0 +1,84 @@
+.x_flex_center{
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.x_feature_box {
+    height: 270px;
+    min-height: 240px;
+    padding: 24px 32px;
+    border: 1px solid #d4d4d4;
+    border-radius: 20px;
+    transition: all .3s ease-in-out;
+    color: #111;
+    margin-bottom: 35px;
+    display: block;
+}
+
+.x_feature_box:hover{
+    background: white;
+    border: 1px solid white;
+    box-shadow: 0 14px 24px 0 rgb(0 0 0 / 10%);
+    transition: all .3s ease-in-out;
+}
+
+.x_timeline {
+    margin-left: 20px;
+  }
+  
+.x_timeline .rs-timeline-item-custom-dot .rs-icon {
+    position: absolute;
+    background: #fff;
+    top: 0;
+    left: -2px;
+    border: 2px solid #ddd;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 18px;
+    padding-top: 9px;
+    color: #999;
+    margin-left: -13px;
+}
+.x_neumorphic{
+    position: absolute;
+    right: 0px;
+    top: 50px;
+    opacity: .55;
+    z-index: 0;
+    pointer-events: none;
+}
+.x_flex_timeline{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+}
+.x_timeline .rs-timeline-item-content {
+margin-left: 24px;
+}
+.x_timebox_icon{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+}
+
+.x_timeline_item{
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    width: 100%;
+    padding: 12px 0px;
+    align-items: center;
+}
+
+.x_about_us_section{
+    background: #f7f7f7;
+}
+
+.x_timeline_content{
+    position: relative;
+    z-index: 1;
+}

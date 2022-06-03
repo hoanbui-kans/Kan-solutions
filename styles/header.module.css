@@ -227,9 +227,12 @@
 
   .animationHeader{
       position: relative;
+      z-index: 1;
   }
   .animationHeaderNone{
      pointer-events: none;
+     position: relative;
+     z-index: 1;
    }
   .x_iconImage{
      margin-right: 10px;
@@ -286,4 +289,17 @@
     right: 0;
     background-color: #f7f7f7;
     box-shadow: 35px 35px 50px 0 rgb(36 50 66 / 15%);
+}
+.x_fixed{
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+
+.x_header{
+    position: relative;
+    z-index: 2;
+    background: #f7f7f7
 }

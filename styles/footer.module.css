@@ -13,8 +13,18 @@
 .x_form_newsletter input{
     border: 1px solid whitesmoke;
     padding: 1.25rem 1.75rem;
+    width: 100%;
 }
 
 .x_footer_form{
     position: relative;
+}
+
+.x_footer_address_list{
+    padding: 0px;
+    list-style: none;
+}
+
+.x_footer_address_list li{
+    line-height: 24px;
 }

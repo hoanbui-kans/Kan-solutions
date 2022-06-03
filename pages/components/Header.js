@@ -3,12 +3,13 @@ import Brand from '../../public/logo.svg'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Grid, Row, Col, Nav, Container, Form, Button } from 'rsuite'
-import SearchIcon from '@rsuite/icons/Search';
-import CloseIcon from '@rsuite/icons/Close';
+import SearchIcon from '@rsuite/icons/Search'
+import CloseIcon from '@rsuite/icons/Close'
 import ArrowDownLineIcon from '@rsuite/icons/ArrowDownLine';
-import { useSpring, animated, useChain, useSpringRef, useTransition, config } from "@react-spring/web";
-import styles from '../../styles/header.module.css';
-import { listServices } from '../api/services';
+import { useSpring, animated, useChain, useSpringRef, useTransition, config } from "@react-spring/web"
+import styles from '../../styles/header.module.css'
+import { listServices } from '../api/services'
+import { useRouter } from 'next/router'
 
 const Left = () => {
     return (
@@ -70,11 +71,15 @@ const Right = () => {
 }
 
 const Header = () => {
-
+    
     const [open, setOpen] = useState(false);
     const [search, setSearchForm] = useState(false);
     const [focusSearch, setFocus] = useState(false);
     const [keySearch, setKeySearch] = useState('');
+    const [fixed, setFixed] = useState(false);
+
+    const location = useRouter();    
+    const path = location.pathname;
 
     const dropdownMenu = [Left, Right];
 
@@ -136,60 +141,80 @@ const Header = () => {
     const showDropdown = () => {
         setOpen(open => !open)
     }
+
+    useEffect(() => {
+        setOpen(false);
+        setFixed(false);
+    }, [path])
+
+    const isSticky = (e) => {
+        const scrollTop = window.scrollY;
+        scrollTop > 300 ? setFixed(true) : setFixed(false)
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', isSticky);
+        return () => {
+            window.removeEventListener('scroll', isSticky);
+        };
+    });
+
      return (
       <>
-      <div className={styles.x_header_section}>
-        <Grid className='x_container'>
-            <Container> 
-                <Row className={styles.headerMenu}>
-                    <Col xs={4}>
-                        <div className={styles.x_brand}>
-                            <Image src={Brand} width={140} height={62} />
-                        </div>
-                    </Col>
-                    <Col xs={16}>
-                    <Nav>
-                        <div className={styles.mainMenuContainer}>
-                            <ul>
-                                <li>
-                                    <Link href={'/'}>Trang chủ</Link>
-                                </li>
-                                <li>
-                                    <Link href={'/'}>Về chúng tôi</Link>
-                                </li>
-                                <li>
-                                    <Link href={'/'}>
-                                        <a>
-                                            <span>
-                                            Dịch vụ
-                                            <animated.div 
-                                            style={y}
-                                            className={styles.arrow}
-                                            >
-                                                <ArrowDownLineIcon  width={14} height={14} onClick={showDropdown}/>
-                                            </animated.div>
-                                        </span>
-                                    </a>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href={'/tin-tuc'}>Tin tức</Link>
-                                </li>
-                                <li>
-                                    <Link href={'/'}>Liên hệ</Link>
-                                </li>
-                            </ul>
-                        </div>
-                    </Nav>
-                    </Col>
-                    <Col xs={4}>
-                            <Button onClick={() => { setSearchForm(true); setOpen(false) }}>
-                                <SearchIcon width={22} height={22}/> 
-                            </Button>
-                    </Col>
-                </Row>
-        </Container>
-    </Grid>
+      <div className={ fixed ?  styles.x_header_section + ' ' + styles.x_fixed : styles.x_header_section}>
+          <div className={styles.x_header}>
+                <Grid className='x_container'>
+                    <Container> 
+                        <Row className={styles.headerMenu}>
+                            <Col xs={4}>
+                                <div className={styles.x_brand}>
+                                    <Image src={Brand} width={140} height={62} />
+                                </div>
+                            </Col>
+                            <Col xs={16}>
+                            <Nav>
+                                <div className={styles.mainMenuContainer}>
+                                    <ul>
+                                        <li>
+                                            <Link href={'/'}>Trang chủ</Link>
+                                        </li>
+                                        <li>
+                                            <Link href={'/ve-chung-toi'}>Về chúng tôi</Link>
+                                        </li>
+                                        <li>
+                                            <a onClick={showDropdown}>
+                                                <span>
+                                                    Dịch vụ
+                                                    <animated.div 
+                                                    style={y}
+                                                    className={styles.arrow}
+                                                    >
+                                                        <ArrowDownLineIcon  width={14} height={14}/>
+                                                    </animated.div>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <Link href={'/tin-tuc'}>Tin tức</Link>
+                                        </li>
+                                        <li>
+                                            <Link href={'/tuyen-dung'}>Tuyển dụng</Link>
+                                        </li>
+                                        <li>
+                                            <Link href={'/lien-he'}>Liên hệ</Link>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </Nav>
+                            </Col>
+                            <Col xs={4}>
+                                    <Button onClick={() => { setSearchForm(true); setOpen(false) }}>
+                                        <SearchIcon width={22} height={22}/> 
+                                    </Button>
+                            </Col>
+                        </Row>
+                </Container>
+            </Grid>
     </div>
     <div className={open ? styles.animationHeader : styles.animationHeaderNone}>
         <Container className={styles.x_menu_container}> 
@@ -215,6 +240,7 @@ const Header = () => {
                 </animated.div>
             </Grid>
         </Container> 
+    </div>
     </div>
     { 
         search ?
