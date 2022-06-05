@@ -28,3 +28,25 @@
 .x_footer_address_list li{
     line-height: 24px;
 }
+
+.x_footer_description{
+    padding: 0rem .35rem 
+}
+
+.x_footer_title{
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: .55rem;
+}
+
+.x_footer_icon{
+    display: inline-flex;
+    align-items: center;
+    margin-right: .35rem
+}
+
+.x_footer_focused{
+    display: inline-flex;
+    align-items: center;
+    margin-right: .35rem;
+}

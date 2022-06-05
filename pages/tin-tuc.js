@@ -2,9 +2,11 @@ import React, { useEffect } from 'react'
 import { Grid, Container, Row, Col, Panel, Breadcrumb, Form } from 'rsuite';
 import Image from 'next/image';
 import Link from 'next/link';
-import styles from '../styles/news.module.css';
+import styles from '../styles/blog.module.css';
 import axios from 'axios';
 import SearchIcon from '@rsuite/icons/Search'
+
+import { BlogStyleOne, BlogStyleTwo } from '../components/blog-templates/BlogContent';
 
 const rootURL = process.env.wp_json_enpoint;
 
@@ -60,19 +62,17 @@ const News = ({bai_viet, danh_muc}) => {
                     </Form>
               </Col>
             </Row>
-            <Row>
+            <Row className={styles.x_flex_news}>
                 {
-                  bai_viet.map((val) => {
+                  bai_viet.map((val, index) => {
                     return(
-                      <Col xs={24} md={12} ld={8} key={val.ID}>
-                        <div className={styles.x_news_container}>
-                            <div className={styles.x_news_thumbnail}>
-                              <Image src={val.thumbnail} width={600} height={320} />
-                            </div>
-                            <div className={styles.x_news_content}>
-                              <h3 className={styles.x_news_title}>{val.post_title}</h3>
-                            </div>
-                        </div>
+                      index == 0 ? 
+                      <Col className={styles.x_padding_posts} xs={24} key={val.ID}>
+                        <BlogStyleOne data={val} />
+                      </Col>
+                      :
+                      <Col className={styles.x_padding_posts} xs={24} md={12} lg={8} key={val.ID}>
+                        <BlogStyleTwo data={val} />
                       </Col>
                     )
                 })
@@ -87,7 +87,7 @@ export default News
 
 export async function getServerSideProps() {
 
-  const res = await axios.get(rootURL + 'tin-tuc/bai-viet').then((resonse) => resonse.data);
+  const res = await axios.get(rootURL + 'tin-tuc/bai-viet?perpage=7').then((resonse) => resonse.data);
 
   // Pass data to the page via props
   return { props: { 

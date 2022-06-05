@@ -3,6 +3,7 @@
     padding: 14px 0px;
     position: relative;
     z-index: 5;
+    transition: all .3s ease-in-out;
 }
 .mainMenuContainer{
     text-align: center;
@@ -109,7 +110,7 @@
     display: flex;
     flex-wrap: wrap;
     margin: auto;
-    max-width: 540px;
+    max-width: 640px;
     border-radius: 0.35rem;
     overflow: hidden;
     background: white;
@@ -174,12 +175,19 @@
 .x_brand{
     padding: 0px;
 }
-.mainMenuContainer ul li a{
+
+.mainMenuContainer ul li a {
     font-weight: 400;
     font-size: 15px;
     color: #111;
     margin-right: 6px;
     display: block;
+    transition: all .3s ease-in-out;
+}
+
+.mainMenuContainer ul li a:hover {
+    color: #2d88e2;
+    transition: all .3s ease-in-out;
 }
 
 .wrapper {
@@ -201,7 +209,7 @@
     background: #ededf2;
     border-radius: 5px;
     cursor: pointer;
-    box_shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.05);
     will-change: width, height;
   }
   
@@ -290,12 +298,21 @@
     background-color: #f7f7f7;
     box-shadow: 35px 35px 50px 0 rgb(36 50 66 / 15%);
 }
+
 .x_fixed{
     position: fixed;
     z-index: 999;
     width: 100%;
     left: 0;
     top: 0;
+}
+
+.x_fixed .headerMenu{
+    padding: 0px;
+}
+
+.x_fixed .x_brand{
+    width: 100px;
 }
 
 .x_header{
@@ -315,3 +332,62 @@
     right: 0;
     bottom: 0;
 }
+.x_search_result_thumbnail{
+    display: block;
+    width: 100px;
+}
+.x_search_result_thumbnail img{
+    border-radius: 5px;
+}
+.x_search_result_content{
+    display: block;
+    width: calc(100% - 100px);
+}
+.x_search_result_post{
+    margin-bottom: .75rem;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+    padding: .85rem 0rem;
+    cursor: pointer;
+}
+.x_search_result_title{
+    font-size: 1rem;
+    line-height: 1.25;
+    font-weight: 400;
+    margin-bottom: .25rem;
+    color: #333333;
+}
+
+.x_search_result_excerpt{
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.x_search_result_section{
+    padding: .25rem 1.25rem;
+    max-height: 400px;
+    overflow-y: scroll;
+}
+
+/* width */
+.x_search_result_section::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  .x_search_result_section::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  .x_search_result_section::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 6px;
+  }
+  
+  /* Handle on hover */
+  .x_search_result_section::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
