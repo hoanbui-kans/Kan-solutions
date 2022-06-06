@@ -91,13 +91,23 @@
 .x_blog_one_thumbnail{
   display: block;
 }
+
+.x_pagination{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  padding: 0.25rem;
+}
+
 .x_blog_two_thumbnail{
   display: block;
 }
 .x_blog_one_section{
-  background: #fff;
-  box-shadow: 0px 0px 24px rgb(207 210 213 / 40%);
   margin-bottom: 2rem;
+  background: white;
+  box-shadow: inset 5px 5px 10px #ededed, inset -5px -5px 10px #fbfbfb;
+  border-radius: 20px;
+  overflow: hidden;
 }
 .x_blog_one_content{
    padding: 1.25rem 1.2rem
@@ -136,10 +146,12 @@
 
 .x_blog_two_section{
   margin-bottom: 2.25rem;
-  box-shadow: 0px 0px 24px rgb(207 210 213 / 40%);
   display: block;
+  height: 100%;
   background: white;
-  height: 100%
+  box-shadow: 5px 5px 10px #ededed, -5px -5px 10px #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
 }
 .x_padding_posts{
   padding: .95rem;

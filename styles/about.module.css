@@ -8,25 +8,45 @@
     height: 270px;
     min-height: 240px;
     padding: 24px 32px;
-    border: 1px solid #d4d4d4;
     border-radius: 20px;
     transition: all .3s ease-in-out;
     color: #111;
     margin-bottom: 35px;
     display: block;
+    background: linear-gradient(145deg, #dedede, #ffffff);
+    box-shadow:  5px 5px 10px #ededed,
+                 -5px -5px 10px #ffffff;
 }
-
+.x_about_section_one{
+    padding: 3.5rem 0rem
+}
+.x_timeline_title{
+    font-size: 1.5rem;
+    line-height: 1.5;
+    margin-bottom: .55rem
+}
+.x_padding{
+    padding: 0rem 1rem
+}
 .x_feature_box:hover{
     background: white;
-    border: 1px solid white;
     box-shadow: 0 14px 24px 0 rgb(0 0 0 / 10%);
     transition: all .3s ease-in-out;
 }
 
-.x_timeline {
-    margin-left: 20px;
-  }
-  
+.x_timeline:before{
+    content: "";
+    width: 1px;
+    height: 100%;
+    display: block;
+    position: absolute;
+    background: #e9e9e9;
+    left: 65px;
+}
+.x_timeline{
+    position: relative;
+    margin-bottom: 1.25rem;
+}
 .x_timeline .rs-timeline-item-custom-dot .rs-icon {
     position: absolute;
     background: #fff;
@@ -41,11 +61,56 @@
     color: #999;
     margin-left: -13px;
 }
-.x_neumorphic{
+.x_black_button{
+    background: black;
+    border: 1px solid black;
+    color: white;
+    padding: 16px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.x_black_button:hover{
+    border-color: black;
+    background: unset
+}
+.x_about_description{
+    margin-bottom: 1.95rem;
+    display: block;
+}
+.x_step_working_icon{
+    font-size: 24px;
+}
+.x_step_working_item{
+    padding: 3.75rem 3.5rem;
+    height: 270px;
+    background: linear-gradient(145deg, #dedede, #ffffff);
+    box-shadow: 5px 5px 10px #ededed, -5px -5px 10px #ffffff;
+    margin-bottom: 2.95rem;
+    border-radius: 20px;
+    overflow: hidden;
+    display: block;
+    position: relative;
+}
+.x_step_working_icon{
+    font-size: 100px;
     position: absolute;
+    bottom: -30px;
     right: 0px;
-    top: 50px;
-    opacity: .55;
+    color: #dddddd;
+    font-weight: bolder;
+}
+.x_step_title{
+    margin-bottom: 1.25rem;
+    font-size: 1.55rem
+}
+.x_neumorphic{
+    position: fixed;
+    right: 0px;
+    transform: translateX(50%);
+    bottom: 50px;
+    opacity: 1;
+    filter: blur(.35rem);
     z-index: 0;
     pointer-events: none;
 }
@@ -54,8 +119,12 @@
     display: flex;
     flex-wrap: wrap;
 }
+.x_flex{
+    display: flex;
+    flex-wrap: wrap;
+}
 .x_timeline .rs-timeline-item-content {
-margin-left: 24px;
+    margin-left: 24px;
 }
 .x_timebox_icon{
     width: 50px;
@@ -67,11 +136,36 @@ margin-left: 24px;
 
 .x_timeline_item{
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-self: center;
     width: 100%;
-    padding: 12px 0px;
-    align-items: center;
+    margin-bottom: 1.75rem;
+    padding: 1.75rem 0.95rem;
+    border-radius: 0.8rem;
+    position: relative;
+    z-index: 1;
+}
+
+.x_year_counter{
+    display: block;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #dedede, #ffffff);
+    box-shadow:  5px 5px 10px #ededed,
+                -5px -5px 10px #ffffff;
+}
+
+.x_year_counter{
+    font-weight: bolder;
+}
+.x_about_title{
+    font-size: 1.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.75rem;
 }
 
 .x_about_us_section{
@@ -81,4 +175,36 @@ margin-left: 24px;
 .x_timeline_content{
     position: relative;
     z-index: 1;
+    width: calc(100% - 110px);
+    padding-left: 1.95rem;
+}
+
+.x_about_banner{
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    box-shadow:  5px 5px 10px #ededed,
+                -5px -5px 10px #ffffff;
+    border-radius: 20px;
+    margin-bottom: 1.95rem
+}
+
+.x_banner_title{
+    text-align: center;
+    margin: auto;
+    max-width: 800px;
+    margin-bottom: 1.5rem
+}
+
+.x_about_banner_content{
+    text-align: center;
+}
+
+.x_banner_button{
+    padding: 1.25rem 1.5rem;
+    border-radius: 35px;
+    background: #2d88e2;
+    color: white;
 }

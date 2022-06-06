@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { Grid, Container, Row, Col, Panel, Breadcrumb, Form } from 'rsuite';
+import React, { useEffect, useState } from 'react'
+import { Grid, Container, Row, Col, Panel, Breadcrumb, Form, Pagination, Loader  } from 'rsuite';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../styles/blog.module.css';
@@ -7,10 +7,41 @@ import axios from 'axios';
 import SearchIcon from '@rsuite/icons/Search'
 
 import { BlogStyleOne, BlogStyleTwo } from '../components/blog-templates/BlogContent';
+import Loading from '../components/Loading';
 
 const rootURL = process.env.wp_json_enpoint;
 
-const News = ({bai_viet, danh_muc}) => {
+
+const News = ({bai_viet, danh_muc, max_num_pages}) => {
+
+  const [keySearch, setKeySearch] = useState('');
+  const [posts, setPosts] = useState(bai_viet);
+  const [maxpage, setMaxPage] = useState(max_num_pages);
+  const [paged, setPaged] = useState(1);
+  const [loading, setLoading] = useState(false);
+
+  console.log(keySearch)
+
+  const Search_Page = async () => {
+    setLoading(true);
+    setPaged(1);
+    const { data } = await axios.get(rootURL + 'tin-tuc/bai-viet?perpage=7&s=' + keySearch).then((res) => res);
+    if(data){
+      setPosts(data.posts);
+      setMaxPage(data.max_num_pages)
+      setLoading(false);
+    }
+  }
+
+  const Next_Pages = async (num) => {
+    setLoading(true);
+    setPaged({...paged, current: num});
+    const { data } = await axios.get(rootURL + 'tin-tuc/bai-viet?perpage=7&p=' + num).then((res) => res);
+    if(data){
+      setPosts(data.posts);
+      setLoading(false);
+    }
+  }
 
   if(bai_viet == undefined) return '';
     return (
@@ -47,11 +78,12 @@ const News = ({bai_viet, danh_muc}) => {
                   </ul>
               </Col>
               <Col xs={24} md={8}>
-                    <Form>
+                    <Form onSubmit={(event) => Search_Page(event)}>
                       <Form.Group className={styles.x_form_search_group}>
                         <Form.Control 
                           type="text"
-                          value={EventTarget.value}
+                          value={keySearch}
+                          onChange={(value) => setKeySearch(value)}
                           placeholder={'Tìm kiếm bài viết...'}
                           className={styles.x_form_search_posts}
                         />
@@ -64,18 +96,34 @@ const News = ({bai_viet, danh_muc}) => {
             </Row>
             <Row className={styles.x_flex_news}>
                 {
-                  bai_viet.map((val, index) => {
-                    return(
-                      index == 0 ? 
-                      <Col className={styles.x_padding_posts} xs={24} key={val.ID}>
-                        <BlogStyleOne data={val} />
+                  loading ?  <Loading /> :
+                  <>
+                    {
+                      posts != '' ?
+                      <>
+                        {
+                          posts.map((val, index) => {
+                              return(
+                                index == 0 ? 
+                                <Col className={styles.x_padding_posts} xs={24} key={val.ID}>
+                                  <BlogStyleOne data={val} />
+                                </Col>
+                                :
+                                <Col className={styles.x_padding_posts} xs={24} md={12} lg={8} key={val.ID}>
+                                  <BlogStyleTwo data={val} />
+                                </Col>
+                              )
+                          })
+                      } 
+                       <Col xs={24}>
+                        <div className={styles.x_pagination}>
+                            <Pagination total={maxpage} limit={1} activePage={paged} onChangePage={(current) => { Next_Pages(current)}} />
+                        </div>
                       </Col>
-                      :
-                      <Col className={styles.x_padding_posts} xs={24} md={12} lg={8} key={val.ID}>
-                        <BlogStyleTwo data={val} />
-                      </Col>
-                    )
-                })
+                      </>
+                      : 'Không có bài viết'
+                    }
+                  </>
               }
             </Row>
           </Container>
@@ -92,6 +140,7 @@ export async function getServerSideProps() {
   // Pass data to the page via props
   return { props: { 
     bai_viet: res.posts,
-    danh_muc: res.terms
+    danh_muc: res.terms,
+    max_num_pages: res.max_num_pages
  }}
 }

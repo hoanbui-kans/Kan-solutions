@@ -1,91 +1,186 @@
 import React from 'react'
-import { Grid, Row, Col, Timeline } from 'rsuite'
+import { Grid, Row, Col, Timeline, Container, Button } from 'rsuite'
 import Image from 'next/image'
 import styles from '../styles/about.module.css'
+import EmailFillIcon from '@rsuite/icons/EmailFill'
 
 const AboutUs = () => {
   return (
     <div className={styles.x_about_us_section}>
+      <span className={styles.x_neumorphic}>
+            <Image src={'/layout/decorations-01.svg'} width={800} height={800}/>
+      </span>
       <Grid className={'x-container'}>
+        <Container className={styles.x_about_section_one}>
           <Row className={styles.x_flex_center}>
-            <Col xs={24} md={12}>
-              <Image src={'/layout/multipe_screen.png'} width={600} height={400}/>
-            </Col>
-            <Col xs={24} md={12}>
-              <h3 >Về Kan Solution</h3>
-              <p>
-                Bạn thắc mắc vì sao website bạn đầu tư thiết kế website rất nhiều tiền, cũng đổ tiền quảng cáo với ngân sách khủng nhưng hiệu quả bán hàng không được như ý, thậm chí không bằng các website nhìn rất xấu
-              </p>
-              <p>
-              Website thành công không chỉ dựa vào yếu tố đẹp, mà nó còn đòi hỏi nhiều yếu tố từ nội dung, cấu trúc code, nội dung, tuổi thọ, tốc độ, các liên kết khác. Bạn cần hiểu rõ thế mạnh của mình để có thể xây dựng chiến lược lâu dài cho website
-              </p>
-            </Col>
-          </Row>
-          <Row className={styles.x_flex_center}>
-            <Col xs={24}>
-              <h3>Về Kan Solution</h3>
-            </Col>
-            <Col xs={24} md={8}>
-              <div className={styles.x_feature_box}>
-                <span className={styles.x_feature_}><Image src={'/icons/trophy_light.svg'} width={45} height={45}/></span>
-                <h3 className={styles.x_feature_title}>Giá trị</h3>
-                <p className={styles.x_feature_content}>
-                  Thông qua hai điểm máu chốt là sự phù hợp và dễ sử dụng. Tận lực xây dựng giải pháp tốt trong từng giai đoạn phát triển của doanh nghiệp
+              <Col xs={24} md={12}>
+                <Image src={'/layout/real-mockup.png'} width={800} height={395}/>
+              </Col>
+              <Col xs={24} md={12}>
+                <h3 className={styles.x_about_title}>Về Kan Solution</h3>
+                <p>
+                  Bạn thắc mắc vì sao website bạn đầu tư thiết kế website rất nhiều tiền, cũng đổ tiền quảng cáo với ngân sách khủng nhưng hiệu quả bán hàng không được như ý, thậm chí không bằng các website nhìn rất xấu
                 </p>
-              </div>
-            </Col>
-            <Col xs={24} md={8}>
-              <div className={styles.x_feature_box}>
-                <span className={styles.x_feature_}><Image src={'/icons/chart_alt_light.svg'} width={45} height={45}/></span>
-                <h3 className={styles.x_feature_title}>Tầm nhìn</h3>
-                <p className={styles.x_feature_content}>
-                  Tập trung vào các giải pháp giúp doanh nghiệp tiếp cận, sử dụng hiệu quả các sản phẩm số và internet
+                <p className={styles.x_about_description}>
+                Website thành công không chỉ dựa vào yếu tố đẹp, mà nó còn đòi hỏi nhiều yếu tố từ nội dung, cấu trúc code, nội dung, tuổi thọ, tốc độ, các liên kết khác. Bạn cần hiểu rõ thế mạnh của mình để có thể xây dựng chiến lược lâu dài cho website
                 </p>
-              </div>
-            </Col>
-            <Col xs={24} md={8}>
-              <div className={styles.x_feature_box}>
-                <span className={styles.x_feature_}><Image src={'/icons/world_2_light.svg'} width={45} height={45}/></span>
-                <h3 className={styles.x_feature_title}>Sứ mệnh</h3>
-                <p className={styles.x_feature_content}>
-                  Công ty cung cấp giải pháp số hóa và internet uy tín. Kho dữ liệu tham khảo trong cộng đồng kinh doanh
-                </p>
-              </div>
-            </Col>
-          </Row>
-          <Row className={styles.x_flex_timeline}>
-            <Col xs={24}>
-              <h3>Thông tin hoạt động</h3>
-            </Col>
-            <Col xs={12} md={24} className={styles.x_timeline_content}>
-              <div className={styles.x_timeline}>
-                  <div className={styles.x_timeline_item}>
-                    <span className={styles.x_timebox_icon}><Image src={'/icons/Send_fill_black.svg'} width={45} height={45}/></span>
-                    <div className={styles.x_timeline_content}>
-                      <h4 className={styles.x_timeline_title}>Năm 2013 - Gia nhập</h4>
-                      <p>Gia nhập ngành thiết kế website cùng người bạn, cùng sáng lập công ty chuyên về thiết kế website cho doanh nghiệp</p>
-                    </div>
-                  </div>
-                  <div className={styles.x_timeline_item}>
-                    <span className={styles.x_timebox_icon}><Image src={'/icons/3d_box_fill.svg'} width={45} height={45}/></span>
+                <Button className={styles.x_black_button}>
+                    <EmailFillIcon width={34} heigh={34}/>
+                     ĐĂNG KÝ TƯ VẤN
+                  </Button>
+              </Col>
+            </Row>
+         </Container>
+      </Grid>
+      <Grid className={'x-container'}>
+        <Container className={styles.x_about_section_one}>
+            <Row className={styles.x_flex_center}>
+              <Col xs={24} md={8} className={styles.x_padding}>
+                <div className={styles.x_feature_box}>
+                  <span className={styles.x_feature_}><Image src={'/icons/trophy_light.svg'} width={45} height={45}/></span>
+                  <h3 className={styles.x_feature_title}>Giá trị</h3>
+                  <p className={styles.x_feature_content}>
+                    Thông qua hai điểm máu chốt là sự phù hợp và dễ sử dụng. Tận lực xây dựng giải pháp tốt trong từng giai đoạn phát triển của doanh nghiệp
+                  </p>
+                </div>
+              </Col>
+              <Col xs={24} md={8} className={styles.x_padding}>
+                <div className={styles.x_feature_box}>
+                  <span className={styles.x_feature_}><Image src={'/icons/chart_alt_light.svg'} width={45} height={45}/></span>
+                  <h3 className={styles.x_feature_title}>Tầm nhìn</h3>
+                  <p className={styles.x_feature_content}>
+                    Tập trung vào các giải pháp giúp doanh nghiệp tiếp cận, sử dụng hiệu quả các sản phẩm số và internet
+                  </p>
+                </div>
+              </Col>
+              <Col xs={24} md={8} className={styles.x_padding}>
+                <div className={styles.x_feature_box}>
+                  <span className={styles.x_feature_}><Image src={'/icons/world_2_light.svg'} width={45} height={45}/></span>
+                  <h3 className={styles.x_feature_title}>Sứ mệnh</h3>
+                  <p className={styles.x_feature_content}>
+                    Công ty cung cấp giải pháp số hóa và internet uy tín. Kho dữ liệu tham khảo trong cộng đồng kinh doanh
+                  </p>
+                </div>
+              </Col>
+            </Row>
+       </Container>
+      </Grid>
+      <Grid className={'x-container'}>
+        <Container className={styles.x_about_section_one}>
+            <Row className={styles.x_flex_timeline}>
+              <Col xs={24}>
+                <h3 className={styles.x_about_title}>Thông tin hoạt động</h3>
+              </Col>
+              <Col xs={24} md={14} className={styles.x_padding}>
+                <div className={styles.x_timeline}>
+                    <div className={styles.x_timeline_item}>
+                      <span className={styles.x_year_counter}>
+                          Năm 2013
+                      </span>
                       <div className={styles.x_timeline_content}>
-                        <h4 className={styles.x_timeline_title}>Năm 2017 - Thành lập Kan Solutions</h4>
+                        <span className={styles.x_timebox_icon}>
+                          <Image src={'/icons/Send_fill_black.svg'} width={45} height={45}/>
+                        </span>
+                        <h4 className={styles.x_timeline_title}>Gia nhập</h4>
                         <p>Gia nhập ngành thiết kế website cùng người bạn, cùng sáng lập công ty chuyên về thiết kế website cho doanh nghiệp</p>
                       </div>
                     </div>
-                  <div className={styles.x_timeline_item}>
-                    <span className={styles.x_timebox_icon}><Image src={'/icons/Folder_copy_duotone.svg'} width={45} height={45}/></span>
-                    <div className={styles.x_timeline_content}>
-                      <h4 className={styles.x_timeline_title}>Năm 2019 - Hợp tác – Mở rộng</h4>
-                      <p>Gia nhập ngành thiết kế website cùng người bạn, cùng sáng lập công ty chuyên về thiết kế website cho doanh nghiệp</p>
+                    <div className={styles.x_timeline_item}>
+                        <span className={styles.x_year_counter}>
+                            Năm 2017
+                        </span>
+                        <div className={styles.x_timeline_content}>
+                          <span className={styles.x_timebox_icon}>
+                            <Image src={'/icons/3d_box_fill.svg'} width={45} height={45}/>
+                          </span>
+                          <h4 className={styles.x_timeline_title}>Thành lập Kan Solutions</h4>
+                          <p>Gia nhập ngành thiết kế website cùng người bạn, cùng sáng lập công ty chuyên về thiết kế website cho doanh nghiệp</p>
+                        </div>
+                      </div>
+                    <div className={styles.x_timeline_item}>
+                      <span className={styles.x_year_counter}>
+                            Năm 2019
+                      </span>
+                      <div className={styles.x_timeline_content}>
+                        <span className={styles.x_timebox_icon}>
+                          <Image src={'/icons/Folder_copy_duotone.svg'} width={45} height={45}/>
+                        </span>
+                        <h4 className={styles.x_timeline_title}>Hợp tác – Mở rộng</h4>
+                        <p>Gia nhập ngành thiết kế website cùng người bạn, cùng sáng lập công ty chuyên về thiết kế website cho doanh nghiệp</p>
+                      </div>
                     </div>
+                </div>
+              </Col>
+            </Row>
+        </Container>
+      </Grid>
+      <Grid className={'x-container'}>
+        <Container>
+            <Row className={styles.x_flex_timeline}>
+              <Col xs={24}>
+                <h3 className={styles.x_about_title}>Quy trình dịch vụ</h3>
+              </Col>
+              <Col xs={24}>
+                <Row className={styles.x_flex}>
+                    <Col xs={24} md={12} className={styles.x_padding}>
+                        <div className={styles.x_step_working_item}>
+                          <span className={styles.x_step_working_icon}>01</span>
+                          <div className={styles.x_step_content}>
+                            <h4 className={styles.x_step_title}>Phân tích yêu cầu</h4>
+                            <p>Yêu cầu của khách hàng bắt đầu từ vấn đề cần giải pháp. Chúng tôi hướng đến giải quyết vấn đề của khách hàng</p>
+                          </div>
+                        </div>
+                    </Col>
+                    <Col xs={24} md={12} className={styles.x_padding}>
+                        <div className={styles.x_step_working_item}>
+                          <span className={styles.x_step_working_icon}>02</span>
+                            <div className={styles.stepne_content}>
+                              <h4 className={styles.x_step_title}>Thống nhất hợp đồng dịch vụ</h4>
+                              <p>Một giải pháp hợp lý khi giải quyết được vấn đề trong nguồn lực hợp lý, hiệu quả, đảm bảo tiến độ và ngân sách phù hợp</p>
+                            </div>
+                        </div>
+                    </Col>
+                    <Col xs={24} md={12} className={styles.x_padding}>
+                        <div className={styles.x_step_working_item}>
+                          <span className={styles.x_step_working_icon}>03</span>
+                          <div className={styles.x_step_content}>
+                            <h4 className={styles.x_step_title}>Triển khai thực hiện dịch vụ</h4>
+                            <p>Đội ngũ Kan Solutions làm việc dựa trên giải pháp và sự sáng tạo. Làm việc chuyên nghiệp, tận tậm để đảm bảo tiến độ.</p>
+                          </div>
+                        </div>
+                    </Col>
+                    <Col xs={24} md={12} className={styles.x_padding}>
+                        <div className={styles.x_step_working_item}>
+                          <span className={styles.x_step_working_icon}>04</span>
+                          <div className={styles.x_step_content}>
+                            <h4 className={styles.x_step_title}>Khách hàng phản hồi và chỉnh sửa</h4>
+                            <p>Phản hồi và điều chỉnh trên cơ sở sự hài lòng của khách hàng Ba thành phần phản hồi: Cấu trúc, thiết kế, nội dung</p>
+                          </div>
+                        </div>
+                    </Col>
+                    <Col xs={24} md={12} className={styles.x_padding}>
+                        <div className={styles.x_step_working_item}>
+                          <span className={styles.x_step_working_icon}>05</span>
+                          <div className={styles.x_step_content}>
+                            <h4 className={styles.x_step_title}>Hướng dẫn bàn giao sản phẩm</h4>
+                            <p>Bàn giao sản phẩm sau khi khách hàng hài lòng và thanh lý hợp đồng. Hướng dẫn và đào tạo sử dụng, quản trị hiệu quả</p>
+                          </div>
+                        </div>
+                    </Col>
+                </Row>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={24}>
+                <div className={styles.x_about_banner}>
+                  <div className={styles.x_about_banner_content}>
+                    <h2 className={styles.x_banner_title}>Thiết kế Website chuyên nghiệp cùng ưu đãi hàng trăm banner miễn phí</h2>
+                    <Button className={styles.x_banner_button}>Thông tin chi tiết</Button>
                   </div>
-              </div>
-            </Col>
-            <span className={styles.x_neumorphic}>
-              <Image src={'/layout/decorations-01.svg'} width={500} height={500}/>
-            </span>
-          </Row>
+                </div>
+              </Col>
+            </Row>
+        </Container>
       </Grid>
     </div>
   )

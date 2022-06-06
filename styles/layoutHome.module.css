@@ -112,6 +112,10 @@
     align-items: center;
     justify-content: center;
   }
+  .x_about_description{
+    margin-bottom: 1.25rem;
+    display: block;
+  }
   .x_black_button:hover{
     border-color: black;
     background: unset
