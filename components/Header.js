@@ -22,7 +22,7 @@ const Left = () => {
                 {
                     listServices.map((val, index) => {
                         return(
-                            <div className={styles.x_dropbox}>
+                            <div className={styles.x_dropbox} key={index}>
                                 <Link href={val.link}>
                                     <a className={styles.x_iconLink}>
                                     <span className={styles.x_iconImage}><Image src={val.image} width={24} height={24} /> </span> 

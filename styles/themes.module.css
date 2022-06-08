@@ -1,0 +1,55 @@
+.x_form_search_posts{
+    width: 100%;
+  }
+  
+  .x_form_search_posts input{
+    padding: .55rem 0rem .55rem 1rem;
+    border-radius: 30px;
+    width: 100% !important;
+  }
+  
+  .x_form_search_group{
+    position: relative;
+  }
+  
+  .x_search_posts_button{
+    background: none;
+    border: none;
+    position: absolute;
+    top: 4px;
+    right: 7px;
+    z-index: 2;
+  }
+
+  .x_nganh_list{
+      display: inline-block;
+      padding: .25rem 1.5rem;
+      margin-bottom: .25rem;
+      margin-right: .75rem;
+      border-radius: .35rem;
+      cursor: pointer;
+      border: 1px solid rgb(226, 226, 226)
+  }
+  .x_nganh_list h5{
+      font-weight: 400;
+      font-size: 1rem;
+  }
+
+  .x_gd_box{
+    background: #ffffff;
+    box-shadow:  5px 5px 10px #ededed,
+                -5px -5px 10px #ffffff;
+    border-radius: 20px;
+    margin-bottom: 1.95rem;
+    padding: .35rem .75rem 1.75rem .35rem;
+    margin-bottom: 1.75rem
+  }
+
+  .x_gd_box_tittle{
+      font-size: 22px;
+  }
+
+  .x_gd_box_description{
+      font-weight: 300;
+      margin-bottom: .75rem;
+  }

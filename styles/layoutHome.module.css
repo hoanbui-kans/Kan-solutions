@@ -69,16 +69,16 @@
     height: 270px;
     min-height: 240px;
     padding: 24px 32px;
-    border: 1px solid #d4d4d4;
     border-radius: 20px;
     transition: all .3s ease-in-out;
     color: #111;
     margin-bottom: 35px;
     display: block;
+    background: linear-gradient(145deg, #dedede, #ffffff);
+    box-shadow: 5px 5px 10px #ededed, -5px -5px 10px #ffffff;
   }
   .x_services_box:hover{
     background: white;
-    border: 1px solid white;
     box-shadow: 0 14px 24px 0 rgb(0 0 0 / 10%);
     transition: all .3s ease-in-out;
   }

@@ -1,0 +1,86 @@
+.x_banner{
+    padding: 150px 0px;
+    background-color: azure;
+}
+
+.x_banner_content{
+    text-align: center;
+    max-width: 600px;
+    margin: auto;
+    display: block;
+}
+
+.x_call_to_action{
+    border-radius: 35px;
+    padding: 15px 55px;
+    background: black;
+    color: white
+}
+
+.x_features_icon{
+    margin-right: 5px;
+}
+
+.x_features{
+    list-style: none;
+    padding: 0;
+    font-size: 12px;
+}
+.x_features li{
+    display: inline-block;
+    margin: 10px 15px 5px 0px;
+    padding: 7px 15px;
+    border: 1px solid rgb(243 243 243);
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    box-shadow: 5px 5px 10px #ededed, -5px -5px 10px #ffffff;
+}
+.x_services_button{
+    padding: 15px 25px;
+    border-radius: 35px;
+    background-color: #2d88e2;
+    color: white;
+}
+.x_features li:hover{
+    background-color: #2d88e2;
+    border-color: #2d88e2;
+    color: white;
+}
+.x_why_choose{
+    background: white;
+    padding: 35px 0px
+}
+.x_padding{
+    padding: 0rem 1rem; 
+}
+.services_main_title{
+    margin-bottom: 2.5rem;
+}
+.x_services_content{
+    min-height: 240px;
+    padding: 75px 32px;
+    border-radius: 20px;
+    transition: all .3s ease-in-out;
+    color: #111;
+    margin-bottom: 35px;
+    display: block;
+    background: linear-gradient(145deg, #dedede, #ffffff);
+    box-shadow: 5px 5px 10px #ededed, -5px -5px 10px #ffffff;
+}
+.x_centered{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.x_services_content_main_title{
+    font-size: 2rem;
+    margin-bottom: 1.25rem;
+    display: block;
+}
+.x_why_choose_content{
+    text-align: left;
+}
+.x_services_content_title{
+    font-size: 14px;
+}

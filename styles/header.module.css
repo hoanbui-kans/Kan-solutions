@@ -139,7 +139,6 @@
 }
 .x_header_section{
     position: relative;
-    background-color: #f7f7f7;
     z-index: 20;
 }
 .x_dropdown_x3_menu{
@@ -331,6 +330,8 @@
     width: 100%;
     left: 0;
     top: 0;
+    background: rgb(247 247 247 / 85%);
+    backdrop-filter: blur(10px);
 }
 
 .x_fixed .headerMenu{
@@ -340,11 +341,13 @@
 .x_fixed .x_brand{
     width: 100px;
 }
-
+.x_fixed .x_header{
+    background-color: unset;
+}
 .x_header{
     position: relative;
     z-index: 2;
-    background: #f7f7f7
+    background-color: #f7f7f7;
 }
 
 .x_loading_container{
