@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@netlify/plugin-nextjs": "^4.8.0",
     "@react-spring/web": "^9.4.5",
     "@rsuite/icons": "^1.0.2",
     "@wordpress/api-fetch": "^6.7.0",
