@@ -162,7 +162,7 @@ const SingleTheme = ({data}) => {
                           <h3 className={styles.x_nganh_title}>{val.name}</h3>
                             <Nganh data={val.layout}/>
                           </div>
-                        )
+                        ) 
                       })
                       : ''
                   }
