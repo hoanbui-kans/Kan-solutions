@@ -20,86 +20,89 @@ function separator(numb) {
   return str.join(".");
 }
 
-const Layout = ({data}) => {
-  return (
-    <ul className={styles.x_layout}>
-      {
-        data ?
-        data.map((val) => {
-          return(
-            <li key={val.term_id}>
-              <div className={styles.x_features_with_icon}> 
-                <CheckRoundIcon className={styles.x_feature_icon} width={12} height={12} color={'#27ae60'}/>
-                {val.name}</div>
-            </li>
-          )
-        }) : ''
-      }
-    </ul>
-  )
-}
-
-
-const Nganh = ({data}) => {
-  return (
-    <ul className={styles.x_layout_nganh}>
-      {
-        data ?
-        data.map((val, index) => {
-          return(
-            <li key={index}>
-              <div className={styles.x_layout_nganh_title}>
-                <ArrowRightIcon width={14} height={14}/>
-                <h3>{val.title}</h3>
-              </div>
-              <div className={styles.x_layout_nganh_content}>{HTMLReactParser(val.content)}</div>
-            </li>
-          )
-        }) : ''
-      }
-    </ul>
-  )
-}
-
-const NenTang = ({data}) => {
-  return (
-    <ul className={styles.x_danh_muc_plugin}>
-      {
-        data.map((val) => {
-          return (
-            <li key={val.term_id}>
-              <Link href={`/danh-muc/${val.slug}`}>
-                <a className={styles.x_plugin_content}>
-                  {val.thumbnail ?  <span className={styles.x_layout_icons}><Image src={val.thumbnail} width={26} height={26}/></span> : '' }
-                  <span> {val.name} </span>
-                </a>
-              </Link>
-            </li>
-          )
-        })
-      }
-    </ul>
-  )
-}
-const Price = ({data}) => {
-  if(data.sale_price) 
-  return (
-    <div className={styles.x_styles_price}>
-      <span className={styles.x_old_price}>{separator(data.regular_price)}đ</span>
-      <span className={styles.x_newPrice}>{separator(data.sale_price)}đ</span>
-    </div>
-  )
-  return(
-    <div className={styles.x_styles_price}>
-      <span className={styles.simple}>{separator(data.regular_price)}đ</span>
-    </div>
-  )
-}
-
 const SingleTheme = ({data}) => {
-  const Textarea = React.forwardRef((props, ref) => <Input {...props} as="textarea" ref={ref} />);
+
+  const Textarea = React.forwardRef((props, ref) => <Input {...props} as="textarea" name='content' ref={ref} />);
   const DanhMucNganh = data.nganh;
   const ThemeInfor = data.themeinfor;
+
+  const Layout = ({data}) => {
+    return (
+      <ul className={styles.x_layout}>
+        {
+          data ?
+          data.map((val) => {
+            return(
+              <li key={val.term_id}>
+                <div className={styles.x_features_with_icon}> 
+                  <CheckRoundIcon className={styles.x_feature_icon} width={12} height={12} color={'#27ae60'}/>
+                  {val.name}</div>
+              </li>
+            )
+          }) : ''
+        }
+      </ul>
+    )
+  }
+  
+  
+  const Nganh = ({data}) => {
+    return (
+      <ul className={styles.x_layout_nganh}>
+        {
+          data ?
+          data.map((val, index) => {
+            return(
+              <li key={index}>
+                <div className={styles.x_layout_nganh_title}>
+                  <ArrowRightIcon width={14} height={14}/>
+                  <h3>{val.title}</h3>
+                </div>
+                <div className={styles.x_layout_nganh_content}>{HTMLReactParser(val.content)}</div>
+              </li>
+            )
+          }) : ''
+        }
+      </ul>
+    )
+  }
+  
+  const NenTang = ({data}) => {
+    return (
+      <ul className={styles.x_danh_muc_plugin}>
+        {
+          data.map((val) => {
+            return (
+              <li key={val.term_id}>
+                <Link href={`/danh-muc/${val.slug}`}>
+                  <a className={styles.x_plugin_content}>
+                    {val.thumbnail ?  <span className={styles.x_layout_icons}><Image src={val.thumbnail} width={26} height={26}/></span> : '' }
+                    <span> {val.name} </span>
+                  </a>
+                </Link>
+              </li>
+            )
+          })
+        }
+      </ul>
+    )
+  }
+  
+  const Price = ({data}) => {
+    if(data.sale_price) 
+    return (
+      <div className={styles.x_styles_price}>
+        <span className={styles.x_old_price}>{separator(data.regular_price)}đ</span>
+        <span className={styles.x_newPrice}>{separator(data.sale_price)}đ</span>
+      </div>
+    )
+    return(
+      <div className={styles.x_styles_price}>
+        <span className={styles.simple}>{separator(data.regular_price)}đ</span>
+      </div>
+    )
+  }
+
   return (
     <>
       <Head>
