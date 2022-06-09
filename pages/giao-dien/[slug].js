@@ -187,15 +187,15 @@ const SingleTheme = ({data}) => {
                   <Form layout="horizontal" fluid> 
                     <Form.Group>
                       <Form.ControlLabel></Form.ControlLabel>
-                      <Form.Control value={EventTarget.value} placeholder='Nhập tên của bạn...' type='text' />
+                      <Form.Control name='name' value={EventTarget.value} placeholder='Nhập tên của bạn...' type='text' />
                     </Form.Group>
                     <Form.Group>
                       <Form.ControlLabel></Form.ControlLabel>
-                      <Form.Control value={EventTarget.value} placeholder='Nhập địa chỉ Email...' type='email' />
+                      <Form.Control name='email' value={EventTarget.value} placeholder='Nhập địa chỉ Email...' type='email' />
                     </Form.Group>
                     <Form.Group>
                       <Form.ControlLabel></Form.ControlLabel>
-                      <Form.Control value={EventTarget.value} placeholder='Nhập nội dung...' accepter={Textarea} />
+                      <Form.Control name='content' value={EventTarget.value} placeholder='Nhập nội dung...' accepter={Textarea} />
                     </Form.Group>
                     <Form.Group>
                       <ButtonToolbar>

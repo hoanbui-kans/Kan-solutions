@@ -71,6 +71,7 @@ const Themes = ({gd, nganh, danhmuc, max_pages}) => {
                             type="text"
                             value={keySearch}
                             onChange={(value) => setKeySearch(value)}
+                            name='s'
                             placeholder={'Tìm kiếm giao diện...'}
                             className={styles.x_form_search_posts}
                             />

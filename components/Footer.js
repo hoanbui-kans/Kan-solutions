@@ -45,7 +45,7 @@ const Footer = () => {
                       <h3 className={styles.x_footer_title}>Nhận tin tức mới</h3>
                       <p className={styles.x_email_message}>Nhận nội dung cập nhật từ website, những thông tin cần thiết để giúp mở phát triển doanh nghiệp</p>
                       <Form className={styles.x_footer_form}>
-                        <Form.Control className={styles.x_form_newsletter} value={EventTarget.value} placeholder={'Nhập địa chỉ Email...'}></Form.Control>
+                        <Form.Control name='email' className={styles.x_form_newsletter} value={EventTarget.value} placeholder={'Nhập địa chỉ Email...'}></Form.Control>
                         <Button className={styles.x_newsletter_button}>
                             <span className={styles.x_newsletter_ico}>
                               <Image src={'/icons/Send_fill.svg'} width={24} height={24} />

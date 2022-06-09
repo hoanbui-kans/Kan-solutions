@@ -83,6 +83,7 @@ const News = ({bai_viet, danh_muc, max_num_pages}) => {
                         <Form.Control 
                           type="text"
                           value={keySearch}
+                          name='s'
                           onChange={(value) => setKeySearch(value)}
                           placeholder={'Tìm kiếm bài viết...'}
                           className={styles.x_form_search_posts}
