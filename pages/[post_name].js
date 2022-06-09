@@ -31,7 +31,7 @@ const PostSingle = ({data}) => {
                       <li><span>Được viết bởi: </span> { miscValue[0] }</li>
                       <li><span>Ước tính thời gian đọc: </span> { miscValue[1] }</li>
                     </ul>
-                    <Image src={data.thumbnail} width={800} height={500}/>
+                    <Image alt='layout' src={data.thumbnail} width={800} height={500}/>
                   </Col>
                   <Col xs={18}>
                     <div className={styles.x_single_content}>

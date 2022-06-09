@@ -45,7 +45,7 @@ const Wordpress = () => {
                     </div>
                 </Col>
                 <Col xs={24} md={12}>
-                    <Image src={'/layout/web_creation-01.svg'} width={800} height={600}/>
+                    <Image alt='layout' src={'/layout/web_creation-01.svg'} width={800} height={600}/>
                 </Col>
             </Row>
            </Container>
@@ -69,7 +69,7 @@ const Wordpress = () => {
                     </div>
                 </Col>
                 <Col xs={24} md={12}>
-                    <Image src={'/layout/helper-01.svg'} width={800} height={600}/>
+                    <Image alt='layout' src={'/layout/helper-01.svg'} width={800} height={600}/>
                 </Col>
             </Row>
            </Container>

@@ -38,12 +38,12 @@ export default function Home() {
                 <Col xs={24} md={14}>
                   <div className={styles.x_decoration_images}>
                     <div className={styles.x_decoation_1}>
-                      <Image src="/layout/decoration_1.svg" width={175} height={762}/>
+                      <Image alt='layout' src="/layout/decoration_1.svg" width={175} height={762}/>
                     </div>
                     <div className={styles.x_decoation_0}>
-                      <Image src="/layout/decoration_0.svg" width={220} height={266}/>
+                      <Image alt='layout' src="/layout/decoration_0.svg" width={220} height={266}/>
                     </div>
-                    <Image src="/layout/layoutFrames.png" width={436} height={517}/>
+                    <Image alt='layout' src="/layout/layoutFrames.png" width={436} height={517}/>
                   </div>
                 </Col>
               </Row>
@@ -68,7 +68,7 @@ export default function Home() {
                               <a>
                                 <div className={styles.x_services_box}>
                                     <span className={styles.x_service_icon}>
-                                      <Image src={val.image} width={60} height={60}/></span>
+                                      <Image alt='layout' src={val.image} width={60} height={60}/></span>
                                     <h4 className={styles.x_services_box_title}>{val.title}</h4>
                                     <p className={styles.x_services_box_content}>{val.content}</p>
                                 </div>
@@ -101,7 +101,7 @@ export default function Home() {
                           <Button className={styles.x_creeper_button}><ArowBackIcon color={"white"} className={styles.x_rotate_180deg} width={24} height={24}/></Button>
                         </div>
                         <div className={styles.x_creeper_image_1}>
-                          <Image src={'/layout/design_1-01.svg'} width={600} height={631}/>
+                          <Image alt='layout' src={'/layout/design_1-01.svg'} width={600} height={631}/>
                         </div>
                     </div>
                     <div className={styles.x_creeper_box + ' '  + styles.x_creeper_box_3}>
@@ -111,7 +111,7 @@ export default function Home() {
                           <Button className={styles.x_creeper_button}><ArowBackIcon color={"white"} className={styles.x_rotate_180deg} width={24} height={24}/></Button>
                         </div>
                         <div className={styles.x_creeper_image_3}>
-                          <Image src={'/layout/design_3-01.svg'} width={600} height={631}/>
+                          <Image alt='layout' src={'/layout/design_3-01.svg'} width={600} height={631}/>
                         </div>
                     </div>
                 </Col>
@@ -123,7 +123,7 @@ export default function Home() {
                           <Button className={styles.x_creeper_button}><ArowBackIcon color={"white"} className={styles.x_rotate_180deg} width={24} height={24}/></Button>
                         </div>
                         <div className={styles.x_creeper_image_4}>
-                          <Image src={'/layout/design_4-01.svg'} width={600} height={631}/>
+                          <Image alt='layout' src={'/layout/design_4-01.svg'} width={600} height={631}/>
                         </div>
                     </div>
                     <div className={styles.x_creeper_box + ' ' + styles.x_creeper_box_4}>
@@ -133,7 +133,7 @@ export default function Home() {
                             <Button className={styles.x_creeper_button}><ArowBackIcon color={"white"} className={styles.x_rotate_180deg} width={24} height={24}/></Button>
                         </div>
                         <div className={styles.x_creeper_image_2}>
-                          <Image src={'/layout/design_2-01.svg'} width={600} height={631}/>
+                          <Image alt='layout' src={'/layout/design_2-01.svg'} width={600} height={631}/>
                         </div>
                     </div>
                 </Col>
@@ -157,7 +157,7 @@ export default function Home() {
                     return(
                       <Col xs={24} md={8} key={index} className={styles.x_padding_cta}>
                         <div className={styles.x_features_box}>
-                              <span className={styles.x_features_box_icon}><Image src={val.image} width={60} height={60} /></span>
+                              <span className={styles.x_features_box_icon}><Image alt='layout' src={val.image} width={60} height={60} /></span>
                               <h4 className={styles.x_features_box_title}>{val.title}</h4>
                               <p className={styles.x_features_box_content}>{val.content}</p>
                         </div>
@@ -172,10 +172,10 @@ export default function Home() {
 
         <div className={styles.x_section_five}>
           <span className={styles.lBox_0}>
-            <Image src="/layout/l-box.svg" width={265} height={215}/>
+            <Image alt='layout' src="/layout/l-box.svg" width={265} height={215}/>
           </span>
           <span className={styles.lBox_1}>
-            <Image src="/layout/l-box-01.svg" width={216} height={302}/>
+            <Image alt='layout' src="/layout/l-box-01.svg" width={216} height={302}/>
           </span>
           <Grid className='x_container'>
             <Container>

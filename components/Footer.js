@@ -48,7 +48,7 @@ const Footer = () => {
                         <Form.Control name='email' className={styles.x_form_newsletter} value={EventTarget.value} placeholder={'Nhập địa chỉ Email...'}></Form.Control>
                         <Button className={styles.x_newsletter_button}>
                             <span className={styles.x_newsletter_ico}>
-                              <Image src={'/icons/Send_fill.svg'} width={24} height={24} />
+                              <Image alt='layout' src={'/icons/Send_fill.svg'} width={24} height={24} />
                             </span>
                             Gửi đi
                         </Button>
@@ -61,7 +61,7 @@ const Footer = () => {
                       <li>
                         <div className={styles.x_contact_list}>
                           <span className={styles.x_footer_icon}>
-                            <Image src={'/icons/Pin_fill.svg'} width={20} height={20}/>
+                            <Image alt='layout' src={'/icons/Pin_fill.svg'} width={20} height={20}/>
                           </span>
                           <div>
                             <strong className={styles.x_footer_focused}> 
@@ -74,7 +74,7 @@ const Footer = () => {
                         <li>
                         <div className={styles.x_contact_list}>
                           <span className={styles.x_footer_icon}>
-                              <Image src={'/icons/Phone_fill.svg'} width={20} height={20}/>
+                              <Image alt='layout' src={'/icons/Phone_fill.svg'} width={20} height={20}/>
                           </span>
                           <div>
                             <strong className={styles.x_footer_focused}>
@@ -87,7 +87,7 @@ const Footer = () => {
                         <li>
                         <div className={styles.x_contact_list}>
                           <span className={styles.x_footer_icon}>
-                              <Image src={'/icons/Message_alt.svg'} width={20} height={20}/>
+                              <Image alt='layout' src={'/icons/Message_alt.svg'} width={20} height={20}/>
                           </span>
                           <div>
                             <strong className={styles.x_footer_focused}>

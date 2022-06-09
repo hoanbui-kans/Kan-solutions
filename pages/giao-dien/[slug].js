@@ -14,94 +14,93 @@ import ArrowRightIcon from '@rsuite/icons/ArrowRight';
 
 const rootURL = process.env.wp_json_enpoint
 
-function separator(numb) {
+function Separator(numb) {
   var str = numb.toString().split(".");
   str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   return str.join(".");
 }
 
+function Layout({data}){
+  return (
+    <ul className={styles.x_layout}>
+      {
+        data ?
+        data.map((val) => {
+          return(
+            <li key={val.term_id}>
+              <div className={styles.x_features_with_icon}> 
+                <CheckRoundIcon className={styles.x_feature_icon} width={12} height={12} color={'#27ae60'}/>
+                {val.name}</div>
+            </li>
+          )
+        }) : ''
+      }
+    </ul>
+  )
+}
+
+
+function Nganh({data}) {
+  return (
+    <ul className={styles.x_layout_nganh}>
+      {
+        data ?
+        data.map((val, index) => {
+          return(
+            <li key={index}>
+              <div className={styles.x_layout_nganh_title}>
+                <ArrowRightIcon width={14} height={14}/>
+                <h3>{val.title}</h3>
+              </div>
+              <div className={styles.x_layout_nganh_content}>{HTMLReactParser(val.content)}</div>
+            </li>
+          )
+        }) : ''
+      }
+    </ul>
+  )
+}
+
+const NenTang = ({data}) => {
+  return (
+    <ul className={styles.x_danh_muc_plugin}>
+      {
+        data.map((val) => {
+          return (
+            <li key={val.term_id}>
+              <Link href={`/danh-muc/${val.slug}`}>
+                <a className={styles.x_plugin_content}>
+                  {val.thumbnail ?  <span className={styles.x_layout_icons}><Image alt='layout' src={val.thumbnail} width={26} height={26}/></span> : '' }
+                  <span> {val.name} </span>
+                </a>
+              </Link>
+            </li>
+          )
+        })
+      }
+    </ul>
+  )
+}
+
+function Price({data}) {
+  if(data.sale_price) 
+  return (
+    <div className={styles.x_styles_price}>
+      <span className={styles.x_old_price}>{Separator(data.regular_price)}đ</span>
+      <span className={styles.x_newPrice}>{Separator(data.sale_price)}đ</span>
+    </div>
+  )
+  return(
+    <div className={styles.x_styles_price}>
+      <span className={styles.simple}>{Separator(data.regular_price)}đ</span>
+    </div>
+  )
+}
+
 const SingleTheme = ({data}) => {
 
-  const Textarea = React.forwardRef((props, ref) => <Input {...props} as="textarea" name='content' ref={ref} />);
-  const DanhMucNganh = data.nganh;
-  const ThemeInfor = data.themeinfor;
-
-  const Layout = ({data}) => {
-    return (
-      <ul className={styles.x_layout}>
-        {
-          data ?
-          data.map((val) => {
-            return(
-              <li key={val.term_id}>
-                <div className={styles.x_features_with_icon}> 
-                  <CheckRoundIcon className={styles.x_feature_icon} width={12} height={12} color={'#27ae60'}/>
-                  {val.name}</div>
-              </li>
-            )
-          }) : ''
-        }
-      </ul>
-    )
-  }
-  
-  
-  const Nganh = ({data}) => {
-    return (
-      <ul className={styles.x_layout_nganh}>
-        {
-          data ?
-          data.map((val, index) => {
-            return(
-              <li key={index}>
-                <div className={styles.x_layout_nganh_title}>
-                  <ArrowRightIcon width={14} height={14}/>
-                  <h3>{val.title}</h3>
-                </div>
-                <div className={styles.x_layout_nganh_content}>{HTMLReactParser(val.content)}</div>
-              </li>
-            )
-          }) : ''
-        }
-      </ul>
-    )
-  }
-  
-  const NenTang = ({data}) => {
-    return (
-      <ul className={styles.x_danh_muc_plugin}>
-        {
-          data.map((val) => {
-            return (
-              <li key={val.term_id}>
-                <Link href={`/danh-muc/${val.slug}`}>
-                  <a className={styles.x_plugin_content}>
-                    {val.thumbnail ?  <span className={styles.x_layout_icons}><Image src={val.thumbnail} width={26} height={26}/></span> : '' }
-                    <span> {val.name} </span>
-                  </a>
-                </Link>
-              </li>
-            )
-          })
-        }
-      </ul>
-    )
-  }
-  
-  const Price = ({data}) => {
-    if(data.sale_price) 
-    return (
-      <div className={styles.x_styles_price}>
-        <span className={styles.x_old_price}>{separator(data.regular_price)}đ</span>
-        <span className={styles.x_newPrice}>{separator(data.sale_price)}đ</span>
-      </div>
-    )
-    return(
-      <div className={styles.x_styles_price}>
-        <span className={styles.simple}>{separator(data.regular_price)}đ</span>
-      </div>
-    )
-  }
+  const DanhMucNganh = data.nganh ? data.nganh : '';
+  const ThemeInfor = data.themeinfor ? data.themeinfor : '';
 
   return (
     <>
@@ -198,7 +197,7 @@ const SingleTheme = ({data}) => {
                     </Form.Group>
                     <Form.Group>
                       <Form.ControlLabel></Form.ControlLabel>
-                      <Form.Control name='content' value={EventTarget.value} placeholder='Nhập nội dung...' accepter={Textarea} />
+                      <Input value={EventTarget.value} as="textarea" name='content' />
                     </Form.Group>
                     <Form.Group>
                       <ButtonToolbar>
@@ -216,14 +215,14 @@ const SingleTheme = ({data}) => {
   )
 }
 
-export default SingleTheme
+export default SingleTheme;
 
 export async function getServerSideProps(context) {
   const slug = context.params.slug;
   const res = await axios.get(rootURL + 'giao-dien/single?slug=' + slug).then((resonse) => resonse.data);
-
   // Pass data to the page via props
-  return { props: { 
-    data: res,
- }}
+  return { 
+  props: { 
+      data: res,
+  }}
 }

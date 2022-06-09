@@ -28,7 +28,7 @@ const Left = () => {
                             <div className={styles.x_dropbox} key={index}>
                                 <Link href={val.link}>
                                     <a className={styles.x_iconLink}>
-                                    <span className={styles.x_iconImage}><Image src={val.image} width={24} height={24} /> </span> 
+                                    <span className={styles.x_iconImage}><Image alt='layout' src={val.image} width={24} height={24} /> </span> 
                                     {val.name}</a>
                                 </Link>
                             </div>
@@ -302,7 +302,7 @@ const Header = () => {
                         <Row className={styles.headerMenu}>
                             <Col xs={12} md={12} lg={4}>
                                 <div className={styles.x_brand}>
-                                    <Image src={Brand} width={140} height={62} />
+                                    <Image alt='layout' src={Brand} width={140} height={62} />
                                 </div>
                             </Col>
                             <Col xs={16} className={styles.x_destop_display}>
@@ -428,7 +428,7 @@ const Header = () => {
                                                 return(
                                                 <div key={index} className={styles.x_search_result_post + ' ' + styles.x_dropbox}>
                                                     <div className={styles.x_search_result_thumbnail}>
-                                                    <Image src={val.thumbnail} width={70} height={70}/>
+                                                    <Image alt='layout' src={val.thumbnail} width={70} height={70}/>
                                                     </div>
                                                     <div className={styles.x_search_result_content}>
                                                     <Link href={val.post_name}>

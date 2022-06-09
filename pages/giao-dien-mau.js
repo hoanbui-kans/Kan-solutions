@@ -22,7 +22,7 @@ const GD_Box = ({data}) => {
     return (
         <div className={styles.x_gd_box}>
             <div className={styles.x_gd_box_thumbnail}>
-                <Image src={data.thumbnail} width={600} height={380}/>
+                <Image alt='layout' src={data.thumbnail} width={600} height={380}/>
             </div>
             <div className={styles.x_gd_box_content}>
                 <Link href={`/giao-dien/${data.post_name}`}>

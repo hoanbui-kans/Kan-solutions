@@ -8,13 +8,13 @@ const AboutUs = () => {
   return (
     <div className={styles.x_about_us_section}>
       <span className={styles.x_neumorphic}>
-            <Image src={'/layout/decorations-01.svg'} width={800} height={800}/>
+            <Image alt='layout' src={'/layout/decorations-01.svg'} width={800} height={800}/>
       </span>
       <Grid className={'x-container'}>
         <Container className={styles.x_about_section_one}>
           <Row className={styles.x_flex_center}>
               <Col xs={24} md={12}>
-                <Image src={'/layout/real-mockup.png'} width={800} height={395}/>
+                <Image alt='layout' src={'/layout/real-mockup.png'} width={800} height={395}/>
               </Col>
               <Col xs={24} md={12}>
                 <h3 className={styles.x_about_title}>Về Kan Solution</h3>
@@ -37,7 +37,7 @@ const AboutUs = () => {
             <Row className={styles.x_flex_center}>
               <Col xs={24} md={8} className={styles.x_padding}>
                 <div className={styles.x_feature_box}>
-                  <span className={styles.x_feature_}><Image src={'/icons/trophy_light.svg'} width={45} height={45}/></span>
+                  <span className={styles.x_feature_}><Image alt='layout' src={'/icons/trophy_light.svg'} width={45} height={45}/></span>
                   <h3 className={styles.x_feature_title}>Giá trị</h3>
                   <p className={styles.x_feature_content}>
                     Thông qua hai điểm máu chốt là sự phù hợp và dễ sử dụng. Tận lực xây dựng giải pháp tốt trong từng giai đoạn phát triển của doanh nghiệp
@@ -46,7 +46,7 @@ const AboutUs = () => {
               </Col>
               <Col xs={24} md={8} className={styles.x_padding}>
                 <div className={styles.x_feature_box}>
-                  <span className={styles.x_feature_}><Image src={'/icons/chart_alt_light.svg'} width={45} height={45}/></span>
+                  <span className={styles.x_feature_}><Image alt='layout' src={'/icons/chart_alt_light.svg'} width={45} height={45}/></span>
                   <h3 className={styles.x_feature_title}>Tầm nhìn</h3>
                   <p className={styles.x_feature_content}>
                     Tập trung vào các giải pháp giúp doanh nghiệp tiếp cận, sử dụng hiệu quả các sản phẩm số và internet
@@ -55,7 +55,7 @@ const AboutUs = () => {
               </Col>
               <Col xs={24} md={8} className={styles.x_padding}>
                 <div className={styles.x_feature_box}>
-                  <span className={styles.x_feature_}><Image src={'/icons/world_2_light.svg'} width={45} height={45}/></span>
+                  <span className={styles.x_feature_}><Image alt='layout' src={'/icons/world_2_light.svg'} width={45} height={45}/></span>
                   <h3 className={styles.x_feature_title}>Sứ mệnh</h3>
                   <p className={styles.x_feature_content}>
                     Công ty cung cấp giải pháp số hóa và internet uy tín. Kho dữ liệu tham khảo trong cộng đồng kinh doanh
@@ -79,7 +79,7 @@ const AboutUs = () => {
                       </span>
                       <div className={styles.x_timeline_content}>
                         <span className={styles.x_timebox_icon}>
-                          <Image src={'/icons/Send_fill_black.svg'} width={45} height={45}/>
+                          <Image alt='layout' src={'/icons/Send_fill_black.svg'} width={45} height={45}/>
                         </span>
                         <h4 className={styles.x_timeline_title}>Gia nhập</h4>
                         <p>Gia nhập ngành thiết kế website cùng người bạn, cùng sáng lập công ty chuyên về thiết kế website cho doanh nghiệp</p>
@@ -91,7 +91,7 @@ const AboutUs = () => {
                         </span>
                         <div className={styles.x_timeline_content}>
                           <span className={styles.x_timebox_icon}>
-                            <Image src={'/icons/3d_box_fill.svg'} width={45} height={45}/>
+                            <Image alt='layout' src={'/icons/3d_box_fill.svg'} width={45} height={45}/>
                           </span>
                           <h4 className={styles.x_timeline_title}>Thành lập Kan Solutions</h4>
                           <p>Gia nhập ngành thiết kế website cùng người bạn, cùng sáng lập công ty chuyên về thiết kế website cho doanh nghiệp</p>
@@ -103,7 +103,7 @@ const AboutUs = () => {
                       </span>
                       <div className={styles.x_timeline_content}>
                         <span className={styles.x_timebox_icon}>
-                          <Image src={'/icons/Folder_copy_duotone.svg'} width={45} height={45}/>
+                          <Image alt='layout' src={'/icons/Folder_copy_duotone.svg'} width={45} height={45}/>
                         </span>
                         <h4 className={styles.x_timeline_title}>Hợp tác – Mở rộng</h4>
                         <p>Gia nhập ngành thiết kế website cùng người bạn, cùng sáng lập công ty chuyên về thiết kế website cho doanh nghiệp</p>
