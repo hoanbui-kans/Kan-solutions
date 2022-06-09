@@ -424,9 +424,9 @@ const Header = () => {
                                     resultSearch.posts != undefined ? 
                                     <div className={styles.x_search_result_section}>
                                         {
-                                            resultSearch.posts.map((val) => {
+                                            resultSearch.posts.map((val, index) => {
                                                 return(
-                                                <div className={styles.x_search_result_post + ' ' + styles.x_dropbox}>
+                                                <div key={index} className={styles.x_search_result_post + ' ' + styles.x_dropbox}>
                                                     <div className={styles.x_search_result_thumbnail}>
                                                     <Image src={val.thumbnail} width={70} height={70}/>
                                                     </div>
