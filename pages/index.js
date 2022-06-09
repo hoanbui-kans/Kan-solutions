@@ -63,7 +63,7 @@ export default function Home() {
                 {
                   ServicesBox.map((val , index) => {
                       return(
-                        <Col xs={24} md={8} key={index} className={styles.x_padding_cta}>
+                        <Col xs={24} md={12} lg={8} key={index} className={styles.x_padding_cta}>
                             <Link href={val.link}>
                               <a>
                                 <div className={styles.x_services_box}>
@@ -93,7 +93,7 @@ export default function Home() {
                   <p style={{textAlign: 'center', fontSize: '14px', margin: '1.25rem 0 2.75rem 0rem'}} className={styles.description}>Chúng tôi cung cấp các sản phẩm mẫu hỗ trợ các nội dung số để bạn có thể đưa thông tin doanh nghiệp và sản phẩm của mình lên mạng Internet một cách nhanh chóng và dễ dàng. Điều này giúp bạn gia tăng hiệu quả hoạt động với chi phí thấp nhất</p>
                   </div>
                 </Col>
-                <Col xs={12} className={styles.x_padding_cta}>
+                <Col xs={24} md={12} className={styles.x_padding_cta}>
                     <div className={styles.x_creeper_box + ' ' + styles.x_creeper_box_1}>
                        <div className={styles.x_creeper_box_section}>
                           <h4 className={styles.x_creeper_title}>Digital Content</h4>
@@ -115,7 +115,7 @@ export default function Home() {
                         </div>
                     </div>
                 </Col>
-                <Col xs={12} className={styles.x_padding_cta}>
+                <Col xs={24} md={12} className={styles.x_padding_cta}>
                     <div className={styles.x_creeper_box + ' ' + styles.x_creeper_box_2}>
                         <div className={styles.x_creeper_box_section}>
                           <h4 className={styles.x_creeper_title}>Online Marketing</h4>

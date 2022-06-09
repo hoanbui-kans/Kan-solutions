@@ -33,6 +33,26 @@ a:active, a:focus, a:hover {
   pointer-events: none;
 }  
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
 @font-face {
   font-family: 'SVN-Gotham';
   src: url('../fonts/SVN-GothamBlack.woff2') format('woff2'),
@@ -72,5 +92,10 @@ a:active, a:focus, a:hover {
 @media (min-width: 1200px){
   .rs-grid-container {
       width: 1200px !important;
+  }
+}
+@media (max-width: 1200px){
+  .rs-grid-container {
+      width: 100% !important;
   }
 }

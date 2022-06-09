@@ -2,16 +2,19 @@ import React, { useEffect, useState } from 'react'
 import Brand from '../public/logo.svg'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Grid, Row, Col, Nav, Container, Form, Button, Pagination, Loader  } from 'rsuite'
+import { Grid, Row, Col, Nav, Container, Form, Button, Pagination, Loader, ButtonToolbar  } from 'rsuite'
 import SearchIcon from '@rsuite/icons/Search'
 import CloseIcon from '@rsuite/icons/Close'
-import ArrowDownLineIcon from '@rsuite/icons/ArrowDownLine';
 import { useSpring, animated, useChain, useSpringRef, useTransition, config } from "@react-spring/web"
 import styles from '../styles/header.module.css'
 import { listServices } from '../pages/api/services'
 import { useRouter } from 'next/router'
+import ArrowDownLineIcon from '@rsuite/icons/ArrowDownLine';
+import EmailFillIcon from '@rsuite/icons/EmailFill';
+import PhoneFillIcon from '@rsuite/icons/PhoneFill';
+import ArrowRightIcon from '@rsuite/icons/ArrowRight';
+
 import axios from 'axios'
-import hamburgers from 'hamburgers'
 
 const rootURL = process.env.wp_json_enpoint;
 
@@ -72,6 +75,64 @@ const Right = () => {
                     </Link>
             </div>
         </>
+    )
+}
+
+const MobileMenu = ({showing}) => {
+    return(
+        <div 
+            className={ showing ? styles.x_mobile_menu + ' ' + styles.x_showing_mobile 
+            : styles.x_mobile_menu}
+        >
+            <div className={styles.x_mobile_menu_content}>
+                <ul className={styles.x_mobile_menu_list}>
+                    <li>
+                        <Link href={'/'}>
+                            <a>
+                                <ArrowRightIcon width={14} height={14}/> Trang chủ
+                            </a>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href={'/ve-chung-toi'}>
+                            <a>
+                                <ArrowRightIcon width={14} height={14}/> Về chúng tôi
+                            </a>
+                        </Link>
+                    </li>
+                    <li>
+                        <span className={styles.x_mobile_dropdown_title}>
+                            <ArrowRightIcon width={14} height={14}/> Dịch vụ
+                        </span>
+                        <div className={styles.x_mobile_services}>
+                            <Left />
+                            <Right />
+                        </div>
+                    </li>
+                    <li>
+                        <Link href={'/tin-tuc'}>
+                            <a>
+                                <ArrowRightIcon width={14} height={14}/> Tin tức
+                            </a>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href={'/tuyen-dung'}>
+                            <a>
+                                <ArrowRightIcon width={14} height={14}/> Tuyển dụng
+                            </a>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href={'/lien-he'}>
+                            <a>
+                                <ArrowRightIcon width={14} height={14}/> Liên hệ
+                            </a>
+                        </Link>
+                    </li>
+                </ul>
+            </div>
+        </div>
     )
 }
 
@@ -205,62 +266,98 @@ const Header = () => {
 
     return (
       <>
+      <div className={styles.x_top_header}>
+         <Grid className='x_container'>
+                <Container> 
+                    <Row className={styles.x_flex}>
+                        <Col xs={12} md={12} lg={12}>
+                            <strong>CÔNG TY TNHH GIẢI PHÁP KAN</strong>
+                        </Col>
+                        <Col xs={12} md={12} lg={12} className={styles.x_flex_end}>
+                            <ul className={styles.x_top_header_menu}>
+                                <li className={styles.x_destop_display}>
+                                    <a href={'tel:'}>
+                                        <PhoneFillIcon  />
+                                        Hotline: 0945 938 489
+                                    </a>
+                                </li>
+                                <li className={styles.x_destop_display}>
+                                    <a href={'mailto:contact@kanbox.vn'}>
+                                        <EmailFillIcon  />
+                                        contact@kanbox.vn
+                                    </a>
+                                </li>
+                                <li><Link href={'/dang-ky'}>Đăng ký</Link></li>
+                                <li><Link href={'/dang-nhap'}>Đăng nhập</Link></li>
+                            </ul>
+                        </Col>
+                    </Row>
+                </Container>
+          </Grid>
+      </div>
       <div className={ fixed ?  styles.x_header_section + ' ' + styles.x_fixed : styles.x_header_section}>
           <div className={styles.x_header}>
                 <Grid className='x_container'>
                     <Container> 
                         <Row className={styles.headerMenu}>
-                            <Col xs={4}>
+                            <Col xs={12} md={12} lg={4}>
                                 <div className={styles.x_brand}>
                                     <Image src={Brand} width={140} height={62} />
                                 </div>
                             </Col>
-                            <Col xs={16}>
-                            <Nav>
-                                <div className={styles.mainMenuContainer}>
-                                    <ul>
-                                        <li>
-                                            <Link href={'/'}>Trang chủ</Link>
-                                        </li>
-                                        <li>
-                                            <Link href={'/ve-chung-toi'}>Về chúng tôi</Link>
-                                        </li>
-                                        <li>
-                                            <a onClick={showDropdown}>
-                                                <span>
-                                                    Dịch vụ
-                                                    <animated.div 
-                                                    style={y}
-                                                    className={styles.arrow}
-                                                    >
-                                                        <ArrowDownLineIcon  width={14} height={14}/>
-                                                    </animated.div>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <Link href={'/tin-tuc'}>Tin tức</Link>
-                                        </li>
-                                        <li>
-                                            <Link href={'/tuyen-dung'}>Tuyển dụng</Link>
-                                        </li>
-                                        <li>
-                                            <Link href={'/lien-he'}>Liên hệ</Link>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </Nav>
+                            <Col xs={16} className={styles.x_destop_display}>
+                                <Nav>
+                                    <div className={styles.mainMenuContainer}>
+                                        <ul>
+                                            <li>
+                                                <Link href={'/'}>Trang chủ</Link>
+                                            </li>
+                                            <li>
+                                                <Link href={'/ve-chung-toi'}>Về chúng tôi</Link>
+                                            </li>
+                                            <li>
+                                                <a onClick={showDropdown}>
+                                                    <span>
+                                                        Dịch vụ
+                                                        <animated.div 
+                                                        style={y}
+                                                        className={styles.arrow}
+                                                        >
+                                                            <ArrowDownLineIcon  width={14} height={14}/>
+                                                        </animated.div>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <Link href={'/tin-tuc'}>Tin tức</Link>
+                                            </li>
+                                            <li>
+                                                <Link href={'/tuyen-dung'}>Tuyển dụng</Link>
+                                            </li>
+                                            <li>
+                                                <Link href={'/lien-he'}>Liên hệ</Link>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </Nav>
                             </Col>
-                            <Col xs={4}>
+                            <Col xs={12} md={12} lg={4}>
                                 <div className={styles.x_header_button_list}>
                                     <Button onClick={() => { setSearchForm(true); setOpen(false) }}>
                                         <SearchIcon width={22} height={22}/> 
                                     </Button>
-                                    <button className={styles.hamburger} type="button">
-                                        <span className={styles.hamburger_box}>
-                                            <span className={styles.hamburger_inner}></span>
-                                        </span>
-                                    </button>
+                                    <div className={styles.x_mobile_display}>
+                                        <button className={
+                                            showingMobile ? 
+                                            styles.hamburger + ' ' + styles.hamburger__spin + ' ' + styles.is_active
+                                            : styles.hamburger + ' ' + styles.hamburger__spin} 
+                                            onClick={() => { setShowingMobile(!showingMobile)}}
+                                            type="button">
+                                            <span className={styles.hamburger_box}>
+                                                <span className={styles.hamburger_inner}></span>
+                                            </span>
+                                        </button>
+                                    </div>
                                 </div>
                             </Col>
                         </Row>
@@ -292,6 +389,9 @@ const Header = () => {
             </Grid>
         </Container> 
     </div>
+    </div>
+    <div className={styles.x_mobile_display}>
+        <MobileMenu showing={showingMobile}/>
     </div>
     { 
         search ?
