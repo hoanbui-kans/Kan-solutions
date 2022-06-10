@@ -219,7 +219,7 @@ const UserManager = ({data}) => {
 export default UserManager
 
 export const getServerSideProps = async ({ req, res }) => {
-  const cookies = getCookie('user', { req, res});
+  const cookies = await getCookie('user', { req, res});
   const token = cookies ? JSON.parse(cookies).token : '';
 
   var config = {
