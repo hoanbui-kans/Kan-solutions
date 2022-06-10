@@ -19,8 +19,116 @@ const Chart = dynamic(
 
 const rootURL = process.env.wp_json_enpoint;
 
+const BlogContent = ({data}) => {
+    const SiteIcon = data.site_icon && data.site_icon != 'empty' ? data.site_icon : '/icons/favicon.png'
+    const StoreAvaiable = parseInt(data.quota);
+    const DisplayAvaiableUpload = StoreAvaiable < 1000 ? StoreAvaiable + 'mb' : (StoreAvaiable/1000) + 'gb'
+    
+    const Uploaded = parseInt(data.upload);
+    const DisplayUploaded = Uploaded < 1000 ? Uploaded + 'mb' : (Uploaded/100) + 'gb'
+    const Remain = StoreAvaiable - Uploaded;
+
+    const expired = new Date(parseInt(data.get_expire, 10) * 1000);
+
+    const DateRegisted = moment(data.registered).format('LL');
+    const expiredDate = moment(expired).format('LL');
+
+    const chartValue = {
+        options: { 
+            colors: ['#e74c3c', '#2d88e2'],
+            legend: {
+                position: 'bottom',
+                horizontalAlign: 'center',
+        },
+        dataLabels: {
+            enabled: true,
+            position: 'bottom',
+            style:{
+                fontSize: '10px',
+                fontWeight: 'bold',
+                color: '#000'
+            },
+            background: {
+                enabled: true,
+                foreColor: '#333',
+                padding: 4,
+                borderRadius: 2,
+            },
+            dropShadow: {
+                enabled: false,
+                top: 1,
+                left: 1,
+                blur: 1,
+                color: '#000',
+                opacity: 0.45
+            }
+            },
+            labels: ['Đã tải lên', 'Còn trống'],
+            theme: {
+            mode: 'light', 
+            palette: 'palette1', 
+            monochrome: {
+                enabled: false,
+                color: '#255aee',
+                shadeTo: 'light',
+                shadeIntensity: 0.65
+            },
+        }
+        },
+        series: [Uploaded, Remain],
+    }
+    return(
+        <Col xs={24} md={12} lg={8} className={styles.x_padding}>
+            <div className={styles.x_blog}>
+                <a className={styles.x_blog_link} target={'_blank'} rel="noreferrer" href={data.home}>
+                    <IoLinkOutline size={18} color='#999'/>
+                </a>
+                <div className={styles.x_blog_content}>
+                    <div className={styles.x_flex_blog_image}>
+                        <span className={styles.x_blog_favicon}>
+                            <Image width={40} height={40} alt={data.blogname} src={ SiteIcon } />
+                        </span>
+                        <div className={styles.x_blog_flex_content}>
+                            <a target={'_blank'} rel="noreferrer" href={data.home}><h3>{data.blogname}</h3></a>
+                        </div>
+                    </div>
+                    <div className={styles.x_flex_qouta}>
+                        <div className={styles.x_flex_qouta_content}>
+                            <div>
+                                <span>Giới hạn:</span><strong>{DisplayAvaiableUpload}</strong>
+                            </div>
+                        </div>
+                        <div className={styles.x_flex_qouta_content}>
+                            <div>
+                            <span>Đã tải lên:</span><strong>{DisplayUploaded}</strong>
+                            </div>
+                        </div>
+                        <div className={styles.x_flex_qouta_content}>
+                                <div>
+                                    <span>Bài viết:</span><strong>{data.post_count}</strong>
+                                </div>
+                        </div>
+                    </div>
+                    <div className={styles.x_blog_meta}>
+                        <div>
+                            <p className={styles.x_blog_meta_title}><IoCalendarClearOutline /> Ngày đăng ký:</p> 
+                            <span className={styles.x_date_badge}>{ DateRegisted }</span>
+                        </div>
+                        <div>
+                            <p className={styles.x_blog_meta_title}><IoCalendarOutline /> Hến hạn:</p>
+                            <span className={styles.x_date_badge}>{expiredDate}</span>
+                        </div>
+                    </div>
+                    <div className={styles.x_blog_chart}>
+                        <Chart options={chartValue.options} labels={chartValue.labels} series={chartValue.series} type="donut" width="180" />
+                    </div>
+                </div>
+            </div>
+        </Col>
+    )
+}
 const UserManager = ({data, token}) => {
-  console.log(token);
+  console.log(data);
   return (
     <>
     <div className={styles.x_app_header}>
@@ -99,114 +207,8 @@ const UserManager = ({data, token}) => {
                 <Row>
                     {
                         data ? 
-                        data.map((val) => {
-                            
-                            const SiteIcon = val.site_icon && val.site_icon != 'empty' ? val.site_icon : '/icons/favicon.png'
-                            const StoreAvaiable = parseInt(val.quota);
-                            const DisplayAvaiableUpload = StoreAvaiable < 1000 ? StoreAvaiable + 'mb' : (StoreAvaiable/1000) + 'gb'
-                            
-                            const Uploaded = parseInt(val.upload);
-                            const DisplayUploaded = Uploaded < 1000 ? Uploaded + 'mb' : (Uploaded/100) + 'gb'
-                            const Remain = StoreAvaiable - Uploaded;
-
-                            const expired = new Date(parseInt(val.get_expire, 10) * 1000);
-
-                            const DateRegisted = moment(val.registered).format('LL');
-                            const expiredDate = moment(expired).format('LL');
-
-                            const chartValue = {
-                                options: { 
-                                    colors: ['#e74c3c', '#2d88e2'],
-                                    legend: {
-                                        position: 'bottom',
-                                        horizontalAlign: 'center',
-                                      },
-                                dataLabels: {
-                                    enabled: true,
-                                    position: 'bottom',
-                                    style:{
-                                        fontSize: '10px',
-                                        fontWeight: 'bold',
-                                        color: '#000'
-                                    },
-                                    background: {
-                                        enabled: true,
-                                        foreColor: '#333',
-                                        padding: 4,
-                                        borderRadius: 2,
-                                    },
-                                    dropShadow: {
-                                        enabled: false,
-                                        top: 1,
-                                        left: 1,
-                                        blur: 1,
-                                        color: '#000',
-                                        opacity: 0.45
-                                    }
-                                  },
-                                  labels: ['Đã tải lên', 'Còn trống'],
-                                  theme: {
-                                    mode: 'light', 
-                                    palette: 'palette1', 
-                                    monochrome: {
-                                        enabled: false,
-                                        color: '#255aee',
-                                        shadeTo: 'light',
-                                        shadeIntensity: 0.65
-                                    },
-                                }
-                                },
-                                series: [Uploaded, Remain],
-                            }
-                            return(
-                                <Col key={val.blog_id} xs={24} md={12} lg={8} className={styles.x_padding}>
-                                    <div className={styles.x_blog}>
-                                        <a className={styles.x_blog_link} target={'_blank'} rel="noreferrer" href={val.home}>
-                                            <IoLinkOutline size={18} color='#999'/>
-                                        </a>
-                                        <div className={styles.x_blog_content}>
-                                            <div className={styles.x_flex_blog_image}>
-                                                <span className={styles.x_blog_favicon}>
-                                                    <Image width={40} height={40} alt={val.blogname} src={ SiteIcon } />
-                                                </span>
-                                                <div className={styles.x_blog_flex_content}>
-                                                    <a target={'_blank'} rel="noreferrer" href={val.home}><h3>{val.blogname}</h3></a>
-                                                </div>
-                                            </div>
-                                            <div className={styles.x_flex_qouta}>
-                                                <div className={styles.x_flex_qouta_content}>
-                                                    <div>
-                                                     <span>Giới hạn:</span><strong>{DisplayAvaiableUpload}</strong>
-                                                    </div>
-                                                </div>
-                                                <div className={styles.x_flex_qouta_content}>
-                                                    <div>
-                                                    <span>Đã tải lên:</span><strong>{DisplayUploaded}</strong>
-                                                    </div>
-                                                </div>
-                                                <div className={styles.x_flex_qouta_content}>
-                                                        <div>
-                                                            <span>Bài viết:</span><strong>{val.post_count}</strong>
-                                                        </div>
-                                                </div>
-                                            </div>
-                                            <div className={styles.x_blog_meta}>
-                                                <div>
-                                                    <p className={styles.x_blog_meta_title}><IoCalendarClearOutline /> Ngày đăng ký:</p> 
-                                                    <span className={styles.x_date_badge}>{ DateRegisted }</span>
-                                                </div>
-                                                <div>
-                                                    <p className={styles.x_blog_meta_title}><IoCalendarOutline /> Hến hạn:</p>
-                                                    <span className={styles.x_date_badge}>{expiredDate}</span>
-                                                </div>
-                                            </div>
-                                            <div className={styles.x_blog_chart}>
-                                                <Chart options={chartValue.options} labels={chartValue.labels} series={chartValue.series} type="donut" width="180" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Col>
-                            )
+                        data.map((val, index) => {
+                            return <BlogContent key={index} data={val} /> 
                         }) : 'Bạn chưa có trang nào, vui lòng tạo mới'
                     }
                 </Row>
@@ -231,14 +233,14 @@ export const getServerSideProps = async ({ req, res }) => {
     }
   };
 
-  const response =  await axios(config)
+  const response = await axios(config)
     .then(function (response) {
         return response.data
     })
     .catch(function (error) {
     console.log(error);
     });
-
+  
   return { props: {
       data:  response ? response : '',
       token: token ? token : 'Không có'
