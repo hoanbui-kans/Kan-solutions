@@ -97,6 +97,7 @@ const UserManager = ({data}) => {
             <Container>
                 <Row>
                     {
+                        data ? 
                         data.map((val) => {
                             
                             const SiteIcon = val.site_icon && val.site_icon != 'empty' ? val.site_icon : '/icons/favicon.png'
@@ -205,7 +206,7 @@ const UserManager = ({data}) => {
                                     </div>
                                 </Col>
                             )
-                        })
+                        }) : 'Bạn chưa có trang nào, vui lòng tạo mới'
                     }
                 </Row>
             </Container>
