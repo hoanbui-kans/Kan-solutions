@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import Brand from '../public/logo.svg'
+import Brand from '../../public/logo.svg'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Grid, Row, Col, Nav, Container, Form, Button, Pagination, Loader, ButtonToolbar  } from 'rsuite'
 import SearchIcon from '@rsuite/icons/Search'
 import CloseIcon from '@rsuite/icons/Close'
 import { useSpring, animated, useChain, useSpringRef, useTransition, config } from "@react-spring/web"
-import styles from '../styles/header.module.css'
-import { listServices } from '../pages/api/services'
+import styles from '../../styles/header.module.css'
+import { listServices } from '../../pages/api/services'
 import { useRouter } from 'next/router'
 import ArrowDownLineIcon from '@rsuite/icons/ArrowDownLine';
 import EmailFillIcon from '@rsuite/icons/EmailFill';
 import PhoneFillIcon from '@rsuite/icons/PhoneFill';
 import ArrowRightIcon from '@rsuite/icons/ArrowRight';
-
 import axios from 'axios'
+import { getCookie } from 'cookies-next'
 
 const rootURL = process.env.wp_json_enpoint;
 
@@ -137,7 +137,7 @@ const MobileMenu = ({showing}) => {
 }
 
 const Header = () => {
-
+   
     const [open, setOpen] = useState(false);
     const [search, setSearchForm] = useState(false);
     const [fixed, setFixed] = useState(false);
@@ -147,6 +147,16 @@ const Header = () => {
     const [focusSearch, setFocus] = useState(false);
     const [keySearch, setKeySearch] = useState('');
     const [loadingSearch, setLoadingSearch] = useState(false);
+    const [storeUser, setStoreUser] = useState('');
+    const cookies = getCookie('user');
+
+    useEffect(() => {
+        cookies ? 
+        setStoreUser(JSON.parse(cookies)) : ''
+    }, [])
+
+    console.log()
+
     const [paged, setPaged] = useState({
         current: 1,
         max:0
@@ -254,7 +264,6 @@ const Header = () => {
     }
 
     const Next_Pages = async (num) => {
-        
         setLoadingSearch(true);
         setPaged({...paged, current: num});
         const { data } = await axios.get(`${rootURL}tim-kiem/bai-viet?query=${keySearch}&p=${num}`).then((res) => res);
@@ -287,8 +296,18 @@ const Header = () => {
                                         contact@kanbox.vn
                                     </a>
                                 </li>
-                                <li><Link href={'/dang-ky'}>Đăng ký</Link></li>
-                                <li><Link href={'/dang-nhap'}>Đăng nhập</Link></li>
+                                {
+                                    storeUser ? 
+                                    <>
+                                        <li><Link href={'/quan-ly/tai-khoan'}><a>Xin chào {storeUser.user_display_name}</a></Link></li>
+                                        <li><Link href={'/quan-ly/dang-xuat'}>Đăng xuất</Link></li>
+                                      </>
+                                    : <>
+                                        <li><Link href={'/dang-nhap'}>Đăng nhập</Link></li>
+                                        <li><Link href={'/dang-ky'}>Đăng ký</Link></li>
+                                    </>
+                                }
+                                
                             </ul>
                         </Col>
                     </Row>

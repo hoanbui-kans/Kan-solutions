@@ -1,0 +1,185 @@
+.x_app_container{
+    max-width: 1050px;
+    margin: auto;
+}
+.x_app_header{
+    border-top: 1px solid whitesmoke;
+    border-bottom: 1px solid whitesmoke;
+}
+.x_app_section{
+    padding: 35px 0px
+}
+.x_app_nav{
+    background: white
+}
+.x_brand {
+    color: #838383;
+}
+.x_form_search_container{
+    position: relative;
+    width: 100%;
+}
+.x_search_page_input{
+    width: 100%;
+}
+.x_account_button{
+    width: 100%;
+}
+.x_account_button button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+    width: 100%;
+    padding: .75rem 0rem;
+}
+.x_outline_view{
+    border: 1px solid rgb(153, 153, 153);
+    color: rgb(78, 78, 78);
+    margin-right: 2%
+}
+.x_outline_create{
+      background-color: #2d88e2;
+      color: white;  
+}
+.x_flex{
+    display: flex;
+    flex-wrap: wrap;
+}
+.x_search_page_input input{
+    width: 100% !important;
+    padding: .75rem .75rem .75rem 3.25rem;
+}
+.x_create_section{
+    margin-bottom: 2.75rem
+}
+.x_search_page_button{
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    z-index: 2;
+    background: unset;
+    color: rgb(54, 54, 54);
+}
+.x_search_page_button:hover{
+    background-color: unset;
+}
+.x_blog{
+    background: #ffffff;
+    box-shadow: 0px 2px 4px rgba(0,0,0,.1);
+    border-radius: 20px;
+    margin-bottom: 1.95rem;
+    position: relative;
+    padding: 20px;
+}
+.x_blog_favicon{
+    border-radius: 50%;
+    overflow: hidden;
+    display: block;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #eaeaea
+}
+.x_flex_blog_image{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 10px;
+    align-items: center;
+    margin-bottom: 25px;
+}
+.x_flex_qouta{
+    display: flex;
+    flex-wrap: wrap;
+}
+.x_flex_qouta_content{
+    display: block;
+    width: 33%;
+    padding: 0rem .25rem;
+}
+.x_flex_qouta_content > div{
+    text-align: center;
+    background: whitesmoke;
+    min-height: 50px;
+    padding-top: .45rem;
+    border-radius: 5px;
+}
+.x_blog_meta{
+    padding: 15px 0px;
+    border-bottom: 1px solid #efefef;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.x_blog_meta > div{
+    width: 50%;
+}
+.x_blog_meta_title{
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+}
+.x_date_badge{
+    font-size: 10px;
+    background: #484848;
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 5px 0px;
+    color: white;
+}
+.x_blog_chart{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: whitesmoke;
+    border-radius: 0.35rem;
+    padding: 0.75rem 0rem;
+}
+.x_flex_qouta_content span{
+    font-size: 10px;
+    width: 100%;
+    display: block;
+}
+.x_flex_qouta_content strong{
+    font-size: 12px;
+    display: block;
+}
+.x_blog_flex_content{
+    width: calc(100% - 50px);
+}
+.x_blog_flex_content h3{
+    font-size: 1.35rem;
+    font-weight: 400;
+    line-height: 1.7rem;
+    margin-bottom: .35rem;
+    color: #333;
+}
+.x_app_section{
+    background: #f7f7f7
+}
+.x_blog_flex_content p{
+    font-size: 0.75rem;
+    line-height: .75rem;
+    margin-bottom: 0.35rem;
+    margin-top: 0;
+}
+.x_padding{
+    padding: 0rem 1rem
+}
+
+.x_blog_link{
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 2;
+    border: 3px solid #eaeaea;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
