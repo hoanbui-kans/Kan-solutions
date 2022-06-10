@@ -19,7 +19,8 @@ const Chart = dynamic(
 
 const rootURL = process.env.wp_json_enpoint;
 
-const UserManager = ({data}) => {
+const UserManager = ({data, token}) => {
+  console.log(token);
   return (
     <>
     <div className={styles.x_app_header}>
@@ -221,7 +222,7 @@ export default UserManager
 export const getServerSideProps = async ({ req, res }) => {
   const cookies = await getCookie('user', { req, res});
   const token = cookies ? JSON.parse(cookies).token : '';
-
+  console.log(token);
   var config = {
     method: 'post',
     url:  `${rootURL}quan-ly/tai-khoan`,
@@ -239,6 +240,7 @@ export const getServerSideProps = async ({ req, res }) => {
     });
 
   return { props: {
-      data:  response ? response : ''
+      data:  response ? response : '',
+      token: token ? token : 'Không có'
   }};
 }
