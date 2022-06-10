@@ -159,7 +159,7 @@ const UserManager = ({data}) => {
                             return(
                                 <Col key={val.blog_id} xs={24} md={12} lg={8} className={styles.x_padding}>
                                     <div className={styles.x_blog}>
-                                        <a className={styles.x_blog_link} target={'_blank'} href={val.home}>
+                                        <a className={styles.x_blog_link} target={'_blank'} rel="noreferrer" href={val.home}>
                                             <IoLinkOutline size={18} color='#999'/>
                                         </a>
                                         <div className={styles.x_blog_content}>
@@ -168,7 +168,7 @@ const UserManager = ({data}) => {
                                                     <Image width={40} height={40} alt={val.blogname} src={ SiteIcon } />
                                                 </span>
                                                 <div className={styles.x_blog_flex_content}>
-                                                    <a target={'_blank'} href={val.home}><h3>{val.blogname}</h3></a>
+                                                    <a target={'_blank'} rel="noreferrer" href={val.home}><h3>{val.blogname}</h3></a>
                                                 </div>
                                             </div>
                                             <div className={styles.x_flex_qouta}>
