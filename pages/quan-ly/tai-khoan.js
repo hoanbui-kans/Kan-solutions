@@ -127,8 +127,8 @@ const BlogContent = ({data}) => {
         </Col>
     )
 }
-const UserManager = ({data, token}) => {
-  console.log(data);
+const UserManager = ({blogInfor, token}) => {
+  console.log('blogInfor: ', blogInfor);
   return (
     <>
     <div className={styles.x_app_header}>
@@ -206,8 +206,8 @@ const UserManager = ({data, token}) => {
             <Container>
                 <Row>
                     {
-                        data ? 
-                        data.map((val, index) => {
+                        blogInfor ? 
+                        blogInfor.map((val, index) => {
                             return <BlogContent key={index} data={val} /> 
                         }) : 'Bạn chưa có trang nào, vui lòng tạo mới'
                     }
@@ -230,16 +230,18 @@ export async function getServerSideProps ({ req, res }) {
     }
   };
   const URL =  rootURL + 'quan-ly/tai-khoan';
-  const response = await axios.post(URL, false, config)
+  let response = '';
+
+  response = await axios.post(URL, false, config)
     .then(function (response) {
         return response.data
     })
     .catch(function (error) {
-    console.log(error);
+        console.log(error);
     });
-  
+
   return { props: {
-      data:  response ? response : '',
+      blogInfor:  response ? response : '',
       token: token ? token : 'Không có'
   }};
 }
