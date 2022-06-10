@@ -1,6 +1,6 @@
 import React from 'react'
 import { Loader } from 'rsuite'
-import styles from '../../styles/header.module.css'
+import styles from '../styles/header.module.css'
 
 const Loading = () => {
   return (

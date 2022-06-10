@@ -6,8 +6,8 @@ import styles from '../styles/blog.module.css';
 import axios from 'axios';
 import SearchIcon from '@rsuite/icons/Search'
 
-import { BlogStyleOne, BlogStyleTwo } from './components/blog-templates/BlogContent';
-import Loading from './components/Loading';
+import { BlogStyleOne, BlogStyleTwo } from '../components/blog-templates/BlogContent';
+import Loading from '../components/Loading';
 
 const rootURL = process.env.wp_json_enpoint;
 

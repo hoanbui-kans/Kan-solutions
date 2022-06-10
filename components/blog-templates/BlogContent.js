@@ -2,7 +2,7 @@ import React from 'react'
 import { Row, Col, Button } from 'rsuite'
 import Image from 'next/image'
 import Link from 'next/link'
-import styles from '../../../styles/blog.module.css'
+import styles from '../../styles/blog.module.css'
 import ArowBackIcon from '@rsuite/icons/ArowBack';
 
 const TermList = ({data}) => {

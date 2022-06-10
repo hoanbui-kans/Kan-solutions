@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import Brand from '../../public/logo.svg'
+import Brand from '../public/logo.svg'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Grid, Row, Col, Nav, Container, Form, Button, Pagination, Loader, ButtonToolbar  } from 'rsuite'
 import SearchIcon from '@rsuite/icons/Search'
 import CloseIcon from '@rsuite/icons/Close'
 import { useSpring, animated, useChain, useSpringRef, useTransition, config } from "@react-spring/web"
-import styles from '../../styles/header.module.css'
-import { listServices } from '../../pages/api/services'
+import styles from '../styles/header.module.css'
+import { listServices } from '../pages/api/services'
 import { useRouter } from 'next/router'
 import ArrowDownLineIcon from '@rsuite/icons/ArrowDownLine';
 import EmailFillIcon from '@rsuite/icons/EmailFill';

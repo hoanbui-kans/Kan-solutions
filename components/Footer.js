@@ -1,7 +1,7 @@
 import React from 'react'
-import styles from '../../styles/footer.module.css'
+import styles from '../styles/footer.module.css'
 import { Container, Row, Col, Grid, Form, Button  } from 'rsuite'
-import { listServices } from '../../pages/api/services'
+import { listServices } from '../pages/api/services'
 import Image from 'next/image'
 import Link from 'next/link'
 import ArrowRightIcon from '@rsuite/icons/ArrowRight';
