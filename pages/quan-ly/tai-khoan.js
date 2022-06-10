@@ -221,19 +221,16 @@ const UserManager = ({data, token}) => {
 
 export default UserManager
 
-export const getServerSideProps = async ({ req, res }) => {
-  const cookies = await getCookie('user', { req, res});
+export async function getServerSideProps ({ req, res }) {
+  const cookies = getCookie('user', { req, res});
   const token = cookies ? JSON.parse(cookies).token : '';
-  console.log(token);
-  var config = {
-    method: 'post',
-    url:  `${rootURL}quan-ly/tai-khoan`,
+  const config = {
     headers: { 
       'Authorization':  `Bearer ${token}`
     }
   };
-
-  const response = await axios(config)
+  const URL =  rootURL + 'quan-ly/tai-khoan';
+  const response = await axios.post(URL, false, config)
     .then(function (response) {
         return response.data
     })
