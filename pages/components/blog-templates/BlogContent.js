@@ -21,7 +21,7 @@ const TermList = ({data}) => {
             </li>
           )
         })
-      }
+      } 
     </ul>
   )
 
