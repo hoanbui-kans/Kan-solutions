@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import Brand from '../public/logo.svg'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Grid, Row, Col, Nav, Container, Form, Button, Pagination, Loader, ButtonToolbar  } from 'rsuite'
+import { Grid, Row, Col, Nav, Container, Form, Button, Pagination, Loader  } from 'rsuite'
 import SearchIcon from '@rsuite/icons/Search'
 import CloseIcon from '@rsuite/icons/Close'
 import { useSpring, animated, useChain, useSpringRef, useTransition, config } from "@react-spring/web"
 import styles from '../styles/header.module.css'
 import { listServices } from '../pages/api/services'
-import { useRouter } from 'next/router'
+import Router from 'next/router'
 import ArrowDownLineIcon from '@rsuite/icons/ArrowDownLine';
 import EmailFillIcon from '@rsuite/icons/EmailFill';
 import PhoneFillIcon from '@rsuite/icons/PhoneFill';
@@ -155,16 +155,10 @@ const Header = () => {
         setStoreUser(JSON.parse(cookies)) : ''
     }, [])
 
-    console.log()
-
     const [paged, setPaged] = useState({
         current: 1,
         max:0
       });
-
-
-    const location = useRouter();    
-    const path = location.pathname;
 
     const dropdownMenu = [Left, Right];
 
@@ -227,11 +221,12 @@ const Header = () => {
         setOpen(open => !open)
     }
 
-    useEffect(() => {
+    Router.events.on('routeChangeStart', () => {
         setOpen(false);
+        setShowingMobile(false);
         setFixed(false);
-    }, [path])
-
+    })
+   
     const isSticky = (e) => {
         const scrollTop = window.scrollY;
         scrollTop > 300 ? setFixed(true) : setFixed(false)
@@ -362,7 +357,7 @@ const Header = () => {
                             </Col>
                             <Col xs={12} md={12} lg={4}>
                                 <div className={styles.x_header_button_list}>
-                                    <Button onClick={() => { setSearchForm(true); setOpen(false) }}>
+                                    <Button className={styles.x_non_background_button} onClick={() => { setSearchForm(true); setOpen(false) }}>
                                         <SearchIcon width={22} height={22}/> 
                                     </Button>
                                     <div className={styles.x_mobile_display}>

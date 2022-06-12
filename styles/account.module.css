@@ -183,3 +183,41 @@
     align-items: center;
     justify-content: center;
 }
+
+/* Trang Đăng nhập */
+.x_flex{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.x_account_background_sections{
+    background: url('../public/layout/background-01.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+.x_login_form{
+    margin: 35px 0px;
+}
+.x_login{
+    padding: 50px 50px;
+    margin: auto;
+}
+
+.x_account_container{
+    width: 100% !important;
+    background: #f7f7f7;
+}
+.x_back_home{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: 10px;
+    padding: .75rem 1.25rem;
+    background: black;
+    color: white;
+    border-radius: .35rem;
+}

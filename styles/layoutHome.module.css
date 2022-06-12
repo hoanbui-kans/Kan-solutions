@@ -126,30 +126,15 @@
     top: 15%;
     z-index: -1;
     max-width: 46%;
-    animation: jumpTwo 5s linear infinite;
     pointer-events: none;
-    opacity: .95;
-    filter: blur(8px);
-  }
-  .lBox_0{
-    position: absolute;
-    right: 70px;
-    top: 100px;
-    z-index: 0;
-    animation: jumpTwo 5s linear infinite;
-    pointer-events: none;
-    opacity: .95;
-    filter: blur(8px);
   }
   .lBox_1{
     position: absolute;
-    right: 230px;
-    top: 210px;
+    right: 0px;
+    top: 39px;
     z-index: 0;
-    animation: jumpThree 5s linear infinite;
     pointer-events: none;
     opacity: .95;
-    filter: blur(8px);
   }
   .bannerImage{
     height: 460px;
@@ -202,8 +187,6 @@
     animation: jumpTwo 3s linear infinite;
     animation-delay: .1;
     pointer-events: none;
-    opacity: .95;
-    filter: blur(12px);
   }
   .x_creeper_box{
     display: -ms-flexbox;
@@ -257,13 +240,11 @@
   }
   .x_creeper_image_1{
     position: absolute;
-    bottom: -20%;
-    right: -30%;
-    width: 110%;
+    bottom: -5px;
+    right: 0px;
+    width: auto;
     pointer-events: none;
     display: block;
-    animation: jumpTwo 9s linear infinite;
-    animation-delay: 1s;
     z-index: 0;
   }
 
@@ -273,26 +254,19 @@
     left: 10%;
     width: 80%;
     pointer-events: none;
-    animation: jumpThree 7s linear infinite;
-    animation-delay: .5s;
     z-index: 0;
   }
   .x_creeper_image_3{
     position: absolute;
-    bottom: -50px;
-    right: -50px;
-    width: 80%;
-    pointer-events: none;
-    animation: jumpThree 8s linear infinite;
-    z-index: 0;
-  }
-  .x_creeper_image_4{
-    position: absolute;
-    bottom: -35px;
+    bottom: -5px;
     right: 0px;
     width: 80%;
     pointer-events: none;
-    animation: jumpTwo 9s linear infinite;
+  }
+  .x_creeper_image_4{
+    position: absolute;
+    right: 0px;
+    width: 80%;
     z-index: 0;
   }
   .x_padding_cta{
@@ -366,29 +340,5 @@
     .grid {
       width: 100%;
       flex-direction: column;
-    }
-  }
-  
-  @keyframes jumpTwo {
-    0% {
-      transform: translateZ(0);
-    }
-      40% {
-        transform: translate3d(10px,20px,-5px);
-    }
-    100% {
-        transform: translateZ(0);
-    }
-  }
-
-  @keyframes jumpThree {
-    0% {
-      transform: translateZ(0);
-    }
-      40% {
-        transform: translate3d(-10px,20px,5px);
-    }
-    100% {
-        transform: translateZ(0);
     }
   }

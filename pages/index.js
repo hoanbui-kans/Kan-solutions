@@ -38,10 +38,10 @@ export default function Home() {
                 <Col xs={24} md={14}>
                   <div className={styles.x_decoration_images}>
                     <div className={styles.x_decoation_1}>
-                      <Image alt='layout' src="/layout/decoration_1.svg" width={175} height={762}/>
+                      <Image alt='layout' src="/layout/decoration-01.svg" width={250} height={236}/>
                     </div>
                     <div className={styles.x_decoation_0}>
-                      <Image alt='layout' src="/layout/decoration_0.svg" width={220} height={266}/>
+                      <Image alt='layout' src="/layout/decoration-0-01.svg" width={390} height={411}/>
                     </div>
                     <Image alt='layout' src="/layout/layoutFrames.png" width={436} height={517}/>
                   </div>
@@ -101,7 +101,7 @@ export default function Home() {
                           <Button className={styles.x_creeper_button}><ArowBackIcon color={"white"} className={styles.x_rotate_180deg} width={24} height={24}/></Button>
                         </div>
                         <div className={styles.x_creeper_image_1}>
-                          <Image alt='layout' src={'/layout/design_1-01.svg'} width={600} height={631}/>
+                          <Image alt='layout' src={'/layout/design_1.svg'} width={563} height={413}/>
                         </div>
                     </div>
                     <div className={styles.x_creeper_box + ' '  + styles.x_creeper_box_3}>
@@ -171,11 +171,8 @@ export default function Home() {
         </div>
 
         <div className={styles.x_section_five}>
-          <span className={styles.lBox_0}>
-            <Image alt='layout' src="/layout/l-box.svg" width={265} height={215}/>
-          </span>
           <span className={styles.lBox_1}>
-            <Image alt='layout' src="/layout/l-box-01.svg" width={216} height={302}/>
+            <Image alt='layout' src="/layout/l-box-01.svg" width={400} height={329}/>
           </span>
           <Grid className='x_container'>
             <Container>
