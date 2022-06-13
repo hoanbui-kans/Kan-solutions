@@ -12,7 +12,7 @@ import CheckRoundIcon from '@rsuite/icons/CheckRound'
 import SearchIcon from '@rsuite/icons/Search';
 import ArrowRightIcon from '@rsuite/icons/ArrowRight';
 
-const rootURL = process.env.wp_json_enpoint
+const rootURL = process.env.WP_JSON
 
 function Separator(numb) {
   var str = numb.toString().split(".");

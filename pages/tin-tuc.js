@@ -9,7 +9,7 @@ import SearchIcon from '@rsuite/icons/Search'
 import { BlogStyleOne, BlogStyleTwo } from '../components/blog-templates/BlogContent';
 import Loading from '../components/Loading';
 
-const rootURL = process.env.wp_json_enpoint;
+const rootURL = process.env.WP_JSON;
 
 
 const News = ({bai_viet, danh_muc, max_num_pages}) => {

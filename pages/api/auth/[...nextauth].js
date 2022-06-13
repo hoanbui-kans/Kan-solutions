@@ -4,9 +4,11 @@ import GoogleProvider from 'next-auth/providers/google'
 import axios from "axios"
 import CredentialsProvider from "next-auth/providers/credentials";
 
-import { getProviders } from "next-auth/react"
-
 const options = {
+  session: {
+    jwt: true,
+    maxAge: 30 * 24 * 60 * 60,
+  },
   providers: [
     // OAuth authentication providers
     FacebookProvider({
@@ -24,6 +26,10 @@ const options = {
       // You can specify whatever fields you are expecting to be submitted.
       // e.g. domain, username, password, 2FA token, etc.
       // You can pass any HTML attribute to the <input> tag through the object.
+      credentials: {
+        username: { label: "Username", type: "text", placeholder: "jsmith" },
+        password: {  label: "Password", type: "password" }
+      },
       async authorize(credentials, req) {
         const config = {
           method: 'post',
@@ -49,6 +55,10 @@ const options = {
       }
     }),
   ],
+  secret: process.env.SECRET,
+   pages: {
+      signIn: "/auth/signin",
+   },
   callbacks: {
     async signIn({user, account, profile}) {
       const provider = account.provider;
@@ -144,4 +154,6 @@ const options = {
   }
 }
 
-export default (req, res) => NextAuth(req, res, options)
+export default (req, res) => {
+  return NextAuth(req, res, options)
+}
