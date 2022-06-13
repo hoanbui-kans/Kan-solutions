@@ -14,7 +14,7 @@ import EmailFillIcon from '@rsuite/icons/EmailFill';
 import PhoneFillIcon from '@rsuite/icons/PhoneFill';
 import ArrowRightIcon from '@rsuite/icons/ArrowRight';
 import axios from 'axios'
-import { getCookie } from 'cookies-next'
+import { useSession, signIn, signOut, getCsrfToken, getProviders } from "next-auth/react"
 
 const rootURL = process.env.wp_json_enpoint;
 
@@ -137,7 +137,7 @@ const MobileMenu = ({showing}) => {
 }
 
 const Header = () => {
-   
+    const { data: session } = useSession();
     const [open, setOpen] = useState(false);
     const [search, setSearchForm] = useState(false);
     const [fixed, setFixed] = useState(false);
@@ -148,12 +148,6 @@ const Header = () => {
     const [keySearch, setKeySearch] = useState('');
     const [loadingSearch, setLoadingSearch] = useState(false);
     const [storeUser, setStoreUser] = useState('');
-    const cookies = getCookie('user');
-
-    useEffect(() => {
-        cookies ? 
-        setStoreUser(JSON.parse(cookies)) : ''
-    }, [])
 
     const [paged, setPaged] = useState({
         current: 1,
@@ -292,9 +286,9 @@ const Header = () => {
                                     </a>
                                 </li>
                                 {
-                                    storeUser ? 
+                                    session ? 
                                     <>
-                                        <li><Link href={'/quan-ly/tai-khoan'}><a>Xin chào {storeUser.user_display_name}</a></Link></li>
+                                        <li><Link href={'/quan-ly/tai-khoan'}><a>Xin chào {session.user.token.user_display_name}</a></Link></li>
                                         <li><Link href={'/quan-ly/dang-xuat'}>Đăng xuất</Link></li>
                                       </>
                                     : <>

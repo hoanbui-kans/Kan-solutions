@@ -3,10 +3,10 @@ import Header from './Header'
 import Footer from './Footer'
 import Loading from './Loading'
 import { useState } from 'react';
-import Router, { useRouter } from 'next/router';
+import Router from 'next/router';
 
 const Layout = ({ children }) => {
-    const location = useRouter().asPath
+    const Component = children.type.name;
     const [loading, setLoading] = useState(false);
         Router.events.on('routeChangeStart', () => {
           setLoading(true);
@@ -16,7 +16,7 @@ const Layout = ({ children }) => {
         setLoading(false);
     });
   return (
-    location != '/dang-nhap' && location != '/dang-ky' ? 
+    Component != 'Login' && Component != 'Register' ? 
       <>
         <Header />
           {

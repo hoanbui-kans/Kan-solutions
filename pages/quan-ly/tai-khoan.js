@@ -9,6 +9,7 @@ import Image from 'next/image';
 import moment from 'moment';
 import 'moment/locale/vi'
 import dynamic from 'next/dynamic'
+import { getSession } from 'next-auth/react';
 
 const Chart = dynamic(
   () => {
@@ -39,6 +40,9 @@ const BlogContent = ({data}) => {
             legend: {
                 position: 'bottom',
                 horizontalAlign: 'center',
+                stroke: {
+                    show: false,
+                }
         },
         dataLabels: {
             enabled: true,
@@ -128,7 +132,6 @@ const BlogContent = ({data}) => {
     )
 }
 const UserManager = ({blogInfor, token}) => {
-  console.log('blogInfor: ', blogInfor);
   return (
     <>
     <div className={styles.x_app_header}>
@@ -221,9 +224,9 @@ const UserManager = ({blogInfor, token}) => {
 
 export default UserManager
 
-export async function getServerSideProps ({ req, res }) {
-  const cookies = getCookie('user', { req, res});
-  const token = cookies ? JSON.parse(cookies).token : '';
+export async function getServerSideProps (context) {
+  const session = await getSession(context);
+  const token = session ? session.user.token.token : '';
   const config = {
     headers: { 
       'Authorization':  `Bearer ${token}`
