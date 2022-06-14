@@ -5,9 +5,13 @@ import axios from "axios"
 import CredentialsProvider from "next-auth/providers/credentials";
 
 const options = {
+  secret: process.env.SECRET,
   session: {
     jwt: true,
     maxAge: 30 * 24 * 60 * 60,
+  },
+  pages: {
+     signIn: "/auth/signin",
   },
   providers: [
     // OAuth authentication providers
@@ -55,10 +59,6 @@ const options = {
       }
     }),
   ],
-  secret: process.env.SECRET,
-   pages: {
-      signIn: "/auth/signin",
-   },
   callbacks: {
     async signIn({user, account, profile}) {
       const provider = account.provider;
