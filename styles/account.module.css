@@ -190,28 +190,50 @@
     flex-wrap: wrap;
     align-items: center;
 }
+.x_background{
+    position: fixed;
+    top: 0;
+    left: 0%;
+    width: 50vw;
+    height: 100vh;
+    background: url('../public/layout/background-01.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 .x_account_background_sections{
     background: url('../public/layout/background-01.svg');
     background-size: cover;
     background-repeat: no-repeat;
     height: 100vh;
 }
-.x_login_form{
-    margin: 35px 0px;
+.x_account_title{
+    font-size: 24px;
+    text-align: center;
 }
 .x_login{
     padding: 50px 50px;
     margin: auto;
+    display: block;
+    position: relative;
+    z-index: 2;
+    background: white;
+    min-height: 100vh;
 }
-
+.x_login_form{
+    max-width: 450px;
+    margin: 35px auto;
+}
 .x_account_container{
     width: 100% !important;
-    background: #f7f7f7;
+}
+.x_social_title{
+    margin-bottom: 15px;
+    text-align: center;
 }
 .x_back_home{
     position: absolute;
     top: 20px;
-    right: 20px;
+    left: 20px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -220,4 +242,31 @@
     background: black;
     color: white;
     border-radius: .35rem;
+    z-index: 20;
+}
+
+.x_social_login{
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 10px;
+    justify-content: center;
+}
+.x_facebook_login{
+    padding: .75rem 1.25rem;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    border-radius: 35px;
+    background-color: #1877F2;
+    color: white;
+}
+
+.x_google_login{
+    padding: .75rem 1.25rem;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    border-radius: 35px;
+    background-color: #e34133;
+    color: white;
 }

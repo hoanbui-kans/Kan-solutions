@@ -3,10 +3,12 @@ import Header from './Header'
 import Footer from './Footer'
 import Loading from './Loading'
 import { useState } from 'react';
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
 
 const Layout = ({ children }) => {
-    const Component = children.type.name;
+    const router = useRouter();
+    const pathname = router.pathname;
+    
     const [loading, setLoading] = useState(false);
         Router.events.on('routeChangeStart', () => {
           setLoading(true);
@@ -16,7 +18,7 @@ const Layout = ({ children }) => {
         setLoading(false);
     });
   return (
-    Component != 'Login' && Component != 'Register' ? 
+    pathname != '/dang-nhap' && pathname != '/dang-ky' && pathname != '/lien-he' ? 
       <>
         <Header />
           {

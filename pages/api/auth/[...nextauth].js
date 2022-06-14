@@ -10,9 +10,6 @@ const options = {
     jwt: true,
     maxAge: 30 * 24 * 60 * 60,
   },
-  pages: {
-     signIn: "/auth/signin",
-  },
   providers: [
     // OAuth authentication providers
     FacebookProvider({

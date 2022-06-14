@@ -1,4 +1,3 @@
-import React from 'react'
 import axios from 'axios'
 import HTMLReactParser from 'html-react-parser'
 import Head from 'next/head'
@@ -6,13 +5,12 @@ import Link from 'next/link'
 import { Grid, Container, Row, Col, Button, Form, Input, ButtonToolbar, Breadcrumb } from 'rsuite'
 import Image from 'next/image'
 import styles from '../../styles/theme.module.css'
-
 import CopyIcon from '@rsuite/icons/Copy';
 import CheckRoundIcon from '@rsuite/icons/CheckRound'
 import SearchIcon from '@rsuite/icons/Search';
 import ArrowRightIcon from '@rsuite/icons/ArrowRight';
 
-const rootURL = process.env.WP_JSON
+const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 function Separator(numb) {
   var str = numb.toString().split(".");

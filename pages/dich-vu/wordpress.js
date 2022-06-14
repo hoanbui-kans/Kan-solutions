@@ -1,4 +1,3 @@
-import React from 'react'
 import { Grid, Container, Row, Col, Button } from 'rsuite'
 import styles from '../../styles/services/wordpress.module.css'
 import CheckIcon from '@rsuite/icons/Check'

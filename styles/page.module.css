@@ -1,0 +1,72 @@
+.x_contact_form_button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: black;
+    column-gap: 10px;
+    padding: .75rem 1.25rem;
+    border-radius: 35px;
+    color: white
+}
+
+.x_background{
+    position: fixed;
+    top: 0;
+    left: 0%;
+    width: 50vw;
+    height: 100vh;
+    background: url('../public/layout/background-01.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.x_contact_grid_container{
+    width: 100% !important;
+    position: relative;
+}
+.x_contact_grid_container img{
+    width: 100%;
+}
+.x_flex{
+    display: flex;
+    flex-wrap: wrap;
+}
+.x_flex_center{
+    align-items: center;
+}
+.x_form_wrapper{
+    height: 100%;
+    padding: 35px 35px;
+    position: relative;
+    z-index: 2;
+    background-color: white;
+    width: 100%;
+}
+.x_back_home{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: 10px;
+    padding: .75rem 1.25rem;
+    background: black;
+    color: white;
+    border-radius: .35rem;
+    z-index: 15;
+}
+.x_contact_title{
+    border-bottom: 1px solid whitesmoke;
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+.x_contact_container{
+    box-shadow:  5px 5px 10px #ededed,
+    -5px -5px 10px #ffffff;
+    margin: 35px 0px;
+}
+.x_contact_wrap{
+    background-color: #ffffff;
+    height: 100%;
+}

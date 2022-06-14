@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import { Grid, Container, Row, Col, Panel, Breadcrumb, Form, Pagination, Loader  } from 'rsuite';
-import Image from 'next/image';
+import { Grid, Container, Row, Col, Breadcrumb, Form, Pagination  } from 'rsuite';
 import Link from 'next/link';
 import styles from '../styles/blog.module.css';
 import axios from 'axios';
@@ -9,7 +7,7 @@ import SearchIcon from '@rsuite/icons/Search'
 import { BlogStyleOne, BlogStyleTwo } from '../components/blog-templates/BlogContent';
 import Loading from '../components/Loading';
 
-const rootURL = process.env.WP_JSON;
+const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 
 const News = ({bai_viet, danh_muc, max_num_pages}) => {
@@ -19,8 +17,6 @@ const News = ({bai_viet, danh_muc, max_num_pages}) => {
   const [maxpage, setMaxPage] = useState(max_num_pages);
   const [paged, setPaged] = useState(1);
   const [loading, setLoading] = useState(false);
-
-  console.log(keySearch)
 
   const Search_Page = async () => {
     setLoading(true);

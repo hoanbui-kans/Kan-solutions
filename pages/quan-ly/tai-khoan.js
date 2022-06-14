@@ -18,7 +18,7 @@ const Chart = dynamic(
   { ssr: false }
 )
 
-const rootURL = process.env.wp_json_enpoint;
+const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 const BlogContent = ({data}) => {
     const SiteIcon = data.site_icon && data.site_icon != 'empty' ? data.site_icon : '/icons/favicon.png'

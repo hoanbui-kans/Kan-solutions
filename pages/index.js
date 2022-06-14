@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/layoutHome.module.css'
-import { Grid, Container, Row, Col, Button, IconButton} from 'rsuite'
+import { Grid, Container, Row, Col, Button } from 'rsuite'
 import ArowBackIcon from '@rsuite/icons/ArowBack'
 import EmailFillIcon from '@rsuite/icons/EmailFill'
 import { features, ServicesBox } from './api/services'
