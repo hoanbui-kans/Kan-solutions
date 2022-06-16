@@ -9,12 +9,12 @@ import { useSpring, animated, useChain, useSpringRef, useTransition, config } fr
 import styles from '../styles/header.module.css'
 import { listServices } from '../pages/api/services'
 import Router from 'next/router'
-import ArrowDownLineIcon from '@rsuite/icons/ArrowDownLine';
-import EmailFillIcon from '@rsuite/icons/EmailFill';
-import PhoneFillIcon from '@rsuite/icons/PhoneFill';
-import ArrowRightIcon from '@rsuite/icons/ArrowRight';
+import ArrowDownLineIcon from '@rsuite/icons/ArrowDownLine'
+import EmailFillIcon from '@rsuite/icons/EmailFill'
+import PhoneFillIcon from '@rsuite/icons/PhoneFill'
+import ArrowRightIcon from '@rsuite/icons/ArrowRight'
 import axios from 'axios'
-import { useSession, signIn, signOut, getCsrfToken, getProviders } from "next-auth/react"
+import { useSession } from "next-auth/react"
 
 const rootURL = process.env.wp_json_enpoint;
 
@@ -45,31 +45,31 @@ const Right = () => {
         <>
             <h3 className={styles.x_menu_title}>DỊCH VỤ PHÁT TRIỂN WEB</h3>
             <div className={styles.x_dropbox}>
-                    <Link href="/">
+                    <Link href="/dich-vu/quan-tri-website">
                         <a>
                             <p><strong>Quản trị website</strong></p>
                             <p className={styles.x_smaller_text}>
-                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,  totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta  sunt explicabo.
+                            Dịch vụ quản trị, quản lý, vận hành, sản xuất nội dung cho website, tối ưu chi phí quản lý, nâng cao hiệu quả chiến dịch.
                             </p>
                         </a>
                     </Link>
             </div>
             <div className={styles.x_dropbox}>
-                    <Link href="/">
+                    <Link href="/dich-vu/seo-website">
                         <a>
                             <p><strong>SEO website</strong></p>
                             <p className={styles.x_smaller_text}>
-                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,  totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta  sunt explicabo.
+                            Thiết kế Website sơ đồ chuẩn SEO, tối ưu hóa nội dung Web, thân thiện với các công cụ trình duyệt.
                             </p>
                         </a>
                     </Link>
             </div>
             <div className={styles.x_dropbox}>
-                    <Link href="/">
+                    <Link href="/dich-vu/marketing-online">
                         <a>
                             <p><strong>Giải pháp marketing Online</strong></p>
                             <p className={styles.x_smaller_text}>
-                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,  totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta  sunt explicabo.
+                                Hỗ trợ xây dựng các chiến dịch quảng cáo, quảng bá thương hiệu, nghiên cứu, phân tích, tư vấn hỗ trợ.
                             </p>
                         </a>
                     </Link>

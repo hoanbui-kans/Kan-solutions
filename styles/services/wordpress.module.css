@@ -1,22 +1,33 @@
 .x_banner{
-    padding: 150px 0px;
-    background-color: azure;
+    padding: 35px 0px;
+    background-color: #f7f7f7;
 }
-
+.x_wordpress_section{
+    background-color: #f7f7f7;
+}
 .x_banner_content{
-    text-align: center;
+    text-align: left;
     max-width: 600px;
     margin: auto;
     display: block;
 }
-
+.x_banner_content h3{
+    font-size: 22px;
+}
+.x_banner_content h2{
+    font-size: 38px;
+}
 .x_call_to_action{
     border-radius: 35px;
     padding: 15px 55px;
     background: black;
-    color: white
+    color: white;
+    margin-top: 35px;
 }
-
+.x_services_container{
+    background-color: #f7f7f7;
+    padding: 45px 0px;
+}
 .x_features_icon{
     margin-right: 5px;
 }
@@ -26,6 +37,9 @@
     padding: 0;
     font-size: 12px;
 }
+.x_section_secondary_title{
+    font-size: 16px;
+}
 .x_features li{
     display: inline-block;
     margin: 10px 15px 5px 0px;
@@ -34,6 +48,7 @@
     border-radius: 25px;
     cursor: pointer;
     transition: all .3s ease-in-out;
+    background: white;
     box-shadow: 5px 5px 10px #ededed, -5px -5px 10px #ffffff;
 }
 .x_services_button{
@@ -48,8 +63,8 @@
     color: white;
 }
 .x_why_choose{
-    background: white;
-    padding: 35px 0px
+    background: #f7f7f7;
+    padding: 45px 0px
 }
 .x_padding{
     padding: 0rem 1rem; 
@@ -65,8 +80,15 @@
     color: #111;
     margin-bottom: 35px;
     display: block;
-    background: linear-gradient(145deg, #dedede, #ffffff);
+    background: #fff;
     box-shadow: 5px 5px 10px #ededed, -5px -5px 10px #ffffff;
+}
+.x_wordpress_icon_service{
+    height: 70px;
+    width: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .x_centered{
     display: flex;
@@ -74,7 +96,8 @@
     align-items: center;
 }
 .x_services_content_main_title{
-    font-size: 2rem;
+    font-size: 24px;
+    line-height: 34px;
     margin-bottom: 1.25rem;
     display: block;
 }

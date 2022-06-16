@@ -7,7 +7,7 @@ import Link from 'next/link'
 import SearchIcon from '@rsuite/icons/Search'
 import { useRouter } from 'next/router'
 
-const rootURL = process.env.WP_JSON;
+const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 const NganhList = ({data}) => {
     return(
