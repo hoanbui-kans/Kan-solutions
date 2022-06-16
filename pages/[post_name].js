@@ -106,9 +106,9 @@ const PostSingle = ({data}) => {
                               <h3 className={styles.x_related_title}>Bài viết tương tự</h3>
                             </Col>
                             {
-                              data.related.map((val) => {
+                              data.related.map((val, index) => {
                                 return (
-                                  <Col className={styles.x_padding} md={8} xs={24}>
+                                  <Col key={index} className={styles.x_padding} md={8} xs={24}>
                                    <BlogStyleTwo key={val.ID} data={val}/>
                                   </Col>
                                 )
