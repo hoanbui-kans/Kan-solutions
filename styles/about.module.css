@@ -196,3 +196,21 @@
     background: #2d88e2;
     color: white;
 }
+
+@media (max-width: 768px){
+    .x_feature_box, .x_step_working_item, .x_about_banner{
+        max-width: 90%;
+        margin: auto;
+        margin-bottom: 25px
+    }
+    .x_about_banner{
+        padding: 30px
+    }
+    .x_banner_title{
+        font-size: 24px;
+        line-height: 34px;
+    }
+    .x_neumorphic{
+        display: none;
+    }
+}

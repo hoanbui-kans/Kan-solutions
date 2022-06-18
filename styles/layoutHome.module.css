@@ -209,7 +209,7 @@
     margin-bottom: 2.3rem;
   }
   .x_creeper_box_1{
-    padding-bottom: 420px;
+    padding-bottom: 340px;
     background-color: #378cf1;
   }
   .x_creeper_box_2{
@@ -221,7 +221,7 @@
     background: #24cbc6;
   }
   .x_creeper_box_4{
-    padding-bottom: 420px;
+    padding-bottom: 340px;
     background: #909cff;
   }
   .x_features_box{
@@ -246,13 +246,14 @@
     pointer-events: none;
     display: block;
     z-index: 0;
+    width: 80%;
   }
 
   .x_creeper_image_2{
     position: absolute;
     bottom: -5px;
-    left: 10%;
-    width: 80%;
+    right: 10%;
+    width: 70%;
     pointer-events: none;
     z-index: 0;
   }
@@ -260,13 +261,14 @@
     position: absolute;
     bottom: -5px;
     right: 0px;
-    width: 80%;
+    width: 60%;
     pointer-events: none;
   }
   .x_creeper_image_4{
     position: absolute;
     right: 0px;
-    width: 80%;
+    bottom: 10px;
+    width: 60%;
     z-index: 0;
   }
   .x_padding_cta{
@@ -337,6 +339,12 @@
   }
   
   @media (max-width: 768px) {
+    .x_order_2{
+      order: 2
+    }
+    .x_order_1{
+      order: 1
+    }
     .grid {
       width: 100%;
       flex-direction: column;
@@ -344,13 +352,86 @@
     .title {
       margin: 0;
       line-height: 1.15;
-      font-size: 3.25rem;
+      margin-top: 1rem;
+      font-size: 2.75rem;
     }
     .x_section_one{
       padding: 25px 0px 50px 0px;
     }
     .x_decoration_images{
-      width: 70%;
+      width: 60%;
       margin: auto;
+    }
+    .x_services_box{
+      max-width: 90%;
+      margin: auto;
+      margin-bottom: 35px;
+    }
+    .x_creeper_box{
+      max-width: 90%;
+      margin: auto;
+      margin-bottom: 35px
+    }
+    .x_creeper_box_1{
+      padding-bottom: 160px;
+      background-color: #378cf1;
+    }
+    .x_creeper_box_2{
+      padding-bottom: 160px;
+      background: #616cf0;
+    }
+    .x_creeper_box_3{
+      padding-bottom: 160px;
+      background: #24cbc6;
+    }
+    .x_creeper_box_4{
+      padding-bottom: 160px;
+      background: #909cff;
+    }
+    .x_creeper_image_1{
+      position: absolute;
+      bottom: -5px;
+      right: 0px;
+      width: auto;
+      pointer-events: none;
+      display: block;
+      z-index: 0;
+      width: 70%;
+    }
+  
+    .x_creeper_image_2{
+      position: absolute;
+      bottom: -5px;
+      left: unset;
+      right: 10px;
+      width: 60%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .x_creeper_image_3{
+      position: absolute;
+      bottom: -5px;
+      right: 0px;
+      width: 60%;
+      pointer-events: none;
+    }
+    .x_creeper_image_4{
+      position: absolute;
+      right: 0px;
+      bottom: 10px;
+      width: 60%;
+      z-index: 0;
+    }
+    .x_features_box{
+      max-width: 90%;
+      margin: auto;
+      margin-bottom: 35px;
+    }
+    .lBox_1{
+      display: none;
+    }
+    .x_title_no_margin_left{
+      text-align: left;
+      font-size: 30px;
     }
   }

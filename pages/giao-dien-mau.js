@@ -21,7 +21,7 @@ import Link from 'next/link'
 import SearchIcon from '@rsuite/icons/Search'
 import { useRouter } from 'next/router'
 import { Separator } from './giao-dien/[slug]';
-import { IoListSharp, IoGridOutline } from "react-icons/io5";
+import { IoListSharp, IoGridOutline, IoCaretForwardSharp } from "react-icons/io5";
 import HTMLReactParser from 'html-react-parser';
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
@@ -147,14 +147,13 @@ const Themes = ({gd, nganh, danhmuc, max_pages}) => {
     const handleChange = value => setFilterNganh(value);
 
     const SortByCategory = ({data}) => {
-        console.log(data)
         return(
             <List className={styles.x_filter_danh_muc} hover>
             {data.map((val) => (
                 <List.Item key={val.term_id} index={val.term_id}>
                     <Link href={'/danh-muc/' + val.slug}>
                         <a>
-                            {val.name}
+                            <IoCaretForwardSharp size={12}/> {val.name}
                             <span className={styles.x_count}>{val.count}</span>
                         </a>
                     </Link>
@@ -191,11 +190,13 @@ const Themes = ({gd, nganh, danhmuc, max_pages}) => {
                 <Container>
                     <Row>
                         <Col xs={24} md={6}>
-                            <h3 className={styles.x_gd_title}>Lọc theo danh mục</h3>
-                            <SortByCategory data={danhmuc}/>
-                            <h3 className={styles.x_gd_title}>Lọc theo ngành</h3>
-                            <div className={styles.x_SortByJobs}>
-                                <SortByJobs data={nganh}/>
+                            <div className={styles.x_sidebar}>
+                                <h3 className={styles.x_gd_title}>Lọc theo danh mục</h3>
+                                <SortByCategory data={danhmuc}/>
+                                <h3 className={styles.x_gd_title}>Lọc theo ngành</h3>
+                                <div className={styles.x_SortByJobs}>
+                                    <SortByJobs data={nganh}/>
+                                </div>
                             </div>
                         </Col>
                         <Col xs={24} md={18}>
@@ -240,17 +241,35 @@ const Themes = ({gd, nganh, danhmuc, max_pages}) => {
                                 </Row>
                             </Form>
                             <Row>
-                            <Row>
                                     {
                                         gd.map((val) => {
                                             return  displayGrid ? 
+                                                <>
                                                 <Col xs={24} md={8} key={val.ID}>
-                                                        <GD_Box data={val}/>
+                                                    <GD_Box data={val}/>
                                                 </Col>
+                                                <Col xs={24} md={8} key={val.ID}>
+                                                    <GD_Box data={val}/>
+                                                </Col>
+                                                <Col xs={24} md={8} key={val.ID}>
+                                                    <GD_Box data={val}/>
+                                                </Col>
+                                                <Col xs={24} md={8} key={val.ID}>
+                                                    <GD_Box data={val}/>
+                                                </Col>
+                                                </>
                                                 :
+                                                <>
                                                 <Col xs={24} key={val.ID}>
                                                         <GD_List data={val}/>
                                                 </Col>
+                                                <Col xs={24} key={val.ID}>
+                                                        <GD_List data={val}/>
+                                                </Col>
+                                                <Col xs={24} key={val.ID}>
+                                                        <GD_List data={val}/>
+                                                </Col>
+                                                </>
                                         })
                                     }
                                     <Col xs={24}>
@@ -258,7 +277,6 @@ const Themes = ({gd, nganh, danhmuc, max_pages}) => {
                                             <Pagination total={max_pages} limit={1} activePage={1} onChangePage={(current) => { console.log(current)}} />
                                         </div>
                                     </Col>
-                                </Row>
                          </Row>
                         </Col>
                     </Row>

@@ -22,11 +22,11 @@ export default function Home() {
           <Grid className='x_container'>
             <Container>
               <Row>
-                <Col xs={24} md={10}>
+                <Col xs={24} md={10} className={styles.x_order_2}>
                   <h1 className={styles.title}>
                     Đưa công việc 
                     kinh doanh 
-                    lên internet
+                    lên internet 
                   </h1>
                   <p className={styles.description}>
                     Thông qua dịch vụ thiết kế website và kho dữ liệu mẫu nội dung số để mở rộng kinh doanh trên internet hiệu quả.
@@ -36,7 +36,7 @@ export default function Home() {
                      ĐĂNG KÝ TƯ VẤN
                   </Button>
                 </Col>
-                <Col xs={24} md={14}>
+                <Col xs={24} md={14} className={styles.x_order_1}>
                   <div className={styles.x_decoration_images}>
                     <div className={styles.x_decoation_1}>
                       <Image alt='layout' src="/layout/decoration-01.svg" width={250} height={236}/>
@@ -178,12 +178,10 @@ export default function Home() {
           <Grid className='x_container'>
             <Container>
               <Row>
-                <Col xs={24}>
-                  <h3 className={styles.x_title_no_margin_left}>Dịch vụ thiết kế website chuyên nghiệp. <br />Cấu trúc chuẩn SEO với nhiều tiện ích</h3>
-                  <div style={{maxWidth: '640px', margin: 'auto'}}>
-                  </div>
-                </Col>
                 <Col xs={24} md={16}>
+                  <h3 className={styles.x_title_no_margin_left}>Dịch vụ thiết kế website chuyên nghiệp, cấu trúc chuẩn SEO với nhiều tiện ích</h3>
+                    <div style={{maxWidth: '640px', margin: 'auto'}}>
+                  </div>
                   <p style={{textAlign: 'left', fontSize: '16px', margin: '1.5rem 0 2.75rem 0rem'}} className={styles.description}>Đáp ứng tối đa trải nghiệm của người dùng và tạo cảm giác thích thú và sáng tạo trong quá trình duyệt web
 Website có cấu trúc code HTML thân thiện chuẩn SEO. Dễ cập nhật thông tin lên các thẻ hình ảnh và Công cụ đo lường và kiểm soát nội dung hiệu quả.</p>
                 </Col>

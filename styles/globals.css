@@ -113,3 +113,9 @@ a:active, a:focus, a:hover {
       width: 100% !important;
   }
 }
+@media (max-width: 768px){
+  .rs-grid-container {
+      padding-left: 15px !important;
+      padding-right: 15px !important;
+  }
+}
