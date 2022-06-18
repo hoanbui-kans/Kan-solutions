@@ -6,14 +6,12 @@
 }
 .x_single_theme_thumbnail{
     display: block;
+    box-shadow: 0 14px 24px 0 rgb(0 0 0 / 10%);
 }
 .x_theme_container{
-    padding: 35px 0px
+    padding: 15px 0px
 }
 
-.x_padding{
-    padding: 0rem .75rem
-}
 .x_content_title{
     font-size: 1.25rem;
     line-height: 1.5;
@@ -56,26 +54,26 @@
 }
 
 .x_view_button{
-    padding: 1rem 1.75rem;
-    border-radius: .35rem;
+    padding: 0.75rem 1.75rem;
     background: #ffffff;
-    border: 1px solid #27ae60;
-    color: #27ae60;
+    border: 1px solid #666666;
+    color: #666666;
+    border-radius: 0px;
     width: 100%;
     margin-bottom: 1.25rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bolder;
-    font-size: 1.15rem;
     column-gap: 10px;
+    font-size: 14px;
 }
 
 .x_create_button{
     font-size: 1.15rem;
     padding: 1rem 1.75rem;
     border-radius: .35rem;
-    background: #27ae60;
+    background: #e67e22;
+    border-radius: 0px;
     color: white;
     width: 100%;
     margin-bottom: 1rem;
@@ -92,10 +90,6 @@
     padding: .55rem .75rem;
     border-radius: .35rem;
     display: block;
-}
-.x_flex{
-    display: flex;
-    flex-wrap: wrap;
 }
 
 .x_theme_thumbnail_section{
@@ -126,18 +120,19 @@
     align-items: center;
     padding: .15rem .25rem;
     border-radius: 35px;
-    border: 1px solid rgb(226, 226, 226);
 }
 .x_plugin_content{
     display: flex;
     flex-wrap: wrap;
     align-items: center;
 }
+.x_help_form{
+    padding-bottom: 35px;
+}
 .x_layout{
     padding: 0rem .25rem;
     list-style: none;
     font-size: .875rem;
-    color: #838E95;
     font-weight: 400;
     padding-bottom: 1.5rem;
     margin-bottom: 1.5rem;
@@ -161,8 +156,6 @@
     font-size: .85rem;
     font-weight: 400;
     padding-bottom: 1.5rem;
-    margin-bottom: 1.5rem;
-    border-bottom: 1px solid rgb(243 243 243);
     border-radius: .35rem;
 }
 .x_layout_nganh_content{
@@ -185,7 +178,6 @@
 }
 
 .x_single_theme_section{
-    background: white;
     padding: .55rem .75rem;
     border-radius: .35rem;
     margin-bottom: 1.55rem;
@@ -193,5 +185,9 @@
 }
 
 .single_content{
-    background: #f7f7f7
+
+}
+
+.x_breadcumb{
+    padding-top: 15px;
 }

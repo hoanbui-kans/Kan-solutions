@@ -20,7 +20,7 @@
   
   .main {
     min-height: 100vh;
-    padding: 4rem 0;
+    padding: 35px 0;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -336,9 +336,21 @@
     margin-left: 0.5rem;
   }
   
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
     .grid {
       width: 100%;
       flex-direction: column;
+    }
+    .title {
+      margin: 0;
+      line-height: 1.15;
+      font-size: 3.25rem;
+    }
+    .x_section_one{
+      padding: 25px 0px 50px 0px;
+    }
+    .x_decoration_images{
+      width: 70%;
+      margin: auto;
     }
   }

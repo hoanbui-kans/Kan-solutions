@@ -70,8 +70,8 @@ const PostSingle = ({data}) => {
                 <Breadcrumb.Item active>Tin tức {data.post_title}</Breadcrumb.Item>
               </Breadcrumb>
                   <Container>
-                    <Row className={styles.x_flex_news}>
-                        <Col xs={24} md={20} className={styles.x_padding}>
+                    <Row>
+                        <Col xs={24} md={20}>
                             <div className={styles.x_blog_content}>
                               <span className={styles.x_single_blog_thumbnail}>
                                 <Image alt='layout' src={data.thumbnail} width={1000} height={600}/>
@@ -90,7 +90,7 @@ const PostSingle = ({data}) => {
                               </div>
                             </div>
                         </Col>
-                        <Col xs={24} md={4} className={styles.x_padding}>
+                        <Col xs={24} md={4}>
                             <SocialLink 
                                 title={data.post_title ? data.post_title : ''} 
                                 description={data.post_excerpt ? data.post_excerpt : ''} 
@@ -108,7 +108,7 @@ const PostSingle = ({data}) => {
                             {
                               data.related.map((val, index) => {
                                 return (
-                                  <Col key={index} className={styles.x_padding} md={8} xs={24}>
+                                  <Col key={index} md={8} xs={24}>
                                    <BlogStyleTwo key={val.ID} data={val}/>
                                   </Col>
                                 )

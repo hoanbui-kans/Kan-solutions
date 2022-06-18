@@ -11,6 +11,20 @@ body {
   font-weight: normal;
   color: var(--rs-text-primary) !important;
 }
+.rs-row{
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px !important;
+  margin-left: -15px !important;
+}
+.rs-col{
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
+
+.x_flex_center{
+  align-items: center;
+}
 
 a {
   color: inherit;

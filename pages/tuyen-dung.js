@@ -19,6 +19,9 @@ import {
   toaster  } from 'rsuite'
 import styles from '../styles/page.module.css'
 import { IoPaperPlaneSharp } from "react-icons/io5";
+import { RecruitmentSeo } from './api/HeaderSeo';
+import HTMLReactParser from 'html-react-parser';
+import Head from 'next/head';
 
 const Recruitment = () => {
   const formRef = useRef();
@@ -117,7 +120,11 @@ const Recruitment = () => {
   ];
 
   return (
-    <section className={styles.x_recruiment_section}>
+    <>
+      <Head>
+        { HTMLReactParser(RecruitmentSeo) }
+      </Head>
+      <section className={styles.x_recruiment_section}>
       <Grid>
         <Container>
           <Row>
@@ -287,6 +294,7 @@ const Recruitment = () => {
         </Container>
       </Grid>
     </section>
+    </>
   )
 }
 

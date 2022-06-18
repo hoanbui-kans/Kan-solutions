@@ -12,7 +12,7 @@ import ArrowRightIcon from '@rsuite/icons/ArrowRight';
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
-function Separator(numb) {
+export function Separator(numb) {
   var str = numb.toString().split(".");
   str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   return str.join(".");
@@ -79,7 +79,7 @@ const NenTang = ({data}) => {
     </ul>
   )
 }
-
+ 
 function Price({data}) {
   if(data.sale_price) 
   return (
@@ -95,7 +95,7 @@ function Price({data}) {
   )
 }
 
-const SingleTheme = ({data}) => {
+export const SingleTheme = ({data}) => {
 
   const DanhMucNganh = data.nganh ? data.nganh : '';
   const ThemeInfor = data.themeinfor ? data.themeinfor : '';
@@ -159,7 +159,6 @@ const SingleTheme = ({data}) => {
                       DanhMucNganh.map((val) => {
                         return(
                           <div key={val.term_id} className={styles.x_nganh_section}>
-                          <h3 className={styles.x_nganh_title}>{val.name}</h3>
                             <Nganh data={val.layout}/>
                           </div>
                         ) 
@@ -184,23 +183,21 @@ const SingleTheme = ({data}) => {
                     </div> : ''
                   }
                   <h2 className={styles.x_content_title}>Thông tin hỗ trợ</h2>
-                  <Form layout="horizontal" fluid> 
+                  <Form  className={styles.x_help_form} fluid> 
                     <Form.Group>
-                      <Form.ControlLabel></Form.ControlLabel>
+                      <Form.ControlLabel>Tên của bạn</Form.ControlLabel>
                       <Form.Control name='name' value={EventTarget.value} placeholder='Nhập tên của bạn...' type='text' />
                     </Form.Group>
                     <Form.Group>
-                      <Form.ControlLabel></Form.ControlLabel>
+                      <Form.ControlLabel>Địa chỉ Email</Form.ControlLabel>
                       <Form.Control name='email' value={EventTarget.value} placeholder='Nhập địa chỉ Email...' type='email' />
                     </Form.Group>
                     <Form.Group>
-                      <Form.ControlLabel></Form.ControlLabel>
+                      <Form.ControlLabel>Nội dung yêu cầu</Form.ControlLabel>
                       <Input value={EventTarget.value} as="textarea" name='content' />
                     </Form.Group>
                     <Form.Group>
-                      <ButtonToolbar>
-                        <Button appearance="primary">Gửi đi</Button>
-                      </ButtonToolbar>
+                      <Button className={styles.x_sent_help_button} appearance="primary">Gửi đi</Button>
                     </Form.Group>
                   </Form>
                 </div>

@@ -45,6 +45,16 @@ const Right = () => {
         <>
             <h3 className={styles.x_menu_title}>DỊCH VỤ PHÁT TRIỂN WEB</h3>
             <div className={styles.x_dropbox}>
+                    <Link href="/dich-vu/wordpress">
+                        <a>
+                            <p><strong>Thiết kế webiste</strong></p>
+                            <p className={styles.x_smaller_text}>
+                            Dịch vụ quản trị, quản lý, vận hành, sản xuất nội dung cho website, tối ưu chi phí quản lý, nâng cao hiệu quả chiến dịch.
+                            </p>
+                        </a>
+                    </Link>
+            </div>
+            <div className={styles.x_dropbox}>
                     <Link href="/dich-vu/quan-tri-website">
                         <a>
                             <p><strong>Quản trị website</strong></p>

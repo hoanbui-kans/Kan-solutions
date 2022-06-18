@@ -3,10 +3,16 @@ import styles from '../../styles/services/wordpress.module.css'
 import CheckIcon from '@rsuite/icons/Check'
 import Image from 'next/image'
 import Link from 'next/link'
+import Head from 'next/head'
+import HTMLReactParser from 'html-react-parser'
+import { ServiceWordpress } from '../api/HeaderSeo'
 
 const Wordpress = () => {
   return (
     <>
+    <Head>
+        { HTMLReactParser(ServiceWordpress) }
+    </Head>
     <div className={styles.x_wordpress_section}>
         <section className={styles.x_banner}>
             <Grid className='x-container'>

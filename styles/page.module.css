@@ -145,8 +145,12 @@
     z-index: 0;
     filter: blur(10px);
 }
+.x_contact_container{
+    background: #f7f7f7;
+    padding: 35px 0px
+}
 .x_padding{
-    padding: 0px 35px;
+    padding: 0px 15px;
 }
 .x_contact_grid_container{
     width: 100% !important;
@@ -155,19 +159,12 @@
 .x_contact_grid_container img{
     width: 100%;
 }
-.x_flex{
-    display: flex;
-    flex-wrap: wrap;
-}
-.x_flex_center{
-    align-items: center;
-}
+
 .x_form_wrapper{
     height: 100%;
     padding: 35px 35px;
     position: relative;
     z-index: 2;
-    background-color: white;
     width: 100%;
 }
 .x_back_home{
@@ -184,19 +181,52 @@
     border-radius: .35rem;
     z-index: 15;
 }
+.x_content_map{
+    box-shadow: 5px 5px 10px #ededed, -5px -5px 10px #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.x_footer_address_list{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    display: block;
+}
+.x_contact_list{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+.x_contact_list strong{
+    font-size: 16px;
+}
+.x_contact_list > div{
+    width: calc(100% - 110px);
+    margin-left: 20px;
+}
+.x_footer_icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #dedede, #ffffff);
+    box-shadow: 5px 5px 10px #ededed, -5px -5px 10px #ffffff;
+}
 .x_recruiment_title{
     font-size: 22px;
 }
 .x_contact_title{
     border-bottom: 1px solid whitesmoke;
     font-size: 24px;
-    margin-bottom: 30px;
+    line-height: 28px;
+    margin-bottom: 15px;
     text-transform: uppercase;
-}
-.x_contact_container{
-    box-shadow:  5px 5px 10px #ededed,
-    -5px -5px 10px #ffffff;
-    margin: 35px 0px;
 }
 .x_contact_wrap{
     background-color: #ffffff;

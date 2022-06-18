@@ -32,7 +32,7 @@ export const BlogStyleOne = ({data}) => {
       <Row>
         <Col xs={24} md={12}>
           <div className={styles.x_blog_one_thumbnail}>
-            <Image alt='layout' height={400} width={600} src={data.thumbnail}/>
+              <Image alt='layout' height={400} width={600} src={data.thumbnail ? data.thumbnail : '/'}/>
           </div>
         </Col>
         <Col xs={24} md={12}>
@@ -60,7 +60,7 @@ export const BlogStyleTwo = ({data}) => {
       <Row>
         <Col xs={24}>
           <div className={styles.x_blog_two_thumbnail}>
-            <Image alt='layout' height={330} width={600} src={data.thumbnail}/>
+            <Image alt='layout' height={330} width={600} src={data.thumbnail ? data.thumbnail : '/'}/>
           </div>
         </Col>
         <Col xs={24}>

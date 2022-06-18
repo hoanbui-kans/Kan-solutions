@@ -61,7 +61,7 @@ const Login = () => {
         </a>
       </Link>
       <Container>
-        <Row className={styles.x_flex}>
+        <Row>
           <Col xs={24} md={12}>
           </Col>
           <Col xs={24} md={12}>

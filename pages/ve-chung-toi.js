@@ -3,16 +3,22 @@ import { Grid, Row, Col, Timeline, Container, Button } from 'rsuite'
 import Image from 'next/image'
 import styles from '../styles/about.module.css'
 import EmailFillIcon from '@rsuite/icons/EmailFill'
-
+import Head from 'next/head'
+import HTMLReactParser from 'html-react-parser'
+import { AboutUsSeo } from './api/HeaderSeo'
 const AboutUs = () => {
   return (
-    <div className={styles.x_about_us_section}>
+    <>
+       <Head>
+        { HTMLReactParser(AboutUsSeo) }
+      </Head>
+      <div className={styles.x_about_us_section}>
       <span className={styles.x_neumorphic}>
             <Image alt='layout' src={'/layout/decorations-01.svg'} width={800} height={800}/>
       </span>
       <Grid className={'x-container'}>
         <Container className={styles.x_about_section_one}>
-          <Row className={styles.x_flex_center}>
+          <Row className={'x_flex_center'}>
               <Col xs={24} md={12}>
                 <Image alt='layout' src={'/layout/real-mockup.png'} width={800} height={395}/>
               </Col>
@@ -35,7 +41,7 @@ const AboutUs = () => {
       <Grid className={'x-container'}>
         <Container className={styles.x_about_section_one}>
             <Row className={styles.x_flex_center}>
-              <Col xs={24} md={8} className={styles.x_padding}>
+              <Col xs={24} md={8}>
                 <div className={styles.x_feature_box}>
                   <span className={styles.x_feature_}><Image alt='layout' src={'/icons/trophy_light.svg'} width={45} height={45}/></span>
                   <h3 className={styles.x_feature_title}>Giá trị</h3>
@@ -44,7 +50,7 @@ const AboutUs = () => {
                   </p>
                 </div>
               </Col>
-              <Col xs={24} md={8} className={styles.x_padding}>
+              <Col xs={24} md={8}>
                 <div className={styles.x_feature_box}>
                   <span className={styles.x_feature_}><Image alt='layout' src={'/icons/chart_alt_light.svg'} width={45} height={45}/></span>
                   <h3 className={styles.x_feature_title}>Tầm nhìn</h3>
@@ -53,7 +59,7 @@ const AboutUs = () => {
                   </p>
                 </div>
               </Col>
-              <Col xs={24} md={8} className={styles.x_padding}>
+              <Col xs={24} md={8}>
                 <div className={styles.x_feature_box}>
                   <span className={styles.x_feature_}><Image alt='layout' src={'/icons/world_2_light.svg'} width={45} height={45}/></span>
                   <h3 className={styles.x_feature_title}>Sứ mệnh</h3>
@@ -71,7 +77,7 @@ const AboutUs = () => {
               <Col xs={24}>
                 <h3 className={styles.x_about_title}>Thông tin hoạt động</h3>
               </Col>
-              <Col xs={24} md={14} className={styles.x_padding}>
+              <Col xs={24} md={14}>
                 <div className={styles.x_timeline}>
                     <div className={styles.x_timeline_item}>
                       <span className={styles.x_year_counter}>
@@ -122,7 +128,7 @@ const AboutUs = () => {
               </Col>
               <Col xs={24}>
                 <Row className={styles.x_flex}>
-                    <Col xs={24} md={12} className={styles.x_padding}>
+                    <Col xs={24} md={12}>
                         <div className={styles.x_step_working_item}>
                           <span className={styles.x_step_working_icon}>01</span>
                           <div className={styles.x_step_content}>
@@ -131,7 +137,7 @@ const AboutUs = () => {
                           </div>
                         </div>
                     </Col>
-                    <Col xs={24} md={12} className={styles.x_padding}>
+                    <Col xs={24} md={12}>
                         <div className={styles.x_step_working_item}>
                           <span className={styles.x_step_working_icon}>02</span>
                             <div className={styles.stepne_content}>
@@ -140,7 +146,7 @@ const AboutUs = () => {
                             </div>
                         </div>
                     </Col>
-                    <Col xs={24} md={12} className={styles.x_padding}>
+                    <Col xs={24} md={12}>
                         <div className={styles.x_step_working_item}>
                           <span className={styles.x_step_working_icon}>03</span>
                           <div className={styles.x_step_content}>
@@ -149,7 +155,7 @@ const AboutUs = () => {
                           </div>
                         </div>
                     </Col>
-                    <Col xs={24} md={12} className={styles.x_padding}>
+                    <Col xs={24} md={12}>
                         <div className={styles.x_step_working_item}>
                           <span className={styles.x_step_working_icon}>04</span>
                           <div className={styles.x_step_content}>
@@ -158,7 +164,7 @@ const AboutUs = () => {
                           </div>
                         </div>
                     </Col>
-                    <Col xs={24} md={12} className={styles.x_padding}>
+                    <Col xs={24} md={12}>
                         <div className={styles.x_step_working_item}>
                           <span className={styles.x_step_working_icon}>05</span>
                           <div className={styles.x_step_content}>
@@ -183,6 +189,7 @@ const AboutUs = () => {
         </Container>
       </Grid>
     </div>
+    </>
   )
 }
 

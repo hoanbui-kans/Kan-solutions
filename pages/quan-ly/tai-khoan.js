@@ -2,14 +2,13 @@ import React, { useState } from 'react'
 import { Grid, Container, Row, Col, Navbar, Nav, Form, Button, ButtonToolbar } from 'rsuite'
 import { IoLogOutOutline, IoSearchOutline, IoAlbumsOutline, IoAddSharp, IoLinkOutline, IoBookmarkOutline, IoCalendarClearOutline, IoCalendarOutline } from "react-icons/io5";
 import axios from 'axios'
-import styles from '../../styles/account.module.css'
 import Link from 'next/link'
-import { getCookie } from 'cookies-next';
 import Image from 'next/image';
 import moment from 'moment';
 import 'moment/locale/vi'
 import dynamic from 'next/dynamic'
 import { getSession } from 'next-auth/react';
+import styles from '../../styles/account.module.css'
 
 const Chart = dynamic(
   () => {
@@ -30,9 +29,11 @@ const BlogContent = ({data}) => {
     const Remain = StoreAvaiable - Uploaded;
 
     const expired = new Date(parseInt(data.get_expire, 10) * 1000);
-
+    const current = new Date();
     const DateRegisted = moment(data.registered).format('LL');
     const expiredDate = moment(expired).format('LL');
+
+    const expiredClass = current <= expired ? styles.x_danger : styles.x_success;
 
     const chartValue = {
         options: { 
@@ -118,7 +119,7 @@ const BlogContent = ({data}) => {
                             <p className={styles.x_blog_meta_title}><IoCalendarClearOutline /> Ngày đăng ký:</p> 
                             <span className={styles.x_date_badge}>{ DateRegisted }</span>
                         </div>
-                        <div>
+                        <div className={expiredClass}>
                             <p className={styles.x_blog_meta_title}><IoCalendarOutline /> Hến hạn:</p>
                             <span className={styles.x_date_badge}>{expiredDate}</span>
                         </div>
@@ -207,7 +208,7 @@ const UserManager = ({blogInfor, token}) => {
                 </Row>
             </Container>
             <Container>
-                <Row>
+                <Row className={styles.x_flex}>
                     {
                         blogInfor ? 
                         blogInfor.map((val, index) => {

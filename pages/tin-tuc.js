@@ -7,6 +7,9 @@ import SearchIcon from '@rsuite/icons/Search'
 
 import { BlogStyleOne, BlogStyleTwo } from '../components/blog-templates/BlogContent';
 import Loading from '../components/Loading';
+import HTMLReactParser from 'html-react-parser';
+import { NewsSeo } from './api/HeaderSeo';
+import Head from 'next/head';
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
@@ -42,6 +45,10 @@ const News = ({bai_viet, danh_muc, max_num_pages}) => {
 
   if(bai_viet == undefined) return '';
     return (
+      <>
+      <Head>
+        { HTMLReactParser(NewsSeo) }
+      </Head>
       <Grid className={'x-container'}>
         <Breadcrumb className={styles.x_breadcumb}>
           <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
@@ -92,7 +99,7 @@ const News = ({bai_viet, danh_muc, max_num_pages}) => {
                     </Form>
               </Col>
             </Row>
-            <Row className={styles.x_flex_news}>
+            <Row>
                 {
                   loading ?  <Loading /> :
                   <>
@@ -103,11 +110,11 @@ const News = ({bai_viet, danh_muc, max_num_pages}) => {
                           posts.map((val, index) => {
                               return(
                                 index == 0 ? 
-                                <Col className={styles.x_padding_posts} xs={24} key={val.ID}>
+                                <Col xs={24} key={val.ID}>
                                   <BlogStyleOne data={val} />
                                 </Col>
                                 :
-                                <Col className={styles.x_padding_posts} xs={24} md={12} lg={8} key={val.ID}>
+                                <Col xs={24} md={12} lg={8} key={val.ID}>
                                   <BlogStyleTwo data={val} />
                                 </Col>
                               )
@@ -126,6 +133,7 @@ const News = ({bai_viet, danh_muc, max_num_pages}) => {
             </Row>
           </Container>
         </Grid>
+        </>
     )
 }
 

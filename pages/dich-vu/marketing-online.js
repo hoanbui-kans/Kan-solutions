@@ -4,9 +4,17 @@ import { IoCheckmarkCircle }  from "react-icons/io5"
 import styles from '../../styles/page.module.css'
 import Link from 'next/link'
 import Image from 'next/image'
+import Head from 'next/head'
+import HTMLReactParser from 'html-react-parser'
+import { ServicesMarketingOnline } from '../api/HeaderSeo'
+
 const Marketing = () => {
   return (
-    <div className={styles.x_webite_manager_section}>
+    <>
+      <Head>
+          { HTMLReactParser(ServicesMarketingOnline) }
+      </Head>
+      <div className={styles.x_webite_manager_section}>
       <Grid className={'x_container'}>
           <Container>
             <Row>
@@ -165,6 +173,7 @@ const Marketing = () => {
           </Container>      
       </Grid>
     </div>
+    </>
   )
 }
 
