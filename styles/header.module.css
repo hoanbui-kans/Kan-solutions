@@ -1,4 +1,4 @@
-@media (max-width: 1200px){
+@media (max-width: 992px){
     .x_dropdown_x3_menu{
         width: 100% !important;
     }
@@ -50,7 +50,7 @@
 }
 .mainMenuContainer ul li{
     display: block;
-    padding: 10px 20px;
+    padding: 10px 15px;
     cursor: pointer;
 }
 .x_search_button{

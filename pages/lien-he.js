@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { Grid, Container, Row, Col, Form, Button, Input, Schema, Loader, toaster, Message  } from 'rsuite'
+import { Grid, Container, Row, Col, Form, Button, Input, Schema, Loader, toaster, Message, Breadcrumb  } from 'rsuite'
 import { IoPaperPlane, IoHomeOutline } from "react-icons/io5";
 import styles from '../styles/page.module.css'
 import axios from 'axios';
@@ -77,6 +77,10 @@ const Contact = () => {
       </Head>
       <section className={styles.x_contact_container}>
       <Grid className={'x-container'}>
+        <Breadcrumb className={styles.x_breadcumb}>
+          <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
+          <Breadcrumb.Item active>Liên hệ</Breadcrumb.Item>
+        </Breadcrumb> 
         <Container className={styles.x_container_form}>
           <Row className={'x_flex_center'}>
             <Col xs={24}>

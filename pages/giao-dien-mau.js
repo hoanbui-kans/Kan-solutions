@@ -244,32 +244,13 @@ const Themes = ({gd, nganh, danhmuc, max_pages}) => {
                                     {
                                         gd.map((val) => {
                                             return  displayGrid ? 
-                                                <>
-                                                <Col xs={24} md={8} key={val.ID}>
-                                                    <GD_Box data={val}/>
-                                                </Col>
-                                                <Col xs={24} md={8} key={val.ID}>
-                                                    <GD_Box data={val}/>
-                                                </Col>
-                                                <Col xs={24} md={8} key={val.ID}>
-                                                    <GD_Box data={val}/>
-                                                </Col>
-                                                <Col xs={24} md={8} key={val.ID}>
-                                                    <GD_Box data={val}/>
-                                                </Col>
-                                                </>
+                                                    <Col xs={24} md={8} key={val.ID}>
+                                                        <GD_Box data={val}/>
+                                                    </Col>
                                                 :
-                                                <>
-                                                <Col xs={24} key={val.ID}>
-                                                        <GD_List data={val}/>
-                                                </Col>
-                                                <Col xs={24} key={val.ID}>
-                                                        <GD_List data={val}/>
-                                                </Col>
-                                                <Col xs={24} key={val.ID}>
-                                                        <GD_List data={val}/>
-                                                </Col>
-                                                </>
+                                                    <Col xs={24} key={val.ID}>
+                                                            <GD_List data={val}/>
+                                                    </Col>
                                         })
                                     }
                                     <Col xs={24}>

@@ -10,8 +10,8 @@ const Register = () => {
 
   const { data: session } = useSession();
   const [formValues, setFormValue] = useState({
-    username: 'admin',
-    password: 'Caoanh123@'
+    username: '',
+    password: ''
   });
 
   const [error, setError] = useState(false);
@@ -42,7 +42,6 @@ const Register = () => {
   }
 
  if (session) {
-    console.log(session)
     return (
       <>
         Signed in as <br />

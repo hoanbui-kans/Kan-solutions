@@ -9,7 +9,7 @@
     color: white
 }
 .x_recruiment_section{
-    padding: 35px 0px;
+    padding-bottom: 35px;
     background: #f7f7f7
 }
 .x_input_margin{
@@ -102,11 +102,8 @@
     margin: 35px auto;
 }
 .x_website_manager_features_why li{
-    margin-bottom: 32px;
     font-size: 16px;
     padding: 15px;
-    background: white;
-    box-shadow: 5px 5px 10px #ededed, -5px -5px 10px #ffffff;
     border-radius: 15px;
 }
 .x_banner_web_mannager{
@@ -166,6 +163,11 @@
     position: relative;
     z-index: 2;
     width: 100%;
+}
+.x_recruiment_form{
+    padding: 35px;
+    border-radius: 20px;
+    background: white
 }
 .x_back_home{
     position: absolute;
@@ -228,7 +230,121 @@
     margin-bottom: 15px;
     text-transform: uppercase;
 }
+.x_table_index{
+    width: 100%;
+}
 .x_contact_wrap{
     background-color: #ffffff;
     height: 100%;
+}
+.x_table_row{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.x_marketing_section{
+    padding: 35px;
+    padding-bottom: 55px;
+}
+.x_table_button{
+    width: 100%;
+    background: black;
+    margin-top: 25px;
+    color: white;
+}
+.x_table_list{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.x_webite_manager_featured_list_ul{
+    list-style: none;
+    padding: 0;
+}
+.x_webite_manager_featured_list_ul li{
+    margin-bottom: 25px;
+    padding: 15px;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px #ededed, -5px -5px 10px #ffffff;
+} 
+.x_webite_manager_featured_list_ul li h4{
+    font-size: 18px;
+} 
+.x_marketing_title{
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 45px;
+}
+.x_adsButton{
+    padding: 15px 25px;
+    margin-top: 15px;
+    background: black;
+    color: white;
+}
+.x_featured_table_heading{
+    background: #4489c8;
+    color: white;
+}
+.x_featured_table button{
+    color: black;
+}
+.x_featured_table {
+    border-left: 1px solid #e7e7e7;
+}
+.x_table_list li{
+    width: 33%;
+    padding: 5px 15px;
+    border-right: 1px solid #e7e7e7;
+}
+.x_table_content_table{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.x_table_title{
+    display: block;
+    width: 100%;
+    text-transform: uppercase;
+    background: #dddddd;
+    padding: 15px;
+}
+.x_table_column{
+    display: flex;
+    flex-wrap: wrap;
+    width: 70%;
+    text-align: center;
+}
+.x_table_description{
+    width: 25%;
+}
+.x_table_job{
+    width: 30%;
+    padding: 15px;
+}
+.x_table_content_heading{
+    text-align: center;
+    padding: 15px
+}
+.x_table_content_wrapper{
+    display: flex;
+    flex-wrap: wrap;
+}
+.x_webite_manager_featured_container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.x_table_content, .x_webite_manager_featured_list li{
+    width: 33%;
+}
+.x_webite_manager_featured_list{
+    padding: 0px;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0px;
+    background-color: white;
 }

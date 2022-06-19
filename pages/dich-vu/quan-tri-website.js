@@ -1,6 +1,6 @@
 import React from 'react'
 import { Grid, Container, Row, Col, Button, Divider } from 'rsuite' 
-import { IoCheckmarkCircle }  from "react-icons/io5"
+import { IoCheckmarkCircle, IoCaretForwardSharp }  from "react-icons/io5"
 import styles from '../../styles/page.module.css'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -45,9 +45,6 @@ const WebsiteManager = () => {
                         </li>
                         </ul>
                     </div>  
-                    <div className={styles.x_website_manager_decoration_1}>
-                          <Image src={'/icons/decoration-website-manager-01.svg'} width={300} height={300}/>
-                    </div>
                   </div>
               </Col>
             </Row>  
@@ -121,32 +118,32 @@ const WebsiteManager = () => {
                   <ul className={styles.x_website_manager_features_why}>
                     <li>
                       <p>
-                        <span><IoCheckmarkCircle size={18} color={'#6FCF97'}/></span>
+                        <span><IoCaretForwardSharp size={14}/></span>
                         Hỗ trợ xây dựng trang đích quảng cáo không tính phí mỗi khi có nhu cầu</p>
                     </li>
                     <li>
                       <p>
-                        <span><IoCheckmarkCircle size={18} color={'#6FCF97'}/></span>
+                        <span><IoCaretForwardSharp size={14}/></span>
                         Google sẽ ghi nhớ và gia tăng thứ hạng với website được cập nhật nội dung</p>
                     </li>
                     <li>
                       <p>
-                        <span><IoCheckmarkCircle size={18} color={'#6FCF97'}/></span>
+                        <span><IoCaretForwardSharp size={14}/></span>
                         Trang web được cập nhật nội dung mới, tự viết và với cấu trúc chuẩn SEO mang lại hiệu quả cáo</p>
                     </li>
                     <li>
                       <p>
-                        <span><IoCheckmarkCircle size={18} color={'#6FCF97'}/></span>
+                        <span><IoCaretForwardSharp size={14}/></span>
                         Website được làm tươi mới mỗi ngày về cả nội dung lẫn hình thức, các hình ảnh, banner và thông điệp</p>
                     </li>
                     <li>
                       <p>
-                        <span><IoCheckmarkCircle size={18} color={'#6FCF97'}/></span>
+                        <span><IoCaretForwardSharp size={14}/></span>
                         Tư vấn và chủ động nội dung website theo hướng tập trung vào từ khóa cần thiết giúp bạn dễ dàng tiếp cận khách hàng</p>
                     </li>
                     <li>
                       <p>
-                        <span><IoCheckmarkCircle size={18} color={'#6FCF97'}/></span>
+                        <span><IoCaretForwardSharp size={14}/></span>
                         Nâng cao khả năng kết nối của website với môi trường mạng như social, backlink, forum để nâng cao hiệu quả quảng cáo</p>
                     </li>
                   </ul>

@@ -80,3 +80,219 @@ export const features = [
         image: '/icons/Folder_dublicate_duotone-01.svg'
     }
 ]
+
+export const MarketingTable = [
+    {
+        name: 'Tối ưu onpage',
+        data: [
+            {
+                name: 'Viết nội dung chuẩn SEO theo từ khoá',
+                data: [
+                    '10 bài/tháng',
+                    '20 bài/tháng',
+                    '30 bài/tháng'
+                ],
+                description: 'Chuẩn SEO trên 1000 từ'
+            }, {
+                name: 'Thiết kế hình ảnh nội dung và banner',
+                data: [
+                    '2 hình/tháng',
+                    '3 hình/tháng',
+                    '5 hình/tháng'
+                ],
+                description: 'Design ảnh đại diện, banner web'
+            }, {
+                name: 'Cập nhật nội dung theo yêu cầu',
+                data: [
+                    '5 bài/tháng',
+                    '8 bài/tháng',
+                    '10 bài/tháng'
+                ],
+                description: 'Nội dung khách hàng gửi'
+            }, {
+                name: 'Tối ưu cấu trúc HTML',
+                data: [
+                    'Kansite',
+                    'Kansite',
+                    'Kansite'
+                ],
+                description: 'Với các website thuộc Kan thực hiện'
+            }, {
+                name: 'Tối ưu hình ảnh và liên kết',
+                data: [
+                    '15',
+                    '30',
+                    '50'
+                ],
+                description: 'Cập nhật mỗi tháng'
+            }
+        ]
+    },{
+        name: 'Tối ưu Offpage',
+        data: [
+            {
+                name: 'Tối ưu hoá hệ thống Social',
+                data: [
+                    'x',
+                    'Khởi tạo',
+                    'Chăm sóc'
+                ],
+                description: 'Mạng xã hội chính của doanh nghiệp'
+            }, {
+                name: 'Backlink',
+                data: [
+                    '5',
+                    '10',
+                    '20'
+                ],
+                description: 'Design ảnh đại diện, banner web'
+            }, {
+                name: 'Cập nhật nội dung theo yêu cầu',
+                data: [
+                    '5 bài/tháng',
+                    '8 bài/tháng',
+                    '10 bài/tháng'
+                ],
+                description: 'Xây dựng backlink'
+            }, {
+                name: 'Seeding Diễn đàn / Blog Comment',
+                data: [
+                    'x',
+                    '10',
+                    '20'
+                ],
+                description: 'Đi link qua blog comment và diễn đàn'
+            }, {
+                name: 'Social Profile',
+                data: [
+                    '5',
+                    '10',
+                    '10'
+                ],
+                description: 'Tạo profile backlink qua social'
+            }, {
+                name: 'Blog Content vệ tinh',
+                data: [
+                    '5',
+                    '10',
+                    '15'
+                ],
+                description: 'Số Blog và Nội dung/blog'
+            }, {
+                name: 'Guest Post',
+                data: [
+                    'x',
+                    '1 bài',
+                    '2 bài'
+                ],
+                description: 'Bài viết PR trên hệ thống của Kan'
+            }, {
+                name: 'Lead Magnet',
+                data: [
+                    'x',
+                    '1',
+                    '2'
+                ],
+                description: 'File build lead tiềm năng'
+            }
+        ]
+    },{
+        name: 'Báo cáo & Tư vấn Marketing',
+        data: [
+            {
+                name: 'Báo cáo công việc',
+                data: [
+                    'Hàng tháng',
+                    'Hàng tháng',
+                    'Hàng tháng'
+                ],
+                description: 'Công việc Kan Solution thực hiện'
+            }, {
+                name: 'Báo cáo traffic từ Analytics',
+                data: [
+                    'Hàng quý',
+                    'Hàng quý',
+                    'Hàng tháng'
+                ],
+                description: 'Tương tác của người dùng trên website'
+            }, {
+                name: 'Báo cáo hiệu quả từ khoá từ Console',
+                data: [
+                    'Hàng quý',
+                    'Hàng tháng',
+                    'Hàng tháng'
+                ],
+                description: 'Kết quả tương tác từ khoá tự nhiên'
+            }, {
+                name: 'Báo cáo cập nhật tình trạng website',
+                data: [
+                    'Có',
+                    'Có',
+                    'Có'
+                ],
+                description: 'Hỗ trợ SEO'
+            }, {
+                name: 'Tư vấn, gợi ý từ khoá phù hợp',
+                data: [
+                    'Cơ bản',
+                    'Nâng cao',
+                    'Chuyên sâu'
+                ],
+                description: 'Lượng tìm kiếm, Cạnh tranh....'
+            }, {
+                name: 'Tư vấn marketing Google',
+                data: [
+                    'x',
+                    'Có',
+                    'Có'
+                ],
+                description: 'Từ mô tả đến triển khai'
+            }
+        ]
+    } ,{
+        name: 'Hệ thống website',
+        data: [
+            {
+                name: 'Backup sao lưu dữ liệu',
+                data: [
+                    'Hàng tháng',
+                    'Hàng tuần',
+                    'Hàng tuần'
+                ],
+                description: 'Sao lưu toàn bộ website'
+            }, {
+                name: 'Cấu hình Google Web Console',
+                data: [
+                    'Có',
+                    'Có',
+                    'Có'
+                ],
+                description: 'Xem tương tác từ khoá tìm kiếm tự nhiên'
+            }, {
+                name: 'Cấu hình Google Analytics',
+                data: [
+                    'Có',
+                    'Có',
+                    'Có'
+                ],
+                description: 'Báo cáo cập nhật tình trạng website'
+            }, {
+                name: 'Thiết lập Robot, Sitemap',
+                data: [
+                    '1 lần',
+                    '2 lần',
+                    '3 lần'
+                ],
+                description: 'Audit website'
+            }, {
+                name: 'Cấu hình email tên miền',
+                data: [
+                    'x',
+                    'Có',
+                    'Có'
+                ],
+                description: ''
+            }
+        ]
+    }
+]

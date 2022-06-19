@@ -10,8 +10,8 @@ const Login = () => {
 
   const { data: session } = useSession();
   const [formValues, setFormValue] = useState({
-    username: 'admin',
-    password: 'Caoanh123@'
+    username: '',
+    password: ''
   });
 
   const [loading, setLoading] = useState(false);

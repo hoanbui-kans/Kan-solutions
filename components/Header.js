@@ -65,16 +65,6 @@ const Right = () => {
                     </Link>
             </div>
             <div className={styles.x_dropbox}>
-                    <Link href="/dich-vu/seo-website">
-                        <a>
-                            <p><strong>SEO website</strong></p>
-                            <p className={styles.x_smaller_text}>
-                            Thiết kế Website sơ đồ chuẩn SEO, tối ưu hóa nội dung Web, thân thiện với các công cụ trình duyệt.
-                            </p>
-                        </a>
-                    </Link>
-            </div>
-            <div className={styles.x_dropbox}>
                     <Link href="/dich-vu/marketing-online">
                         <a>
                             <p><strong>Giải pháp marketing Online</strong></p>
@@ -318,12 +308,12 @@ const Header = () => {
                 <Grid className='x_container'>
                     <Container> 
                         <Row className={styles.headerMenu}>
-                            <Col xs={12} md={12} lg={4}>
+                            <Col xs={12} md={12} lg={3}>
                                 <div className={styles.x_brand}>
                                     <Image alt='layout' src={Brand} width={140} height={62} />
                                 </div>
                             </Col>
-                            <Col xs={16} className={styles.x_destop_display}>
+                            <Col xs={18} className={styles.x_destop_display}>
                                 <Nav>
                                     <div className={styles.mainMenuContainer}>
                                         <ul>
@@ -359,7 +349,7 @@ const Header = () => {
                                     </div>
                                 </Nav>
                             </Col>
-                            <Col xs={12} md={12} lg={4}>
+                            <Col xs={12} md={12} lg={3}>
                                 <div className={styles.x_header_button_list}>
                                     <Button className={styles.x_non_background_button} onClick={() => { setSearchForm(true); setOpen(false) }}>
                                         <SearchIcon width={22} height={22}/> 
