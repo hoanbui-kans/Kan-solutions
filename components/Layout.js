@@ -18,7 +18,7 @@ const Layout = ({ children }) => {
         setLoading(false);
     });
   return (
-    pathname != '/dang-nhap' && pathname != '/dang-ky' ? 
+    pathname != '/dang-nhap' && pathname != '/dang-ky' && pathname != '/quan-ly/dang-xuat' ? 
       <>
         <Header />
           {

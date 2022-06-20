@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "node server.js",
+    "start": "npm start",
     "sitemap": "next-sitemap --config next-sitemap.config.js",
     "lint": "next lint"
   },
@@ -19,7 +19,6 @@
     "cookies-next": "^2.0.4",
     "hamburgers": "^1.2.1",
     "html-react-parser": "^1.4.14",
-    "md5": "^2.3.0",
     "moment": "^2.29.3",
     "next": "12.1.6",
     "next-auth": "^4.4.0",

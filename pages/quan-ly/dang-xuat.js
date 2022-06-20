@@ -4,24 +4,46 @@ import { Grid, Container, Row, Col, Form, Button, Schema, Loader, Checkbox, Mess
 import Link from 'next/link'
 import styles from '../../styles/account.module.css';
 import { IoHomeOutline } from "react-icons/io5";
-import { useSession, signIn, signOut } from "next-auth/react"
-import SocialButton from '../../components/SocialButton';
+import { useSession, signOut } from "next-auth/react"
 import { useRouter } from 'next/router';
+import SocialButton from '../../components/SocialButton';
 
 const Loggout = () => {
-  const router = useRouter();
-  const { data: session } = useSession();
+
+  const {data: session} = useSession();
   if(!session){
-    useEffect(() => {
-      router.push('/dang-nhap/')
-    })
-    
-    return;
+    return (
+      <Grid className={styles.x_account_container}>
+      <Link href = '/'>
+        <a className={styles.x_back_home}>
+          <IoHomeOutline size={20}/>
+          Trở về trang chủ
+        </a>
+      </Link>
+      <Container>
+        <Row>
+          <Col xs={24}>
+            <div className={styles.x_login + ' ' + styles.x_logged_form}>
+              <h1 className={styles.x_account_title}>Bạn chưa đăng nhập</h1>
+              <p className={styles.x_greeting}>xin vui lòng click vào link đăng nhập phía bên dưới</p>
+                <Link href={'/dang-nhap/'}>
+                  <a>
+                    <Button className={styles.x_login_button + ' ' + styles.x_margin_bottom}>
+                      Đăng nhập
+                    </Button>
+                  </a>
+              </Link>
+              <SocialButton />
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </Grid>
+    )
   }
-
-  const userName = session.user ? session.user.user_display_name : '';
-  const userEmail = session.user ? session.user.user_email : '';
-
+  const userName = session ? session.user.user_display_name : '';
+  const userEmail = session ? session.user.user_email : '';
+  
   return (
     <>
     <Grid className={styles.x_account_container}>
