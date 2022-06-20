@@ -269,7 +269,7 @@ const Header = () => {
                 <Container> 
                     <Row className={styles.x_flex}>
                         <Col xs={12} md={12} lg={12}>
-                            <strong>CÔNG TY TNHH GIẢI PHÁP KAN</strong>
+                            <strong className={styles.x_top_header_brand}>CÔNG TY TNHH GIẢI PHÁP KAN</strong>
                         </Col>
                         <Col xs={12} md={12} lg={12} className={styles.x_flex_end}>
                             <ul className={styles.x_top_header_menu}>
@@ -310,7 +310,11 @@ const Header = () => {
                         <Row className={styles.headerMenu}>
                             <Col xs={12} md={12} lg={3}>
                                 <div className={styles.x_brand}>
-                                    <Image alt='layout' src={Brand} width={140} height={62} />
+                                    <Link href={'/'}>
+                                        <a>
+                                        <Image alt='layout' src={Brand} width={140} height={62} />
+                                        </a>
+                                    </Link>
                                 </div>
                             </Col>
                             <Col xs={18} className={styles.x_destop_display}>

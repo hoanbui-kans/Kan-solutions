@@ -9,6 +9,8 @@ import CopyIcon from '@rsuite/icons/Copy';
 import CheckRoundIcon from '@rsuite/icons/CheckRound'
 import SearchIcon from '@rsuite/icons/Search';
 import ArrowRightIcon from '@rsuite/icons/ArrowRight';
+import { getSession, useSession } from 'next-auth/react'
+import md5 from 'md5'
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
@@ -18,7 +20,7 @@ export function Separator(numb) {
   return str.join(".");
 }
 
-function Layout({data}){
+const Layout = ({data}) => {
   return (
     <ul className={styles.x_layout}>
       {
@@ -37,8 +39,7 @@ function Layout({data}){
   )
 }
 
-
-function Nganh({data}) {
+const Nganh = ({data}) => {
   return (
     <ul className={styles.x_layout_nganh}>
       {
@@ -95,8 +96,7 @@ function Price({data}) {
   )
 }
 
-export const SingleTheme = ({data}) => {
-
+export const SingleTheme = ({data, link_theme}) => {
   const DanhMucNganh = data.nganh ? data.nganh : '';
   const ThemeInfor = data.themeinfor ? data.themeinfor : '';
 
@@ -134,10 +134,16 @@ export const SingleTheme = ({data}) => {
                         data.layout ? <Layout data={data.layout}/> : ''
                       }
                     <div className={styles.x_toolbar_button}>
-                      <Button className={styles.x_create_button} onClick={() => { console.log('create ' + ThemeInfor.id)}}>
-                        <CopyIcon width={16} height={16}/>
-                        Tạo website
-                      </Button>
+                      {
+                        link_theme ? 
+                        <a href={link_theme}>
+                            <Button className={styles.x_create_button}>
+                              <CopyIcon width={16} height={16}/>
+                              Tạo website
+                            </Button> 
+                        </a> : ''
+                      }
+                    
                       <Link href={ThemeInfor.link}>
                         <a>
                           <Button className={styles.x_view_button}>
@@ -213,11 +219,23 @@ export const SingleTheme = ({data}) => {
 export default SingleTheme;
 
 export async function getServerSideProps(context) {
+  // Create API
+  const session = await getSession(context);
   const slug = context.params.slug;
   const res = await axios.get(rootURL + 'giao-dien/single?slug=' + slug).then((resonse) => resonse.data);
+  // Create API
+  let CreateURI = '';
+  if(session){
+    const user_nicename = session.user.user_nicename
+    const SITE_URL = process.env.ORIGINAL_URL;
+    const API_KEY = res.ID + user_nicename;
+    const HASH_API_KEY = md5(API_KEY);
+    CreateURI = session ? SITE_URL + '/?theme_id=' + res.ID + '&user_name='+ user_nicename +'&public_key=' + HASH_API_KEY : '';
+  }
   // Pass data to the page via props
   return { 
   props: { 
       data: res,
+      link_theme: CreateURI
   }}
 }

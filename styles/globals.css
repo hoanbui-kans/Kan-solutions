@@ -10,6 +10,7 @@ body {
   font-style: normal;
   font-weight: normal;
   color: var(--rs-text-primary) !important;
+  overflow-x: hidden;
 }
 .rs-row{
   display: flex;

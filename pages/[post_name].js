@@ -74,7 +74,7 @@ const PostSingle = ({data}) => {
                         <Col xs={24} md={20}>
                             <div className={styles.x_blog_content}>
                               <span className={styles.x_single_blog_thumbnail}>
-                                <Image alt='layout' src={data.thumbnail} width={1000} height={600}/>
+                                <Image alt='layout' src={data.thumbnail ? data.thumbnail : '/'} width={1000} height={600}/>
                               </span>
                               <div className={styles.x_single_blog_meta}>
                                 <h1 className={styles.x_post_title}>{data.post_title}</h1>

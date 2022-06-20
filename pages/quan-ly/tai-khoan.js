@@ -9,6 +9,7 @@ import 'moment/locale/vi'
 import dynamic from 'next/dynamic'
 import { getSession } from 'next-auth/react';
 import styles from '../../styles/account.module.css'
+import UserNav from '../../components/user-manager/UserNav';
 
 const Chart = dynamic(
   () => {
@@ -133,6 +134,7 @@ const BlogContent = ({data}) => {
     )
 }
 const UserManager = ({blogInfor, token}) => {
+  console.log(token);
   return (
     <>
     <div className={styles.x_app_header}>
@@ -140,28 +142,7 @@ const UserManager = ({blogInfor, token}) => {
             <Container>
                 <Row>
                     <Col xs={24}>
-                        <Navbar className={styles.x_app_nav}>
-                            <Navbar.Brand className={styles.x_brand} as={'div'}>QUẢN LÝ TÀI KHOẢN</Navbar.Brand>
-                                <Nav>
-                                <Link href={'/quan-ly/home'}>
-                                    <Nav.Item as={'span'}>Quản lý thông tin</Nav.Item>
-                                </Link>
-                                
-                                <Nav.Item>Thông báo mới</Nav.Item>
-                                <Nav.Item>Hướng dẫn sử dụng</Nav.Item>
-                                <Nav.Menu title="Dịch vụ">
-                                    <Nav.Item>Company</Nav.Item>
-                                    <Nav.Item>Team</Nav.Item>
-                                    <Nav.Menu title="Contact">
-                                    <Nav.Item>Via email</Nav.Item>
-                                    <Nav.Item>Via telephone</Nav.Item>
-                                    </Nav.Menu>
-                                </Nav.Menu>
-                                </Nav>
-                                <Nav pullRight>
-                                <Nav.Item icon={<IoLogOutOutline />}>Đăng xuất</Nav.Item>
-                                </Nav>
-                        </Navbar>
+                        <UserNav />
                     </Col>
                 </Row>
             </Container>
@@ -213,7 +194,9 @@ const UserManager = ({blogInfor, token}) => {
                         blogInfor ? 
                         blogInfor.map((val, index) => {
                             return <BlogContent key={index} data={val} /> 
-                        }) : 'Bạn chưa có trang nào, vui lòng tạo mới'
+                        }) : <p style={{textAlign: 'center', width: '100%', padding: '35px 0px'}}>
+                                Bạn chưa có trang nào, vui lòng tạo mới
+                            </p>
                     }
                 </Row>
             </Container>

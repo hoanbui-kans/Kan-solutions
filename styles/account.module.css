@@ -178,15 +178,11 @@
 }
 
 /* Trang Đăng nhập */
-.x_background{
-    position: fixed;
-    top: 0;
-    left: 0%;
-    width: 50vw;
-    height: 100vh;
+.x_account_container{
     background: url('../public/layout/background-01.svg');
     background-size: cover;
     background-repeat: no-repeat;
+    min-height: 100vh;
 }
 .x_account_background_sections{
     background: url('../public/layout/background-01.svg');
@@ -195,21 +191,42 @@
     height: 100vh;
 }
 .x_account_title{
-    font-size: 24px;
+    font-size: 28px;
     text-align: center;
 }
 .x_login{
-    padding: 50px 50px;
-    margin: auto;
+    padding: 35px;
     display: block;
     position: relative;
     z-index: 2;
-    background: white;
-    min-height: 100vh;
+    max-width: 540px;
+    margin: 35px auto;
+    border-radius: 20px;
+    background-color: white;
 }
 .x_login_form{
-    max-width: 450px;
     margin: 35px auto;
+}
+.x_login_form input{
+    padding: 15px 15px;
+    margin-top: 5px;
+    border-radius: 35px;
+}
+.x_logged_form{
+    display: block;
+    text-align: center;
+}
+.x_logged_form small{
+    margin-top: -10px;
+    margin-bottom: 15px;
+    display: block;
+}
+.x_margin_bottom{
+    margin-bottom: 35px;
+}
+.x_greeting{
+    font-size: 16px;
+    margin-bottom: 25px;
 }
 .x_account_container{
     width: 100% !important;
@@ -217,6 +234,19 @@
 .x_social_title{
     margin-bottom: 15px;
     text-align: center;
+}
+.x_login_button{
+    padding: 15px;
+    width: 100%;
+    border-radius: 35px;
+    background: black;
+    color: white;
+    position: relative;
+}
+.x_loading_icon{
+    position: absolute;
+    left: 15px;
+    top: 15px;
 }
 .x_back_home{
     position: absolute;
@@ -249,8 +279,7 @@
     display: flex;
     align-items: center;
     column-gap: 10px;
-    border-radius: 35px;
-    background-color: #1877F2;
+    background-color: #398af3;
     color: white;
 }
 
@@ -259,7 +288,34 @@
     display: flex;
     align-items: center;
     column-gap: 10px;
-    border-radius: 35px;
-    background-color: #e34133;
+    background-color: #f05143;
     color: white;
 }
+
+.x_guilde_content{
+    padding: 35px;
+    background-color: white;
+    border: 1px solid rgb(224, 224, 224);
+    margin-top: 35px;
+    margin-bottom: 35px;
+}
+
+.x_guilde_content h2{
+    font-size: 28px;
+    line-height: 42px;
+  }
+  .x_guilde_content h3{
+    font-size: 24px;
+    line-height: 36px;
+  }
+  .x_guilde_content p{
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .x_guilde_content img{
+    margin: 15px 0px;
+    height: auto;
+  }
+  .x_guilde_content *{
+    max-width: 100%;
+  }
