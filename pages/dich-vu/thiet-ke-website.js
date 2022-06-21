@@ -1,11 +1,13 @@
 import { Grid, Container, Row, Col, Button, Divider } from 'rsuite'
-import styles from '../../styles/services/wordpress.module.css'
-import CheckIcon from '@rsuite/icons/Check'
+import styles from '../../styles/services/webdesign.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
 import Head from 'next/head'
 import HTMLReactParser from 'html-react-parser'
 import { ServiceWordpress } from '../api/HeaderSeo'
+import { HostingTable } from '../api/services'
+import { IoCheckmarkOutline } from "react-icons/io5";
+
 
 const Wordpress = () => {
   return (
@@ -21,7 +23,7 @@ const Wordpress = () => {
                     <Col xs={24} md={12}>
                         <div className={styles.x_banner_content}>
                             <h3 className={styles.x_section_secondary_title}>Tối ưu chi phí vận hành</h3>
-                            <h2>Tạo lập Webiste doanh nghiệp của bạn bằng wordpress</h2>
+                            <h2 className={styles.x_primary_title}>Tạo lập Webiste doanh nghiệp của bạn bằng wordpress</h2>
                             <Link href='/giao-dien-mau'>
                                 <a>
                                     <Button className={styles.x_call_to_action}>Tạo website miễn phí</Button>
@@ -38,7 +40,6 @@ const Wordpress = () => {
             </Container>
             </Grid>
         </section>
-        <Divider/>
         <section className={styles.x_why_choose}>
             <Grid className='x-container'>
             <Container>
@@ -46,13 +47,13 @@ const Wordpress = () => {
                     <Col xs={24} md={12}>
                         <div className={styles.x_why_choose_content}>
                             <h3 className={styles.x_section_secondary_title}>Tạo lập miễn phí</h3>
-                            <h2>Miễn phí tạo trang và hàng trăm giao diện chất lượng cao</h2>
+                            <h2 className={styles.x_primary_title}>Miễn phí tạo trang và hàng trăm giao diện chất lượng cao</h2>
                             <ul className={styles.x_features}>
-                                <li><p><CheckIcon className={styles.x_features_icon} width={12} height={12}/>Không giới hạn trang</p></li>
-                                <li><p><CheckIcon className={styles.x_features_icon} width={12} height={12}/>Cập nhật miễn phí và liên tục</p></li>
-                                <li><p><CheckIcon className={styles.x_features_icon} width={12} height={12}/>Tích hợp quản lý dữ liệu, báo cáo hệ thống</p></li>
-                                <li><p><CheckIcon className={styles.x_features_icon} width={12} height={12}/>Tài liệu sử dụng</p></li>
-                                <li><p><CheckIcon className={styles.x_features_icon} width={12} height={12}/>SEO toàn trang</p></li>
+                                <li><p><IoCheckmarkOutline className={styles.x_features_icon} width={12} height={12}/>Không giới hạn trang</p></li>
+                                <li><p><IoCheckmarkOutline className={styles.x_features_icon} width={12} height={12}/>Cập nhật miễn phí và liên tục</p></li>
+                                <li><p><IoCheckmarkOutline className={styles.x_features_icon} width={12} height={12}/>Tích hợp quản lý dữ liệu, báo cáo hệ thống</p></li>
+                                <li><p><IoCheckmarkOutline className={styles.x_features_icon} width={12} height={12}/>Tài liệu sử dụng</p></li>
+                                <li><p><IoCheckmarkOutline className={styles.x_features_icon} width={12} height={12}/>SEO toàn trang</p></li>
                             </ul>
                         </div>
                     </Col>
@@ -71,18 +72,66 @@ const Wordpress = () => {
                     <Col xs={24} md={12}>
                         <div className={styles.x_supporter}>
                             <h3 className={styles.x_section_secondary_title}>Hỗ trợ 24/7</h3>
-                            <h2>Hỗ trợ tận tâm, nhiệt tình với công việc</h2>
+                            <h2 className={styles.x_primary_title}>Hỗ trợ tận tâm, nhiệt tình với công việc</h2>
                             <ul className={styles.x_features}>
-                                <li><p><CheckIcon className={styles.x_features_icon} width={12} height={12}/>Lỗi hệ thống</p></li>
-                                <li><p><CheckIcon className={styles.x_features_icon} width={12} height={12}/>Nhắn tin trực tuyến</p></li>
-                                <li><p><CheckIcon className={styles.x_features_icon} width={12} height={12}/>Bảo mật hệ thống</p></li>
-                                <li><p><CheckIcon className={styles.x_features_icon} width={12} height={12}/>Phản hồi nhanh chóng</p></li>
-                                <li><p><CheckIcon className={styles.x_features_icon} width={12} height={12}/>Diễn đàn hỗ trợ</p></li>
+                                <li><p><IoCheckmarkOutline className={styles.x_features_icon} width={12} height={12}/>Lỗi hệ thống</p></li>
+                                <li><p><IoCheckmarkOutline className={styles.x_features_icon} width={12} height={12}/>Nhắn tin trực tuyến</p></li>
+                                <li><p><IoCheckmarkOutline className={styles.x_features_icon} width={12} height={12}/>Bảo mật hệ thống</p></li>
+                                <li><p><IoCheckmarkOutline className={styles.x_features_icon} width={12} height={12}/>Phản hồi nhanh chóng</p></li>
+                                <li><p><IoCheckmarkOutline className={styles.x_features_icon} width={12} height={12}/>Diễn đàn hỗ trợ</p></li>
                             </ul>
                         </div>
                     </Col>
                     <Col xs={24} md={12}>
                         <Image alt='layout' src={'/layout/helper-01.svg'} width={800} height={600}/>
+                    </Col>
+                </Row>
+            </Container>
+            </Grid>
+        </section>
+        <section className={styles.x_hosting_section}>
+            <Grid className='x-container'>
+            <Container>
+                <Row className={styles.x_centered}>
+                    <Col xs={24}>
+                        <div className={styles.x_hosting_title}>
+                            <h3 className={styles.x_section_secondary_title}>Sử dụng dễ dàng</h3>
+                            <h2 className={styles.x_primary_title}>Bảng giá Hosting</h2>
+                        </div>
+                        <div className={styles.x_hosting_table_container}>
+                            <Row>
+                                 {
+                                    HostingTable.map((val, index) => {
+                                        return(
+                                            <Col xs={24} md={8} key={index}>
+                                                <div className={styles.x_hosting}>
+                                                    <div className={styles.x_hosting_header}>
+                                                        <h3>{val.name}</h3>
+                                                        <p>Từ {val.price} /năm</p>
+                                                        <Button className={styles.x_hosting_button}>Đăng ký</Button>
+                                                    </div>
+                                                    <div className={styles.x_hosting_features}>
+                                                        <ul>
+                                                            {
+                                                                val.checklist.map((val, index) => {
+                                                                    return(
+                                                                        <li key={index}>
+                                                                            <span className={styles.x_hosting_check}>
+                                                                                <IoCheckmarkOutline color='white'/>
+                                                                            </span>
+                                                                             {val}</li>
+                                                                    )
+                                                                })    
+                                                            }
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </Col>
+                                        )
+                                    })
+                                 }       
+                            </Row>
+                        </div>
                     </Col>
                 </Row>
             </Container>
@@ -96,7 +145,7 @@ const Wordpress = () => {
                     <Col xs={24}>
                         <div className={styles.x_supporter}>
                             <h3 className={styles.x_section_secondary_title}>Lựa chọn dịch vụ</h3>
-                            <h2 className={styles.services_main_title}>Xây dựng thương hiệu riêng cho bạn</h2>
+                            <h2 className={styles.x_primary_title}>Xây dựng thương hiệu riêng cho bạn</h2>
                             <div className={styles.services}>
                                 <Row>
                                     <Col xs={24} md={8} className={styles.x_padding}>

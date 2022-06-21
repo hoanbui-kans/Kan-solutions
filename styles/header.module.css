@@ -376,7 +376,6 @@
     width: 100%;
     left: 0;
     top: 0;
-    background: rgb(247 247 247);
 }
 
 .x_fixed .headerMenu{
@@ -387,7 +386,9 @@
     width: 100px;
 }
 .x_fixed .x_header{
-    background-color: unset;
+    background-color: white;
+    color: white;
+    box-shadow: 0px 0px 30px -20px black;
 }
 .x_header{
     position: relative;

@@ -6,6 +6,8 @@ import EmailFillIcon from '@rsuite/icons/EmailFill'
 import Head from 'next/head'
 import HTMLReactParser from 'html-react-parser'
 import { AboutUsSeo } from './api/HeaderSeo'
+import Link from 'next/link'
+
 const AboutUs = () => {
   return (
     <>
@@ -181,7 +183,13 @@ const AboutUs = () => {
                 <div className={styles.x_about_banner}>
                   <div className={styles.x_about_banner_content}>
                     <h2 className={styles.x_banner_title}>Thiết kế Website chuyên nghiệp cùng ưu đãi hàng trăm banner miễn phí</h2>
-                    <Button className={styles.x_banner_button}>Thông tin chi tiết</Button>
+                    <Link href="/giao-dien-mau">
+                      <a>
+                        <Button className={styles.x_banner_button}>
+                          Thông tin chi tiết
+                        </Button>
+                      </a>
+                    </Link>
                   </div>
                 </div>
               </Col>

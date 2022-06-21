@@ -1,5 +1,41 @@
 :root{
-  --rs-text-primary: #333 !important
+  --x-text-primary: #333 !important;
+  --x-text-secondary: black;
+
+  --x-title-size: 34px;
+  --x-title-line-height: 1.25;
+
+  --x-title-box-size: 22px;
+
+  --x-banner-content-size: 16px;
+  --x-banner-content-height: 1.55;
+
+  --x-brand-color: #2d88e2;
+  --x-primary-color: #378cf1;
+  --x-accent-color: #616cf0;
+  --x-greenlight-color: #24cbc6;
+  --x-pupple-color: #909cff;
+  --x-danger-color: #e74c3c;
+  --x-light-color:#f7f7f7;
+  --x-white-color:#ffffff;
+  --x-gray-color: #dddddd;
+  --x-secondary-color: #333333;
+  --x-black-color:#000000;
+
+  --x-darkgradient-color: linear-gradient(to right, #29323c, #485563); 
+  --x-neumorphic-color: linear-gradient(145deg, #dedede, #ffffff);
+  --x-neumorphic-dropdown: 5px 5px 10px #ededed, -5px -5px 10px #ffffff;
+  --x-neumorphic-darker-dropdown: 0 14px 24px 0 rgb(0 0 0 / 10%);
+  
+  --x-margin-column: 15px;
+  --x-padding-column: 15px;
+  --x-border-radius: 20px;
+  --x-bottom-margin: 35px;
+  --x-bottom-margin-half: 22px;
+  --x-section-padding: 55px 0px;
+
+  --x-button-padding: 16px 30px;
+  --x-transition: all .3s ease-in-out;
 }
 
 html,
@@ -9,18 +45,18 @@ body {
   font-family: 'SVN-Gotham' !important;
   font-style: normal;
   font-weight: normal;
-  color: var(--rs-text-primary) !important;
+  color: var(--x-text-primary) !important;
   overflow-x: hidden;
 }
 .rs-row{
   display: flex;
   flex-wrap: wrap;
-  margin-right: -15px !important;
-  margin-left: -15px !important;
+  margin-right: var(--x-margin-column) !important;
+  margin-left: var(--x-margin-column) !important;
 }
 .rs-col{
-  padding-left: 15px !important;
-  padding-right: 15px !important;
+  padding-left: var(--x-padding-column) !important;
+  padding-right: var(--x-padding-column) !important;
 }
 
 .x_flex_center{
@@ -116,7 +152,7 @@ a:active, a:focus, a:hover {
 }
 @media (max-width: 768px){
   .rs-grid-container {
-      padding-left: 15px !important;
-      padding-right: 15px !important;
+      padding-left: var(--x-padding-column) !important;
+      padding-right: var(--x-padding-column) !important;
   }
 }

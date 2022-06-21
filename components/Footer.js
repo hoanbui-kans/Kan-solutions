@@ -5,6 +5,7 @@ import { listServices } from '../pages/api/services'
 import Image from 'next/image'
 import Link from 'next/link'
 import ArrowRightIcon from '@rsuite/icons/ArrowRight';
+import EmailMarketing from './page-component/EmailMarketing';
 
 const Footer = () => {
   return (
@@ -45,15 +46,7 @@ const Footer = () => {
                 <div className={styles.x_footer_content} >
                       <h3 className={styles.x_footer_title}>Nhận tin tức mới</h3>
                       <p className={styles.x_email_message}>Nhận nội dung cập nhật từ website, những thông tin cần thiết để giúp mở phát triển doanh nghiệp</p>
-                      <Form className={styles.x_footer_form}>
-                        <Form.Control name='email' className={styles.x_form_newsletter} value={EventTarget.value} placeholder={'Nhập địa chỉ Email...'}></Form.Control>
-                        <Button className={styles.x_newsletter_button}>
-                            <span className={styles.x_newsletter_ico}>
-                              <Image alt='layout' src={'/icons/Send_fill.svg'} width={24} height={24} />
-                            </span>
-                            Gửi đi
-                        </Button>
-                      </Form>
+                      <EmailMarketing />
                 </div>
               </Col>
               <Col xs={24}>

@@ -1,0 +1,92 @@
+.x_section{
+    padding: var(--x-section-padding);
+}
+.x_marketing_banner_section{ 
+    margin: auto;
+    padding: 75px 0px;
+    width: calc(100% - 20px);
+    border-radius: var(--x-border-radius);
+    background: var(--x-primary-color);
+    color: var(--x-white-color);
+ }
+ .x_margin_bottom{
+    margin-bottom: 35px;
+    display: block;
+}
+.x_marketing_banner_title{
+    margin-bottom: 15px;
+ }
+ .x_marketing_banner_description{
+    margin-bottom: 15px;
+ }
+ .x_adsButton{
+    margin-top: 15px;
+    padding: 15px 25px;
+    background: var(--x-black-color);
+    color: var(--x-white-color);
+}
+.x_webite_manager_featured_container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.x_webite_manager_featured_list_ul{
+    list-style: none;
+    padding: 0;
+}
+.x_webite_manager_featured_list_ul li{
+    margin-bottom: var(--x-bottom-margin-half);
+    padding: 15px;
+    border-radius: var(--x-border-radius);
+    border: 1px solid var(--x-gray-color);
+} 
+.x_webite_manager_featured_list_ul li h4{
+    font-size: 18px;
+} 
+.x_webite_manager_featured_container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.x_table_content, .x_webite_manager_featured_list li{
+    width: 33.333%;
+}
+.x_webite_manager_featured_list{
+    padding: 0px;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0px;
+    background-color: var(--x-white-color);
+}
+.x_marketing_title{
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 45px;
+}
+.x_banner_web_manager_section{
+    max-width: 700px;
+    margin: auto
+}
+.x_banner_web_mannager_button{
+    padding: .75rem 1.75rem;
+    border-radius: var(--x-border-radius);
+    background: var(--x-danger-color);
+    color: var(--x-white-color);
+    margin-top: 20px;
+}
+.x_banner_web_mannager{
+    margin-bottom: 35px;
+    padding: 55px 15px;
+    display: block;
+    background-color: #4B88EC;
+    width: calc(100% - 20px);
+    margin: auto;
+    border-radius: var(--x-border-radius);
+    color: var(--x-white-color);
+}
+@media ( max-width: 768px ){
+    .x_website_manager_title{
+        font-size: 20px;
+        line-height: 28px;
+    }
+}

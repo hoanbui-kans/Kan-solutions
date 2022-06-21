@@ -3,18 +3,20 @@ import Brand from '../public/logo.svg'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Grid, Row, Col, Nav, Container, Form, Button, Pagination, Loader  } from 'rsuite'
+import { useSpring, animated, useChain, useSpringRef, useTransition, config } from "@react-spring/web"
+import { listServices } from '../pages/api/services'
+import { useSession } from "next-auth/react"
+import Router from 'next/router'
+
 import SearchIcon from '@rsuite/icons/Search'
 import CloseIcon from '@rsuite/icons/Close'
-import { useSpring, animated, useChain, useSpringRef, useTransition, config } from "@react-spring/web"
-import styles from '../styles/header.module.css'
-import { listServices } from '../pages/api/services'
-import Router from 'next/router'
+
 import ArrowDownLineIcon from '@rsuite/icons/ArrowDownLine'
 import EmailFillIcon from '@rsuite/icons/EmailFill'
 import PhoneFillIcon from '@rsuite/icons/PhoneFill'
 import ArrowRightIcon from '@rsuite/icons/ArrowRight'
 import axios from 'axios'
-import { useSession } from "next-auth/react"
+import styles from '../styles/header.module.css'
 
 const rootURL = process.env.wp_json_enpoint;
 
@@ -45,7 +47,7 @@ const Right = () => {
         <>
             <h3 className={styles.x_menu_title}>DỊCH VỤ PHÁT TRIỂN WEB</h3>
             <div className={styles.x_dropbox}>
-                    <Link href="/dich-vu/wordpress">
+                    <Link href="/dich-vu/thiet-ke-website">
                         <a>
                             <p><strong>Thiết kế webiste</strong></p>
                             <p className={styles.x_smaller_text}>
@@ -147,7 +149,6 @@ const Header = () => {
     const [focusSearch, setFocus] = useState(false);
     const [keySearch, setKeySearch] = useState('');
     const [loadingSearch, setLoadingSearch] = useState(false);
-    const [storeUser, setStoreUser] = useState('');
 
     const [paged, setPaged] = useState({
         current: 1,
@@ -208,7 +209,7 @@ const Header = () => {
      // This will orchestrate the two animations above, comment the last arg and it creates a sequence
      useChain(open ? [springBackground, springApi, transApi] : [transApi, springApi, springBackground], [
         0,
-        open ? 0.1 : 0.15,
+        open ? 0.095 : 0.105,
     ])
 
     const showDropdown = () => {

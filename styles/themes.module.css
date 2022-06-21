@@ -33,13 +33,16 @@
     overflow-y: scroll;
     padding: 15px;
   }
-  .x_filter_danh_muc > div{
+  .x_filter_category_list > div{
     background-color: unset;
     padding: 8px 15px 8px 24px;
     box-shadow: unset;
   }
-  .x_filter_danh_muc{
+  .x_filter_category_list{
     box-shadow: none;
+  }
+  .x_filter_category{
+    color: #333;
   }
   /* width */
   .x_SortByJobs::-webkit-scrollbar {
@@ -133,14 +136,12 @@
   }
 
   .x_gd_view_button{
-    border-radius: 0px;
     border: 1px solid #919191;
     background: unset;
     margin-right: 10px;
   }
   
   .x_gd_create_button{
-    border-radius: 0px;
     background: #e67e22;
     border: 1px solid #e67e22;
     color: white;

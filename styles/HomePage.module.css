@@ -1,17 +1,5 @@
-.x_section_one{
-    padding: 65px 0px 100px 0px;
-}
-.x_section_two{
-  padding: 50px 0px;
-}
-.x_section_three{
-  padding: 50px 0px;
-}
-.x_section_four {
-  padding: 50px 0px;
-}
-.x_section_five{
-  padding: 50px 0px;
+.x_section{
+  padding: var(--x-section-padding);
   position: relative;
 }
 .container {
@@ -20,13 +8,13 @@
   
   .main {
     min-height: 100vh;
-    padding: 35px 0;
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: #f7f7f7;
+    background: var(--x-light-color);
+    padding: var(--x-section-padding);
   }
 
   .title a {
@@ -54,42 +42,35 @@
   .description {
     margin: 2rem 0;
     line-height: 1.5;
-    font-size: 1.2rem;
+    font-size: var(--x-title-line-height);
     font-weight: 400;
   }
   .x_seperator{
-    background: #f7f7f7;
     display: block;
     position: relative;
     z-index: 2;
     height: 1px;
     width: 100%;
+    background: var(--x-light-color);
   }
   .x_services_box{
+    display: block;
     height: 270px;
     min-height: 240px;
     padding: 24px 32px;
     border-radius: 20px;
-    transition: all .3s ease-in-out;
-    color: #111;
-    margin-bottom: 35px;
-    display: block;
-    background: linear-gradient(145deg, #dedede, #ffffff);
-    box-shadow: 5px 5px 10px #ededed, -5px -5px 10px #ffffff;
+    color: var(--x-black-color);
+    transition: var(--x-transition);
+    margin-bottom: var(--x-bottom-margin);
+    background: var(--x-neumorphic-color);
+    box-shadow: var(--x-neumorphic-dropdown);
   }
   .x_services_box:hover{
-    background: white;
-    box-shadow: 0 14px 24px 0 rgb(0 0 0 / 10%);
-    transition: all .3s ease-in-out;
+    background: var(--x-white-color);
+    box-shadow: var(--x-neumorphic-darker-dropdown);
+    transition: var(--x-transition);
   }
-  .code {
-    background: #fafafa;
-    border-radius: 5px;
-    padding: 0.75rem;
-    font-size: 1.1rem;
-    font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-      Bitstream Vera Sans Mono, Courier New, monospace;
-  }
+
   .x_service_icon{
     margin: auto;
     display: block;
@@ -98,42 +79,43 @@
     position: relative;
     width: 100px;
   }
+
   .x_slider{
     height: 300px;
     background: wheat;
     display: block;
   }
   .x_black_button{
-    background: black;
-    border: 1px solid black;
-    color: white;
-    padding: 16px 30px;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: var(--x-button-padding);
+    color: var(--x-white-color);
+    background: var(--x-black-color);
+    border: 1px solid var(--x-black-color);
   }
   .x_about_description{
-    margin-bottom: 1.25rem;
+    margin-bottom: var(--x-bottom-margin);
     display: block;
   }
   .x_black_button:hover{
-    border-color: black;
+    border-color: var(--x-black-color);
     background: unset
   }
   .x_decoation_0{
     position: absolute;
+    z-index: -1;
     left: 0;
     top: 15%;
-    z-index: -1;
-    max-width: 46%;
+    max-width: 35%;
     pointer-events: none;
   }
   .lBox_1{
+    pointer-events: none;
     position: absolute;
+    z-index: 0;
     right: 0px;
     top: 39px;
-    z-index: 0;
-    pointer-events: none;
     opacity: .95;
   }
   .bannerImage{
@@ -143,7 +125,7 @@
     transform: rotate(180deg);
   }
   .x_creeper_button{
-    border-radius: 35px;
+    border-radius: var(--x-border-radius);
     padding: 5px 25px;
     border: 2px solid #ffffff;
     background: unset
@@ -151,24 +133,23 @@
   .x_title{
     text-align: center;
     margin: 1rem 0rem 3.5rem 0rem;
-    font-size: 34px;
+    font-size: var(--x-title-size);
   }
   .x_title_no_margin{
+    font-size: var(--x-title-size);
+    line-height: var(--x-title-line-height);
     text-align: center;
-    font-size: 34px;
   }
   .x_title_no_margin_left{
-    text-align: left;
-    font-size: 34px;
+    font-size: var(--x-title-size);
+    line-height: var(--x-title-line-height);
   }
-  .x_services_box_title{
-    font-size: 22px;
-    margin-bottom: 12px;
+  .x_services_box_title, .x_features_box_title{
+    font-size: var(--x-title-box-size);
+    line-height: var(--x-title-line-height);
+    margin-bottom: 12px
   }
-  .x_features_box_title{
-    font-size: 22px;
-    margin-bottom: 12px;
-  }
+  
   .x_decoration_images{
     position: relative;
     text-align: center;
@@ -200,42 +181,42 @@
     justify-content: flex-start;
     align-items: flex-start;
     overflow: hidden;
-    border-radius: 32px;
     transition: box-shadow .2s;
     object-fit: cover;
-    background: white;
     overflow: hidden;
     position: relative;
     margin-bottom: 2.3rem;
+    border-radius: var(--x-border-radius);
+    background: var(--x-white-color);
   }
   .x_creeper_box_1{
     padding-bottom: 340px;
-    background-color: #378cf1;
+    background-color: var(--x-primary-color);
   }
   .x_creeper_box_2{
     padding-bottom: 210px;
-    background: #616cf0;
+    background: var(--x-accent-color);
   }
   .x_creeper_box_3{
     padding-bottom: 210px;
-    background: #24cbc6;
+    background: var(--x-greenlight-color);
   }
   .x_creeper_box_4{
     padding-bottom: 340px;
-    background: #909cff;
+    background: var(--x-pupple-color);
   }
   .x_features_box{
-    background: white;
-    margin-bottom: 2.3rem;
     min-height: 250px;
     padding: 24px 32px;
-    border-radius: 20px;
-    transition: all .3s ease-in-out;
+    background: var(--x-white-color);
+    border-radius: var(--x-border-radius);
+    transition: var(--x-transition);
+    margin-bottom: var(--x-bottom-margin);
     color: #111;
     display: block;
   }
   .x_creeper_box:hover{
-    box-shadow: 0 15px 30px 0 rgb(0 0 0 / 20%);
+    box-shadow: var(--x-neumorphic-darker-dropdown);
     opacity: 1;
   }
   .x_creeper_image_1{
@@ -275,67 +256,25 @@
     padding: 0rem 1.15rem;
   }
   .x_creeper_title{
-    color: white;
-    font-size: 34px;
-    line-height: 1.2;
-    font-weight: 900;
+    font-weight: bold;
     letter-spacing: -.6px;
-    margin-bottom: 24px;
+    line-height: var(--x-title-line-height);
+    font-size: var(--x-title-size);
+    color: var(--x-white-color);
+    margin-bottom: 14px;
   }
   .x_creeper_box_section{
     position: relative;
     z-index: 2;
   }
   .x_creeper_content{
-    font-size: 16px;
-    line-height: 26px;
     letter-spacing: -.5px;
     font-weight: 400;
-    margin-bottom: 35px;
     position: relative;
-    color: white;
-  }
-  .grid {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    max-width: 800px;
-  }
-  
-  .card {
-    margin: 1rem;
-    padding: 1.5rem;
-    text-align: left;
-    color: inherit;
-    text-decoration: none;
-    border: 1px solid #eaeaea;
-    border-radius: 10px;
-    transition: color 0.15s ease, border-color 0.15s ease;
-    max-width: 300px;
-  }
-  
-  .card:hover,
-  .card:focus,
-  .card:active {
-    color: #0070f3;
-    border-color: #0070f3;
-  }
-  
-  .card h2 {
-    margin: 0 0 1rem 0;
-    font-size: 1.5rem;
-  }
-  
-  .card p {
-    margin: 0;
-    font-size: 1.25rem;
-    line-height: 1.5;
-  }
-  
-  .logo {
-    height: 1em;
-    margin-left: 0.5rem;
+    font-size: var(--x-banner-content-size);
+    line-height: var(--x-banner-content-height);
+    margin-bottom: var(--x-bottom-margin);
+    color: var(--x-white-color);
   }
   
   @media (max-width: 768px) {
@@ -351,9 +290,9 @@
     }
     .title {
       margin: 0;
-      line-height: 1.15;
       margin-top: 1rem;
-      font-size: 2.75rem;
+      line-height: var(--x-title-line-height);
+      font-size: var(--x-title-size);
     }
     .x_section_one{
       padding: 25px 0px 50px 0px;
@@ -365,12 +304,12 @@
     .x_services_box{
       max-width: 90%;
       margin: auto;
-      margin-bottom: 35px;
+      margin-bottom: var(--x-bottom-margin);
     }
     .x_creeper_box{
       max-width: 90%;
       margin: auto;
-      margin-bottom: 35px
+      margin-bottom: var(--x-bottom-margin)
     }
     .x_creeper_box_1{
       padding-bottom: 160px;
@@ -425,7 +364,7 @@
     .x_features_box{
       max-width: 90%;
       margin: auto;
-      margin-bottom: 35px;
+      margin-bottom: var(--x-bottom-margin);
     }
     .lBox_1{
       display: none;

@@ -148,11 +148,11 @@ const Themes = ({gd, nganh, danhmuc, max_pages}) => {
 
     const SortByCategory = ({data}) => {
         return(
-            <List className={styles.x_filter_danh_muc} hover>
+            <List className={styles.x_filter_category_list} hover>
             {data.map((val) => (
                 <List.Item key={val.term_id} index={val.term_id}>
                     <Link href={'/danh-muc/' + val.slug}>
-                        <a>
+                        <a className={styles.x_filter_category}>
                             <IoCaretForwardSharp size={12}/> {val.name}
                             <span className={styles.x_count}>{val.count}</span>
                         </a>

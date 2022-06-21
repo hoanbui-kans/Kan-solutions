@@ -1,13 +1,14 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Grid, Container, Row, Col, Button } from 'rsuite'
 import ArowBackIcon from '@rsuite/icons/ArowBack'
 import EmailFillIcon from '@rsuite/icons/EmailFill'
-import { features, ServicesBox } from './api/services'
+import styles from '../styles/HomePage.module.css'
 import Link from 'next/link'
 import HTMLReactParser from 'html-react-parser'
+
+import { Grid, Container, Row, Col, Button } from 'rsuite'
+import { features, ServicesBox } from './api/services'
 import { HomePageSeo } from './api/HeaderSeo'
-import styles from '../styles/layoutHome.module.css'
 
 // Images 
 export default function Home() {
@@ -18,7 +19,7 @@ export default function Home() {
         { HTMLReactParser(HomePageSeo) }
       </Head>
       <main className={styles.main}>
-        <div className={styles.x_section_one}>
+        <div className={styles.x_section}>
           <Grid className='x_container'>
             <Container>
               <Row>
@@ -54,7 +55,7 @@ export default function Home() {
         <div className='rs-grid-container'>
           <hr className={styles.x_seperator}/>
         </div>
-        <div className={styles.x_section_two}>
+        <div className={styles.x_section}>
           <Grid className='x_container'>
             <Container>
               <Row>
@@ -84,7 +85,7 @@ export default function Home() {
           </Grid>
         </div>
 
-        <div className={styles.x_section_three}>
+        <div className={styles.x_section}>
           <Grid className='x_container'>
             <Container>
               <Row>
@@ -99,7 +100,13 @@ export default function Home() {
                        <div className={styles.x_creeper_box_section}>
                           <h4 className={styles.x_creeper_title}>Digital Content</h4>
                           <p className={styles.x_creeper_content}>Chúng tôi cung cấp các sản phẩm mẫu hỗ trợ các nội dung số để bạn có thể đưa thông tin doanh nghiệp và sản phẩm của mình lên mạng Internet một cách nhanh chóng và dễ dàng</p>
-                          <Button className={styles.x_creeper_button}><ArowBackIcon color={"white"} className={styles.x_rotate_180deg} width={24} height={24}/></Button>
+                          <Link href="/dich-vu/quan-tri-website">
+                            <a>
+                              <Button className={styles.x_creeper_button}>
+                                <ArowBackIcon color={"white"} className={styles.x_rotate_180deg} width={24} height={24}/>
+                              </Button>
+                            </a>
+                          </Link>
                         </div>
                         <div className={styles.x_creeper_image_1}>
                           <Image alt='layout' src={'/layout/design_1.svg'} width={563} height={413}/>
@@ -109,7 +116,13 @@ export default function Home() {
                         <div className={styles.x_creeper_box_section}>
                           <h4 className={styles.x_creeper_title}>Viết bài chuẩn SEO</h4>
                           <p className={styles.x_creeper_content}>Chúng tôi cung cấp các sản phẩm mẫu hỗ trợ các nội dung số để bạn có thể đưa thông tin doanh nghiệp và sản phẩm của mình lên mạng Internet một cách nhanh chóng và dễ dàng</p>
-                          <Button className={styles.x_creeper_button}><ArowBackIcon color={"white"} className={styles.x_rotate_180deg} width={24} height={24}/></Button>
+                          <Link href="/dich-vu/quan-tri-website">
+                            <a>
+                              <Button className={styles.x_creeper_button}>
+                                  <ArowBackIcon color={"white"} className={styles.x_rotate_180deg} width={24} height={24}/>
+                              </Button>
+                            </a>
+                          </Link>
                         </div>
                         <div className={styles.x_creeper_image_3}>
                           <Image alt='layout' src={'/layout/design_3-01.svg'} width={600} height={631}/>
@@ -121,7 +134,13 @@ export default function Home() {
                         <div className={styles.x_creeper_box_section}>
                           <h4 className={styles.x_creeper_title}>Online Marketing</h4>
                           <p className={styles.x_creeper_content}>Chúng tôi cung cấp các sản phẩm mẫu hỗ trợ các nội dung số để bạn có thể đưa thông tin doanh nghiệp và sản phẩm của mình lên mạng Internet một cách nhanh chóng và dễ dàng</p>
-                          <Button className={styles.x_creeper_button}><ArowBackIcon color={"white"} className={styles.x_rotate_180deg} width={24} height={24}/></Button>
+                          <Link href="/dich-vu/marketing-online">
+                            <a>
+                                <Button className={styles.x_creeper_button}>
+                                  <ArowBackIcon color={"white"} className={styles.x_rotate_180deg} width={24} height={24}/>
+                                </Button>
+                            </a>
+                          </Link>
                         </div>
                         <div className={styles.x_creeper_image_4}>
                           <Image alt='layout' src={'/layout/design_4-01.svg'} width={600} height={631}/>
@@ -131,7 +150,13 @@ export default function Home() {
                         <div className={styles.x_creeper_box_section}>
                             <h4 className={styles.x_creeper_title}>Tư vấn - Đào tạo</h4>
                             <p className={styles.x_creeper_content}>Chúng tôi cung cấp các sản phẩm mẫu hỗ trợ các nội dung số để bạn có thể đưa thông tin doanh nghiệp và sản phẩm của mình lên mạng Internet một cách nhanh chóng và dễ dàng</p>
-                            <Button className={styles.x_creeper_button}><ArowBackIcon color={"white"} className={styles.x_rotate_180deg} width={24} height={24}/></Button>
+                            <Link href="/dich-vu/tu-van-dao-tao">
+                              <a>
+                                <Button className={styles.x_creeper_button}>
+                                  <ArowBackIcon color={"white"} className={styles.x_rotate_180deg} width={24} height={24}/>
+                                </Button>
+                              </a>
+                           </Link>
                         </div>
                         <div className={styles.x_creeper_image_2}>
                           <Image alt='layout' src={'/layout/design_2-01.svg'} width={600} height={631}/>
@@ -143,7 +168,7 @@ export default function Home() {
           </Grid>
         </div>
 
-        <div className={styles.x_section_four}>
+        <div className={styles.x_section}>
           <Grid className='x_container'>
             <Container>
               <Row>
@@ -171,7 +196,7 @@ export default function Home() {
           </Grid>
         </div>
 
-        <div className={styles.x_section_five}>
+        <div className={styles.x_section}>
           <span className={styles.lBox_1}>
             <Image alt='layout' src="/layout/l-box-01.svg" width={400} height={329}/>
           </span>
@@ -182,13 +207,17 @@ export default function Home() {
                   <h3 className={styles.x_title_no_margin_left}>Dịch vụ thiết kế website chuyên nghiệp, cấu trúc chuẩn SEO với nhiều tiện ích</h3>
                     <div style={{maxWidth: '640px', margin: 'auto'}}>
                   </div>
-                  <p style={{textAlign: 'left', fontSize: '16px', margin: '1.5rem 0 2.75rem 0rem'}} className={styles.description}>Đáp ứng tối đa trải nghiệm của người dùng và tạo cảm giác thích thú và sáng tạo trong quá trình duyệt web
+                  <p className={styles.description}>Đáp ứng tối đa trải nghiệm của người dùng và tạo cảm giác thích thú và sáng tạo trong quá trình duyệt web
 Website có cấu trúc code HTML thân thiện chuẩn SEO. Dễ cập nhật thông tin lên các thẻ hình ảnh và Công cụ đo lường và kiểm soát nội dung hiệu quả.</p>
                 </Col>
                 <Col xs={24} md={12}>
-                <Button className={styles.x_black_button}>
-                     XEM GIAO DIỆN MẪU
-                  </Button>
+                  <Link href={'/giao-dien-mau'}>
+                  <a>
+                    <Button className={styles.x_black_button}>
+                      XEM GIAO DIỆN MẪU
+                    </Button>
+                  </a>
+                  </Link>
                 </Col>
               </Row>
             </Container>

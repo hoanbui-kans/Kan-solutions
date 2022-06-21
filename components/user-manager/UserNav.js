@@ -33,7 +33,11 @@ const UserNav = () => {
                 </Nav.Menu>
                 </Nav>
                 <Nav pullRight>
-                <Nav.Item icon={<IoLogOutOutline />}>Đăng xuất</Nav.Item>
+                <Nav.Item as={'span'} icon={<IoLogOutOutline />}>
+                    <Link href='/quan-ly/dang-xuat'>
+                        Đăng xuất
+                    </Link>
+                </Nav.Item>
                 </Nav>
         </Navbar>
     </div>

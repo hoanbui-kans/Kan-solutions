@@ -118,7 +118,7 @@ export const SingleTheme = ({data, link_theme}) => {
             <Row className={styles.x_flex + ' ' + styles.x_theme_thumbnail_section}>
               <Col xs={24} md={16} className={styles.x_padding}>
                 <div className={styles.x_single_theme_thumbnail}>
-                  <Image src={data.thumbnail} width={800} height={480} alt={data.post_title}/>
+                  <Image src={data.thumbnail} width={800} height={600} alt={data.post_title}/>
                 </div>
               </Col>
               <Col xs={24} md={8} className={styles.x_padding}>

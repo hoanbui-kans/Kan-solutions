@@ -81,6 +81,20 @@ export const features = [
     }
 ]
 
+export const MarketingHead = [
+    {
+        name: 'Kan New',
+        price: '3.900.000/ Tháng',
+    },
+    {
+        name: 'Kan AddPlus',
+        price: '5.900.000/ Tháng',
+    },
+    {
+        name: 'Kan Master',
+        price: '7.900.000/ Tháng',
+    }
+]
 export const MarketingTable = [
     {
         name: 'Tối ưu onpage',
@@ -293,6 +307,46 @@ export const MarketingTable = [
                 ],
                 description: ''
             }
+        ]
+    }
+]
+
+export const HostingTable = [
+    {
+        name: 'Cơ bản',
+        price: '500.000đ',
+        checklist: [
+            'Server đặt tại: Việt Nam',
+            'Dung lượng: 3000 MB',
+            'Băng thông: 80GB',
+            'Domain: 2',
+            'POP3: 100',
+           ' Subdomain: 10',
+           ' MySQL Database: 2',
+        ]
+    },{
+        name: 'Kinh doanh',
+        price: '800.000đ',
+        checklist: [
+            'Server đặt tại: Việt Nam',
+            'Dung lượng: 3000 MB',
+            'Băng thông: 80GB',
+            'Domain: 2',
+            'POP3: 100',
+           ' Subdomain: 10',
+           ' MySQL Database: 2',
+        ]
+    },{
+        name: 'Nâng cao',
+        price: '1.5000.000đ',
+        checklist: [
+            'Server đặt tại: Việt Nam',
+            'Dung lượng: 3000 MB',
+            'Băng thông: 80GB',
+            'Domain: 2',
+            'POP3: 100',
+           ' Subdomain: 10',
+           ' MySQL Database: 2',
         ]
     }
 ]
