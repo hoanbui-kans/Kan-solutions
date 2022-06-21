@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { Grid, Container, Row, Col, Form, Button, Schema, Loader, Checkbox, useToaster, Message, Toggle  } from 'rsuite'
-import { IoHomeOutline} from "react-icons/io5";
+import { Grid, Container, Row, Col, Form, Button, Schema, Loader, Input , InputGroup, useToaster, Message, Toggle  } from 'rsuite'
+import { IoHomeOutline, IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 import { useSession, signIn, signOut } from "next-auth/react"
 import { useRouter } from 'next/router';
 import Link from 'next/link'
@@ -14,6 +14,11 @@ const Register = () => {
   const { StringType } = Schema.Types;
   const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
   const toaster = useToaster();
+
+  const [visible, setVisible] = useState(false);
+  const handleChange = () => {
+    setVisible(!visible);
+  };
 
   const { data: session } = useSession();
 
@@ -178,15 +183,37 @@ const Register = () => {
                 </Form.Group>
                 <Form.Group>
                   <Form.ControlLabel>Mật khẩu</Form.ControlLabel>
-                  <Form.Control name='password' type='password' value={EventTarget.value} placeholder='Nhập mật khẩu'></Form.Control>
+                  <div className={styles.x_password_input_group}>
+                    <Form.Control 
+                          name='password' 
+                          value={EventTarget.value} 
+                          placeholder='Nhập mật khẩu'
+                          type={visible ? 'text' : 'password'} 
+                        />
+                      <InputGroup.Button onClick={handleChange}>
+                        {visible ? <IoEyeOutline /> : <IoEyeOffOutline />}
+                      </InputGroup.Button>
+                  </div>
                 </Form.Group>
                 <Form.Group>
                   <Form.ControlLabel>Nhập lại mật khẩu</Form.ControlLabel>
-                  <Form.Control name='repassword' type='password' value={EventTarget.value} placeholder='Nhập lại mật khẩu'></Form.Control>
+                  <Form.Control 
+                      name='repassword' 
+                      type={visible ? 'text' : 'password'}  
+                      value={EventTarget.value} 
+                      placeholder='Nhập lại mật khẩu'>
+                  </Form.Control>
                 </Form.Group>
                 <Form.Group>
-                  <Toggle size="sm" defaultChecked={formValues.autologin} onChange={(checked) => { handleAutologin(checked) }}/> 
-                  <label> Đăng nhập tự động sau khi đăng ký thành công</label>
+                <div className={styles.x_toggle_button}>
+                    <Toggle 
+                      size="sm" 
+                      defaultChecked={formValues.autologin} 
+                      onChange={(checked) => { handleAutologin(checked) }}
+                    /> 
+                    <span> Đăng nhập tự động sau khi đăng ký thành công</span>
+                  </div>
+                  <small className={styles.x_account_navigate}>Bạn đã có tài khoản? xin vui lòng <Link href="/dang-nhap">đăng nhập</Link></small>
                 </Form.Group>
                 <Form.Group>
                   <Button className={styles.x_login_button} appearance="primary" onClick={handleSubmit}>

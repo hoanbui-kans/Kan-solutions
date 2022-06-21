@@ -1,14 +1,25 @@
 import { useRef, useState } from 'react'
-import { Grid, Container, Row, Col, Form, Button, Schema, Loader, Checkbox, Message, useToaster } from 'rsuite'
+import { 
+  Grid, Container, Row, Col, 
+  Form,InputGroup, Input, Button, 
+  Schema, Loader, Toggle, Message, 
+  useToaster 
+} from 'rsuite'
 import Link from 'next/link'
 import styles from '../styles/account.module.css';
-import { IoHomeOutline } from "react-icons/io5";
+import { IoHomeOutline, IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 import { useSession, signIn, signOut } from "next-auth/react"
 import SocialButton from '../components/SocialButton';
 
 const Login = () => {
   const toaster = useToaster();
   const { data: session } = useSession();
+
+  const [visible, setVisible] = useState(false);
+  const handleChange = () => {
+    setVisible(!visible);
+  };
+
   const [formValues, setFormValue] = useState({
     username: '',
     password: ''
@@ -65,6 +76,7 @@ const Login = () => {
                   <h1 className={styles.x_account_title}>Xin chào {userName}</h1>
                   <small>({userEmail})</small>
                   <p className={styles.x_greeting}>Bạn đã đăng nhập vào hệ thống của chúng tôi, hãy bắt đầu tạo website của bạn</p>
+                  <small className={styles.x_account_navigate}>Vào trang <Link href="/quan-ly/tai-khoan">quản lý tài khoản</Link></small>
                     <Button className={styles.x_login_button + ' ' + styles.x_margin_bottom} appearance="primary" onClick={() => signOut()}>
                         Đăng xuất
                     </Button>
@@ -103,10 +115,24 @@ const Login = () => {
                 </Form.Group>
                 <Form.Group>
                   <Form.ControlLabel>Mật khẩu</Form.ControlLabel>
-                  <Form.Control name='password' type='password' value={formValues.password} onChange={(e) => setFormValue({...formValues, password:e})} placeholder='Nhập mật khẩu'></Form.Control>
+                  <div className={styles.x_password_input_group}>
+                    <Form.Control 
+                          name='password' 
+                          value={formValues.password} 
+                          onChange={(e) => setFormValue({...formValues, password:e})} 
+                          placeholder='Nhập mật khẩu'
+                          type={visible ? 'text' : 'password'} 
+                        />
+                      <InputGroup.Button onClick={handleChange}>
+                        {visible ? <IoEyeOutline /> : <IoEyeOffOutline />}
+                      </InputGroup.Button>
+                  </div>
                 </Form.Group>
                 <Form.Group>
-                  <Checkbox value="A">Đăng nhập tự động</Checkbox>
+                  <div className={styles.x_toggle_button}>
+                    <Toggle size="sm" /><span>Đăng nhập tự động</span>
+                  </div>
+                  <small className={styles.x_account_navigate}>Bạn chưa có tài khoản? xin vui lòng <Link href="/dang-ky">đăng ký</Link></small>
                 </Form.Group>
                 <Form.Group>
                   <Button className={styles.x_login_button} appearance="primary" onClick={handleSubmit}>

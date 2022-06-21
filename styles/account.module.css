@@ -248,6 +248,42 @@
     left: 15px;
     top: 15px;
 }
+.x_password_input_group{
+    position: relative;
+}
+.x_password_input_group button{
+    background-color: unset;
+    position: absolute;
+    z-index: 2;
+    right: 10px;
+    top: 14px;;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    padding: 0px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.x_toggle_button{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center
+}
+.x_toggle_button span{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.x_account_navigate{
+    margin: 15px 0px;
+    padding-left: 10px;
+    color: var(--x-secondary-color);
+    display: block;
+    width: 100%;
+}
 .x_back_home{
     position: absolute;
     top: 20px;

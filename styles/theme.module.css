@@ -184,8 +184,9 @@
     display: block;
 }
 
-.single_content{
-
+.single_content img{
+    max-width: 100%;
+    height: auto;
 }
 
 .x_breadcumb{
