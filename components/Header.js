@@ -269,15 +269,15 @@ const Header = () => {
          <Grid className='x_container'>
                 <Container> 
                     <Row className={styles.x_flex}>
-                        <Col xs={12} md={12} lg={12}>
+                        <Col xs={12} md={8} lg={8}>
                             <strong className={styles.x_top_header_brand}>CÔNG TY TNHH GIẢI PHÁP KAN</strong>
                         </Col>
-                        <Col xs={12} md={12} lg={12} className={styles.x_flex_end}>
+                        <Col xs={12} md={16} lg={16} className={styles.x_flex_end}>
                             <ul className={styles.x_top_header_menu}>
                                 <li className={styles.x_destop_display}>
-                                    <a href={'tel:'}>
+                                    <a href={'tel:0945938489'}>
                                         <PhoneFillIcon  />
-                                        Hotline: 0945 938 489
+                                         0945 938 489
                                     </a>
                                 </li>
                                 <li className={styles.x_destop_display}>
