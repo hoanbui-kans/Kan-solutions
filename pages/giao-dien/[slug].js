@@ -2,14 +2,14 @@ import axios from 'axios'
 import HTMLReactParser from 'html-react-parser'
 import Head from 'next/head'
 import Link from 'next/link'
-import { Grid, Container, Row, Col, Button, Form, Input, ButtonToolbar, Breadcrumb } from 'rsuite'
+import { Grid, Container, Row, Col, Button, Form, Input, Breadcrumb } from 'rsuite'
 import Image from 'next/image'
 import styles from '../../styles/theme.module.css'
 import CopyIcon from '@rsuite/icons/Copy';
 import CheckRoundIcon from '@rsuite/icons/CheckRound'
 import SearchIcon from '@rsuite/icons/Search';
 import ArrowRightIcon from '@rsuite/icons/ArrowRight';
-import { getSession, useSession } from 'next-auth/react'
+import { getSession } from 'next-auth/react'
 import md5 from 'md5'
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
@@ -107,18 +107,28 @@ export const SingleTheme = ({data, link_theme}) => {
            HTMLReactParser(data.yoast_head.html)
         }
       </Head>
+      <div className={'x_breadcum_container'}>
+        <Grid className={'x-container'}>
+                <Container>
+                    <Row>
+                        <Col xs={24}>
+                          <Breadcrumb className={'x_breadcumb'}>
+                            <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
+                            <Breadcrumb.Item as={Link} href="/giao-dien-mau/">Giao diện mẫu</Breadcrumb.Item>
+                            <Breadcrumb.Item active>{data.post_title}</Breadcrumb.Item>
+                          </Breadcrumb>
+                        </Col>
+                    </Row>
+                </Container>
+        </Grid>      
+    </div>
       <div className={styles.single_content}>
         <Grid className={'x-container'}>
-          <Breadcrumb className={styles.x_breadcumb}>
-            <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
-            <Breadcrumb.Item as={Link} href="/giao-dien-mau/">Giao diện mẫu</Breadcrumb.Item>
-            <Breadcrumb.Item active>{data.post_title}</Breadcrumb.Item>
-          </Breadcrumb>
           <Container className={styles.x_theme_container}>
             <Row className={styles.x_flex + ' ' + styles.x_theme_thumbnail_section}>
               <Col xs={24} md={16} className={styles.x_padding}>
                 <div className={styles.x_single_theme_thumbnail}>
-                  <Image src={data.thumbnail} width={800} height={600} alt={data.post_title}/>
+                  <Image src={data.thumbnail} width={800} height={575} alt={data.post_title}/>
                 </div>
               </Col>
               <Col xs={24} md={8} className={styles.x_padding}>
@@ -141,7 +151,13 @@ export const SingleTheme = ({data, link_theme}) => {
                               <CopyIcon width={16} height={16}/>
                               Tạo website
                             </Button> 
-                        </a> : ''
+                        </a> :  
+                        <Link href={'/dang-nhap'}>
+                            <Button className={styles.x_create_button}>
+                              <CopyIcon width={16} height={16}/>
+                              Tạo website
+                            </Button> 
+                        </Link>
                       }
                     
                       <Link href={ThemeInfor.link}>

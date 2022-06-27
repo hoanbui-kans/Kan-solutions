@@ -193,7 +193,6 @@
 
 @media (max-width: 768px){
     .x_feature_box, .x_step_working_item, .x_about_banner{
-        max-width: 90%;
         margin: auto;
         margin-bottom: 25px
     }

@@ -21,13 +21,13 @@
   --x-gray-color: #dddddd;
   --x-secondary-color: #333333;
   --x-black-color:#000000;
-
+  --x-border-color:#dddddd;
   --x-darkgradient-color: linear-gradient(to right, #29323c, #485563); 
   --x-neumorphic-color: linear-gradient(145deg, #dedede, #ffffff);
   --x-neumorphic-dropdown: 5px 5px 10px #ededed, -5px -5px 10px #ffffff;
   --x-neumorphic-darker-dropdown: 0 14px 24px 0 rgb(0 0 0 / 10%);
   
-  --x-margin-column: 15px;
+  --x-margin-column: -15px;
   --x-padding-column: 15px;
   --x-border-radius: 20px;
   --x-bottom-margin: 35px;
@@ -40,12 +40,13 @@
 
 html,
 body {
-  padding: 0;
-  margin: 0;
+  padding: 0 !important;
+  margin: 0 !important;
   font-family: 'SVN-Gotham' !important;
   font-style: normal;
   font-weight: normal;
   color: var(--x-text-primary) !important;
+  letter-spacing: .075px;
   overflow-x: hidden;
 }
 .rs-row{
@@ -58,9 +59,26 @@ body {
   padding-left: var(--x-padding-column) !important;
   padding-right: var(--x-padding-column) !important;
 }
-
+.rs-picker-toggle .rs-picker-toggle-placeholder, input::placeholder, select::placeholder {
+  color: var(--x-secondary-color) !important;
+}
 .x_flex_center{
   align-items: center;
+}
+
+.x_breadcumb{
+  padding: 15px;
+  margin: 0px !important;
+}
+
+.x_breadcum_container {
+  background: #e7eef9;
+}
+
+.rs-modal-header {
+  padding-right: 20px;
+  border-bottom: 1px solid #e7eef9;
+  padding-bottom: 15px;
 }
 
 a {

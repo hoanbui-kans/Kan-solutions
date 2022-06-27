@@ -57,32 +57,26 @@ export const BlogStyleOne = ({data}) => {
 export const BlogStyleTwo = ({data}) => {
   return (
     <div className={styles.x_blog_two_section}>
-      <Row>
-        <Col xs={24}>
-          <div className={styles.x_blog_two_thumbnail}>
-            <Image alt='layout' height={330} width={600} src={data.thumbnail ? data.thumbnail : '/'}/>
-          </div>
-        </Col>
-        <Col xs={24}>
-          <div className={styles.x_blog_two_content}>
-            <TermList data={data.terms} />
-            <Link href={data.post_name}>
-              <a>
-                <h3 className={styles.x_blog_two_title}>{data.post_title}</h3>
-              </a>
-            </Link>
-            <p className={styles.x_blog_two_description}>{data.post_excerpt}</p>
-            <Link href={data.post_name}>
-              <a className={styles.x_blog_two_link}>
-                <span>Xem thêm</span>
-                <span className={styles.x_blog_two_link_icon}>
-                  <ArowBackIcon width={16} height={16}/>
-                </span>
-              </a>
-            </Link>
-          </div>
-        </Col>
-      </Row>
-    </div>
+      <div className={styles.x_blog_two_thumbnail}>
+          <Image alt='layout' height={330} width={600} src={data.thumbnail ? data.thumbnail : '/'}/>
+        </div>
+      <div className={styles.x_blog_two_content}>
+        <TermList data={data.terms} />
+        <Link href={data.post_name}>
+          <a>
+            <h3 className={styles.x_blog_two_title}>{data.post_title}</h3>
+          </a>
+        </Link>
+        <p className={styles.x_blog_two_description}>{data.post_excerpt}</p>
+        <Link href={data.post_name}>
+          <a className={styles.x_blog_two_link}>
+            <span>Xem thêm</span>
+            <span className={styles.x_blog_two_link_icon}>
+              <ArowBackIcon width={16} height={16}/>
+            </span>
+          </a>
+        </Link>
+      </div>
+  </div>
   )
 }

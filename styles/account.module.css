@@ -285,18 +285,18 @@
     width: 100%;
 }
 .x_back_home{
-    position: absolute;
     top: 20px;
-    left: 20px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     column-gap: 10px;
-    padding: .75rem 1.25rem; 
-    background: black;
-    color: white;
-    border-radius: .35rem;
     z-index: 20;
+    color: black;
+    border-bottom: 1px solid var(--x-light-color);
+    padding-bottom: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
 }
 .x_danger .x_date_badge{
     background-color: red;

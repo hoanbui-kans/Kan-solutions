@@ -11,9 +11,13 @@
 }
 .x_banner_content{
     text-align: left;
+    padding: 0px 15px;
     max-width: 600px;
     margin: auto;
     display: block;
+}
+.x_hosting{
+    margin-bottom: var(--x-bottom-margin);
 }
 .x_hosting_pricing_list{
     display: flex;
@@ -30,6 +34,7 @@
 }
 .x_hosting_features ul{
     list-style: none;
+    padding-left: 15px;
 }
 .x_hosting_features ul li{
     margin-bottom: 15px;
@@ -60,7 +65,8 @@
     border: 1px solid var(--x-gray-color);
 }
 .x_hosting_table_container{
-    margin-bottom: var(--x-bottom-margin)
+    margin-bottom: var(--x-bottom-margin);
+    padding: 0px 15px
 }
 .x_hosting_title{
     text-align: center;
@@ -161,7 +167,14 @@
 }
 .x_why_choose_content{
     text-align: left;
+    padding: 0px 15px;
 }
+
+.x_supporter{
+    text-align: left;
+    padding: 0px 15px;
+}
+
 .x_services_content_title{
     font-size: 14px;
 }

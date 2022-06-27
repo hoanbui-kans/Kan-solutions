@@ -63,12 +63,22 @@ const PostSingle = ({data}) => {
             HTMLReactParser(data.yoast_head.html)
           }
         </Head>
+        <div className={'x_breadcum_container'}>
+          <Grid className={'x-container'}>
+            <Container>
+                <Row>
+                    <Col xs={24}>
+                      <Breadcrumb className={'x_breadcumb'}>
+                        <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
+                        <Breadcrumb.Item active>Tin tức {data.post_title}</Breadcrumb.Item>
+                      </Breadcrumb>
+                    </Col>
+                </Row>
+            </Container>
+        </Grid>    
+      </div>  
          <div className={styles.x_container_x}>
             <Grid className={'x-container'}>
-              <Breadcrumb className={styles.x_breadcumb}>
-                <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
-                <Breadcrumb.Item active>Tin tức {data.post_title}</Breadcrumb.Item>
-              </Breadcrumb>
                   <Container>
                     <Row>
                         <Col xs={24} md={20}>

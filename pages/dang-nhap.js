@@ -63,16 +63,16 @@ const Login = () => {
     return (
       <>
        <Grid className={styles.x_account_container}>
-          <Link href = '/'>
-            <a className={styles.x_back_home}>
-              <IoHomeOutline size={20}/>
-              Trở về trang chủ
-            </a>
-          </Link>
           <Container>
             <Row>
               <Col xs={24}>
                 <div className={styles.x_login + ' ' + styles.x_logged_form}>
+                  <Link href = '/'>
+                    <a className={styles.x_back_home}>
+                      <IoHomeOutline size={20}/>
+                      Trở về trang chủ
+                    </a>
+                  </Link>
                   <h1 className={styles.x_account_title}>Xin chào {userName}</h1>
                   <small>({userEmail})</small>
                   <p className={styles.x_greeting}>Bạn đã đăng nhập vào hệ thống của chúng tôi, hãy bắt đầu tạo website của bạn</p>
@@ -92,16 +92,16 @@ const Login = () => {
 
   return (
     <Grid className={styles.x_account_container}>
-      <Link href = '/'>
-        <a className={styles.x_back_home}>
-          <IoHomeOutline size={20}/>
-          Trở về trang chủ
-        </a>
-      </Link>
       <Container>
         <Row>
           <Col xs={24}>
             <div className={styles.x_login}>
+              <Link href = '/'>
+                <a className={styles.x_back_home}>
+                  <IoHomeOutline size={20}/>
+                  Trở về trang chủ
+                </a>
+              </Link>
               <h1  className={styles.x_account_title}>Đăng nhập</h1>
               <Form 
                 fluid

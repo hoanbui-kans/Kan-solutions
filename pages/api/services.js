@@ -314,39 +314,45 @@ export const MarketingTable = [
 export const HostingTable = [
     {
         name: 'Cơ bản',
-        price: '500.000đ',
+        price: '300.000đ',
         checklist: [
             'Server đặt tại: Việt Nam',
-            'Dung lượng: 3000 MB',
-            'Băng thông: 80GB',
-            'Domain: 2',
-            'POP3: 100',
-           ' Subdomain: 10',
-           ' MySQL Database: 2',
+            'Dung lượng: 300 MB',
+            'Băng thông: Không giới hạn',
+            'FTP: Không giới hạn',
+            'Sub-domain: 10',
+            'Email: 10',
+            'Database: 1',
+            'Addon domain: 0',
+            'Park domain: 3',
         ]
     },{
         name: 'Kinh doanh',
         price: '800.000đ',
         checklist: [
             'Server đặt tại: Việt Nam',
-            'Dung lượng: 3000 MB',
-            'Băng thông: 80GB',
-            'Domain: 2',
-            'POP3: 100',
-           ' Subdomain: 10',
-           ' MySQL Database: 2',
+            'Dung lượng: 1 GB',
+            'Băng thông: Không giới hạn',
+            'Sub-domain: Không giới hạn',
+            'Email: 20',
+            'FTP: Không giới hạn',
+            'Database: 1',
+            'Addon domain: 0',
+            'Park domain: 3',
         ]
     },{
         name: 'Nâng cao',
         price: '1.5000.000đ',
         checklist: [
             'Server đặt tại: Việt Nam',
-            'Dung lượng: 3000 MB',
-            'Băng thông: 80GB',
-            'Domain: 2',
-            'POP3: 100',
-           ' Subdomain: 10',
-           ' MySQL Database: 2',
+            'Dung lượng: 2 GB',
+            'Băng thông: Không giới hạn',
+            'Sub-domain: Không giới hạn',
+            'Email: 20',
+            'FTP: Không giới hạn',
+            'Database: 2',
+            'Addon domain: 0',
+            'Park domain: Không giới hạn',
         ]
     }
 ]

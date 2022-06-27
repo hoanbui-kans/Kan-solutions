@@ -10,13 +10,14 @@ import Router from 'next/router'
 
 import SearchIcon from '@rsuite/icons/Search'
 import CloseIcon from '@rsuite/icons/Close'
-
 import ArrowDownLineIcon from '@rsuite/icons/ArrowDownLine'
 import EmailFillIcon from '@rsuite/icons/EmailFill'
 import PhoneFillIcon from '@rsuite/icons/PhoneFill'
 import ArrowRightIcon from '@rsuite/icons/ArrowRight'
 import axios from 'axios'
 import styles from '../styles/header.module.css'
+
+import { IoCaretForwardSharp } from 'react-icons/io5'
 
 const rootURL = process.env.wp_json_enpoint;
 
@@ -49,7 +50,7 @@ const Right = () => {
             <div className={styles.x_dropbox}>
                     <Link href="/dich-vu/thiet-ke-website">
                         <a>
-                            <p><strong>Thiết kế webiste</strong></p>
+                            <p><strong><IoCaretForwardSharp size={10}/> Thiết kế webiste</strong></p>
                             <p className={styles.x_smaller_text}>
                             Dịch vụ quản trị, quản lý, vận hành, sản xuất nội dung cho website, tối ưu chi phí quản lý, nâng cao hiệu quả chiến dịch.
                             </p>
@@ -59,7 +60,7 @@ const Right = () => {
             <div className={styles.x_dropbox}>
                     <Link href="/dich-vu/quan-tri-website">
                         <a>
-                            <p><strong>Quản trị website</strong></p>
+                            <p><strong><IoCaretForwardSharp size={10}/> Quản trị website</strong></p>
                             <p className={styles.x_smaller_text}>
                             Dịch vụ quản trị, quản lý, vận hành, sản xuất nội dung cho website, tối ưu chi phí quản lý, nâng cao hiệu quả chiến dịch.
                             </p>
@@ -69,7 +70,7 @@ const Right = () => {
             <div className={styles.x_dropbox}>
                     <Link href="/dich-vu/marketing-online">
                         <a>
-                            <p><strong>Giải pháp marketing Online</strong></p>
+                            <p><strong><IoCaretForwardSharp size={10}/> Giải pháp marketing Online</strong></p>
                             <p className={styles.x_smaller_text}>
                                 Hỗ trợ xây dựng các chiến dịch quảng cáo, quảng bá thương hiệu, nghiên cứu, phân tích, tư vấn hỗ trợ.
                             </p>
@@ -91,46 +92,43 @@ const MobileMenu = ({showing}) => {
                     <li>
                         <Link href={'/'}>
                             <a>
-                                <ArrowRightIcon width={14} height={14}/> Trang chủ
+                              Trang chủ
                             </a>
                         </Link>
                     </li>
                     <li>
                         <Link href={'/ve-chung-toi'}>
                             <a>
-                                <ArrowRightIcon width={14} height={14}/> Về chúng tôi
+                              Về chúng tôi
                             </a>
                         </Link>
                     </li>
                     <li>
-                        <span className={styles.x_mobile_dropdown_title}>
-                            <ArrowRightIcon width={14} height={14}/> Dịch vụ
-                        </span>
-                        <div className={styles.x_mobile_services}>
-                            <Left />
-                            <Right />
-                        </div>
-                    </li>
-                    <li>
                         <Link href={'/tin-tuc'}>
                             <a>
-                                <ArrowRightIcon width={14} height={14}/> Tin tức
+                              Tin tức
                             </a>
                         </Link>
                     </li>
                     <li>
                         <Link href={'/tuyen-dung'}>
                             <a>
-                                <ArrowRightIcon width={14} height={14}/> Tuyển dụng
+                              Tuyển dụng
                             </a>
                         </Link>
                     </li>
                     <li>
                         <Link href={'/lien-he'}>
                             <a>
-                                <ArrowRightIcon width={14} height={14}/> Liên hệ
+                              Liên hệ
                             </a>
                         </Link>
+                    </li>
+                    <li>
+                        <div className={styles.x_mobile_services}>
+                            <Right />
+                            <Left />
+                        </div>
                     </li>
                 </ul>
             </div>

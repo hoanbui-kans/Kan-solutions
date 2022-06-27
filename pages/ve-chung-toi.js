@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Row, Col, Timeline, Container, Button } from 'rsuite'
+import { Grid, Row, Col, Breadcrumb, Container, Button } from 'rsuite'
 import Image from 'next/image'
 import styles from '../styles/about.module.css'
 import EmailFillIcon from '@rsuite/icons/EmailFill'
@@ -14,6 +14,20 @@ const AboutUs = () => {
        <Head>
         { HTMLReactParser(AboutUsSeo) }
       </Head>
+      <div className={'x_breadcum_container'}>
+          <Grid className={'x-container'}>
+            <Container>
+                <Row>
+                    <Col xs={24}>
+                      <Breadcrumb className={'x_breadcumb'}>
+                        <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
+                        <Breadcrumb.Item active>về chúng tôi</Breadcrumb.Item>
+                      </Breadcrumb> 
+                    </Col>
+                </Row>
+            </Container>
+        </Grid>    
+      </div>  
       <div className={styles.x_about_us_section}>
       <span className={styles.x_neumorphic}>
             <Image alt='layout' src={'/layout/decorations-01.svg'} width={800} height={800}/>

@@ -49,12 +49,22 @@ const NewsCategory = ({bai_viet, danh_muc, max_num_pages}) => {
       <Head>
         { HTMLReactParser(NewsSeo) }
       </Head>
+      <div className={'x_breadcum_container'}>
+          <Grid className={'x-container'}>
+            <Container>
+                <Row>
+                    <Col xs={24}>
+                      <Breadcrumb className={'x_breadcumb'}>
+                        <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
+                        <Breadcrumb.Item active>Tin tức</Breadcrumb.Item>
+                      </Breadcrumb>
+                    </Col>
+                </Row>
+            </Container>
+        </Grid>    
+      </div>  
       <section className={styles.x_newsSection}>
         <Grid className={'x-container'}>
-          <Breadcrumb className={styles.x_breadcumb}>
-            <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
-            <Breadcrumb.Item active>Tin tức</Breadcrumb.Item>
-          </Breadcrumb>
           <Container>
               <Row>
                 <Col xs={24}>

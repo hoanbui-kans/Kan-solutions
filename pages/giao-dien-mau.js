@@ -19,7 +19,6 @@ import { Grid,
 import Image from 'next/image'
 import Link from 'next/link'
 import SearchIcon from '@rsuite/icons/Search'
-import { useRouter } from 'next/router'
 import { Separator } from './giao-dien/[slug]';
 import { IoListSharp, IoGridOutline, IoCaretForwardSharp } from "react-icons/io5";
 import HTMLReactParser from 'html-react-parser';
@@ -82,7 +81,7 @@ const GD_List = ({data}) => {
             <Row>
                 <Col xs={24} md={10}>
                     <div className={styles.x_gd_box_thumbnail}>
-                        <Image alt='layout' src={data.thumbnail} width={800} height={680}/>
+                        <Image alt='layout' src={data.thumbnail} width={800} height={575}/>
                     </div>
                 </Col>
                 <Col xs={24} md={14}>
@@ -109,7 +108,7 @@ const GD_List = ({data}) => {
                                 <a className={styles.x_gd_box_link}>
                                     <Button className={styles.x_gd_create_button}>
                                         Sử dụng mẫu
-                                </Button>
+                                    </Button>
                                 </a>
                             </Link>
                         </div>
@@ -144,20 +143,20 @@ const Themes = ({gd, nganh, danhmuc, max_pages}) => {
   ]
 
   const [filterNganh, setFilterNganh] = useState([]);
-    const handleChange = value => setFilterNganh(value);
 
+    const handleChange = value => setFilterNganh(value);
     const SortByCategory = ({data}) => {
         return(
             <List className={styles.x_filter_category_list} hover>
-            {data.map((val) => (
-                <List.Item key={val.term_id} index={val.term_id}>
-                    <Link href={'/danh-muc/' + val.slug}>
-                        <a className={styles.x_filter_category}>
-                            <IoCaretForwardSharp size={12}/> {val.name}
-                            <span className={styles.x_count}>{val.count}</span>
-                        </a>
-                    </Link>
-                </List.Item>
+                {data.map((val) => (
+                    <List.Item key={val.term_id} index={val.term_id}>
+                        <Link href={'/danh-muc/' + val.slug}>
+                            <a className={styles.x_filter_category}>
+                                <IoCaretForwardSharp size={12}/> {val.name}
+                                <span className={styles.x_count}>{val.count}</span>
+                            </a>
+                        </Link>
+                    </List.Item>
                 ))}
             </List>
         )
@@ -181,12 +180,22 @@ const Themes = ({gd, nganh, danhmuc, max_pages}) => {
 
   return (
     <>
-      <div className={styles.x_gd_section}>
+    <div className={styles.x_breadcum_container}>
+        <Grid className={'x-container'}>
+                <Container>
+                    <Row>
+                        <Col xs={24}>
+                            <Breadcrumb className={'x_breadcumb'}>
+                                <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
+                                <Breadcrumb.Item active>Giao diện mẫu</Breadcrumb.Item>
+                            </Breadcrumb>
+                        </Col>
+                    </Row>
+                </Container>
+        </Grid>      
+    </div>
+    <div className={styles.x_gd_section}>
             <Grid className={'x-container'}>
-                <Breadcrumb className={styles.x_breadcumb}>
-                <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
-                <Breadcrumb.Item active>Giao diện mẫu</Breadcrumb.Item>
-                </Breadcrumb>
                 <Container>
                     <Row>
                         <Col xs={24} md={6}>

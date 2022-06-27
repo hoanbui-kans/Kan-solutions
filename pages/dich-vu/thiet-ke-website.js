@@ -1,4 +1,4 @@
-import { Grid, Container, Row, Col, Button, Divider } from 'rsuite'
+import { Grid, Container, Row, Col, Button, Divider, Modal  } from 'rsuite'
 import styles from '../../styles/services/webdesign.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -7,9 +7,20 @@ import HTMLReactParser from 'html-react-parser'
 import { ServiceWordpress } from '../api/HeaderSeo'
 import { HostingTable } from '../api/services'
 import { IoCheckmarkOutline } from "react-icons/io5";
-
+import { useState } from 'react'
+import ServicesForm from '../../components/ServicesForm'
 
 const Wordpress = () => {
+ 
+ const [open, setOpen] = useState(false);  
+ const [service, setService] = useState(''); 
+
+ const handleOpen = (service) => {
+    setService(service);
+    setOpen(true)
+ };
+ const handleClose = () => setOpen(false);
+
   return (
     <>
     <Head>
@@ -103,12 +114,12 @@ const Wordpress = () => {
                                  {
                                     HostingTable.map((val, index) => {
                                         return(
-                                            <Col xs={24} md={8} key={index}>
+                                            <Col xs={24} md={12} lg={8} key={index}>
                                                 <div className={styles.x_hosting}>
                                                     <div className={styles.x_hosting_header}>
                                                         <h3>{val.name}</h3>
-                                                        <p>Từ {val.price} /năm</p>
-                                                        <Button className={styles.x_hosting_button}>Đăng ký</Button>
+                                                        <p>{val.price} /năm</p>
+                                                        <Button className={styles.x_hosting_button} onClick={() => { handleOpen('Dịch vụ hosting ' + val.name) }}>Đăng ký</Button>
                                                     </div>
                                                     <div className={styles.x_hosting_features}>
                                                         <ul>
@@ -119,7 +130,8 @@ const Wordpress = () => {
                                                                             <span className={styles.x_hosting_check}>
                                                                                 <IoCheckmarkOutline color='white'/>
                                                                             </span>
-                                                                             {val}</li>
+                                                                            {val}
+                                                                        </li>
                                                                     )
                                                                 })    
                                                             }
@@ -148,7 +160,7 @@ const Wordpress = () => {
                             <h2 className={styles.x_primary_title}>Xây dựng thương hiệu riêng cho bạn</h2>
                             <div className={styles.services}>
                                 <Row>
-                                    <Col xs={24} md={8} className={styles.x_padding}>
+                                    <Col xs={24} md={12} lg={8} className={styles.x_padding}>
                                         <div className={styles.x_services_content}>
                                             <div className={styles.x_wordpress_icon_service}>
                                              <Image src={'/icons/landing-page.png'} height={50} width={50}/>
@@ -158,7 +170,7 @@ const Wordpress = () => {
                                             <Button className={styles.x_services_button}>Đăng ký tư vấn</Button>
                                         </div>
                                     </Col>
-                                    <Col xs={24} md={8} className={styles.x_padding}>
+                                    <Col xs={24} md={12} lg={8} className={styles.x_padding}>
                                         <div className={styles.x_services_content}>
                                             <div className={styles.x_wordpress_icon_service}>
                                              <Image src={'/icons/content.png'} height={50} width={50}/>
@@ -168,7 +180,7 @@ const Wordpress = () => {
                                             <Button className={styles.x_services_button}>Đăng ký tư vấn</Button>
                                         </div>
                                     </Col>
-                                    <Col xs={24} md={8} className={styles.x_padding}>
+                                    <Col xs={24} md={12} lg={8} className={styles.x_padding}>
                                         <div className={styles.x_services_content}>
                                             <div className={styles.x_wordpress_icon_service}>
                                              <Image src={'/icons/laptop.png'} height={50} width={50}/>
@@ -187,6 +199,15 @@ const Wordpress = () => {
             </Grid>
         </section>
     </div>
+    
+    <Modal open={open} onClose={handleClose}>
+        <Modal.Header>
+          <Modal.Title>Đăng ký dịch vụ hosting</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            <ServicesForm service={service}/>
+        </Modal.Body>
+      </Modal>
     </>
   )
 }

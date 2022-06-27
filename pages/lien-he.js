@@ -1,14 +1,14 @@
 import { useRef, useState } from 'react'
 import { Grid, Container, Row, Col, Form, Button, Input, Schema, Loader, toaster, Message, Breadcrumb  } from 'rsuite'
-import { IoPaperPlane, IoHomeOutline } from "react-icons/io5";
+import { IoPaperPlane, IoHomeOutline } from "react-icons/io5"
 import styles from '../styles/page.module.css'
-import axios from 'axios';
-import Link from 'next/link';
+import axios from 'axios'
+import Link from 'next/link'
 import Image from 'next/image'
-import { ContactUsSeo } from './api/HeaderSeo';
-import HTMLReactParser from 'html-react-parser';
-import Head from 'next/head';
-const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON;
+import { ContactUsSeo } from './api/HeaderSeo'
+import HTMLReactParser from 'html-react-parser'
+import Head from 'next/head'
+const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON
 
 const Contact = () => {
   
@@ -75,12 +75,22 @@ const Contact = () => {
       <Head>
         {HTMLReactParser(ContactUsSeo)}
       </Head>
+      <div className={'x_breadcum_container'}>
+          <Grid className={'x-container'}>
+            <Container>
+                <Row>
+                    <Col xs={24}>
+                      <Breadcrumb className={'x_breadcumb'}>
+                        <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
+                        <Breadcrumb.Item active>Liên hệ</Breadcrumb.Item>
+                      </Breadcrumb> 
+                    </Col>
+                </Row>
+            </Container>
+        </Grid>    
+      </div>  
       <section className={styles.x_contact_container}>
       <Grid className={'x-container'}>
-        <Breadcrumb className={styles.x_breadcumb}>
-          <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
-          <Breadcrumb.Item active>Liên hệ</Breadcrumb.Item>
-        </Breadcrumb> 
         <Container className={styles.x_container_form}>
           <Row className={'x_flex_center'}>
             <Col xs={24}>

@@ -19,10 +19,9 @@
     display: inline-flex;
     align-items: center;
     column-gap: 7px;
+    background: #2d88e2;
+    color: white;
 }
-  .x_breadcumb{
-    padding: 15px 0px
-  }
   .x_count{
     float: right;
     color: #929292;
@@ -31,11 +30,12 @@
   .x_SortByJobs{
     max-height: 500px;
     overflow-y: scroll;
-    padding: 15px;
+    padding: 0px;
+    padding-right: 15px;
   }
   .x_filter_category_list > div{
     background-color: unset;
-    padding: 8px 15px 8px 24px;
+    padding: 8px 15px 8px 5px;
     box-shadow: unset;
   }
   .x_filter_category_list{
@@ -68,7 +68,7 @@
     margin-bottom: 20px;
   }
   .x_gd_section{
-    padding-bottom: 35px;
+    padding: 35px 0px;
     background: #f7f7f7;
 }
   .x_search_posts_button{
@@ -87,12 +87,16 @@
     padding-bottom: 6px;
   }
   .x_gd_box_content{
-    padding: 15px;
+    padding: 10px;
     background: #ffffff;
+    border-radius: 5px;
   }
   .x_sidebar{
-    border-right: 1px solid #f0f0f0;
     padding: 0px 15px;
+    padding-top: 5px;
+    padding-bottom: 6px;
+    background-color: white;
+    border-radius: 5px;
   }
   .x_gd_box{
     background: #ffffff;

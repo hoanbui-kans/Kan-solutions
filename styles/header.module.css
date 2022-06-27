@@ -176,7 +176,7 @@
 }
 .x_dropbox:before {
     content: "";
-    background: whitesmoke;
+    background: rgb(255, 255, 255);
     border: 1px solid #e0e6e8;
     width: calc(100% + 10px);
     height: 100%;
@@ -253,7 +253,6 @@
   }
   .x_smaller_text{
       font-size: 12px;
-      font-weight: 300;
   }
   .x_search_footer{
       padding-top: .5rem
@@ -296,7 +295,7 @@
     padding-bottom: 8px;
     border-bottom: 1px solid #e0e6e8;
     font-family: 'SVN-Gotham';
-    color: #999;
+    color: var(--x-black-color);
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 2px;

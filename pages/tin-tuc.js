@@ -1,18 +1,16 @@
 import { useState } from 'react'
-import { Grid, Container, Row, Col, Breadcrumb, Form, Pagination  } from 'rsuite';
-import Link from 'next/link';
-import styles from '../styles/blog.module.css';
-import axios from 'axios';
+import { Grid, Container, Row, Col, Breadcrumb, Form, Pagination  } from 'rsuite'
+import Link from 'next/link'
+import styles from '../styles/blog.module.css'
+import axios from 'axios'
 import SearchIcon from '@rsuite/icons/Search'
-
-import { BlogStyleOne, BlogStyleTwo } from '../components/blog-templates/BlogContent';
-import Loading from '../components/Loading';
-import HTMLReactParser from 'html-react-parser';
-import { NewsSeo } from './api/HeaderSeo';
-import Head from 'next/head';
+import { NewsSeo } from './api/HeaderSeo'
+import { BlogStyleOne, BlogStyleTwo } from '../components/blog-templates/BlogContent'
+import Loading from '../components/Loading'
+import HTMLReactParser from 'html-react-parser'
+import Head from 'next/head'
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
-
 
 const News = ({bai_viet, danh_muc, max_num_pages}) => {
 
@@ -35,7 +33,7 @@ const News = ({bai_viet, danh_muc, max_num_pages}) => {
 
   const Next_Pages = async (num) => {
     setLoading(true);
-    setPaged({...paged, current: num});
+    setPaged(num);
     const { data } = await axios.get(rootURL + 'tin-tuc/bai-viet?perpage=7&p=' + num).then((res) => res);
     if(data){
       setPosts(data.posts);
@@ -49,12 +47,22 @@ const News = ({bai_viet, danh_muc, max_num_pages}) => {
       <Head>
         { HTMLReactParser(NewsSeo) }
       </Head>
+      <div className={'x_breadcum_container'}>
+          <Grid className={'x-container'}>
+            <Container>
+                <Row>
+                    <Col xs={24}>
+                      <Breadcrumb className={'x_breadcumb'}>
+                        <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
+                        <Breadcrumb.Item active>Tin tức</Breadcrumb.Item>
+                      </Breadcrumb>
+                    </Col>
+                </Row>
+            </Container>
+        </Grid>    
+      </div>  
       <section className={styles.x_newsSection}>
         <Grid className={'x-container'}>
-          <Breadcrumb className={styles.x_breadcumb}>
-            <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
-            <Breadcrumb.Item active>Tin tức</Breadcrumb.Item>
-          </Breadcrumb>
           <Container>
               <Row>
                 <Col xs={24}>
@@ -67,8 +75,7 @@ const News = ({bai_viet, danh_muc, max_num_pages}) => {
               <Row className={styles.x_meta_with_form}>
                 <Col xs={24} md={16}>
                   <ul className={styles.x_category_link}>
-                      {
-                        danh_muc.map((val) => {
+                      { danh_muc.map((val) => {
                           return (
                             <li key={val.term_id}>
                               <Link href={`/danh-muc/${val.slug}`}>
@@ -102,7 +109,7 @@ const News = ({bai_viet, danh_muc, max_num_pages}) => {
               </Row>
               <Row>
                   {
-                    loading ?  <Loading /> :
+                    loading ?  <Col xs={24}><Loading /></Col> :
                     <>
                       {
                         posts != '' ?

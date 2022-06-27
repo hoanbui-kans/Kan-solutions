@@ -302,12 +302,10 @@
       margin: auto;
     }
     .x_services_box{
-      max-width: 90%;
       margin: auto;
       margin-bottom: var(--x-bottom-margin);
     }
     .x_creeper_box{
-      max-width: 90%;
       margin: auto;
       margin-bottom: var(--x-bottom-margin)
     }
@@ -362,7 +360,6 @@
       z-index: 0;
     }
     .x_features_box{
-      max-width: 90%;
       margin: auto;
       margin-bottom: var(--x-bottom-margin);
     }

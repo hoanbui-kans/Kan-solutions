@@ -153,16 +153,16 @@ const Register = () => {
     <Grid className={styles.x_account_container}>
       <div className={styles.x_background}>
       </div>
-      <Link href = '/'>
-        <a className={styles.x_back_home}>
-          <IoHomeOutline size={20}/>
-          Trở về trang chủ
-        </a>
-      </Link>
       <Container>
         <Row>
           <Col xs={24}>
-            <div className={styles.x_login}>
+              <div className={styles.x_login}>
+                <Link href = '/'>
+                  <a className={styles.x_back_home}>
+                    <IoHomeOutline size={20}/>
+                    Trở về trang chủ
+                  </a>
+              </Link>
               <h1 className={styles.x_account_title}>Đăng ký tài khoản</h1>
               <Form 
                 fluid

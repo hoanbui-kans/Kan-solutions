@@ -7,9 +7,6 @@
 .x_highlight{
   color: #1071ff;
 }
-.x_breadcumb{
-  padding: 1.25rem 0rem;
-}
 .x_wellcome_title{
   padding-bottom: 1.5rem;
 }
@@ -69,7 +66,7 @@
   z-index: 2;
 }
 .x_newsSection{
-  padding-bottom: 35px;
+  padding: 35px 0px;
 }
 .x_search_posts_button svg{
   transition: all .3s ease-in-out;
@@ -102,6 +99,10 @@
 .x_single_post_data li{
   display: inline-block;
   margin-right: 15px;
+  background: #2d88e2;
+  color: white;
+  padding: 7px 10px;
+  border-radius: 15px;
 }
 .x_pagination{
   text-align: center;
@@ -117,7 +118,7 @@
 .x_blog_one_section{
   margin-bottom: 2rem;
   background: white;
-  box-shadow: inset 5px 5px 10px #ededed, inset -5px -5px 10px #fbfbfb;
+  border: 1px solid var(--x-border-color);
   border-radius: 20px;
   overflow: hidden;
 }
@@ -146,10 +147,12 @@
   margin: 0rem .25rem .25rem 0rem;
 }
 .x_blog_terms_list a{
-  font-size: 12px;
-  color: #999999;
-  font-weight: 300;
-  letter-spacing: 1px;
+  background: #2d88e2;
+  color: white;
+  border-radius: 5px;
+  padding: 2px 5px;
+  display: inline-block;
+  font-size: 8px;
 }
 
 .x_blog_two_content{
@@ -157,26 +160,25 @@
 }
 
 .x_blog_two_section{
-  margin-bottom: 2.25rem;
   display: block;
-  height: 100%;
   background: white;
-  box-shadow: 5px 5px 10px #ededed, -5px -5px 10px #ffffff;
+  border: 1px solid var(--x-border-color);
   border-radius: 20px;
   overflow: hidden;
+  margin-bottom: 1.75rem;
 }
 .x_padding_posts{
   padding: .95rem;
   display: block;
 }
 .x_blog_two_title{
-  color: #333333;
+  color: var(--x-secondary-color);
   font-weight: 700;
   line-height: 1.3;
   font-size: 1.15rem;
   margin-bottom: .55rem;
   display: block;
-  height: 54px;
+  height: 26px;
   overflow: hidden;
 }
 
@@ -195,8 +197,11 @@
 
 .x_blog_two_link{
   font-size: .85rem;
-  display: flex;
   align-items: center;
+  font-weight: bold;
+  color: black;
+  padding-left: 10px;
+  display: inline-block;
 }
 .x_blog_two_link:hover .x_blog_two_link_icon{
   transform: rotate(-180deg) translateX(-.25rem);
@@ -208,7 +213,8 @@
   line-height: 16px;
 }
 .x_container_x{
-  background-color: #f7f7f7;
+  background-color: var(--x-light-color);
+  padding: 35px 0px;
 }
 .x_single_blog_thumbnail img{
   border-radius: 12px;
@@ -239,6 +245,7 @@
 .x_single_content{
   font-size: 14px;
   line-height: 24px;
+  padding: 10px;
 }
 .x_single_content h1{
   font-size: 32px;
@@ -264,4 +271,5 @@
 }
 .x_single_content *{
   max-width: 100%;
+  height: auto;
 }
