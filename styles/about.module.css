@@ -60,6 +60,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    column-gap: 10px;
 }
 .x_black_button:hover{
     border-color: black;

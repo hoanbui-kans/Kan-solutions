@@ -7,6 +7,8 @@
 .x_single_theme_thumbnail{
     display: block;
     box-shadow: 0 14px 24px 0 rgb(0 0 0 / 10%);
+    border-radius: .35rem;
+    margin-bottom: 35px;
 }
 .x_theme_container{
     padding: 15px 0px
@@ -58,7 +60,6 @@
     background: #ffffff;
     border: 1px solid #666666;
     color: #666666;
-    border-radius: 0px;
     width: 100%;
     margin-bottom: 1.25rem;
     display: flex;
@@ -68,12 +69,22 @@
     font-size: 14px;
 }
 
+.x_contact_form_button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: black;
+    column-gap: 10px;
+    padding: .75rem 1.25rem;
+    border-radius: 35px;
+    color: white
+}    
+
 .x_create_button{
-    font-size: 1.15rem;
+    font-size: 1rem;
     padding: 1rem 1.75rem;
     border-radius: .35rem;
-    background: #e67e22;
-    border-radius: 0px;
+    background: #2d88e2;
     color: white;
     width: 100%;
     margin-bottom: 1rem;
@@ -91,7 +102,6 @@
     border-radius: .35rem;
     display: block;
 }
-
 .x_theme_thumbnail_section{
     margin-bottom: 1.55rem;
 }
@@ -187,4 +197,11 @@
 .single_content img{
     max-width: 100%;
     height: auto;
+}
+
+@media (min-width: 768px){
+    .x_theme_content{
+        border-right: 1px solid var(--x-border-color);
+        padding: 0px 35px !important;
+    }
 }

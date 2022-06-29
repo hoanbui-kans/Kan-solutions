@@ -105,6 +105,7 @@ const Login = () => {
               <h1  className={styles.x_account_title}>Đăng nhập</h1>
               <Form 
                 fluid
+                onSubmit={handleSubmit}
                 className={styles.x_login_form}
                 model={model} 
                 ref={formRef}
@@ -135,7 +136,7 @@ const Login = () => {
                   <small className={styles.x_account_navigate}>Bạn chưa có tài khoản? xin vui lòng <Link href="/dang-ky">đăng ký</Link></small>
                 </Form.Group>
                 <Form.Group>
-                  <Button className={styles.x_login_button} appearance="primary" onClick={handleSubmit}>
+                  <Button className={styles.x_login_button} appearance="primary" type='submit'>
                     {
                       loading ? <span className={styles.x_loading_icon}><Loader /> </span>: ''
                     }

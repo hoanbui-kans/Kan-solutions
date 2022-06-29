@@ -59,8 +59,11 @@ body {
   padding-left: var(--x-padding-column) !important;
   padding-right: var(--x-padding-column) !important;
 }
-.rs-picker-toggle .rs-picker-toggle-placeholder, input::placeholder, select::placeholder {
-  color: var(--x-secondary-color) !important;
+.rs-container {
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+  padding: 0px 15px;
 }
 .x_flex_center{
   align-items: center;

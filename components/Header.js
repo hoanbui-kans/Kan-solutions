@@ -7,13 +7,11 @@ import { useSpring, animated, useChain, useSpringRef, useTransition, config } fr
 import { listServices } from '../pages/api/services'
 import { useSession } from "next-auth/react"
 import Router from 'next/router'
-
 import SearchIcon from '@rsuite/icons/Search'
 import CloseIcon from '@rsuite/icons/Close'
 import ArrowDownLineIcon from '@rsuite/icons/ArrowDownLine'
 import EmailFillIcon from '@rsuite/icons/EmailFill'
 import PhoneFillIcon from '@rsuite/icons/PhoneFill'
-import ArrowRightIcon from '@rsuite/icons/ArrowRight'
 import axios from 'axios'
 import styles from '../styles/header.module.css'
 
@@ -287,7 +285,7 @@ const Header = () => {
                                 {
                                     session ? 
                                     <>
-                                        <li><Link href={'/quan-ly/tai-khoan'}><a>Xin chào {session.user.token.user_display_name}</a></Link></li>
+                                        <li><Link href={'/quan-ly/tai-khoan'}><a className={styles.x_account_name}>{session.user.token.user_display_name}</a></Link></li>
                                         <li><Link href={'/quan-ly/dang-xuat'}>Đăng xuất</Link></li>
                                       </>
                                     : <>

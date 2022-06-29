@@ -1,5 +1,5 @@
-import React from 'react'
-import { Grid, Row, Col, Breadcrumb, Container, Button } from 'rsuite'
+import { useState } from 'react'
+import { Grid, Row, Col, Breadcrumb, Container, Button, Modal } from 'rsuite'
 import Image from 'next/image'
 import styles from '../styles/about.module.css'
 import EmailFillIcon from '@rsuite/icons/EmailFill'
@@ -7,15 +7,24 @@ import Head from 'next/head'
 import HTMLReactParser from 'html-react-parser'
 import { AboutUsSeo } from './api/HeaderSeo'
 import Link from 'next/link'
+import ServicesSubmitForm from '../components/handleSubmitServices'
 
 const AboutUs = () => {
+  const [open, setOpen] = useState(false);  
+  const [service, setService] = useState(''); 
+
+  const handleOpen = (service) => {
+      setService(service);
+      setOpen(true)
+  };
+  const handleClose = () => setOpen(false);
   return (
     <>
        <Head>
         { HTMLReactParser(AboutUsSeo) }
       </Head>
       <div className={'x_breadcum_container'}>
-          <Grid className={'x-container'}>
+          <Grid>
             <Container>
                 <Row>
                     <Col xs={24}>
@@ -32,7 +41,7 @@ const AboutUs = () => {
       <span className={styles.x_neumorphic}>
             <Image alt='layout' src={'/layout/decorations-01.svg'} width={800} height={800}/>
       </span>
-      <Grid className={'x-container'}>
+      <Grid>
         <Container className={styles.x_about_section_one}>
           <Row className={'x_flex_center'}>
               <Col xs={24} md={12}>
@@ -46,8 +55,13 @@ const AboutUs = () => {
                 <p className={styles.x_about_description}>
                 Website thành công không chỉ dựa vào yếu tố đẹp, mà nó còn đòi hỏi nhiều yếu tố từ nội dung, cấu trúc code, nội dung, tuổi thọ, tốc độ, các liên kết khác. Bạn cần hiểu rõ thế mạnh của mình để có thể xây dựng chiến lược lâu dài cho website
                 </p>
-                <Button className={styles.x_black_button}>
-                    <EmailFillIcon width={34} heigh={34}/>
+                <Button 
+                  className={styles.x_black_button} 
+                  onClick={() => { handleOpen('Đăng ký tư vấn dịch vụ từ trang giới thiệu') }}>
+                    <EmailFillIcon 
+                      width={16} 
+                      height={16}
+                    />
                      ĐĂNG KÝ TƯ VẤN
                   </Button>
               </Col>
@@ -211,6 +225,14 @@ const AboutUs = () => {
         </Container>
       </Grid>
     </div>
+    <Modal open={open} onClose={handleClose} backdrop="static">
+        <Modal.Header>
+          <Modal.Title>Đăng ký tư vấn các dịch vụ</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            <ServicesSubmitForm service={service}/>
+        </Modal.Body>
+      </Modal>
     </>
   )
 }

@@ -18,7 +18,7 @@ const Layout = ({ children }) => {
         setLoading(false);
     });
   return (
-    pathname != '/dang-nhap' && pathname != '/dang-ky' && pathname != '/quan-ly/dang-xuat' ? 
+    pathname != '/dang-nhap' && pathname != '/dang-ky' && pathname != '/quan-ly/dang-xuat' && !pathname.includes('/giao-dien/xem-giao-dien/')? 
       <>
         <Header />
           {

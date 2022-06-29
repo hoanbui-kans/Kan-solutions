@@ -38,13 +38,13 @@ export const BlogStyleOne = ({data}) => {
         <Col xs={24} md={12}>
           <div className={styles.x_blog_one_content}>
             <TermList data={data.terms} />
-            <Link href={data.post_name}>
+            <Link href={'/bai-viet/' + data.post_name}>
               <a>
                 <h3 className={styles.x_blog_one_title}>{data.post_title}</h3>
               </a>
             </Link>
             <p className={styles.x_blog_one_description}>{data.post_excerpt}</p>
-            <Link href={data.post_name}>
+            <Link href={'/bai-viet/' + data.post_name}>
               <a><Button className={styles.x_blog_one_button}>Xem thêm</Button></a>
             </Link>
           </div>
@@ -62,13 +62,13 @@ export const BlogStyleTwo = ({data}) => {
         </div>
       <div className={styles.x_blog_two_content}>
         <TermList data={data.terms} />
-        <Link href={data.post_name}>
+        <Link href={'/bai-viet/' + data.post_name}>
           <a>
             <h3 className={styles.x_blog_two_title}>{data.post_title}</h3>
           </a>
         </Link>
         <p className={styles.x_blog_two_description}>{data.post_excerpt}</p>
-        <Link href={data.post_name}>
+        <Link href={'/bai-viet/' + data.post_name}>
           <a className={styles.x_blog_two_link}>
             <span>Xem thêm</span>
             <span className={styles.x_blog_two_link_icon}>

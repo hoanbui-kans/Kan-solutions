@@ -356,3 +356,58 @@ export const HostingTable = [
         ]
     }
 ]
+
+export const WebsiteDesignTable = [
+    {
+        name: 'Cơ bản',
+        price: '5.000.000đ /năm',
+        checklist: [
+            '2GB Hosting',
+            'Xây dựng Website đầy đủ tính năng',
+            'quản lý vận chuyển tính giá tự động',
+            'Kết nối thanh toán trực tuyến',
+            'Kết nối bán hàng mạng xã hội',
+            'Đồng bộ sản phẩm Google shopping',
+            'Email đơn hàng tự động',
+            'Bàn giao source code'
+        ]
+    },{
+        name: 'Kinh doanh',
+        price: '7.000.000đ /năm',
+        checklist: [
+            '3GB Hosting',
+            'Xây dựng Website đầy đủ tính năng',
+            'Tùy chọn mudule phù hợp',
+            'Chuyển đổi UI Kit Framework',
+            'Tùy biến dữ liệu phù hợp với doanh nghiệp',
+            'Tùy chọn mẫu layout chuyên nghiệp',      
+            'Quản lý vận chuyển tính giá tự động',
+            'Giao diện khách hàng, đối tác chuyên sâu',
+            'Kết nối thanh toán trực tuyến',
+            'Kết nối bán hàng mạng xã hội',
+            'Đồng bộ sản phẩm Google shopping',
+            'Email đơn hàng tự động',
+            'Bàn giao source code'
+        ]
+    },{
+        name: 'Thiết kế độc quyền',
+        price: 'Liên hệ tư vấn',
+        checklist: [
+            '5GB Hosting',
+            'Mẫu giao diện được thiết kế độc quyền',
+            'Xây dựng Website đầy đủ tính năng',
+            'Tùy chọn mudule phù hợp',
+            'Chuyển đổi UI Kit Framework',
+            'Tùy biến dữ liệu phù hợp với doanh nghiệp',
+            'Tùy chọn mẫu layout chuyên nghiệp',      
+            'Quản lý vận chuyển tính giá tự động',
+            'Đồng bộ dữ liệu vận chuyển, thanh toán',
+            'Giao diện khách hàng, đối tác chuyên sâu',
+            'Kết nối thanh toán trực tuyến',
+            'Kết nối bán hàng mạng xã hội',
+            'Đồng bộ sản phẩm Google shopping',
+            'Email đơn hàng tự động',
+            'Bàn giao source code'
+        ]
+    }
+]

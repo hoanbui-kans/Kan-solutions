@@ -5,10 +5,10 @@ import Link from 'next/link'
 import Head from 'next/head'
 import HTMLReactParser from 'html-react-parser'
 import { ServiceWordpress } from '../api/HeaderSeo'
-import { HostingTable } from '../api/services'
-import { IoCheckmarkOutline } from "react-icons/io5";
+import { HostingTable, WebsiteDesignTable } from '../api/services'
+import { IoCheckmarkOutline, IoStorefront } from "react-icons/io5";
 import { useState } from 'react'
-import ServicesForm from '../../components/ServicesForm'
+import ServicesSubmitForm from '../../components/handleSubmitServices'
 
 const Wordpress = () => {
  
@@ -37,7 +37,7 @@ const Wordpress = () => {
                             <h2 className={styles.x_primary_title}>Tạo lập Webiste doanh nghiệp của bạn bằng wordpress</h2>
                             <Link href='/giao-dien-mau'>
                                 <a>
-                                    <Button className={styles.x_call_to_action}>Tạo website miễn phí</Button>
+                                    <Button className={styles.x_call_to_action}> <IoStorefront size={16}/>Tạo website miễn phí</Button>
                                 </a>
                             </Link>
                         </div>
@@ -150,6 +150,56 @@ const Wordpress = () => {
             </Grid>
         </section>
         <Divider/>
+        <section className={styles.x_hosting_section}>
+            <Grid className='x-container'>
+            <Container>
+                <Row className={styles.x_centered}>
+                    <Col xs={24}>
+                        <div className={styles.x_hosting_title}>
+                            <h3 className={styles.x_section_secondary_title}>Xây dựng nhanh chóng</h3>
+                            <h2 className={styles.x_primary_title}>Bảng giá thiết kế website</h2>
+                        </div>
+                        <div className={styles.x_hosting_table_container}>
+                            <Row>
+                                 {
+                                    WebsiteDesignTable.map((val, index) => {
+                                        return(
+                                            <Col xs={24} md={12} lg={8} key={index}>
+                                                <div className={styles.x_hosting}>
+                                                    <div className={styles.x_hosting_header}>
+                                                        <h3>{val.name}</h3>
+                                                        <p>{val.price}</p>
+                                                        <Button className={styles.x_hosting_button} onClick={() => { handleOpen('Dịch vụ hosting ' + val.name) }}>Đăng ký</Button>
+                                                    </div>
+                                                    <div className={styles.x_hosting_features}>
+                                                        <ul>
+                                                            {
+                                                                val.checklist.map((val, index) => {
+                                                                    return(
+                                                                        <li key={index}>
+                                                                            <span className={styles.x_hosting_check}>
+                                                                                <IoCheckmarkOutline color='white'/>
+                                                                            </span>
+                                                                            {val}
+                                                                        </li>
+                                                                    )
+                                                                })    
+                                                            }
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </Col>
+                                        )
+                                    })
+                                 }       
+                            </Row>
+                        </div>
+                    </Col>
+                </Row>
+            </Container>
+            </Grid>
+        </section>
+        <Divider/>
         <section className={styles.x_services_container}>
             <Grid className='x-container'>
             <Container>
@@ -167,7 +217,11 @@ const Wordpress = () => {
                                             </div>
                                             <h3 className={styles.x_services_content_title}>Website Landing Page</h3>
                                             <h2 className={styles.x_services_content_main_title}>Xây dựng kênh quảng bá sản phẩm nhanh</h2>
-                                            <Button className={styles.x_services_button}>Đăng ký tư vấn</Button>
+                                            <Button 
+                                            className={styles.x_services_button}
+                                            onClick={() => { handleOpen('Đăng ký dịch vụ thiết kế Website Landing Page') }}>
+                                                Đăng ký tư vấn
+                                            </Button>
                                         </div>
                                     </Col>
                                     <Col xs={24} md={12} lg={8} className={styles.x_padding}>
@@ -177,7 +231,11 @@ const Wordpress = () => {
                                             </div>
                                             <h3 className={styles.x_services_content_title}>Website Doanh Nghiệp</h3>
                                             <h2 className={styles.x_services_content_main_title}>Xây dựng thương hiệu doanh nghiệp</h2>
-                                            <Button className={styles.x_services_button}>Đăng ký tư vấn</Button>
+                                            <Button 
+                                                className={styles.x_services_button}
+                                                onClick={() => { handleOpen('Đăng ký dịch vụ thiết kế Website Doanh nghiệp') }}>
+                                                Đăng ký tư vấn
+                                            </Button>
                                         </div>
                                     </Col>
                                     <Col xs={24} md={12} lg={8} className={styles.x_padding}>
@@ -187,7 +245,11 @@ const Wordpress = () => {
                                             </div>
                                             <h3 className={styles.x_services_content_title}>Website Thương Mại</h3>
                                             <h2 className={styles.x_services_content_main_title}>Mở rộng quy mô phân phối sản phẩm</h2>
-                                            <Button className={styles.x_services_button}>Đăng ký tư vấn</Button>
+                                            <Button 
+                                                className={styles.x_services_button}
+                                                onClick={() => { handleOpen('Đăng ký dịch vụ thiết kế Website Thương Mại') }}>
+                                                Đăng ký tư vấn
+                                            </Button>
                                         </div>
                                     </Col>
                                 </Row>
@@ -199,13 +261,12 @@ const Wordpress = () => {
             </Grid>
         </section>
     </div>
-    
-    <Modal open={open} onClose={handleClose}>
+    <Modal open={open} onClose={handleClose} backdrop="static">
         <Modal.Header>
-          <Modal.Title>Đăng ký dịch vụ hosting</Modal.Title>
+          <Modal.Title>Đăng ký dịch vụ thiết kế Website</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <ServicesForm service={service}/>
+            <ServicesSubmitForm service={service}/>
         </Modal.Body>
       </Modal>
     </>

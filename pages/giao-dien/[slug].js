@@ -2,7 +2,7 @@ import axios from 'axios'
 import HTMLReactParser from 'html-react-parser'
 import Head from 'next/head'
 import Link from 'next/link'
-import { Grid, Container, Row, Col, Button, Form, Input, Breadcrumb } from 'rsuite'
+import { Grid, Container, Row, Col, Button, Breadcrumb } from 'rsuite'
 import Image from 'next/image'
 import styles from '../../styles/theme.module.css'
 import CopyIcon from '@rsuite/icons/Copy';
@@ -11,8 +11,9 @@ import SearchIcon from '@rsuite/icons/Search';
 import ArrowRightIcon from '@rsuite/icons/ArrowRight';
 import { getSession } from 'next-auth/react'
 import md5 from 'md5'
+import FormTuVan from '../../components/FormTuVan'
 
-const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
+const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON;
 
 export function Separator(numb) {
   var str = numb.toString().split(".");
@@ -20,7 +21,7 @@ export function Separator(numb) {
   return str.join(".");
 }
 
-const Layout = ({data}) => {
+export const Layout = ({data}) => {
   return (
     <ul className={styles.x_layout}>
       {
@@ -60,7 +61,7 @@ const Nganh = ({data}) => {
   )
 }
 
-const NenTang = ({data}) => {
+export const NenTang = ({data}) => {
   return (
     <ul className={styles.x_danh_muc_plugin}>
       {
@@ -97,6 +98,7 @@ function Price({data}) {
 }
 
 export const SingleTheme = ({data, link_theme}) => {
+
   const DanhMucNganh = data.nganh ? data.nganh : '';
   const ThemeInfor = data.themeinfor ? data.themeinfor : '';
 
@@ -127,8 +129,37 @@ export const SingleTheme = ({data, link_theme}) => {
           <Container className={styles.x_theme_container}>
             <Row className={styles.x_flex + ' ' + styles.x_theme_thumbnail_section}>
               <Col xs={24} md={16} className={styles.x_padding}>
-                <div className={styles.x_single_theme_thumbnail}>
-                  <Image src={data.thumbnail} width={800} height={575} alt={data.post_title}/>
+                <div className={styles.x_theme_content}>
+                  <div className={styles.x_single_theme_thumbnail}>
+                    <Image src={data.thumbnail} width={800} height={575} alt={data.post_title}/>
+                  </div>
+                    {
+                        DanhMucNganh.length > 0 ? 
+                        DanhMucNganh[0].layout ?
+                        <div className={styles.x_single_theme_section}>
+                          <h2 className={styles.x_content_title}>Cấu trúc layout</h2>
+                            {
+                              DanhMucNganh.map((val) => {
+                                return(
+                                  <div key={val.term_id} className={styles.x_nganh_section}>
+                                    <Nganh data={val.layout}/>
+                                  </div>
+                                ) 
+                              })
+                            }
+                        </div>
+                        : ''
+                        : ''
+                  }
+                  {
+                    data.post_content ? 
+                    <div className={styles.x_single_theme_section}>
+                      <h2 className={styles.x_content_title}>Giới thiệu</h2>
+                      <div className={styles.x_sing_theme_content}>
+                        {HTMLReactParser(data.post_content)}
+                      </div>
+                    </div> : ''
+                  }
                 </div>
               </Col>
               <Col xs={24} md={8} className={styles.x_padding}>
@@ -160,7 +191,7 @@ export const SingleTheme = ({data, link_theme}) => {
                         </Link>
                       }
                     
-                      <Link href={ThemeInfor.link}>
+                      <Link href={'/giao-dien/xem-giao-dien/' + data.post_name}>
                         <a>
                           <Button className={styles.x_view_button}>
                             <SearchIcon width={16} height={16}/>
@@ -169,34 +200,7 @@ export const SingleTheme = ({data, link_theme}) => {
                         </a>
                       </Link>
                     </div>  
-                </div>
-              </Col>
-              </Row>
-              <Row>
-              <Col xs={24} md={16} className={styles.x_padding}>
-                <div className={styles.x_single_theme_section}>
-                  <h2 className={styles.x_content_title}>Cấu trúc layout</h2>
-                  {
-                      DanhMucNganh ? 
-                      DanhMucNganh.map((val) => {
-                        return(
-                          <div key={val.term_id} className={styles.x_nganh_section}>
-                            <Nganh data={val.layout}/>
-                          </div>
-                        ) 
-                      })
-                      : ''
-                  }
-                </div>
-                <div className={styles.x_single_theme_section}>
-                  <h2 className={styles.x_content_title}>Giới thiệu</h2>
-                  <div className={styles.x_sing_theme_content}>
-                    {HTMLReactParser(data.post_content)}
-                  </div>
-                </div>
-              </Col>
-              <Col xs={24} md={8} className={styles.x_padding}>
-              <div className={styles.x_single_theme_section}>
+                    <div className={styles.x_single_theme_section}>
                   <h2 className={styles.x_content_title}>Thông tin tích hợp</h2>
                   {
                     data.nen_tang ? 
@@ -205,26 +209,11 @@ export const SingleTheme = ({data, link_theme}) => {
                     </div> : ''
                   }
                   <h2 className={styles.x_content_title}>Thông tin hỗ trợ</h2>
-                  <Form  className={styles.x_help_form} fluid> 
-                    <Form.Group>
-                      <Form.ControlLabel>Tên của bạn</Form.ControlLabel>
-                      <Form.Control name='name' value={EventTarget.value} placeholder='Nhập tên của bạn...' type='text' />
-                    </Form.Group>
-                    <Form.Group>
-                      <Form.ControlLabel>Địa chỉ Email</Form.ControlLabel>
-                      <Form.Control name='email' value={EventTarget.value} placeholder='Nhập địa chỉ Email...' type='email' />
-                    </Form.Group>
-                    <Form.Group>
-                      <Form.ControlLabel>Nội dung yêu cầu</Form.ControlLabel>
-                      <Input value={EventTarget.value} as="textarea" name='content' />
-                    </Form.Group>
-                    <Form.Group>
-                      <Button className={styles.x_sent_help_button} appearance="primary">Gửi đi</Button>
-                    </Form.Group>
-                  </Form>
+                   <FormTuVan title={'Đăng kỹ hỗ trợ giao diện ' + data.post_title}/>
+                  </div>
                 </div>
               </Col>
-            </Row>
+              </Row>
           </Container>
         </Grid>
       </div>
@@ -238,7 +227,7 @@ export async function getServerSideProps(context) {
   // Create API
   const session = await getSession(context);
   const slug = context.params.slug;
-  const res = await axios.get(rootURL + 'giao-dien/single?slug=' + slug).then((resonse) => resonse.data);
+  const res = await axios.get(ROOT_URL + 'giao-dien/single?slug=' + slug).then((resonse) => resonse.data);
   // Create API
   let CreateURI = '';
   if(session){

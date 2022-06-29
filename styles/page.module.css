@@ -15,6 +15,9 @@
 .x_input_margin{
     margin-bottom: 18px;
 }
+.x_submit_service_form{
+    padding: 15px;
+}
 .x_background{
     position: fixed;
     top: 0;
@@ -133,6 +136,24 @@
 .x_margin_bottom{
     margin-bottom: 35px;
     display: block;
+}
+.x_service_list_title{
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+.x_dropbox{
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--x-border-color);
+}
+.x_iconLink{
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    color: var(--x-title-color);
+}
+.x_service_form_group{
+    margin-bottom: 14px;
 }
 @media ( max-width: 768px ){
 

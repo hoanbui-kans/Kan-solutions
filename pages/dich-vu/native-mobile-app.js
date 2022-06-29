@@ -11,7 +11,7 @@ import { BlogStyleTwo } from '../../components/blog-templates/BlogContent';
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
-const Wordpress = ({data}) => {
+const NativeApp = ({data}) => {
   if(data == undefined) return '';
     return (
       <>
@@ -83,10 +83,10 @@ const Wordpress = ({data}) => {
     )
 }
 
-export default Wordpress
+export default NativeApp
 
 export async function getServerSideProps(context) {
-  const post_name = 'wordpress';
+  const post_name = 'native-app';
   const res = await axios.get(`${rootURL}dich-vu/bai?slug=${post_name}`).then((resonse) => resonse.data);
   // Pass data to the page via props
   return { props: { 

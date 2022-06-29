@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { Grid, Container, Row, Col, Form, Button, Input, Schema, Loader, toaster, Message, Breadcrumb  } from 'rsuite'
 import { IoPaperPlane, IoHomeOutline } from "react-icons/io5"
 import styles from '../styles/page.module.css'
@@ -21,10 +21,11 @@ const Contact = () => {
     textarea: '',
   });
   const formRef = useRef();
+
   const model = Schema.Model({
-    'text': Schema.Types.StringType().isRequired('Bạn chưa nhập tên tài khoản.'),
-    'tel': Schema.Types.StringType().isRequired('Bạn chưa nhập mật khẩu.'),
-    'email': Schema.Types.StringType().isRequired('Bạn chưa nhập tên tài khoản.'),
+    'text': Schema.Types.StringType().isRequired('Bạn chưa nhập tên của bạn.'),
+    'tel': Schema.Types.StringType().isRequired('Bạn chưa nhập số điện thoại.'),
+    'email': Schema.Types.StringType().isRequired('Bạn chưa nhập địa chỉ Email.'),
   });
 
   const handleSubmit = async () => {
@@ -55,7 +56,7 @@ const Contact = () => {
     
     if(response){
       let type = 'success';
-      if(response.invalid_fields){
+      if(response.status != 'mail_sent'){
         type = 'warning';
         response.invalid_fields.map((val) => {
           setTimeout(() => {
@@ -63,11 +64,19 @@ const Contact = () => {
           }, 1000);
         })
       }
+      
+      console.log(type)
       toaster.push(<Message showIcon type={type}>{response.message}</Message>);
     } else {
       toaster.push(<Message type='error'>Đã có lỗi xảy ra, xin vui lòng thử lại</Message>);
     }
     setLoading(false);
+    setFormvalue({
+      text: '',
+      tel: '',
+      email: '',
+      textarea: '',
+    })
   }
 
   return (
@@ -169,19 +178,19 @@ const Contact = () => {
                 >
                     <Form.Group>
                       <Form.ControlLabel>Tên của bạn</Form.ControlLabel>
-                      <Form.Control name='text' type='text' value={EventTarget.value} placeholder={'Nhập tên của bạn'}></Form.Control>
+                      <Form.Control name='text' type='text' value={EventTarget.value} placeholder={'Nhập tên của bạn'}/>
                     </Form.Group>
                     <Form.Group>
                       <Form.ControlLabel>Số điện thoại</Form.ControlLabel>
-                      <Form.Control name='tel' type='text' value={EventTarget.value} placeholder={'Nhập tên của bạn'}></Form.Control>
+                      <Form.Control name='tel' type='text' value={EventTarget.value} placeholder={'Nhập số điện thoại'}/>
                     </Form.Group>
                     <Form.Group>
                       <Form.ControlLabel>Địa chỉ Email</Form.ControlLabel>
-                      <Form.Control name='email'  type='email' value={EventTarget.value} placeholder={'Nhập tên của bạn'}></Form.Control>
+                      <Form.Control name='email'  type='email' value={EventTarget.value} placeholder={'Nhập tên của bạn'}/>
                     </Form.Group>
                     <Form.Group>
                       <Form.ControlLabel>Nhập nội dung của bạn</Form.ControlLabel>
-                      <Input name='textarea' as='textarea' value={EventTarget.value} placeholder={'Nhập tên của bạn'} rows={8} ></Input>
+                      <Input name='textarea' as='textarea' value={formValue.textarea} placeholder={'Nhập tên của bạn'} rows={8} onChange={(e) => setFormvalue( {...formValue, textarea: e})} />
                     </Form.Group>
                     <Form.Group>
                       <Button type='submit' className={styles.x_contact_form_button}>

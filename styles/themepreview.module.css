@@ -1,0 +1,43 @@
+.x_centered{
+    justify-content: center;
+    margin: auto;
+}
+.x_nav_flex{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #2d88e2;
+    color: white;
+}
+.x_nav_flex a {
+    color: white;
+}
+.x_centered{
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+}
+
+.x_nav_centered{
+    width: 100%;
+    justify-content: center;
+    display: flex;
+}
+
+.x_nav_end{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+.x_preview_screen_container{
+    transition: var(--x-transition);
+    margin: auto;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 2px solid rgb(212, 212, 212)
+}
+
+.x_preview_container{
+    overflow: hidden;
+    background: var(--x-light-color);
+    height: 100vh;
+}

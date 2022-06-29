@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import axios from 'axios';
 import styles from '../styles/themes.module.css'
 import { Grid, 
@@ -20,12 +20,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import SearchIcon from '@rsuite/icons/Search'
 import { Separator } from './giao-dien/[slug]';
-import { IoListSharp, IoGridOutline, IoCaretForwardSharp } from "react-icons/io5";
+import { IoListSharp, IoGridOutline, IoCaretForwardSharp, IoFunnelOutline, IoCloseCircleOutline } from "react-icons/io5";
 import HTMLReactParser from 'html-react-parser';
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
-function Price({data}) {
+const Price = ({data}) => {
     if(data.sale_price) 
     return (
       <div className={styles.x_styles_price}>
@@ -52,10 +52,11 @@ const GD_Box = ({data}) => {
                         <h3 className={styles.x_gd_box_tittle}>{data.post_title}</h3>
                     </a>
                 </Link>
-                <Price data={data.price}/>
-                <Divider style={{margin: '0px 0px 15px 0px'}}/>
+                <div className={styles.x_gd_box_price}>
+                    <Price data={data.price}/>
+                </div>
                 <div className={styles.x_gd_box_button}>
-                    <Link href={`/giao-dien/${data.post_name}`}>
+                    <Link href={`/giao-dien/xem-giao-dien/${data.post_name}`}>
                         <a className={styles.x_gd_box_link}>
                            <Button className={styles.x_gd_view_button_box}>
                                 Xem giao diện
@@ -79,13 +80,13 @@ const GD_List = ({data}) => {
     return (
         <div className={styles.x_gd_box}>
             <Row>
-                <Col xs={24} md={10}>
+                <Col xs={24} md={12}>
                     <div className={styles.x_gd_box_thumbnail}>
                         <Image alt='layout' src={data.thumbnail} width={800} height={575}/>
                     </div>
                 </Col>
-                <Col xs={24} md={14}>
-                    <div className={styles.x_gd_box_content}>
+                <Col xs={24} md={12}>
+                    <div className={styles.x_gd_list_content}>
                         <Link href={`/giao-dien/${data.post_name}`}>
                                 <a className={styles.x_gd_box_link}>
                             <h3 className={styles.x_gd_box_tittle}>{data.post_title}</h3>
@@ -94,10 +95,11 @@ const GD_List = ({data}) => {
                         <p className={styles.x_gd_box_description}>
                             {HTMLReactParser(data.post_excerpt)}
                         </p>
-                        <Price data={data.price}/>
-                        <Divider style={{margin: '0px 0px 15px 0px'}}/>
+                        <div className={styles.x_gd_list_price}>
+                            <Price data={data.price}/>
+                        </div>
                         <div className={styles.x_gd_box_button}>
-                            <Link href={`/giao-dien/${data.post_name}`}>
+                            <Link href={`/giao-dien/xem-giao-dien/${data.post_name}`}>
                                 <a className={styles.x_gd_box_link}>
                                 <Button className={styles.x_gd_view_button}>
                                         Xem giao diện
@@ -109,7 +111,7 @@ const GD_List = ({data}) => {
                                     <Button className={styles.x_gd_create_button}>
                                         Sử dụng mẫu
                                     </Button>
-                                </a>
+                                </a> 
                             </Link>
                         </div>
                     </div>
@@ -120,7 +122,8 @@ const GD_List = ({data}) => {
 }
 
 const Themes = ({gd, nganh, danhmuc, max_pages}) => {
-
+    
+  const [openFilter, setOpenFilter] = useState(false);
   const[keySearch, setKeySearch] = useState('');
   const[displayGrid, setDisplayGrid] = useState(false);
 
@@ -164,23 +167,23 @@ const Themes = ({gd, nganh, danhmuc, max_pages}) => {
     
     const SortByJobs = ({data}) => {
         return(
-            <CheckboxGroup 
-                value={filterNganh}
-                name="checkboxList" 
-                onChange={handleChange}>
-                {data.map((val) => (
-                    <Checkbox  key={val.term_id} value={val.term_id}>
-                        {val.name}
-                        <span className={styles.x_count}>{val.count}</span>
-                    </Checkbox>
-                ))}
-            </CheckboxGroup>
+        <CheckboxGroup 
+            value={filterNganh}
+            name="checkboxList" 
+            onChange={handleChange}>
+            {data.map((val) => (
+                <Checkbox  key={val.term_id} value={val.term_id}>
+                    {val.name}
+                    <span className={styles.x_count}>{val.count}</span>
+                </Checkbox>
+            ))}
+        </CheckboxGroup>
         )
     }
 
   return (
     <>
-    <div className={styles.x_breadcum_container}>
+    <div className={'x_breadcum_container'}>
         <Grid className={'x-container'}>
                 <Container>
                     <Row>
@@ -198,7 +201,16 @@ const Themes = ({gd, nganh, danhmuc, max_pages}) => {
             <Grid className={'x-container'}>
                 <Container>
                     <Row>
-                        <Col xs={24} md={6}>
+                        
+                        {
+                           openFilter ? 
+                           <div className={styles.x_close_filter} onClick={() => { setOpenFilter(false) }}>
+                                <span className={styles.x_close}>
+                                    <IoCloseCircleOutline size={24} color={'white'}/>
+                                </span>
+                           </div> : ''
+                        }
+                        <Col xs={24} md={24} lg={6} className={ openFilter ? styles.x_fixed_filter + ' ' + styles.x_fixed_filter_open : styles.x_fixed_filter}>
                             <div className={styles.x_sidebar}>
                                 <h3 className={styles.x_gd_title}>Lọc theo danh mục</h3>
                                 <SortByCategory data={danhmuc}/>
@@ -208,20 +220,23 @@ const Themes = ({gd, nganh, danhmuc, max_pages}) => {
                                 </div>
                             </div>
                         </Col>
-                        <Col xs={24} md={18}>
+                        <Col xs={24} md={24} lg={18}>
                             <Form className={styles.x_gd_form}>
                                 <Row className={styles.x_flexing}>
-                                    <Col xs={24} md={8}>
-                                        <ButtonToolbar>
+                                    <Col xs={24} md={12}>
+                                        <ButtonToolbar className={styles.x_filter_group}>
                                             <Button className={styles.x_fillter_button} onClick={() => { setDisplayGrid(false) }}>
                                                 <IoListSharp /> Danh sách
                                             </Button>
                                             <Button className={styles.x_fillter_button} onClick={() => { setDisplayGrid(true) }}>
                                                 <IoGridOutline /> Lưới
                                             </Button>
+                                            <Button className={styles.x_fillter_button + ' ' + styles.x_filter_button_change} onClick={() => { setOpenFilter(true) }}>
+                                                <IoFunnelOutline /> Lọc
+                                            </Button>
                                         </ButtonToolbar>
                                     </Col>
-                                    <Col xs={24} md={8}>
+                                    <Col xs={12} md={6}>
                                         <Form.Group className={styles.x_margin_x}>
                                             <SelectPicker 
                                                 searchable={false}
@@ -232,7 +247,7 @@ const Themes = ({gd, nganh, danhmuc, max_pages}) => {
                                             />
                                         </Form.Group>
                                     </Col>
-                                    <Col xs={24} md={8}>
+                                    <Col xs={12} md={6}>
                                         <Form.Group className={styles.x_form_search_group + ' ' + styles.x_margin_x}>
                                                 <Form.Control 
                                                     type="text"
@@ -250,23 +265,23 @@ const Themes = ({gd, nganh, danhmuc, max_pages}) => {
                                 </Row>
                             </Form>
                             <Row>
-                                    {
-                                        gd.map((val) => {
-                                            return  displayGrid ? 
-                                                    <Col xs={24} md={8} key={val.ID}>
-                                                        <GD_Box data={val}/>
-                                                    </Col>
-                                                :
-                                                    <Col xs={24} key={val.ID}>
-                                                            <GD_List data={val}/>
-                                                    </Col>
-                                        })
-                                    }
-                                    <Col xs={24}>
-                                        <div className={styles.x_pagination}>
-                                            <Pagination total={max_pages} limit={1} activePage={1} onChangePage={(current) => { console.log(current)}} />
-                                        </div>
-                                    </Col>
+                                {
+                                    gd.map((val) => {
+                                        return  displayGrid ? 
+                                        <Col xs={24} md={8} key={val.ID}>
+                                            <GD_Box data={val}/>
+                                        </Col>
+                                        :
+                                        <Col xs={24} key={val.ID}>
+                                                <GD_List data={val}/>
+                                        </Col>
+                                    })
+                                }
+                                <Col xs={24}>
+                                    <div className={styles.x_pagination}>
+                                        <Pagination total={max_pages} limit={1} activePage={1} onChangePage={(current) => { console.log(current)}} />
+                                    </div>
+                                </Col>
                          </Row>
                         </Col>
                     </Row>

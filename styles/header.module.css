@@ -301,6 +301,16 @@
     letter-spacing: 2px;
     text-transform: uppercase;
 }
+.x_account_name{
+    max-width: 65px;
+    border-left: 1px solid #499cef;
+    border-right: 1px solid #499cef;
+    padding: 0px 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 10px;
+    overflow: hidden;
+}
 .x_iconLink{
     flex-wrap: wrap;
     display: flex !important;

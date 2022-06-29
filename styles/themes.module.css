@@ -19,8 +19,8 @@
     display: inline-flex;
     align-items: center;
     column-gap: 7px;
-    background: #2d88e2;
-    color: white;
+    border: 1px solid #e5e5ea;
+    background: white;
 }
   .x_count{
     float: right;
@@ -91,6 +91,10 @@
     background: #ffffff;
     border-radius: 5px;
   }
+  .x_gd_list_content{
+    padding: 15px 10px;
+    background: #ffffff;
+  }
   .x_sidebar{
     padding: 0px 15px;
     padding-top: 5px;
@@ -102,16 +106,20 @@
     background: #ffffff;
     margin-bottom: 1.75rem;
     box-shadow: 0px 0px 5px -3px;
+    border-radius: 0.35rem;
+    overflow: hidden;
   }
 
   .x_gd_box_tittle{
-    font-size: 14px;
+    font-size: 16px;
     line-height: 22px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--x-border-color);
     color: #333;
   }
 
   .x_gd_box_description{
-      font-weight: 300;
       margin-bottom: .75rem;
   }
   .x_old_price{
@@ -120,21 +128,28 @@
     text-decoration: line-through;
   }
   .x_gd_view_button_box{
-    border-radius: 0px;
-    border: 1px solid #919191;
     background: unset;
     margin-right: 4%;
-    padding: 5px 5px;
+    padding: 8px 5px;
     font-size: 12px;
     width: 48%;
+    border: 1px solid var(--x-border-color)
   }
-  
+  .x_gd_box_price .x_newPrice, .x_gd_list_price .x_newPrice{
+    color: #e74c3c;
+    font-weight: bolder;
+  }
+  .x_gd_box_price{
+    font-size: 14px;
+  }
+  .x_gd_list_price{
+    font-size: 16px;
+  }
   .x_gd_create_button_box{
-    border-radius: 0px;
-    background: #e67e22;
-    border: 1px solid #e67e22;
+    background: #2d88e2;
+    border: 1px solid #2d88e2;
     color: white;
-    padding: 5px 5px;
+    padding: 8px 5px;
     font-size: 12px;
     width: 48%;
   }
@@ -146,10 +161,68 @@
   }
   
   .x_gd_create_button{
-    background: #e67e22;
-    border: 1px solid #e67e22;
+    background: #2d88e2;
+    border: 1px solid #2d88e2;
     color: white;
   }
   .x_styles_price{
     margin-bottom: 10px;
   }
+  .x_filter_button_change{
+    display: none;
+  }
+  .x_close_filter{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 999999;
+    background-color: rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+  .x_close{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  @media (max-width: 992px){
+    .x_fixed_filter{
+      position: fixed;
+      left: -100%;
+      top: 0px;
+      z-index: 9999999;
+      background-color: white;
+      max-width: 320px;
+      overflow-y: scroll;
+      height: 100%;
+      transition: var(--x-transition)
+    }
+    .x_fixed_filter_open{
+      left: 0% !important;
+    }
+    .x_filter_button_change{
+      display: inline-block;
+    }
+    .x_filter_group{
+      position: fixed;
+      bottom: 0px;
+      width: 100%;
+      background-color: white;
+      z-index: 999;
+      left: 0;
+      justify-content: center;
+      display: flex;
+      padding: 5px 15px;
+      border-top: 1px solid var(--x-border-color);
+    }
+    .x_filter_group button{
+      width: 33%;
+      text-align: center;
+      justify-content: center;
+      display: flex;
+      border: unset
+    }
+}

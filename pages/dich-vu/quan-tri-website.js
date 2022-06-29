@@ -1,5 +1,5 @@
 import { useState, useEffect  } from 'react'
-import { Grid, Container, Row, Col, Button, Divider, Whisper, Tooltip, ButtonToolbar } from 'rsuite' 
+import { Grid, Container, Row, Col, Button, Divider, Whisper, Tooltip, ButtonToolbar, Modal } from 'rsuite' 
 import { IoCheckmarkCircle, IoCaretForwardSharp, IoChevronBackOutline, IoChevronForwardOutline, IoCheckmarkCircleSharp  }  from "react-icons/io5"
 import { ServicesWebsiteManager } from '../api/HeaderSeo'
 import { MarketingTable, MarketingHead } from '../api/services'
@@ -8,10 +8,21 @@ import Image from 'next/image'
 import Head from 'next/head'
 import HTMLReactParser from 'html-react-parser'
 import Link from 'next/link'
- 
+ import ServicesSubmitForm from '../../components/handleSubmitServices'
+
 const WebsiteManager = () => {
   const [priceTab, setPriceTab] = useState(1);
   const [width, setWidth] = useState(0);
+
+  const [open, setOpen] = useState(false);  
+  const [service, setService] = useState(''); 
+
+  const handleOpen = (service) => {
+     setService(service);
+     setOpen(true)
+  };
+
+  const handleClose = () => setOpen(false);
   const handleResize = () => setWidth(window.innerWidth);
 
   const handlePrePriceTab = () => {
@@ -89,7 +100,7 @@ const WebsiteManager = () => {
                               </div>
                           </li>
                           </ul>
-                          <Button className={styles.x_adsButton}>
+                          <Button className={styles.x_adsButton} onClick={() => {handleOpen('Đăng ký tư vấn dịch vụ quản trị website')}}>
                               Đăng ký tư vấn miễn phí
                           </Button>
                       </div>  
@@ -234,7 +245,10 @@ const WebsiteManager = () => {
                                                 <div className={styles.x_table_content_heading} onClick={ () => { setPriceTab(index) } }>
                                                   <h4><IoCheckmarkCircleSharp size={14} color={'#00cc88'}/> {val.name}</h4>
                                                   <strong>{val.price}</strong>
-                                                  <Button className={styles.x_table_button}>Đăng ký</Button>
+                                                  <Button className={styles.x_table_button}
+                                                    onClick={() => {handleOpen('Đăng ký dịch vụ marketing gói ' + val.name)}}>
+                                                      Đăng ký
+                                                  </Button>
                                                 </div>
                                               </li>
                                           )
@@ -314,7 +328,12 @@ const WebsiteManager = () => {
                                             <div className={styles.x_table_content_heading}>
                                               <h4><IoCheckmarkCircleSharp size={14} color={'#00cc88'}/> {val.name}</h4>
                                               <strong>{val.price}</strong>
-                                              <Button type='submit' className={styles.x_table_button}>Đăng ký</Button>
+                                              <Button 
+                                                type='submit' 
+                                                className={styles.x_table_button}
+                                                onClick={() => {handleOpen('Đăng ký dịch vụ marketing gói ' + val.name)}}
+                                              >
+                                                Đăng ký</Button>
                                             </div>
                                           </li>
                                         )
@@ -377,6 +396,14 @@ const WebsiteManager = () => {
             </Grid>
         </div>
       </div>
+      <Modal open={open} onClose={handleClose} backdrop="static">
+        <Modal.Header>
+          <Modal.Title>Đăng ký tư vấn dịch vụ quản trị website</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            <ServicesSubmitForm service={service}/>
+        </Modal.Body>
+      </Modal>
     </>
   )
 }

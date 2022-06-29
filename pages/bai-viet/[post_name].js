@@ -2,12 +2,12 @@ import React from 'react'
 import { Grid, Container, Row, Col, Breadcrumb } from 'rsuite';
 import Image from 'next/image';
 import Link from 'next/link';
-import styles from '../styles/blog.module.css';
+import styles from '../../styles/blog.module.css';
 import axios from 'axios';
 import HTMLReactParser from 'html-react-parser';
 import Head from 'next/head';
 import { IoPersonCircleOutline, IoTimeOutline } from "react-icons/io5";
-import { BlogStyleTwo } from '../components/blog-templates/BlogContent';
+import { BlogStyleTwo } from '../../components/blog-templates/BlogContent';
 
 import {
   PinterestShareButton,
@@ -55,7 +55,7 @@ const SocialLink = ({ title, description, media, url}) => {
 
 const PostSingle = ({data}) => {
   if(data == undefined) return '';
-  let miscValue = Object.values(data.yoast_head.json.twitter_misc);
+  let miscValue =  data.yoast_head.json.twitter_misc ? Object.values(data.yoast_head.json.twitter_misc) : '';
     return (
       <>
         <Head>
