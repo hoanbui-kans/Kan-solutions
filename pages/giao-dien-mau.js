@@ -40,12 +40,15 @@ const Price = ({data}) => {
     )
 }
 
-const GD_Box = ({data}) => {
+export const GD_Box = ({data}) => {
     return (
         <div className={styles.x_gd_box}>
-            <div className={styles.x_gd_box_thumbnail}>
-                <Image alt='layout' src={data.thumbnail} width={600} height={400}/>
-            </div>
+             {
+                data.thumbnail ?
+                    <div className={styles.x_gd_box_thumbnail}>
+                    <Image alt={data.post_title} src={data.thumbnail[0]} width={data.thumbnail[1]} height={data.thumbnail[2]}/>
+                </div> : ''
+            }
             <div className={styles.x_gd_box_content}>
                 <Link href={`/giao-dien/${data.post_name}`}>
                     <a className={styles.x_gd_box_link}>
@@ -80,11 +83,14 @@ const GD_List = ({data}) => {
     return (
         <div className={styles.x_gd_box}>
             <Row>
-                <Col xs={24} md={12}>
-                    <div className={styles.x_gd_box_thumbnail}>
-                        <Image alt='layout' src={data.thumbnail} width={800} height={575}/>
-                    </div>
-                </Col>
+                {
+                    data.thumbnail ?
+                    <Col xs={24} md={12}>
+                        <div className={styles.x_gd_box_thumbnail}>
+                            <Image alt={data.post_title} src={data.thumbnail[0]} width={data.thumbnail[1]} height={data.thumbnail[2]}/>
+                        </div>
+                    </Col> : ''
+                }
                 <Col xs={24} md={12}>
                     <div className={styles.x_gd_list_content}>
                         <Link href={`/giao-dien/${data.post_name}`}>
@@ -268,7 +274,7 @@ const Themes = ({gd, nganh, danhmuc, max_pages}) => {
                                 {
                                     gd.map((val) => {
                                         return  displayGrid ? 
-                                        <Col xs={24} md={8} key={val.ID}>
+                                        <Col xs={24} md={12} key={val.ID}>
                                             <GD_Box data={val}/>
                                         </Col>
                                         :

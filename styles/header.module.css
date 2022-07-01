@@ -50,7 +50,7 @@
 }
 .mainMenuContainer ul li{
     display: block;
-    padding: 10px 15px;
+    padding: 10px 8px;
     cursor: pointer;
 }
 .x_search_button{

@@ -12,6 +12,7 @@ import ArrowRightIcon from '@rsuite/icons/ArrowRight';
 import { getSession } from 'next-auth/react'
 import md5 from 'md5'
 import FormTuVan from '../../components/FormTuVan'
+import { GD_Box } from '../giao-dien-mau'
 
 const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON;
 
@@ -98,7 +99,6 @@ function Price({data}) {
 }
 
 export const SingleTheme = ({data, link_theme}) => {
-
   const DanhMucNganh = data.nganh ? data.nganh : '';
   const ThemeInfor = data.themeinfor ? data.themeinfor : '';
 
@@ -130,9 +130,12 @@ export const SingleTheme = ({data, link_theme}) => {
             <Row className={styles.x_flex + ' ' + styles.x_theme_thumbnail_section}>
               <Col xs={24} md={16} className={styles.x_padding}>
                 <div className={styles.x_theme_content}>
-                  <div className={styles.x_single_theme_thumbnail}>
-                    <Image src={data.thumbnail} width={800} height={575} alt={data.post_title}/>
-                  </div>
+                    {
+                      data.thumbnail ?  
+                      <div className={styles.x_single_theme_thumbnail}>
+                        <Image src={data.thumbnail[0]} width={data.thumbnail[1]} height={data.thumbnail[2]} alt={data.post_title}/>
+                      </div>: ''
+                    }
                     {
                         DanhMucNganh.length > 0 ? 
                         DanhMucNganh[0].layout ?
@@ -213,6 +216,21 @@ export const SingleTheme = ({data, link_theme}) => {
                   </div>
                 </div>
               </Col>
+                {
+                  data.related ? 
+                  <Col xs={24}>
+                    <h3 className={styles.x_related_gd_mau}>Giao diện mẫu tương tự</h3>
+                    {
+                      data.related.map((val) => {
+                        return(
+                            <Col xs={24} md={8} key={val.ID}>
+                                <GD_Box data={val}/>
+                            </Col>
+                          )
+                        })
+                    }
+                  </Col> : ''
+                }
               </Row>
           </Container>
         </Grid>

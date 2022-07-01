@@ -99,8 +99,8 @@
     padding: 0px 15px;
     padding-top: 5px;
     padding-bottom: 6px;
-    background-color: white;
     border-radius: 5px;
+    border-right: 1px solid #ececec;
   }
   .x_gd_box{
     background: #ffffff;

@@ -14,8 +14,8 @@ import EmailFillIcon from '@rsuite/icons/EmailFill'
 import PhoneFillIcon from '@rsuite/icons/PhoneFill'
 import axios from 'axios'
 import styles from '../styles/header.module.css'
-
 import { IoCaretForwardSharp } from 'react-icons/io5'
+import Head from 'next/head'
 
 const rootURL = process.env.wp_json_enpoint;
 
@@ -29,7 +29,7 @@ const Left = () => {
                             <div className={styles.x_dropbox} key={index}>
                                 <Link href={val.link}>
                                     <a className={styles.x_iconLink}>
-                                    <span className={styles.x_iconImage}><Image alt='layout' src={val.image} width={24} height={24} /> </span> 
+                                    <span className={styles.x_iconImage}><Image alt={val.name} src={val.image} width={24} height={24} /> </span> 
                                     {val.name}</a>
                                 </Link>
                             </div>
@@ -241,10 +241,12 @@ const Header = () => {
 
     const searchPosts = async (query) => {
         setLoadingSearch(true);
-        const { data } = await axios.get(`${rootURL}tim-kiem/bai-viet?query=${query}&p=1`).then((res) => res);
-        if(data){
+        const response = await axios.get(`${rootURL}tim-kiem/bai-viet?query=${query}&p=1`).then((res) => res.data);
+        if(!response.error){
             setPaged({current:1, max:data.max_num_pages});
             setResultSearch(data);
+            setLoadingSearch(false);
+        } else {
             setLoadingSearch(false);
         }
     }
@@ -261,6 +263,9 @@ const Header = () => {
 
     return (
       <>
+      <Head>
+        <meta name="google-site-verification" content="rrhzRHk7SR7nSIFPU8TAfwRLuGUDedgPiC0nccSlKgA" />
+      </Head>
       <div className={styles.x_top_header}>
          <Grid className='x_container'>
                 <Container> 
@@ -271,9 +276,9 @@ const Header = () => {
                         <Col xs={12} md={16} lg={16} className={styles.x_flex_end}>
                             <ul className={styles.x_top_header_menu}>
                                 <li className={styles.x_destop_display}>
-                                    <a href={'tel:0945938489'}>
+                                    <a href={'tel:0392193639'}>
                                         <PhoneFillIcon  />
-                                         0945 938 489
+                                        039 219 3639
                                     </a>
                                 </li>
                                 <li className={styles.x_destop_display}>
@@ -309,7 +314,7 @@ const Header = () => {
                                 <div className={styles.x_brand}>
                                     <Link href={'/'}>
                                         <a>
-                                        <Image alt='layout' src={Brand} width={140} height={62} />
+                                        <Image alt='Kansite.com.vn' src={Brand} width={140} height={62} />
                                         </a>
                                     </Link>
                                 </div>
@@ -336,6 +341,9 @@ const Header = () => {
                                                         </animated.div>
                                                     </span>
                                                 </a>
+                                            </li>
+                                            <li>
+                                                <Link href={'/du-an'}>Dự án</Link>
                                             </li>
                                             <li>
                                                 <Link href={'/tin-tuc'}>Tin tức</Link>
@@ -423,6 +431,7 @@ const Header = () => {
                                     }
                                     
                                     <input 
+                                    name='seach'
                                     onFocus={() => { setFocus(true) }}
                                     onBlur={() => { !keySearch ? setFocus(false) : setFocus(true) }}
                                     className={styles.x_searchForm} value={keySearch} onChange={(e) => { setKeySearch(e.target.value)}} placeholder={ loadingSearch ? 'Đang tải...' : 'Tìm kiếm thông tin...' } />
@@ -436,9 +445,12 @@ const Header = () => {
                                             resultSearch.posts.map((val, index) => {
                                                 return(
                                                 <div key={index} className={styles.x_search_result_post + ' ' + styles.x_dropbox}>
-                                                    <div className={styles.x_search_result_thumbnail}>
-                                                    <Image alt='layout' src={val.thumbnail} width={70} height={70}/>
-                                                    </div>
+                                                    {
+                                                        val.thumbnail ? 
+                                                        <div className={styles.x_search_result_thumbnail}>
+                                                            <Image alt={val.post_name} src={val.thumbnail[0]} width={val.thumbnail[1]} height={val.thumbnail[2]}/>
+                                                        </div> : ''
+                                                    }
                                                     <div className={styles.x_search_result_content}>
                                                     <Link href={val.post_name}>
                                                         <a onClick={() => {setSearchForm(false)}}>

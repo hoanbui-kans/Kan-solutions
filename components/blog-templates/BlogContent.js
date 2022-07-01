@@ -31,9 +31,13 @@ export const BlogStyleOne = ({data}) => {
     <div className={styles.x_blog_one_section}>
       <Row>
         <Col xs={24} md={12}>
-          <div className={styles.x_blog_one_thumbnail}>
-              <Image alt='layout' height={400} width={600} src={data.thumbnail ? data.thumbnail : '/'}/>
-          </div>
+          {
+            data.thumbnail ?  
+            <div className={styles.x_blog_one_thumbnail}>
+                <Image alt='layout' src={ data.thumbnail[0] } width={data.thumbnail[1]} height={data.thumbnail[2]} />
+            </div> : ''
+          }
+         
         </Col>
         <Col xs={24} md={12}>
           <div className={styles.x_blog_one_content}>
@@ -57,9 +61,11 @@ export const BlogStyleOne = ({data}) => {
 export const BlogStyleTwo = ({data}) => {
   return (
     <div className={styles.x_blog_two_section}>
-      <div className={styles.x_blog_two_thumbnail}>
-          <Image alt='layout' height={330} width={600} src={data.thumbnail ? data.thumbnail : '/'}/>
-        </div>
+      {
+        data.thumbnail ? <div className={styles.x_blog_two_thumbnail}>
+          <Image alt='layout' src={ data.thumbnail[0] } width={data.thumbnail[1]} height={data.thumbnail[2]}/>
+        </div> : ''
+      }
       <div className={styles.x_blog_two_content}>
         <TermList data={data.terms} />
         <Link href={'/bai-viet/' + data.post_name}>
