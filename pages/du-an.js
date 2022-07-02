@@ -1,4 +1,3 @@
-import React from 'react'
 import { useState } from 'react'
 import { Container, Grid, Row,Col, Pagination, Breadcrumb, Button } from 'rsuite'
 import axios from 'axios'
@@ -65,20 +64,18 @@ const Projects = ({bai_viet, max_num_pages}) => {
     return (
         <>
         <div className={'x_breadcum_container'}>
-            <Grid className={'x-container'}>
-                <Container>
-                    <Row>
-                        <Col xs={24}>
-                        <Breadcrumb className={'x_breadcumb'}>
-                            <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
-                            <Breadcrumb.Item active>Dự án</Breadcrumb.Item>
-                        </Breadcrumb>
-                        </Col>
-                    </Row>
-                </Container>
-            </Grid>    
+            <Container>
+                <Row>
+                    <Col xs={24}>
+                    <Breadcrumb className={'x_breadcumb'}>
+                        <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
+                        <Breadcrumb.Item active>Dự án</Breadcrumb.Item>
+                    </Breadcrumb>
+                    </Col>
+                </Row>
+            </Container>
         </div>  
-        <Grid className={styles.x_project_grid}>
+        <section className={styles.x_project_grid}>
             <Container>
                 <Row>
                     <Col xs={24} md={18}>
@@ -111,7 +108,7 @@ const Projects = ({bai_viet, max_num_pages}) => {
                     </Col>
                 </Row>
             </Container>
-        </Grid>
+        </section>
     </>
   )
 }

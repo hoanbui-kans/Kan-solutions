@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import styles from '../styles/themes.module.css'
-import { Grid, Container, Row, Col, Form, Pagination, Button, Breadcrumb, SelectPicker, List, CheckboxGroup, Checkbox,toaster,Message,ButtonToolbar } from 'rsuite'
+import { Container, Row, Col, Form, Pagination, Button, Breadcrumb, SelectPicker, List, CheckboxGroup, Checkbox,toaster,Message,ButtonToolbar } from 'rsuite'
 import Image from 'next/image'
 import Link from 'next/link'
 import SearchIcon from '@rsuite/icons/Search'
@@ -166,7 +166,7 @@ const Themes = ({gd, nganh, danhmuc, max_pages}) => {
             left: 0,
             behavior: "smooth"
         });
-        const response = await axios.get(`${rootURL}giao-dien/giao-dien-mau?p=${perPage}&nganh=${nganhTerms}&s=${keySearch}`).then((resonse) => resonse.data);
+        const response = await axios.get(`${rootURL}giao-dien/giao-dien-mau?p=${paged}&perpage=${perPage}&nganh=${nganhTerms}&s=${keySearch}`).then((resonse) => resonse.data);
         if(!response.error){
             setPosts(response.posts);
             setMax_paged(response.max_pages);
@@ -204,7 +204,7 @@ const Themes = ({gd, nganh, danhmuc, max_pages}) => {
             {data.map((val) => {
                 if(val.count != 0){
                     return (
-                        <Checkbox key={val.term_id} value={val.term_id}>
+                        <Checkbox key={val.term_id} value={val.slug}>
                             {val.name}
                             <span className={styles.x_count}>{val.count}</span>
                        </Checkbox>
@@ -233,21 +233,18 @@ const Themes = ({gd, nganh, danhmuc, max_pages}) => {
   return (
     <>
     <div className={'x_breadcum_container'}>
-        <Grid className={'x-container'}>
-                <Container>
-                    <Row>
-                        <Col xs={24}>
-                            <Breadcrumb className={'x_breadcumb'}>
-                                <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
-                                <Breadcrumb.Item active>Giao diện mẫu</Breadcrumb.Item>
-                            </Breadcrumb>
-                        </Col>
-                    </Row>
-                </Container>
-        </Grid>      
+        <Container>
+            <Row>
+                <Col xs={24}>
+                    <Breadcrumb className={'x_breadcumb'}>
+                        <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
+                        <Breadcrumb.Item active>Giao diện mẫu</Breadcrumb.Item>
+                    </Breadcrumb>
+                </Col>
+            </Row>
+        </Container>
     </div>
     <div className={styles.x_gd_section}>
-            <Grid className={'x-container'}>
                 <Container>
                     <Row>
                         
@@ -341,7 +338,6 @@ const Themes = ({gd, nganh, danhmuc, max_pages}) => {
                         </Col>
                     </Row>
                 </Container>
-            </Grid>
       </div>
     </>
   )

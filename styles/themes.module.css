@@ -175,6 +175,8 @@
   .x_gd_box_thumbnail{
     cursor: pointer;
     position: relative;
+    height: 300px;
+    overflow: hidden;
   }
   .x_gd_box img{
     transition: var(--x-transition);

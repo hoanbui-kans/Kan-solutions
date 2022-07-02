@@ -1,10 +1,9 @@
-import React, { useState} from 'react'
-import styles from '../styles/account.module.css'
 import { signIn } from 'next-auth/react'
 import { Button } from 'rsuite'
 import { IoLogoFacebook, IoLogoGoogle } from "react-icons/io5";
+import styles from '../styles/account.module.css'
 
-const SocialButton = (props) => {
+const SocialButton = () => {
   return (
     <>
     <p className={styles.x_social_title}>Đăng nhập bằng mạng xã hội</p>

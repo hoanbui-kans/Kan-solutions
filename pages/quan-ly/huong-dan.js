@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Grid, Container, Row, Col, Button, List } from 'rsuite';
+import { Container, Row, Col, List } from 'rsuite';
 import Link from 'next/link';
 import styles from '../../styles/account.module.css'
 import UserNav from '../../components/user-manager/UserNav';
@@ -12,52 +12,48 @@ const Guile = ({category}) => {
   return (
     <>
     <div className={styles.x_app_header}>
-        <Grid className={styles.x_app_container}>
-            <Container>
-                <Row>
-                    <Col xs={24}>
-                        <UserNav />
-                    </Col>
-                </Row>
-            </Container>
-        </Grid>
+        <Container>
+            <Row>
+                <Col xs={24}>
+                    <UserNav />
+                </Col>
+            </Row>
+        </Container>
     </div>
     <section className={styles.x_app_section}>
-        <Grid className={styles.x_app_container}>
-            <Container>
-                <Row className={styles.x_create_section}>
-                    <Col xs={24}>
-                        <List>
-                        {category.map(({  term_id, name, children, slug }, index) => (
-                            <List.Item key={term_id} index={index} collection={'annoument'}>
-                                <Link href={'/quan-ly/danh-muc-huong-dan/' + slug}>
-                                <a>
-                                    <IoCaretForwardSharp size={16} /> 
-                                    {name}
-                                </a>
-                                </Link>
-                                {
-                                    children ?  
-                                        <ul>
-                                            {children.map(({  term_id, name, slug, count }, index) => (
-                                                <li key={term_id} index={index} collection={'annoument'}>
-                                                    <Link href={'/quan-ly/danh-muc-huong-dan/' + slug}>
-                                                        <a>
-                                                            {name} {count}
-                                                        </a>
-                                                    </Link>
-                                                </li>
-                                            ))}
-                                        </ul> : ''
-                                }
-                               
-                            </List.Item>
-                        ))}
-                        </List>
-                    </Col>
-                </Row>
-            </Container>
-        </Grid>
+        <Container>
+            <Row className={styles.x_create_section}>
+                <Col xs={24}>
+                    <List>
+                    {category.map(({  term_id, name, children, slug }, index) => (
+                        <List.Item key={term_id} index={index} collection={'annoument'}>
+                            <Link href={'/quan-ly/danh-muc-huong-dan/' + slug}>
+                            <a>
+                                <IoCaretForwardSharp size={16} /> 
+                                {name}
+                            </a>
+                            </Link>
+                            {
+                                children ?  
+                                    <ul>
+                                        {children.map(({  term_id, name, slug, count }, index) => (
+                                            <li key={term_id} index={index} collection={'annoument'}>
+                                                <Link href={'/quan-ly/danh-muc-huong-dan/' + slug}>
+                                                    <a>
+                                                        {name} {count}
+                                                    </a>
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul> : ''
+                            }
+                            
+                        </List.Item>
+                    ))}
+                    </List>
+                </Col>
+            </Row>
+        </Container>
     </section>
     </>
   )

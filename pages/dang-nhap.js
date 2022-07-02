@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { 
-  Grid, Container, Row, Col, 
-  Form,InputGroup, Input, Button, 
+  Container, Row, Col, 
+  Form,InputGroup, Button, 
   Schema, Loader, Toggle, Message, 
   useToaster 
 } from 'rsuite'
@@ -62,7 +62,7 @@ const Login = () => {
 
     return (
       <>
-       <Grid className={styles.x_account_container}>
+       <section className={styles.x_account_container}>
           <Container>
             <Row>
               <Col xs={24}>
@@ -85,13 +85,13 @@ const Login = () => {
               </Col>
             </Row>
           </Container>
-        </Grid>
+        </section>
       </>
     )
   }
 
   return (
-    <Grid className={styles.x_account_container}>
+    <section className={styles.x_account_container}>
       <Container>
         <Row>
           <Col xs={24}>
@@ -149,7 +149,7 @@ const Login = () => {
           </Col>
         </Row>
       </Container>
-    </Grid>
+    </section>
   )
 }
 

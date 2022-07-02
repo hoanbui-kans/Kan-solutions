@@ -13,7 +13,7 @@ const Loggout = () => {
   const {data: session} = useSession();
   if(!session){
     return (
-      <Grid className={styles.x_account_container}>
+      <section className={styles.x_account_container}>
       <Link href = '/'>
         <a className={styles.x_back_home}>
           <IoHomeOutline size={20}/>
@@ -38,7 +38,7 @@ const Loggout = () => {
           </Col>
         </Row>
       </Container>
-    </Grid>
+    </section>
     )
   }
   const userName = session ? session.user.user_display_name : '';
@@ -46,17 +46,17 @@ const Loggout = () => {
   
   return (
     <>
-    <Grid className={styles.x_account_container}>
-       <Link href = '/'>
-         <a className={styles.x_back_home}>
-           <IoHomeOutline size={20}/>
-           Trở về trang chủ
-         </a>
-       </Link>
+    <section className={styles.x_account_container}>
        <Container>
          <Row>
            <Col xs={24}>
              <div className={styles.x_login + ' ' + styles.x_logged_form}>
+                <Link href = '/'>
+                    <a className={styles.x_back_home}>
+                      <IoHomeOutline size={20}/>
+                      Trở về trang chủ
+                    </a>
+                </Link>
                <h1 className={styles.x_account_title}>Xin chào {userName}</h1>
                <small>({userEmail})</small>
                <p className={styles.x_greeting}>Bạn đã đăng nhập vào hệ thống của chúng tôi, hãy bắt đầu tạo website của bạn</p>
@@ -68,7 +68,7 @@ const Loggout = () => {
            </Col>
          </Row>
        </Container>
-     </Grid>
+     </section>
    </>
   )
 }

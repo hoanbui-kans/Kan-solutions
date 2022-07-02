@@ -28,7 +28,6 @@ const Wordpress = () => {
     </Head>
     <div className={styles.x_wordpress_section}>
         <section className={styles.x_banner}>
-            <Grid className='x-container'>
             <Container>
                 <Row className={styles.x_centered}>
                     <Col xs={24} md={12}>
@@ -49,10 +48,8 @@ const Wordpress = () => {
                     </Col>
                 </Row>
             </Container>
-            </Grid>
         </section>
         <section className={styles.x_why_choose}>
-            <Grid className='x-container'>
             <Container>
                 <Row className={styles.x_centered}>
                     <Col xs={24} md={12}>
@@ -73,11 +70,9 @@ const Wordpress = () => {
                     </Col>
                 </Row>
             </Container>
-            </Grid>
         </section>
         <Divider/>
         <section className={styles.x_why_choose}>
-            <Grid className='x-container'>
             <Container>
                 <Row className={styles.x_centered}>
                     <Col xs={24} md={12}>
@@ -98,10 +93,8 @@ const Wordpress = () => {
                     </Col>
                 </Row>
             </Container>
-            </Grid>
         </section>
         <section className={styles.x_hosting_section}>
-            <Grid className='x-container'>
             <Container>
                 <Row className={styles.x_centered}>
                     <Col xs={24}>
@@ -147,11 +140,9 @@ const Wordpress = () => {
                     </Col>
                 </Row>
             </Container>
-            </Grid>
         </section>
         <Divider/>
         <section className={styles.x_hosting_section}>
-            <Grid className='x-container'>
             <Container>
                 <Row className={styles.x_centered}>
                     <Col xs={24}>
@@ -197,11 +188,9 @@ const Wordpress = () => {
                     </Col>
                 </Row>
             </Container>
-            </Grid>
         </section>
         <Divider/>
         <section className={styles.x_services_container}>
-            <Grid className='x-container'>
             <Container>
                 <Row>
                     <Col xs={24}>
@@ -258,7 +247,6 @@ const Wordpress = () => {
                     </Col>
                 </Row>
             </Container>
-            </Grid>
         </section>
     </div>
     <Modal open={open} onClose={handleClose} backdrop="static">

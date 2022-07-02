@@ -58,11 +58,14 @@ body {
 .rs-col{
   padding-left: var(--x-padding-column) !important;
   padding-right: var(--x-padding-column) !important;
+  float: none;
 }
 .rs-container {
   display: flex;
   flex-direction: column;
   flex: auto;
+  max-width: 1200px;
+  margin: auto;
   padding: 0px 15px;
 }
 .x_flex_center{

@@ -1,43 +1,38 @@
 import React from 'react';
 import axios from 'axios';
-import { Grid, Container, Row, Col, Button, List } from 'rsuite';
+import { Container, Row, Col, Button, List } from 'rsuite';
 import Link from 'next/link';
 import styles from '../../styles/account.module.css'
 import UserNav from '../../components/user-manager/UserNav';
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 const Annoucement = ({bai_viet}) => {
-    console.log(bai_viet)
   return (
     <>
     <div className={styles.x_app_header}>
-        <Grid className={styles.x_app_container}>
-            <Container>
-                <Row>
-                    <Col xs={24}>
-                        <UserNav />
-                    </Col>
-                </Row>
-            </Container>
-        </Grid>
+        <Container>
+            <Row>
+                <Col xs={24}>
+                    <UserNav />
+                </Col>
+            </Row>
+        </Container>
     </div>
     <section className={styles.x_app_section}>
-        <Grid className={styles.x_app_container}>
-            <Container>
-                <Row className={styles.x_create_section}>
-                    <Col xs={24}>
-                        <List>
-                        {bai_viet.map(({  ID, post_title, post_excerpt }, index) => (
-                            <List.Item key={ID} index={index} collection={'annoument'}>
-                                <h3>{post_title}</h3>
-                                <p>{post_excerpt}</p>
-                            </List.Item>
-                        ))}
-                        </List>
-                    </Col>
-                </Row>
-            </Container>
-        </Grid>
+        <Container>
+            <Row className={styles.x_create_section}>
+                <Col xs={24}>
+                    <List>
+                    {bai_viet.map(({  ID, post_title, post_excerpt }, index) => (
+                        <List.Item key={ID} index={index} collection={'annoument'}>
+                            <h3>{post_title}</h3>
+                            <p>{post_excerpt}</p>
+                        </List.Item>
+                    ))}
+                    </List>
+                </Col>
+            </Row>
+        </Container>
     </section>
     </>
   )

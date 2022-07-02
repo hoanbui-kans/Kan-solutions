@@ -135,7 +135,7 @@ export const SinglePageProject = ({data}) => {
                     <div className={styles.x_toolbar_button}>
                     <Button 
                         className={styles.x_create_button}
-                        onClick={() => { handleOpen('Dịch vụ hosting thiết kế webiste' + data.post_title) }}
+                        onClick={() => { handleOpen('Dịch vụ hosting thiết kế webiste ' + data.post_title) }}
                       >
                         Đăng ký tư vấn
                       </Button> 

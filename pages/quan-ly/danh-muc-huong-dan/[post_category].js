@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Grid, Container, Row, Col, Button, List } from 'rsuite';
+import { Container, Row, Col, List } from 'rsuite';
 import Link from 'next/link';
 import styles from '../../../styles/account.module.css'
 import UserNav from '../../../components/user-manager/UserNav';
@@ -12,37 +12,33 @@ const GuilePosts = ({bai_viet}) => {
   return (
     <>
     <div className={styles.x_app_header}>
-        <Grid className={styles.x_app_container}>
-            <Container>
-                <Row>
-                    <Col xs={24}>
-                        <UserNav />
-                    </Col>
-                </Row>
-            </Container>
-        </Grid>
+        <Container>
+            <Row>
+                <Col xs={24}>
+                    <UserNav />
+                </Col>
+            </Row>
+        </Container>
     </div>
     <section className={styles.x_app_section}>
-        <Grid className={styles.x_app_container}>
-            <Container>
-                <Row className={styles.x_create_section}>
-                    <Col xs={24}>
-                        <List>
-                        {bai_viet.map((val, index) => (
-                            <List.Item key={val.ID} index={index} collection={'annoument'}>
-                                <Link href={'/quan-ly/huong-dan/' + val.post_name}>
-                                  <a>
-                                      <IoCaretForwardSharp size={16} /> 
-                                      {val.post_title}
-                                  </a>
-                                </Link>
-                            </List.Item>
-                        ))}
-                        </List>
-                    </Col>
-                </Row>
-            </Container>
-        </Grid>
+        <Container>
+            <Row className={styles.x_create_section}>
+                <Col xs={24}>
+                    <List>
+                    {bai_viet.map((val, index) => (
+                        <List.Item key={val.ID} index={index} collection={'annoument'}>
+                            <Link href={'/quan-ly/huong-dan/' + val.post_name}>
+                                <a>
+                                    <IoCaretForwardSharp size={16} /> 
+                                    {val.post_title}
+                                </a>
+                            </Link>
+                        </List.Item>
+                    ))}
+                    </List>
+                </Col>
+            </Row>
+        </Container>
     </section>
     </>
   )

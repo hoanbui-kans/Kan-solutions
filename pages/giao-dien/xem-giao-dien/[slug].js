@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Navbar, Nav, Modal, Row, Col  } from 'rsuite'
 import Link from 'next/link'
 import styles from '../../../styles/themepreview.module.css'

@@ -21,28 +21,32 @@ const CRM = ({data}) => {
           }
         </Head>
         <div className={'x_breadcum_container'}>
-          <Grid className={'x-container'}>
-            <Container>
-                <Row>
-                    <Col xs={24}>
-                      <Breadcrumb className={'x_breadcumb'}>
-                        <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
-                        <Breadcrumb.Item active>{data.post_title}</Breadcrumb.Item>
-                      </Breadcrumb>
-                    </Col>
-                </Row>
-            </Container>
-        </Grid>    
-      </div>  
+            <section>
+              <Container>
+                  <Row>
+                      <Col xs={24}>
+                        <Breadcrumb className={'x_breadcumb'}>
+                          <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
+                          <Breadcrumb.Item active>{data.post_title}</Breadcrumb.Item>
+                        </Breadcrumb>
+                      </Col>
+                  </Row>
+              </Container>
+          </section>    
+        </div>  
          <div className={styles.x_container_x}>
-            <Grid className={'x-container'}>
+            <section>
                   <Container>
                     <Row>
                         <Col xs={24} md={18}>
                             <div className={styles.x_blog_content}>
-                              <span className={styles.x_single_blog_thumbnail}>
-                                <Image alt='layout' src={data.thumbnail ? data.thumbnail : '/'} width={1000} height={600}/>
-                              </span>
+                              {
+                                data.thumbnail ? 
+                                <span className={styles.x_single_blog_thumbnail}>
+                                  <Image alt={data.post_title} src={data.thumbnail[0]} width={data.thumbnail[1]} height={data.thumbnail[2]}/>
+                                </span>
+                                : ''
+                              }
                               <div className={styles.x_single_blog_meta}>
                                 <h1 className={styles.x_post_title}>{data.post_title}</h1>
                               </div>
@@ -77,7 +81,7 @@ const CRM = ({data}) => {
                         </div> : ''
                       }
                 </Container>
-              </Grid>
+            </section>
         </div>
       </>
     )

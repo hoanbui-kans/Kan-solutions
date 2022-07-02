@@ -1,17 +1,26 @@
+import { useState } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import ArowBackIcon from '@rsuite/icons/ArowBack'
 import EmailFillIcon from '@rsuite/icons/EmailFill'
 import styles from '../styles/HomePage.module.css'
-import Link from 'next/link'
+import Link from 'next/link' 
 import HTMLReactParser from 'html-react-parser'
-
-import { Grid, Container, Row, Col, Button } from 'rsuite'
+import ServicesSubmitForm from '../components/handleSubmitServices'
+import { Container, Row, Col, Button, Modal } from 'rsuite'
 import { features, ServicesBox } from './api/services'
 import { HomePageSeo } from './api/HeaderSeo'
 
 // Images 
 export default function Home() {
+  const [open, setOpen] = useState(false);  
+  const [service, setService] = useState(''); 
+ 
+  const handleOpen = (service) => {
+     setService(service);
+     setOpen(true)
+  };
+  const handleClose = () => setOpen(false);
   return (
     <>
     <div className={styles.container}>
@@ -20,7 +29,6 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <div className={styles.x_section}>
-          <Grid className='x_container'>
             <Container>
               <Row>
                 <Col xs={24} md={10} className={styles.x_order_2}>
@@ -32,7 +40,10 @@ export default function Home() {
                   <p className={styles.description}>
                     Thông qua dịch vụ thiết kế website và kho dữ liệu mẫu nội dung số để mở rộng kinh doanh trên internet hiệu quả.
                   </p>
-                  <Button className={styles.x_black_button}>
+                  <Button 
+                    className={styles.x_black_button}
+                    onClick={() => { handleOpen('Đăng ký thiết kế website - Trang chủ') }}
+                  >
                     <EmailFillIcon width={34} heigh={34}/>
                      ĐĂNG KÝ TƯ VẤN
                   </Button>
@@ -50,13 +61,11 @@ export default function Home() {
                 </Col>
               </Row>
             </Container>
-          </Grid>
         </div>
         <div className='rs-grid-container'>
           <hr className={styles.x_seperator}/>
         </div>
         <div className={styles.x_section}>
-          <Grid className='x_container'>
             <Container>
               <Row>
                 <Col xs={24}>
@@ -81,12 +90,10 @@ export default function Home() {
                   })
                 }
               </Row>
-            </Container>
-          </Grid>
+          </Container>
         </div>
 
         <div className={styles.x_section}>
-          <Grid className='x_container'>
             <Container>
               <Row>
                 <Col xs={24}>
@@ -165,11 +172,9 @@ export default function Home() {
                 </Col>
               </Row>
             </Container>
-          </Grid>
         </div>
 
         <div className={styles.x_section}>
-          <Grid className='x_container'>
             <Container>
               <Row>
                 <Col xs={24}>
@@ -193,14 +198,12 @@ export default function Home() {
                 }
               </Row>
             </Container>
-          </Grid>
         </div>
 
         <div className={styles.x_section}>
           <span className={styles.lBox_1}>
             <Image alt='layout' src="/layout/l-box-01.svg" width={400} height={329}/>
           </span>
-          <Grid className='x_container'>
             <Container>
               <Row>
                 <Col xs={24} md={16}>
@@ -221,10 +224,17 @@ Website có cấu trúc code HTML thân thiện chuẩn SEO. Dễ cập nhật t
                 </Col>
               </Row>
             </Container>
-          </Grid>
         </div>
       </main>
     </div>
+     <Modal open={open} onClose={handleClose} backdrop="static">
+        <Modal.Header>
+          <Modal.Title>Đăng ký dịch vụ thiết kế Website</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            <ServicesSubmitForm service={service}/>
+        </Modal.Body>
+      </Modal>
     </>
   )
 }

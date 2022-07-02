@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react'
-import { Grid, Container, Row, Col, Form, Button, Input, Schema, Loader, toaster, Message, Breadcrumb  } from 'rsuite'
+import { Container, Row, Col, Form, Button, Input, Schema, Loader, toaster, Message, Breadcrumb  } from 'rsuite'
 import { IoPaperPlane } from "react-icons/io5"
 import styles from '../styles/page.module.css'
 import axios from 'axios'
@@ -85,21 +85,18 @@ const Contact = () => {
         {HTMLReactParser(ContactUsSeo)}
       </Head>
       <div className={'x_breadcum_container'}>
-          <Grid className={'x-container'}>
-            <Container>
-                <Row>
-                    <Col xs={24}>
-                      <Breadcrumb className={'x_breadcumb'}>
-                        <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
-                        <Breadcrumb.Item active>Liên hệ</Breadcrumb.Item>
-                      </Breadcrumb> 
-                    </Col>
-                </Row>
-            </Container>
-        </Grid>    
+        <Container>
+            <Row>
+                <Col xs={24}>
+                  <Breadcrumb className={'x_breadcumb'}>
+                    <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
+                    <Breadcrumb.Item active>Liên hệ</Breadcrumb.Item>
+                  </Breadcrumb> 
+                </Col>
+            </Row>
+        </Container>
       </div>  
       <section className={styles.x_contact_container}>
-      <Grid className={'x-container'}>
         <Container className={styles.x_container_form}>
           <Row className={'x_flex_center'}>
             <Col xs={24}>
@@ -204,7 +201,6 @@ const Contact = () => {
             </Col>
           </Row>
         </Container>
-      </Grid>
     </section>
     </>
   )

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Brand from '../public/logo.svg'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Grid, Row, Col, Nav, Container, Form, Button, Pagination, Loader  } from 'rsuite'
+import { Row, Col, Nav, Container, Form, Button, Pagination, Loader  } from 'rsuite'
 import { useSpring, animated, useChain, useSpringRef, useTransition, config } from "@react-spring/web"
 import { listServices } from '../pages/api/services'
 import { useSession } from "next-auth/react"
@@ -266,13 +266,12 @@ const Header = () => {
         <meta name="google-site-verification" content="rrhzRHk7SR7nSIFPU8TAfwRLuGUDedgPiC0nccSlKgA" />
       </Head>
       <div className={styles.x_top_header}>
-         <Grid className='x_container'>
-                <Container> 
+            <Container> 
                     <Row className={styles.x_flex}>
-                        <Col xs={12} md={8} lg={8}>
-                            <strong className={styles.x_top_header_brand}>CÔNG TY TNHH GIẢI PHÁP KAN</strong>
+                        <Col xs={12} md={8} lg={8} className={styles.x_top_header_brand}>
+                            <strong>CÔNG TY TNHH GIẢI PHÁP KAN</strong>
                         </Col>
-                        <Col xs={12} md={16} lg={16} className={styles.x_flex_end}>
+                        <Col xs={24} md={16} lg={16} className={styles.x_flex_end}>
                             <ul className={styles.x_top_header_menu}>
                                 <li className={styles.x_destop_display}>
                                     <a href={'tel:0392193639'}>
@@ -301,97 +300,94 @@ const Header = () => {
                             </ul>
                         </Col>
                     </Row>
-                </Container>
-          </Grid>
+            </Container>
       </div>
       <div className={ fixed ?  styles.x_header_section + ' ' + styles.x_fixed : styles.x_header_section}>
           <div className={styles.x_header}>
-                <Grid className='x_container'>
-                    <Container> 
-                        <Row className={styles.headerMenu}>
-                            <Col xs={12} md={12} lg={3}>
-                                <div className={styles.x_brand}>
-                                    <Link href={'/'}>
-                                        <a>
-                                        <Image alt='Kansite.com.vn' src={Brand} width={140} height={62} />
-                                        </a>
-                                    </Link>
+                <Container> 
+                    <Row className={styles.headerMenu}>
+                        <Col xs={12} md={12} lg={3}>
+                            <div className={styles.x_brand}>
+                                <Link href={'/'}>
+                                    <a>
+                                    <Image alt='Kansite.com.vn' src={Brand} width={140} height={62} />
+                                    </a>
+                                </Link>
+                            </div>
+                        </Col>
+                        <Col xs={18} className={styles.x_destop_display}>
+                            <Nav>
+                                <div className={styles.mainMenuContainer}>
+                                    <ul>
+                                        <li>
+                                            <Link href={'/'}>Trang chủ</Link>
+                                        </li>
+                                        <li>
+                                            <Link href={'/ve-chung-toi'}>Về chúng tôi</Link>
+                                        </li>
+                                        <li>
+                                            <a onClick={showDropdown}>
+                                                <span>
+                                                    Dịch vụ
+                                                    <animated.div 
+                                                    style={y}
+                                                    className={styles.arrow}
+                                                    >
+                                                        <ArrowDownLineIcon  width={14} height={14}/>
+                                                    </animated.div>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <Link href={'/du-an'}>Dự án</Link>
+                                        </li>
+                                        <li>
+                                            <Link href={'/tin-tuc'}>Tin tức</Link>
+                                        </li>
+                                        <li>
+                                            <Link href={'/tuyen-dung'}>Tuyển dụng</Link>
+                                        </li>
+                                        <li>
+                                            <Link href={'/lien-he'}>Liên hệ</Link>
+                                        </li>
+                                    </ul>
                                 </div>
-                            </Col>
-                            <Col xs={18} className={styles.x_destop_display}>
-                                <Nav>
-                                    <div className={styles.mainMenuContainer}>
-                                        <ul>
-                                            <li>
-                                                <Link href={'/'}>Trang chủ</Link>
-                                            </li>
-                                            <li>
-                                                <Link href={'/ve-chung-toi'}>Về chúng tôi</Link>
-                                            </li>
-                                            <li>
-                                                <a onClick={showDropdown}>
-                                                    <span>
-                                                        Dịch vụ
-                                                        <animated.div 
-                                                        style={y}
-                                                        className={styles.arrow}
-                                                        >
-                                                            <ArrowDownLineIcon  width={14} height={14}/>
-                                                        </animated.div>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <Link href={'/du-an'}>Dự án</Link>
-                                            </li>
-                                            <li>
-                                                <Link href={'/tin-tuc'}>Tin tức</Link>
-                                            </li>
-                                            <li>
-                                                <Link href={'/tuyen-dung'}>Tuyển dụng</Link>
-                                            </li>
-                                            <li>
-                                                <Link href={'/lien-he'}>Liên hệ</Link>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </Nav>
-                            </Col>
-                            <Col xs={12} md={12} lg={3}>
-                                <div className={styles.x_header_button_list}>
-                                    <Button className={styles.x_non_background_button} onClick={() => { setSearchForm(true); setOpen(false) }}>
-                                        <SearchIcon width={22} height={22}/> 
-                                    </Button>
-                                    <div className={styles.x_mobile_display}>
-                                        <button className={
-                                            showingMobile ? 
-                                            styles.hamburger + ' ' + styles.hamburger__spin + ' ' + styles.is_active
-                                            : styles.hamburger + ' ' + styles.hamburger__spin} 
-                                            onClick={() => { setShowingMobile(!showingMobile)}}
-                                            type="button">
-                                            <span className={styles.hamburger_box}>
-                                                <span className={styles.hamburger_inner}></span>
-                                            </span>
-                                        </button>
-                                    </div>
+                            </Nav>
+                        </Col>
+                        <Col xs={12} md={12} lg={3}>
+                            <div className={styles.x_header_button_list}>
+                                <Button className={styles.x_non_background_button} onClick={() => { setSearchForm(true); setOpen(false) }}>
+                                    <SearchIcon width={22} height={22}/> 
+                                </Button>
+                                <div className={styles.x_mobile_display}>
+                                    <button className={
+                                        showingMobile ? 
+                                        styles.hamburger + ' ' + styles.hamburger__spin + ' ' + styles.is_active
+                                        : styles.hamburger + ' ' + styles.hamburger__spin} 
+                                        onClick={() => { setShowingMobile(!showingMobile)}}
+                                        type="button">
+                                        <span className={styles.hamburger_box}>
+                                            <span className={styles.hamburger_inner}></span>
+                                        </span>
+                                    </button>
                                 </div>
-                            </Col>
-                        </Row>
-                </Container>
-            </Grid>
+                            </div>
+                        </Col>
+                </Row>
+            </Container>
     </div>
-    <div className={open ? styles.animationHeader : styles.animationHeaderNone}>
-        <Container className={styles.x_menu_container}> 
-            <animated.div 
-                style={opacity} 
-                className={styles.x_dropdown_inner_shadow}>
-            </animated.div>
-            <animated.div 
-                style={BackGroundMenu} 
-                className={styles.x_dropdown_bg_menu}>
-                    <div className={styles.x_dropdown_bg_full} />
-             </animated.div>
-             <Grid className={'x_container'}>
+    <div className={open ? styles.animationHeader : styles.animationHeaderNone}>    
+      <div className={styles.x_menu_container}>
+            <Container> 
+                <animated.div 
+                    style={opacity} 
+                    className={styles.x_dropdown_inner_shadow}>
+                </animated.div>
+                <animated.div 
+                    style={BackGroundMenu} 
+                    className={styles.x_dropdown_bg_menu}>
+                        <div className={styles.x_dropdown_bg_full} />
+                </animated.div>
                 <animated.div className={styles.x_dropdownMenu} style={transit}>
                     {
                         transition((style, Item) => 
@@ -402,8 +398,8 @@ const Header = () => {
                             )
                     }   
                 </animated.div>
-            </Grid>
-        </Container> 
+            </Container> 
+        </div>
     </div>
     </div>
     <div 

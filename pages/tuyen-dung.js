@@ -1,6 +1,5 @@
 import { useRef, useState, useEffect } from 'react'
 import { 
-  Grid, 
   Container, 
   Row, 
   Col, 
@@ -127,21 +126,18 @@ const Recruitment = () => {
         { HTMLReactParser(RecruitmentSeo) }
       </Head>
       <div className={'x_breadcum_container'}>
-          <Grid className={'x-container'}>
-            <Container>
-                <Row>
-                    <Col xs={24}>
-                      <Breadcrumb className={'x_breadcumb'}>
-                        <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
-                        <Breadcrumb.Item active>Tuyển dụng</Breadcrumb.Item>
-                      </Breadcrumb> 
-                    </Col>
-                </Row>
-            </Container>
-        </Grid>    
+          <Container>
+              <Row>
+                  <Col xs={24}>
+                    <Breadcrumb className={'x_breadcumb'}>
+                      <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
+                      <Breadcrumb.Item active>Tuyển dụng</Breadcrumb.Item>
+                    </Breadcrumb> 
+                  </Col>
+              </Row>
+          </Container>  
       </div>  
       <section className={styles.x_recruiment_section}>
-      <Grid>
         <Container>
             <Row>
             <Col xs={24}>
@@ -311,7 +307,6 @@ const Recruitment = () => {
             </Col>
             </Row>
         </Container>
-      </Grid>
     </section>
     </>
   )

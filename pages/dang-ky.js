@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Grid, Container, Row, Col, Form, Button, Schema, Loader, Input , InputGroup, useToaster, Message, Toggle  } from 'rsuite'
+import { Container, Row, Col, Form, Button, Schema, Loader, Input , InputGroup, useToaster, Message, Toggle  } from 'rsuite'
 import { IoHomeOutline, IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 import { useSession, signIn, signOut } from "next-auth/react"
 import { useRouter } from 'next/router';
@@ -140,17 +140,42 @@ const Register = () => {
       }
     }
 
- if (session) {
-    return (
-      <>
-        Signed in as <br />
-        <button onClick={() => signOut()}>Sign out</button>
-      </>
-    )
-  }
+    if (session) {
+      const userName = session.user.user_display_name;
+      const userEmail = session.user.user_email;
+  
+      return (
+        <>
+         <section className={styles.x_account_container}>
+            <Container>
+              <Row>
+                <Col xs={24}>
+                  <div className={styles.x_login + ' ' + styles.x_logged_form}>
+                    <Link href = '/'>
+                      <a className={styles.x_back_home}>
+                        <IoHomeOutline size={20}/>
+                        Trở về trang chủ
+                      </a>
+                    </Link>
+                    <h1 className={styles.x_account_title}>Xin chào {userName}</h1>
+                    <small>({userEmail})</small>
+                    <p className={styles.x_greeting}>Bạn đã đăng nhập vào hệ thống của chúng tôi, hãy bắt đầu tạo website của bạn</p>
+                    <small className={styles.x_account_navigate}>Vào trang <Link href="/quan-ly/tai-khoan">quản lý tài khoản</Link></small>
+                      <Button className={styles.x_login_button + ' ' + styles.x_margin_bottom} appearance="primary" onClick={() => signOut()}>
+                          Đăng xuất
+                      </Button>
+                    <SocialButton />
+                  </div>
+                </Col>
+              </Row>
+            </Container>
+          </section>
+        </>
+      )
+    }
 
   return (
-    <Grid className={styles.x_account_container}>
+    <section className={styles.x_account_container}>
       <div className={styles.x_background}>
       </div>
       <Container>
@@ -229,7 +254,7 @@ const Register = () => {
           </Col>
         </Row>
       </Container>
-    </Grid>
+    </section>
   )
 }
 

@@ -307,22 +307,24 @@
     }
     .x_creeper_box{
       margin: auto;
-      margin-bottom: var(--x-bottom-margin)
+      margin-bottom: var(--x-bottom-margin);
+      padding-left: 20px;
+      padding-right: 20px;
     }
     .x_creeper_box_1{
-      padding-bottom: 160px;
+      padding-bottom: 90px;
       background-color: #378cf1;
     }
     .x_creeper_box_2{
-      padding-bottom: 160px;
+      padding-bottom: 90px;
       background: #616cf0;
     }
     .x_creeper_box_3{
-      padding-bottom: 160px;
+      padding-bottom: 90px;
       background: #24cbc6;
     }
     .x_creeper_box_4{
-      padding-bottom: 160px;
+      padding-bottom: 90px;
       background: #909cff;
     }
     .x_creeper_image_1{

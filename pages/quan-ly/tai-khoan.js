@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Grid, Container, Row, Col, Navbar, Nav, Form, Button, ButtonToolbar } from 'rsuite'
+import { useState } from 'react'
+import { Container, Row, Col, Navbar, Nav, Form, Button, ButtonToolbar } from 'rsuite'
 import { IoLogOutOutline, IoSearchOutline, IoAlbumsOutline, IoAddSharp, IoLinkOutline, IoBookmarkOutline, IoCalendarClearOutline, IoCalendarOutline } from "react-icons/io5";
 import axios from 'axios'
 import Link from 'next/link'
@@ -13,7 +13,7 @@ import UserNav from '../../components/user-manager/UserNav';
 
 const Chart = dynamic(
   () => {
-    return (  import('react-apexcharts') )
+    return ( import('react-apexcharts') )
   },
   { ssr: false }
 )
@@ -138,69 +138,65 @@ const UserManager = ({blogInfor, token}) => {
   return (
     <>
     <div className={styles.x_app_header}>
-        <Grid className={styles.x_app_container}>
-            <Container>
-                <Row>
-                    <Col xs={24}>
-                        <UserNav />
-                    </Col>
-                </Row>
-            </Container>
-        </Grid>
+        <Container>
+            <Row>
+                <Col xs={24}>
+                    <UserNav />
+                </Col>
+            </Row>
+        </Container>
     </div>
     <section className={styles.x_app_section}>
-        <Grid className={styles.x_app_container}>
-            <Container>
-                <Row className={styles.x_create_section}>
-                    <Col xs={24} md={12} className={styles.x_padding}>
-                        <Form>
-                            <Form.Group className={styles.x_form_search_container}>
-                                <Form.Control className={styles.x_search_page_input} name='s' value={EventTarget.value} placeholder='Tìm kiếm trang...'></Form.Control>
-                                <Button className={styles.x_search_page_button}>
-                                    <IoSearchOutline size={20}/>
-                                </Button>
-                            </Form.Group>
-                        </Form>
-                    </Col>
-                    <Col xs={24} md={12} className={styles.x_padding}>
-                        <div className={styles.x_flex}>
-                            <Col xs={12}>
-                                <Link href={'/giao-dien-mau'}>
-                                    <a className={styles.x_account_button}>
-                                        <Button className={styles.x_outline_view}>
-                                            <IoAlbumsOutline size={20}/>
-                                            Xem mẫu giao diện
-                                        </Button>
-                                    </a>
-                                </Link>
-                            </Col>
-                            <Col xs={12}>
-                                <Link href={'/giao-dien-mau'}>
-                                    <a className={styles.x_account_button}>
-                                        <Button className={styles.x_outline_create}>
-                                            <IoAddSharp size={20}/>
-                                            Tạo trang mới
-                                        </Button>
-                                    </a>
-                                </Link>
-                            </Col>
-                        </div>
-                    </Col>
-                </Row>
-            </Container>
-            <Container>
-                <Row className={styles.x_flex}>
-                    {
-                        blogInfor ? 
-                        blogInfor.map((val, index) => {
-                            return <BlogContent key={index} data={val} /> 
-                        }) : <p style={{textAlign: 'center', width: '100%', padding: '35px 0px'}}>
-                                Bạn chưa có trang nào, vui lòng tạo mới
-                            </p>
-                    }
-                </Row>
-            </Container>
-        </Grid>
+        <Container>
+            <Row className={styles.x_create_section}>
+                <Col xs={24} md={12} className={styles.x_padding}>
+                    <Form>
+                        <Form.Group className={styles.x_form_search_container}>
+                            <Form.Control className={styles.x_search_page_input} name='s' value={EventTarget.value} placeholder='Tìm kiếm trang...'></Form.Control>
+                            <Button className={styles.x_search_page_button}>
+                                <IoSearchOutline size={20}/>
+                            </Button>
+                        </Form.Group>
+                    </Form>
+                </Col>
+                <Col xs={24} md={12} className={styles.x_padding}>
+                    <div className={styles.x_flex}>
+                        <Col xs={12}>
+                            <Link href={'/giao-dien-mau'}>
+                                <a className={styles.x_account_button}>
+                                    <Button className={styles.x_outline_view}>
+                                        <IoAlbumsOutline size={20}/>
+                                        Xem mẫu giao diện
+                                    </Button>
+                                </a>
+                            </Link>
+                        </Col>
+                        <Col xs={12}>
+                            <Link href={'/giao-dien-mau'}>
+                                <a className={styles.x_account_button}>
+                                    <Button className={styles.x_outline_create}>
+                                        <IoAddSharp size={20}/>
+                                        Tạo trang mới
+                                    </Button>
+                                </a>
+                            </Link>
+                        </Col>
+                    </div>
+                </Col>
+            </Row>
+        </Container>
+        <Container>
+            <Row className={styles.x_flex}>
+                {
+                    blogInfor ? 
+                    blogInfor.map((val, index) => {
+                        return <BlogContent key={index} data={val} /> 
+                    }) : <p style={{textAlign: 'center', width: '100%', padding: '35px 0px'}}>
+                            Bạn chưa có trang nào, vui lòng tạo mới
+                        </p>
+                }
+            </Row>
+        </Container>
     </section>
     </>
   )

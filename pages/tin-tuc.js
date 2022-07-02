@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Grid, Container, Row, Col, Breadcrumb, Form, Pagination  } from 'rsuite'
+import { Container, Row, Col, Breadcrumb, Form, Pagination  } from 'rsuite'
 import Link from 'next/link'
 import styles from '../styles/blog.module.css'
 import axios from 'axios'
@@ -53,21 +53,18 @@ const News = ({bai_viet, danh_muc, max_num_pages}) => {
         { HTMLReactParser(NewsSeo) }
       </Head>
       <div className={'x_breadcum_container'}>
-          <Grid className={'x-container'}>
-            <Container>
-                <Row>
-                    <Col xs={24}>
-                      <Breadcrumb className={'x_breadcumb'}>
-                        <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
-                        <Breadcrumb.Item active>Tin tức</Breadcrumb.Item>
-                      </Breadcrumb>
-                    </Col>
-                </Row>
-            </Container>
-        </Grid>    
+        <Container>
+            <Row>
+                <Col xs={24}>
+                  <Breadcrumb className={'x_breadcumb'}>
+                    <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
+                    <Breadcrumb.Item active>Tin tức</Breadcrumb.Item>
+                  </Breadcrumb>
+                </Col>
+            </Row>
+        </Container>
       </div>  
       <section className={styles.x_newsSection}>
-        <Grid className={'x-container'}>
           <Container>
               <Row>
                 <Col xs={24}>
@@ -145,7 +142,6 @@ const News = ({bai_viet, danh_muc, max_num_pages}) => {
                 }
               </Row>
             </Container>
-          </Grid>
         </section>
         </>
     )

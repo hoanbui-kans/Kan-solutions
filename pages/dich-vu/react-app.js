@@ -21,63 +21,63 @@ const ReactApp = ({data}) => {
           }
         </Head>
         <div className={'x_breadcum_container'}>
-          <Grid className={'x-container'}>
-            <Container>
-                <Row>
-                    <Col xs={24}>
-                      <Breadcrumb className={'x_breadcumb'}>
-                        <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
-                        <Breadcrumb.Item active>{data.post_title}</Breadcrumb.Item>
-                      </Breadcrumb>
-                    </Col>
-                </Row>
-            </Container>
-        </Grid>    
+          <Container>
+              <Row>
+                  <Col xs={24}>
+                    <Breadcrumb className={'x_breadcumb'}>
+                      <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
+                      <Breadcrumb.Item active>{data.post_title}</Breadcrumb.Item>
+                    </Breadcrumb>
+                  </Col>
+              </Row>
+          </Container>
       </div>  
          <div className={styles.x_container_x}>
-            <Grid className={'x-container'}>
-                  <Container>
-                    <Row>
-                        <Col xs={24} md={18}>
-                            <div className={styles.x_blog_content}>
-                              <span className={styles.x_single_blog_thumbnail}>
-                                <Image alt='layout' src={data.thumbnail ? data.thumbnail : '/'} width={1000} height={600}/>
-                              </span>
-                              <div className={styles.x_single_blog_meta}>
-                                <h1 className={styles.x_post_title}>{data.post_title}</h1>
-                              </div>
-                              <div className={styles.x_single_content}>
-                                {
-                                  HTMLReactParser(data.post_content)
-                                }
-                              </div>
-                            </div>
-                        </Col>
-                        <Col xs={24} md={6}>
-                              <ServicesSiderbar title={data.post_title}/>
-                        </Col>
-                    </Row>
-                      {
-                        data.related ? 
-                        <div className={styles.x_related}>
-                          <Row>
-                            <Col xs={24}>
-                              <h3 className={styles.x_related_title}>Bài viết tương tự</h3>
-                            </Col>
+              <Container>
+                <Row>
+                    <Col xs={24} md={18}>
+                        <div className={styles.x_blog_content}>
+                          {
+                            data.thumbnail ? 
+                            <span className={styles.x_single_blog_thumbnail}>
+                              <Image alt={data.post_title} src={data.thumbnail[0]} width={data.thumbnail[1]} height={data.thumbnail[2]}/>
+                            </span>
+                            : ''
+                          }
+                          <div className={styles.x_single_blog_meta}>
+                            <h1 className={styles.x_post_title}>{data.post_title}</h1>
+                          </div>
+                          <div className={styles.x_single_content}>
                             {
-                              data.related.map((val, index) => {
-                                return (
-                                  <Col key={index} md={8} xs={24}>
-                                   <BlogStyleTwo key={val.ID} data={val}/>
-                                  </Col>
-                                )
-                              })
+                              HTMLReactParser(data.post_content)
                             }
-                          </Row>
-                        </div> : ''
-                      }
-                </Container>
-              </Grid>
+                          </div>
+                        </div>
+                    </Col>
+                    <Col xs={24} md={6}>
+                          <ServicesSiderbar title={data.post_title}/>
+                    </Col>
+                </Row>
+                  {
+                    data.related ? 
+                    <div className={styles.x_related}>
+                      <Row>
+                        <Col xs={24}>
+                          <h3 className={styles.x_related_title}>Bài viết tương tự</h3>
+                        </Col>
+                        {
+                          data.related.map((val, index) => {
+                            return (
+                              <Col key={index} md={8} xs={24}>
+                                <BlogStyleTwo key={val.ID} data={val}/>
+                              </Col>
+                            )
+                          })
+                        }
+                      </Row>
+                    </div> : ''
+                  }
+            </Container>
         </div>
       </>
     )

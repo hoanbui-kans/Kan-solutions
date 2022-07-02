@@ -24,7 +24,7 @@ const AboutUs = () => {
         { HTMLReactParser(AboutUsSeo) }
       </Head>
       <div className={'x_breadcum_container'}>
-          <Grid>
+        <section>
             <Container>
                 <Row>
                     <Col xs={24}>
@@ -35,14 +35,14 @@ const AboutUs = () => {
                     </Col>
                 </Row>
             </Container>
-        </Grid>    
+        </section>   
       </div>  
       <div className={styles.x_about_us_section}>
       <span className={styles.x_neumorphic}>
             <Image alt='layout' src={'/layout/decorations-01.svg'} width={800} height={800}/>
       </span>
-      <Grid>
-        <Container className={styles.x_about_section_one}>
+      <section className={styles.x_about_section_one}>
+        <Container>
           <Row className={'x_flex_center'}>
               <Col xs={24} md={12}>
                 <Image alt='layout' src={'/layout/real-mockup.png'} width={800} height={395}/>
@@ -67,9 +67,9 @@ const AboutUs = () => {
               </Col>
             </Row>
          </Container>
-      </Grid>
-      <Grid className={'x-container'}>
-        <Container className={styles.x_about_section_one}>
+      </section>
+      <section className={styles.x_about_section_one}>
+        <Container>
             <Row className={styles.x_flex_center}>
               <Col xs={24} md={8}>
                 <div className={styles.x_feature_box}>
@@ -100,9 +100,9 @@ const AboutUs = () => {
               </Col>
             </Row>
        </Container>
-      </Grid>
-      <Grid className={'x-container'}>
-        <Container className={styles.x_about_section_one}>
+     </section>
+     <section className={styles.x_about_section_one}>
+        <Container>
             <Row className={styles.x_flex_timeline}>
               <Col xs={24}>
                 <h3 className={styles.x_about_title}>Thông tin hoạt động</h3>
@@ -149,8 +149,8 @@ const AboutUs = () => {
               </Col>
             </Row>
         </Container>
-      </Grid>
-      <Grid className={'x-container'}>
+      </section>
+      <section>
         <Container>
             <Row className={styles.x_flex_timeline}>
               <Col xs={24}>
@@ -223,7 +223,7 @@ const AboutUs = () => {
               </Col>
             </Row>
         </Container>
-      </Grid>
+      </section>
     </div>
     <Modal open={open} onClose={handleClose} backdrop="static">
         <Modal.Header>

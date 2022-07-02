@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Grid, Container, Row, Col, Button, Modal } from 'rsuite' 
+import { Container, Row, Col, Button, Modal } from 'rsuite' 
 import { ServicesMarketingOnline } from '../api/HeaderSeo'
 import { IoCheckmarkCircleSharp } from 'react-icons/io5'
 import Image from 'next/image'
@@ -27,29 +27,26 @@ const Marketing = () => {
       </Head>
       
       <div className={styles.x_marketing_banner_section}>
-        <Grid>
-            <Container>
-                <Row className='x_flex_center'>
-                  <Col xs={24} md={12}>
-                    <div className={styles.x_margin_bottom}>
-                      <h3 className={styles.x_marketing_banner_title}>DỊCH VỤ QUẢNG CÁO</h3>
-                      <p className={styles.x_marketing_banner_description}>Mỗi ngày, khách hàng đều tìm kiếm những doanh nghiệp giống như của bạn trên Google Tìm Kiếm. Tiếp cận với họ qua Google Ads, và chỉ trà phí cho mỗi lượt nhấp chuột vào rang web của bạn hoặc khi khách hàng gọi điện đến doanh nghiệp của bạn.</p>
-                      <Button 
-                        onClick={() => { handleOpen('Đăng ký tư vấn dịch vụ marketing') }}
-                        className={styles.x_adsButton}>
-                          Tư vấn miễn phí
-                      </Button>
-                    </div>
-                  </Col>
-                  <Col xs={24} md={12}>
-                    <Image src="/ads_display.png" alt="Giải pháp marketing online" width={525} height={400}/>
-                  </Col>
-              </Row> 
-            </Container>
-        </Grid>
+          <Container>
+              <Row className='x_flex_center'>
+                <Col xs={24} md={12}>
+                  <div className={styles.x_margin_bottom}>
+                    <h3 className={styles.x_marketing_banner_title}>DỊCH VỤ QUẢNG CÁO</h3>
+                    <p className={styles.x_marketing_banner_description}>Mỗi ngày, khách hàng đều tìm kiếm những doanh nghiệp giống như của bạn trên Google Tìm Kiếm. Tiếp cận với họ qua Google Ads, và chỉ trà phí cho mỗi lượt nhấp chuột vào rang web của bạn hoặc khi khách hàng gọi điện đến doanh nghiệp của bạn.</p>
+                    <Button 
+                      onClick={() => { handleOpen('Đăng ký tư vấn dịch vụ marketing') }}
+                      className={styles.x_adsButton}>
+                        Tư vấn miễn phí
+                    </Button>
+                  </div>
+                </Col>
+                <Col xs={24} md={12}>
+                  <Image src="/ads_display.png" alt="Giải pháp marketing online" width={525} height={400}/>
+                </Col>
+            </Row> 
+          </Container>
       </div>
       <div className={styles.x_section}>
-        <Grid className={'x_container'}>
             <Container>
               <div className={styles.x_marketing_section}>
                 <Row className='x_flex_center'>
@@ -119,11 +116,9 @@ const Marketing = () => {
                     </Col>
                 </Row>  
               </div>
-            </Container>      
-        </Grid>
+          </Container>      
       </div>
       <div className={styles.x_section}>
-        <Grid className={'x_container'}>
             <Container>
               <Row>
                 <Col md={24}>
@@ -143,8 +138,7 @@ const Marketing = () => {
                     </div>
                 </Col>
               </Row>  
-            </Container>      
-        </Grid>
+         </Container>   
     </div>
     <Modal open={open} onClose={handleClose} backdrop="static">
         <Modal.Header>

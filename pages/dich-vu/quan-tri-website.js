@@ -63,7 +63,6 @@ const WebsiteManager = () => {
       </Head>
       <div className={styles.x_webite_manager_main}>
         <div className={styles.x_banner_web_mannager}>
-        <Grid className={'x_container'}>
             <Container>
               <Row>
                 <Col xs={24} md={12}>
@@ -107,11 +106,9 @@ const WebsiteManager = () => {
                     </div>
                 </Col>
               </Row>  
-            </Container>      
-        </Grid>
+            </Container>    
         </div>
         <div className={styles.x_section}>
-          <Grid className={'x_container'}>
               <Container>
                 <Row>
                     <Col xs={24}>
@@ -160,16 +157,12 @@ const WebsiteManager = () => {
                         </ul>
                     </Col>
                   </Row>  
-              </Container>      
-          </Grid>
+            </Container>      
         </div>
-        <Grid className={'x_container'}>
-            <Container>
-                <Divider />
-            </Container>
-      </Grid>
+        <Container>
+            <Divider />
+        </Container>
         <div className={styles.x_section}>
-            <Grid className={'x_container'}>
                 <Container>
                   <Row>
                     <Col md={24}>
@@ -215,16 +208,12 @@ const WebsiteManager = () => {
                       </ul>
                     </Col>
                   </Row>
-                </Container>      
-          </Grid>
+              </Container>     
         </div>
-        <Grid className={'x_container'}>
-            <Container>
-                <Divider />
-            </Container>
-      </Grid>
+        <Container>
+            <Divider />
+        </Container>
         <div className={styles.x_marketing_section}>
-          <Grid className={'x_container'}>
             <Container>
                   <Row className='x_flex_center'>
                       <Col xs={24}>
@@ -393,7 +382,6 @@ const WebsiteManager = () => {
                       </Col>
                   </Row>  
               </Container>
-            </Grid>
         </div>
       </div>
       <Modal open={open} onClose={handleClose} backdrop="static">

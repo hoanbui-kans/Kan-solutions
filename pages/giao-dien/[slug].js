@@ -1,14 +1,14 @@
 import axios from 'axios'
 import HTMLReactParser from 'html-react-parser'
 import Head from 'next/head'
-import Link from 'next/link'
-import { Grid, Container, Row, Col, Button, Breadcrumb } from 'rsuite'
 import Image from 'next/image'
 import styles from '../../styles/theme.module.css'
 import CopyIcon from '@rsuite/icons/Copy';
 import CheckRoundIcon from '@rsuite/icons/CheckRound'
 import SearchIcon from '@rsuite/icons/Search';
 import ArrowRightIcon from '@rsuite/icons/ArrowRight';
+import Link from 'next/link'
+import { Container, Row, Col, Button, Breadcrumb } from 'rsuite'
 import { getSession } from 'next-auth/react'
 import md5 from 'md5'
 import FormTuVan from '../../components/FormTuVan'
@@ -110,22 +110,19 @@ export const SingleTheme = ({data, link_theme}) => {
         }
       </Head>
       <div className={'x_breadcum_container'}>
-        <Grid className={'x-container'}>
-                <Container>
-                    <Row>
-                        <Col xs={24}>
-                          <Breadcrumb className={'x_breadcumb'}>
-                            <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
-                            <Breadcrumb.Item as={Link} href="/giao-dien-mau/">Giao diện mẫu</Breadcrumb.Item>
-                            <Breadcrumb.Item active>{data.post_title}</Breadcrumb.Item>
-                          </Breadcrumb>
-                        </Col>
-                    </Row>
-                </Container>
-        </Grid>      
+        <Container>
+              <Row>
+                  <Col xs={24}>
+                    <Breadcrumb className={'x_breadcumb'}>
+                      <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
+                      <Breadcrumb.Item as={Link} href="/giao-dien-mau/">Giao diện mẫu</Breadcrumb.Item>
+                      <Breadcrumb.Item active>{data.post_title}</Breadcrumb.Item>
+                    </Breadcrumb>
+                  </Col>
+              </Row>
+        </Container>
     </div>
       <div className={styles.single_content}>
-        <Grid className={'x-container'}>
           <Container className={styles.x_theme_container}>
             <Row className={styles.x_flex + ' ' + styles.x_theme_thumbnail_section}>
               <Col xs={24} md={16} className={styles.x_padding}>
@@ -233,7 +230,6 @@ export const SingleTheme = ({data, link_theme}) => {
                 }
               </Row>
           </Container>
-        </Grid>
       </div>
     </>
   )

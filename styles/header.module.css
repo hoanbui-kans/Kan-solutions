@@ -11,16 +11,19 @@
     .x_mobile_display{
         display: block !important;
     }
+    .x_top_header_brand{
+        display: none;
+    }
 }
 .x_mobile_display{
     display: none;
 }
 .headerMenu{
     width: 100%;
-    padding: 14px 0px;
+    padding: 15px 0px;
     position: relative;
     z-index: 5;
-    transition: all .3s ease-in-out;
+    transition: var(--x-transition);
 }
 .mainMenuContainer{
     text-align: center;
@@ -320,6 +323,7 @@
 .x_menu_container{
     position: absolute;
     left: 0;
+    right: 0;
     width: 100%;
     z-index: 9;
 }
@@ -389,7 +393,8 @@
 }
 
 .x_fixed .headerMenu{
-    padding: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
 .x_fixed .x_brand{
@@ -472,7 +477,7 @@
   }
 
   .hamburger {
-    padding: 10px 10px;
+    padding: 10px 0px;
     display: inline-block;
     cursor: pointer;
     transition-property: opacity, filter;
@@ -646,5 +651,6 @@ transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }
         display: block;
       }
       .x_non_background_button{
-          background: unset !important
+          background: unset !important;
+          color: #333 !important
       }
