@@ -35,7 +35,7 @@
 }
 .x_category_link{
   list-style: none;
-  padding: 0;
+  padding: 0; 
 }
 .x_category_link li{
   display: inline-block;
@@ -89,7 +89,10 @@
 }
 .x_blog_one_thumbnail{
   display: block;
+  overflow: hidden;
+  height: 420px;
 }
+
 .x_single_post_data{
   list-style: none;
   padding: 14px;

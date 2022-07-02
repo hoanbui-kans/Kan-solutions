@@ -217,7 +217,7 @@ export const SingleTheme = ({data, link_theme}) => {
                 </div>
               </Col>
                 {
-                  data.related ? 
+                  data.related.length != 0  ? 
                   <Col xs={24}>
                     <h3 className={styles.x_related_gd_mau}>Giao diện mẫu tương tự</h3>
                     {

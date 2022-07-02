@@ -34,7 +34,7 @@ export const BlogStyleOne = ({data}) => {
           {
             data.thumbnail ?  
             <div className={styles.x_blog_one_thumbnail}>
-                <Image alt='layout' src={ data.thumbnail[0] } width={data.thumbnail[1]} height={data.thumbnail[2]} />
+                <Image alt='layout' src={ data.thumbnail[0] } width={600} height={360} layout={'fill'}/>
             </div> : ''
           }
          
@@ -63,7 +63,7 @@ export const BlogStyleTwo = ({data}) => {
     <div className={styles.x_blog_two_section}>
       {
         data.thumbnail ? <div className={styles.x_blog_two_thumbnail}>
-          <Image alt='layout' src={ data.thumbnail[0] } width={data.thumbnail[1]} height={data.thumbnail[2]}/>
+          <Image alt='layout' src={ data.thumbnail[0] } width={400} height={240} />
         </div> : ''
       }
       <div className={styles.x_blog_two_content}>

@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react'
 import { Grid, Container, Row, Col, Form, Button, Input, Schema, Loader, toaster, Message, Breadcrumb  } from 'rsuite'
-import { IoPaperPlane, IoHomeOutline } from "react-icons/io5"
+import { IoPaperPlane } from "react-icons/io5"
 import styles from '../styles/page.module.css'
 import axios from 'axios'
 import Link from 'next/link'

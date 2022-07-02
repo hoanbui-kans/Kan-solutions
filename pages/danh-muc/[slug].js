@@ -35,7 +35,12 @@ const NewsCategory = ({bai_viet, danh_muc, max_num_pages}) => {
 
   const Next_Pages = async (num) => {
     setLoading(true);
-    setPaged({...paged, current: num});
+    setPaged(num);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth"
+  });
     const { data } = await axios.get(rootURL + 'tin-tuc/bai-viet?perpage=7&p=' + num).then((res) => res);
     if(data){
       setPosts(data.posts);
@@ -95,7 +100,8 @@ const NewsCategory = ({bai_viet, danh_muc, max_num_pages}) => {
               </Row>
               <Row>
                   {
-                    loading ?  <Loading /> :
+                    loading ?  <Col xs={24}><Loading /></Col>
+                    :
                     <>
                       {
                         posts != '' ?

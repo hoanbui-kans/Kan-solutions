@@ -14,10 +14,10 @@ import EmailFillIcon from '@rsuite/icons/EmailFill'
 import PhoneFillIcon from '@rsuite/icons/PhoneFill'
 import axios from 'axios'
 import styles from '../styles/header.module.css'
-import { IoCaretForwardSharp } from 'react-icons/io5'
+import { IoCaretForwardSharp, IoCloseCircleOutline } from 'react-icons/io5'
 import Head from 'next/head'
 
-const rootURL = process.env.wp_json_enpoint;
+const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 const Left = () => {
     return (
@@ -240,23 +240,22 @@ const Header = () => {
     }
 
     const searchPosts = async (query) => {
+        console.log(search)
         setLoadingSearch(true);
         const response = await axios.get(`${rootURL}tim-kiem/bai-viet?query=${query}&p=1`).then((res) => res.data);
         if(!response.error){
-            setPaged({current:1, max:data.max_num_pages});
-            setResultSearch(data);
-            setLoadingSearch(false);
-        } else {
-            setLoadingSearch(false);
-        }
+            setPaged({current:1, max:response.max_num_pages});
+            setResultSearch(response);
+        } 
+        setLoadingSearch(false);
     }
 
     const Next_Pages = async (num) => {
         setLoadingSearch(true);
         setPaged({...paged, current: num});
-        const { data } = await axios.get(`${rootURL}tim-kiem/bai-viet?query=${keySearch}&p=${num}`).then((res) => res);
-        if(data){
-          setResultSearch(data);
+        const resonse = await axios.get(`${rootURL}tim-kiem/bai-viet?query=${keySearch}&p=${num}`).then((res) => res.data);
+        if(resonse){
+          setResultSearch(resonse);
           setLoadingSearch(false);
         }
     }
@@ -407,6 +406,17 @@ const Header = () => {
         </Container> 
     </div>
     </div>
+    <div 
+        onClick={() => {setShowingMobile(false)}}
+        className={ showingMobile ? 
+        styles.x_backdrop_mobile + ' ' + styles.x_backdrop_mobile_showing 
+        : styles.x_backdrop_mobile}
+    >
+        <span className={styles.x_backdrop_mobile_closing}>
+            Đóng
+            <IoCloseCircleOutline color={'white'} size={24}/>
+        </span>
+    </div>                
     <div className={styles.x_mobile_display}>
         <MobileMenu showing={showingMobile}/>
     </div>

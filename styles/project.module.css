@@ -1,0 +1,98 @@
+.x_project_thumbnail{
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+}
+.x_project_thumbnail:after{
+    content: "";
+    width: 100%;
+    height: 120px;
+    background: linear-gradient(0deg, rgb(0 0 0 / 15%), rgb(0 0 0 / 0%));
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.x_project_grid{
+    padding: 35px 0px;
+}
+.x_widget_title{
+    font-size: 1.25rem;
+    line-height: 1.5;
+    padding-bottom: .75rem;
+    margin-bottom: .75rem;
+    display: block;
+    border-bottom: 1px solid rgb(243 243 243);
+}
+.x_project_thumbnail span{
+    max-width: 100%;
+    width: 100% !important;
+}
+.x_project_thumbnail img{
+    width: 100% !important;
+    min-width: 100% !important;
+    height: auto !important;
+}
+.x_project_button {
+    margin-top: 15px;
+    border: 1px solid var(--x-border-color);
+    background: unset;
+    padding: 12px 25px !important
+}
+
+.x_project_view_button{
+    margin-top: 15px;
+    border: 1px solid var(--x-border-color);
+    background: unset;
+    padding: 12px 25px !important;
+    margin-right: 15px;
+    color:#ffffff;
+    background-color: #2d88e2;
+}
+
+.x_project_title{
+    font-size: 18px;
+    line-height: 28px;
+    border-bottom: 1px solid var(--x-border-color);
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+}
+.x_project_container{
+    background: #ffffff;
+    margin-bottom: 1.75rem;
+    box-shadow: 0px 0px 5px -3px;
+    border-radius: 0.35rem;
+    overflow: hidden;
+    position: relative;
+}
+.x_pagination{
+    display: flex;
+    justify-content: center;
+    padding: 15px 0px;
+}
+.x_logo_khach_hang{
+    width: 100px;
+    height: 60px;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 10px;
+    border-radius: 7px;
+    z-index: 2;
+}
+.x_logo_khach_hang span{
+    height: 100% !important;
+}
+.x_logo_khach_hang img{
+    height: auto !important;
+    width: 100% !important;
+    min-height: unset !important;
+}
+.x_project_content{
+    padding: 15px;
+}

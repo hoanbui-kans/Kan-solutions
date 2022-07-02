@@ -68,7 +68,7 @@ const NextJs = ({data}) => {
                               data.related.map((val, index) => {
                                 return (
                                   <Col key={index} md={8} xs={24}>
-                                   <BlogStyleTwo key={val.ID} data={val}/>
+                                    <BlogStyleTwo key={val.ID} data={val}/>
                                   </Col>
                                 )
                               })

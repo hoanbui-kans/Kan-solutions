@@ -26,12 +26,17 @@ const News = ({bai_viet, danh_muc, max_num_pages}) => {
     const { data } = await axios.get(rootURL + 'tin-tuc/bai-viet?perpage=7&s=' + keySearch).then((res) => res);
     if(data){
       setPosts(data.posts);
-      setMaxPage(data.max_num_pages)
-      setLoading(false);
+      setMaxPage(data.max_num_pages);
     }
+    setLoading(false);
   }
 
   const Next_Pages = async (num) => {
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth"
+    });
     setLoading(true);
     setPaged(num);
     const { data } = await axios.get(rootURL + 'tin-tuc/bai-viet?perpage=7&p=' + num).then((res) => res);
