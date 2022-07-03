@@ -3,6 +3,7 @@ import FacebookProvider from 'next-auth/providers/facebook'
 import GoogleProvider from 'next-auth/providers/google'
 import axios from "axios"
 import CredentialsProvider from "next-auth/providers/credentials";
+const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 const options = {
   secret: process.env.SECRET,
@@ -34,7 +35,7 @@ const options = {
       async authorize(credentials, req) {
         const config = {
           method: 'post',
-          url: 'https://kanbox.vn/wp-json/jwt-auth/v1/token',
+          url: rootURL + 'jwt-auth/v1/token',
           data : {
             password: credentials.password,
             username: credentials.username
@@ -73,7 +74,7 @@ const options = {
     
           const config = {
             method: 'post',
-            url: 'https://kanbox.vn/wp-json/jwt-auth/v1/token/validate_social_user',
+            url: rootURL + 'jwt-auth/v1/token/validate_social_user',
             data : data,
           };
       
@@ -104,7 +105,7 @@ const options = {
           
           const config_fb = {
             method: 'post',
-            url: 'https://kanbox.vn/wp-json/jwt-auth/v1/token/validate_social_user',
+            url: rootURL + 'jwt-auth/v1/token/validate_social_user',
             data : data_fb,
           };
       
@@ -135,7 +136,7 @@ const options = {
       if (url.startsWith("/dang-nhap/")) {
         const baseUrl = `${baseUrl}${url}`;
         return baseUrl;
-      }
+      } 
       // Allows callback URLs on the same origin
       else if (new URL(url).origin === baseUrl) return url;
       return baseUrl;

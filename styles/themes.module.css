@@ -9,6 +9,8 @@
   
   .x_form_search_group{
     position: relative;
+    margin-bottom: 0px !important;
+    width: 100%;
   }
   .x_pagination{
     text-align: center;
@@ -64,19 +66,23 @@
 .x_SortByJobs::-webkit-scrollbar-thumb:hover {
   background: #555; 
 }
-  .x_margin_x{
-    margin: 0px !important;
-    width: 40%;
-  }
-  .x_gd_section{
-    padding: 35px 0px;
-    background: #f7f7f7;
+.x_gd_section{
+  padding: 35px 0px;
+  background: #fff;
+}
+.x_sale_badge{
+  color: white;
+  margin-left: 10px;
+  background: red;
+  padding: 2px 2px;
+  border-radius: 5px;
+  font-size: 10px;
 }
   .x_search_posts_button{
     background-color: #2d88e2;
-    width: calc(20% - 30px);
     color: white;
     display: flex;
+    align-items: center;
     justify-content: center;
   }
   .x_form_filter{
@@ -177,6 +183,14 @@
     position: relative;
     height: 300px;
     overflow: hidden;
+  }
+  .x_margin_x{
+    width: 170px;
+  }
+  .x_gd_form{
+    display: flex;
+    column-gap: 15px;
+    width: calc(100% - 185px);
   }
   .x_gd_box img{
     transition: var(--x-transition);

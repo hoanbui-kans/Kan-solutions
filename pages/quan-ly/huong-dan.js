@@ -28,14 +28,14 @@ const Guile = ({category}) => {
                     {category.map(({  term_id, name, children, slug }, index) => (
                         <List.Item key={term_id} index={index} collection={'annoument'}>
                             <Link href={'/quan-ly/danh-muc-huong-dan/' + slug}>
-                            <a>
+                            <a className={styles.x_guild_title}>
                                 <IoCaretForwardSharp size={16} /> 
                                 {name}
                             </a>
                             </Link>
                             {
                                 children ?  
-                                    <ul>
+                                    <ul className={styles.x_guild_list_posts}>
                                         {children.map(({  term_id, name, slug, count }, index) => (
                                             <li key={term_id} index={index} collection={'annoument'}>
                                                 <Link href={'/quan-ly/danh-muc-huong-dan/' + slug}>

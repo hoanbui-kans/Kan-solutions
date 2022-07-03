@@ -23,7 +23,8 @@ const Layout = ({ children }) => {
         <Header />
           {
               loading ? 
-              <Loading /> : <main>{children}</main>
+              <Loading /> :
+               <main>{children}</main>
           }
         <Footer />
       </>

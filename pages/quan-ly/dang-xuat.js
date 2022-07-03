@@ -14,16 +14,16 @@ const Loggout = () => {
   if(!session){
     return (
       <section className={styles.x_account_container}>
-      <Link href = '/'>
-        <a className={styles.x_back_home}>
-          <IoHomeOutline size={20}/>
-          Trở về trang chủ
-        </a>
-      </Link>
       <Container>
         <Row>
           <Col xs={24}>
             <div className={styles.x_login + ' ' + styles.x_logged_form}>
+            <Link href = '/'>
+                    <a className={styles.x_back_home}>
+                      <IoHomeOutline size={20}/>
+                      Trở về trang chủ
+                    </a>
+                </Link>
               <h1 className={styles.x_account_title}>Bạn chưa đăng nhập</h1>
               <p className={styles.x_greeting}>xin vui lòng click vào link đăng nhập phía bên dưới</p>
                 <Link href={'/dang-nhap/'}>

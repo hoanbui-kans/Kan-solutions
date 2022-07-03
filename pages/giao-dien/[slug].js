@@ -201,12 +201,14 @@ export const SingleTheme = ({data, link_theme}) => {
                       </Link>
                     </div>  
                     <div className={styles.x_single_theme_section}>
-                  <h2 className={styles.x_content_title}>Thông tin tích hợp</h2>
                   {
                     data.nen_tang ? 
-                    <div className={styles.x_tich_hop}>
-                        <NenTang data={data.nen_tang} />
-                    </div> : ''
+                    <>
+                      <h2 className={styles.x_content_title}>Thông tin tích hợp</h2>
+                      <div className={styles.x_tich_hop}>
+                          <NenTang data={data.nen_tang} />
+                      </div>
+                    </> : ''
                   }
                   <h2 className={styles.x_content_title}>Thông tin hỗ trợ</h2>
                    <FormTuVan title={'Đăng kỹ hỗ trợ giao diện ' + data.post_title}/>

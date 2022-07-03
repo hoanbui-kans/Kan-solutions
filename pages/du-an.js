@@ -1,11 +1,14 @@
 import { useState } from 'react'
-import { Container, Grid, Row,Col, Pagination, Breadcrumb, Button } from 'rsuite'
+import { Container, Row,Col, Pagination, Breadcrumb, Button } from 'rsuite'
 import axios from 'axios'
 import Link from 'next/link'
 import Image from 'next/image'
 import Loading from '../components/Loading'
 import styles from '../styles/project.module.css'
 import ServicesSiderbar from '../components/ServicesSiderbar'
+import { ProjectPage } from './api/HeaderSeo'
+import HTMLReactParser from 'html-react-parser'
+import Head from 'next/head'
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
@@ -24,11 +27,11 @@ export const SingleProject = ({data}) => {
             <div className={styles.x_project_content}>
                 <Link href={"/du-an/" + data.post_name}>
                     <a>
-                     <h3 className={styles.x_project_title}>{data.post_title}</h3>
+                        <h3 className={styles.x_project_title}>{data.post_title}</h3>
                     </a>
                 </Link>
                 <p>{data.post_excerpt}</p>
-                <a href={data.project_view} target="_blank">
+                <a href={data.project_view} target="_blank" rel="noreferrer">
                     <Button className={styles.x_project_view_button}>Xem dự án</Button>
                 </a>
                 <Link href={"/du-an/" + data.post_name}>
@@ -63,6 +66,9 @@ const Projects = ({bai_viet, max_num_pages}) => {
 
     return (
         <>
+        <Head>
+            { HTMLReactParser(ProjectPage) }
+        </Head>
         <div className={'x_breadcum_container'}>
             <Container>
                 <Row>

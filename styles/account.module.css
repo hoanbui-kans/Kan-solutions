@@ -304,6 +304,28 @@
 .x_success .x_date_badge{
     background-color: green;
 }
+.x_guild_list_posts{
+    list-style: none;
+}
+.x_guild_list_posts a, .x_guild_post_title{
+    color: var(--x-text-color);
+}
+.x_guild_post_title{
+    color: var(--x-text-color);
+    padding-left: 12px;
+}
+.x_edit_profile_section{
+    padding: 35px 0px
+}
+.x_guild_title{
+    color: var(--x-text-color);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+    padding-left: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--x-border-color);
+}
 .x_social_login{
     display: flex;
     flex-wrap: wrap;

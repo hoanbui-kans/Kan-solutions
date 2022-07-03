@@ -118,7 +118,7 @@ const Wordpress = () => {
                                                         <ul>
                                                             {
                                                                 val.checklist.map((val, index) => {
-                                                                    return(
+                                                                    return( 
                                                                         <li key={index}>
                                                                             <span className={styles.x_hosting_check}>
                                                                                 <IoCheckmarkOutline color='white'/>

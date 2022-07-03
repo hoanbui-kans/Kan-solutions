@@ -78,7 +78,9 @@ body {
 }
 
 .x_breadcum_container {
-  background: #e7eef9;
+  background: #f7f7f7;
+  position: relative;
+  z-index: 1;
 }
 
 .rs-modal-header {

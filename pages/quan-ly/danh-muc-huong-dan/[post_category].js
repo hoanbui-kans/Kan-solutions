@@ -25,16 +25,16 @@ const GuilePosts = ({bai_viet}) => {
             <Row className={styles.x_create_section}>
                 <Col xs={24}>
                     <List>
-                    {bai_viet.map((val, index) => (
-                        <List.Item key={val.ID} index={index} collection={'annoument'}>
-                            <Link href={'/quan-ly/huong-dan/' + val.post_name}>
-                                <a>
-                                    <IoCaretForwardSharp size={16} /> 
-                                    {val.post_title}
-                                </a>
-                            </Link>
-                        </List.Item>
-                    ))}
+                        {bai_viet.map((val, index) => (
+                            <List.Item key={val.ID} index={index} collection={'annoument'}>
+                                <Link href={'/quan-ly/huong-dan/' + val.post_name}>
+                                    <a className={styles.x_guild_post_title}>
+                                        <IoCaretForwardSharp size={16} /> 
+                                        {val.post_title}
+                                    </a>
+                                </Link>
+                            </List.Item>
+                        ))}
                     </List>
                 </Col>
             </Row>

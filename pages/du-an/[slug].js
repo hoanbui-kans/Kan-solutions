@@ -139,7 +139,7 @@ export const SinglePageProject = ({data}) => {
                       >
                         Đăng ký tư vấn
                       </Button> 
-                      <a href={data.project_view} target="_blank">
+                      <a href={data.project_view} target="_blank" rel="noreferrer">
                           <Button className={styles.x_view_button}> 
                             Xem dự án này
                           </Button>

@@ -89,6 +89,9 @@ const BlogContent = ({data}) => {
                 <a className={styles.x_blog_link} target={'_blank'} rel="noreferrer" href={data.home}>
                     <IoLinkOutline size={18} color='#999'/>
                 </a>
+                <Link href={'/quan-ly/quan-ly-trang/demo'}>
+                    Quản lý trang
+                </Link>
                 <div className={styles.x_blog_content}>
                     <div className={styles.x_flex_blog_image}>
                         <span className={styles.x_blog_favicon}>

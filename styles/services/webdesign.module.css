@@ -50,7 +50,7 @@
     background: var(--x-primary-color);
 }
 .x_hosting_button{
-    background-color: var(--x-black-color);
+    background-color: var(--x-primary-color);
     color: var(--x-white-color);
     padding: var(--x-button-padding);
     display: block;
@@ -77,10 +77,10 @@
     margin-bottom: 24px;
 }
 .x_call_to_action{
-    border-radius: var(--x-border-radius);
+    border-radius: 35px;
     background: var(--x-black-color);
     color: var(--x-white-color);
-    padding: 15px 55px;
+    padding: 18px 55px;
     margin-top: 35px;
     display: flex;
     align-items: center;
@@ -115,7 +115,7 @@
 }
 .x_services_button{
     padding: 15px 25px;
-    border-radius: var(--x-border-radius);
+    border-radius: 35px;
     background-color: var(--x-primary-color);
     color: var(--x-white-color);
 }

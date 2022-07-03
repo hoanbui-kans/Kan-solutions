@@ -1,12 +1,10 @@
-import React from 'react'
 import { Grid, Container, Row, Col, Button, Divider } from 'rsuite' 
 import { IoCheckmarkCircle }  from "react-icons/io5"
+import { ServiceSeoWebsite } from '../api/HeaderSeo'
 import styles from '../../styles/page.module.css'
-import Link from 'next/link'
 import Image from 'next/image'
 import HTMLReactParser from 'html-react-parser'
 import Head from 'next/head'
-import { ServiceSeoWebsite } from '../api/HeaderSeo'
 
 const Seo = () => {
   return (
@@ -46,7 +44,7 @@ const Seo = () => {
                         </ul>
                     </div>  
                     <div className={styles.x_website_manager_decoration_1}>
-                          <Image src={'/icons/decoration-website-manager-01.svg'} width={300} height={300}/>
+                          <Image alt='Quản trị website' src={'/icons/decoration-website-manager-01.svg'} width={300} height={300}/>
                     </div>
                   </div>
               </Col>
@@ -70,7 +68,7 @@ const Seo = () => {
                   <li>
                     <div className={styles.x_website_manager_features}>
                       <div className={styles.x_website_manager_features_icon}>
-                        <Image src={'/icons/Time_atack_light.svg'} width={45} height={45}/>
+                        <Image alt='Giảm thời gian chăm sóc' src={'/icons/Time_atack_light.svg'} width={45} height={45}/>
                       </div>
                       <div className={styles.x_website_manager_content}>
                         <h3>BẠN KHÔNG CÓ THỜI GIAN VÀ NHÂN SỰ ĐỂ CHĂM SÓC, VIẾT BÀI ĐỂ NÂNG THỨ HẠNG WEBSITE?</h3>  
@@ -81,7 +79,7 @@ const Seo = () => {
                   <li>
                     <div className={styles.x_website_manager_features}>
                       <div className={styles.x_website_manager_features_icon}>
-                        <Image src={'/icons/Chield_check_fill.svg'} width={45} height={45}/>
+                        <Image alt='Vận hành hiệu quả' src={'/icons/Chield_check_fill.svg'} width={45} height={45}/>
                       </div>
                       <div className={styles.x_website_manager_content}>
                         <h3>BẠN CẢM THẤY KHÓ HIỂU KHI MUỐN VẬN HÀNH MỘT WEBSITE HIỆU QUẢ</h3>  
@@ -92,7 +90,7 @@ const Seo = () => {
                   <li>
                     <div className={styles.x_website_manager_features}>
                       <div className={styles.x_website_manager_features_icon}>
-                        <Image src={'/icons/Wallet_alt_fill.svg'} width={35} height={35}/>
+                        <Image alt='Tiết kiệm chi phí' src={'/icons/Wallet_alt_fill.svg'} width={35} height={35}/>
                       </div>
                       <div className={styles.x_website_manager_content}>
                         <h3>BẠN CẢM THẤY TỐN KÉM RẤT NHIỀU TÀI NGUYÊN VÀ CHI PHÍ ĐỂ QUẢN TRỊ WEBSITE</h3>  

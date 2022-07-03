@@ -1,23 +1,25 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import axios from 'axios';
 import styles from '../styles/themes.module.css'
-import { Container, Row, Col, Form, Pagination, Button, Breadcrumb, SelectPicker, List, CheckboxGroup, Checkbox,toaster,Message,ButtonToolbar } from 'rsuite'
+import { Container, Row, Col, Form, Pagination, Button, Breadcrumb, SelectPicker, List, CheckboxGroup, Checkbox,toaster,Message,ButtonToolbar, Loader } from 'rsuite'
 import Image from 'next/image'
 import Link from 'next/link'
-import SearchIcon from '@rsuite/icons/Search'
 import Loading from '../components/Loading';
 import { Separator } from './giao-dien/[slug]';
-import { IoListSharp, IoGridOutline, IoCaretForwardSharp, IoFunnelOutline, IoCloseCircleOutline } from "react-icons/io5";
+import { IoListSharp, IoGridOutline, IoCaretForwardSharp, IoFunnelOutline, IoCloseCircleOutline, IoSearchOutline } from "react-icons/io5";
 import HTMLReactParser from 'html-react-parser';
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 export const Price = ({data}) => {
-    if(data.sale_price) 
+    if(data.sale_price);
+    let salePercent; 
+    salePercent = Math.round(100 - (parseInt(data.sale_price)/parseInt(data.regular_price)*100));
     return (
       <div className={styles.x_styles_price}>
         <span className={styles.x_old_price}>{Separator(data.regular_price)}đ</span>
         <span className={styles.x_newPrice}>{Separator(data.sale_price)}đ</span>
+        <span className={styles.x_sale_badge}>-{salePercent}%</span>
       </div>
     )
     return(
@@ -122,6 +124,11 @@ const Themes = ({gd, nganh, danhmuc, max_pages}) => {
     const [paged, setPaged] = useState(1);
     const [loading, setLoading] = useState(false);
     const [max_paged, setMax_paged] = useState(max_pages);
+    const [formvalue, setFormValue] = useState({
+        s: '',
+    })
+    
+    const formRef = useRef();
 
     const Paged = [
         {
@@ -131,7 +138,7 @@ const Themes = ({gd, nganh, danhmuc, max_pages}) => {
         },
         {
             label: '16 giao diện',
-            value: 18,
+            value: 16,
             role: "Master"
         },
         {
@@ -151,30 +158,31 @@ const Themes = ({gd, nganh, danhmuc, max_pages}) => {
         setFilterNganh(e);
     };
 
-    useEffect(() => {
-        handleUpdateGd();
-    }, [filterNganh])
-
-
-    const handleUpdateGd = async () => {
-        console.log(filterNganh)
-        const nganhTerms = filterNganh.join(',');
-        // Pass data to the page via props
-        setLoading(true);
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: "smooth"
-        });
-        const response = await axios.get(`${rootURL}giao-dien/giao-dien-mau?p=${paged}&perpage=${perPage}&nganh=${nganhTerms}&s=${keySearch}`).then((resonse) => resonse.data);
-        if(!response.error){
-            setPosts(response.posts);
-            setMax_paged(response.max_pages);
-        } else {
-            toaster.push(<Message type='warning'>Không tìm thấy nội dung với bộ lọc tìm kiếm</Message>);
-        }
-        setLoading(false);
+    const HandleSubmitSearch = () => {
+        setKeySearch(formvalue.s);
     }
+
+    useEffect(() => {
+        const handleUpdateGd = async () => {
+            const nganhTerms = filterNganh.join(',');
+            // Pass data to the page via props
+            setLoading(true);
+            window.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: "smooth"
+            });
+            const response = await axios.get(`${rootURL}giao-dien/giao-dien-mau?p=${paged}&perpage=${perPage}&nganh=${nganhTerms}&s=${keySearch}`).then((resonse) => resonse.data);
+            if(!response.error){
+                setPosts(response.posts);
+                setMax_paged(response.max_pages);
+            } else {
+                toaster.push(<Message type='warning'>Không tìm thấy nội dung với bộ lọc tìm kiếm</Message>);
+            }
+            setLoading(false);
+        }
+        handleUpdateGd();
+    }, [filterNganh, perPage, keySearch])
 
     const SortByCategory = ({data}) => {
         return(
@@ -216,6 +224,7 @@ const Themes = ({gd, nganh, danhmuc, max_pages}) => {
     }
 
     const Next_Pages = async(num) => {
+        const nganhTerms = filterNganh.join(',');
         window.scrollTo({
             top: 0,
             left: 0,
@@ -223,9 +232,10 @@ const Themes = ({gd, nganh, danhmuc, max_pages}) => {
         });
         setLoading(true);
         setPaged(num);
-        const { data } = await axios.get(rootURL + 'giao-dien/giao-dien-mau?p=' + num).then((res) => res);
+        const { data } = await axios.get(`${rootURL}giao-dien/giao-dien-mau?p=${paged}&perpage=${perPage}&nganh=${nganhTerms}&s=${keySearch}`).then((resonse) => resonse.data);
         if(data){
-          setPosts(data.posts);
+            setPosts(response.posts);
+            setMax_paged(response.max_pages);
         }
         setLoading(false);
  }
@@ -267,9 +277,8 @@ const Themes = ({gd, nganh, danhmuc, max_pages}) => {
                             </div>
                         </Col>
                         <Col xs={24} md={24} lg={18}>
-                            <Form className={styles.x_gd_form}>
                                 <Row className={styles.x_flexing}>
-                                    <Col xs={24} md={12}>
+                                    <Col xs={24} md={8}>
                                         <ButtonToolbar className={styles.x_filter_group}>
                                             <Button className={styles.x_fillter_button} onClick={() => { setDisplayGrid(false) }}>
                                                 <IoListSharp /> Danh sách
@@ -282,35 +291,46 @@ const Themes = ({gd, nganh, danhmuc, max_pages}) => {
                                             </Button>
                                         </ButtonToolbar>
                                     </Col>
-                                    <Col xs={24} md={12}>
+                                    <Col xs={24} md={16}>
                                         <div className={styles.x_form_filter}>
                                             <Form.Group className={styles.x_margin_x}>
-                                                    <SelectPicker 
-                                                        onChange={(e) => { setPerPage(e) }}
-                                                        searchable={false}
-                                                        placeholder='Số lượng mỗi trang'
-                                                        name='paged'
-                                                        data={Paged} 
-                                                        style={{ width: '100%' }}
-                                                    />
+                                                <SelectPicker 
+                                                    onChange={(e) => { setPerPage(e) }}
+                                                    searchable={false}
+                                                    placeholder='Số lượng'
+                                                    name='paged'
+                                                    data={Paged} 
+                                                    style={{ width: '100%' }}
+                                                />
                                             </Form.Group>
-                                            <Form.Group className={styles.x_form_search_group + ' ' + styles.x_margin_x}>
-                                                        <Form.Control 
-                                                            type="text"
-                                                            value={EventTarget.value}
-                                                            onChange={(e) => setKeySearch(e)}
-                                                            name='s'
-                                                            placeholder={'Tìm kiếm giao diện...'}
-                                                            className={styles.x_form_search_posts}
-                                                        />
-                                            </Form.Group>
-                                            <Button className={styles.x_search_posts_button}>
-                                                <SearchIcon width={16} height={16} />
-                                            </Button>
+                                            <Form 
+                                                fluid
+                                                onSubmit={HandleSubmitSearch}
+                                                onChange={setFormValue}
+                                                className={styles.x_gd_form}
+                                                formValue={formvalue}
+                                                ref={formRef}
+                                                >
+                                                <Form.Group className={styles.x_form_search_group}>
+                                                            <Form.Control 
+                                                                type="text"
+                                                                value={EventTarget.value}
+                                                                name='s'
+                                                                placeholder={'Tìm kiếm giao diện...'}
+                                                                className={styles.x_form_search_posts}
+                                                            />
+                                                </Form.Group>
+                                                <Button className={styles.x_search_posts_button} type='submit'>
+                                                   {
+                                                    loading ? 
+                                                    <Loader size={'xs'} speed="fast"/> : 
+                                                    <IoSearchOutline size={16} color={"white"} />
+                                                   } 
+                                                </Button>
+                                            </Form>
                                         </div>
                                     </Col>
                                 </Row>
-                            </Form>
                             <Row>
                             {
                             loading ?  <Col xs={24}><Loading /></Col> :

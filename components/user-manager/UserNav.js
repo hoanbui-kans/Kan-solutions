@@ -9,10 +9,11 @@ const UserNav = () => {
         <Navbar className={styles.x_app_nav}>
             <Navbar.Brand className={styles.x_brand} as={'div'}>QUẢN LÝ TÀI KHOẢN</Navbar.Brand>
                 <Nav>
-                <Link href={'/quan-ly/home'}>
-                    <Nav.Item as={'span'}>Quản lý thông tin</Nav.Item>
-                </Link>
-                
+                <Nav.Item as={'span'}>
+                    <Link href={'/quan-ly/chinh-sua-thong-tin'}>
+                        Quản lý thông tin
+                    </Link>
+                </Nav.Item>
                 <Nav.Item as={'span'}>
                     <Link href="/quan-ly/thong-bao">
                         Thông báo mới
@@ -24,12 +25,15 @@ const UserNav = () => {
                     </Link>
                 </Nav.Item>
                 <Nav.Menu title="Dịch vụ">
-                    <Nav.Item>Company</Nav.Item>
-                    <Nav.Item>Team</Nav.Item>
-                    <Nav.Menu title="Contact">
-                    <Nav.Item>Via email</Nav.Item>
-                    <Nav.Item>Via telephone</Nav.Item>
-                    </Nav.Menu>
+                    <Nav.Item as={'span'}>
+                        <Link href="/dich-vu/thiet-ke-website">Thiết kế website</Link>
+                    </Nav.Item>
+                    <Nav.Item as={'span'}>
+                        <Link href="/dich-vu/quan-tri-website">Quản trị website</Link>
+                    </Nav.Item>
+                    <Nav.Item as={'span'}>
+                        <Link href="/dich-vu/marketing-online">Giải pháp marketing online</Link>
+                    </Nav.Item>
                 </Nav.Menu>
                 </Nav>
                 <Nav pullRight>
