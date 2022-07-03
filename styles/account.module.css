@@ -317,6 +317,9 @@
 .x_edit_profile_section{
     padding: 35px 0px
 }
+.x_form_group{
+    margin-bottom: 15px;
+}
 .x_guild_title{
     color: var(--x-text-color);
     text-transform: uppercase;
