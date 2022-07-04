@@ -50,7 +50,7 @@
     background: var(--x-primary-color);
 }
 .x_hosting_button{
-    background-color: var(--x-primary-color);
+    background: var(--x-gradient-one);
     color: var(--x-white-color);
     padding: var(--x-button-padding);
     display: block;
@@ -78,9 +78,10 @@
 }
 .x_call_to_action{
     border-radius: 35px;
-    background: var(--x-black-color);
-    color: var(--x-white-color);
+    background: #ffffff;
+    color: #407bff;
     padding: 18px 55px;
+    font-weight: 600;
     margin-top: 35px;
     display: flex;
     align-items: center;

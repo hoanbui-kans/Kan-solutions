@@ -42,19 +42,18 @@
 
 .x_project_view_button{
     margin-top: 15px;
-    border: 1px solid var(--x-border-color);
     background: unset;
     padding: 12px 25px !important;
     margin-right: 15px;
     color:#ffffff;
-    background-color: #2d88e2;
+    background: var(--x-gradient-one);
 }
 
 .x_project_title{
     font-size: 18px;
     line-height: 28px;
     border-bottom: 1px solid var(--x-border-color);
-    padding-bottom: 12px;
+    padding-bottom: 12px; 
     margin-bottom: 12px;
 }
 .x_project_container{

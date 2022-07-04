@@ -53,19 +53,20 @@
     margin-left: -13px;
 }
 .x_black_button{
-    background: black;
-    border: 1px solid black;
-    color: white;
-    padding: 16px 30px;
     display: flex;
     align-items: center;
     justify-content: center;
     column-gap: 10px;
-}
-.x_black_button:hover{
-    border-color: black;
-    background: unset
-}
+    padding: var(--x-button-padding);
+    color: var(--x-white-color);
+    background: var(--x-gradient-one);
+    transition: var(--x-transition);
+  }
+  .x_black_button:hover{
+    background: var(--x-gradient-two) !important;
+    color: var(--x-white-color) !important;
+    transition: var(--x-transition) !important;
+  }
 .x_about_description{
     margin-bottom: 1.95rem;
     display: block;

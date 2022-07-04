@@ -48,7 +48,7 @@ const config = {
         // all possible values
         result.push({
             loc: val,
-            changefreq: 'yearly',
+            changefreq: 'daily',
             priority: 0.7,
             lastmod: new Date().toISOString(),
           })

@@ -347,7 +347,7 @@
     box-shadow: 35px 35px 50px 0 rgb(36 50 66 / 15%);
 }
 .x_top_header{
-    background-color: var( --x-brand-color );
+    background: var( --x-gradient-three );
     color: var(--x-white-color);
     font-size: 85%;
     padding: .25rem 0rem;

@@ -89,18 +89,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    column-gap: 10px;
     padding: var(--x-button-padding);
     color: var(--x-white-color);
-    background: var(--x-black-color);
-    border: 1px solid var(--x-black-color);
+    background: var(--x-gradient-one);
+    transition: var(--x-transition);
+  }
+  .x_black_button:hover{
+    background: var(--x-gradient-two) !important;
+    color: var(--x-white-color) !important;
+    transition: var(--x-transition) !important;
   }
   .x_about_description{
     margin-bottom: var(--x-bottom-margin);
     display: block;
-  }
-  .x_black_button:hover{
-    border-color: var(--x-black-color);
-    background: unset
   }
   .x_decoation_0{
     position: absolute;
@@ -147,7 +149,8 @@
   .x_services_box_title, .x_features_box_title{
     font-size: var(--x-title-box-size);
     line-height: var(--x-title-line-height);
-    margin-bottom: 12px
+    margin-bottom: 12px;
+    color: #469aee;
   }
   
   .x_decoration_images{
@@ -212,7 +215,7 @@
     border-radius: var(--x-border-radius);
     transition: var(--x-transition);
     margin-bottom: var(--x-bottom-margin);
-    color: #111;
+    color: #353535;
     display: block;
   }
   .x_creeper_box:hover{

@@ -458,7 +458,7 @@ const Header = () => {
                                                         </div> : ''
                                                     }
                                                     <div className={styles.x_search_result_content}>
-                                                    <Link href={val.post_name}>
+                                                    <Link href={'/bai-viet/' + val.post_name}>
                                                         <a onClick={() => {setSearchForm(false)}}>
                                                         <h3 className={styles.x_search_result_title}>{val.post_title}</h3>
                                                         </a>

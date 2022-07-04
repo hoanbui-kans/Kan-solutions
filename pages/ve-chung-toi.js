@@ -213,7 +213,7 @@ const AboutUs = () => {
                     <h2 className={styles.x_banner_title}>Thiết kế Website chuyên nghiệp cùng ưu đãi hàng trăm banner miễn phí</h2>
                     <Link href="/giao-dien-mau">
                       <a>
-                        <Button className={styles.x_banner_button}>
+                        <Button className={styles.x_black_button} style={{margin: 'auto'}}>
                           Thông tin chi tiết
                         </Button>
                       </a>

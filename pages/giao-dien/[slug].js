@@ -84,11 +84,13 @@ export const NenTang = ({data}) => {
 }
  
 function Price({data}) {
-  if(data.sale_price) 
+  let salePercent; 
+  salePercent = Math.round(100 - (parseInt(data.sale_price)/parseInt(data.regular_price)*100));
   return (
     <div className={styles.x_styles_price}>
       <span className={styles.x_old_price}>{Separator(data.regular_price)}đ</span>
       <span className={styles.x_newPrice}>{Separator(data.sale_price)}đ</span>
+      <span className={styles.x_sale_badge}>-{salePercent}%</span>
     </div>
   )
   return(
