@@ -343,8 +343,23 @@
     left: 0;
     bottom: 0;
     right: 0;
-    background-color: #f7f7f7;
+    background-color: #ffffff;
     box-shadow: 35px 35px 50px 0 rgb(36 50 66 / 15%);
+}
+.x_button_website_create{
+    border: 1px solid rgb(151, 151, 151);
+    margin-bottom: 7px;
+    margin-right: 7px;
+}
+.x_button_website_doanh_nghiep{
+    background: var(--x-gradient-three); 
+    color: white;
+    border: none;
+    margin-bottom: 7px;
+}
+.x_button_inline{
+    display: inline-block !important;
+    width: auto !important;
 }
 .x_top_header{
     background: var( --x-gradient-three );

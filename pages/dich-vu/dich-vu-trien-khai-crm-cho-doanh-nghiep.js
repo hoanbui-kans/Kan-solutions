@@ -90,7 +90,7 @@ const CRM = ({data}) => {
 export default CRM
 
 export async function getServerSideProps(context) {
-  const post_name = 'crm-doanh-nghiep';
+  const post_name = 'dich-vu-trien-khai-crm-cho-doanh-nghiep';
   const res = await axios.get(`${rootURL}dich-vu/bai?slug=${post_name}`).then((resonse) => resonse.data);
   // Pass data to the page via props
   return { props: { 

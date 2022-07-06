@@ -11,7 +11,7 @@ import { BlogStyleTwo } from '../../components/blog-templates/BlogContent';
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
-const NextJs = ({data}) => {
+const NativeApp = ({data}) => {
   if(data == undefined) return '';
     return (
       <>
@@ -72,7 +72,7 @@ const NextJs = ({data}) => {
                               data.related.map((val, index) => {
                                 return (
                                   <Col key={index} md={8} xs={24}>
-                                    <BlogStyleTwo key={val.ID} data={val}/>
+                                   <BlogStyleTwo key={val.ID} data={val}/>
                                   </Col>
                                 )
                               })
@@ -87,10 +87,10 @@ const NextJs = ({data}) => {
     )
 }
 
-export default NextJs
+export default NativeApp
 
 export async function getServerSideProps(context) {
-  const post_name = 'next-js';
+  const post_name = 'native-app-nen-tang-tao-lap-ung-dung-mobile-hieu-qua';
   const res = await axios.get(`${rootURL}dich-vu/bai?slug=${post_name}`).then((resonse) => resonse.data);
   // Pass data to the page via props
   return { props: { 

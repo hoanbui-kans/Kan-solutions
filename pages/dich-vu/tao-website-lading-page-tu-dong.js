@@ -1,16 +1,16 @@
-import { Grid, Container, Row, Col, Button, Divider, Modal  } from 'rsuite'
+import { Container, Row, Col, Button, Divider, Modal  } from 'rsuite'
 import styles from '../../styles/services/webdesign.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
 import Head from 'next/head'
 import HTMLReactParser from 'html-react-parser'
-import { ServiceWordpress } from '../api/HeaderSeo'
+import { ServicesCreateWebsite } from '../api/HeaderSeo'
 import { HostingTable, WebsiteDesignTable } from '../api/services'
 import { IoCheckmarkOutline, IoStorefront } from "react-icons/io5";
 import { useState } from 'react'
 import ServicesSubmitForm from '../../components/handleSubmitServices'
 
-const Wordpress = () => {
+const CreateWordpress = () => {
  
  const [open, setOpen] = useState(false);  
  const [service, setService] = useState(''); 
@@ -24,7 +24,7 @@ const Wordpress = () => {
   return (
     <>
     <Head>
-        { HTMLReactParser(ServiceWordpress) }
+        { HTMLReactParser(ServicesCreateWebsite) }
     </Head>
     <div className={styles.x_wordpress_section}>
         <section className={styles.x_banner}>
@@ -100,7 +100,7 @@ const Wordpress = () => {
                     <Col xs={24}>
                         <div className={styles.x_hosting_title}>
                             <h3 className={styles.x_section_secondary_title}>Sử dụng dễ dàng</h3>
-                            <h2 className={styles.x_primary_title}>Bảng giá Hosting</h2>
+                            <h2 className={styles.x_primary_title}>Bảng giá tạo website wordpress</h2>
                         </div>
                         <div className={styles.x_hosting_table_container}>
                             <Row>
@@ -111,7 +111,7 @@ const Wordpress = () => {
                                                 <div className={styles.x_hosting}>
                                                     <div className={styles.x_hosting_header}>
                                                         <h3>{val.name}</h3>
-                                                        <p>{val.price} /năm</p>
+                                                        <p>{val.price} /Tháng</p>
                                                         <Button className={styles.x_hosting_button} onClick={() => { handleOpen('Dịch vụ hosting ' + val.name) }}>Đăng ký</Button>
                                                     </div>
                                                     <div className={styles.x_hosting_features}>
@@ -119,54 +119,6 @@ const Wordpress = () => {
                                                             {
                                                                 val.checklist.map((val, index) => {
                                                                     return( 
-                                                                        <li key={index}>
-                                                                            <span className={styles.x_hosting_check}>
-                                                                                <IoCheckmarkOutline color='white'/>
-                                                                            </span>
-                                                                            {val}
-                                                                        </li>
-                                                                    )
-                                                                })    
-                                                            }
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </Col>
-                                        )
-                                    })
-                                 }       
-                            </Row>
-                        </div>
-                    </Col>
-                </Row>
-            </Container>
-        </section>
-        <Divider/>
-        <section className={styles.x_hosting_section}>
-            <Container>
-                <Row className={styles.x_centered}>
-                    <Col xs={24}>
-                        <div className={styles.x_hosting_title}>
-                            <h3 className={styles.x_section_secondary_title}>Xây dựng nhanh chóng</h3>
-                            <h2 className={styles.x_primary_title}>Bảng giá thiết kế website</h2>
-                        </div>
-                        <div className={styles.x_hosting_table_container}>
-                            <Row>
-                                 {
-                                    WebsiteDesignTable.map((val, index) => {
-                                        return(
-                                            <Col xs={24} md={12} lg={8} key={index}>
-                                                <div className={styles.x_hosting}>
-                                                    <div className={styles.x_hosting_header}>
-                                                        <h3>{val.name}</h3>
-                                                        <p>{val.price}</p>
-                                                        <Button className={styles.x_hosting_button} onClick={() => { handleOpen('Dịch vụ hosting ' + val.name) }}>Đăng ký</Button>
-                                                    </div>
-                                                    <div className={styles.x_hosting_features}>
-                                                        <ul>
-                                                            {
-                                                                val.checklist.map((val, index) => {
-                                                                    return(
                                                                         <li key={index}>
                                                                             <span className={styles.x_hosting_check}>
                                                                                 <IoCheckmarkOutline color='white'/>
@@ -261,4 +213,4 @@ const Wordpress = () => {
   )
 }
 
-export default Wordpress
+export default CreateWordpress
