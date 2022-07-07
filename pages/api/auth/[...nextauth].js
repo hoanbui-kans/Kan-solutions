@@ -150,8 +150,6 @@ const options = {
   }
 }
 
-const NextAuthFunction = (req, res) => {
+export default (req, res) => {
   return NextAuth(req, res, options)
 }
-
-export default NextAuthFunction 
