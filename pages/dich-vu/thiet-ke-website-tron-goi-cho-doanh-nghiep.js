@@ -1,15 +1,15 @@
-import { Container, Row, Col, Button, Divider, Modal  } from 'rsuite'
+import { Container, Row, Col, Button, Divider, Modal, Panel  } from 'rsuite'
+import { ServiceWordpress } from '../api/HeaderSeo'
+import { WebsiteDesignTable } from '../api/services'
+import { IoCheckmarkOutline } from "react-icons/io5";
+import { useState } from 'react'
+import { SingleProject } from '../du-an'
+import ServicesSubmitForm from '../../components/handleSubmitServices'
 import styles from '../../styles/services/webdesign.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
 import Head from 'next/head'
 import HTMLReactParser from 'html-react-parser'
-import { ServiceWordpress } from '../api/HeaderSeo'
-import { WebsiteDesignTable } from '../api/services'
-import { IoCheckmarkOutline, IoStorefront } from "react-icons/io5";
-import { useState } from 'react'
-import ServicesSubmitForm from '../../components/handleSubmitServices'
-import { SingleProject } from '../du-an'
 import axios from 'axios'
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -176,10 +176,9 @@ const DesignWebsite = ({bai_viet}) => {
                                     why_choose.map((val, index) => {
                                         return(
                                             <Col xs={24} md={12} key={index}>
-                                                <div className={styles.x_why_choose_box_content}>
-                                                    <h4><IoCheckmarkOutline className={styles.x_features_icon} width={12} height={12}/> {val.title} </h4>
+                                                <Panel className={styles.x_panel_thietke} header={val.title} collapsible bordered>
                                                     <p>{val.content}</p>
-                                                </div>
+                                                </Panel>
                                             </Col>
                                         )
                                     })
@@ -204,7 +203,7 @@ const DesignWebsite = ({bai_viet}) => {
                                     </Col>
                                     <Col xs={24} md={12}>
                                         <div className={styles.x_banner_image}>
-                                            <Image src={'/layout/thiet-ke-website/decoration_2.svg'} width={500} height={500}/>
+                                            <Image src={'/layout/thiet-ke-website/decoration_2.svg'} width={500} height={300}/>
                                         </div>
                                     </Col>
                                 </Row>
@@ -214,10 +213,9 @@ const DesignWebsite = ({bai_viet}) => {
                                     Needed.map((val, index) => {
                                         return(
                                             <Col xs={24} md={12} key={index}>
-                                                <div className={styles.x_why_choose_box_content}>
-                                                    <h4><IoCheckmarkOutline className={styles.x_features_icon} width={12} height={12}/> {val.title} </h4>
+                                                 <Panel className={styles.x_panel_thietke} header={val.title} collapsible bordered>
                                                     <p>{val.content}</p>
-                                                </div>
+                                                </Panel>
                                             </Col>
                                         )
                                     })
@@ -237,50 +235,12 @@ const DesignWebsite = ({bai_viet}) => {
                             <div className={styles.x_thiet_ke_banner_title_2}>
                                 <Row className={styles.x_centered}>
                                     <Col xs={24} md={12}>
-                                        <h2 className={styles.x_primary_title}>Doanh nghiệp cần website như thế nào để nâng cao khả năng cạnh tranh trên thị trường</h2>
-                                        <p>Với thị trường và lợi ích website mang lại, không khó hiểu khi hiện nay hầu như doanh nghiệp, tổ chức hay cá nhân nào cũng trang bị một website. Việc có một website gần như là việc không những cần thiết mà còn là cấp bách trong thời đại kinh doanh số hiện nay. Vấn đề là làm sao website có thể hỗ trợ bạn cạnh tranh với vô vàn đối thủ cũng có website ngoài thị trường. Bạn cần chú ý những đặc điểm của website như sau:</p>
+                                        <h2 className={styles.x_primary_title}>Đơn vị xây dựng và phát triển website chuyên nghiệp và uy tín</h2>
+                                        <p>Với những đặc điểm nêu trên cho một website hiệu quả, một đơn vị xây dựng và phát triển website chuyên nghiệp và uy tín sẽ giúp bạn thực hiện những điều trên. Tại đây, chúng tôi có đầy đủ năng lực, kinh nghiệm, đội ngũ và công nghệ để đảm bảo xây dựng và vận hành website tối ưu cho doanh nghiệp:</p>
                                     </Col>
                                     <Col xs={24} md={12}>
                                         <div className={styles.x_banner_image}>
-                                            <Image src={'/layout/thiet-ke-website/decoration_3.svg'} width={500} height={500}/>
-                                        </div>
-                                    </Col>
-                                </Row>
-                            </div>
-                            <Row>
-                                {
-                                    Needed.map((val, index) => {
-                                        return(
-                                            <Col xs={24} md={12} key={index}>
-                                                <div className={styles.x_why_choose_box_content}>
-                                                    <h4><IoCheckmarkOutline className={styles.x_features_icon} width={12} height={12}/> {val.title} </h4>
-                                                    <p>{val.content}</p>
-                                                </div>
-                                            </Col>
-                                        )
-                                    })
-                                }
-                            </Row>
-                        </div>
-                    </Col>
-                </Row>
-            </Container>
-        </section>
-        <Divider/>
-        <section className={styles.x_why_choose}>
-            <Container>
-                <Row className={styles.x_centered}>
-                    <Col xs={24} md={24}>
-                        <div className={styles.x_supporter}>
-                            <div className={styles.x_thiet_ke_banner_title_3}>
-                                <Row className={styles.x_centered}>
-                                    <Col xs={24} md={12}>
-                                        <h2 className={styles.x_primary_title}>Doanh nghiệp cần website như thế nào để nâng cao khả năng cạnh tranh trên thị trường</h2>
-                                        <p>Với thị trường và lợi ích website mang lại, không khó hiểu khi hiện nay hầu như doanh nghiệp, tổ chức hay cá nhân nào cũng trang bị một website. Việc có một website gần như là việc không những cần thiết mà còn là cấp bách trong thời đại kinh doanh số hiện nay. Vấn đề là làm sao website có thể hỗ trợ bạn cạnh tranh với vô vàn đối thủ cũng có website ngoài thị trường. Bạn cần chú ý những đặc điểm của website như sau:</p>
-                                    </Col>
-                                    <Col xs={24} md={12}>
-                                        <div className={styles.x_banner_image}>
-                                            <Image src={'/layout/thiet-ke-website/decoration_4.svg'} width={500} height={500}/>
+                                            <Image src={'/layout/thiet-ke-website/decoration_3.svg'} width={500} height={300}/>
                                         </div>
                                     </Col>
                                 </Row>
@@ -290,10 +250,9 @@ const DesignWebsite = ({bai_viet}) => {
                                     Team.map((val, index) => {
                                         return(
                                             <Col xs={24} md={12} key={index}>
-                                                <div className={styles.x_why_choose_box_content}>
-                                                    <h4><IoCheckmarkOutline className={styles.x_features_icon} width={12} height={12}/> {val.title} </h4>
+                                                <Panel className={styles.x_panel_thietke} header={val.title} collapsible bordered>
                                                     <p>{val.content}</p>
-                                                </div>
+                                                </Panel>
                                             </Col>
                                         )
                                     })
@@ -305,34 +264,70 @@ const DesignWebsite = ({bai_viet}) => {
             </Container>
         </section>
         <Divider/>
+        {
+            bai_viet ? <>
+            <section className={styles.x_project_section}>
+                <Container>
+                    <Row className={styles.x_centered}>
+                        <Col xs={24}>
+                            <div className={styles.x_hosting_title}>
+                                <h2 className={styles.x_primary_title}>Các dự án đã hoàn thiện</h2>
+                            </div>
+                            <div className={styles.x_hosting_table_container}>
+                                <Carousel responsive={responsive}>
+                                    {
+                                        bai_viet.map((val) => {
+                                            return (
+                                                <div style={{padding: '10px'}} key={val.id}>
+                                                    <SingleProject data={val} />
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </Carousel>
+                            </div>
+                        </Col>
+                        <Col xs={24}>
+                            <Link href="/du-an/">
+                                <a>
+                                    <Button className={styles.x_to_du_an}>
+                                        Xem tất cả dự án »
+                                </Button>
+                                </a>
+                            </Link>
+                        </Col>
+                    </Row>
+                </Container>
+            </section>
+        </> : ''
+        }
+        <Divider/>
         <section className={styles.x_why_choose}>
             <Container>
                 <Row className={styles.x_centered}>
                     <Col xs={24} md={24}>
                         <div className={styles.x_supporter}>
-                            <div className={styles.x_thiet_ke_banner_title_4}>
-                                    <Row className={styles.x_centered}>
-                                        <Col xs={24} md={12}>
-                                            <h3 className={styles.x_section_secondary_title}>Hỗ trợ 24/7</h3>
-                                            <h2 className={styles.x_primary_title}>Doanh nghiệp cần website như thế nào để nâng cao khả năng cạnh tranh trên thị trường</h2>
-                                            <p>Với thị trường và lợi ích website mang lại, không khó hiểu khi hiện nay hầu như doanh nghiệp, tổ chức hay cá nhân nào cũng trang bị một website. Việc có một website gần như là việc không những cần thiết mà còn là cấp bách trong thời đại kinh doanh số hiện nay. Vấn đề là làm sao website có thể hỗ trợ bạn cạnh tranh với vô vàn đối thủ cũng có website ngoài thị trường. Bạn cần chú ý những đặc điểm của website như sau:</p>
-                                        </Col>
-                                        <Col xs={24} md={12}>
-                                            <div className={styles.x_banner_image}>
-                                                <Image src={'/layout/thiet-ke-website/decoration_5.svg'} width={500} height={500}/>
-                                            </div>
-                                        </Col>
-                                    </Row>
+                            <div className={styles.x_thiet_ke_banner_title_3}>
+                                <Row className={styles.x_centered}>
+                                    <Col xs={24} md={12}>
+                                        <h2 className={styles.x_primary_title}>Quy trình thực hiện một dự án website hiệu quả</h2>
+                                        <p>Quy trình từ lên kế hoạch đến triển khai và vận hành dự án, một dự án website tốt cần đạt được những yêu cầu về mặt thiết kế, nội dung và những tính năng để phục vụ cho trải nghiệm của khách hàng:</p>
+                                    </Col>
+                                    <Col xs={24} md={12}>
+                                        <div className={styles.x_banner_image}>
+                                            <Image src={'/layout/thiet-ke-website/decoration_4.svg'} width={500} height={300}/>
+                                        </div>
+                                    </Col>
+                                </Row>
                             </div>
                             <Row>
                                 {
                                     QuyTrinh.map((val, index) => {
                                         return(
                                             <Col xs={24} md={12} key={index}>
-                                                <div className={styles.x_why_choose_box_content}>
-                                                    <h4><IoCheckmarkOutline className={styles.x_features_icon} width={12} height={12}/> {val.title} </h4>
+                                                <Panel className={styles.x_panel_thietke} header={val.title} collapsible bordered>
                                                     <p>{val.content}</p>
-                                                </div>
+                                                </Panel>
                                             </Col>
                                         )
                                     })
@@ -392,44 +387,6 @@ const DesignWebsite = ({bai_viet}) => {
             </Container>
         </section>
         <Divider/>
-        {
-            bai_viet ? <>
-            <section className={styles.x_hosting_section}>
-                <Container>
-                    <Row className={styles.x_centered}>
-                        <Col xs={24}>
-                            <div className={styles.x_hosting_title}>
-                                <h2 className={styles.x_primary_title}>Các dự án đã hoàn thiện</h2>
-                            </div>
-                            <div className={styles.x_hosting_table_container}>
-                                <Carousel responsive={responsive}>
-                                    {
-                                        bai_viet.map((val) => {
-                                            return (
-                                                <div style={{padding: '10px'}} key={val.id}>
-                                                    <SingleProject data={val} />
-                                                </div>
-                                            )
-                                        })
-                                    }
-                                </Carousel>
-                            </div>
-                        </Col>
-                        <Col xs={24}>
-                            <Link href="/du-an/">
-                                <a>
-                                    <Button className={styles.x_to_du_an}>
-                                        Xem tất cả dự án »
-                                </Button>
-                                </a>
-                            </Link>
-                        </Col>
-                    </Row>
-                </Container>
-            </section>
-            <Divider/>
-            </> : ''
-        }
         <section className={styles.x_services_container}>
             <Container>
                 <Row>
@@ -505,7 +462,7 @@ export default DesignWebsite
 
 export async function getServerSideProps() {
 
-    const res = await axios.get(rootURL + 'du-an/bai-viet?per_page=6').then((resonse) => resonse.data);
+    const res = await axios.get(rootURL + 'du-an/bai-viet?per_page=9').then((resonse) => resonse.data);
   
     // Pass data to the page via props
     return { props: { 

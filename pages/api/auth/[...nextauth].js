@@ -116,9 +116,7 @@ const options = {
             .catch(function (error) {
               console.log(error);
             });
-
-            console.log('response_fb', response_fb)
-
+            
             if(!response_fb){
               return false
             }
