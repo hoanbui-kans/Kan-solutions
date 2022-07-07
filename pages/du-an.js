@@ -16,11 +16,11 @@ export const SingleProject = ({data}) => {
     return (
         <div className={styles.x_project_container}>
             <div className={styles.x_project_thumbnail}>
-                <Image src={data.thumbnail[0]} width={data.thumbnail[1]} height={data.thumbnail[2]}/>
+                <Image alt={data.post_name} src={data.thumbnail[0]} width={data.thumbnail[1]} height={data.thumbnail[2]}/>
                 {
                     data.logo_khach_hang ? 
                     <div className={styles.x_logo_khach_hang}>
-                        <Image src={data.logo_khach_hang.url} width={data.logo_khach_hang.width} height={data.logo_khach_hang.height}/>
+                        <Image alt={data.post_name} src={data.logo_khach_hang.url} width={data.logo_khach_hang.width} height={data.logo_khach_hang.height}/>
                     </div> : ''
                 }
             </div>

@@ -159,7 +159,7 @@ const DesignWebsite = ({bai_viet}) => {
                     </Col>
                     <Col xs={24} md={12}>
                         <div className={styles.x_banner_image}>
-                            <Image src={'/layout/thiet-ke-website/decoration_1.svg'} width={500} height={500}/>
+                            <Image alt="Thiết kế webiste trọn gói cho doanh nghiệp" src={'/layout/thiet-ke-website/decoration_1.svg'} width={500} height={500}/>
                         </div>
                     </Col>
                 </Row>
@@ -203,7 +203,7 @@ const DesignWebsite = ({bai_viet}) => {
                                     </Col>
                                     <Col xs={24} md={12}>
                                         <div className={styles.x_banner_image}>
-                                            <Image src={'/layout/thiet-ke-website/decoration_2.svg'} width={500} height={300}/>
+                                            <Image alt="Doanh nghiệp cần website như thế nào để nâng cao khả năng cạnh tranh" src={'/layout/thiet-ke-website/decoration_2.svg'} width={500} height={300}/>
                                         </div>
                                     </Col>
                                 </Row>
@@ -240,7 +240,7 @@ const DesignWebsite = ({bai_viet}) => {
                                     </Col>
                                     <Col xs={24} md={12}>
                                         <div className={styles.x_banner_image}>
-                                            <Image src={'/layout/thiet-ke-website/decoration_3.svg'} width={500} height={300}/>
+                                            <Image alt="Đơn vị xây dựng và phát triển website chuyên nghiệp và uy tín" src={'/layout/thiet-ke-website/decoration_3.svg'} width={500} height={300}/>
                                         </div>
                                     </Col>
                                 </Row>
@@ -315,7 +315,7 @@ const DesignWebsite = ({bai_viet}) => {
                                     </Col>
                                     <Col xs={24} md={12}>
                                         <div className={styles.x_banner_image}>
-                                            <Image src={'/layout/thiet-ke-website/decoration_4.svg'} width={500} height={300}/>
+                                            <Image alt={'Quy trình thực hiện một dự án website hiệu quả'} src={'/layout/thiet-ke-website/decoration_4.svg'} width={500} height={300}/>
                                         </div>
                                     </Col>
                                 </Row>
@@ -399,7 +399,7 @@ const DesignWebsite = ({bai_viet}) => {
                                     <Col xs={24} md={12} lg={8} className={styles.x_padding}>
                                         <div className={styles.x_services_content}>
                                             <div className={styles.x_wordpress_icon_service}>
-                                             <Image src={'/icons/landing-page.png'} height={50} width={50}/>
+                                             <Image alt="Website Landing Page" src={'/icons/landing-page.png'} height={50} width={50}/>
                                             </div>
                                             <h3 className={styles.x_services_content_title}>Website Landing Page</h3>
                                             <h2 className={styles.x_services_content_main_title}>Xây dựng kênh quảng bá sản phẩm nhanh</h2>
@@ -413,7 +413,7 @@ const DesignWebsite = ({bai_viet}) => {
                                     <Col xs={24} md={12} lg={8} className={styles.x_padding}>
                                         <div className={styles.x_services_content}>
                                             <div className={styles.x_wordpress_icon_service}>
-                                             <Image src={'/icons/content.png'} height={50} width={50}/>
+                                             <Image alt="xây dựng thương hiệu doanh nghiệp" src={'/icons/content.png'} height={50} width={50}/>
                                             </div>
                                             <h3 className={styles.x_services_content_title}>Website Doanh Nghiệp</h3>
                                             <h2 className={styles.x_services_content_main_title}>Xây dựng thương hiệu doanh nghiệp</h2>
@@ -427,7 +427,7 @@ const DesignWebsite = ({bai_viet}) => {
                                     <Col xs={24} md={12} lg={8} className={styles.x_padding}>
                                         <div className={styles.x_services_content}>
                                             <div className={styles.x_wordpress_icon_service}>
-                                             <Image src={'/icons/laptop.png'} height={50} width={50}/>
+                                             <Image alt="Website Thương Mại" src={'/icons/laptop.png'} height={50} width={50}/>
                                             </div>
                                             <h3 className={styles.x_services_content_title}>Website Thương Mại</h3>
                                             <h2 className={styles.x_services_content_main_title}>Mở rộng quy mô phân phối sản phẩm</h2>

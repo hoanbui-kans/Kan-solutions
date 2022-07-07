@@ -66,7 +66,7 @@ const WebsiteManager = () => {
               <Row>
                 <Col xs={24} md={12}>
                     <div className={styles.x_website_manager_image}>
-                        <Image src={'/marketing.svg'} width={500} height={400}/>
+                        <Image alt="Dịch vụ quản trị website" src={'/marketing.svg'} width={500} height={400}/>
                     </div>
                 </Col>
                 <Col xs={24} md={12}>
@@ -118,7 +118,7 @@ const WebsiteManager = () => {
                     </Col>
                     <Col xs={24} md={12}>
                       <div className={styles.x_website_manager_image}>
-                        <Image src={'/layout/multipe_screen.png'} width={800} height={440}/>
+                        <Image alt="Hỗ trợ xây dựng trang đích quảng cáo" src={'/layout/multipe_screen.png'} width={800} height={440}/>
                       </div>
                     </Col>
                     <Col xs={24} md={12}>
@@ -174,7 +174,7 @@ const WebsiteManager = () => {
                         <li>
                           <div className={styles.x_website_manager_features}>
                             <div className={styles.x_website_manager_features_icon}>
-                              <Image src={'/icons/Time_atack_light.svg'} width={45} height={45}/>
+                              <Image alt="Chăm sóc webiste" src={'/icons/Time_atack_light.svg'} width={45} height={45}/>
                             </div>
                             <div className={styles.x_website_manager_content}>
                               <h3><IoCaretForwardSharp size={14}/> Bạn không có thờI gian và nhân sự để chăm sóc, viết bàI để nâng thứ hạng website?</h3>  
@@ -185,7 +185,7 @@ const WebsiteManager = () => {
                         <li>
                           <div className={styles.x_website_manager_features}>
                             <div className={styles.x_website_manager_features_icon}>
-                              <Image src={'/icons/Chield_check_fill.svg'} width={45} height={45}/>
+                              <Image alt="Vận hành webiste" src={'/icons/Chield_check_fill.svg'} width={45} height={45}/>
                             </div>
                             <div className={styles.x_website_manager_content}>
                               <h3><IoCaretForwardSharp size={14}/> Bạn cảm thấy khó hiểu khi muốn vận hành một website hiệu quả</h3>  
@@ -196,7 +196,7 @@ const WebsiteManager = () => {
                         <li>
                           <div className={styles.x_website_manager_features}>
                             <div className={styles.x_website_manager_features_icon}>
-                              <Image src={'/icons/Wallet_alt_fill.svg'} width={35} height={35}/>
+                              <Image alt="Tiết kiệm chi phí" src={'/icons/Wallet_alt_fill.svg'} width={35} height={35}/>
                             </div>
                             <div className={styles.x_website_manager_content}>
                               <h3><IoCaretForwardSharp size={14}/> Bạn cảm thấy tốn kém rất nhiều tài nguyên và chi phí để quản trị website</h3>  

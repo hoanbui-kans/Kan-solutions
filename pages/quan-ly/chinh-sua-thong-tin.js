@@ -26,13 +26,13 @@ const UserEditor = ({token}) => {
   })
   // Tinh
   const [dataTinh, setDataTinh] = useState([]);
-  const [tinh, setTinh] = useState();
+  const [tinh, setTinh] = useState('');
   // Huyen
   const [dataHuyen, setDataHuyen] = useState([]);
-  const [huyen, setHuyen] = useState();
+  const [huyen, setHuyen] = useState('');
   // Xa
   const [dataXa, setDataXa] = useState([]);
-  const [xa, setXa] = useState();
+  const [xa, setXa] = useState('');
 
   // Update DataTinh OnLoad 
   useEffect(() => {
