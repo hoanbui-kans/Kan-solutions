@@ -14,23 +14,23 @@ export const listServices = [
     {
         name: 'Wordpress',
         image: Wordpress,
-        link: '/dich-vu/wordpress'
+        link: '/dich-vu/tao-website-lading-page-tu-dong'
     },{
         name: 'React app',
         image: ReactIcons,
-        link: '/dich-vu/react-app'
+        link: '/dich-vu/thiet-ke-react-app-ung-dung-web'
     },{
         name: 'Next Js với mã nguồn mở',
         image: NextJs,
-        link: '/dich-vu/next-js'
+        link: '/dich-vu/next-js-ung-dung-web-ho-tro-ssr-va-seo-hieu-qua'
     },{
         name: 'Native Mobile app',
         image: NativeApp,
-        link: '/dich-vu/native-mobile-app'
+        link: '/dich-vu/native-app-nen-tang-tao-lap-ung-dung-mobile-hieu-qua'
     },{
         name: 'CRM doanh nghiệp',
         image: CRM,
-        link: '/dich-vu/crm-doanh-nghiep'
+        link: '/dich-vu/dich-vu-trien-khai-crm-cho-doanh-nghiep'
     },
 ]
 
@@ -314,44 +314,47 @@ export const MarketingTable = [
 export const HostingTable = [
     {
         name: 'Cơ bản',
-        price: '300.000đ',
-        checklist: [
-            'Server đặt tại: Việt Nam',
-            'Dung lượng: 300 MB',
-            'Băng thông: Không giới hạn',
-            'FTP: Không giới hạn',
-            'Sub-domain: 10',
-            'Email: 10',
-            'Database: 1',
-            'Addon domain: 0',
-            'Park domain: 3',
-        ]
-    },{
-        name: 'Kinh doanh',
-        price: '800.000đ',
+        price: '70.000đ',
         checklist: [
             'Server đặt tại: Việt Nam',
             'Dung lượng: 1 GB',
             'Băng thông: Không giới hạn',
-            'Sub-domain: Không giới hạn',
-            'Email: 20',
             'FTP: Không giới hạn',
-            'Database: 1',
+            'Email tự động: Có',
+            'Website: 1',
+            'Quản lý CRM: Không',
             'Addon domain: 0',
-            'Park domain: 3',
+            'Backup dữ liệu: Hàng tuần',
+            'Park domain: Không giới hạn',
+        ]
+    },{
+        name: 'Kinh doanh',
+        price: '150.000đ',
+        checklist: [
+            'Server đặt tại: Việt Nam',
+            'Dung lượng: 2.5 GB',
+            'Băng thông: Không giới hạn',
+            'Email tự động: Có',
+            'FTP: Không giới hạn',
+            'Website: 2',
+            'Quản lý CRM: Có',
+            'Addon domain: 0',
+            'Backup dữ liệu: Hàng tuần',
+            'Park domain: Không giới hạn',
         ]
     },{
         name: 'Nâng cao',
-        price: '1.5000.000đ',
+        price: '300.000đ',
         checklist: [
             'Server đặt tại: Việt Nam',
-            'Dung lượng: 2 GB',
+            'Dung lượng: 5 GB',
             'Băng thông: Không giới hạn',
-            'Sub-domain: Không giới hạn',
-            'Email: 20',
+            'Email tự động: Có',
             'FTP: Không giới hạn',
-            'Database: 2',
+            'Website: 7',
+            'Quản lý CRM: Có',
             'Addon domain: 0',
+            'Backup dữ liệu: Hàng tuần',
             'Park domain: Không giới hạn',
         ]
     }

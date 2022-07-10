@@ -41,3 +41,14 @@
     background: var(--x-light-color);
     height: 100vh;
 }
+.x_showin_mobile{
+    display: none;
+}
+@media (max-width: 992px) {
+    .x_showin_desktop{
+        display: none;
+    }
+    .x_showin_mobile{
+        display: flex;
+    }
+}

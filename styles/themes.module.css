@@ -73,7 +73,7 @@
 .x_sale_badge{
   color: white;
   margin-left: 10px;
-  background: red;
+  background: #ff503e;
   padding: 2px 2px;
   border-radius: 5px;
   font-size: 10px;
@@ -148,7 +148,7 @@
     border: 1px solid var(--x-border-color)
   }
   .x_gd_box_price .x_newPrice, .x_gd_list_price .x_newPrice{
-    color: #e74c3c;
+    color: #ff503e;
     font-weight: bolder;
   }
   .x_gd_box_price{
@@ -158,8 +158,7 @@
     font-size: 16px;
   }
   .x_gd_create_button_box{
-    background: #2d88e2;
-    border: 1px solid #2d88e2;
+    background: var(--x-gradient-one);
     color: white;
     padding: 8px 5px;
     font-size: 12px;

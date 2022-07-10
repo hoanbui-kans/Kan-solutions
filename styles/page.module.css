@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: black;
+    background: var(--x-gradient-one);
     column-gap: 10px;
     padding: .75rem 1.25rem;
     border-radius: 35px;

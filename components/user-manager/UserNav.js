@@ -26,13 +26,13 @@ const UserNav = () => {
                 </Nav.Item>
                 <Nav.Menu title="Dịch vụ">
                     <Nav.Item as={'span'}>
-                        <Link href="/dich-vu/thiet-ke-website">Thiết kế website</Link>
+                        <Link href="/dich-vu/thiet-ke-website-tron-goi-cho-doanh-nghiep">Thiết kế website</Link>
                     </Nav.Item>
                     <Nav.Item as={'span'}>
-                        <Link href="/dich-vu/quan-tri-website">Quản trị website</Link>
+                        <Link href="/dich-vu/giai-phap-quan-tri-noi-dung-website-cho-doanh-nghiep">Quản trị website</Link>
                     </Nav.Item>
                     <Nav.Item as={'span'}>
-                        <Link href="/dich-vu/marketing-online">Giải pháp marketing online</Link>
+                        <Link href="/dich-vu/giai-phap-marketing-online-cho-doanh-nghiep">Giải pháp marketing online</Link>
                     </Nav.Item>
                 </Nav.Menu>
                 </Nav>

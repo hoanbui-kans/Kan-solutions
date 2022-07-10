@@ -86,7 +86,7 @@ const ReactApp = ({data}) => {
 export default ReactApp
 
 export async function getServerSideProps(context) {
-  const post_name = 'react-app';
+  const post_name = 'thiet-ke-react-app-ung-dung-web';
   const res = await axios.get(`${rootURL}dich-vu/bai?slug=${post_name}`).then((resonse) => resonse.data);
   // Pass data to the page via props
   return { props: { 

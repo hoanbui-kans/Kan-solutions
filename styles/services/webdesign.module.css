@@ -6,7 +6,39 @@
     border-radius: var(--x-border-radius);
     color: var(--x-white-color)
 }
+.x_banner_thiet_ke{
+    padding: 35px 0;
+    background-color: #3670ee;
+    max-width: calc(100% - 20px);
+    margin: auto;
+    border-radius: var(--x-border-radius);
+    color: var(--x-white-color)
+}
+.x_project_section{
+    padding: 45px 0px;
+}
+.x_call_to_action_thiet_ke{
+    background: black;
+    padding: 12px 25px;
+    color: white;
+    border-radius: 30px;
+}
+.x_panel_thietke{
+    margin-bottom: 15px;
+    background: white
+}
+.x_to_du_an{
+    background-color: #3670ee;
+    color: white;
+    margin: auto;
+    display: block;
+    padding: 12px 15px;
+    border-radius: 50px;
+}
 .x_wordpress_section{
+    background-color: var(--x-light-color);
+}
+.x_thiet_ke_website_section{
     background-color: var(--x-light-color);
 }
 .x_banner_content{
@@ -50,7 +82,7 @@
     background: var(--x-primary-color);
 }
 .x_hosting_button{
-    background-color: var(--x-primary-color);
+    background: var(--x-gradient-one);
     color: var(--x-white-color);
     padding: var(--x-button-padding);
     display: block;
@@ -78,9 +110,10 @@
 }
 .x_call_to_action{
     border-radius: 35px;
-    background: var(--x-black-color);
-    color: var(--x-white-color);
+    background: #ffffff;
+    color: #407bff;
     padding: 18px 55px;
+    font-weight: 600;
     margin-top: 35px;
     display: flex;
     align-items: center;
@@ -88,7 +121,7 @@
 }
 .x_services_container{
     background-color: var(--x-light-color);
-    padding: var(--x-section-padding);
+    padding: 45px 0px;
 }
 .x_features_icon{
     margin-right: 5px;
@@ -126,7 +159,7 @@
 }
 .x_why_choose{
     background: var(--x-light-color);
-    padding: var(--x-section-padding)
+    padding: 35px 0px
 }
 
 .services_main_title{
@@ -135,7 +168,7 @@
 
 .x_services_content{
     min-height: 400px;
-    padding: 75px 32px;
+    padding: 30px;
     display: block;
     border-radius: var(--x-border-radius);
     transition: var(--x-transition);
@@ -181,4 +214,42 @@
 
 .x_services_content_title{
     font-size: 14px;
+}
+
+.x_thiet_ke_banner_title_1{
+    margin-bottom: 35px;
+    border: var(--x-border-radius);
+    padding: 35px 0px;
+}
+.x_thiet_ke_banner_title_2{
+    margin-bottom: 35px;
+    border: var(--x-border-radius);
+    padding: 35px 0px;
+}
+.x_thiet_ke_banner_title_3{
+    margin-bottom: 35px;
+    border: var(--x-border-radius);
+    padding: 35px 0px;
+}
+.x_thiet_ke_banner_title_4{
+    margin-bottom: 35px;
+    border: var(--x-border-radius);
+    padding: 35px 0px;
+}
+
+.x_why_choose_box_content{
+    box-shadow: var(--x-neumorphic-darker-dropdown);
+    border-radius: var(--x-border-radius);
+    padding: 15px;
+    margin-bottom: var(--x-bottom-margin);
+}
+
+.x_why_choose_box_content .x_features_icon{
+    background-color: var(--x-success-color);
+    border-radius: 50%;
+    color: white;
+}
+
+.x_why_choose_box_content h4{
+    font-size: 16px;
 }

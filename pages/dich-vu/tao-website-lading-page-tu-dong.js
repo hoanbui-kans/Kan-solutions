@@ -1,16 +1,16 @@
-import { Grid, Container, Row, Col, Button, Divider, Modal  } from 'rsuite'
+import { Container, Row, Col, Button, Divider, Modal  } from 'rsuite'
 import styles from '../../styles/services/webdesign.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
 import Head from 'next/head'
 import HTMLReactParser from 'html-react-parser'
-import { ServiceWordpress } from '../api/HeaderSeo'
+import { ServicesCreateWebsite } from '../api/HeaderSeo'
 import { HostingTable, WebsiteDesignTable } from '../api/services'
 import { IoCheckmarkOutline, IoStorefront } from "react-icons/io5";
 import { useState } from 'react'
 import ServicesSubmitForm from '../../components/handleSubmitServices'
 
-const Wordpress = () => {
+const CreateWordpress = () => {
  
  const [open, setOpen] = useState(false);  
  const [service, setService] = useState(''); 
@@ -24,7 +24,7 @@ const Wordpress = () => {
   return (
     <>
     <Head>
-        { HTMLReactParser(ServiceWordpress) }
+        { HTMLReactParser(ServicesCreateWebsite) }
     </Head>
     <div className={styles.x_wordpress_section}>
         <section className={styles.x_banner}>
@@ -43,7 +43,7 @@ const Wordpress = () => {
                     </Col>
                     <Col xs={24} md={12}>
                         <div className={styles.x_banner_image}>
-                            <Image src={'/layout/wordpress-banner.svg'} width={500} height={500}/>
+                            <Image alt="thiết kế website tự động" src={'/layout/wordpress-banner.svg'} width={500} height={500}/>
                         </div>
                     </Col>
                 </Row>
@@ -66,7 +66,7 @@ const Wordpress = () => {
                         </div>
                     </Col>
                     <Col xs={24} md={12}>
-                        <Image alt='layout' src={'/layout/web_creation-01.svg'} width={800} height={600}/>
+                        <Image alt="thiết kế website wordpress" src={'/layout/web_creation-01.svg'} width={800} height={600}/>
                     </Col>
                 </Row>
             </Container>
@@ -89,7 +89,7 @@ const Wordpress = () => {
                         </div>
                     </Col>
                     <Col xs={24} md={12}>
-                        <Image alt='layout' src={'/layout/helper-01.svg'} width={800} height={600}/>
+                        <Image alt="hỗ trợ xây dựng webiste wordpress" src={'/layout/helper-01.svg'} width={800} height={600}/>
                     </Col>
                 </Row>
             </Container>
@@ -100,7 +100,7 @@ const Wordpress = () => {
                     <Col xs={24}>
                         <div className={styles.x_hosting_title}>
                             <h3 className={styles.x_section_secondary_title}>Sử dụng dễ dàng</h3>
-                            <h2 className={styles.x_primary_title}>Bảng giá Hosting</h2>
+                            <h2 className={styles.x_primary_title}>Bảng giá tạo website wordpress</h2>
                         </div>
                         <div className={styles.x_hosting_table_container}>
                             <Row>
@@ -111,7 +111,7 @@ const Wordpress = () => {
                                                 <div className={styles.x_hosting}>
                                                     <div className={styles.x_hosting_header}>
                                                         <h3>{val.name}</h3>
-                                                        <p>{val.price} /năm</p>
+                                                        <p>{val.price} /Tháng</p>
                                                         <Button className={styles.x_hosting_button} onClick={() => { handleOpen('Dịch vụ hosting ' + val.name) }}>Đăng ký</Button>
                                                     </div>
                                                     <div className={styles.x_hosting_features}>
@@ -119,54 +119,6 @@ const Wordpress = () => {
                                                             {
                                                                 val.checklist.map((val, index) => {
                                                                     return( 
-                                                                        <li key={index}>
-                                                                            <span className={styles.x_hosting_check}>
-                                                                                <IoCheckmarkOutline color='white'/>
-                                                                            </span>
-                                                                            {val}
-                                                                        </li>
-                                                                    )
-                                                                })    
-                                                            }
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </Col>
-                                        )
-                                    })
-                                 }       
-                            </Row>
-                        </div>
-                    </Col>
-                </Row>
-            </Container>
-        </section>
-        <Divider/>
-        <section className={styles.x_hosting_section}>
-            <Container>
-                <Row className={styles.x_centered}>
-                    <Col xs={24}>
-                        <div className={styles.x_hosting_title}>
-                            <h3 className={styles.x_section_secondary_title}>Xây dựng nhanh chóng</h3>
-                            <h2 className={styles.x_primary_title}>Bảng giá thiết kế website</h2>
-                        </div>
-                        <div className={styles.x_hosting_table_container}>
-                            <Row>
-                                 {
-                                    WebsiteDesignTable.map((val, index) => {
-                                        return(
-                                            <Col xs={24} md={12} lg={8} key={index}>
-                                                <div className={styles.x_hosting}>
-                                                    <div className={styles.x_hosting_header}>
-                                                        <h3>{val.name}</h3>
-                                                        <p>{val.price}</p>
-                                                        <Button className={styles.x_hosting_button} onClick={() => { handleOpen('Dịch vụ hosting ' + val.name) }}>Đăng ký</Button>
-                                                    </div>
-                                                    <div className={styles.x_hosting_features}>
-                                                        <ul>
-                                                            {
-                                                                val.checklist.map((val, index) => {
-                                                                    return(
                                                                         <li key={index}>
                                                                             <span className={styles.x_hosting_check}>
                                                                                 <IoCheckmarkOutline color='white'/>
@@ -202,7 +154,7 @@ const Wordpress = () => {
                                     <Col xs={24} md={12} lg={8} className={styles.x_padding}>
                                         <div className={styles.x_services_content}>
                                             <div className={styles.x_wordpress_icon_service}>
-                                             <Image src={'/icons/landing-page.png'} height={50} width={50}/>
+                                             <Image alt="Website Landing Page" src={'/icons/landing-page.png'} height={50} width={50}/>
                                             </div>
                                             <h3 className={styles.x_services_content_title}>Website Landing Page</h3>
                                             <h2 className={styles.x_services_content_main_title}>Xây dựng kênh quảng bá sản phẩm nhanh</h2>
@@ -216,7 +168,7 @@ const Wordpress = () => {
                                     <Col xs={24} md={12} lg={8} className={styles.x_padding}>
                                         <div className={styles.x_services_content}>
                                             <div className={styles.x_wordpress_icon_service}>
-                                             <Image src={'/icons/content.png'} height={50} width={50}/>
+                                             <Image alt="Website Doanh Nghiệp" src={'/icons/content.png'} height={50} width={50}/>
                                             </div>
                                             <h3 className={styles.x_services_content_title}>Website Doanh Nghiệp</h3>
                                             <h2 className={styles.x_services_content_main_title}>Xây dựng thương hiệu doanh nghiệp</h2>
@@ -230,7 +182,7 @@ const Wordpress = () => {
                                     <Col xs={24} md={12} lg={8} className={styles.x_padding}>
                                         <div className={styles.x_services_content}>
                                             <div className={styles.x_wordpress_icon_service}>
-                                             <Image src={'/icons/laptop.png'} height={50} width={50}/>
+                                             <Image alt="Website Thương Mại" src={'/icons/laptop.png'} height={50} width={50}/>
                                             </div>
                                             <h3 className={styles.x_services_content_title}>Website Thương Mại</h3>
                                             <h2 className={styles.x_services_content_main_title}>Mở rộng quy mô phân phối sản phẩm</h2>
@@ -261,4 +213,4 @@ const Wordpress = () => {
   )
 }
 
-export default Wordpress
+export default CreateWordpress

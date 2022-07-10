@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Container, Row, Col, Breadcrumb } from 'rsuite';
+import { Container, Row, Col, Breadcrumb } from 'rsuite';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../../styles/blog.module.css';
@@ -64,21 +64,18 @@ const PostSingle = ({data}) => {
           }
         </Head>
         <div className={'x_breadcum_container'}>
-          <Grid className={'x-container'}>
-            <Container>
-                <Row>
-                    <Col xs={24}>
-                      <Breadcrumb className={'x_breadcumb'}>
-                        <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
-                        <Breadcrumb.Item active>Tin tức {data.post_title}</Breadcrumb.Item>
-                      </Breadcrumb>
-                    </Col>
-                </Row>
-            </Container>
-        </Grid>    
+          <Container>
+              <Row>
+                  <Col xs={24}>
+                    <Breadcrumb className={'x_breadcumb'}>
+                      <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
+                      <Breadcrumb.Item active>Tin tức {data.post_title}</Breadcrumb.Item>
+                    </Breadcrumb>
+                  </Col>
+              </Row>
+          </Container>
       </div>  
          <div className={styles.x_container_x}>
-            <Grid className={'x-container'}>
                   <Container>
                     <Row>
                         <Col xs={24} md={20}>
@@ -131,7 +128,6 @@ const PostSingle = ({data}) => {
                         </div> : ''
                       }
                 </Container>
-              </Grid>
         </div>
       </>
     )

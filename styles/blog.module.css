@@ -135,7 +135,7 @@
 }
 
 .x_blog_one_button{
-  background: black;
+  background: var(--x-gradient-one);
   border-radius: 35px;
   padding: .75rem 30px ;
   color: white;

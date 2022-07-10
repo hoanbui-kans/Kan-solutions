@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from '../styles/footer.module.css'
-import { Container, Row, Col, Grid, Form, Button, Divider  } from 'rsuite'
+import { Container, Row, Col, Form, Button, Divider  } from 'rsuite'
 import { listServices } from '../pages/api/services'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -12,7 +12,6 @@ const Footer = () => {
   return (
     <>
       <div className={styles.x_footer_container}>
-        <Grid className="x-container">
           <Container>
             <Row className={styles.x_flex}>
               <Col xs={24} md={8} className={styles.x_padding}>
@@ -77,8 +76,8 @@ const Footer = () => {
                             <strong className={styles.x_footer_focused}>
                             Hotline: 
                             </strong>
-                            <a href={'tel:0945938489'}>
-                              0945 93 84 89
+                            <a href={'tel:0392193639'}>
+                              039 219 3639
                             </a>
                           </div>
                         </div>
@@ -102,12 +101,11 @@ const Footer = () => {
               </Col>
             </Row>
           </Container>
-        </Grid>
     </div>
     <div className={styles.x_bottom_footer}>
-      <Grid className="x-container">
+      <Container>
         <p>Copyright ©{ new Date().getFullYear()} KAN SOLUTIONS COMPANY LIMITED ® </p>
-      </Grid>
+      </Container>
     </div>
     {
       HTMLReactParser(`
@@ -117,22 +115,30 @@ const Footer = () => {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', 'G-DKCRMST66D');
       </script>
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-233414917-1">
+      </script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-233414917-1');
+      </script>
       <!--Start of Tawk.to Script-->
-            <script type="text/javascript">
+      <script type="text/javascript">
             var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
             (function(){
-            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-            s1.async=true;
-            s1.src='https://embed.tawk.to/62bebcf2b0d10b6f3e7a491b/1g6sh45mq';
-            s1.charset='UTF-8';
-            s1.setAttribute('crossorigin','*');
-            s0.parentNode.insertBefore(s1,s0);
+              var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+              s1.async=true;
+              s1.src='https://embed.tawk.to/62bebcf2b0d10b6f3e7a491b/1g6sh45mq';
+              s1.charset='UTF-8';
+              s1.setAttribute('crossorigin','*');
+              s0.parentNode.insertBefore(s1,s0);
             })();
-            </script>
-            <!--End of Tawk.to Script-->`)
+      </script>
+      <!--End of Tawk.to Script-->`)
     }
     </>
   )

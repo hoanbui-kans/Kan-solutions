@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Brand from '../public/logo.svg'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Row, Col, Nav, Container, Form, Button, Pagination, Loader  } from 'rsuite'
+import { Row, Col, Nav, Container, Form, Button, Pagination, Loader, ButtonToolbar  } from 'rsuite'
 import { useSpring, animated, useChain, useSpringRef, useTransition, config } from "@react-spring/web"
 import { listServices } from '../pages/api/services'
 import { useSession } from "next-auth/react"
@@ -46,27 +46,39 @@ const Right = () => {
         <>
             <h3 className={styles.x_menu_title}>DỊCH VỤ PHÁT TRIỂN WEB</h3>
             <div className={styles.x_dropbox}>
-                    <Link href="/dich-vu/thiet-ke-website">
-                        <a>
-                            <p><strong><IoCaretForwardSharp size={10}/> Thiết kế webiste</strong></p>
-                            <p className={styles.x_smaller_text}>
-                            Dịch vụ quản trị, quản lý, vận hành, sản xuất nội dung cho website, tối ưu chi phí quản lý, nâng cao hiệu quả chiến dịch.
-                            </p>
-                        </a>
-                    </Link>
+                    <p><strong><IoCaretForwardSharp size={10}/> Thiết kế website</strong></p>
+                    <p className={styles.x_smaller_text}>
+                        Dịch vụ tạo website nhanh theo mẫu, thiết kế website cho doanh nghiệp quản trị nội dung bằng website có sẵn, tối ưu chi phí thiết lập ban đầu.
+                    </p>
+                    <div>
+                        <Link href="/dich-vu/tao-website-lading-page-tu-dong">
+                            <a className={styles.x_button_inline}>
+                                <Button className={styles.x_button_website_create}>
+                                    Tạo Website
+                                </Button>
+                            </a>
+                        </Link>
+                        <Link href="/dich-vu/thiet-ke-website-tron-goi-cho-doanh-nghiep">
+                            <a className={styles.x_button_inline}>
+                                <Button className={styles.x_button_website_doanh_nghiep}>
+                                    Thiết kế webiste trọn gói
+                                </Button>
+                            </a>
+                        </Link>
+                    </div>
             </div>
             <div className={styles.x_dropbox}>
-                    <Link href="/dich-vu/quan-tri-website">
+                    <Link href="/dich-vu/giai-phap-quan-tri-noi-dung-website-cho-doanh-nghiep">
                         <a>
                             <p><strong><IoCaretForwardSharp size={10}/> Quản trị website</strong></p>
                             <p className={styles.x_smaller_text}>
-                            Dịch vụ quản trị, quản lý, vận hành, sản xuất nội dung cho website, tối ưu chi phí quản lý, nâng cao hiệu quả chiến dịch.
+                                Dịch vụ quản trị, quản lý, vận hành, sản xuất nội dung cho website, tối ưu chi phí quản lý, nâng cao hiệu quả chiến dịch.
                             </p>
                         </a>
                     </Link>
             </div>
             <div className={styles.x_dropbox}>
-                    <Link href="/dich-vu/marketing-online">
+                    <Link href="/dich-vu/giai-phap-marketing-online-cho-doanh-nghiep">
                         <a>
                             <p><strong><IoCaretForwardSharp size={10}/> Giải pháp marketing Online</strong></p>
                             <p className={styles.x_smaller_text}>
@@ -107,6 +119,9 @@ const MobileMenu = ({showing}) => {
                               Tin tức
                             </a>
                         </Link>
+                    </li>
+                    <li>
+                        <Link href={'/du-an'}>Dự án</Link>
                     </li>
                     <li>
                         <Link href={'/tuyen-dung'}>
@@ -458,7 +473,7 @@ const Header = () => {
                                                         </div> : ''
                                                     }
                                                     <div className={styles.x_search_result_content}>
-                                                    <Link href={val.post_name}>
+                                                    <Link href={'/bai-viet/' + val.post_name}>
                                                         <a onClick={() => {setSearchForm(false)}}>
                                                         <h3 className={styles.x_search_result_title}>{val.post_title}</h3>
                                                         </a>

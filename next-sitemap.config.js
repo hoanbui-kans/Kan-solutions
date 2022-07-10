@@ -5,6 +5,13 @@ const config = {
     generateRobotsTxt: true, // (optional)
     additionalPaths: async (config) => {
         const additionalSlug = [
+            // Danh mục bài viết
+            "https://kansite.com.vn/danh-muc/goc-tu-van",
+            "https://kansite.com.vn/danh-muc/huong-dan-quan-tri-website",
+            "https://kansite.com.vn/danh-muc/kien-thuc",
+            "https://kansite.com.vn/danh-muc/kinh-doanh-khoi-nghiep",
+            "https://kansite.com.vn/danh-muc/quang-cao-online",
+            // Bài viết
             "https://kansite.com.vn/bai-viet/crm-doanh-nghiep",
             "https://kansite.com.vn/bai-viet/1840-2",
             "https://kansite.com.vn/bai-viet/next-js",
@@ -41,14 +48,30 @@ const config = {
             "https://kansite.com.vn/bai-viet/cham-soc-toc-cho-nam-gioi-nhung-dieu-can-biet",
             "https://kansite.com.vn/bai-viet/sap-vuot-toc-nam-cach-chon-san-pham-phu-hop",
             "https://kansite.com.vn/bai-viet/top-5-nuoc-hoa-nam-chinh-hang-duoc-ua-chuong-nhat-hien-nay",
-            "https://kansite.com.vn/bai-viet/top-10-nuoc-hoa-nam-duoc-ua-chuong-nhat-tren-the-gioi-ban-nen-biet"
+            "https://kansite.com.vn/bai-viet/top-10-nuoc-hoa-nam-duoc-ua-chuong-nhat-tren-the-gioi-ban-nen-biet",
+            // Dự án
+            "https://kansite.com.vn/du-an/website-kien-truc-xay-dung-skyline",
+            "https://kansite.com.vn/du-an/website-ban-hang-my-nghe-viet",
+            "https://kansite.com.vn/du-an/website-kinh-doanh-rem-cua-vuong-gia-phat",
+            "https://kansite.com.vn/du-an/website-ton-thep-toan-thang",
+            "https://kansite.com.vn/du-an/website-cong-ty-sat-thep-thanh-chung",
+            "https://kansite.com.vn/du-an/website-xuat-nhap-khau-binh-minh",
+            "https://kansite.com.vn/du-an/website-ban-hang-thuc-pham-qt",
+            "https://kansite.com.vn/du-an/website-noi-that-cao-cap-plaza",
+            "https://kansite.com.vn/du-an/website-ban-giay-minsu",
+            "https://kansite.com.vn/du-an/website-nuoc-hoa-the-men-square",
+            "https://kansite.com.vn/du-an/website-thu-mua-phe-lieu-uy-vu",
+            "https://kansite.com.vn/du-an/website-phong-kham-thu-y-sai-gon-pet",
+            "https://kansite.com.vn/du-an/website-kinh-doanh-hoa-chat-phu-gia-dai-hoan-cau",
+            "https://kansite.com.vn/du-an/landing-page-gioi-thieu-my-nghe-viet",
+            "https://kansite.com.vn/du-an/website-qua-tang-doanh-nghiep-my-nghe-viet"
         ];
         const result = [];
         additionalSlug.map((val) => {
         // all possible values
         result.push({
             loc: val,
-            changefreq: 'yearly',
+            changefreq: 'daily',
             priority: 0.7,
             lastmod: new Date().toISOString(),
           })

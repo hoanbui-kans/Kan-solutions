@@ -59,7 +59,7 @@
 }
 .x_newPrice{
     font-size: 1.25rem;
-    color: #e74c3c;
+    color: #ff503e;
     font-weight: bolder;
     padding: .25rem .25rem;
     display: inline-block;
@@ -95,7 +95,7 @@
     font-size: 1rem;
     padding: 1rem 1.75rem;
     border-radius: .35rem;
-    background: #2d88e2;
+    background: var(--x-gradient-one);
     color: white;
     width: 100%;
     margin-bottom: 1rem;
@@ -214,6 +214,14 @@
 .x_sing_theme_content img{
     max-width: 100%;
     height: auto;
+}
+.x_sale_badge{
+    color: white;
+    margin-left: 10px;
+    background: #ff503e;
+    padding: 2px 2px;
+    border-radius: 5px;
+    font-size: 10px;
 }
 .x_single_theme_section{
     padding: .55rem .75rem;

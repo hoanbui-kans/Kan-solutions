@@ -66,7 +66,7 @@ const ThemeViews = ({data, link_theme}) => {
               </Navbar.Brand>
             </Col>
           <Col xs={8}>
-            <Nav className={styles.x_nav_centered}>
+            <Nav className={styles.x_nav_centered + ' ' + styles.x_showin_desktop}>
               <Nav.Item className={styles.x_centered} onClick={ () =>{ setScreen(ViewScreen.desktop) } }>
                 <IoDesktopOutline size={16}/> 
                 Desktop
@@ -80,24 +80,40 @@ const ThemeViews = ({data, link_theme}) => {
                 Mobile
               </Nav.Item>
             </Nav>
+            <Nav className={styles.x_nav_centered + ' ' + styles.x_showin_mobile}>
+              <Nav.Menu title="Thiết bị" icon={<IoTabletLandscapeOutline size={16}/>}>
+                <Nav.Item className={styles.x_centered} onClick={ () =>{ setScreen(ViewScreen.desktop) } }>
+                    <IoDesktopOutline size={16}/> 
+                    Desktop
+                  </Nav.Item>
+                  <Nav.Item className={styles.x_centered} onClick={ () =>{ setScreen(ViewScreen.tablet) } }>
+                    <IoTabletLandscapeOutline size={16}/>
+                    Tablet
+                  </Nav.Item>
+                  <Nav.Item className={styles.x_centered} onClick={ () =>{ setScreen(ViewScreen.mobile) } }>
+                    <IoPhonePortraitOutline size={16}/>
+                    Mobile
+                  </Nav.Item>
+              </Nav.Menu>
+            </Nav>
           </Col>
           <Col xs={8}>
-              <Nav className={styles.x_nav_end}>
+              <Nav className={styles.x_nav_end + ' ' + styles.x_showin_desktop}>
                 {
-                  link_theme ? <Nav.Item className={styles.x_centered} href={link_theme}>
-                                  <IoCopyOutline size={16}/>
-                                  Chọn mẫu này
-                              </Nav.Item> :
-                              <Nav.Item as={'span'}>
-                                  <Link href="/dang-nhap/">
-                                    <a className={styles.x_centered}>
-                                      <IoPersonCircleOutline size={16}/>
-                                      Đăng nhập
-                                    </a>
-                                  </Link>
-                              </Nav.Item>
+                  link_theme ? 
+                  <Nav.Item className={styles.x_centered} href={link_theme}>
+                  <IoCopyOutline size={16}/>
+                  Chọn mẫu này
+                </Nav.Item> :
+                <Nav.Item as={'span'}>
+                    <Link href="/dang-nhap/">
+                      <a className={styles.x_centered}>
+                        <IoPersonCircleOutline size={16}/>
+                        Đăng nhập
+                      </a>
+                    </Link>
+                </Nav.Item>
                 }
-                
                 <Nav.Item 
                   className={styles.x_centered} 
                   onClick={() => {handleOpen('Đăng ký tư vấn mẫu giao diện' + data.post_title)}}
@@ -105,6 +121,34 @@ const ThemeViews = ({data, link_theme}) => {
                   <IoReaderOutline size={16}/>
                   Đăng ký tư vấn
                 </Nav.Item>
+              </Nav>
+              <Nav className={styles.x_nav_centered + ' ' + styles.x_showin_mobile}>
+                <Nav.Menu title="Chọn mẫu">
+                  {
+                    link_theme ? 
+                    <Nav.Item as={'span'}>
+                      <a className={styles.x_centered} href={link_theme} style={{color: '#575757'}}>
+                        <IoCopyOutline size={16}/>
+                        Chọn mẫu này
+                      </a>
+                    </Nav.Item> :
+                    <Nav.Item as={'span'}>
+                        <Link href="/dang-nhap/">
+                          <a className={styles.x_centered}>
+                            <IoPersonCircleOutline size={16}/>
+                            Đăng nhập
+                          </a>
+                        </Link>
+                    </Nav.Item>
+                    }
+                    <Nav.Item 
+                      className={styles.x_centered} 
+                      onClick={() => {handleOpen('Đăng ký tư vấn mẫu giao diện' + data.post_title)}}
+                      >
+                      <IoReaderOutline size={16}/>
+                      Đăng ký tư vấn
+                    </Nav.Item>
+                  </Nav.Menu>
               </Nav>
           </Col>
       </Navbar>
@@ -114,7 +158,8 @@ const ThemeViews = ({data, link_theme}) => {
           width: screen.width, 
           height: screen.height, 
           marginTop: screen.marginTop, 
-          maxHeight: 'calc(100vh - 56px)'
+          maxHeight: 'calc(100vh - 56px)',
+          maxWidth: '100%'
         }}>
         <iframe width="100%" 
           height={'100%'} 
