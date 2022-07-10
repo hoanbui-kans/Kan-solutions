@@ -134,11 +134,11 @@ const UserEditor = ({token}) => {
     formData.append('billing_address', formValue.billing_address);
 
     const config = {
-      method: 'post',
+      method: 'POST',
       url: 'https://kanbox.vn/wp-json/update/user',
       data : formData,
       headers: { 
-          'Authorization': 'Bearer '+ token, 
+        'Content-Type' : 'multipart/form-data; boundary=<calculated when request is sent>'
       }
     }
     const response = await axios(config).then((res) => {
