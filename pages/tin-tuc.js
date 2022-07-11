@@ -149,14 +149,17 @@ const News = ({bai_viet, danh_muc, max_num_pages}) => {
 
 export default News
 
-export async function getServerSideProps() {
-
-  const res = await axios.get(rootURL + 'tin-tuc/bai-viet?perpage=7').then((resonse) => resonse.data);
+export async function getServerSideProps({req, res}) {
+  res.setHeader(
+      'Cache-Control',
+      'public, s-maxage=10, stale-while-revalidate=59'
+  )
+  const response = await axios.get(rootURL + 'tin-tuc/bai-viet?perpage=7').then((resonse) => resonse.data);
 
   // Pass data to the page via props
   return { props: { 
-    bai_viet: res.posts,
-    danh_muc: res.terms,
-    max_num_pages: res.max_num_pages
+    bai_viet: response.posts,
+    danh_muc: response.terms,
+    max_num_pages: response.max_num_pages
  }}
 }

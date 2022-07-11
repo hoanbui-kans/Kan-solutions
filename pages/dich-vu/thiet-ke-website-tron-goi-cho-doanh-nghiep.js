@@ -460,13 +460,17 @@ const DesignWebsite = ({bai_viet}) => {
 
 export default DesignWebsite
 
-export async function getServerSideProps() {
+export async function getServerSideProps({req, res}) {
+    res.setHeader(
+        'Cache-Control',
+        'public, s-maxage=10, stale-while-revalidate=59'
+    )
 
-    const res = await axios.get(rootURL + 'du-an/bai-viet?per_page=9').then((resonse) => resonse.data);
+    const response = await axios.get(rootURL + 'du-an/bai-viet?per_page=9').then((resonse) => resonse.data);
   
     // Pass data to the page via props
     return { props: { 
-      bai_viet: res.posts,
-      max_num_pages: res.max_pages
+      bai_viet: response.posts,
+      max_num_pages: response.max_pages
    }}
   }

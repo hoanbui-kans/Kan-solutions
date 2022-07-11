@@ -56,7 +56,16 @@ a {
   color: #3e9def;
   text-decoration: none;
 }
-
+.x_panel_account .rs-panel-header {
+  text-transform: uppercase;
+  font-weight: 700;
+  border-bottom: 1px solid #dedede;
+  margin-bottom: 18px;
+  color: #2d88e2;
+}
+.rs-form-control-label {
+  margin-bottom: 6px !important;
+}
 .rs-row{
   display: flex;
   flex-wrap: wrap;

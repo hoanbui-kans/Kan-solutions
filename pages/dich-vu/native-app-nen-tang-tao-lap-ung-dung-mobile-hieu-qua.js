@@ -89,7 +89,11 @@ const NativeApp = ({data}) => {
 
 export default NativeApp
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps({req, res}) {
+  res.setHeader(
+      'Cache-Control',
+      'public, s-maxage=10, stale-while-revalidate=59'
+  )
   const post_name = 'native-app-nen-tang-tao-lap-ung-dung-mobile-hieu-qua';
   const res = await axios.get(`${rootURL}dich-vu/bai?slug=${post_name}`).then((resonse) => resonse.data);
   // Pass data to the page via props

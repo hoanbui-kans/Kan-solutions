@@ -121,13 +121,15 @@ const Projects = ({bai_viet, max_num_pages}) => {
 
 export default Projects
 
-export async function getServerSideProps() {
-
-    const res = await axios.get(rootURL + 'du-an/bai-viet').then((resonse) => resonse.data);
-  
+export async function getServerSideProps({req, res}) {
+    res.setHeader(
+        'Cache-Control',
+        'public, s-maxage=10, stale-while-revalidate=59'
+    )
+    let response = await axios.get(rootURL + 'du-an/bai-viet').then((resonse) => resonse.data);
     // Pass data to the page via props
     return { props: { 
-      bai_viet: res.posts,
-      max_num_pages: res.max_pages
+      bai_viet: response.posts,
+      max_num_pages: response.max_pages
    }}
   }

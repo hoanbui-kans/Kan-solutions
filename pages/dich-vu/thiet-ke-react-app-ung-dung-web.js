@@ -85,11 +85,15 @@ const ReactApp = ({data}) => {
 
 export default ReactApp
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps({req, res}) {
+  res.setHeader(
+      'Cache-Control',
+      'public, s-maxage=10, stale-while-revalidate=59'
+  )
   const post_name = 'thiet-ke-react-app-ung-dung-web';
-  const res = await axios.get(`${rootURL}dich-vu/bai?slug=${post_name}`).then((resonse) => resonse.data);
+  const response = await axios.get(`${rootURL}dich-vu/bai?slug=${post_name}`).then((resonse) => resonse.data);
   // Pass data to the page via props
   return { props: { 
-    data: res,
+    data: response,
  }}
 }

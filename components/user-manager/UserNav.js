@@ -7,7 +7,6 @@ const UserNav = () => {
   return (
     <div>
         <Navbar className={styles.x_app_nav}>
-            <Navbar.Brand className={styles.x_brand} as={'div'}>QUẢN LÝ TÀI KHOẢN</Navbar.Brand>
                 <Nav>
                 <Nav.Item as={'span'}>
                     <Link href={'/quan-ly/chinh-sua-thong-tin'}>

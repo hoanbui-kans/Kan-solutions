@@ -89,11 +89,15 @@ const NextJs = ({data}) => {
 
 export default NextJs
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps({req, res}) {
+  res.setHeader(
+      'Cache-Control',
+      'public, s-maxage=10, stale-while-revalidate=59'
+  )
   const post_name = 'next-js-ung-dung-web-ho-tro-ssr-va-seo-hieu-qua';
-  const res = await axios.get(`${rootURL}dich-vu/bai?slug=${post_name}`).then((resonse) => resonse.data);
+  const response = await axios.get(`${rootURL}dich-vu/bai?slug=${post_name}`).then((resonse) => resonse.data);
   // Pass data to the page via props
   return { props: { 
-    data: res,
+    data: response,
  }}
 }

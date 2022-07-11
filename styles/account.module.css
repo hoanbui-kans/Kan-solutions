@@ -5,15 +5,23 @@
 .x_app_header{
     border-top: 1px solid whitesmoke;
     border-bottom: 1px solid whitesmoke;
+    background: #398af3;
 }
 .x_app_section{
     padding: 35px 0px
 }
 .x_app_nav{
-    background: white
+    background: #398af3
+}
+.x_app_nav > div > span > a, .x_app_nav > div > div >a{
+    color: white;
+}
+.x_app_nav > div > span > a:hover, .x_app_nav > div > div >a:hover{
+    color: rgb(0, 0, 0);
 }
 .x_brand {
-    color: #838383;
+    color: #ffffff;
+    font-weight: 700;
 }
 .x_form_search_container{
     position: relative;
@@ -24,6 +32,17 @@
 }
 .x_account_button{
     width: 100%;
+}
+.x_update_button{
+    background-color: #2d88e2;
+    color: white;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+.x_change_password_button{
+    background: rgb(240 81 67);
+    color: white;
 }
 .x_account_button button{
     display: flex;
