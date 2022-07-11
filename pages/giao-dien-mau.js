@@ -12,16 +12,18 @@ import HTMLReactParser from 'html-react-parser';
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 export const Price = ({data}) => {
-    if(data.sale_price);
-    let salePercent; 
-    salePercent = Math.round(100 - (parseInt(data.sale_price)/parseInt(data.regular_price)*100));
-    return (
-      <div className={styles.x_styles_price}>
-        <span className={styles.x_old_price}>{Separator(data.regular_price)}đ</span>
-        <span className={styles.x_newPrice}>{Separator(data.sale_price)}đ</span>
-        <span className={styles.x_sale_badge}>-{salePercent}%</span>
-      </div>
-    )
+    if(data.sale_price){
+        let salePercent; 
+        salePercent = Math.round(100 - (parseInt(data.sale_price)/parseInt(data.regular_price)*100));
+        return (
+          <div className={styles.x_styles_price}>
+            <span className={styles.x_old_price}>{Separator(data.regular_price)}đ</span>
+            <span className={styles.x_newPrice}>{Separator(data.sale_price)}đ</span>
+            <span className={styles.x_sale_badge}>-{salePercent}%</span>
+          </div>
+        )
+    };
+   
     return(
       <div className={styles.x_styles_price}>
         <span className={styles.simple}>{Separator(data.regular_price)}đ</span>
@@ -190,7 +192,7 @@ const Themes = ({gd, nganh, danhmuc, max_pages}) => {
                 {data.map((val) => {
                     return (
                         <List.Item key={val.term_id} index={val.term_id}>
-                            <Link href={'/danh-muc/' + val.slug}>
+                            <Link href={'/danh-muc-giao-dien/' + val.slug}>
                                 <a className={styles.x_filter_category}>
                                     <IoCaretForwardSharp size={12}/> {val.name}
                                     <span className={styles.x_count}>{val.count}</span>
@@ -232,8 +234,8 @@ const Themes = ({gd, nganh, danhmuc, max_pages}) => {
         });
         setLoading(true);
         setPaged(num);
-        const { data } = await axios.get(`${rootURL}giao-dien/giao-dien-mau?p=${paged}&perpage=${perPage}&nganh=${nganhTerms}&s=${keySearch}`).then((resonse) => resonse.data);
-        if(data){
+        const response = await axios.get(`${rootURL}giao-dien/giao-dien-mau?p=${num}&perpage=${perPage}&nganh=${nganhTerms}&s=${keySearch}`).then((resonse) => resonse.data);
+        if(response){
             setPosts(response.posts);
             setMax_paged(response.max_pages);
         }
@@ -347,11 +349,14 @@ const Themes = ({gd, nganh, danhmuc, max_pages}) => {
                                         </Col>
                                     })
                                 }
-                                <Col xs={24}>
-                                    <div className={styles.x_pagination}>
-                                        <Pagination total={max_paged} limit={1} activePage={paged} onChangePage={(current) => { Next_Pages(current)}} />
-                                    </div>
-                                </Col>
+                                {
+                                    max_pages >= 2 ? 
+                                    <Col xs={24}>
+                                        <div className={styles.x_pagination}>
+                                            <Pagination total={max_paged} limit={1} activePage={paged} onChangePage={(current) => { Next_Pages(current)}} />
+                                        </div>
+                                    </Col> : ''
+                                }
                              </>
                             }
                          </Row>

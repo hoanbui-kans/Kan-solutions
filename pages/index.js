@@ -105,9 +105,9 @@ export default function Home() {
                 <Col xs={24} md={12}>
                     <div className={styles.x_creeper_box + ' ' + styles.x_creeper_box_1}>
                        <div className={styles.x_creeper_box_section}>
-                          <h4 className={styles.x_creeper_title}>Digital Content</h4>
-                          <p className={styles.x_creeper_content}>Chúng tôi cung cấp các sản phẩm mẫu hỗ trợ các nội dung số để bạn có thể đưa thông tin doanh nghiệp và sản phẩm của mình lên mạng Internet một cách nhanh chóng và dễ dàng</p>
-                          <Link href="/dich-vu/quan-tri-website">
+                          <h4 className={styles.x_creeper_title}> Thiết kế website</h4>
+                          <p className={styles.x_creeper_content}>Dịch vụ tạo website nhanh theo mẫu, thiết kế website cho doanh nghiệp quản trị nội dung bằng website có sẵn, tối ưu chi phí thiết lập ban đầu.</p>
+                          <Link href="/dich-vu/thiet-ke-website-tron-goi-cho-doanh-nghiep">
                             <a>
                               <Button className={styles.x_creeper_button}>
                                 <ArowBackIcon color={"white"} className={styles.x_rotate_180deg} width={24} height={24}/>
@@ -121,9 +121,9 @@ export default function Home() {
                     </div>
                     <div className={styles.x_creeper_box + ' '  + styles.x_creeper_box_3}>
                         <div className={styles.x_creeper_box_section}>
-                          <h4 className={styles.x_creeper_title}>Viết bài chuẩn SEO</h4>
+                          <h4 className={styles.x_creeper_title}>Quản trị website</h4>
                           <p className={styles.x_creeper_content}>Chúng tôi cung cấp các sản phẩm mẫu hỗ trợ các nội dung số để bạn có thể đưa thông tin doanh nghiệp và sản phẩm của mình lên mạng Internet một cách nhanh chóng và dễ dàng</p>
-                          <Link href="/dich-vu/quan-tri-website">
+                          <Link href="/dich-vu/giai-phap-quan-tri-noi-dung-website-cho-doanh-nghiep">
                             <a>
                               <Button className={styles.x_creeper_button}>
                                   <ArowBackIcon color={"white"} className={styles.x_rotate_180deg} width={24} height={24}/>
@@ -140,8 +140,8 @@ export default function Home() {
                     <div className={styles.x_creeper_box + ' ' + styles.x_creeper_box_2}>
                         <div className={styles.x_creeper_box_section}>
                           <h4 className={styles.x_creeper_title}>Online Marketing</h4>
-                          <p className={styles.x_creeper_content}>Chúng tôi cung cấp các sản phẩm mẫu hỗ trợ các nội dung số để bạn có thể đưa thông tin doanh nghiệp và sản phẩm của mình lên mạng Internet một cách nhanh chóng và dễ dàng</p>
-                          <Link href="/dich-vu/marketing-online">
+                          <p className={styles.x_creeper_content}>Hỗ trợ xây dựng các chiến dịch quảng cáo, quảng bá thương hiệu, nghiên cứu, phân tích dữ liệu từ khóa cạnh tranh, tư vấn hỗ trợ.</p>
+                          <Link href="/dich-vu/giai-phap-marketing-online-cho-doanh-nghiep">
                             <a>
                                 <Button className={styles.x_creeper_button}>
                                   <ArowBackIcon color={"white"} className={styles.x_rotate_180deg} width={24} height={24}/>
@@ -155,9 +155,9 @@ export default function Home() {
                     </div>
                     <div className={styles.x_creeper_box + ' ' + styles.x_creeper_box_4}>
                         <div className={styles.x_creeper_box_section}>
-                            <h4 className={styles.x_creeper_title}>Tư vấn - Đào tạo</h4>
-                            <p className={styles.x_creeper_content}>Chúng tôi cung cấp các sản phẩm mẫu hỗ trợ các nội dung số để bạn có thể đưa thông tin doanh nghiệp và sản phẩm của mình lên mạng Internet một cách nhanh chóng và dễ dàng</p>
-                            <Link href="/dich-vu/tu-van-dao-tao">
+                            <h4 className={styles.x_creeper_title}>CRM cho doanh nghiệp</h4>
+                            <p className={styles.x_creeper_content}>Chúng tôi cung cấp các giải pháp CRM trọn gói cho doanh nghiệp, xây dựng hệ thống quản trị dữ liệu doanh nghiệp, quản lý hệ thống bán hàng cho doanh nghiệp vừa và nhỏ.</p>
+                            <Link href="/dich-vu/dich-vu-trien-khai-crm-cho-doanh-nghiep">
                               <a>
                                 <Button className={styles.x_creeper_button}>
                                   <ArowBackIcon color={"white"} className={styles.x_rotate_180deg} width={24} height={24}/>

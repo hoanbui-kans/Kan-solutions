@@ -61,7 +61,7 @@ const Right = () => {
                         <Link href="/dich-vu/thiet-ke-website-tron-goi-cho-doanh-nghiep">
                             <a className={styles.x_button_inline}>
                                 <Button className={styles.x_button_website_doanh_nghiep}>
-                                    Thiết kế webiste trọn gói
+                                    Thiết kế website trọn gói
                                 </Button>
                             </a>
                         </Link>
@@ -112,6 +112,9 @@ const MobileMenu = ({showing}) => {
                               Về chúng tôi
                             </a>
                         </Link>
+                    </li>
+                    <li>
+                        <Link href={'/giao-dien-mau'}>Giao diện mẫu</Link>
                     </li>
                     <li>
                         <Link href={'/tin-tuc'}>
@@ -339,6 +342,9 @@ const Header = () => {
                                         </li>
                                         <li>
                                             <Link href={'/ve-chung-toi'}>Về chúng tôi</Link>
+                                        </li>
+                                        <li>
+                                            <Link href={'/giao-dien-mau'}>Giao diện mẫu</Link>
                                         </li>
                                         <li>
                                             <a onClick={showDropdown}>

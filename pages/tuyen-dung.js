@@ -1,57 +1,109 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState } from 'react'
 import { 
   Container, 
   Row, 
   Col, 
   Form, 
   Button, 
-  model, 
   RadioGroup, 
   Radio, 
-  Input ,
   SelectPicker, 
   TagPicker,
-  InputNumber,
   Divider,
   Message,
   Loader,
+  Schema,
   Breadcrumb,
   toaster  } from 'rsuite'
 import styles from '../styles/page.module.css'
 import { IoPaperPlaneSharp } from "react-icons/io5";
 import { RecruitmentSeo } from './api/HeaderSeo';
 import HTMLReactParser from 'html-react-parser';
+import axios from 'axios';
 import Link from 'next/link';
 import Head from 'next/head';
 
+const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON
+
 const Recruitment = () => {
   const formRef = useRef();
+  const contact_json = `${ROOT_URL}contact-form-7/v1/contact-forms/2201/feedback`;
   const [loading, setLoading] = useState(false);
-  const [formError, setFormError] = useState({});
+  const [position, setPosition] = useState('');
+  const [time, setTime] = useState('');
+  const [skill, setSkill] = useState([]);
   const [formValue, setFormValue] = useState({
     fullname: '',
     birth: '',
     email: '',
     phone: '',
-    postion: '',
     year: '',
-    time: '',
-    skill: '',
     file_cv: ''
   });
 
-  useEffect(() => {
-    console.log(formValue);
-  }, [formValue])
+  
+  const model = Schema.Model({
+    'fullname': Schema.Types.StringType().isRequired('Bạn chưa nhập tên của bạn.'),
+    'phone': Schema.Types.StringType().isRequired('Bạn chưa nhập số điện thoại.'),
+    'email': Schema.Types.StringType().isRequired('Bạn chưa nhập địa chỉ Email.'),
+  });
 
-  const handleSubmit = () => {
-    setLoading(!loading);
-    console.log(formValue);
-    if (!formRef.current.check()) {
-      toaster.push(<Message type="error">Error</Message>);
-      return;
+  const handleSubmit = async () => {
+    setLoading(true);
+    let formData = new FormData();
+    let list_skill = '';
+    skill.length > 0 ? list_skill = skill.toString() : '';
+    formData.append('text-131', formValue.fullname);
+    formData.append('date-718', formValue.birth);
+    formData.append('email-65', formValue.email);
+    formData.append('tel-51', formValue.phone);
+    formData.append('number-367', formValue.year);
+    formData.append('text-179', formValue.file_cv);
+    // Another Field
+    formData.append('text-132', position); // Vị trí tuyển dụng
+    formData.append('text-135', time); // Thời gian làm việc
+    formData.append('text-136', list_skill); // Kỹ năng làm việc
+
+    const config = {
+      method: 'post',
+      url: contact_json,
+      data : formData,
+    };
+
+    const response = await axios(config).then((res) => {
+      return res.data
+    }).catch(function (error) {
+      console.log(error);
+    });
+
+    if(response){
+      let type = 'success';
+      if(response.status != 'mail_sent'){
+        type = 'warning';
+        response.invalid_fields.map((val) => {
+          setTimeout(() => {
+            toaster.push(<Message showIcon type='error'>{val.message}</Message>);
+          }, 1000);
+        })
+      }
+      
+      console.log(type)
+      toaster.push(<Message showIcon type={type}>{response.message}</Message>);
+    } else {
+      toaster.push(<Message type='error'>Đã có lỗi xảy ra, xin vui lòng thử lại</Message>);
     }
-    toaster.push(<Message type="success">Success</Message>);
+    setLoading(false);
+    setFormValue({
+      fullname: '',
+      birth: '',
+      email: '',
+      phone: '',
+      year: '',
+      file_cv: ''
+    });
+    setPosition('');
+    setTime('');
+    setSkill([]);
   };
 
   const data = [
@@ -147,7 +199,6 @@ const Recruitment = () => {
                       ref={formRef}
                       onSubmit={handleSubmit}
                       onChange={setFormValue}
-                      onCheck={setFormError}
                       formValue={formValue}
                       model={model}
                     >
@@ -164,7 +215,7 @@ const Recruitment = () => {
                           </Col>
                           <Col xs={24}>
                             <Form.Group>
-                              <h3 className={styles.x_recruiment_title}>Thông tin cá nhân *</h3>
+                              <h3 className={styles.x_recruiment_title}>Thông tin cá nhân <span style={{color: 'red'}}>*</span></h3>
                                   <Form.ControlLabel>
                                     Điền đầy đủ thông tin của bạn.
                                   </Form.ControlLabel>
@@ -174,33 +225,33 @@ const Recruitment = () => {
                           <Col xs={24} md={12}>
                             <Form.Group>
                               <Form.ControlLabel>
-                                  Họ và tên.
+                                  Họ và tên <span style={{color: 'red'}}>*</span>
                               </Form.ControlLabel>
-                              <Input className={styles.x_input_margin} name='fullname' type="text" style={{width: '100%'}}/>
+                              <Form.Control className={styles.x_input_margin} name='fullname' type="text" style={{width: '100%'}}/>
                             </Form.Group>
                           </Col>
                           <Col xs={24} md={12}>
                             <Form.Group>
                               <Form.ControlLabel>
-                                  Ngày tháng/ năm sinh.
+                                  Ngày tháng/ năm sinh <span style={{color: 'red'}}>*</span>
                               </Form.ControlLabel>
-                              <Input className={styles.x_input_margin} name='birth' type="date" style={{width: '100%'}}/>
+                              <Form.Control className={styles.x_input_margin} name='birth' type="date" style={{width: '100%'}}/>
                             </Form.Group>
                           </Col>
                           <Col xs={24} md={12}>
                             <Form.Group>
                               <Form.ControlLabel>
-                                  Địa chỉ Email *
+                                  Địa chỉ Email <span style={{color: 'red'}}>*</span>
                               </Form.ControlLabel>
-                              <Input className={styles.x_input_margin} name='email' type="text" style={{width: '100%'}}/>
+                              <Form.Control className={styles.x_input_margin} name='email' type="email" style={{width: '100%'}}/>
                             </Form.Group>
                           </Col>
                           <Col xs={24} md={12}>
                             <Form.Group>
                               <Form.ControlLabel>
-                                  Số điện thoại
+                                  Số điện thoại <span style={{color: 'red'}}>*</span>
                               </Form.ControlLabel>
-                              <Input className={styles.x_input_margin} name='phone' type="text" style={{width: '100%'}}/>
+                              <Form.Control className={styles.x_input_margin} name='phone' type="phone" style={{width: '100%'}}/>
                             </Form.Group>
                           </Col>
                           <Col xs={24}>
@@ -208,7 +259,7 @@ const Recruitment = () => {
                           </Col>
                           <Col xs={24} md={12}>
                               <Form.Group>
-                              <h3 className={styles.x_recruiment_title}>Vị trí *</h3>
+                              <h3 className={styles.x_recruiment_title}>Vị trí <span style={{color: 'red'}}>*</span></h3>
                                 <Form.ControlLabel>
                                   Vị trí mà bạn muốn ứng tuyển.
                                 </Form.ControlLabel>
@@ -216,7 +267,7 @@ const Recruitment = () => {
                           </Col>
                           <Col xs={24} md={12}>
                               <Form.Group>
-                                <SelectPicker name='position' data={data} appearance="default" placeholder="Vị trí ứng tuyển" searchable={false} style={{width: '100%'}} />
+                                <SelectPicker onChange={(e) => {setPosition(e)} } value={position} name='position' data={data} appearance="default" placeholder="Vị trí ứng tuyển" searchable={false} style={{width: '100%'}} />
                               </Form.Group>
                           </Col>
                           <Col xs={24}>
@@ -224,7 +275,7 @@ const Recruitment = () => {
                           </Col>
                           <Col xs={24} md={12}>
                               <Form.Group>
-                                <h3 className={styles.x_recruiment_title}>Thời gian *</h3>
+                                <h3 className={styles.x_recruiment_title}>Thời gian</h3>
                                 <Form.ControlLabel>
                                   Chọn thời gian làm việc.
                                 </Form.ControlLabel>
@@ -232,7 +283,7 @@ const Recruitment = () => {
                           </Col>
                           <Col xs={24} md={12}>
                             <Form.Group>
-                              <RadioGroup name="time">
+                              <RadioGroup name="time" onChange={(e) => { setTime(e) }} value={time}>
                                 <Radio value="Full-time">Full-time</Radio>
                                 <Radio value="Part-time">Part-time</Radio>
                                 <Radio value="Thực tập sinh">Thực tập sinh</Radio>
@@ -244,7 +295,7 @@ const Recruitment = () => {
                           </Col>
                           <Col xs={24} md={12}>
                               <Form.Group>
-                                <h3 className={styles.x_recruiment_title}>Các kỹ năng *</h3>
+                                <h3 className={styles.x_recruiment_title}>Các kỹ năng</h3>
                                 <Form.ControlLabel>
                                   Lựa chọn 1-2 kỹ năng hiện có của bạn, chúng tôi sẽ xem xét yêu cầu tuyển dụng
                                   các kỹ năng không nhất thiết phải có trong profile này, nhưng là yếu tố để bảo đảm chúng tôi có thể hỗ trợ bạn phát triển tốt hơn
@@ -253,7 +304,7 @@ const Recruitment = () => {
                           </Col>
                           <Col xs={24} md={12}>
                               <Form.Group>
-                                <TagPicker name='skills' placeholder='Thêm các kỹ năng' data={dataPicker}  trigger={['Enter', 'Space', 'Comma']} style={{width: '100%'}}/>
+                                <TagPicker onChange={(e) => {setSkill(e)}} value={skill} name='skills' placeholder='Thêm các kỹ năng' data={dataPicker}  trigger={['Enter', 'Space', 'Comma']} style={{width: '100%'}}/>
                               </Form.Group>
                           </Col>
                           <Col xs={24}>
@@ -261,7 +312,7 @@ const Recruitment = () => {
                           </Col>
                           <Col xs={24} md={12}>
                               <Form.Group>
-                                <h3 className={styles.x_recruiment_title}>Kinh nghiệm *</h3>
+                                <h3 className={styles.x_recruiment_title}>Kinh nghiệm</h3>
                                 <Form.ControlLabel>
                                   Số năm làm việc của bạn
                                 </Form.ControlLabel>
@@ -269,7 +320,7 @@ const Recruitment = () => {
                           </Col>
                           <Col xs={24} md={12}>
                             <Form.Group>
-                              <InputNumber name='year' min={0} placeholder={'Kinh nghiệm làm việc'} style={{width: '100%'}}/>
+                              <Form.Control type="number" name='year' min={0} placeholder={'Kinh nghiệm làm việc'} style={{width: '100%'}}/>
                             </Form.Group>
                           </Col>
                           <Col xs={24}>
@@ -277,15 +328,15 @@ const Recruitment = () => {
                           </Col>
                           <Col xs={24} md={12}>
                               <Form.Group>
-                                <h3 className={styles.x_recruiment_title}>File CV *</h3>
+                                <h3 className={styles.x_recruiment_title}>File CV</h3>
                                 <Form.ControlLabel>
-                                  Lựa chọn tải lên file CV
+                                  Lựa chọn tải lên file CV bằng đường dẫn
                                 </Form.ControlLabel>
                               </Form.Group>
                           </Col>
                           <Col xs={24} md={12}>
                               <Form.Group>
-                                <Input name='file_cv' type="file" style={{width: '100%'}}/>
+                                <Form.Control placeholder='https://www.topcv.vn/...' name='file_cv' type="text" style={{width: '100%'}}/>
                               </Form.Group>
                           </Col>
                           <Col xs={24}>

@@ -10,6 +10,7 @@ import styles from '../styles/account.module.css';
 import { IoHomeOutline, IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 import { useSession, signIn, signOut } from "next-auth/react"
 import SocialButton from '../components/SocialButton';
+import Image from 'next/image';
 
 const Login = () => {
   const toaster = useToaster();
@@ -63,7 +64,10 @@ const Login = () => {
     return (
       <>
        <section className={styles.x_account_container}>
-          <Container>
+          <span className={styles.x_neumorphic}>
+                <Image alt='layout' src={'/layout/decorations-01.svg'} width={800} height={800}/>
+          </span>
+          <Container className={styles.x_container}>
             <Row>
               <Col xs={24}>
                 <div className={styles.x_login + ' ' + styles.x_logged_form}>
@@ -92,7 +96,10 @@ const Login = () => {
 
   return (
     <section className={styles.x_account_container}>
-      <Container>
+       <span className={styles.x_neumorphic}>
+            <Image alt='layout' src={'/layout/decorations-01.svg'} width={800} height={800}/>
+      </span>
+      <Container className={styles.x_container}>
         <Row>
           <Col xs={24}>
             <div className={styles.x_login}>

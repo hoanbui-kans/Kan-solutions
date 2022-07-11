@@ -198,16 +198,28 @@
 
 /* Trang Đăng nhập */
 .x_account_container{
-    background: url('../public/layout/background-01.svg');
+    background: #f2f2f2;
     background-size: cover;
     background-repeat: no-repeat;
     min-height: 100vh;
 }
 .x_account_background_sections{
-    background: url('../public/layout/background-01.svg');
+    background: #f2f2f2;
     background-size: cover;
     background-repeat: no-repeat;
     height: 100vh;
+}
+.x_neumorphic{
+    position: fixed;
+    z-index: 1;
+    width: 500px;
+    bottom: 0;
+    right: 0;
+    filter: blur(5px);
+}
+.x_container{
+    position: relative;
+    z-index: 2;
 }
 .x_account_title{
     font-size: 28px;
@@ -334,14 +346,15 @@
     padding-left: 12px;
 }
 .x_edit_profile_section{
-    padding: 35px 0px
+    padding: 35px 0px;
+    background: var(--x-light-color)
 }
 .x_form_group{
     margin-bottom: 15px;
 }
 .x_guild_title{
-    color: var(--x-text-color);
-    text-transform: uppercase;
+    color: var(--x-primary-color);
+    font-weight: bold;
     margin-bottom: 12px;
     display: block;
     padding-left: 12px;

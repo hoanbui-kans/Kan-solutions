@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react'
-import { useRef, useState } from 'react'
-import { Grid, Container, Row, Col, Form, Button, Schema, Loader, Checkbox, Message, useToaster } from 'rsuite'
+import React from 'react'
+import { Container, Row, Col, Button } from 'rsuite'
 import Link from 'next/link'
 import styles from '../../styles/account.module.css';
 import { IoHomeOutline } from "react-icons/io5";
 import { useSession, signOut } from "next-auth/react"
-import { useRouter } from 'next/router';
 import SocialButton from '../../components/SocialButton';
+import Image from 'next/image';
 
 const Loggout = () => {
 
@@ -14,7 +13,10 @@ const Loggout = () => {
   if(!session){
     return (
       <section className={styles.x_account_container}>
-      <Container>
+      <span className={styles.x_neumorphic}>
+          <Image alt='layout' src={'/layout/decorations-01.svg'} width={800} height={800}/>
+      </span>
+      <Container className={styles.x_container}>
         <Row>
           <Col xs={24}>
             <div className={styles.x_login + ' ' + styles.x_logged_form}>
@@ -47,7 +49,10 @@ const Loggout = () => {
   return (
     <>
     <section className={styles.x_account_container}>
-       <Container>
+      <span className={styles.x_neumorphic}>
+            <Image alt='layout' src={'/layout/decorations-01.svg'} width={800} height={800}/>
+      </span>
+       <Container className={styles.x_container}>
          <Row>
            <Col xs={24}>
              <div className={styles.x_login + ' ' + styles.x_logged_form}>
