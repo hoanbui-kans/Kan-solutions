@@ -20,7 +20,7 @@ const Chart = dynamic(
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
-const Dashboard = ({data}) => {
+const BlogContent = ({data}) => {
     const SiteIcon = data.site_icon && data.site_icon != 'empty' ? data.site_icon : '/icons/favicon.png'
     const StoreAvaiable = parseInt(data.quota);
     const DisplayAvaiableUpload = StoreAvaiable < 1000 ? StoreAvaiable + 'mb' : (StoreAvaiable/1000) + 'gb'
@@ -131,7 +131,7 @@ const Dashboard = ({data}) => {
         </div>
     )
 }
-const UserManager = ({blogInfor}) => {
+const Dashboard = ({blogInfor}) => {
   const [expanded, setExpanded] = useState(true);
   return (
     <>
