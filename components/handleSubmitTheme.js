@@ -26,7 +26,7 @@ const ThemesSubmitForm = ({title, selectedService, lastPrice}) => {
   const handleSubmitServices = async () => {
     let textareaContent = '';
     selectedService.map((val) => {
-        textareaContent += `${val.service ? val.service : ''} - giá: ${val.price.sale_price ? Separator(val.price.sale_price) : Separator(val.price.regular_price)} |`;
+        textareaContent += `${val.service ? val.service : ''} - giá: ${val.price ? Separator(val.price) : ''}đ | &#10;&#13;`;
     });
     textareaContent += `Tổng: ${lastPrice.sale_price ? Separator(lastPrice.sale_price) : Separator(lastPrice.regular_price)}đ`;
 
@@ -101,7 +101,7 @@ const ThemesSubmitForm = ({title, selectedService, lastPrice}) => {
                     <Form.ControlLabel>
                         Số điện thoại <span style={{color: 'red'}}>*</span>
                     </Form.ControlLabel>
-                    <Form.Control name='tel' type='text' value={EventTarget.value} placeholder={'Nhập tên của bạn'}/>
+                    <Form.Control name='tel' type='text' value={EventTarget.value} placeholder={'Nhập số điện thoại'}/>
                 </Form.Group>
                 <Form.Group className={styles.x_service_form_group}>
                     <Form.ControlLabel>
@@ -124,11 +124,17 @@ const ThemesSubmitForm = ({title, selectedService, lastPrice}) => {
                             selectedService.length > 0 ? 
                             selectedService.map((item, index) => (
                                 <List.Item key={index} index={index}>
-                                    <IoCheckmarkCircleSharp color="green" style={{marginRight: 7}}/>  
-                                    <span style={{fontSize: 16}}>{item.service}</span>
-                                    <div className='smaller_price'>
-                                        <Price data={item.price}/>
-                                    </div>
+                                    <Row>
+                                        <Col xs={16}>
+                                            <IoCheckmarkCircleSharp color="green" style={{marginRight: 7}}/>  
+                                            <span>{item.service}</span>
+                                        </Col>
+                                        <Col xs={8}>
+                                            <div className='smaller_price'>
+                                                { item.price ? Separator(item.price): ''}đ
+                                            </div>
+                                        </Col>
+                                    </Row>
                                 </List.Item>
                             )) : ''
                         }

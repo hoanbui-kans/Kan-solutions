@@ -9,7 +9,7 @@ import CheckRoundIcon from '@rsuite/icons/CheckRound'
 import SearchIcon from '@rsuite/icons/Search';
 import ArrowRightIcon from '@rsuite/icons/ArrowRight';
 import Link from 'next/link'
-import { Container, Row, Col, Button, Breadcrumb, Checkbox, CheckboxGroup, Modal } from 'rsuite'
+import { Container, Row, Col, Button, Breadcrumb, Checkbox, CheckboxGroup, Modal, Panel } from 'rsuite'
 import { getSession } from 'next-auth/react'
 import md5 from 'md5'
 import FormTuVan from '../../components/FormTuVan'
@@ -143,12 +143,13 @@ export const SingleTheme = ({data, link_theme}) => {
   }, [services])
 
   useEffect(() => {
+    console.log(selectedServices);
     if(PriceTheme.sale_price){
       let regular_price = parseInt(PriceTheme.regular_price);
       let sale_price = parseInt(PriceTheme.sale_price);
       selectedServices.map((val) => {
-        val.price.regular_price ? regular_price += parseInt(val.price.regular_price) : '';
-        val.price.sale_price ? sale_price += parseInt(val.price.sale_price) : '';
+        val.price ? regular_price += parseInt(val.price) : '';
+        val.price ? sale_price += parseInt(val.price) : '';
       });
       setLastPrice({
         regular_price: regular_price,
@@ -157,7 +158,7 @@ export const SingleTheme = ({data, link_theme}) => {
     } else {
       let regular_price = parseInt(PriceTheme.regular_price);
       selectedServices.map((val) => {
-        val.price.sale_price ? regular_price += parseInt(val.price.sale_price) : regular_price += parseInt(val.price.regular_price);
+        val.price ? regular_price += parseInt(val.price) : '';
       });
       setLastPrice({
         regular_price: regular_price,
@@ -271,20 +272,26 @@ export const SingleTheme = ({data, link_theme}) => {
                             <Price data={lastPrice}/>
                           </div> : ''
                       }
-                      <CheckboxGroup name="checkboxList" onChange={(e) => {setListService(e)}}>
-                        {
-                          data.services.map((val, index) => {
-                            return (
-                              <Checkbox value={val.service} key={index}>
-                                {val.service}
-                                <div className={styles.x_services_price}>
-                                  <Price data={val.price}/>
-                                </div>
-                              </Checkbox>
-                            )
-                          })
-                        }
-                      </CheckboxGroup>
+                        <CheckboxGroup name="checkboxList" onChange={(e) => {setListService(e)}}>
+                          {
+                            data.services.map((val, index) => {
+                              return (
+                                <Checkbox value={val.service} key={index} style={{borderBottom: '1px dotted #e8e8e8'}}>
+                                  <Row>
+                                    <Col xs={16}>
+                                      {val.service}
+                                    </Col>
+                                    <Col xs={8}>
+                                      <div className={styles.x_services_price}>
+                                        { Separator(val.price) }đ
+                                      </div>
+                                    </Col>
+                                  </Row>
+                                </Checkbox>
+                              )
+                            })
+                          }
+                        </CheckboxGroup>
                     </div>
                    <div className={styles.x_single_theme_section}>
                       {

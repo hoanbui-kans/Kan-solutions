@@ -99,13 +99,13 @@ const ServicesSubmitForm = ({service}) => {
               <Form.ControlLabel>
                   Số điện thoại <span style={{color: 'red'}}>*</span>
               </Form.ControlLabel>
-              <Form.Control name='tel' type='text' value={EventTarget.value} placeholder={'Nhập tên của bạn'}/>
+              <Form.Control name='tel' type='text' value={EventTarget.value} placeholder={'Nhập số điện thoại'}/>
           </Form.Group>
           <Form.Group className={styles.x_service_form_group}>
               <Form.ControlLabel>
                   Địa chỉ Email <span style={{color: 'red'}}>*</span>
               </Form.ControlLabel>
-              <Form.Control name='email' type='text' value={EventTarget.value} placeholder={'Nhập tên của bạn'}/>
+              <Form.Control name='email' type='text' value={EventTarget.value} placeholder={'Nhập địa chỉ Email'}/>
           </Form.Group>
           <Form.Group className={styles.x_service_form_group}>
               <Form.ControlLabel>Nhập nội dung của bạn</Form.ControlLabel>
