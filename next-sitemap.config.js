@@ -64,7 +64,27 @@ const config = {
             "https://kansite.com.vn/du-an/website-phong-kham-thu-y-sai-gon-pet",
             "https://kansite.com.vn/du-an/website-kinh-doanh-hoa-chat-phu-gia-dai-hoan-cau",
             "https://kansite.com.vn/du-an/landing-page-gioi-thieu-my-nghe-viet",
-            "https://kansite.com.vn/du-an/website-qua-tang-doanh-nghiep-my-nghe-viet"
+            "https://kansite.com.vn/du-an/website-qua-tang-doanh-nghiep-my-nghe-viet",
+            // Giao diện mẫu 
+            "https://kansite.com.vn/giao-dien/website-ban-cay-canh-plantmore-giao-dien-mau",
+            "https://kansite.com.vn/giao-dien/website-me-va-be-kidz-giao-dien-mau",
+            "https://kansite.com.vn/giao-dien/website-nen-xa-phong-thu-cong-giao-dien-mau",
+            "https://kansite.com.vn/giao-dien/website-ban-xa-phong-savon-giao-dien-mau",
+            "https://kansite.com.vn/giao-dien/website-ban-trang-suc-goldish-giao-dien-mau",
+            "https://kansite.com.vn/giao-dien/website-ban-sua-mitho-giao-dien-mau",
+            "https://kansite.com.vn/giao-dien/website-noi-that-nha-o-giao-dien-k1427",
+            "https://kansite.com.vn/giao-dien/website-ban-hang-my-pham-giao-dien-mau-k2037",
+            "https://kansite.com.vn/giao-dien/website-landing-page-giao-dien-mau-k2025",
+            "https://kansite.com.vn/giao-dien/website-ban-hang-thuc-pham-giao-dien-mau-k1044",
+            "https://kansite.com.vn/giao-dien/mau-website-ban-hang-noi-that-kafu01",
+            "https://kansite.com.vn/giao-dien/mau-website-ban-hang-cao-cap-ks868",
+            "https://kansite.com.vn/giao-dien/landing-website-noi-that-kan",
+            // Danh mục giao diện mẫu
+            "https://kansite.com.vn/danh-muc-giao-dien/dich-vu",
+            "https://kansite.com.vn/danh-muc-giao-dien/khac",
+            "https://kansite.com.vn/danh-muc-giao-dien/landing-page",
+            "https://kansite.com.vn/danh-muc-giao-dien/web-ban-hang",
+            "https://kansite.com.vn/danh-muc-giao-dien/web-cong-ty"
         ];
         const result = [];
         additionalSlug.map((val) => {

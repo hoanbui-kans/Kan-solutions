@@ -1,12 +1,14 @@
 import { useEffect, useState, useRef } from 'react'
 import axios from 'axios';
 import styles from '../../styles/themes.module.css'
-import { Container, Row, Col, Form, Pagination, Button, Breadcrumb, SelectPicker, List, CheckboxGroup, Checkbox,toaster,Message,ButtonToolbar, Loader } from 'rsuite'
+import { Container, Row, Col, Form, Pagination, Button, Breadcrumb, SelectPicker, List, CheckboxGroup, Panel, Checkbox, toaster,Message,ButtonToolbar, Loader } from 'rsuite'
 import Image from 'next/image'
 import Link from 'next/link'
 import Loading from '../../components/Loading';
 import { Separator } from '../giao-dien/[slug]';
 import { IoListSharp, IoGridOutline, IoCaretForwardSharp, IoFunnelOutline, IoCloseCircleOutline, IoSearchOutline } from "react-icons/io5";
+import Head from 'next/head';
+import { ThemeCategory } from '../api/HeaderSeo';
 import HTMLReactParser from 'html-react-parser';
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
@@ -120,7 +122,7 @@ export const GD_List = ({data}) => {
     )
 }
 
-const Themes = ({gd, nganh, danhmuc, max_pages, slug}) => {
+const Themes = ({gd, nganh, danhmuc, max_pages, slug, current}) => {
 
     const [posts, setPosts] = useState(gd);
     const [paged, setPaged] = useState(1);
@@ -244,6 +246,9 @@ const Themes = ({gd, nganh, danhmuc, max_pages, slug}) => {
 
   return (
     <>
+    <Head>
+        { HTMLReactParser(ThemeCategory) }
+    </Head>
     <div className={'x_breadcum_container'}>
         <Container>
             <Row>
@@ -368,6 +373,16 @@ const Themes = ({gd, nganh, danhmuc, max_pages, slug}) => {
                                 }
                              </>
                             }
+                            {
+                                current.description ? 
+                                <>
+                                    <Panel bordered className={styles.x_category_description}>
+                                            {
+                                                HTMLReactParser( current.description )
+                                            }
+                                    </Panel>
+                                </> : ''    
+                            }
                          </Row>
                         </Col>
                     </Row>
@@ -384,11 +399,13 @@ export async function getServerSideProps(context) {
     const slug = context.query.slug;
     const res = await axios.get(rootURL + 'danh-muc-giao-dien/giao-dien-mau?danh_muc='+ slug +'&p=' + page).then((resonse) => resonse.data);
     // Pass data to the page via props
+    console.log(res.yoast_head);
     return { props: { 
       slug: slug,
       gd: !res.error ? res.posts : '',
       nganh: res.nganh,
       danhmuc: res.danh_muc, 
-      max_pages: res.max_pages
+      max_pages: res.max_pages,
+      current: res.current,
    }}
   }

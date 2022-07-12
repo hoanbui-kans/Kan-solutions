@@ -1,3 +1,4 @@
+import { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 import HTMLReactParser from 'html-react-parser'
 import Head from 'next/head'
@@ -8,11 +9,12 @@ import CheckRoundIcon from '@rsuite/icons/CheckRound'
 import SearchIcon from '@rsuite/icons/Search';
 import ArrowRightIcon from '@rsuite/icons/ArrowRight';
 import Link from 'next/link'
-import { Container, Row, Col, Button, Breadcrumb } from 'rsuite'
+import { Container, Row, Col, Button, Breadcrumb, Checkbox, CheckboxGroup, Modal } from 'rsuite'
 import { getSession } from 'next-auth/react'
 import md5 from 'md5'
 import FormTuVan from '../../components/FormTuVan'
 import { GD_Box } from '../giao-dien-mau'
+import ThemesSubmitForm from '../../components/handleSubmitTheme'
 
 const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON;
 
@@ -22,7 +24,7 @@ export function Separator(numb) {
   return str.join(".");
 }
 
-export const Layout = ({data}) => {
+export const Layout = ({data}) => { 
   return (
     <ul className={styles.x_layout}>
       {
@@ -83,27 +85,85 @@ export const NenTang = ({data}) => {
   )
 }
  
-function Price({data}) {
+export const Price = ({data}) => {
   let salePercent; 
-  salePercent = Math.round(100 - (parseInt(data.sale_price)/parseInt(data.regular_price)*100));
-  return (
-    <div className={styles.x_styles_price}>
-      <span className={styles.x_old_price}>{Separator(data.regular_price)}đ</span>
-      <span className={styles.x_newPrice}>{Separator(data.sale_price)}đ</span>
-      <span className={styles.x_sale_badge}>-{salePercent}%</span>
-    </div>
-  )
+  if(data.sale_price){
+    salePercent = Math.round(100 - (parseInt(data.sale_price)/parseInt(data.regular_price)*100));
+    return (
+      <div className={styles.x_styles_price}>
+        <span className={styles.x_old_price + ' ' + 'old_price'}>{Separator(data.regular_price)}đ</span>
+        <span className={styles.x_newPrice + ' ' + 'new_price'}>{Separator(data.sale_price)}đ</span>
+        <span className={styles.x_sale_badge + ' ' + 'sale_badge'}>-{salePercent}%</span>
+      </div>
+    )
+  }
+  if(data.regular_price == 0){
+    return(
+      <div className={styles.x_styles_price}>
+        <span className={'free_x'}>miễn phí</span>
+      </div>
+    )
+  }
   return(
     <div className={styles.x_styles_price}>
-      <span className={styles.simple}>{Separator(data.regular_price)}đ</span>
+      <span className={styles.simple + ' ' + 'simple_price'}>{Separator(data.regular_price)}đ</span>
     </div>
   )
 }
 
 export const SingleTheme = ({data, link_theme}) => {
+
+  const PriceTheme = data.price;
   const DanhMucNganh = data.nganh ? data.nganh : '';
   const ThemeInfor = data.themeinfor ? data.themeinfor : '';
+  const [services, setListService] = useState([]);
+  const [lastPrice, setLastPrice] = useState(PriceTheme);
+  const [selectedServices, setSelectedService] = useState([]);
+  // Tên giao diện
+  const [themeTitle, setThemeTitle] = useState(''); 
+  const [open, setOpen] = useState(false);  
+  const listServices = data.services;
 
+  const handleOpen = (title) => {
+    setThemeTitle(title);
+    setOpen(true)
+  };
+  const handleClose = () => setOpen(false);
+
+  useEffect(() => {
+    let selected_services = [];
+    listServices.map(keyIndex => {
+      services.map((val) => {
+        if(keyIndex.service == val){
+          selected_services.push(keyIndex);
+        }
+      })
+    });
+    setSelectedService(selected_services);
+  }, [services])
+
+  useEffect(() => {
+    if(PriceTheme.sale_price){
+      let regular_price = parseInt(PriceTheme.regular_price);
+      let sale_price = parseInt(PriceTheme.sale_price);
+      selectedServices.map((val) => {
+        val.price.regular_price ? regular_price += parseInt(val.price.regular_price) : '';
+        val.price.sale_price ? sale_price += parseInt(val.price.sale_price) : '';
+      });
+      setLastPrice({
+        regular_price: regular_price,
+        sale_price: sale_price,
+      });
+    } else {
+      let regular_price = parseInt(PriceTheme.regular_price);
+      selectedServices.map((val) => {
+        val.price.sale_price ? regular_price += parseInt(val.price.sale_price) : regular_price += parseInt(val.price.regular_price);
+      });
+      setLastPrice({
+        regular_price: regular_price,
+      });
+    }
+  }, [selectedServices])
   return (
     <>
       <Head>
@@ -168,50 +228,74 @@ export const SingleTheme = ({data, link_theme}) => {
                 <div className={styles.x_single_theme_content}>
                   <h1 className={styles.x_title}>{data.post_title}</h1>
                     {
-                      data.price ? 
-                      <div className={styles.x_price_section}>
-                        <Price data={data.price}/>
-                      </div> : ''
+                      data.post_excerpt ? <><p>{data.post_excerpt}</p><hr /></>: '' 
                     }
-                      {
-                        data.layout ? <Layout data={data.layout}/> : ''
-                      }
+                    {
+                        data.layout ? <><Layout data={data.layout}/></>  : ''
+                    }
                     <div className={styles.x_toolbar_button}>
                       {
                         link_theme ? 
                         <a href={link_theme}>
                             <Button className={styles.x_create_button}>
                               <CopyIcon width={16} height={16}/>
-                              Tạo website
+                                Tạo website
                             </Button> 
                         </a> :  
                         <Link href={'/dang-nhap'}>
                             <Button className={styles.x_create_button}>
                               <CopyIcon width={16} height={16}/>
-                              Tạo website
+                                Tạo website
                             </Button> 
                         </Link>
                       }
-                    
                       <Link href={'/giao-dien/xem-giao-dien/' + data.post_name}>
                         <a>
                           <Button className={styles.x_view_button}>
                             <SearchIcon width={16} height={16}/>
-                            Xem giao diện mẫu
+                              Xem giao diện mẫu
                           </Button>
                         </a>
                       </Link>
-                    </div>  
-                    <div className={styles.x_single_theme_section}>
-                  {
-                    data.nen_tang ? 
-                    <>
-                      <h2 className={styles.x_content_title}>Thông tin tích hợp</h2>
-                      <div className={styles.x_tich_hop}>
-                          <NenTang data={data.nen_tang} />
-                      </div>
-                    </> : ''
-                  }
+                    </div>   
+                    <div className={styles.x_seperator_booking}>
+                      <span>Hoặc</span>
+                    </div>
+                    <div className={styles.x_controler_services}>
+                      <Button className={styles.x_booking_theme} onClick={() => {handleOpen('Đăng ký tư vấn mẫu giao diện' + data.post_title)}}>
+                        Đặt mua mẫu này
+                        </Button>
+                      {
+                        lastPrice ? 
+                          <div className={styles.x_price_section}>
+                            <Price data={lastPrice}/>
+                          </div> : ''
+                      }
+                      <CheckboxGroup name="checkboxList" onChange={(e) => {setListService(e)}}>
+                        {
+                          data.services.map((val, index) => {
+                            return (
+                              <Checkbox value={val.service} key={index}>
+                                {val.service}
+                                <div className={styles.x_services_price}>
+                                  <Price data={val.price}/>
+                                </div>
+                              </Checkbox>
+                            )
+                          })
+                        }
+                      </CheckboxGroup>
+                    </div>
+                   <div className={styles.x_single_theme_section}>
+                      {
+                        data.nen_tang ? 
+                        <>
+                          <h2 className={styles.x_content_title}>Thông tin tích hợp</h2>
+                          <div className={styles.x_tich_hop}>
+                              <NenTang data={data.nen_tang} />
+                          </div>
+                        </> : ''
+                      }
                   <h2 className={styles.x_content_title}>Thông tin hỗ trợ</h2>
                    <FormTuVan title={'Đăng kỹ hỗ trợ giao diện ' + data.post_title}/>
                   </div>
@@ -235,6 +319,14 @@ export const SingleTheme = ({data, link_theme}) => {
               </Row>
           </Container>
       </div>
+      <Modal open={open} onClose={handleClose} backdrop="static" size={'lg'}>
+        <Modal.Header>
+          <Modal.Title>Đặt mẫu {data.post_title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            <ThemesSubmitForm title={themeTitle} selectedService={selectedServices} lastPrice={lastPrice}/>
+        </Modal.Body>
+      </Modal>
     </>
   )
 }

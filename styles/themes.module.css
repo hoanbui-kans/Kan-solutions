@@ -208,6 +208,25 @@
       bottom: 0;
       left: 0;
   }
+  .x_category_description{
+    padding: 15px 0px;
+    margin-top: 35px;
+  }
+  .x_category_description p{
+    font-size: 16px;
+    line-height: 1.55rem;
+  }
+  .x_category_description h1,
+  .x_category_description h2,
+  .x_category_description h3,
+  .x_category_description h4,
+  .x_category_description h5{
+    margin-bottom: 15px;
+  }
+  .x_category_description td {
+      padding: 10px;
+      border: 1px solid #ebebeb;
+  }
   .x_styles_price{
     margin-bottom: 15px;
   }

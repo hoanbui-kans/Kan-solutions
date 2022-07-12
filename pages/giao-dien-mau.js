@@ -8,7 +8,8 @@ import Loading from '../components/Loading';
 import { Separator } from './giao-dien/[slug]';
 import { IoListSharp, IoGridOutline, IoCaretForwardSharp, IoFunnelOutline, IoCloseCircleOutline, IoSearchOutline } from "react-icons/io5";
 import HTMLReactParser from 'html-react-parser';
-
+import Head from 'next/head';
+import { Themes } from './api/HeaderSeo';
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 export const Price = ({data}) => {
@@ -120,7 +121,7 @@ export const GD_List = ({data}) => {
     )
 }
 
-const Themes = ({gd, nganh, danhmuc, max_pages}) => {
+const Themes_GDMau = ({gd, nganh, danhmuc, max_pages}) => {
 
     const [posts, setPosts] = useState(gd);
     const [paged, setPaged] = useState(1);
@@ -244,6 +245,9 @@ const Themes = ({gd, nganh, danhmuc, max_pages}) => {
 
   return (
     <>
+    <Head>
+        { HTMLReactParser( Themes) }
+    </Head>
     <div className={'x_breadcum_container'}>
         <Container>
             <Row>
@@ -368,7 +372,7 @@ const Themes = ({gd, nganh, danhmuc, max_pages}) => {
   )
 }
 
-export default Themes
+export default Themes_GDMau
 
 export async function getServerSideProps(context) {
 
