@@ -12,6 +12,7 @@ const config = {
             "https://kansite.com.vn/danh-muc/kinh-doanh-khoi-nghiep",
             "https://kansite.com.vn/danh-muc/quang-cao-online",
             // Bài viết
+            "https://kansite.com.vn/bai-viet/hinh-anh-trong-nextjs-hinh-anh-va-toi-uu-hoa-hinh-anh",
             "https://kansite.com.vn/bai-viet/crm-doanh-nghiep",
             "https://kansite.com.vn/bai-viet/1840-2",
             "https://kansite.com.vn/bai-viet/next-js",
@@ -66,6 +67,9 @@ const config = {
             "https://kansite.com.vn/du-an/landing-page-gioi-thieu-my-nghe-viet",
             "https://kansite.com.vn/du-an/website-qua-tang-doanh-nghiep-my-nghe-viet",
             // Giao diện mẫu 
+            "https://kansite.com.vn/giao-dien/website-ban-tui-xach-chaos-giao-dien-mau",
+            "https://kansite.com.vn/giao-dien/website-banh-ngot-nou-cake-giao-dien-mau",
+            "https://kansite.com.vn/giao-dien/website-cong-ty-lazer-tek-giao-dien-mau",
             "https://kansite.com.vn/giao-dien/website-ban-cay-canh-plantmore-giao-dien-mau",
             "https://kansite.com.vn/giao-dien/website-me-va-be-kidz-giao-dien-mau",
             "https://kansite.com.vn/giao-dien/website-nen-xa-phong-thu-cong-giao-dien-mau",
