@@ -29,8 +29,8 @@ const options = {
       // e.g. domain, username, password, 2FA token, etc.
       // You can pass any HTML attribute to the <input> tag through the object.
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "jsmith" },
-        password: {  label: "Password", type: "password" }
+        username: { label: "Tài khoản", type: "text", placeholder: "Tên đăng nhập" },
+        password: {  label: "Mật khẩu", type: "password" }
       },
       async authorize(credentials, req) {
         const config = {
@@ -71,7 +71,7 @@ const options = {
             'picture' : profile.picture,
             'provider' : provider,
           };
-    
+          
           const config = {
             method: 'post',
             url: rootURL + 'jwt-auth/v1/token/validate_social_user',
@@ -102,7 +102,6 @@ const options = {
             'picture' : profile.picture.data.url,
             'provider' : provider,
           };
-          
           const config_fb = {
             method: 'post',
             url: rootURL + 'jwt-auth/v1/token/validate_social_user',
@@ -116,7 +115,7 @@ const options = {
             .catch(function (error) {
               console.log(error);
             });
-            
+            console.log(response_fb);
             if(!response_fb){
               return false
             }

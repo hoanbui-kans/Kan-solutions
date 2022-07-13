@@ -43,8 +43,8 @@ const Loggout = () => {
     </section>
     )
   }
-  const userName = session ? session.user.user_display_name : '';
-  const userEmail = session ? session.user.user_email : '';
+  const userName = session.user.token.user_display_name;
+  const userEmail = session.user.token.user_email;
   
   return (
     <>

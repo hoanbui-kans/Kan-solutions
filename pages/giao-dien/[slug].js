@@ -345,14 +345,15 @@ export async function getServerSideProps(context) {
   const session = await getSession(context);
   const slug = context.params.slug;
   const res = await axios.get(ROOT_URL + 'giao-dien/single?slug=' + slug).then((resonse) => resonse.data);
+  console.log(session);
   // Create API
   let CreateURI = '';
   if(session){
-    const user_nicename = session.user.user_nicename
+    const user_email = session.user.token.user_email;
     const SITE_URL = process.env.ORIGINAL_URL;
-    const API_KEY = res.ID + user_nicename;
+    const API_KEY = res.ID + user_email;
     const HASH_API_KEY = md5(API_KEY);
-    CreateURI = session ? SITE_URL + '/?theme_id=' + res.ID + '&user_name='+ user_nicename +'&public_key=' + HASH_API_KEY : '';
+    CreateURI = session ? SITE_URL + '/?theme_id=' + res.ID + '&user_email='+ user_email +'&public_key=' + HASH_API_KEY : '';
   }
   // Pass data to the page via props
   return { 
