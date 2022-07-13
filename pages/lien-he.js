@@ -183,11 +183,11 @@ const Contact = () => {
                     </Form.Group>
                     <Form.Group>
                       <Form.ControlLabel>Địa chỉ Email</Form.ControlLabel>
-                      <Form.Control name='email'  type='email' value={EventTarget.value} placeholder={'Nhập tên của bạn'}/>
+                      <Form.Control name='email'  type='email' value={EventTarget.value} placeholder={'Nhập địa chỉ Email'}/>
                     </Form.Group>
                     <Form.Group>
                       <Form.ControlLabel>Nhập nội dung của bạn</Form.ControlLabel>
-                      <Input name='textarea' as='textarea' value={formValue.textarea} placeholder={'Nhập tên của bạn'} rows={8} onChange={(e) => setFormvalue( {...formValue, textarea: e})} />
+                      <Input name='textarea' as='textarea' value={formValue.textarea} placeholder={'Nhập nội dung cần tư vấn'} rows={8} onChange={(e) => setFormvalue( {...formValue, textarea: e})} />
                     </Form.Group>
                     <Form.Group>
                       <Button type='submit' className={styles.x_contact_form_button}>

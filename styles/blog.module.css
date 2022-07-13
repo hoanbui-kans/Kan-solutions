@@ -23,7 +23,47 @@
   padding: 0.45rem 1.5rem;
   transition: background .1s linear;
 }
-
+.x_comment_author_comment{
+  display: flex;
+  column-gap: 15px;
+  padding: 0px 0px 9px 11px;
+}
+.x_comment_list{
+  margin-bottom: 25px;
+}
+.x_comment_date{
+  color: #676767;
+  margin-left: 5px;
+  display: inline-block;
+  width: auto;
+  font-size: 10px;
+}
+.x_comment_author_comment h5{
+  font-size: 14px;
+}
+.x_comment_author_comment p{
+  font-size: 12px;
+}
+.x_comment_replies{
+  font-size: 16px;
+  padding-left: 15px;
+  margin-bottom: 10px;
+}
+.x_comment_header{
+  border-bottom: 1px solid #e5e5ea;
+  background: white;
+  align-items: center;
+}
+.x_comment_content{
+  padding: 15px;
+  font-weight: 300;
+  font-size: 16px;
+}
+.x_custom_button_group button {
+  background: #ffffff;
+  color: rgb(56, 56, 56);
+  border-radius: 0px;
+}
 .x_filter_option:hover{
   background-color: #1071ff;
   color: white;
@@ -32,6 +72,17 @@
   border-bottom: 2px solid #f6f8fb;
   margin-bottom: 2rem;
   padding-bottom: 2rem;
+}
+.x_comment_form_button{
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  background-color: #1071ff;
+  color: white;
+}
+.x_comment_form_title{
+  font-size: 18px;
+  margin-bottom: 15px;
 }
 .x_category_link{
   list-style: none;
@@ -133,7 +184,9 @@
   font-size: 22px;
   margin-bottom: 25px;
 }
-
+.x_control_comments{
+  text-align: right;
+}
 .x_blog_one_button{
   background: var(--x-gradient-one);
   border-radius: 35px;
@@ -224,8 +277,13 @@
   box-shadow: 5px 5px 10px #ededed, -5px -5px 10px #ffffff;
   overflow: hidden;
   display: block;
+  width: 100%;
+  max-height: unset !important;
+  height: auto !important;
 }
-
+.x_single_blog_thumbnail span{
+  min-width: 100% !important;
+}
 .x_blog_content{
   background: white;
   padding: 16px;

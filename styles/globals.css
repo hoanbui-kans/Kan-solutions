@@ -101,6 +101,10 @@ a {
   margin: 0px !important;
 }
 
+nav.rs-sidenav a {
+  color: var(--rs-sidenav-default-text);
+}
+
 .x_breadcum_container {
   background: #f7f7f7;
   position: relative;
@@ -162,7 +166,15 @@ a:active, a:focus, a:hover {
   font-style: normal;
   font-display: swap;
 }
-
+code {
+  background: #27282a;
+  color: white;
+  padding: 15px 10px;
+  display: block;
+  border-radius: 7px;
+  border-left: 2px solid #2d88e2;
+  padding-left: 30px
+}
 @font-face {
   font-family: 'SVN-Gotham';
   src: url('../fonts/SVN-Gotham.woff2') format('woff2'),

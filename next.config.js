@@ -5,12 +5,6 @@ const nextConfig = {
   images: {
     domains: ['kanbox.vn'],
   },
-  serverRuntimeConfig: {
-    baseUrl: {
-      home: 1584,
-      aboutus: 1568
-    }
-  }
 }
 
 module.exports = nextConfig

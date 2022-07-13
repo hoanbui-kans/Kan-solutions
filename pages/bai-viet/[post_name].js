@@ -8,6 +8,7 @@ import HTMLReactParser from 'html-react-parser';
 import Head from 'next/head';
 import { IoPersonCircleOutline, IoTimeOutline } from "react-icons/io5";
 import { BlogStyleTwo } from '../../components/blog-templates/BlogContent';
+import Comments from '../../components/comment';
 
 import {
   PinterestShareButton,
@@ -60,7 +61,7 @@ const PostSingle = ({data}) => {
       <>
         <Head>
           {
-            HTMLReactParser(data.yoast_head.html)
+            HTMLReactParser(data.yoast_head.html) 
           }
         </Head>
         <div className={'x_breadcum_container'}>
@@ -98,6 +99,9 @@ const PostSingle = ({data}) => {
                                   HTMLReactParser(data.post_content)
                                 }
                               </div>
+                              <div className={styles.x_comment_form}>
+                                <Comments data={data.comment} post_id={data.ID}/>
+                              </div>
                             </div>
                         </Col>
                         <Col xs={24} md={4}>
@@ -119,7 +123,7 @@ const PostSingle = ({data}) => {
                               data.related.map((val, index) => {
                                 return (
                                   <Col key={index} md={8} xs={24}>
-                                   <BlogStyleTwo key={val.ID} data={val}/>
+                                    <BlogStyleTwo key={val.ID} data={val}/>
                                   </Col>
                                 )
                               })
