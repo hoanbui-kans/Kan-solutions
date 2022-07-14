@@ -314,29 +314,27 @@ export const MarketingTable = [
 export const HostingTable = [
     {
         name: 'Cơ bản',
-        price: '70.000đ',
+        price: '120.000đ',
         checklist: [
             'Server đặt tại: Việt Nam',
             'Dung lượng: 1 GB',
             'Băng thông: Không giới hạn',
-            'FTP: Không giới hạn',
             'Email tự động: Có',
             'Website: 1',
             'Quản lý CRM: Không',
-            'Addon domain: 0',
+            'Domain: 0',
             'Backup dữ liệu: Hàng tuần',
-            'Park domain: Không giới hạn',
+            'Park domain: 1',
         ]
     },{
         name: 'Kinh doanh',
-        price: '150.000đ',
+        price: '250.000đ',
         checklist: [
             'Server đặt tại: Việt Nam',
             'Dung lượng: 2.5 GB',
             'Băng thông: Không giới hạn',
             'Email tự động: Có',
-            'FTP: Không giới hạn',
-            'Website: 2',
+            'Website: 1',
             'Quản lý CRM: Có',
             'Addon domain: 0',
             'Backup dữ liệu: Hàng tuần',
@@ -344,14 +342,13 @@ export const HostingTable = [
         ]
     },{
         name: 'Nâng cao',
-        price: '300.000đ',
+        price: '450.000đ',
         checklist: [
             'Server đặt tại: Việt Nam',
             'Dung lượng: 5 GB',
             'Băng thông: Không giới hạn',
             'Email tự động: Có',
-            'FTP: Không giới hạn',
-            'Website: 7',
+            'Website: 1',
             'Quản lý CRM: Có',
             'Addon domain: 0',
             'Backup dữ liệu: Hàng tuần',

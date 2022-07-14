@@ -12,7 +12,7 @@ import { getSession } from 'next-auth/react';
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 const UserEditor = ({user_infor, nonce}) => {
-  const [expanded, setExpanded] = useState(true);
+  const [expanded, setExpanded] = useState(false);
   const [loading, setLoading] = useState(false);
   const user_login = user_infor ? user_infor.user_login : '';
   const nonce_key = nonce ? nonce : '';

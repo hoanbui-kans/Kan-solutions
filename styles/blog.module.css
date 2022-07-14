@@ -169,6 +169,13 @@
 .x_blog_two_thumbnail{
   display: block;
 }
+.x_blog_two_thumbnail span{
+  width: 100% !important;
+}
+.x_blog_two_thumbnail img{
+  width: 100% !important;
+  height: auto !important;
+}
 .x_blog_one_section{
   margin-bottom: 2rem;
   background: white;

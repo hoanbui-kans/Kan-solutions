@@ -23,7 +23,7 @@ const News = ({bai_viet, danh_muc, max_num_pages}) => {
   const Search_Page = async () => {
     setLoading(true);
     setPaged(1);
-    const { data } = await axios.get(rootURL + 'tin-tuc/bai-viet?perpage=7&s=' + keySearch).then((res) => res);
+    const { data } = await axios.get(rootURL + 'tin-tuc/bai-viet?perpage=10&s=' + keySearch).then((res) => res);
     if(data){
       setPosts(data.posts);
       setMaxPage(data.max_num_pages);
@@ -39,7 +39,7 @@ const News = ({bai_viet, danh_muc, max_num_pages}) => {
     });
     setLoading(true);
     setPaged(num);
-    const { data } = await axios.get(rootURL + 'tin-tuc/bai-viet?perpage=7&p=' + num).then((res) => res);
+    const { data } = await axios.get(rootURL + 'tin-tuc/bai-viet?perpage=10&p=' + num).then((res) => res);
     if(data){
       setPosts(data.posts);
       setLoading(false);
@@ -154,7 +154,7 @@ export async function getServerSideProps({req, res}) {
       'Cache-Control',
       'public, s-maxage=10, stale-while-revalidate=59'
   )
-  const response = await axios.get(rootURL + 'tin-tuc/bai-viet?perpage=7').then((resonse) => resonse.data);
+  const response = await axios.get(rootURL + 'tin-tuc/bai-viet?perpage=10').then((resonse) => resonse.data);
 
   // Pass data to the page via props
   return { props: { 

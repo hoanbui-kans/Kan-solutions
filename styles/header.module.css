@@ -362,7 +362,7 @@
     width: auto !important;
 }
 .x_top_header{
-    background: var( --x-gradient-three );
+    background: var( --x-primary-color );
     color: var(--x-white-color);
     font-size: 85%;
     padding: .25rem 0rem;

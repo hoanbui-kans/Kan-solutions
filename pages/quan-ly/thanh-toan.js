@@ -6,7 +6,7 @@ import styles from '../../styles/account.module.css'
 import UserNav from '../../components/user-manager/UserNav';
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
-const Annoucement = ({bai_viet}) => {
+const Checkout = ({bai_viet}) => {
   const [expanded, setExpanded] = useState(false);
   return (
     <>
@@ -42,7 +42,7 @@ const Annoucement = ({bai_viet}) => {
   )
 }
 
-export default Annoucement
+export default Checkout
 
 export async function getServerSideProps() {
     console.log(rootURL + 'user/annoucement?paged=1');

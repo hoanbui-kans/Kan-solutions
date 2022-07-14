@@ -82,11 +82,50 @@
 }
 .x_blog{
     background: #ffffff;
-    box-shadow: 0px 2px 4px rgba(0,0,0,.1);
-    border-radius: 20px;
+    box-shadow: 0px 2px 4px rgb(0 0 0 / 10%);
+    border-radius: 10px;
     margin-bottom: 1.95rem;
     position: relative;
     padding: 20px;
+}
+.x_return_to_dashboard{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+    margin: auto;
+    background: var(--x-success-color);
+    color: white;
+}
+.x_qr_pay_section{
+    padding: 55px 0px;
+    position: relative;
+}
+.x_payment_infor{
+    text-align: center;
+    max-width: 500px;
+    margin: auto;
+}
+.x_payment_infor h1{
+    font-size: 24px;
+}
+.x_upgrade_button{
+    background: var(--x-success-color);
+    display: inline-flex;
+    column-gap: 6px;
+    align-items: center;
+    color: white;
+    width: 48%;
+    justify-content: center;
+}
+.x_extend_button{
+    background: var(--x-primary-color);
+    display: inline-flex;
+    column-gap: 6px;
+    align-items: center;
+    color: white;
+    width: 48%;
+    justify-content: center;
 }
 .x_blog_favicon{
     border-radius: 50%;
@@ -121,29 +160,28 @@
     border-radius: 5px;
 }
 .x_blog_meta{
-    padding: 15px 0px;
-    border-bottom: 1px solid #efefef;
-    margin-bottom: 20px;
+    padding-top: 15px;
+    column-gap: 10px;
     display: flex;
     flex-wrap: wrap;
 }
 .x_blog_meta > div{
-    width: 50%;
+    padding: 2px 5px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    text-align: center;
+    width: calc(50% - 10px);
 }
 .x_blog_meta_title{
     font-size: 12px;
-    display: flex;
-    align-items: center;
-    column-gap: 5px;
 }
 .x_date_badge{
     font-size: 10px;
-    background: #484848;
     padding: 5px;
     border-radius: 5px;
     display: inline-block;
     margin: 5px 0px;
-    color: white;
+    color: rgb(90, 90, 90);
 }
 .x_blog_chart{
     width: 100%;
@@ -151,6 +189,7 @@
     align-items: center;
     justify-content: center;
     background: whitesmoke;
+    height: 100%;
     border-radius: 0.35rem;
     padding: 0.75rem 0rem;
 }
@@ -329,12 +368,11 @@
     text-transform: uppercase;
     font-size: 12px;
 }
-.x_danger .x_date_badge{
-    background-color: red;
+ .x_date_badge{
+    color: rgb(41, 41, 41);
+    display: inline-block;
 }
-.x_success .x_date_badge{
-    background-color: green;
-}
+
 .x_guild_list_posts{
     list-style: none;
 }

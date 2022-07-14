@@ -18,7 +18,7 @@ import MessageIcon from '@rsuite/icons/Message';
 import CreativeIcon from '@rsuite/icons/Creative';
 import SpeakerIcon from '@rsuite/icons/Speaker';
 
-const UserNav = ({expanded}) => {
+const UserNav = () => {
     const [activeKey, setActiveKey] = useState('1');
     return (
         <>

@@ -9,7 +9,7 @@ import { IoCaretForwardSharp } from 'react-icons/io5';
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 const Guile = ({category}) => {
-  const [expanded, setExpanded] = useState(true);
+  const [expanded, setExpanded] = useState(false);
   return (
     <>
     <section className={styles.x_app_section}>

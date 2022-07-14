@@ -1,6 +1,14 @@
-import { useState } from 'react'
-import { Container, Row, Col, Navbar, Nav, Form, Button, ButtonToolbar, Toggle, Sidenav } from 'rsuite'
-import { IoLogOutOutline, IoSearchOutline, IoAlbumsOutline, IoAddSharp, IoLinkOutline, IoBookmarkOutline, IoCalendarClearOutline, IoCalendarOutline } from "react-icons/io5";
+import { useEffect, useState } from 'react'
+import { Container, Row, Col, Navbar, Nav, Form, Button, ButtonToolbar, Toggle, Sidenav, Progress, Badge } from 'rsuite'
+import { IoSearchOutline, 
+    IoAlbumsOutline, 
+    IoAddSharp, 
+    IoLinkOutline, 
+    IoBookmarkOutline, 
+    IoCalendarClearOutline,
+    IoBuild,
+    IoCellular, 
+    IoCalendarOutline } from "react-icons/io5";
 import axios from 'axios'
 import Link from 'next/link'
 import Image from 'next/image';
@@ -21,20 +29,54 @@ const Chart = dynamic(
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 const BlogContent = ({data}) => {
+    console.log(data);
+    const [LineStroke, setLineStroke] = useState({
+        strokeColor : '',
+        status: ''
+    });
+    const [percent, setPercent] = useState('');
     const SiteIcon = data.site_icon && data.site_icon != 'empty' ? data.site_icon : '/icons/favicon.png'
     const StoreAvaiable = parseInt(data.quota);
-    const DisplayAvaiableUpload = StoreAvaiable < 1000 ? StoreAvaiable + 'mb' : (StoreAvaiable/1000) + 'gb'
-    
+    const DisplayAvaiableUpload = StoreAvaiable < 1000 ? StoreAvaiable + 'mb' : (StoreAvaiable/1000) + 'gb';
     const Uploaded = parseInt(data.upload);
     const DisplayUploaded = Uploaded < 1000 ? Uploaded + 'mb' : (Uploaded/100) + 'gb'
     const Remain = StoreAvaiable - Uploaded;
-
+    const registed = new Date(data.registered);
     const expired = new Date(parseInt(data.get_expire, 10) * 1000);
     const current = new Date();
-    const DateRegisted = moment(data.registered).format('LL');
+    const DateRegisted = moment(registed).format('LL');
     const expiredDate = moment(expired).format('LL');
 
     const expiredClass = current <= expired ? styles.x_danger : styles.x_success;
+
+    useEffect(() => {
+        let total = expired - registed;
+        let progress = current - registed;
+        let percentNumber =  Math.round(progress/ total * 100 );
+
+        setPercent(percentNumber);
+        if(percent >= 0 && percent <= 50){
+            setLineStroke({
+                strokeColor: '#4caf50',
+                status: 'success'
+            });
+        } else if(percent> 50 && percent <= 75){
+            setLineStroke({
+                strokeColor: '#ffc107',
+                status: 'active'
+            });
+        } else if(percent > 75 && percent <= 100){
+            setLineStroke({
+                strokeColor: '#f44336',
+                status: 'fail'
+            });
+        } else {
+            setLineStroke({
+                strokeColor: '#b02318',
+                status: 'fail'
+            });
+        }
+    }, []);
 
     const chartValue = {
         options: { 
@@ -85,54 +127,82 @@ const BlogContent = ({data}) => {
     }
     return(
         <div className={styles.x_blog}>
-            <a className={styles.x_blog_link} target={'_blank'} rel="noreferrer" href={data.home}>
-                <IoLinkOutline size={18} color='#999'/>
-            </a>
-            <div className={styles.x_blog_content}>
-                <div className={styles.x_flex_blog_image}>
-                    <span className={styles.x_blog_favicon}>
-                        <Image width={40} height={40} alt={data.blogname} src={ SiteIcon } />
-                    </span>
-                    <div className={styles.x_blog_flex_content}>
-                        <a target={'_blank'} rel="noreferrer" href={data.home}><h3>{data.blogname}</h3></a>
-                    </div>
-                </div>
-                <div className={styles.x_flex_qouta}>
-                    <div className={styles.x_flex_qouta_content}>
-                        <div>
-                            <span>Giới hạn:</span><strong>{DisplayAvaiableUpload}</strong>
-                        </div>
-                    </div>
-                    <div className={styles.x_flex_qouta_content}>
-                        <div>
-                        <span>Đã tải lên:</span><strong>{DisplayUploaded}</strong>
-                        </div>
-                    </div>
-                    <div className={styles.x_flex_qouta_content}>
-                            <div>
-                                <span>Bài viết:</span><strong>{data.post_count}</strong>
+            <Row>
+                <Col xs={24} md={12}>
+                    <a className={styles.x_blog_link} target={'_blank'} rel="noreferrer" href={data.home}>
+                        <IoLinkOutline size={18} color='#999'/>
+                    </a>
+                    <div className={styles.x_blog_content}>
+                        <Badge content={data.is_trial ? 'thử nghiệm' : ''}>
+                            <div className={styles.x_flex_blog_image}>
+                                <span className={styles.x_blog_favicon}>
+                                    <Image width={40} height={40} alt={data.blogname} src={ SiteIcon } />
+                                </span>
+                                <div className={styles.x_blog_flex_content}>
+                                    <a target={'_blank'} rel="noreferrer" href={data.home}>
+                                            <h3>{data.blogname}</h3>
+                                    </a>
+                                </div>
                             </div>
+                        </Badge>
+                        <div className={styles.x_flex_qouta}>
+                            <div className={styles.x_flex_qouta_content}>
+                                <div>
+                                    <span>Giới hạn:</span><strong>{DisplayAvaiableUpload}</strong>
+                                </div>
+                            </div>
+                            <div className={styles.x_flex_qouta_content}>
+                                <div>
+                                <span>Đã tải lên:</span><strong>{DisplayUploaded}</strong>
+                                </div>
+                            </div>
+                            <div className={styles.x_flex_qouta_content}>
+                                <div>
+                                    <span>Bài viết:</span><strong>{data.post_count}</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={styles.x_blog_meta}>
+                            <div>
+                                <p className={styles.x_blog_meta_title}><IoCalendarClearOutline /> Ngày đăng ký:</p> 
+                                <span className={styles.x_date_badge}>{ DateRegisted }</span>
+                            </div>
+                            <div className={expiredClass}>
+                                <p className={styles.x_blog_meta_title}><IoCalendarOutline /> Sử dụng đến:</p>
+                                <span className={styles.x_date_badge}>{expiredDate}</span>
+                            </div>
+                        </div>
+                        <Progress.Line percent={percent} strokeColor={LineStroke.strokeColor} status={LineStroke.status} />
+                        <ButtonToolbar style={{marginBottom: 15}}>
+                            <Link href={'/quan-ly/thanh-toan/nang-cap?site_id=' + data.blog_id}>
+                                <a>
+                                    <Button className={styles.x_upgrade_button}>
+                                        <IoCellular />
+                                        Nâng cấp website
+                                    </Button>
+                                </a>
+                            </Link>
+                            <Link href={'/quan-ly/thanh-toan/gia-han?site_id=' + data.blog_id}>
+                            <Button className={styles.x_extend_button}>
+                                <IoBuild />
+                                Gia hạn
+                            </Button>
+                            </Link>
+                        </ButtonToolbar>
                     </div>
-                </div>
-                <div className={styles.x_blog_meta}>
-                    <div>
-                        <p className={styles.x_blog_meta_title}><IoCalendarClearOutline /> Ngày đăng ký:</p> 
-                        <span className={styles.x_date_badge}>{ DateRegisted }</span>
+                </Col>
+                <Col xs={24} md={12}>
+                    <div className={styles.x_blog_chart}>
+                        <Chart options={chartValue.options} labels={chartValue.labels} series={chartValue.series} type="donut" width="180" />
                     </div>
-                    <div className={expiredClass}>
-                        <p className={styles.x_blog_meta_title}><IoCalendarOutline /> Hến hạn:</p>
-                        <span className={styles.x_date_badge}>{expiredDate}</span>
-                    </div>
-                </div>
-                <div className={styles.x_blog_chart}>
-                    <Chart options={chartValue.options} labels={chartValue.labels} series={chartValue.series} type="donut" width="180" />
-                </div>
-            </div>
+                </Col>
+            </Row>
         </div>
     )
 }
+
 const UserManager = ({blogInfor}) => {
-  const [expanded, setExpanded] = useState(true);
+  const [expanded, setExpanded] = useState(false);
   return (
     <>
     <section className={styles.x_app_section}>
@@ -187,16 +257,16 @@ const UserManager = ({blogInfor}) => {
                     </Row>
                     <Row className={styles.x_flex}>
                         {
-                            blogInfor ? 
-                                blogInfor.map((val, index) => {
-                                return (
-                                    <Col key={index} xs={24} md={12} lg={expanded ? 12 : 8} className={styles.x_padding}>
-                                        <BlogContent data={val} /> 
-                                    </Col>  
-                                )
-                                }) : <p style={{textAlign: 'center', width: '100%', padding: '35px 0px'}}>
-                                        Bạn chưa có trang nào, vui lòng tạo mới
-                                    </p>
+                        blogInfor ? 
+                            blogInfor.map((val, index) => {
+                            return (
+                                <Col key={index} xs={24} md={12} lg={24} className={styles.x_padding}>
+                                    <BlogContent data={val} /> 
+                                </Col>  
+                            )
+                            }) : <p style={{textAlign: 'center', width: '100%', padding: '35px 0px'}}>
+                                    Bạn chưa có trang nào, vui lòng tạo mới
+                                </p>
                         }
                     </Row>
                 </Col>
