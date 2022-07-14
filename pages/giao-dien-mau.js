@@ -135,8 +135,8 @@ const Themes_GDMau = ({gd, nganh, danhmuc, max_pages}) => {
 
     const Paged = [
         {
-            label: '8 giao diện',
-            value: 8,
+            label: '9 giao diện',
+            value: 9,
             role: "Master"
         },
         {
@@ -159,33 +159,37 @@ const Themes_GDMau = ({gd, nganh, danhmuc, max_pages}) => {
 
     const handleChange = (e) => {
         setFilterNganh(e);
+        handleUpdateGd();
     };
 
     const HandleSubmitSearch = () => {
         setKeySearch(formvalue.s);
+        handleUpdateGd();
     }
 
-    useEffect(() => {
-        const handleUpdateGd = async () => {
-            const nganhTerms = filterNganh.join(',');
-            // Pass data to the page via props
-            setLoading(true);
-            window.scrollTo({
-                top: 0,
-                left: 0,
-                behavior: "smooth"
-            });
-            const response = await axios.get(`${rootURL}giao-dien/giao-dien-mau?p=${paged}&perpage=${perPage}&nganh=${nganhTerms}&s=${keySearch}`).then((resonse) => resonse.data);
-            if(!response.error){
-                setPosts(response.posts);
-                setMax_paged(response.max_pages);
-            } else {
-                toaster.push(<Message type='warning'>Không tìm thấy nội dung với bộ lọc tìm kiếm</Message>);
-            }
-            setLoading(false);
-        }
+    const HandleChangePerpage = (e) => {
+        setPerPage(e)
         handleUpdateGd();
-    }, [filterNganh, perPage, keySearch])
+    }
+
+    const handleUpdateGd = async () => {
+        const nganhTerms = filterNganh.join(',');
+        // Pass data to the page via props
+        setLoading(true);
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth"
+        });
+        const response = await axios.get(`${rootURL}giao-dien/giao-dien-mau?p=${paged}&perpage=${perPage}&nganh=${nganhTerms}&s=${keySearch}`).then((resonse) => resonse.data);
+        if(!response.error){
+            setPosts(response.posts);
+            setMax_paged(response.max_pages);
+        } else {
+            toaster.push(<Message type='warning'>Không tìm thấy nội dung với bộ lọc tìm kiếm</Message>);
+        }
+        setLoading(false);
+    }
 
     const SortByCategory = ({data}) => {
         return(
@@ -261,30 +265,29 @@ const Themes_GDMau = ({gd, nganh, danhmuc, max_pages}) => {
         </Container>
     </div>
     <div className={styles.x_gd_section}>
+                <div className={ openFilter ? styles.x_fixed_filter + ' ' + styles.x_fixed_filter_open : styles.x_fixed_filter}>
+                    <div className={styles.x_sidebar}>
+                        <h3 className={styles.x_gd_title}>Lọc theo danh mục</h3>
+                        <SortByCategory data={danhmuc}/>
+                        <h3 className={styles.x_gd_title}>Lọc theo ngành</h3>
+                        <div className={styles.x_SortByJobs}>
+                            <SortByJobs data={nganh}/>
+                        </div>
+                    </div>
+                </div>
+                {
+                    openFilter ? 
+                    <div className={styles.x_close_filter} onClick={() => { setOpenFilter(false) }}>
+                        <span className={styles.x_close}>
+                            <IoCloseCircleOutline size={24} color={'white'}/>
+                        </span>
+                    </div> : ''
+                }
                 <Container>
                     <Row>
-                        
-                        {
-                           openFilter ? 
-                           <div className={styles.x_close_filter} onClick={() => { setOpenFilter(false) }}>
-                                <span className={styles.x_close}>
-                                    <IoCloseCircleOutline size={24} color={'white'}/>
-                                </span>
-                           </div> : ''
-                        }
-                        <Col xs={24} md={24} lg={6} className={ openFilter ? styles.x_fixed_filter + ' ' + styles.x_fixed_filter_open : styles.x_fixed_filter}>
-                            <div className={styles.x_sidebar}>
-                                <h3 className={styles.x_gd_title}>Lọc theo danh mục</h3>
-                                <SortByCategory data={danhmuc}/>
-                                <h3 className={styles.x_gd_title}>Lọc theo ngành</h3>
-                                <div className={styles.x_SortByJobs}>
-                                    <SortByJobs data={nganh}/>
-                                </div>
-                            </div>
-                        </Col>
-                        <Col xs={24} md={24} lg={18}>
+                        <Col xs={24} md={24} lg={24}>
                                 <Row className={styles.x_flexing}>
-                                    <Col xs={24} md={8}>
+                                    <Col xs={24} md={10} lg={12}>
                                         <ButtonToolbar className={styles.x_filter_group}>
                                             <Button className={styles.x_fillter_button} onClick={() => { setDisplayGrid(false) }}>
                                                 <IoListSharp /> Danh sách
@@ -297,11 +300,11 @@ const Themes_GDMau = ({gd, nganh, danhmuc, max_pages}) => {
                                             </Button>
                                         </ButtonToolbar>
                                     </Col>
-                                    <Col xs={24} md={16}>
+                                    <Col xs={24} md={14} lg={12}>
                                         <div className={styles.x_form_filter}>
                                             <Form.Group className={styles.x_margin_x}>
                                                 <SelectPicker 
-                                                    onChange={(e) => { setPerPage(e) }}
+                                                    onChange={(e) => { HandleChangePerpage(e); }}
                                                     searchable={false}
                                                     placeholder='Số lượng'
                                                     name='paged'
@@ -344,7 +347,7 @@ const Themes_GDMau = ({gd, nganh, danhmuc, max_pages}) => {
                                 {
                                     posts.map((val) => {
                                         return  displayGrid ? 
-                                        <Col xs={24} md={12} key={val.ID}>
+                                        <Col xs={24} md={12} lg={8} key={val.ID}>
                                             <GD_Box data={val}/>
                                         </Col>
                                         :

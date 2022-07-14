@@ -63,7 +63,7 @@ const Footer = () => {
                             <strong className={styles.x_footer_focused}> 
                               Địa chỉ: 
                             </strong>
-                            Tầng 4 Chung cư Centana Thủ Thiêm, quận 2, TP. HCM
+                            Tầng 4 Block A Centana Thủ Thiêm, quận 2, TP. HCM
                           </div>
                         </div>
                         </li>

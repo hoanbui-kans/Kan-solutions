@@ -211,7 +211,7 @@
 .mainMenuContainer ul li a {
     font-weight: 400;
     font-size: 15px;
-    color: #111;
+    color: #000;
     margin-right: 6px;
     display: block;
     transition: all .3s ease-in-out;
@@ -298,11 +298,9 @@
     margin-bottom: 20px;
     padding-bottom: 8px;
     border-bottom: 1px solid #e0e6e8;
-    font-family: 'SVN-Gotham';
-    color: var(--x-black-color);
+    color: #9f9f9f;
     font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     text-transform: uppercase;
 }
 .x_account_name{
@@ -352,7 +350,7 @@
     margin-right: 7px;
 }
 .x_button_website_doanh_nghiep{
-    background: var(--x-gradient-three); 
+    background: var(--x-primary-color); 
     color: white;
     border: none;
     margin-bottom: 7px;

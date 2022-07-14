@@ -12,6 +12,7 @@ const config = {
             "https://kansite.com.vn/danh-muc/kinh-doanh-khoi-nghiep",
             "https://kansite.com.vn/danh-muc/quang-cao-online",
             // Bài viết
+            "https://kansite.com.vn/bai-viet/thiet-ke-website-gioi-thieu-cac-mau-website-gioi-thieu-dep",
             "https://kansite.com.vn/bai-viet/hinh-anh-trong-nextjs-hinh-anh-va-toi-uu-hoa-hinh-anh",
             "https://kansite.com.vn/bai-viet/crm-doanh-nghiep",
             "https://kansite.com.vn/bai-viet/1840-2",

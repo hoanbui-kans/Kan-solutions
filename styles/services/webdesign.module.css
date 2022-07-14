@@ -82,7 +82,7 @@
     background: var(--x-primary-color);
 }
 .x_hosting_button{
-    background: var(--x-gradient-one);
+    background: var(--x-primary-color);
     color: var(--x-white-color);
     padding: var(--x-button-padding);
     display: block;

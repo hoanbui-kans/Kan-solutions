@@ -92,11 +92,11 @@
     column-gap: 10px;
     padding: var(--x-button-padding);
     color: var(--x-white-color);
-    background: var(--x-gradient-one);
+    background: var(--x-primary-color);
     transition: var(--x-transition);
   }
   .x_black_button:hover{
-    background: var(--x-gradient-two) !important;
+    background: var(--x-primary-color) !important;
     color: var(--x-white-color) !important;
     transition: var(--x-transition) !important;
   }

@@ -119,7 +119,7 @@ const Contact = () => {
                                 Địa chỉ: 
                               </strong>
                             </p>
-                            <p>Tầng 4 Chung cư Centana Thủ Thiêm, quận 2, TP. HCM</p>
+                            <p>Tầng 4 Block A Centana Thủ Thiêm, quận 2, TP. HCM</p>
                           </div>
                         </div>
                         </li>

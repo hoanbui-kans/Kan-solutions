@@ -11,7 +11,7 @@
   --x-banner-content-height: 1.55;
 
   --x-brand-color: #2d88e2;
-  --x-primary-color: #378cf1;
+  --x-primary-color: #3082ed;
   --x-accent-color: #616cf0;
   --x-greenlight-color: #24cbc6;
   --x-pupple-color: #909cff;
@@ -27,9 +27,6 @@
   --x-neumorphic-color: linear-gradient(145deg, #dedede, #ffffff);
   --x-neumorphic-dropdown: 5px 5px 10px #ededed, -5px -5px 10px #ffffff;
   --x-neumorphic-darker-dropdown: 0 14px 24px 0 rgb(0 0 0 / 10%);
-  --x-gradient-one: #3082ed;
-  --x-gradient-two: #3082ed;
-  --x-gradient-three: #3082ed;
   --x-margin-column: -15px;
   --x-padding-column: 15px;
   --x-border-radius: 20px;
@@ -40,17 +37,111 @@
   --x-button-padding: 16px 30px;
   --x-transition: all .3s ease-in-out;
 }
+@font-face {
+  font-family: 'Lato';
+  src: url('../fonts/Lato-Black.woff2') format('woff2'),
+      url('../fonts/Lato-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('../fonts/Lato-Bold.woff2') format('woff2'),
+      url('../fonts/Lato-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lato Hairline';
+  src: url('../fonts/Lato-Hairline.woff2') format('woff2'),
+      url('../fonts/Lato-Hairline.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('../fonts/Lato-Light.woff2') format('woff2'),
+      url('../fonts/Lato-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('../fonts/Lato-Italic.woff2') format('woff2'),
+      url('../fonts/Lato-Italic.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('../fonts/Lato-Heavy.woff2') format('woff2'),
+      url('../fonts/Lato-Heavy.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('../fonts/Lato-Medium.woff2') format('woff2'),
+      url('../fonts/Lato-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('../fonts/Lato-Semibold.woff2') format('woff2'),
+      url('../fonts/Lato-Semibold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('../fonts/Lato-Regular.woff2') format('woff2'),
+      url('../fonts/Lato-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('../fonts/Lato-Thin.woff2') format('woff2'),
+      url('../fonts/Lato-Thin.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+
 
 html,
 body {
   padding: 0 !important;
   margin: 0 !important;
-  font-family: 'SVN-Gotham' !important;
   font-style: normal;
   font-weight: normal;
+  font-family: 'Lato' !important;
   color: var(--x-text-primary) !important;
   letter-spacing: .075px;
   overflow-x: hidden;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 900 !important;
 }
 a {
   color: #3e9def;
@@ -84,6 +175,12 @@ a {
   max-width: 1200px;
   margin: auto;
   padding: 0px 15px;
+}
+.rs-breadcrumb {
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #8e8e93;
+  color: var(--rs-text-secondary);
 }
 .rs-progress-line-bg, .rs-progress-line-inner {
   height: 5px;
@@ -136,7 +233,10 @@ a:active, a:focus, a:hover {
 .x_event_all{
   pointer-events: all;
 }
-
+.rs-breadcrumb-item {
+  transition: color .3s linear;
+  color: black;
+}
 .x_event_none{
   pointer-events: none;
 }  
@@ -160,49 +260,6 @@ a:active, a:focus, a:hover {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555; 
-}
-@font-face {
-  font-family: 'SVN-Gotham';
-  src: url('../fonts/SVN-GothamBlack.woff2') format('woff2'),
-      url('../fonts/SVN-GothamBlack.woff') format('woff');
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-code {
-  background: #27282a;
-  color: white;
-  padding: 15px 10px;
-  display: block;
-  border-radius: 7px;
-  border-left: 2px solid #2d88e2;
-  padding-left: 30px
-}
-@font-face {
-  font-family: 'SVN-Gotham';
-  src: url('../fonts/SVN-Gotham.woff2') format('woff2'),
-      url('../fonts/SVN-Gotham.woff') format('woff');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'SVN-Gotham';
-  src: url('../fonts/SVN-GothamBold.woff2') format('woff2'),
-      url('../fonts/SVN-GothamBold.woff') format('woff');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'SVN-Gotham';
-  src: url('../fonts/SVN-GothamLight.woff2') format('woff2'),
-      url('../fonts/SVN-GothamLight.woff') format('woff');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
 }
 
 @media (min-width: 1200px){
