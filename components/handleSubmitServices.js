@@ -16,11 +16,7 @@ const ServicesSubmitForm = ({service}) => {
     service: service,
     textarea: '',
   });
-
-  useEffect(() => {
-    console.log(formValue)
-  }, [formValue])
-
+  
   const model = Schema.Model({
     'fullname': Schema.Types.StringType().isRequired('Bạn chưa nhập họ và tên.'),
     'tel': Schema.Types.StringType().isRequired('Bạn chưa nhập số điện thoại.'),

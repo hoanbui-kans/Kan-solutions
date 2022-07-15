@@ -5,6 +5,7 @@ import axios from 'axios';
 import styles from '../styles/blog.module.css'
 import HTMLReactParser from 'html-react-parser';
 import { AiFillDislike, AiFillLike } from "react-icons/ai";
+import Image from 'next/image';
 
 const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON
 
@@ -159,7 +160,9 @@ const Comments = ({data, post_id}) => {
               <div className={styles.x_comment_list} key={val.comment_ID}>
                 <Panel bordered>
                   <div className={styles.x_comment_author_comment}>
-                    <Avatar src="https://avatars.githubusercontent.com/u/8225666" alt="@SevenOutman" />
+                    <div className={styles.x_avatar}>
+                      <Image src="/comment.png" width={50} height={50} alt="kanbox" />
+                    </div>
                     <div className={styles.x_comment_author_meta}>
                       <span className={styles.x_comment_date}>{val.comment_date_gmt}</span>
                       <h5>{val.comment_author}</h5>
@@ -195,7 +198,9 @@ const Comments = ({data, post_id}) => {
                   <Row className={styles.x_comment_header}>
                     <Col xs={24}>
                       <div className={styles.x_comment_author_comment}>
-                        <Avatar src="https://avatars.githubusercontent.com/u/8225666" alt="@SevenOutman" />
+                        <div className={styles.x_avatar}>
+                          <Image src="/comment.png" width={50} height={50} alt="kanbox" />
+                        </div>
                         <div className={styles.x_comment_author_meta}>
                           <span className={styles.x_comment_date}>{val.comment_date_gmt}</span>
                           <h5>{val.comment_author}</h5>

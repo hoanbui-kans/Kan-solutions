@@ -150,7 +150,7 @@
     font-size: var(--x-title-box-size);
     line-height: var(--x-title-line-height);
     margin-bottom: 12px;
-    color: #469aee;
+    color: #378cf1;
   }
   
   .x_decoration_images{
@@ -194,7 +194,7 @@
   }
   .x_creeper_box_1{
     padding-bottom: 340px;
-    background-color: var(--x-primary-color);
+    background-color: #378cf1;
   }
   .x_creeper_box_2{
     padding-bottom: 210px;

@@ -314,16 +314,17 @@ export const MarketingTable = [
 export const HostingTable = [
     {
         name: 'Cơ bản',
-        price: '120.000đ',
+        price: '75.000đ',
         checklist: [
             'Server đặt tại: Việt Nam',
-            'Dung lượng: 1 GB',
+            'Dung lượng: 300 mb',
             'Băng thông: Không giới hạn',
             'Email tự động: Có',
-            'Website: 1',
             'Quản lý CRM: Không',
-            'Domain: 0',
+            'Quản lý MobileApp: Không',
+            'Tùy chỉnh giao diện: Không',
             'Backup dữ liệu: Hàng tuần',
+            'Giấy phép theme, plugin: Có',
             'Park domain: 1',
         ]
     },{
@@ -331,27 +332,31 @@ export const HostingTable = [
         price: '250.000đ',
         checklist: [
             'Server đặt tại: Việt Nam',
-            'Dung lượng: 2.5 GB',
+            'Dung lượng: 2 mb',
             'Băng thông: Không giới hạn',
             'Email tự động: Có',
-            'Website: 1',
             'Quản lý CRM: Có',
-            'Addon domain: 0',
+            'Quản lý MobileApp: Cập nhật',
+            'Tùy chỉnh giao diện: 1 yêu cầu',
+            'Hỗ trợ cài đặt tính năng: 1 yêu cầu',
             'Backup dữ liệu: Hàng tuần',
+            'Giấy phép theme, plugin: Có',
             'Park domain: Không giới hạn',
         ]
     },{
         name: 'Nâng cao',
-        price: '450.000đ',
+        price: '350.000đ',
         checklist: [
             'Server đặt tại: Việt Nam',
-            'Dung lượng: 5 GB',
+            'Dung lượng: 3 GB',
             'Băng thông: Không giới hạn',
             'Email tự động: Có',
-            'Website: 1',
             'Quản lý CRM: Có',
-            'Addon domain: 0',
+            'Quản lý MobileApp: Cập nhật',
+            'Tùy chỉnh giao diện: 3 yêu cầu',
+            'Hỗ trợ cài đặt tính năng: 3 yêu cầu',
             'Backup dữ liệu: Hàng tuần',
+            'Giấy phép theme, plugin: Có',
             'Park domain: Không giới hạn',
         ]
     }
@@ -409,5 +414,23 @@ export const WebsiteDesignTable = [
             'Email đơn hàng tự động',
             'Bàn giao source code'
         ]
+    }
+]
+
+export const RateUser = [
+    {
+        lever: 1,
+        name: 'Cá nhân',
+        price: 75000
+    },
+    {
+        lever: 2,
+        name: 'Nâng cao',
+        price: 250000
+    },
+    {
+        lever: 3,
+        name: 'Kinh doanh',
+        price: 350000
     }
 ]

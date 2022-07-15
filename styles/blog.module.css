@@ -166,7 +166,14 @@
   margin: 35px 0px;
   padding: 0.25rem;
 }
-
+.x_avatar{
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  display: block;
+  box-shadow: 5px 5px 10px #ededed, -5px -5px 10px #ffffff;
+}
 .x_blog_two_thumbnail{
   display: block;
 }

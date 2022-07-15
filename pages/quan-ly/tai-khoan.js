@@ -11,11 +11,11 @@ import { IoSearchOutline,
     IoCalendarOutline } from "react-icons/io5";
 import axios from 'axios'
 import Link from 'next/link'
-import Image from 'next/image';
+import Image from 'next/image'; 
 import moment from 'moment';
 import 'moment/locale/vi'
 import dynamic from 'next/dynamic'
-import { getSession } from 'next-auth/react';
+import { getSession, useSession } from 'next-auth/react';
 import styles from '../../styles/account.module.css'
 import UserNav from '../../components/user-manager/UserNav';
 
@@ -29,7 +29,6 @@ const Chart = dynamic(
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 const BlogContent = ({data}) => {
-    console.log(data);
     const [LineStroke, setLineStroke] = useState({
         strokeColor : '',
         status: ''
@@ -48,36 +47,6 @@ const BlogContent = ({data}) => {
     const expiredDate = moment(expired).format('LL');
 
     const expiredClass = current <= expired ? styles.x_danger : styles.x_success;
-
-    useEffect(() => {
-        let total = expired - registed;
-        let progress = current - registed;
-        let percentNumber =  Math.round(progress/ total * 100 );
-
-        setPercent(percentNumber);
-        if(percent >= 0 && percent <= 50){
-            setLineStroke({
-                strokeColor: '#4caf50',
-                status: 'success'
-            });
-        } else if(percent> 50 && percent <= 75){
-            setLineStroke({
-                strokeColor: '#ffc107',
-                status: 'active'
-            });
-        } else if(percent > 75 && percent <= 100){
-            setLineStroke({
-                strokeColor: '#f44336',
-                status: 'fail'
-            });
-        } else {
-            setLineStroke({
-                strokeColor: '#b02318',
-                status: 'fail'
-            });
-        }
-    }, []);
-
     const chartValue = {
         options: { 
             colors: ['#e74c3c', '#2d88e2'],
@@ -125,6 +94,38 @@ const BlogContent = ({data}) => {
         },
         series: [Uploaded, Remain],
     }
+
+    useEffect(() => {
+        let total = expired - registed;
+        let progress = current - registed;
+        let percentNumber =  Math.round(progress/ total * 100 );
+        setPercent(percentNumber);
+    }, [])
+
+    useEffect(() => {
+        if(percent >= 0 && percent <= 50){
+            setLineStroke({
+                strokeColor: '#4caf50',
+                status: 'success'
+            });
+        } else if(percent> 50 && percent <= 75){
+            setLineStroke({
+                strokeColor: '#ffc107',
+                status: 'active'
+            });
+        } else if(percent > 75 && percent <= 100){
+            setLineStroke({
+                strokeColor: '#f44336',
+                status: 'fail'
+            });
+        } else {
+            setLineStroke({
+                strokeColor: '#b02318',
+                status: 'fail'
+            });
+        }
+    }, [percent])
+
     return(
         <div className={styles.x_blog}>
             <Row>
@@ -203,6 +204,8 @@ const BlogContent = ({data}) => {
 
 const UserManager = ({blogInfor}) => {
   const [expanded, setExpanded] = useState(false);
+  const { data: session } = useSession();
+
   return (
     <>
     <section className={styles.x_app_section}>
@@ -299,7 +302,7 @@ export async function getServerSideProps (context) {
     });
 
   return { props: {
-      blogInfor:  response ? response : '',
-      token: token ? token : 'Không có'
+      blogInfor:  response ? response : [],
+      role: token ? token : 'Không có'
   }};
 }

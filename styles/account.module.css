@@ -33,6 +33,10 @@
 .x_account_button{
     width: 100%;
 }
+.x_date_button{
+    font-weight: bold;
+    font-size: 12px;
+}
 .x_update_button{
     background-color: #2d88e2;
     color: white;
@@ -44,7 +48,15 @@
     background: rgb(240 81 67);
     color: white;
 }
-.x_account_button button{
+.x_badge{
+    font-size: 12px;
+    padding: 5px;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    font-weight: bold;
+}
+.x_account_button button, 
+.x_create_order_button{
     display: flex;
     align-items: center;
     justify-content: center;
