@@ -13,7 +13,6 @@ import {
     Loader,
     Message,
     Table,
-    Column,
     Checkbox,
     Whisper ,
     IconButton ,
@@ -252,7 +251,7 @@ const Create_Order = ({blogInfor}) => {
                 </Col>
                 <Col xs={24} md={!expanded ? 22 : 18}>
                 <Table rowHeight={60} height={640} data={Site_data} id="table" loading={loading}>
-                            <Column width={50} align="center">
+                            <Table.Column width={50} align="center">
                                 <Table.HeaderCell style={{ padding: 0 }}>
                                     <div style={{ lineHeight: '40px' }}>
                                         <Checkbox
@@ -264,22 +263,22 @@ const Create_Order = ({blogInfor}) => {
                                     </div>
                                 </Table.HeaderCell>
                                 <CheckCell dataKey="id" checkedKeys={checkedKeys} onChange={handleCheck} />
-                            </Column>
-                            <Column width={80} align="center">
+                            </Table.Column>
+                            <Table.Column width={80} align="center">
                                 <Table.HeaderCell>Site</Table.HeaderCell>
                                 <ImageCell dataKey="site_icon" />
-                            </Column>
+                            </Table.Column>
 
-                            <Column width={250}>
+                            <Table.Column width={250}>
                                 <Table.HeaderCell>Tên trang web</Table.HeaderCell>
                                 <Table.Cell>{(rowData) => {
                                     return(
                                         <a href={rowData.siteurl} target='_blank' rel="noreferrer">{rowData.blogname}</a>
                                     )}
                                 }</Table.Cell>
-                            </Column>
+                            </Table.Column>
 
-                            <Column width={140}>
+                            <Table.Column width={140}>
                                 <Table.HeaderCell>Ngày đăng ký</Table.HeaderCell>
                                 <Table.Cell>{(rowData) => {  
                                     const registed = new Date(rowData.registered);
@@ -288,9 +287,9 @@ const Create_Order = ({blogInfor}) => {
                                         <Button className={styles.x_date_button}>{DateRegisted}</Button>
                                     ) }}
                                 </Table.Cell>
-                            </Column>
+                            </Table.Column>
 
-                            <Column width={140}>
+                            <Table.Column width={140}>
                                 <Table.HeaderCell>Ngày hết hạn</Table.HeaderCell>
                                 <Table.Cell>{(rowData) =>  { 
                                     const expired = new Date(parseInt(rowData.get_expire, 10) * 1000);
@@ -299,9 +298,9 @@ const Create_Order = ({blogInfor}) => {
                                         <Button className={styles.x_date_button}>{expiredDate}</Button>
                                     ) }}
                                 </Table.Cell>
-                            </Column>
+                            </Table.Column>
 
-                            <Column width={140}>
+                            <Table.Column width={140}>
                                 <Table.HeaderCell>Tình trạng</Table.HeaderCell>
                                 <Table.Cell>{(rowData) =>  { 
                                     const expired = new Date(parseInt(rowData.get_expire, 10) * 1000);
@@ -311,21 +310,21 @@ const Create_Order = ({blogInfor}) => {
                                         <Button appearance="primary" color={current > expired ? 'red' : 'green'} className={styles.x_date_button}>{current > expired ? 'Hết hạn' : 'Sử dụng'}</Button>
                                     ) }}
                                 </Table.Cell>
-                            </Column>
+                            </Table.Column>
 
-                            <Column width={160}>
+                            <Table.Column width={160}>
                                 <Table.HeaderCell>Cấp độ</Table.HeaderCell>
                                 <NameCell dataKey="lever" />
-                            </Column>
+                            </Table.Column>
 
-                            <Column width={300}>
+                            <Table.Column width={300}>
                                 <Table.HeaderCell>email</Table.HeaderCell>
                                 <Table.Cell>{rowData => <a href={`mailto:${rowData.email}`}>{rowData.email}</a>}</Table.Cell>
-                            </Column>
-                            <Column width={120} fixed="right">
+                            </Table.Column>
+                            <Table.Column width={120} fixed="right">
                                 <Table.HeaderCell>Hành động</Table.HeaderCell>
                                 <ActionCell dataKey="id" />
-                            </Column>
+                            </Table.Column>
                         </Table>
                         <div style={{ padding: 20 }}>
                             <Pagination
@@ -373,10 +372,8 @@ const Create_Order = ({blogInfor}) => {
                     <Form.Control value={formValue.price} name="price_bill" placeholder={"Số tiền yêu cầu thanh toán"} type="number"></Form.Control>
                 </Form.Group>     
                 <Form.Group>
-                    <Button type="submit" color="primary" className={styles.x_create_order_button}>
-                        {
-                            loading ? <Loader size={22}/> : <IoPaperPlane size={16}/>
-                        }
+                    <Button type="submit" color="green" className={styles.x_create_order_button}>
+                        { loading ? <Loader size={22}/> : <IoPaperPlane size={16}/> }
                         Đăng hóa đơn
                     </Button>
                 </Form.Group>                                
