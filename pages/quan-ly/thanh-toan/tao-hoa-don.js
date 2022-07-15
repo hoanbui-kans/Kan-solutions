@@ -274,7 +274,7 @@ const Create_Order = ({blogInfor}) => {
                                 <Table.HeaderCell>Tên trang web</Table.HeaderCell>
                                 <Table.Cell>{(rowData) => {
                                     return(
-                                        <a href={rowData.siteurl} target='_blank'>{rowData.blogname}</a>
+                                        <a href={rowData.siteurl} target='_blank' rel="noreferrer">{rowData.blogname}</a>
                                     )}
                                 }</Table.Cell>
                             </Column>
