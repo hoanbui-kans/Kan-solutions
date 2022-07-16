@@ -58,7 +58,7 @@ const WebsiteManager = () => {
   return (
     <>
       <Head>
-        { HTMLReactParser(ServicesWebsiteManager) }
+        { HTMLReactParser(ServicesWebsiteManager.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
       </Head>
       <div className={styles.x_webite_manager_main}>
         <div className={styles.x_banner_web_mannager}>

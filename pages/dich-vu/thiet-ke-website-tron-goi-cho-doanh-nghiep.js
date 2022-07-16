@@ -140,7 +140,7 @@ const DesignWebsite = ({bai_viet}) => {
   return (
     <>
     <Head>
-        { HTMLReactParser(ServiceWordpress) }
+        { HTMLReactParser(ServiceWordpress.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
     </Head>
     <div className={styles.x_thiet_ke_website_section}>
         <section className={styles.x_banner_thiet_ke}>

@@ -67,7 +67,7 @@ const Projects = ({bai_viet, max_num_pages}) => {
     return (
         <>
         <Head>
-            { HTMLReactParser(ProjectPage) }
+            { HTMLReactParser(ProjectPage.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
         </Head>
         <div className={'x_breadcum_container'}>
             <Container>

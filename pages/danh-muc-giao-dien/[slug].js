@@ -250,7 +250,7 @@ const Themes = ({gd, nganh, danhmuc, max_pages, slug, current}) => {
   return (
     <>
     <Head>
-        { HTMLReactParser(ThemeCategory) }
+        { HTMLReactParser(ThemeCategory.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
     </Head>
     <div className={'x_breadcum_container'}>
         <Container>

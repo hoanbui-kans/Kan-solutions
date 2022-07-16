@@ -5,12 +5,17 @@ import Link from 'next/link'
 import Head from 'next/head'
 import HTMLReactParser from 'html-react-parser'
 import { ServicesCreateWebsite } from '../api/HeaderSeo'
-import { HostingTable, WebsiteDesignTable } from '../api/services'
-import { IoCheckmarkOutline, IoStorefront } from "react-icons/io5";
+import { HostingTable } from '../api/services'
+import { IoCheckmarkOutline, IoShapesSharp } from "react-icons/io5";
 import { useState } from 'react'
 import ServicesSubmitForm from '../../components/handleSubmitServices'
+import Carousel from "react-multi-carousel";
+import axios from 'axios'
+import { GD_Box } from '../giao-dien'
+import "react-multi-carousel/lib/styles.css";
 
-const CreateWordpress = () => {
+const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
+const CreateWordpress = ({gd}) => {
  
  const [open, setOpen] = useState(false);  
  const [service, setService] = useState(''); 
@@ -19,12 +24,33 @@ const CreateWordpress = () => {
     setService(service);
     setOpen(true)
  };
+
  const handleClose = () => setOpen(false);
+
+ const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 3
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 1
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1
+    }
+  };
 
   return (
     <>
     <Head>
-        { HTMLReactParser(ServicesCreateWebsite) }
+        { HTMLReactParser(ServicesCreateWebsite.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
     </Head>
     <div className={styles.x_wordpress_section}>
         <section className={styles.x_banner}>
@@ -34,9 +60,9 @@ const CreateWordpress = () => {
                         <div className={styles.x_banner_content}>
                             <h3 className={styles.x_section_secondary_title}>Tối ưu chi phí vận hành</h3>
                             <h2 className={styles.x_primary_title}>Tạo lập Webiste doanh nghiệp của bạn bằng wordpress</h2>
-                            <Link href='/giao-dien-mau'>
+                            <Link href='/giao-dien'>
                                 <a>
-                                    <Button className={styles.x_call_to_action}> <IoStorefront size={16}/>Tạo website miễn phí</Button>
+                                    <Button className={styles.x_call_to_action}> <IoShapesSharp size={16}/>DÙNG THỬ MIỄN PHÍ</Button>
                                 </a>
                             </Link>
                         </div>
@@ -59,6 +85,7 @@ const CreateWordpress = () => {
                             <ul className={styles.x_features}>
                                 <li><p><IoCheckmarkOutline className={styles.x_features_icon} width={12} height={12}/>Không giới hạn trang</p></li>
                                 <li><p><IoCheckmarkOutline className={styles.x_features_icon} width={12} height={12}/>Cập nhật miễn phí và liên tục</p></li>
+                                <li><p><IoCheckmarkOutline className={styles.x_features_icon} width={12} height={12}/>Giấy phép theo hệ thống</p></li>
                                 <li><p><IoCheckmarkOutline className={styles.x_features_icon} width={12} height={12}/>Tích hợp quản lý dữ liệu, báo cáo hệ thống</p></li>
                                 <li><p><IoCheckmarkOutline className={styles.x_features_icon} width={12} height={12}/>Tài liệu sử dụng</p></li>
                                 <li><p><IoCheckmarkOutline className={styles.x_features_icon} width={12} height={12}/>SEO toàn trang</p></li>
@@ -78,13 +105,14 @@ const CreateWordpress = () => {
                     <Col xs={24} md={12}>
                         <div className={styles.x_supporter}>
                             <h3 className={styles.x_section_secondary_title}>Hỗ trợ 24/7</h3>
-                            <h2 className={styles.x_primary_title}>Hỗ trợ tận tâm, nhiệt tình với công việc</h2>
+                            <h2 className={styles.x_primary_title}>Hỗ trợ tận tâm, nhiệt tình với công việc, đổi mới công nghệ</h2>
                             <ul className={styles.x_features}>
                                 <li><p><IoCheckmarkOutline className={styles.x_features_icon} width={12} height={12}/>Lỗi hệ thống</p></li>
                                 <li><p><IoCheckmarkOutline className={styles.x_features_icon} width={12} height={12}/>Nhắn tin trực tuyến</p></li>
                                 <li><p><IoCheckmarkOutline className={styles.x_features_icon} width={12} height={12}/>Bảo mật hệ thống</p></li>
                                 <li><p><IoCheckmarkOutline className={styles.x_features_icon} width={12} height={12}/>Phản hồi nhanh chóng</p></li>
                                 <li><p><IoCheckmarkOutline className={styles.x_features_icon} width={12} height={12}/>Diễn đàn hỗ trợ</p></li>
+                                <li><p><IoCheckmarkOutline className={styles.x_features_icon} width={12} height={12}/>Quản lý bằng CRM</p></li>
                             </ul>
                         </div>
                     </Col>
@@ -136,6 +164,32 @@ const CreateWordpress = () => {
                                     })
                                  }       
                             </Row>
+                        </div>
+                    </Col>
+                </Row>
+            </Container>
+        </section>
+        <Divider/>
+        <section className={styles.x_services_container}>
+            <Container>
+                <Row className={styles.x_centered}>
+                    <Col xs={24}>
+                        <div className={styles.x_hosting_title}>
+                            <h3 className={styles.x_section_secondary_title}>Mẫu website đa dạng ngành nghề</h3>
+                            <h2 className={styles.x_primary_title}>Giao diện chuẩn - đa dạng - đầy đủ tính năng</h2>
+                        </div>
+                        <div className={styles.x_hosting_table_container}>
+                            <Carousel responsive={responsive}>
+                                {
+                                    gd.map((val) => {
+                                        return (
+                                            <div style={{padding: '10px'}} key={val.ID}>
+                                                <GD_Box price={false} data={val} />
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </Carousel>
                         </div>
                     </Col>
                 </Row>
@@ -214,3 +268,17 @@ const CreateWordpress = () => {
 }
 
 export default CreateWordpress
+
+export async function getServerSideProps(context) {
+
+    const page = context.query ? context.query.pages : 1;
+    const res = await axios.get(rootURL + 'giao-dien/giao-dien-mau?p=' + page).then((resonse) => resonse.data);
+  
+    // Pass data to the page via props
+    return { props: { 
+      gd: res.posts,
+      nganh: res.nganh,
+      danhmuc: res.danh_muc, 
+      max_pages: res.max_pages
+   }}
+}

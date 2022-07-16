@@ -51,7 +51,7 @@ const ThemeViews = ({data, link_theme}) => {
   return (
    <>
    <Head>
-    { HTMLReactParser(data.yoast_head.html) }
+    { HTMLReactParser(data.yoast_head.html.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
    </Head>
    <div className={styles.x_preview_container}>
       <Navbar className={styles.x_nav_flex}>

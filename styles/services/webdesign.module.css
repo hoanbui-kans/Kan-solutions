@@ -1,6 +1,6 @@
 .x_banner{
     padding: 35px 0;
-    background-color: #407bff;
+    background-color: #5388ff;
     max-width: calc(100% - 20px);
     margin: auto;
     border-radius: var(--x-border-radius);
@@ -110,9 +110,10 @@
 }
 .x_call_to_action{
     border-radius: 35px;
-    background: #ffffff;
-    color: #407bff;
-    padding: 18px 55px;
+    background: #5388ff;
+    border: 2px solid white;
+    color: #ffffff;
+    padding: 15px 40px;
     font-weight: 600;
     margin-top: 35px;
     display: flex;
@@ -131,6 +132,7 @@
     list-style: none;
     padding: 0;
     font-size: 12px;
+    font-weight: bold;
 }
 .x_section_secondary_title{
     font-size: var(--x-banner-content-size);
@@ -142,9 +144,8 @@
     cursor: pointer;
     border-radius: var(--x-border-radius);
     transition: var(--x-transition);
-    border: 1px solid var(--x-light-color);
-    background: var(--x-white-color);
-    box-shadow: var(--x-neumorphic-darker-dropdown);
+    background: #5388ff;
+    color: white;
 }
 .x_services_button{
     padding: 15px 25px;

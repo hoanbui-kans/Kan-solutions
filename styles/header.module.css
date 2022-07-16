@@ -215,6 +215,7 @@
     margin-right: 6px;
     display: block;
     transition: all .3s ease-in-out;
+    line-height: 36px;
 }
 
 .mainMenuContainer ul li a:hover {

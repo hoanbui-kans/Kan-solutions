@@ -52,7 +52,7 @@ const NewsCategory = ({bai_viet, danh_muc, max_num_pages}) => {
     return (
       <>
       <Head>
-        { HTMLReactParser(NewsSeo) }
+        { HTMLReactParser(NewsSeo.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
       </Head>
       <div className={'x_breadcum_container'}>
           <Grid className={'x-container'}>

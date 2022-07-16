@@ -32,7 +32,7 @@ export const Price = ({data}) => {
     )
 }
 
-export const GD_Box = ({data}) => {
+export const GD_Box = ({data, price}) => {
     return (
         <div className={styles.x_gd_box}>
              {
@@ -49,9 +49,11 @@ export const GD_Box = ({data}) => {
                         <h3 className={styles.x_gd_box_tittle}>{data.post_title}</h3>
                     </a>
                 </Link>
+                { price ?                 
                 <div className={styles.x_gd_box_price}>
                     <Price data={data.price}/>
-                </div>
+                </div> : ''
+                }
                 <div className={styles.x_gd_box_button}>
                     <Link href={`/giao-dien/${data.post_name}`}>
                         <a className={styles.x_gd_box_link}>
@@ -250,7 +252,7 @@ const Themes_GDMau = ({gd, nganh, danhmuc, max_pages}) => {
   return (
     <>
     <Head>
-        { HTMLReactParser( Themes) }
+        { HTMLReactParser( Themes.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
     </Head>
     <div className={'x_breadcum_container'}>
         <Container>
@@ -348,7 +350,7 @@ const Themes_GDMau = ({gd, nganh, danhmuc, max_pages}) => {
                                     posts.map((val) => {
                                         return  displayGrid ? 
                                         <Col xs={24} md={12} lg={8} key={val.ID}>
-                                            <GD_Box data={val}/>
+                                            <GD_Box data={val} price={true}/>
                                         </Col>
                                         :
                                         <Col xs={24} key={val.ID}>

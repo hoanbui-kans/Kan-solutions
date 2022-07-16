@@ -58,7 +58,6 @@ const Login = () => {
   }
 
  if (session) {
-  console.log(session);
     const userName = session.user.token.user_display_name;
     const userEmail = session.user.token.user_email;
 

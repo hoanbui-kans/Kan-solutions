@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 import HTMLReactParser from 'html-react-parser'
 import Head from 'next/head'
@@ -8,13 +8,16 @@ import CopyIcon from '@rsuite/icons/Copy';
 import CheckRoundIcon from '@rsuite/icons/CheckRound'
 import SearchIcon from '@rsuite/icons/Search';
 import ArrowRightIcon from '@rsuite/icons/ArrowRight';
+import HelpOutlineIcon from '@rsuite/icons/HelpOutline';
 import Link from 'next/link'
 import { Container, Row, Col, Button, Breadcrumb, Checkbox, CheckboxGroup, Modal, Panel } from 'rsuite'
 import { getSession } from 'next-auth/react'
 import md5 from 'md5'
 import FormTuVan from '../../components/FormTuVan'
-import { GD_Box } from '../giao-dien-mau'
+import { GD_Box } from '../giao-dien'
 import ThemesSubmitForm from '../../components/handleSubmitTheme'
+import Comments from '../../components/comment'
+import { QA } from '../api/Qa'
 
 const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON;
 
@@ -73,7 +76,7 @@ export const NenTang = ({data}) => {
             <li key={val.term_id}>
               <Link href={`/danh-muc/${val.slug}`}>
                 <a className={styles.x_plugin_content}>
-                  {val.thumbnail ?  <span className={styles.x_layout_icons}><Image alt='layout' src={val.thumbnail} width={26} height={26}/></span> : '' }
+                  {val.thumbnail ?  <span className={styles.x_layout_icons}><Image alt={val.name} src={val.thumbnail} width={26} height={26}/></span> : '' }
                   <span> {val.name} </span>
                 </a>
               </Link>
@@ -124,6 +127,30 @@ export const SingleTheme = ({data, link_theme}) => {
   const [open, setOpen] = useState(false);  
   const listServices = data.services;
 
+  const QA_List = QA(data.post_title)
+  const site_url = process.env.NEXT_PUBLIC_SITE_URL;
+
+  let QA_schema = '';
+  QA_List.map((val, index) => {
+    index == 0 ? 
+    QA_schema += `{
+      "@type": "Question",
+      "name": "${val.question}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "<p>${val.answer}</p>"
+      }
+    }`: 
+    QA_schema += `,{
+      "@type": "Question",
+      "name": "${val.question}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "<p>${val.answer}</p>"
+      }
+    }`;
+  })
+
   const handleOpen = (title) => {
     setThemeTitle(title);
     setOpen(true)
@@ -143,7 +170,6 @@ export const SingleTheme = ({data, link_theme}) => {
   }, [services])
 
   useEffect(() => {
-    console.log(selectedServices);
     if(PriceTheme.sale_price){
       let regular_price = parseInt(PriceTheme.regular_price);
       let sale_price = parseInt(PriceTheme.sale_price);
@@ -165,12 +191,47 @@ export const SingleTheme = ({data, link_theme}) => {
       });
     }
   }, [selectedServices])
+
+  const KeywordsMeta = (keywords) => {
+    let listkeywords = '';
+    keywords.map((val, index) => {
+      index != keywords.length - 1 ?
+        listkeywords += val.name + ', '
+        : 
+        listkeywords += val.name + ''
+    });
+    return listkeywords
+  }
+
   return (
     <>
       <Head>
-        {
-           HTMLReactParser(data.yoast_head.html)
-        }
+        { HTMLReactParser(data.yoast_head.html.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
+        <script type="application/ld+json">
+          {`{
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [${QA_schema}]
+          }`}
+        </script>
+        <script type="application/ld+json">
+          {`{
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Giao diện mẫu",
+              "item": "${site_url}/giao-dien"
+            },{
+              "@type": "ListItem",
+              "position": 2,
+              "name": "${data.post_title}",
+              "item": "${site_url}/giao-dien/${data.post_name}"
+            }]
+          }`}
+        </script>
+        <meta name="keywords" content={KeywordsMeta(data.keywords)}></meta>
       </Head>
       <div className={'x_breadcum_container'}>
         <Container>
@@ -214,15 +275,38 @@ export const SingleTheme = ({data, link_theme}) => {
                         : ''
                         : ''
                   }
-                  {
-                    data.post_content ? 
                     <div className={styles.x_single_theme_section}>
-                      <h2 className={styles.x_content_title}>Giới thiệu</h2>
-                      <div className={styles.x_sing_theme_content}>
-                        {HTMLReactParser(data.post_content)}
+                      {
+                      data.post_content ? 
+                        <>
+                          <h2 className={styles.x_content_title}>Giới thiệu</h2>
+                          <div className={styles.x_sing_theme_content}>
+                            {HTMLReactParser(data.post_content)}
+                          </div>
+                        </>
+                        : ''
+                      }
+                      <div className={styles.x_Qa_section}>
+                        <h2 className={styles.x_content_title}>Thông tin tư vấn</h2>
+                          {
+                              QA_List ? QA_List.map((val, index) => {
+                                  return(
+                                    <Panel 
+                                    style={{width: '100%', marginBottom: 15}} 
+                                    key={index} 
+                                    header={<h3 className={styles.x_Qa_section_title}><HelpOutlineIcon /> {val.question}</h3>} 
+                                    collapsible 
+                                    bordered>
+                                      <p>{val.answer}</p>
+                                    </Panel>
+                                  )
+                              }) : '' 
+                            }
                       </div>
-                    </div> : ''
-                  }
+                      <div className={styles.x_comment_form}>
+                        <Comments data={data}/>
+                      </div>
+                    </div>
                 </div>
               </Col>
               <Col xs={24} md={8} className={styles.x_padding}>
@@ -316,7 +400,7 @@ export const SingleTheme = ({data, link_theme}) => {
                       data.related.map((val) => {
                         return(
                             <Col xs={24} md={8} key={val.ID}>
-                                <GD_Box data={val}/>
+                                <GD_Box data={val} price={true}/>
                             </Col>
                           )
                         })

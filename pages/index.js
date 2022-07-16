@@ -25,7 +25,7 @@ export default function Home() {
     <>
     <div className={styles.container}>
       <Head>
-        { HTMLReactParser(HomePageSeo) }
+        { HTMLReactParser(HomePageSeo.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
       </Head>
       <main className={styles.main}>
         <div className={styles.x_section}>
@@ -214,7 +214,7 @@ export default function Home() {
 Website có cấu trúc code HTML thân thiện chuẩn SEO. Dễ cập nhật thông tin lên các thẻ hình ảnh và Công cụ đo lường và kiểm soát nội dung hiệu quả.</p>
                 </Col>
                 <Col xs={24} md={12}>
-                  <Link href={'/giao-dien-mau'}>
+                  <Link href={'/giao-dien'}>
                   <a>
                     <Button className={styles.x_black_button}>
                       XEM GIAO DIỆN MẪU

@@ -1,21 +1,44 @@
 import React, { useState, useRef } from 'react'
-import { Avatar, Modal, Form, Col, Row, Panel, Button, Schema, Loader, toaster, Message, Input, ButtonToolbar,ButtonGroup, Badge } from 'rsuite';
+import { Avatar, Modal, Form, Col, Row, Panel, Button, Schema, Loader, toaster, Message, Input, ButtonToolbar,ButtonGroup, Badge, Rate } from 'rsuite';
 import { IoPaperPlane, IoReturnUpBack } from "react-icons/io5"
 import axios from 'axios';
 import styles from '../styles/blog.module.css'
 import HTMLReactParser from 'html-react-parser';
-import { AiFillDislike, AiFillLike } from "react-icons/ai";
+import { AiFillDislike, AiFillLike, AiFillStar } from "react-icons/ai";
 import Image from 'next/image';
+import FrownIcon from '@rsuite/icons/legacy/FrownO';
+import MehIcon from '@rsuite/icons/legacy/MehO';
+import SmileIcon from '@rsuite/icons/legacy/SmileO';
+import Head from 'next/head';
+import Script from 'next/script';
 
 const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON
 
-const Comments = ({data, post_id}) => {
+const Comments = ({data}) => {
 
   const [open, setOpen] = useState(false);  
-  const [comments , setComments] = useState(data ? data : []);
+  const [comments , setComments] = useState(data ? data.comment : []);
   const [repliedComment, setRepliedComment] = useState(false);
   const [action, setAction] = useState('');
+  const post_name = data.post_name;
+  const post_id = data.ID;
 
+  let total_score = 0;
+  let total_rating = 0;
+  let average = 0;
+
+  data.comment.map((val) => {
+      if(val.comment_parent == "0"){
+        val.comment_meta.rating ? 
+        total_score += parseInt(val.comment_meta.rating) : 
+        total_score += 5;
+        total_rating += 1;
+      }
+  });
+
+  average = Math.round(total_score / total_rating , 1);
+
+  console.log(total_score);
   const handleReplied = (id_replied) => {
       setRepliedComment(id_replied);
       setOpen(true)
@@ -57,13 +80,30 @@ const Comments = ({data, post_id}) => {
   }
 
   const CommentForm = ({comment_parent, panel}) => {
+
       const comment_json_url = `${ROOT_URL}tin-tuc/them-binh-luan`;
       const [loading, setLoading] = useState(false);
       const [formValue, setFormvalue] = useState({
         text: '',
         email: '',
         textarea: '',
+        rating: 5
       });
+
+      const renderCharacter = (value, index) => {
+        // unselected character
+        if (value < index + 1) {
+          return <MehIcon />;
+        }
+        if (value < 3) {
+          return <FrownIcon style={{ color: '#e74c3c' }} />;
+        }
+        if (value < 4) {
+          return <MehIcon style={{ color: '#f1c40f' }} />;
+        }
+        return <SmileIcon style={{ color: '#f39c12' }} />;
+        
+      };
 
       const formRef = useRef();
       const model = Schema.Model({
@@ -83,6 +123,7 @@ const Comments = ({data, post_id}) => {
         formData.append('fullname', formValue.text);
         formData.append('email', formValue.email);
         formData.append('content', formValue.textarea);
+        formData.append('rating', formValue.rating);
         formData.append('comment_parent', comment_parent ? comment_parent : 0);
 
         const config = {
@@ -117,36 +158,42 @@ const Comments = ({data, post_id}) => {
         setLoading(false);
       }
       return(
-          <Panel bordered={panel}>
-            <Form
-            fluid 
-            ref={formRef} 
-            onSubmit={handleSubmit}
-            model={model} 
-            onChange={setFormvalue}
-            formValue={formValue}
-          >
-            <Form.Group>
-              <Form.ControlLabel>Tên của bạn <span style={{color: 'red'}}>*</span></Form.ControlLabel>
-              <Form.Control name='text' type='text' value={EventTarget.value} placeholder={'Nhập tên của bạn'}/>
-            </Form.Group>
-            <Form.Group>
-              <Form.ControlLabel>Địa chỉ Email <span style={{color: 'red'}}>*</span></Form.ControlLabel>
-              <Form.Control name='email'  type='email' value={EventTarget.value} placeholder={'Nhập địa chỉ Email'}/>
-            </Form.Group>
-            <Form.Group>
-              <Form.ControlLabel>Nhập nội dung của bạn <span style={{color: 'red'}}>*</span></Form.ControlLabel>
-              <Input name='textarea' as='textarea' value={formValue.textarea} placeholder={'Nhập nội dung bình luận'} rows={8} onChange={(e) => setFormvalue( {...formValue, textarea: e})} />
-            </Form.Group>
-            <Form.Group>
-              <Button type='submit' className={styles.x_comment_form_button}>
-                {
-                  loading ? <Loader size={22}/> : <IoPaperPlane size={22}/>
-                }
-              Gửi bình luận</Button>
-            </Form.Group>
-          </Form>
+        <>
+            <div style={{marginBottom: 15, border: '1px solid var(--x-border-color)', padding: '10px', borderRadius: '.45rem', textAlign: 'center'}}>
+              <h3 className={styles.x_comment_form_title} style={{marginBottom: 0, fontSize: 12}}>Đánh giá bài viết</h3>
+              <Rate defaultValue={formValue.rating} renderCharacter={renderCharacter} onChange={(e) =>   setFormvalue({...formValue, rating:e})}/>
+            </div>
+            <Panel bordered={panel}>
+                <Form
+                  fluid 
+                  ref={formRef} 
+                  onSubmit={handleSubmit}
+                  model={model} 
+                  onChange={setFormvalue}
+                  formValue={formValue}
+                >
+                <Form.Group>
+                  <Form.ControlLabel>Tên của bạn <span style={{color: 'red'}}>*</span></Form.ControlLabel>
+                  <Form.Control name='text' type='text' value={EventTarget.value} placeholder={'Nhập tên của bạn'}/>
+                </Form.Group>
+                <Form.Group>
+                  <Form.ControlLabel>Địa chỉ Email <span style={{color: 'red'}}>*</span></Form.ControlLabel>
+                  <Form.Control name='email'  type='email' value={EventTarget.value} placeholder={'Nhập địa chỉ Email'}/>
+                </Form.Group>
+                <Form.Group>
+                  <Form.ControlLabel>Nhập nội dung của bạn <span style={{color: 'red'}}>*</span></Form.ControlLabel>
+                  <Input name='textarea' as='textarea' value={formValue.textarea} placeholder={'Nhập nội dung bình luận'} rows={8} onChange={(e) => setFormvalue( {...formValue, textarea: e})} />
+                </Form.Group>
+                <Form.Group>
+                  <Button type='submit' className={styles.x_comment_form_button}>
+                    {
+                      loading ? <Loader size={22}/> : <IoPaperPlane size={22}/>
+                    }
+                  Gửi bình luận</Button>
+                </Form.Group>
+              </Form>
           </Panel>
+        </>
       )
   }
 
@@ -203,7 +250,7 @@ const Comments = ({data, post_id}) => {
                         </div>
                         <div className={styles.x_comment_author_meta}>
                           <span className={styles.x_comment_date}>{val.comment_date_gmt}</span>
-                          <h5>{val.comment_author}</h5>
+                          <h5>{val.comment_author} { val.comment_meta.rating ? <span style={{fontSize: 12, marginLeft: 5}}>({val.comment_meta.rating} <AiFillStar color="#f39c12"/>)</span> : ''}</h5>
                           {val.comment_author_email ? <p>{val.comment_author_email.substring(0,10)}***</p> : ''}
                         </div>
                       </div>
@@ -253,6 +300,26 @@ const Comments = ({data, post_id}) => {
 
   return (
     <>
+    <Head>
+      <script type="application/ld+json">
+          {`{
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "${data.post_title}",
+            "operatingSystem": "WEB",
+            "applicationCategory": "WebApplication",
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "${average}",
+              "ratingCount": "${total_rating}"
+            },
+            "offers": {
+              "@type": "Offer",
+              "price": "${data.price.sale_price ? data.price.sale_price : data.price.regular_price}",
+              "priceCurrency": "VND"
+            }}`}
+      </script>
+    </Head>
     {
         comments.length == 0 ? 
         <>

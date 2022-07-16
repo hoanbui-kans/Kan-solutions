@@ -17,7 +17,7 @@ const ReactApp = ({data}) => {
       <>
         <Head>
           {
-            HTMLReactParser(data.yoast_head.html)
+            HTMLReactParser(data.yoast_head.html.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content"))
           }
         </Head>
         <div className={'x_breadcum_container'}>
