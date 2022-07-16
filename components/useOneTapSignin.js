@@ -33,11 +33,11 @@ export const useOneTapSignin = (opt) => {
         // is not displayed. You may want to handle it depending on yuor application
         google.accounts.id.prompt((notification) => {
           if (notification.isNotDisplayed()) {
-            console.log(notification.getNotDisplayedReason());
+            //console.log(notification.getNotDisplayedReason());
           } else if (notification.isSkippedMoment()) {
-            console.log(notification.getSkippedReason());
+            //console.log(notification.getSkippedReason());
           } else if (notification.isDismissedMoment()) {
-            console.log(notification.getDismissedReason());
+            //console.log(notification.getDismissedReason());
           }
         });
       }
