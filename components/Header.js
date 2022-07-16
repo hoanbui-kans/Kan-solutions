@@ -16,7 +16,6 @@ import axios from 'axios'
 import styles from '../styles/header.module.css'
 import { IoCaretForwardSharp, IoCloseCircleOutline } from 'react-icons/io5'
 import { useOneTapSignin } from '../components/useOneTapSignin';
-import { NextScript } from 'next/document'
 import Script from 'next/script'
 import Head from 'next/head';
 
