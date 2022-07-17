@@ -10,9 +10,12 @@ import Head from 'next/head';
 import Script from 'next/script'
 import HTMLReactParser from 'html-react-parser';
 
+const site_url = process.env.NEXT_PUBLIC_SITE_URL;
+
 const Layout = ({ children }) => {
     const router = useRouter();
     const pathname = router.pathname;
+    const hreflangURI = site_url + pathname;
     const [loading, setLoading] = useState(false);
         Router.events.on('routeChangeStart', () => {
           setLoading(true);
@@ -78,12 +81,13 @@ const Layout = ({ children }) => {
     <Head>
       <meta name="google-site-verification" content="rrhzRHk7SR7nSIFPU8TAfwRLuGUDedgPiC0nccSlKgA" />
       <script type="application/ld+json">{HTMLReactParser(CompanySchema)}</script>
+      <link rel="alternate" href={hreflangURI} hreflang="vi-vn" />
     </Head>
+    <Component />
     {
       pathname != '/dang-nhap' && pathname != '/dang-ky' && pathname != '/quan-ly/dang-xuat' && !pathname.includes('/giao-dien/xem-giao-dien/')? 
       <>
         <Header />
-        <Component />
           {
               loading ? 
               <Loading /> :
