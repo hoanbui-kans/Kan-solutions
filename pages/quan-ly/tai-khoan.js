@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
-import { Container, Row, Col, Navbar, Nav, Form, Button, ButtonToolbar, Toggle, Sidenav, Progress, Badge } from 'rsuite'
+import { Container, Row, Col, Form, Button, ButtonToolbar, Sidenav, Progress, Badge } from 'rsuite'
 import { IoSearchOutline, 
     IoAlbumsOutline, 
     IoAddSharp, 
     IoLinkOutline, 
-    IoBookmarkOutline, 
     IoCalendarClearOutline,
     IoBuild,
-    IoCellular, 
+    IoCafeSharp, 
+    IoBookmark,
     IoCalendarOutline } from "react-icons/io5";
 import axios from 'axios'
 import Link from 'next/link'
@@ -15,10 +15,10 @@ import Image from 'next/image';
 import moment from 'moment';
 import 'moment/locale/vi'
 import dynamic from 'next/dynamic'
-import { getSession, useSession } from 'next-auth/react';
+import { getSession } from 'next-auth/react';
 import styles from '../../styles/account.module.css'
 import UserNav from '../../components/user-manager/UserNav';
-
+import { RateUser } from '../api/services';
 const Chart = dynamic(
   () => {
     return ( import('react-apexcharts') )
@@ -95,6 +95,12 @@ const BlogContent = ({data}) => {
         series: [Uploaded, Remain],
     }
 
+    const site_lever = RateUser.filter((value) => {
+        if(value.lever == data.lever){
+            return value;
+        }
+    })[0];
+
     useEffect(() => {
         let total = expired - registed;
         let progress = current - registed;
@@ -134,18 +140,23 @@ const BlogContent = ({data}) => {
                         <IoLinkOutline size={18} color='#999'/>
                     </a>
                     <div className={styles.x_blog_content}>
-                        <Badge content={data.is_trial ? 'thử nghiệm' : ''}>
-                            <div className={styles.x_flex_blog_image}>
-                                <span className={styles.x_blog_favicon}>
-                                    <Image width={40} height={40} alt={data.blogname} src={ SiteIcon } />
-                                </span>
-                                <div className={styles.x_blog_flex_content}>
-                                    <a target={'_blank'} rel="noreferrer" href={data.home}>
-                                            <h3>{data.blogname}</h3>
-                                    </a>
-                                </div>
+                        <div className={styles.x_flex_blog_image}>
+                            <span className={styles.x_blog_favicon}>
+                                <Image width={40} height={40} alt={data.blogname} src={ SiteIcon } />
+                            </span>
+                            <div className={styles.x_blog_flex_content}>
+                                <a target={'_blank'} rel="noreferrer" href={data.home}>
+                                        <h3>{data.blogname}</h3>
+                                </a>
+                                <p style={{
+                                    display: 'inline-block',
+                                    padding: '3px',
+                                    border: '1px solid #e5e5e5',
+                                    borderRadius: '5px'
+                                }}><IoBookmark/> {site_lever.name} | {data.is_trial ? 'Dùng thử' : 'Thành viên'}</p>
                             </div>
-                        </Badge>
+                        </div>
+                        
                         <div className={styles.x_flex_qouta}>
                             <div className={styles.x_flex_qouta_content}>
                                 <div>
@@ -178,14 +189,14 @@ const BlogContent = ({data}) => {
                             <Link href={'/quan-ly/thanh-toan/nang-cap?site_id=' + data.blog_id}>
                                 <a>
                                     <Button className={styles.x_upgrade_button}>
-                                        <IoCellular />
+                                        <IoBuild />
                                         Nâng cấp website
                                     </Button>
                                 </a>
                             </Link>
                             <Link href={'/quan-ly/thanh-toan/gia-han?site_id=' + data.blog_id}>
                             <Button className={styles.x_extend_button}>
-                                <IoBuild />
+                                <IoCafeSharp />
                                 Gia hạn
                             </Button>
                             </Link>
@@ -204,8 +215,6 @@ const BlogContent = ({data}) => {
 
 const UserManager = ({blogInfor}) => {
   const [expanded, setExpanded] = useState(false);
-  const { data: session } = useSession();
-
   return (
     <>
     <section className={styles.x_app_section}>
@@ -236,7 +245,7 @@ const UserManager = ({blogInfor}) => {
                         <Col xs={24} md={12} className={styles.x_padding}>
                             <div className={styles.x_flex}>
                                 <Col xs={12}>
-                                    <Link href={'/giao-dien-mau'}>
+                                    <Link href={'/giao-dien'}>
                                         <a className={styles.x_account_button}>
                                             <Button className={styles.x_outline_view}>
                                                 <IoAlbumsOutline size={20}/>
@@ -260,7 +269,7 @@ const UserManager = ({blogInfor}) => {
                     </Row>
                     <Row className={styles.x_flex}>
                         {
-                        blogInfor ? 
+                        blogInfor .length > 0 ? 
                             blogInfor.map((val, index) => {
                             return (
                                 <Col key={index} xs={24} md={12} lg={24} className={styles.x_padding}>

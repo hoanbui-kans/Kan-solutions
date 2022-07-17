@@ -1,20 +1,12 @@
 import React, { useState } from 'react'
-import { Navbar, Nav, Toggle, Sidenav } from 'rsuite'
+import { Nav } from 'rsuite'
 import Link from 'next/link'
-import { IoLogOutOutline } from 'react-icons/io5'
 import styles from '../../styles/account.module.css'
 // Import Icons
 import DashboardIcon from '@rsuite/icons/Dashboard';
 import GearIcon from '@rsuite/icons/Gear';
-import UserInfoIcon from '@rsuite/icons/UserInfo';
 import PcIcon from '@rsuite/icons/Pc';
-import GlobalIcon from '@rsuite/icons/Global';
-import SingleSourceIcon from '@rsuite/icons/SingleSource';
-import CreditCardPlusIcon from '@rsuite/icons/CreditCardPlus';
-import ConversionIcon from '@rsuite/icons/Conversion';
-import PeoplesUploadedIcon from '@rsuite/icons/PeoplesUploaded';
 import ImportIcon from '@rsuite/icons/Import';
-import MessageIcon from '@rsuite/icons/Message';
 import CreativeIcon from '@rsuite/icons/Creative';
 import SpeakerIcon from '@rsuite/icons/Speaker';
 

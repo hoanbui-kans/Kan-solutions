@@ -41,9 +41,10 @@ const PaymentInfo = ({posts}) => {
     // Truy xuất dữ liệu
     const formRef = useRef();
     const mservice_qr_uri = `${ROOT_URL}mservice/qr`;
+    const mservice_atm_uri = `${ROOT_URL}mservice/atm`;
     const [loading_create, set_loading_create] = useState(false);
     const [formValue, setFormvalue] = useState({
-        order_id: '',
+        order_id: ''
     });
 
     // Modal tạo dữ liệu 
@@ -51,20 +52,23 @@ const PaymentInfo = ({posts}) => {
     const handleClose = () => setOpen(false);
 
     const handleOpen = (site_info) => {
-        console.log(site_info);
         setFormvalue({
             order_id: site_info.ID,
         });
         setOpen(true)
     };
 
-    const HandleRequestPaymentMomo = async () => {
-            set_loading_create(true);
+    const HandleRequestPaymentMomo = async (type) => {
+            set_loading_create(type);
+            let request_uri = mservice_qr_uri;
+            if(type == 'atm'){
+                request_uri = mservice_atm_uri;
+            }
             let fd = new FormData();
             fd.append('order_id', formValue.order_id);
             const config = {
                 method: 'post',
-                url: mservice_qr_uri,
+                url: request_uri,
                 data : fd,
             };
             
@@ -350,10 +354,10 @@ const PaymentInfo = ({posts}) => {
                             }}
                         >
                            <Button 
-                                onClick={() => {HandleRequestPaymentMomo()}}
+                                onClick={() => {HandleRequestPaymentMomo('qr')}}
                                 color="primary" 
-                                style={loading_create ? {pointerEvents: 'none'} : {pointerEvents: 'all'}}>
-                                        {loading_create ? 'Đang tải' : 'Thanh toán'}
+                                style={loading_create == 'qr' ? {pointerEvents: 'none'} : {pointerEvents: 'all'}}>
+                                        {loading_create == 'qr' ? 'Đang tải' : 'Thanh toán'}
                             </Button>
                         </FlexboxGrid.Item>
                       </FlexboxGrid>
@@ -388,7 +392,12 @@ const PaymentInfo = ({posts}) => {
                                 ...styleCenter,
                                 }}
                             >
-                            <Button color="primary">Thanh toán</Button>
+                            <Button 
+                                onClick={() => {HandleRequestPaymentMomo('atm')}}
+                                color="primary" 
+                                style={loading_create == 'atm'  ? {pointerEvents: 'none'} : {pointerEvents: 'all'}}>
+                                        {loading_create == 'atm' ? 'Đang tải' : 'Thanh toán'}
+                            </Button>
                             </FlexboxGrid.Item>
                         </FlexboxGrid>
                     </List.Item>
