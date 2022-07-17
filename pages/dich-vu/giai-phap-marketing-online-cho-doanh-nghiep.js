@@ -31,7 +31,7 @@ const Marketing = () => {
               <Row className='x_flex_center'>
                 <Col xs={24} md={12}>
                   <div className={styles.x_margin_bottom}>
-                    <h3 className={styles.x_marketing_banner_title}>DỊCH VỤ QUẢNG CÁO</h3>
+                    <h1 className={styles.x_marketing_banner_title}>DỊCH VỤ QUẢNG CÁO</h1>
                     <p className={styles.x_marketing_banner_description}>Mỗi ngày, khách hàng đều tìm kiếm những doanh nghiệp giống như của bạn trên Google Tìm Kiếm. Tiếp cận với họ qua Google Ads, và chỉ trà phí cho mỗi lượt nhấp chuột vào rang web của bạn hoặc khi khách hàng gọi điện đến doanh nghiệp của bạn.</p>
                     <Button 
                       onClick={() => { handleOpen('Đăng ký tư vấn dịch vụ marketing') }}

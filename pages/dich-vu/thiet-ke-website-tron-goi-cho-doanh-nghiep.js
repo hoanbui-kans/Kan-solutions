@@ -149,7 +149,7 @@ const DesignWebsite = ({bai_viet}) => {
                     <Col xs={24} md={12}>
                         <div className={styles.x_banner_content}>
                             <h3 className={styles.x_section_secondary_title}>Xây dựng website doanh nghiệp</h3>
-                            <h2 className={styles.x_primary_title}>Thiết kế webiste trọn gói cho doanh nghiệp</h2>
+                            <h1 className={styles.x_primary_title}>Thiết kế webiste trọn gói cho doanh nghiệp</h1>
                             <Button 
                                 className={styles.x_call_to_action_thiet_ke}
                                 onClick={() => { handleOpen('Đăng ký dịch vụ thiết kế Website trọn gói cho doanh nghiệp') }}>

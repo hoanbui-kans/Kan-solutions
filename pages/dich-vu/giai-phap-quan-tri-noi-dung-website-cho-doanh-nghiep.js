@@ -72,9 +72,9 @@ const WebsiteManager = () => {
                 <Col xs={24} md={12}>
                     <div className={styles.x_position_relative}>
                         <div className={styles.x_website_manager_banner}>
-                          <h3 className={styles.x_website_manager_banner_title}>
+                          <h1 className={styles.x_website_manager_banner_title}>
                             Dịch vụ quản trị website.
-                          </h3>
+                          </h1>
                           <p className={styles.x_website_manager_banner_description}>
                             bao gồm các mảng công việc chính là bảo trì, vận hành kỹ thuật đảm bảo website luôn hoạt động ổn định và hiệu quả
                           </p>

@@ -59,7 +59,7 @@ const CreateWordpress = ({gd}) => {
                     <Col xs={24} md={12}>
                         <div className={styles.x_banner_content}>
                             <h3 className={styles.x_section_secondary_title}>Tối ưu chi phí vận hành</h3>
-                            <h2 className={styles.x_primary_title}>Tạo lập Webiste doanh nghiệp của bạn bằng wordpress</h2>
+                            <h1 className={styles.x_primary_title}>Tạo Website bán hàng, dịch vụ của bạn bằng wordpress</h1>
                             <Link href='/giao-dien'>
                                 <a>
                                     <Button className={styles.x_call_to_action}> <IoShapesSharp size={16}/>DÙNG THỬ MIỄN PHÍ</Button>

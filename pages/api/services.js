@@ -317,7 +317,7 @@ export const HostingTable = [
         price: '250.000đ',
         checklist: [
             'Server đặt tại: Việt Nam',
-            'Dung lượng: 1 gb',
+            'Dung lượng: 1 GB',
             'Băng thông: Không giới hạn',
             'Email tự động: Có',
             'Quản lý CRM: Không',
@@ -332,7 +332,7 @@ export const HostingTable = [
         price: '350.000đ',
         checklist: [
             'Server đặt tại: Việt Nam',
-            'Dung lượng: 2 gb',
+            'Dung lượng: 2 GB',
             'Băng thông: Không giới hạn',
             'Email tự động: Có',
             'Quản lý CRM: Có',
