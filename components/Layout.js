@@ -4,7 +4,6 @@ import Footer from './Footer'
 import Loading from './Loading'
 import Router, { useRouter } from 'next/router';
 import { useOneTapSignin } from '../components/useOneTapSignin';
-import { CompanySchema } from '../pages/api/CompanySchema';
 import { useSession } from "next-auth/react"
 import Head from 'next/head';
 import Script from 'next/script'
@@ -80,7 +79,6 @@ const Layout = ({ children }) => {
     <>
     <Head>
       <meta name="google-site-verification" content="rrhzRHk7SR7nSIFPU8TAfwRLuGUDedgPiC0nccSlKgA" />
-      <script type="application/ld+json">{HTMLReactParser(CompanySchema)}</script>
       <link rel="alternate" href={hreflangURI} hrefLang="vi-vn" />
     </Head>
     <Component />
