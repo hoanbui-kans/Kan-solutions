@@ -14,7 +14,7 @@ const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 const Layout = ({ children }) => {
     const router = useRouter();
     const pathname = router.pathname;
-    const hreflangURI = site_url + pathname;
+    const [hreflangURI, sethreflangURI] = useState('');
     const [loading, setLoading] = useState(false);
         Router.events.on('routeChangeStart', () => {
           setLoading(true);
@@ -38,6 +38,10 @@ const Layout = ({ children }) => {
         <div id="googleAuthenticator" style={{ position: 'fixed', top: '100px', right: '10px', zIndex: 999 }} />
       );
     };
+
+    useEffect(() => {
+      sethreflangURI(`${site_url}${pathname}`);
+    },[router.pathname])
 
     useEffect(() => {
         if (!isLoading && !isSignedIn) {
