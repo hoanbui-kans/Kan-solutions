@@ -6,9 +6,9 @@ import Router, { useRouter } from 'next/router';
 import { useOneTapSignin } from '../components/useOneTapSignin';
 import Script from 'next/script'
 import Head from 'next/head';
-import CompanySchema from './CompanySchema';
 import { useSession } from "next-auth/react"
-
+import { CompanySchema } from '../pages/api/CompanySchema';
+import HTMLReactParser from 'html-react-parser';
 
 const Layout = ({ children }) => {
     const router = useRouter();
@@ -82,12 +82,12 @@ const Layout = ({ children }) => {
         <Component />
         <Head>
             <meta name="google-site-verification" content="rrhzRHk7SR7nSIFPU8TAfwRLuGUDedgPiC0nccSlKgA" />
+            <script type="application/ld+json">{HTMLReactParser(CompanySchema)}</script>
         </Head>
         <Script
               src="https://accounts.google.com/gsi/client"
               strategy="afterInteractive"
             />
-        <CompanySchema />
         <Header />
           {
               loading ? 

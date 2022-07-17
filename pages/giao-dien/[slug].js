@@ -208,14 +208,14 @@ export const SingleTheme = ({data, link_theme}) => {
       <Head>
         { HTMLReactParser(data.yoast_head.html.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
         <script type="application/ld+json">
-          {`{
+          {HTMLReactParser(`{
             "@context": "https://schema.org",
             "@type": "FAQPage",
             "mainEntity": [${QA_schema}]
-          }`}
+          }`)}
         </script>
         <script type="application/ld+json">
-          {`{
+          {HTMLReactParser(`{
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "itemListElement": [{
@@ -229,7 +229,7 @@ export const SingleTheme = ({data, link_theme}) => {
               "name": "${data.post_title}",
               "item": "${site_url}/giao-dien/${data.post_name}"
             }]
-          }`}
+          }`)}
         </script>
         <meta name="keywords" content={KeywordsMeta(data.keywords)}></meta>
       </Head>
