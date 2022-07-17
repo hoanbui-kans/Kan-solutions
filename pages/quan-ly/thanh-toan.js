@@ -31,7 +31,6 @@ import EditIcon from '@rsuite/icons/Edit';
 import CreditCardPlusIcon from '@rsuite/icons/CreditCardPlus';
 import { IoPaperPlane } from "react-icons/io5"
 import { RateUser } from '../api/services';
-import { NextResponse, NextRequest } from 'next/server'
 import Router from 'next/router'
 
 import 'moment/locale/vi'
