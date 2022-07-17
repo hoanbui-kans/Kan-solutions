@@ -4,10 +4,10 @@ import Footer from './Footer'
 import Loading from './Loading'
 import Router, { useRouter } from 'next/router';
 import { useOneTapSignin } from '../components/useOneTapSignin';
-import Script from 'next/script'
-import Head from 'next/head';
-import { useSession } from "next-auth/react"
 import { CompanySchema } from '../pages/api/CompanySchema';
+import { useSession } from "next-auth/react"
+import Head from 'next/head';
+import Script from 'next/script'
 import HTMLReactParser from 'html-react-parser';
 
 const Layout = ({ children }) => {
@@ -74,13 +74,14 @@ const Layout = ({ children }) => {
         }
       }, [isLoading, isSignedIn, parentContainerId]);
   return (
-    pathname != '/dang-nhap' && pathname != '/dang-ky' && pathname != '/quan-ly/dang-xuat' && !pathname.includes('/giao-dien/xem-giao-dien/')? 
+    <>
+    <Head>
+      <meta name="google-site-verification" content="rrhzRHk7SR7nSIFPU8TAfwRLuGUDedgPiC0nccSlKgA" />
+      <script type="application/ld+json">{HTMLReactParser(CompanySchema)}</script>
+    </Head>
+    {
+      pathname != '/dang-nhap' && pathname != '/dang-ky' && pathname != '/quan-ly/dang-xuat' && !pathname.includes('/giao-dien/xem-giao-dien/')? 
       <>
-        <Head>
-            <meta name="google-site-verification" content="rrhzRHk7SR7nSIFPU8TAfwRLuGUDedgPiC0nccSlKgA" />
-            <script type="application/ld+json">{HTMLReactParser(CompanySchema)}</script>
-        </Head>
-        <Script src="https://accounts.google.com/gsi/client" strategy="afterInteractive"/>
         <Header />
         <Component />
           {
@@ -91,6 +92,34 @@ const Layout = ({ children }) => {
         <Footer />
       </>
     :  <main>{children}</main>
+    }
+    <Script src="https://accounts.google.com/gsi/client" strategy="afterInteractive"/>
+    <Script async src="https://www.googletagmanager.com/gtag/js?id=G-DKCRMST66D" strategy="afterInteractive"/>
+    <Script strategy="afterInteractive">{
+      HTMLReactParser(`window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-DKCRMST66D');`)
+    }</Script>
+    <Script async src="https://www.googletagmanager.com/gtag/js?id=UA-233414917-1" strategy="afterInteractive"/>
+    <Script strategy="afterInteractive">{
+      HTMLReactParser(`window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-233414917-1');`)
+    }</Script>
+    <Script type="text/javascript" strategy="afterInteractive">
+      {HTMLReactParser(`var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+      (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/62bebcf2b0d10b6f3e7a491b/1g6sh45mq';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+      })();`)}
+    </Script>
+    </>
   )
 }
 
