@@ -81,7 +81,7 @@ const Layout = ({ children }) => {
     <Head>
       <meta name="google-site-verification" content="rrhzRHk7SR7nSIFPU8TAfwRLuGUDedgPiC0nccSlKgA" />
       <script type="application/ld+json">{HTMLReactParser(CompanySchema)}</script>
-      <link rel="alternate" href={hreflangURI} hreflang="vi-vn" />
+      <link rel="alternate" href={hreflangURI} hrefLang="vi-vn" />
     </Head>
     <Component />
     {
@@ -97,22 +97,22 @@ const Layout = ({ children }) => {
       </>
     :  <main>{children}</main>
     }
-    <Script src="https://accounts.google.com/gsi/client" strategy="afterInteractive"/>
-    <Script async src="https://www.googletagmanager.com/gtag/js?id=G-DKCRMST66D" strategy="afterInteractive"/>
-    <Script strategy="afterInteractive">{
+    <Script id="gsi" src="https://accounts.google.com/gsi/client" strategy="afterInteractive"/>
+    <Script id="googletagmanager" async src="https://www.googletagmanager.com/gtag/js?id=G-DKCRMST66D" strategy="afterInteractive"/>
+    <Script id="gtag" strategy="afterInteractive">{
       HTMLReactParser(`window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-DKCRMST66D');`)
     }</Script>
-    <Script async src="https://www.googletagmanager.com/gtag/js?id=UA-233414917-1" strategy="afterInteractive"/>
-    <Script strategy="afterInteractive">{
+    <Script id="gtagUri" async src="https://www.googletagmanager.com/gtag/js?id=UA-233414917-1" strategy="afterInteractive"/>
+    <Script id="gtagTwo" strategy="afterInteractive">{
       HTMLReactParser(`window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'UA-233414917-1');`)
     }</Script>
-    <Script type="text/javascript" strategy="afterInteractive">
+    <Script id="Tawk_API" type="text/javascript" strategy="afterInteractive">
       {HTMLReactParser(`var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
       (function(){
         var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
