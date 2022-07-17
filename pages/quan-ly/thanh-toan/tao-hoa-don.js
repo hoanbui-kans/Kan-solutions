@@ -27,16 +27,52 @@ import { getSession, useSession } from 'next-auth/react';
 import styles from '../../../styles/account.module.css';
 import UserNav from '../../../components/user-manager/UserNav';
 import EditIcon from '@rsuite/icons/Edit';
+import CloseIcon from '@rsuite/icons/Close';
 import CreditCardPlusIcon from '@rsuite/icons/CreditCardPlus';
 import { IoPaperPlane } from "react-icons/io5"
 import { RateUser } from '../../api/services';
 
 const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON
 
-const Create_Order = ({blogInfor}) => {
+const Create_Order = ({list_blog}) => {
     // Modal tạo dữ liệu 
+    const [blogInfor, setblogInfor] = useState(list_blog);
     const [open, setOpen] = useState(false);  
+    const [openUpdate, setOpenUpdate] = useState(false); 
+    const [openDelete, setOpenDelete] = useState(false); 
+    const [transactionUpdate, setTransactionUpdate] = useState(false);
+    
+    const handleCloseDelete = () => setOpenDelete(false);
+    const handleCloseUpdate = () => setOpenUpdate(false);
     const handleClose = () => setOpen(false);
+
+    const handleOpenUpdate = (site_info) => {
+        console.log(site_info);
+        setTransactionUpdate(site_info);
+        setFormvalue({
+            title: 'Gia hạn website ' + site_info.blogname,
+            site_id: site_info.blog_id,
+            price_bill: site_info.transactions[0].request.price_bill,
+        });
+        setOpenUpdate(true)
+    };
+
+    const handleOpenDelete = (site_info) => {
+        setTransactionUpdate(site_info);
+        const site_lever = RateUser.filter((value) => {
+            if(value.lever == site_info.lever){
+                return value;
+            }
+        })
+        setFormvalue({
+            title: 'Gia hạn website ' + site_info.blogname,
+            site_id: site_info.blog_id,
+            price_bill: site_lever[0].price,
+            services: site_lever[0].name,
+        });
+        setOpenDelete(true)
+    };
+
     const handleOpen = (site_info) => {
         const site_lever = RateUser.filter((value) => {
             if(value.lever == site_info.lever){
@@ -47,61 +83,183 @@ const Create_Order = ({blogInfor}) => {
             title: 'Gia hạn website ' + site_info.blogname,
             site_id: site_info.blog_id,
             price_bill: site_lever[0].price,
+            services: site_lever[0].name,
         });
         setOpen(true)
     };
     // Truy xuất dữ liệu
     const formRef = useRef();
     const Create_Order_Json = `${ROOT_URL}mservice/create-order`;
+    const Update_Order_Json = `${ROOT_URL}mservice/update-order`;
+    const Delete_Order_Json = `${ROOT_URL}mservice/delete-order`;
+
     const [loading_create, set_loading_create] = useState(false);
     const [formValue, setFormvalue] = useState({
         title: '',
         site_id: '',
+        services: '',
         price_bill: '',
     });
-    const handleCreateOrder = async () => {
-        set_loading_create(true);
-        let fd = new FormData();
-        fd.append('title', formValue.title);
-        fd.append('site_id', formValue.site_id);
-        fd.append('price_bill', formValue.price_bill);
-        const token = session ? session.user.token.token : '';
-        const config = {
-            method: 'post',
-            url: Create_Order_Json,
-            data : fd,
-            headers: { 
-                'Authorization':  `Bearer ${token}`,
+
+    const model = Schema.Model({
+        'title': Schema.Types.StringType().isRequired('Chưa nhập thông tin.'),
+        'price_bill': Schema.Types.NumberType().isRequired('Chưa nhập thông tin.'),
+    });
+
+    const handleUpdateOrder = async () => {
+            set_loading_create(true);
+            let title = formValue.title;
+            let site_id = formValue.site_id;
+            let price_bill = formValue.price_bill;
+            let services = formValue.services;
+
+            let fd = new FormData();
+            fd.append('title', title);
+            fd.append('site_id', site_id);
+            fd.append('price_bill', price_bill);
+            fd.append('services', services);
+            fd.append('ID', transactionUpdate.transactions[0].ID);
+            
+            
+            const config = {
+                method: 'post',
+                url: Update_Order_Json,
+                data : fd,
+            };
+            
+            const response = await axios(config).then((res) => {
+                return res.data
+            }).catch(function (error) {
+                console.log(error);
+            });
+
+            if(response){
+            let type = 'success';
+            if(response.error){
+                type = 'warning';
+                <Message showIcon type='error'>{response.message}</Message>
+            } else {
+                let newData = blogInfor.filter((value) => {
+                    if(value.blog_id == site_id){
+                        let transaction = [];
+                        transaction.push(response.transactions);
+                        value.transactions = transaction;
+                    }
+                    return value;
+                });
+                setblogInfor(newData);
+                toaster.push(<Message showIcon type={type}>{response.message}</Message>);
             }
-        };
-        
-        const response = await axios(config).then((res) => {
-            return res.data
-        }).catch(function (error) {
-            console.log(error);
-        });
-    
-        
-        if(response){
-        let type = 'success';
-        if(response.error){
-            type = 'warning';
-            response.invalid_fields.map((val) => {
-            setTimeout(() => {
-                toaster.push(<Message showIcon type='error'>{val.message}</Message>);
-            }, 1000);
-            })
+            set_loading_create(false);
+            setFormvalue({
+                title: '',
+                site_id: '',
+                price_bill: '',
+                services: ''
+            });
+            setTransactionUpdate(false);
+            setOpenUpdate(false);
         }
-         toaster.push(<Message showIcon type={type}>{response.message}</Message>);
-        } else {
-            toaster.push(<Message type='error'>Đã có lỗi xảy ra, xin vui lòng thử lại</Message>);
+    }
+
+    const handleDeleteOrder = async () => {
+            set_loading_create(true);
+            let site_id = formValue.site_id;
+            let fd = new FormData();
+            fd.append('ID', transactionUpdate.transactions[0].ID);
+            const config = {
+                method: 'post',
+                url: Delete_Order_Json,
+                data : fd,
+            };
+            
+            const response = await axios(config).then((res) => {
+                return res.data
+            }).catch(function (error) {
+                set_loading_create(false);
+                toaster.push(<Message showIcon type={'warning'}>Lỗi chia sẻ dữ liệu hệ thống</Message>);
+            });
+
+            if(response){
+            let type = 'success';
+            if(response.error){
+                type = 'warning';
+                <Message showIcon type='error'>{response.message}</Message>
+            } else {
+                let newData = blogInfor.filter((value) => {
+                    if(value.blog_id == site_id){
+                        let transaction = [];
+                        value.transactions = transaction;
+                    }
+                    return value;
+                });
+                setblogInfor(newData);
+                toaster.push(<Message showIcon type={type}>{response.message}</Message>);
+            }
+            set_loading_create(false);
+            setFormvalue({
+                title: '',
+                site_id: '',
+                price_bill: '',
+                services: ''
+            });
+            setTransactionUpdate(false);
+            setOpenDelete(false);
         }
-        set_loading_create(false);
-        setFormvalue({
-            title: '',
-            site_id: '',
-            price_bill: '',
-        })
+    }
+
+    const handleCreateOrder = async () => {
+            set_loading_create(true);
+            let title = formValue.title;
+            let site_id = formValue.site_id;
+            let price_bill = formValue.price_bill;
+            let services = formValue.services;
+
+            let fd = new FormData();
+            fd.append('title', title);
+            fd.append('site_id', site_id);
+            fd.append('price_bill', price_bill);
+            fd.append('services', services);
+            
+            const config = {
+                method: 'post',
+                url: Create_Order_Json,
+                data : fd,
+            };
+            
+            const response = await axios(config).then((res) => {
+                return res.data
+            }).catch(function (error) {
+                console.log(error);
+            });
+
+            if(response){
+            let type = 'success';
+            if(response.error){
+                type = 'warning';
+                <Message showIcon type='error'>{response.message}</Message>
+            } else {
+                 let newData = blogInfor.filter((value) => {
+                    if(value.blog_id == site_id){
+                        let transaction = [];
+                        transaction.push(response.transactions);
+                        value.transactions = transaction;
+                    }
+                    return value;
+                });
+                
+                setblogInfor(newData);
+                toaster.push(<Message showIcon type={type}>{response.message}</Message>);
+            }
+            set_loading_create(false);
+            setFormvalue({
+                title: '',
+                site_id: '',
+                price_bill: '',
+                services: ''
+            });
+            setOpen(false);
+        }
     }
     // Hiển thị
     const { data: session } = useSession();
@@ -139,7 +297,7 @@ const Create_Order = ({blogInfor}) => {
     }
 
     const handleCheckAll = (value, checked) => {
-        const keys = checked ? Site_data.map(item => item.id) : [];
+        const keys = checked ? Site_data.map(item => item) : [];
         setCheckedKeys(keys);
     };
 
@@ -148,10 +306,9 @@ const Create_Order = ({blogInfor}) => {
         setCheckedKeys(keys);
     };
 
-    const model = Schema.Model({
-        'title': Schema.Types.StringType().isRequired('Chưa nhập thông tin.'),
-        'price_bill': Schema.Types.NumberType().isRequired('Chưa nhập thông tin.'),
-    });
+    useEffect(() => {
+        console.log(checkedKeys);
+    }, [checkedKeys])
 
     const NameCell = ({ rowData, dataKey, ...props }) => {
         const site_lever = RateUser.filter((value) => {
@@ -192,31 +349,39 @@ const Create_Order = ({blogInfor}) => {
       )
       };
       
-      const CheckCell = ({ rowData, onChange, checkedKeys, dataKey, ...props }) => (
-        <Table.Cell {...props} style={{ padding: 0 }}>
-          <div style={{ lineHeight: '46px' }}>
-            <Checkbox
-              value={rowData[dataKey]}
-              inline
-              onChange={onChange}
-              checked={checkedKeys.some(item => item === rowData[dataKey])}
-            />
-          </div>
-        </Table.Cell>
-      );
+      const CheckCell = ({ rowData, onChange, checkedKeys, dataKey, ...props }) => {
+        return(
+            <Table.Cell {...props} style={{ padding: 0 }}>
+              <div style={{ lineHeight: '46px' }}>
+                <Checkbox
+                  value={rowData}
+                  inline
+                  onChange={onChange}
+                  checked={checkedKeys.some(item => item === rowData)}
+                />
+              </div>
+            </Table.Cell>
+          )
+      };
       
-      const renderMenu = ({ onClose, left, top, className }, ref) => {
+      const RenderMenu = ({ onClose, left, top, className, rowData }, ref) => {
         const handleSelect = eventKey => {
+            switch (eventKey) {
+                case 1:
+                    
+                break; 
+                case 2:
+                    
+                break; 
+                default: '';
+            }
             onClose();
         };
         return (
           <Popover ref={ref} className={className} style={{ left, top }} full>
             <Dropdown.Menu onSelect={handleSelect}>
-              <Dropdown.Item eventKey={3}>Download As...</Dropdown.Item>
-              <Dropdown.Item eventKey={4}>Export PDF</Dropdown.Item>
-              <Dropdown.Item eventKey={5}>Export HTML</Dropdown.Item>
-              <Dropdown.Item eventKey={6}>Settings</Dropdown.Item>
-              <Dropdown.Item eventKey={7}>About</Dropdown.Item>
+              <Dropdown.Item eventKey={1}>Chỉnh sửa</Dropdown.Item>
+              <Dropdown.Item eventKey={2}>Xóa</Dropdown.Item>
             </Dropdown.Menu>
           </Popover>
         );
@@ -225,11 +390,17 @@ const Create_Order = ({blogInfor}) => {
       const ActionCell = ({ rowData, dataKey, ...props }) => {
         return (
           <Table.Cell {...props} className="link-group">
-            <IconButton appearance="subtle" onClick={() => {handleOpen(rowData)}} icon={<CreditCardPlusIcon />} />
-            <Divider vertical />
-            <Whisper placement="autoVerticalStart" trigger="click" speaker={renderMenu}>
-              <IconButton appearance="subtle" icon={<EditIcon />} />
-            </Whisper>
+            {
+                rowData.transactions ? 
+                rowData.transactions.length == 0 ?
+                <IconButton appearance="subtle" onClick={() => {handleOpen(rowData)}} icon={<CreditCardPlusIcon color='red'/>} />
+                :  <>
+                        <IconButton appearance="subtle" icon={<EditIcon />} onClick={() => { handleOpenUpdate(rowData) }}/>
+                        <Divider vertical />
+                        <IconButton appearance="subtle" icon={<CloseIcon />} onClick={() => { handleOpenDelete(rowData)}}/>
+                    </>
+                : ''
+            }
           </Table.Cell>
         );
       };
@@ -250,7 +421,17 @@ const Create_Order = ({blogInfor}) => {
                     </div>
                 </Col>
                 <Col xs={24} md={!expanded ? 22 : 18}>
-                <Table rowHeight={60} height={640} data={Site_data} id="table" loading={loading}>
+                <Table 
+                    rowHeight={60} 
+                    height={640} 
+                    data={Site_data} 
+                    id="table" 
+                    loading={loading}
+                    bordered
+                    cellBordered
+                    affixHeader
+                    affixHorizontalScrollbar
+                >
                             <Table.Column width={50} align="center">
                                 <Table.HeaderCell style={{ padding: 0 }}>
                                     <div style={{ lineHeight: '40px' }}>
@@ -273,7 +454,7 @@ const Create_Order = ({blogInfor}) => {
                                 <Table.HeaderCell>Tên trang web</Table.HeaderCell>
                                 <Table.Cell>{(rowData) => {
                                     return(
-                                        <a href={rowData.siteurl} target='_blank' rel="noreferrer">{rowData.blogname}</a>
+                                        <a href={rowData.siteurl} target='_blank' rel="noreferrer">{rowData.blogname ? rowData.blogname : 'KANSITE_NONAME'}</a>
                                     )}
                                 }</Table.Cell>
                             </Table.Column>
@@ -321,8 +502,8 @@ const Create_Order = ({blogInfor}) => {
                                 <Table.HeaderCell>email</Table.HeaderCell>
                                 <Table.Cell>{rowData => <a href={`mailto:${rowData.email}`}>{rowData.email}</a>}</Table.Cell>
                             </Table.Column>
-                            <Table.Column width={120} fixed="right">
-                                <Table.HeaderCell>Hành động</Table.HeaderCell>
+                            <Table.Column width={120} fixed="right" align="center">
+                                <Table.HeaderCell>Action</Table.HeaderCell>
                                 <ActionCell dataKey="id" />
                             </Table.Column>
                         </Table>
@@ -338,7 +519,7 @@ const Create_Order = ({blogInfor}) => {
                                 size="xs"
                                 layout={['total', '-', 'limit', '|', 'pager', 'skip']}
                                 total={blogInfor.length}
-                                limitOptions={[10, 20]}
+                                limitOptions={[10, 20, 30, 40, 50]}
                                 limit={limit}
                                 activePage={page}
                                 onChangePage={setPage}
@@ -352,7 +533,7 @@ const Create_Order = ({blogInfor}) => {
 
     <Modal open={open} onClose={handleClose} backdrop="static">
         <Modal.Header>
-          <Modal.Title>Đăng ký tư vấn các dịch vụ</Modal.Title>
+          <Modal.Title>Tạo hóa đơn thanh toán</Modal.Title>
         </Modal.Header>
         <Modal.Body>
                 <Form
@@ -365,19 +546,80 @@ const Create_Order = ({blogInfor}) => {
                 >
                 <Form.Group>
                     <Form.ControlLabel>Tiêu đề</Form.ControlLabel>
-                    <Form.Control value={formValue.title} name="title" placeholder={"Thanh toán hóa đơn - tên hóa đơn - website"} type="text"></Form.Control>
+                    <Form.Control value={formValue ? formValue.title : ''} name="title" placeholder={"Thanh toán hóa đơn - tên hóa đơn - website"} type="text"></Form.Control>
                 </Form.Group> 
                 <Form.Group>
                     <Form.ControlLabel>Giá trị thanh toán</Form.ControlLabel>
-                    <Form.Control value={formValue.price} name="price_bill" placeholder={"Số tiền yêu cầu thanh toán"} type="number"></Form.Control>
+                    <Form.Control value={formValue ? formValue.price : ''} name="price_bill" placeholder={"Số tiền yêu cầu thanh toán"} type="number"></Form.Control>
                 </Form.Group>     
                 <Form.Group>
-                    <Button type="submit" color="green" className={styles.x_create_order_button}>
-                        { loading ? <Loader size={22}/> : <IoPaperPlane size={16}/> }
+                    <Button type="submit" color="green" className={loading_create ? styles.x_create_order_button_disabled : styles.x_create_order_button}>
+                        { loading_create ? <Loader size={22}/> : <IoPaperPlane size={16}/> }
                         Đăng hóa đơn
                     </Button>
                 </Form.Group>                                
            </Form>
+        </Modal.Body>
+    </Modal>
+
+    <Modal open={openUpdate} onClose={handleCloseUpdate} backdrop="static">
+        <Modal.Header>
+        <Modal.Title>Cập nhật hóa đơn thanh toán</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+                <Form
+                fluid
+                ref={formRef} 
+                onSubmit={handleUpdateOrder}
+                model={model} 
+                onChange={setFormvalue}
+                formValue={formValue}
+                >
+                <Form.Group>
+                    <Form.ControlLabel>Tiêu đề</Form.ControlLabel>
+                    <Form.Control value={transactionUpdate ? transactionUpdate.transactions[0].title : ''} name="title" placeholder={"Thanh toán hóa đơn - tên hóa đơn - website"} type="text"></Form.Control>
+                </Form.Group> 
+                <Form.Group>
+                    <Form.ControlLabel>Giá trị thanh toán</Form.ControlLabel>
+                    <Form.Control value={transactionUpdate ? transactionUpdate.transactions[0].price : ''} name="price_bill" placeholder={"Số tiền yêu cầu thanh toán"} type="number"></Form.Control>
+                </Form.Group>     
+                <Form.Group>
+                    <Button type="submit" color="green" className={loading_create ? styles.x_create_order_button_disabled : styles.x_create_order_button}>
+                        { loading_create ? <Loader size={22}/> : <IoPaperPlane size={16}/> }
+                        Cập nhật hóa đơn
+                    </Button>
+                </Form.Group>                                
+        </Form>
+        </Modal.Body>
+    </Modal>
+
+    <Modal open={openDelete} onClose={handleCloseDelete} backdrop="static">
+        <Modal.Header>
+        <Modal.Title>Xóa hóa đơn thanh toán</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            <Form
+                fluid
+                ref={formRef} 
+                onSubmit={handleDeleteOrder}
+                onChange={setFormvalue}
+                formValue={formValue}
+            >
+                <Form.Group>
+                    <Form.ControlLabel>Tiêu đề</Form.ControlLabel>
+                    <Form.Control value={transactionUpdate ? transactionUpdate.transactions[0].title : ''} name="title" placeholder={"Thanh toán hóa đơn - tên hóa đơn - website"} type="text"></Form.Control>
+                </Form.Group> 
+                <Form.Group>
+                    <Form.ControlLabel>Giá trị thanh toán</Form.ControlLabel>
+                    <Form.Control value={transactionUpdate ? transactionUpdate.transactions[0].price : ''} name="price_bill" placeholder={"Số tiền yêu cầu thanh toán"} type="number"></Form.Control>
+                </Form.Group>
+                <Form.Group>
+                    <Button type="submit" color="green" className={loading_create ? styles.x_create_order_button_disabled : styles.x_create_order_button}>
+                        { loading_create ? <Loader size={22}/> : <IoPaperPlane size={16}/> }
+                        Xóa hóa đơn thanh toán
+                    </Button>
+                </Form.Group>                                
+            </Form>
         </Modal.Body>
     </Modal>
     </>
@@ -394,7 +636,7 @@ export async function getServerSideProps (context) {
       'Authorization':  `Bearer ${token}`
     }
   };
-  const URL =  ROOT_URL + 'quan-ly/tai-khoan';
+  const URL =  ROOT_URL + 'quan-ly/tai-khoan/admin';
   let response = '';
 
   response = await axios.post(URL, false, config)
@@ -406,7 +648,6 @@ export async function getServerSideProps (context) {
     });
 
   return { props: {
-      blogInfor:  response ? response : [],
-      role: token ? token : 'Không có'
+      list_blog:  response ? response : [],
   }};
 }

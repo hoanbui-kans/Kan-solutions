@@ -56,6 +56,7 @@
     font-weight: bold;
 }
 .x_account_button button, 
+.x_create_order_button_disabled,
 .x_create_order_button{
     display: flex;
     align-items: center;
@@ -63,6 +64,15 @@
     column-gap: 10px;
     width: 100%;
     padding: .75rem 0rem;
+}
+.x_create_order_button{
+    background: var(--x-primary-color);
+    color: white;
+}
+.x_create_order_button_disabled{
+    background: #64b0fd !important;
+    color: white !important;
+    pointer-events: none;
 }
 .x_outline_view{
     border: 1px solid rgb(153, 153, 153);

@@ -194,7 +194,10 @@ a:active, a:focus, a:hover {
 ::-webkit-scrollbar-thumb:hover {
   background: #555; 
 }
-
+.rs-table-word-wrap .rs-table-cell-content{
+  white-space: normal !important;
+  word-break: normal !important;
+}
 @media (min-width: 1200px){
   .rs-grid-container {
       width: 1200px !important;
