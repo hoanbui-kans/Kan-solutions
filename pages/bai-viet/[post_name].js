@@ -8,7 +8,7 @@ import HTMLReactParser from 'html-react-parser';
 import Head from 'next/head';
 import { IoPersonCircleOutline, IoTimeOutline } from "react-icons/io5";
 import { BlogStyleTwo } from '../../components/blog-templates/BlogContent';
-import Comments from '../../components/comment';
+import CommentsUI from '../../components/comment';
 
 import {
   PinterestShareButton,
@@ -19,7 +19,7 @@ import {
   FacebookIcon,
 } from 'next-share'
 
-
+const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 const SocialLink = ({ title, description, media, url}) => {
@@ -60,9 +60,24 @@ const PostSingle = ({data}) => {
     return (
       <>
         <Head>
-          {
-            HTMLReactParser(data.yoast_head.html.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) 
-          }
+          {HTMLReactParser(data.yoast_head.html.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content"))}
+          <script type="application/ld+json">
+          {HTMLReactParser(`{
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Tin tức",
+              "item": "${site_url}/tin-tuc"
+            },{
+              "@type": "ListItem",
+              "position": 2,
+              "name": "${data.post_title}",
+              "item": "${site_url}/giao-dien/${data.post_name}"
+            }]
+          }`)}
+        </script>
         </Head>
         <div className={'x_breadcum_container'}>
           <Container>
@@ -100,7 +115,7 @@ const PostSingle = ({data}) => {
                                 }
                               </div>
                               <div className={styles.x_comment_form}>
-                                <Comments data={data.comment} post_id={data.ID}/>
+                                <CommentsUI data={data.comment} post_id={data.ID}/>
                               </div>
                             </div>
                         </Col>

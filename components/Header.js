@@ -116,9 +116,9 @@ const MobileMenu = ({showing}) => {
                         <Link href={'/giao-dien'}>Giao diện mẫu</Link>
                     </li>
                     <li>
-                        <Link href={'/tin-tuc'}>
+                        <Link href={'/bai-viet'}>
                             <a>
-                              Tin tức
+                              Blog
                             </a>
                         </Link>
                     </li>
@@ -358,7 +358,7 @@ const Header = () => {
                                             <Link href={'/du-an'}>Dự án</Link>
                                         </li>
                                         <li>
-                                            <Link href={'/tin-tuc'}>Tin tức</Link>
+                                            <Link href={'/bai-viet'}>Blog</Link>
                                         </li>
                                         <li>
                                             <Link href={'/tuyen-dung'}>Tuyển dụng</Link>

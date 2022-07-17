@@ -16,7 +16,7 @@ import md5 from 'md5'
 import FormTuVan from '../../components/FormTuVan'
 import { GD_Box } from '../giao-dien'
 import ThemesSubmitForm from '../../components/handleSubmitTheme'
-import Comments from '../../components/comment'
+import CommentsUI from '../../components/comment'
 import { QA } from '../api/Qa'
 
 const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON;
@@ -304,7 +304,7 @@ export const SingleTheme = ({data, link_theme}) => {
                             }
                       </div>
                       <div className={styles.x_comment_form}>
-                        <Comments data={data}/>
+                        <CommentsUI data={data}/>
                       </div>
                     </div>
                 </div>

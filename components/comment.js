@@ -14,10 +14,10 @@ import Script from 'next/script';
 
 const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON
 
-const Comments = ({data}) => {
+const CommentsUI = ({data}) => {
 
   const [open, setOpen] = useState(false);  
-  const [comments , setComments] = useState(data ? data.comment : []);
+  const [comments , setComments] = useState(data.comment ? data.comment : []);
   const [repliedComment, setRepliedComment] = useState(false);
   const [action, setAction] = useState('');
   const post_name = data.post_name;
@@ -26,16 +26,20 @@ const Comments = ({data}) => {
   let total_score = 0;
   let total_rating = 0;
   let average = 0;
-
-  data.comment.map((val) => {
-      if(val.comment_parent == "0"){
-        val.comment_meta.rating ? 
-        total_score += parseInt(val.comment_meta.rating) : 
-        total_score += 5;
-        total_rating += 1;
-      }
-  });
-
+  if(comments.length > 0 ){
+    comments.map((val) => {
+        if(val.comment_parent == "0"){
+          val.comment_meta.rating ? 
+          total_score += parseInt(val.comment_meta.rating) : 
+          total_score += 5;
+          total_rating += 1;
+        }
+    })
+  } else {
+    total_score = 50;
+    total_rating = 10;
+  }
+  
   average = Math.round(total_score / total_rating , 1);
 
   console.log(total_score);
@@ -302,7 +306,7 @@ const Comments = ({data}) => {
     <>
     <Head>
       <script type="application/ld+json">
-          {`{
+          {data.price ? HTMLReactParser(`{
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
             "name": "${data.post_title}",
@@ -317,7 +321,7 @@ const Comments = ({data}) => {
               "@type": "Offer",
               "price": "${data.price.sale_price ? data.price.sale_price : data.price.regular_price}",
               "priceCurrency": "VND"
-            }}`}
+            }}`): ''}
       </script>
     </Head>
     {
@@ -348,4 +352,4 @@ const Comments = ({data}) => {
   )
 }
 
-export default Comments
+export default CommentsUI

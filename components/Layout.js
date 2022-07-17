@@ -13,8 +13,6 @@ import HTMLReactParser from 'html-react-parser';
 const Layout = ({ children }) => {
     const router = useRouter();
     const pathname = router.pathname;
-    const { data: session } = useSession();
-    
     const [loading, setLoading] = useState(false);
         Router.events.on('routeChangeStart', () => {
           setLoading(true);
@@ -34,7 +32,6 @@ const Layout = ({ children }) => {
         redirect: false,
         parentContainerId: 'googleAuthenticator',
       });
-
       return (
         <div id="googleAuthenticator" style={{ position: 'fixed', top: '100px', right: '10px', zIndex: 999 }} />
       );
@@ -79,16 +76,13 @@ const Layout = ({ children }) => {
   return (
     pathname != '/dang-nhap' && pathname != '/dang-ky' && pathname != '/quan-ly/dang-xuat' && !pathname.includes('/giao-dien/xem-giao-dien/')? 
       <>
-        <Component />
         <Head>
             <meta name="google-site-verification" content="rrhzRHk7SR7nSIFPU8TAfwRLuGUDedgPiC0nccSlKgA" />
             <script type="application/ld+json">{HTMLReactParser(CompanySchema)}</script>
         </Head>
-        <Script
-              src="https://accounts.google.com/gsi/client"
-              strategy="afterInteractive"
-            />
+        <Script src="https://accounts.google.com/gsi/client" strategy="afterInteractive"/>
         <Header />
+        <Component />
           {
               loading ? 
               <Loading /> :
