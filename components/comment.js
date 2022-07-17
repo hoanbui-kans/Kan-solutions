@@ -41,8 +41,6 @@ const CommentsUI = ({data}) => {
   }
   
   average = Math.round(total_score / total_rating , 1);
-
-  console.log(total_score);
   const handleReplied = (id_replied) => {
       setRepliedComment(id_replied);
       setOpen(true)
