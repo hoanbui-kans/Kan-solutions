@@ -116,20 +116,38 @@
     justify-content: center;
     column-gap: 10px;
     margin: auto;
-    background: var(--x-success-color);
+    background: var(--x-primary-color);
     color: white;
+    margin-top: 20px;
+    padding: 12px 15px;
+}
+.x_order_message{
+    text-align: center;
+}
+.x_order_header h3{
+    text-align: center;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: var(--x-danger-color);
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 15px;
 }
 .x_qr_pay_section{
     padding: 55px 0px;
     position: relative;
 }
 .x_payment_infor{
-    text-align: center;
     max-width: 500px;
     margin: auto;
 }
+.x_list{
+    font-weight: bold;
+    background-color: unset !important;
+}
 .x_payment_infor h1{
     font-size: 24px;
+    text-transform: capitalize;
 }
 .x_upgrade_button{
     background: var(--x-success-color);

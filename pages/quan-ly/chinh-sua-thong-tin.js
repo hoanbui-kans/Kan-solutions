@@ -8,38 +8,97 @@ import axios from 'axios'
 import styles from '../../styles/account.module.css'
 import UserNav from '../../components/user-manager/UserNav'
 import { getSession } from 'next-auth/react';
+import moment from 'moment'
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
-const UserEditor = ({user_infor, nonce}) => {
+const UserEditor = ({user_info, nonce}) => {
   const [expanded, setExpanded] = useState(false);
+  const [loadingPassword, setLoadingPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const user_login = user_infor ? user_infor.user_login : '';
+  
+  const [google, setGoogle] = useState(user_info.google ? user_info.google : []);
+  const [facebook, setFacebook] = useState(user_info.facebook ? user_info.facebook : []);
+  const user_login = user_info ? user_info.user_login : '';
   const nonce_key = nonce ? nonce : '';
 
   const[formValue, setFormValue] = useState({
-    firstname: '',
-    lastname: '',
-    phone: '',
-    email: '',
-    billing_address: ''
-  })
-  useEffect(() => {
-    console.log(formValue);
-  }, [formValue])
+    firstname: user_info.firstname ? user_info.firstname : '',
+    lastname: user_info.lastname ? user_info.lastname : '',
+    phone: user_info.phone ? user_info.phone : '',
+    email: user_info.email ? user_info.email : '',
+    birth: user_info.birth ? user_info.birth : '',
+    gender: user_info.gender ? user_info.gender : '',
+    billing_city: user_info.billing_city ? user_info.billing_city : '',
+    billing_district: user_info.billing_district ? user_info.billing_district : '',
+    billing_ward: user_info.billing_ward ? user_info.billing_ward : '',
+    billing_address: user_info.billing_address ? user_info.billing_address : '',
+  });
+
+  const[passwordUpdate, setPasswordUpdate] = useState({
+    password: '',
+    repassword: '',
+  });
+  const passwordRef = useRef();
+  const passWordsModel = Schema.Model({
+    password: Schema.Types.StringType().isRequired('Mật khẩu mới không được để trống.'),
+    repassword: Schema.Types.StringType()
+      .addRule((value, data) => {
+        if (value !== data.password) {
+          return false;
+        }
+        return true;
+      }, 'Hai mật khẩu phải giống nhau')
+      .isRequired('Mật khẩu mới không được để trống.')
+  });
+
+  const HandleResetPassword = async () => {
+    if(!passwordRef.current.check()){
+       return toaster.push(<Message showIcon type={'warning'}>Các trường thông tin chưa hợp lệ</Message>);
+    }
+    setLoadingPassword(true);
+    let formData = new FormData();
+    formData.append('user_login', user_login);
+    formData.append('user_password', passwordUpdate.password);
+    formData.append('nonce', nonce_key);
+
+    const URL =  rootURL + 'user-info/reset-password';
+    const config = {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      }
+    }
+    
+    const response = await axios.post( URL, formData , config ).then((res) => {
+      return res.data
+    }).catch(function (error) {
+      toaster.push(<Message showIcon type={'warning'}>Lỗi không mong muốn</Message>);
+    });
+
+    if(response){
+      if(response.error){
+        toaster.push(<Message showIcon type={'warning'}>{response.message}</Message>);
+      } else {
+        toaster.push(<Message showIcon type={'success'}>{response.message}</Message>);
+      }
+    }
+    setLoadingPassword(false);
+    setPasswordUpdate({
+      password: '',
+      repassword: '',
+    })
+  }
+
   // Tinh
   const [dataTinh, setDataTinh] = useState([]);
-  const [tinh, setTinh] = useState('');
+  const [tinh, setTinh] = useState(formValue.billing_city);
   // Huyen
   const [dataHuyen, setDataHuyen] = useState([]);
-  const [huyen, setHuyen] = useState('');
+  const [huyen, setHuyen] = useState(formValue.billing_district);
   // Xa
   const [dataXa, setDataXa] = useState([]);
-  const [xa, setXa] = useState('');
-  const [gender, setGender] = useState('');
-  useEffect(() => {
-    console.log(gender)
-  }, [gender])
+  const [xa, setXa] = useState(formValue.billing_ward);
+
   // Update DataTinh OnLoad 
   useEffect(() => {
     const new_city = () => {
@@ -58,7 +117,7 @@ const UserEditor = ({user_infor, nonce}) => {
       setDataTinh(cities)
     }
     new_city();
-  }, [])
+  }, [true])
 
   // Update huyen 
   useEffect(() => {
@@ -108,9 +167,9 @@ const UserEditor = ({user_infor, nonce}) => {
   const formRef = useRef();
 
   const model = Schema.Model({
-    'text': Schema.Types.StringType().isRequired('Bạn chưa nhập tên của bạn.'),
-    'tel': Schema.Types.StringType().isRequired('Bạn chưa nhập số điện thoại.'),
-    'email': Schema.Types.StringType().isRequired('Bạn chưa nhập địa chỉ Email.'),
+    'firstname': Schema.Types.StringType().isRequired('Bạn chưa nhập họ của bạn.'),
+    'lastname': Schema.Types.StringType().isRequired('Bạn chưa nhập tên của bạn.'),
+    'phone': Schema.Types.StringType().isRequired('Bạn chưa nhập số điện thoại.'),
   });
 
   const HandleChangeCity = (value) => {
@@ -126,23 +185,27 @@ const UserEditor = ({user_infor, nonce}) => {
   }
 
   const handleUpdateUser = async () => {
-    setLoading(true);
 
+    if(!formRef.current.check()){
+        return toaster.push(<Message showIcon type={'warning'}>Các trường thông tin chưa hợp lệ</Message>);
+    }
+
+    setLoading(true);
     let formData = new FormData();
     formData.append('user_login', user_login);
     formData.append('nonce', nonce_key);
     formData.append('firstname', formValue.firstname);
     formData.append('lastname', formValue.lastname);
-    formData.append('birth', formValue.birth);
+    formData.append('birth', moment(formValue.birth).format('L'));
     formData.append('phone', formValue.phone);
     formData.append('email', formValue.email);
-    formData.append('gender', gender);
+    formData.append('gender', formValue.gender);
     formData.append('billing_city', tinh);
     formData.append('billing_district', huyen);
     formData.append('billing_ward', xa);
     formData.append('billing_address', formValue.billing_address);
 
-    const URL =  rootURL + 'user-infor/detail';
+    const URL =  rootURL + 'user-info/update';
     const config = {
       headers: {
         'Content-Type': 'multipart/form-data',
@@ -163,9 +226,7 @@ const UserEditor = ({user_infor, nonce}) => {
         toaster.push(<Message showIcon type={'success'}>{response.message}</Message>);
       }
     }
-    console.log(response)
   }
-
 
   return (
    <>
@@ -198,19 +259,19 @@ const UserEditor = ({user_infor, nonce}) => {
                             <Col xs={24} md={12}>
                               <Form.Group className={styles.x_form_group}>
                                 <Form.ControlLabel>Nhập họ của bạn</Form.ControlLabel>
-                                <Form.Control name="firstname" value={EventTarget.value} placeholder='Nhập họ của bạn...'/>
+                                <Form.Control name="firstname" value={formValue.firstname} placeholder='Nhập họ của bạn...'/>
                               </Form.Group>
                             </Col>
                             <Col xs={24} md={12}>
                               <Form.Group className={styles.x_form_group}>
                                 <Form.ControlLabel>Nhập tên của bạn</Form.ControlLabel>
-                                <Form.Control name="lastname" value={EventTarget.value} placeholder='Nhập tên của bạn...'/>
+                                <Form.Control name="lastname" value={formValue.lastname} placeholder='Nhập tên của bạn...'/>
                               </Form.Group>
                             </Col>
                             <Col xs={24} md={12}>
                               <Form.Group controlId="radioList" className={styles.x_form_group}>
                               <Form.ControlLabel>Giới tính</Form.ControlLabel>
-                                <RadioGroup name="gender" inline onChange={(e) => { setGender(e)} }>
+                                <RadioGroup name="gender" inline defaultValue={formValue.gender} onChange={(e) => { setFormValue({...formValue, gender: e})} }>
                                   <Radio value="male">Nam</Radio>
                                   <Radio value="female">Nữ</Radio>
                                   <Radio value="orther">Khác</Radio>
@@ -220,19 +281,19 @@ const UserEditor = ({user_infor, nonce}) => {
                             <Col xs={24} md={12}>
                               <Form.Group className={styles.x_form_group}>
                                   <Form.ControlLabel>Ngày sinh</Form.ControlLabel>
-                                  <DatePicker name="birth" style={{width: '100%'}}/>
+                                  <DatePicker name="birth" defaultValue={new Date(formValue.birth)} style={{width: '100%'}} onChange={(e) => {setFormValue({...formValue, birth: e})}}/>
                                 </Form.Group>
                             </Col>
                             <Col xs={24} md={12}>
                               <Form.Group className={styles.x_form_group}>
                                 <Form.ControlLabel>Số điện thoại</Form.ControlLabel>
-                                <Form.Control name="phone" value={EventTarget.value} placeholder='Nhập số điện thoại...'/>
+                                <Form.Control name="phone" defaultValue={formValue.phone} placeholder='Nhập số điện thoại...'/>
                               </Form.Group>
                             </Col>
                             <Col xs={24} md={12}>
                               <Form.Group className={styles.x_form_group}>
                                 <Form.ControlLabel>Địa chỉ Email</Form.ControlLabel>
-                                <Form.Control name="email" value={EventTarget.value} placeholder='Nhập địa chỉ Email...'/>
+                                <Form.Control disabled name="email" defaultValue={formValue.email} placeholder='Nhập địa chỉ Email...'/>
                               </Form.Group>
                             </Col>
                             <Col xs={24} md={12}>
@@ -243,6 +304,7 @@ const UserEditor = ({user_infor, nonce}) => {
                                   style={{width: '100%'}} 
                                   name="billing_city" 
                                   data={dataTinh} 
+                                  defaultValue={formValue.billing_city}
                                   placeholder='Nhập thành phố...' 
                                   onChange={HandleChangeCity}
                                 />
@@ -255,6 +317,7 @@ const UserEditor = ({user_infor, nonce}) => {
                                   locale={locales.Picker} 
                                   style={{width: '100%'}} 
                                   name="billing_district" 
+                                  defaultValue={formValue.billing_district}
                                   data={dataHuyen} 
                                   placeholder='Nhập quận/ Huyện...' 
                                   onChange={HandleChangeDistrict}
@@ -268,6 +331,7 @@ const UserEditor = ({user_infor, nonce}) => {
                                   locale={locales.Picker} 
                                   style={{width: '100%'}} 
                                   name="billing_ward" 
+                                  defaultValue={formValue.billing_ward}
                                   data={dataXa} 
                                   placeholder='Nhập xã/ Phường/ Thị trấn...' 
                                   onChange={HandleChangeWard}
@@ -277,14 +341,14 @@ const UserEditor = ({user_infor, nonce}) => {
                             <Col xs={24} md={12}>
                               <Form.Group className={styles.x_form_group}>
                                 <Form.ControlLabel>Địa chỉ chi tiết</Form.ControlLabel>
-                                <Form.Control name="billing_address" value={EventTarget.value} placeholder='Nhập địa chỉ...'/>
+                                <Form.Control name="billing_address" defaultValue={formValue.billing_address} placeholder='Nhập địa chỉ...'/>
                               </Form.Group>
                             </Col>
                           </Row>
                           <Form.Group className={styles.x_form_group}>
                               <Button type='submit' className={styles.x_update_button}>
                                 {
-                                  loading ? <Loader size={22}/> : <IoPaperPlane size={22}/>
+                                  loading ? <Loader size={16}/> : <IoPaperPlane size={16}/>
                                 }
                                 Chỉnh sửa thông tin
                               </Button>
@@ -295,23 +359,32 @@ const UserEditor = ({user_infor, nonce}) => {
                       <Panel header="thay đổi mật khẩu" bordered style={{background: 'white'}} className={'x_panel_account'}>
                         <Form
                             fluid
+                            ref={passwordRef}
+                            model={passWordsModel}
+                            onSubmit={HandleResetPassword}
+                            onChange={setPasswordUpdate}
+                            formValue={passwordUpdate}
                           >
                             <Row>
                               <Col xs={24} md={12}>
                                   <Form.Group className={styles.x_form_group}>
                                     <Form.ControlLabel>Nhập mật khẩu mới</Form.ControlLabel>
-                                    <Form.Control type="password" name="newpassword" value={EventTarget.value} placeholder='Nhập mật khẩu mới...'/>
+                                    <Form.Control type="password" name="password" value={passwordUpdate.password} placeholder='Nhập mật khẩu mới...'/>
                                   </Form.Group>
                                 </Col>
                                 <Col xs={24} md={12}>
                                   <Form.Group className={styles.x_form_group}>
                                     <Form.ControlLabel>Nhập lại mật khẩu mới</Form.ControlLabel>
-                                    <Form.Control type="password" name="renewpassword" value={EventTarget.value} placeholder='Nhập lại mật khẩu mới...'/>
+                                    <Form.Control type="password" name="repassword" value={passwordUpdate.repassword} placeholder='Nhập lại mật khẩu mới...'/>
                                   </Form.Group>
                               </Col>
                             </Row>
                             <Form.Group className={styles.x_form_group}>
-                                <Button type='submit' className={styles.x_change_password_button}>Đổi mật khẩu</Button>
+                                <Button type='submit' className={styles.x_change_password_button}>
+                                  {
+                                    loadingPassword ? <Loader size={16}/> : <IoPaperPlane size={16}/>
+                                  } Đổi mật khẩu
+                                </Button>
                             </Form.Group>
                         </Form>
                       </Panel>
@@ -342,7 +415,7 @@ export default UserEditor
 export async function getServerSideProps(context) {
   const session = await getSession(context);
   const token = session ? session.user.token.token : '';
-  const URL =  rootURL + 'user-infor/detail';
+  const URL =  rootURL + 'user-info/detail';
   const config = {
     headers: {
       'Authorization':  `Bearer ${token}`
@@ -356,6 +429,6 @@ export async function getServerSideProps(context) {
   // Pass data to the page via props
   return { props: { 
       nonce: response ? response.nonce : '',
-      user_infor: response ? response.user.data : '',
+      user_info: response ? response.user : '',
   }}
 }

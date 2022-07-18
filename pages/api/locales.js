@@ -2,8 +2,8 @@ import { Calendar } from 'rsuite';
 
 export const locales = {
   common: {
-    loading: 'Loading...',
-    emptyMessage: 'No data found'
+    loading: 'Đang tải...',
+    emptyMessage: 'Không có dữ liệu nào'
   },
   Plaintext: {
     unfilled: 'Unfilled',
@@ -11,14 +11,14 @@ export const locales = {
     notUploaded: 'Not uploaded'
   },
   Pagination: {
-    more: 'More',
-    prev: 'Previous',
-    next: 'Next',
-    first: 'First',
-    last: 'Last',
-    limit: '{0} / page',
-    total: 'Total Rows: {0}',
-    skip: 'Go to{0}'
+    more: 'Nhiều hơn',
+    prev: 'Trước',
+    next: 'Kế tiếp',
+    first: 'Trang đầu',
+    last: 'Trang cuối',
+    limit: '{0} / trang',
+    total: 'Tổng cộng: {0}',
+    skip: 'Đi đến {0}'
   },
   Calendar,
   DatePicker: {

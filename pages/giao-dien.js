@@ -137,18 +137,18 @@ const Themes_GDMau = ({gd, nganh, danhmuc, max_pages}) => {
 
     const Paged = [
         {
-            label: '9 giao diện',
-            value: 9,
-            role: "Master"
-        },
-        {
-            label: '16 giao diện',
-            value: 16,
+            label: '12 giao diện',
+            value: 12,
             role: "Master"
         },
         {
             label: '24 giao diện',
             value: 24,
+            role: "Master"
+        },
+        {
+            label: '36 giao diện',
+            value: 36,
             role: "Master"
         }
     ];

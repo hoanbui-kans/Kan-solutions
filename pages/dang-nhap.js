@@ -118,7 +118,7 @@ const Login = () => {
                 ref={formRef}
               >
                 <Form.Group>
-                  <Form.ControlLabel>Tên đăng nhập</Form.ControlLabel>
+                  <Form.ControlLabel>Tên đăng nhập hoặc địa chỉ Email</Form.ControlLabel>
                   <Form.Control name='username' type='text' value={formValues.username} onChange={(e) => setFormValue({...formValues, username:e})} placeholder='Nhập tên tài khoản'></Form.Control>
                 </Form.Group>
                 <Form.Group>

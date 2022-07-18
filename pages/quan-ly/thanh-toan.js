@@ -32,7 +32,8 @@ import CreditCardPlusIcon from '@rsuite/icons/CreditCardPlus';
 import { IoPaperPlane } from "react-icons/io5"
 import { RateUser } from '../api/services';
 import Router from 'next/router'
-
+import { Separator } from '../giao-dien/[slug]';
+import { locales } from '../api/locales';
 import 'moment/locale/vi'
 
 const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON
@@ -89,9 +90,11 @@ const PaymentInfo = ({posts}) => {
                 set_loading_create(false);
                 setFormvalue(false);
                 setOpen(false);
-                Router.push(response.payment_link)
+                if(response.payment_link){
+                    Router.push(response.payment_link)
+                }
+               console.log(response)
             }
-
         }
     }
     // Hiển thị
@@ -144,78 +147,38 @@ const PaymentInfo = ({posts}) => {
     }, [checkedKeys])
 
     const NameCell = ({ rowData, dataKey, ...props }) => {
-        const site_lever = RateUser.filter((value) => {
-            if(value.lever == rowData[dataKey]){
-                return value;
-            }
-        })
         return (
           <Table.Cell {...props}>
             {/* <Whisper placement="top" speaker={speaker}>
               <a>{rowData[dataKey].toLocaleString()}</a>
             </Whisper> */}
             <span className={styles.x_badge}>
-                {site_lever[0].name}
+                { rowData[dataKey].services ? rowData[dataKey].services : 'Chưa có thông tin'}
             </span>
           </Table.Cell>
-        );
-      };
-      
-      const ImageCell = ({ rowData, dataKey, ...props }) => {
-        const url = rowData[dataKey] && rowData[dataKey] != 'empty' ? rowData[dataKey] : '/icons/favicon.png';
-        return (
-            <Table.Cell {...props} style={{ padding: 0 }}>
-                <div
-                    style={{
-                        width: 40,
-                        height: 40,
-                        background: '#f5f5f5',
-                        borderRadius: 20,
-                        marginTop: 2,
-                        overflow: 'hidden',
-                        display: 'inline-block'
-                    }}
-                >
-                    <Image src={url} width={40} height={40} alt={rowData.blogname}/>
-                </div>
-            </Table.Cell>
-      )
-      };
-      
-      const CheckCell = ({ rowData, onChange, checkedKeys, dataKey, ...props }) => (
-        <Table.Cell {...props} style={{ padding: 0 }}>
-          <div style={{ lineHeight: '46px' }}>
-            <Checkbox
-              value={rowData[dataKey]}
-              inline
-              onChange={onChange}
-              checked={checkedKeys.some(item => item === rowData[dataKey])}
-            />
-          </div>
-        </Table.Cell>
-      );
-      
-      const renderMenu = ({ onClose, left, top, className }, ref) => {
-        const handleSelect = eventKey => {
-            onClose();
-        };
-        return (
-          <Popover ref={ref} className={className} style={{ left, top }} full>
-            <Dropdown.Menu onSelect={handleSelect}>
-              <Dropdown.Item eventKey={3}>Download As...</Dropdown.Item>
-              <Dropdown.Item eventKey={4}>Export PDF</Dropdown.Item>
-              <Dropdown.Item eventKey={5}>Export HTML</Dropdown.Item>
-              <Dropdown.Item eventKey={6}>Settings</Dropdown.Item>
-              <Dropdown.Item eventKey={7}>About</Dropdown.Item>
-            </Dropdown.Menu>
-          </Popover>
         );
       };
       
       const ActionCell = ({ rowData, dataKey, ...props }) => {
         return (
           <Table.Cell {...props} className="link-group">
-            <IconButton appearance="subtle" onClick={() => {handleOpen(rowData)}} icon={<CreditCardPlusIcon />} />
+            {
+               rowData.request.billing_status ?
+               rowData.request.billing_status.value != 'success' ? 
+               <Button appearance="primary" onClick={() => {handleOpen(rowData)}}>
+                    <CreditCardPlusIcon style={{marginRight: 5}}/>
+                    Thanh toán
+                </Button>
+                : 
+                <Button color="green" appearance="primary">
+                    <CreditCardPlusIcon style={{marginRight: 5}}/>
+                    Đã thanh toán
+                </Button>
+                :<Button disabled color="red" appearance="primary" onClick={() => {handleOpen(rowData)}}>
+                    <CreditCardPlusIcon style={{marginRight: 5}}/>
+                    Tạm đóng
+                </Button>
+            }
           </Table.Cell>
         );
       };
@@ -259,18 +222,18 @@ const PaymentInfo = ({posts}) => {
                                 <Table.Cell dataKey="counter" />
                             </Table.Column>
 
-                            <Table.Column width={200}>
+                            <Table.Column width={200} fixed resizable>
                                 <Table.HeaderCell>Tên hóa đơn</Table.HeaderCell>
                                 <Table.Cell>{(rowData) => rowData.post_title }</Table.Cell>
                             </Table.Column>
 
                             <Table.Column width={160}>
                                 <Table.HeaderCell>Gói dịch vụ</Table.HeaderCell>
-                                <Table.Cell>{(rowData) =>  {return false}}</Table.Cell>
+                                <NameCell dataKey="request" />
                             </Table.Column>
 
                             <Table.Column width={200}>
-                                <Table.HeaderCell>Ngày đăng ký</Table.HeaderCell>
+                                <Table.HeaderCell>Ngày yêu cầu</Table.HeaderCell>
                                 <Table.Cell>{(rowData) => {  
                                     const DateRegisted = moment(rowData.post_date).format('LL');
                                     return DateRegisted
@@ -280,15 +243,15 @@ const PaymentInfo = ({posts}) => {
                             
                             <Table.Column width={200}>
                                 <Table.HeaderCell>Tình trạng thanh toán</Table.HeaderCell>
-                                <Table.Cell>{(rowData) =>  rowData.request.billing_status ? rowData.request.billing_status.label : ''}</Table.Cell>
+                                <Table.Cell>{(rowData) =>  rowData.request.billing_status ? rowData.request.billing_status.label : 'Chưa có thông tin'}</Table.Cell>
                             </Table.Column>
 
                             <Table.Column width={200}>
                                 <Table.HeaderCell>Số tiền thanh toán</Table.HeaderCell>
-                                <Table.Cell>{(rowData) =>  rowData.request.price_bill}</Table.Cell>
+                                <Table.Cell>{(rowData) => rowData.request.price_bill ? Separator(rowData.request.price_bill) + 'đ' : 'Chưa có thông tin'}</Table.Cell>
                             </Table.Column>
 
-                            <Table.Column width={120} fixed="right">
+                            <Table.Column width={160} fixed="right" align='center'>
                                 <Table.HeaderCell>Hành động</Table.HeaderCell>
                                 <ActionCell dataKey="id" />
                             </Table.Column>
@@ -300,6 +263,7 @@ const PaymentInfo = ({posts}) => {
                                 first
                                 last
                                 ellipsis
+                                locale={locales.Pagination}
                                 boundaryLinks
                                 maxButtons={5}
                                 size="xs"
@@ -455,7 +419,7 @@ export async function getServerSideProps (context) {
   const URL =  ROOT_URL + 'mservice/get-order-info';
   let response = '';
 
-  response = await axios.get(URL, false, config)
+  response = await axios.post(URL, false, config)
     .then(function (response) {
         return response.data
     })

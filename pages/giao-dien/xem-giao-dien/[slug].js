@@ -57,10 +57,9 @@ const ThemeViews = ({data, link_theme}) => {
       <Navbar className={styles.x_nav_flex}>
           <Col xs={8}>
               <Navbar.Brand className={styles.x_preview_brand} as={'div'}>
-                <Link href="/giao-dien-mau"> 
+                <Link href="/giao-dien"> 
                     <a className={styles.x_centered}>
                       <IoHome size={18}/>
-                      Giao diện mẫu
                     </a>
                 </Link>
               </Navbar.Brand>

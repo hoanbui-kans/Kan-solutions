@@ -14,7 +14,7 @@ import {
     Message,
     Table,
     Checkbox,
-    Whisper ,
+    SelectPicker ,
     IconButton ,
     Divider  ,
     Popover,
@@ -31,23 +31,97 @@ import CloseIcon from '@rsuite/icons/Close';
 import CreditCardPlusIcon from '@rsuite/icons/CreditCardPlus';
 import { IoPaperPlane } from "react-icons/io5"
 import { RateUser } from '../../api/services';
+import { locales } from '../../api/locales';
 
 const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON
 
 const Create_Order = ({list_blog}) => {
     // Modal tạo dữ liệu 
     const [blogInfor, setblogInfor] = useState(list_blog);
+    const [Site_data, set_Site_data] = useState([]);
     const [open, setOpen] = useState(false);  
     const [openUpdate, setOpenUpdate] = useState(false); 
     const [openDelete, setOpenDelete] = useState(false); 
     const [transactionUpdate, setTransactionUpdate] = useState(false);
+
+    // Selecpicker email
+    let selectDataEmail = [{
+        "label": 'Chọn tất cả địa chỉ Email',
+        "value": 'all',
+        "role": "Master"
+    }];
     
+    let newDataEmail = [];
+
+    // Title picker
+    let selectDataTitle = [{
+        "label": 'Chọn tất cả trang web',
+        "value": 'all',
+        "role": "Master"
+    }];
+    let newDataTitle = [];
+
+    list_blog.map((val) => {
+        newDataTitle.push({
+            name: val.blogname ? val.blogname : 'Chưa có tiêu đề' + ' - ' + val.blog_id,
+            id: val.blog_id,
+        });
+        if(val.list_email.length > 0){
+            val.list_email.map((val) => {
+                if(!newDataEmail.includes(val)){
+                    newDataEmail.push(val)
+                }
+            })
+        }
+    })
+
+    newDataTitle.map((val) => {
+        selectDataTitle.push({
+            "label": val.name,
+            "value": val.id,
+            "role": "Master"
+        })
+    })
+
+    newDataEmail.map((val) => {
+        selectDataEmail.push({
+            "label": val,
+            "value": val,
+            "role": "Master"
+        })
+    })
+
+    const handleSelectBlogName = (blog_id) => {
+        if(blog_id == 'all' || blog_id == null){
+            set_Site_data(blogInfor);
+            return;
+        }
+        const selectedSite = blogInfor.filter((val) => {
+            if(val.blog_id == blog_id){
+                return val;
+            }
+        });
+        set_Site_data(selectedSite);
+    }
+
+    const handleSelectBlogEmail = (email) => {
+        if(email == 'all' || email == null){
+            set_Site_data(blogInfor);
+            return;
+        }
+        const selectedSite = blogInfor.filter((val) => {
+            if(val.list_email.includes(email)){
+                return val;
+            }
+        });
+        set_Site_data(selectedSite);
+    }
+
     const handleCloseDelete = () => setOpenDelete(false);
     const handleCloseUpdate = () => setOpenUpdate(false);
     const handleClose = () => setOpen(false);
 
     const handleOpenUpdate = (site_info) => {
-        console.log(site_info);
         setTransactionUpdate(site_info);
         setFormvalue({
             title: 'Gia hạn website ' + site_info.blogname,
@@ -74,7 +148,7 @@ const Create_Order = ({list_blog}) => {
     };
 
     const handleOpen = (site_info) => {
-        const site_lever = RateUser.filter((value) => {
+        const site_lever = RateUser.filter((value, i) => {
             if(value.lever == site_info.lever){
                 return value;
             }
@@ -274,7 +348,13 @@ const Create_Order = ({list_blog}) => {
         setLimit(dataKey);
     };
 
-    const [Site_data, set_Site_data] = useState([])
+    useEffect(() => {
+        console.log(checkedKeys);
+    }, [checkedKeys])
+
+    useEffect(() => {
+        set_Site_data(blogInfor);
+    }, [blogInfor])
 
     useEffect(() => {
         const newData = blogInfor.filter((v, i) => {
@@ -305,10 +385,6 @@ const Create_Order = ({list_blog}) => {
         const keys = checked ? [...checkedKeys, value] : checkedKeys.filter(item => item !== value);
         setCheckedKeys(keys);
     };
-
-    useEffect(() => {
-        console.log(checkedKeys);
-    }, [checkedKeys])
 
     const NameCell = ({ rowData, dataKey, ...props }) => {
         const site_lever = RateUser.filter((value) => {
@@ -421,17 +497,27 @@ const Create_Order = ({list_blog}) => {
                     </div>
                 </Col>
                 <Col xs={24} md={!expanded ? 22 : 18}>
-                <Table 
-                    rowHeight={60} 
-                    height={640} 
-                    data={Site_data} 
-                    id="table" 
-                    loading={loading}
-                    bordered
-                    cellBordered
-                    affixHeader
-                    affixHorizontalScrollbar
-                >
+                    <Row style={{marginBottom: 15}}>
+                        <Col xs={24} md={12}>
+                            <label style={{marginBottom: 5, display: 'block'}}>Tìm kiếm tên giao diện</label>
+                            <SelectPicker onChange={handleSelectBlogName} data={selectDataTitle} style={{ width: '100%' }} />
+                        </Col>
+                        <Col xs={24} md={12}>
+                            <label style={{marginBottom: 5, display: 'block'}}>Tìm kiếm theo địa chỉ email</label>
+                            <SelectPicker onChange={handleSelectBlogEmail} data={selectDataEmail} style={{ width: '100%' }} />
+                        </Col>
+                    </Row>
+                    <Table 
+                        rowHeight={60} 
+                        height={640} 
+                        data={Site_data} 
+                        id="table" 
+                        loading={loading}
+                        bordered
+                        cellBordered
+                        affixHeader
+                        affixHorizontalScrollbar
+                        >
                             <Table.Column width={50} align="center">
                                 <Table.HeaderCell style={{ padding: 0 }}>
                                     <div style={{ lineHeight: '40px' }}>
@@ -515,6 +601,7 @@ const Create_Order = ({list_blog}) => {
                                 last
                                 ellipsis
                                 boundaryLinks
+                                locale={locales.Pagination}
                                 maxButtons={5}
                                 size="xs"
                                 layout={['total', '-', 'limit', '|', 'pager', 'skip']}
