@@ -1,10 +1,10 @@
 :root{
-  --x-text-primary: rgb(56, 56, 56) !important;
+  --x-text-primary: rgb(62 62 62) !important;
   --x-text-secondary: rgb(56, 56, 56) !important;;
   --x-title-color: rgb(56, 56, 56) !important;
   --x-title-size: 34px;
   --x-title-line-height: 1.25;
-
+  --x-heading-color: #282C4B;
   --x-title-box-size: 22px;
 
   --x-banner-content-size: 16px;
@@ -75,6 +75,9 @@ body {
   color: var(--x-text-primary) !important;
   letter-spacing: .075px;
   overflow-x: hidden;
+}
+h1, h2, h3, h4{
+  color: var(--x-heading-color);
 }
 a {
   color: #3e9def;

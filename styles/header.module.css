@@ -22,6 +22,7 @@
     width: 100%;
     padding: 15px 0px;
     position: relative;
+    align-items: center;
     z-index: 5;
     transition: var(--x-transition);
 }
@@ -156,6 +157,23 @@
     display: flex;
     flex-wrap: wrap;
     padding: 35px 0px;
+}
+.x_login_button{
+    background: #2d88e2;
+    color: white;
+    border-radius: 35px;
+    display: inline-block;
+    margin-right: 5px;
+    font-weight: bold;
+}
+.x_login_register{
+    border:2px solid #2d88e2;
+    color: #2d88e2;
+    background-color: white;
+    border-radius: 35px;
+    display: inline-block;
+    margin-right: 5px;
+    font-weight: bold;
 }
 .x_header_section{
     position: relative;
@@ -674,3 +692,4 @@ transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }
             max-width: 90%;
         }
       }
+

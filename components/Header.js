@@ -328,7 +328,7 @@ const Header = () => {
                                 </Link>
                             </div>
                         </Col>
-                        <Col xs={18} className={styles.x_destop_display}>
+                        <Col xs={16} className={styles.x_destop_display}>
                             <Nav>
                                 <div className={styles.mainMenuContainer}>
                                     <ul>
@@ -361,19 +361,24 @@ const Header = () => {
                                             <Link href={'/bai-viet'}>Blog</Link>
                                         </li>
                                         <li>
-                                            <Link href={'/tuyen-dung'}>Tuyển dụng</Link>
+                                            <Link href={'/lien-he'}>Liên hệ</Link>
                                         </li>
                                         <li>
-                                            <Link href={'/lien-he'}>Liên hệ</Link>
+                                            <Button className={styles.x_non_background_button} onClick={() => { setSearchForm(true); setOpen(false) }}>
+                                                <SearchIcon width={22} height={22}/> 
+                                            </Button>
                                         </li>
                                     </ul>
                                 </div>
                             </Nav>
                         </Col>
-                        <Col xs={12} md={12} lg={3}>
+                        <Col xs={12} md={12} lg={5}>
                             <div className={styles.x_header_button_list}>
-                                <Button className={styles.x_non_background_button} onClick={() => { setSearchForm(true); setOpen(false) }}>
-                                    <SearchIcon width={22} height={22}/> 
+                                <Button className={styles.x_login_button}>
+                                   Đăng nhập
+                                </Button>
+                                <Button className={styles.x_login_register}>
+                                   Đăng ký
                                 </Button>
                                 <div className={styles.x_mobile_display}>
                                     <button className={

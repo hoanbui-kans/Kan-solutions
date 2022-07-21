@@ -1,0 +1,149 @@
+.x_hero_banner{
+  position: relative;
+  padding: 55px 0px;
+  overflow: hidden;
+  background: url('../public/home/bg-hero.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.x_banner_deccoration{
+  position: relative;
+}
+.x_happy_business{
+  display: block;
+}
+.x_decoration_rating{
+  position: absolute;
+  bottom: 0px;
+  right: 20px;
+  width: 200px;
+}
+.x_hero_title{
+  margin-bottom: 22px;
+  color: var(--x-heading-color);
+}
+.x_wrapper_text{
+  color: #5a3dfa;
+  border-bottom: 2px solid #f3f3f3;
+  display: inline-block;;
+  font-size: 90%;
+}
+.x_hero_banner_feature{
+  list-style: none;
+  padding: 0px;
+  font-size: 18px;
+  line-height: 32px;
+}
+
+.x_focused_button{
+  padding: 14px 25px;
+  background-color: rgba(255, 105, 141, 1);
+  color: white;
+  border-radius: 35px;
+  font-weight: bold;
+  margin-right: 15px;
+  display: inline-flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.x_nonFocused_button {
+  padding: 14px 25px;
+  background: unset;
+  color: rgb(48, 48, 48);
+  border-radius: 35px;
+  display: inline-flex;
+  align-items: center;
+  column-gap: 10px;
+  border: 2px solid rgb(206, 206, 206)
+}
+
+.x_our_service {
+  padding: 55px 0px
+}
+.x_main_box_secondary{
+  color: #F17216;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.x_main_box_primary{
+  color: var(--x-heading-color);
+}
+
+.x_main_box_description{
+  font-size: 18px;
+}
+
+.x_secondary_box_title {
+  color: var(--x-heading-color);
+  font-size: 18px;
+  line-height: 28px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.x_features_box .x_main_box_primary{
+  color: rgb(236, 236, 236);
+}
+.x_secondary_box{
+  padding: 24px 32px;
+  border-radius: 20px;
+  color: var(--x-black-color);
+  transition: var(--x-transition);
+  margin-bottom: var(--x-bottom-margin);
+  box-shadow: var(--x-neumorphic-dropdown);
+}
+
+.x_secondary_box_description{
+  color: rgba(116, 117, 130, 1);
+}
+
+.x_vector{
+  float: right;
+}
+
+.x_features{
+  padding: 55px 0px;
+  padding-top: 85px;
+  background: url('../public/home/bg-hero.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #282C4B;
+}
+.x_features_icon_list{
+  list-style: none;
+  padding: 0px;
+  margin-top: 10px;
+  margin-bottom: 22px;
+}
+
+.x_features_icon_list li p{
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  column-gap: 6px;
+  color: rgb(236, 236, 236);
+}
+
+.x_themes_section {
+  padding: 55px 0px
+}
+
+.x_themes_banner{
+  padding: 50px 40px;
+  transition: var(--x-transition);
+  margin-bottom: var(--x-bottom-margin);
+  text-align: right;
+}
+
+.x_badge_theme{
+  display: block;
+  color: #3082ed;
+  margin-top: 5px;
+}
+
+.x_themes_content{
+  margin-bottom: 55px;
+  text-align: center;
+}
