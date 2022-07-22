@@ -1,18 +1,36 @@
-import { useState } from 'react'
-import Head from 'next/head'
-import Image from 'next/image'
-import ArowBackIcon from '@rsuite/icons/ArowBack'
-import EmailFillIcon from '@rsuite/icons/EmailFill'
-import styles from '../styles/HomePage.module.css'
-import Link from 'next/link' 
+import React, { useEffect, useState } from 'react'
+import { Container, Row, Col, Button, Modal, Rate, Divider } from 'rsuite';
+import TypeAnimation from 'react-type-animation';
+import styles from '../styles/HomePage2.module.css';
+import Image from 'next/image';
+import aos from 'aos';
+import { IoCheckmarkCircle, IoPersonCircle, IoCall, IoCheckmarkOutline } from "react-icons/io5";
+import axios from 'axios';
+import { GD_Box } from './giao-dien';
+import { Navigation, Pagination, EffectFade } from 'swiper';
+import { BlogStyleTwo } from '../components/blog-templates/BlogContent';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Testionimal } from './api/services';
+import { FormLienHe } from './lien-he';
+import Link from 'next/link';
+import { HomePageSeo } from './api/HeaderSeo'
 import HTMLReactParser from 'html-react-parser'
 import ServicesSubmitForm from '../components/handleSubmitServices'
-import { Container, Row, Col, Button, Modal } from 'rsuite'
-import { features, ServicesBox } from './api/services'
-import { HomePageSeo } from './api/HeaderSeo'
+import Head from 'next/head';
+// import Swiper styles
+import "swiper/css";
+import "swiper/css/effect-fade";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "aos/dist/aos.css";
 
-// Images 
-export default function Home() {
+const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
+
+const HomeTwo = ({gd, blog}) => {
+
+  const [themes, setThemes] = useState(gd);
+  const [posts, setPosts] = useState(blog);
+
   const [open, setOpen] = useState(false);  
   const [service, setService] = useState(''); 
  
@@ -21,213 +39,366 @@ export default function Home() {
      setOpen(true)
   };
   const handleClose = () => setOpen(false);
+
+  useEffect(() => {
+    aos.init({
+      offset: 100,
+      duration: 800,
+      easing: 'ease-in-out-sine',
+      delay: 0,
+      mirror: false
+    });
+  }, [])
+
   return (
-    <>
-    <div className={styles.container}>
-      <Head>
-        { HTMLReactParser(HomePageSeo.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
-      </Head>
-      <main className={styles.main}>
-        <div className={styles.x_section}>
-            <Container>
-              <Row>
-                <Col xs={24} md={10} className={styles.x_order_2}>
-                  <h1 className={styles.title}>
-                    Đưa công việc 
-                    kinh doanh 
-                    lên internet 
-                  </h1>
-                  <p className={styles.description}>
-                    Thông qua dịch vụ thiết kế website và kho dữ liệu mẫu nội dung số để mở rộng kinh doanh trên internet hiệu quả.
-                  </p>
-                  <Button 
-                    className={styles.x_black_button}
-                    onClick={() => { handleOpen('Đăng ký thiết kế website - Trang chủ') }}
-                  >
-                    <EmailFillIcon width={34} heigh={34}/>
-                     ĐĂNG KÝ TƯ VẤN
-                  </Button>
-                </Col>
-                <Col xs={24} md={14} className={styles.x_order_1}>
-                  <div className={styles.x_decoration_images}>
-                    <div className={styles.x_decoation_1}>
-                      <Image alt='layout' src="/layout/decoration-01.svg" width={250} height={236}/>
-                    </div>
-                    <div className={styles.x_decoation_0}>
-                      <Image alt='layout' src="/layout/decoration-0-01.svg" width={390} height={411}/>
-                    </div>
-                    <Image alt='layout' src="/layout/layoutFrames.png" width={436} height={517}/>
+   <>
+    <Head>
+      { HTMLReactParser(HomePageSeo.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
+    </Head>
+    <section className={styles.x_hero_banner}>
+        <Container className={styles.x_container}>
+            <Row>
+              <Col xs={24} md={12}>
+                  <div className={styles.x_hero_banner_content}>
+                      <h1 className={styles.x_hero_title} data-aos="fade-right">Giải pháp quản lý xây dựng <br />
+                          <TypeAnimation
+                            style={{display: 'block'}}
+                            cursor={true}
+                            sequence={[
+                              'thương hiệu kinh doanh',
+                              4000,
+                              'cửa hàng trực tuyến',
+                              4000,
+                              'chiến lược tiếp thị',
+                              4000,
+                            ]}
+                            className={styles.x_wrapper_text}
+                            wrapper="span"
+                            repeat={Infinity}
+                          />
+                      </h1>
+                      <ul className={styles.x_hero_banner_feature}>
+                            <li data-aos="fade-right"> <p><IoCheckmarkOutline size={16}/> Xây dựng kênh bán hàng chủ động, đầy đủ tính năng</p></li>
+                            <li data-aos="fade-left"> <p><IoCheckmarkOutline size={16}/> Kênh tiếp thị đa dạng</p></li>
+                            <li data-aos="fade-right"> <p><IoCheckmarkOutline size={16}/> Quản lý xuất nhập kho, chăm sóc khách hàng</p></li>
+                            <li data-aos="fade-left"> <p><IoCheckmarkOutline size={16}/> Chủ động quản lý dòng tiền</p></li>
+                      </ul>
+                      <div className={styles.x_call_out_hero}>
+                          <Link href="/dang-ky">
+                            <a>
+                              <Button data-aos="fade-up" className={styles.x_focused_button}>
+                                  <IoPersonCircle size={22}/>  ĐĂNG KÝ MIỄN PHÍ
+                              </Button>
+                            </a>
+                          </Link>
+                          <Button 
+                          data-aos="fade-up" 
+                          onClick={() => { handleOpen('Đăng ký thiết kế website - Trang chủ') }}
+                          className={styles.x_nonFocused_button}>
+                              <IoCall size={22}/>TƯ VẤN
+                          </Button> 
+                      </div>
                   </div>
+              </Col>
+              <Col xs={24} md={12}>
+                    <div className={styles.x_banner_deccoration}>
+                          <span data-aos="fade-left" className={styles.x_happy_business}>
+                              <Image 
+                                src="/home/hero-banner.webp" 
+                                alt="Quản lý web bán hàng hiệu quả" 
+                                width={413} 
+                                height={402}
+                                priority
+                              />
+                          </span>
+                    </div>
+              </Col>
+            </Row>
+        </Container>
+    </section>
+    <section className={styles.x_partner}>
+        <Container>
+          <Row>
+            <Col xs={12} md={6}>
+              <div className={styles.x_partner_content} data-aos="fade-left">
+                    <div className={styles.x_partner_icon}>
+                       <Image src="/home/WordPress.svg" width={200} height={80} alt="wordpress"/>
+                    </div>
+              </div>
+            </Col>
+            <Col xs={12} md={6}>
+              <div className={styles.x_partner_content} data-aos="fade-up">
+                    <div className={styles.x_partner_icon}>
+                       <Image src="/home/wpmu-dev.svg" width={200} height={80} alt="wpmu dev"/>
+                    </div>
+              </div>
+            </Col>
+            <Col xs={12} md={6}>
+              <div className={styles.x_partner_content} data-aos="fade-down">
+                    <div className={styles.x_partner_icon}>
+                       <Image src="/home/woocommerce.svg" width={200} height={80} alt="wordpress"/>
+                    </div>
+              </div>
+            </Col>
+            <Col xs={12} md={6}>
+              <div className={styles.x_partner_content} data-aos="fade-right">
+                    <div className={styles.x_partner_icon}>
+                       <Image src="/home/onepay.svg" width={160} height={80} alt="onepay"/>
+                    </div>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+    </section>
+    <section className={styles.x_our_service}>
+        <Container>
+          <Row>
+            <Col xs={24} md={8}>
+                  <div className={styles.x_main_box}>
+                      <h3 className={styles.x_main_box_secondary} data-aos="fade-down">DỊCH VỤ</h3>
+                      <h2 className={styles.x_main_box_primary} data-aos="fade-up">Giải pháp hàng đầu</h2>
+                      <p className={styles.x_main_box_description} data-aos="fade-left">Chúng tôi sẽ cung cấp những giải pháp xây dựng Website thương hiệu để giúp bạn kinh doanh thành công trên nhiều lĩnh vực</p>
+                      <span className={styles.x_vector} data-aos="fade-right">
+                        <Image src={'/home/Vector.svg'} width={80} height={130} alt=""/>
+                      </span>
+                  </div>
+            </Col>
+            <Col xs={24} md={16}>
+               <Row>
+                  <Col xs={24} md={8}>
+                      <div className={styles.x_secondary_box} data-aos="fade-down">
+                          <span className={styles.x_secondary_box_icon}>
+                            <Image src="/home/shop.svg" alt="Website bán hàng" width={40} height={40} />
+                          </span>
+                          <h2 className={styles.x_secondary_box_title}>Website bán hàng</h2>
+                          <p className={styles.x_secondary_box_description}>Giải pháp bán hàng online với website tích hợp đầy đủ tính năng bán hàng mạnh mẽ</p>
+                      </div>
+                </Col>
+                <Col xs={24} md={8}>
+                      <div className={styles.x_secondary_box} data-aos="fade-up">
+                          <span className={styles.x_secondary_box_icon}>
+                            <Image src="/home/cards.svg" alt="Quản lý thanh toán" width={40} height={40} />
+                          </span>
+                          <h2 className={styles.x_secondary_box_title}>Quản lý thanh toán</h2>
+                          <p className={styles.x_secondary_box_description}>Kết nối, quản lý thanh toán tự động, vận chuyển bảo mật cao phù hợp với thị trường Việt Nam</p>
+                      </div>
+                </Col>
+                <Col xs={24} md={8}>
+                      <div className={styles.x_secondary_box} data-aos="fade-down">
+                          <span className={styles.x_secondary_box_icon}>
+                            <Image src="/home/favorite-chart.svg" alt="Marketing online" width={40} height={40} />
+                          </span>
+                          <h2 className={styles.x_secondary_box_title}>Marketing online</h2>
+                          <p className={styles.x_secondary_box_description}>Hỗ trợ mạnh mẽ liên kết mạng xã hội, quảng cáo sản phẩm, quản lý kho hàng hiệu quả</p>
+                      </div>
+                </Col>
+              </Row>          
+            </Col>
+          </Row>
+        </Container>
+    </section>
+    <section className={styles.x_features}>
+          <Container>
+              <Row className="x_flex_center">
+                <Col xs={24} md={12}>
+                  <Image src="/home/features.svg" width={500} height={400} alt=""/>
+                </Col>
+                <Col xs={24} md={12}>
+                   <div className={styles.x_features_box}>
+                      <h3 className={styles.x_main_box_secondary} data-aos="fade-down">TẠI SAO CHỌN CHÚNG TÔI</h3>
+                      <h2 className={styles.x_main_box_primary} data-aos="fade-up">Chúng tôi mang lại cho bạn trải nghiệm tốt nhất</h2>
+                      <ul className={styles.x_features_icon_list}>
+                        <li data-aos="fade-left">
+                            <p><IoCheckmarkCircle color="#2ecc71" size={22}/>Website với nhiều tính năng, tốc độ mạnh mẽ</p>
+                        </li>
+                        <li data-aos="fade-right">
+                            <p><IoCheckmarkCircle color="#2ecc71" size={22}/>Quản lý dễ dàng, xây dựng nội dung tùy biến theo nhiều chủ đề</p>
+                        </li>
+                        <li data-aos="fade-left">
+                            <p><IoCheckmarkCircle color="#2ecc71" size={22}/>Chi phí hợp lý, đạt hiệu quả ngay lần đầu sử dụng tiết kiệm thời gian</p>
+                        </li>
+                        <li data-aos="fade-left">
+                            <p><IoCheckmarkCircle color="#2ecc71" size={22}/>Di chuyển, nâng cấp, tạo website riêng nhanh chóng</p>
+                        </li>
+                      </ul>
+                      <Link href="/dang-ky">
+                            <a>
+                              <Button data-aos="fade-up" className={styles.x_focused_button} style={{marginTop: '15px', marginRight: '0px'}}>
+                                  ĐĂNG KÝ NGAY
+                              </Button>
+                            </a>
+                      </Link>
+                    </div>         
                 </Col>
               </Row>
-            </Container>
-        </div>
-        <div className='rs-grid-container'>
-          <hr className={styles.x_seperator}/>
-        </div>
-        <div className={styles.x_section}>
-            <Container>
-              <Row>
-                <Col xs={24}>
-                  <h3 className={styles.x_title}>Công cụ Digital Content</h3>
-                </Col>
-                {
-                  ServicesBox.map((val , index) => {
+          </Container>                  
+    </section>
+    <section className={styles.x_themes_section}>
+        <Container>
+          <Row>
+            <Col xs={24}>
+                  <div className={styles.x_themes_content}>
+                    <h3 className={styles.x_main_box_secondary} data-aos="fade-down">GIAO DIỆN MẪU</h3>
+                    <h2 className={styles.x_main_box_primary} data-aos="fade-up">50+ Mẫu giao diện</h2>
+                  </div>
+            </Col>
+              {
+                  themes.map((val) => {
                       return(
-                        <Col xs={24} md={12} lg={8} key={index}>
-                            <Link href={val.link}>
-                              <a>
-                                <div className={styles.x_services_box}>
-                                    <span className={styles.x_service_icon}>
-                                      <Image alt='layout' src={val.image} width={60} height={60}/></span>
-                                    <h4 className={styles.x_services_box_title}>{val.title}</h4>
-                                    <p className={styles.x_services_box_content}>{val.content}</p>
-                                </div>
-                              </a>
-                            </Link> 
+                        <Col xs={24} md={12} lg={8} key={val.ID} data-aos="fade-up">
+                            <GD_Box data={val} price={false}/>
                         </Col>
                       )
                   })
-                }
-              </Row>
-          </Container>
-        </div>
-
-        <div className={styles.x_section}>
-            <Container>
-              <Row>
-                <Col xs={24}>
-                  <h3 className={styles.x_title_no_margin}>Sản phẩm & Dịch vụ cho bạn</h3>
-                  <div style={{maxWidth: '640px', margin: 'auto'}}>
-                  <p style={{textAlign: 'center', fontSize: '14px', margin: '1.25rem 0 2.75rem 0rem'}} className={styles.description}>Chúng tôi cung cấp các sản phẩm mẫu hỗ trợ các nội dung số để bạn có thể đưa thông tin doanh nghiệp và sản phẩm của mình lên mạng Internet một cách nhanh chóng và dễ dàng. Điều này giúp bạn gia tăng hiệu quả hoạt động với chi phí thấp nhất</p>
-                  </div>
-                </Col>
-                <Col xs={24} md={12}>
-                    <div className={styles.x_creeper_box + ' ' + styles.x_creeper_box_1}>
-                       <div className={styles.x_creeper_box_section}>
-                          <h4 className={styles.x_creeper_title}> Thiết kế website</h4>
-                          <p className={styles.x_creeper_content}>Dịch vụ tạo website nhanh theo mẫu, thiết kế website cho doanh nghiệp quản trị nội dung bằng website có sẵn, tối ưu chi phí thiết lập ban đầu.</p>
-                          <Link href="/dich-vu/thiet-ke-website-tron-goi-cho-doanh-nghiep">
+              }
+               <Col xs={24} md={12} lg={8}>
+                   <div className={styles.x_themes_banner}>
+                      <div className={styles.x_themes_banner_content}>
+                        <h3 className={styles.x_main_box_secondary} data-aos="fade-down">DÙNG THỬ MIỄN PHÍ</h3>
+                        <h2 className={styles.x_main_box_primary} data-aos="fade-up">Xây dựng website miễn phí 3 tháng</h2>
+                        <Link href="/dang-ky">
                             <a>
-                              <Button className={styles.x_creeper_button}>
-                                <ArowBackIcon color={"white"} className={styles.x_rotate_180deg} width={24} height={24}/>
+                              <Button data-aos="fade-up" className={styles.x_focused_button} style={{marginTop: '15px', marginRight: '0px'}}>
+                                  ĐĂNG KÝ NGAY
                               </Button>
                             </a>
-                          </Link>
-                        </div>
-                        <div className={styles.x_creeper_image_1}>
-                          <Image alt='layout' src={'/layout/design_1.svg'} width={563} height={413}/>
-                        </div>
-                    </div>
-                    <div className={styles.x_creeper_box + ' '  + styles.x_creeper_box_3}>
-                        <div className={styles.x_creeper_box_section}>
-                          <h4 className={styles.x_creeper_title}>Quản trị website</h4>
-                          <p className={styles.x_creeper_content}>Chúng tôi cung cấp các sản phẩm mẫu hỗ trợ các nội dung số để bạn có thể đưa thông tin doanh nghiệp và sản phẩm của mình lên mạng Internet một cách nhanh chóng và dễ dàng</p>
-                          <Link href="/dich-vu/giai-phap-quan-tri-noi-dung-website-cho-doanh-nghiep">
-                            <a>
-                              <Button className={styles.x_creeper_button}>
-                                  <ArowBackIcon color={"white"} className={styles.x_rotate_180deg} width={24} height={24}/>
-                              </Button>
-                            </a>
-                          </Link>
-                        </div>
-                        <div className={styles.x_creeper_image_3}>
-                          <Image alt='layout' src={'/layout/design_3-01.svg'} width={600} height={631}/>
-                        </div>
-                    </div>
+                        </Link>
+                      </div>
+                   </div>
                 </Col>
-                <Col xs={24} md={12}>
-                    <div className={styles.x_creeper_box + ' ' + styles.x_creeper_box_2}>
-                        <div className={styles.x_creeper_box_section}>
-                          <h4 className={styles.x_creeper_title}>Online Marketing</h4>
-                          <p className={styles.x_creeper_content}>Hỗ trợ xây dựng các chiến dịch quảng cáo, quảng bá thương hiệu, nghiên cứu, phân tích dữ liệu từ khóa cạnh tranh, tư vấn hỗ trợ.</p>
-                          <Link href="/dich-vu/giai-phap-marketing-online-cho-doanh-nghiep">
-                            <a>
-                                <Button className={styles.x_creeper_button}>
-                                  <ArowBackIcon color={"white"} className={styles.x_rotate_180deg} width={24} height={24}/>
-                                </Button>
-                            </a>
-                          </Link>
-                        </div>
-                        <div className={styles.x_creeper_image_4}>
-                          <Image alt='layout' src={'/layout/design_4-01.svg'} width={600} height={631}/>
-                        </div>
-                    </div>
-                    <div className={styles.x_creeper_box + ' ' + styles.x_creeper_box_4}>
-                        <div className={styles.x_creeper_box_section}>
-                            <h4 className={styles.x_creeper_title}>CRM cho doanh nghiệp</h4>
-                            <p className={styles.x_creeper_content}>Chúng tôi cung cấp các giải pháp CRM trọn gói cho doanh nghiệp, xây dựng hệ thống quản trị dữ liệu doanh nghiệp, quản lý hệ thống bán hàng cho doanh nghiệp vừa và nhỏ.</p>
-                            <Link href="/dich-vu/dich-vu-trien-khai-crm-cho-doanh-nghiep">
-                              <a>
-                                <Button className={styles.x_creeper_button}>
-                                  <ArowBackIcon color={"white"} className={styles.x_rotate_180deg} width={24} height={24}/>
-                                </Button>
-                              </a>
-                           </Link>
-                        </div>
-                        <div className={styles.x_creeper_image_2}>
-                          <Image alt='layout' src={'/layout/design_2-01.svg'} width={600} height={631}/>
-                        </div>
-                    </div>
-                </Col>
-              </Row>
-            </Container>
-        </div>
-
-        <div className={styles.x_section}>
-            <Container>
-              <Row>
-                <Col xs={24}>
-                  <h3 className={styles.x_title_no_margin}>Tại sao chọn chúng tôi?</h3>
-                  <div style={{maxWidth: '640px', margin: 'auto'}}>
-                  <p style={{textAlign: 'center', fontSize: '14px', margin: '1.25rem 0 2.75rem 0rem'}} className={styles.description}>Sản phẩm & dịch vụ của chúng tôi hướng đến sự tiện dụng và dễ dàng để doanh nghiệp tiếp cận khách hàng trên internet mà vẫn đảm bảo chất lượng và hiệu quả</p>
-                  </div>
-                </Col>
+          </Row>
+        </Container>
+    </section>
+    <section className={styles.x_testionimal}>
+      <Container>
+          <Row>
+              <Col xs={24}>
+                <div className={styles.x_themes_testionimal}>
+                  <h3 className={styles.x_main_box_secondary} data-aos="fade-down">TESTIMONIAL</h3>
+                  <h2 className={styles.x_main_box_primary} data-aos="fade-left">Nhận xét từ khách hàng</h2>
+                </div>
+              </Col>
+              <Swiper
+                spaceBetween={30}
+                effect={"fade"}
+                navigation={true}
+                pagination={{
+                  clickable: true,
+                }}
+                modules={[EffectFade, Navigation, Pagination]}
+                className="mySwiper"
+                data-aos="fade-up"
+              >
                 {
-                  features.map((val, index) => {
-                    return(
-                      <Col xs={24} md={8} key={index}>
-                        <div className={styles.x_features_box}>
-                              <span className={styles.x_features_box_icon}><Image alt='layout' src={val.image} width={60} height={60} /></span>
-                              <h4 className={styles.x_features_box_title}>{val.title}</h4>
-                              <p className={styles.x_features_box_content}>{val.content}</p>
+                  Testionimal.map((val, index) => {
+                    return (
+                      <SwiperSlide key={index}>
+                        <div className={styles.x_testionimal_container}>
+                            <Row className={'x_flex_center'}>
+                              <Col xs={24} md={12}>
+                              <div className={styles.x_mockup}>
+                                <div className={styles.x_testionimal_thumbnail}>
+                                    <Image src={val.image} alt={val.title} width={554} height={346} />
+                                </div>
+                              </div>
+                              </Col>
+                              <Col xs={24} md={12}>
+                                <div className={styles.x_testionimal_content}>
+                                    <span className={styles.x_qoute}>
+                                        <Image src='/home/qoute.svg' width={34} height={34} alt=""/>
+                                      </span>
+                                    <Rate readOnly size="xs" defaultValue={val.rating} allowHalf />
+                                    <h3 className={styles.x_testionimal_title}>{val.title}</h3>
+                                    <p className={styles.x_testionimal_description}>{val.content}</p>
+                                </div>
+                              </Col>
+                            </Row>
                         </div>
-                    </Col>
+                      </SwiperSlide>
                     )
                   })
                 }
-              </Row>
-            </Container>
-        </div>
-
-        <div className={styles.x_section}>
-          <span className={styles.lBox_1}>
-            <Image alt='layout' src="/layout/l-box-01.svg" width={400} height={329}/>
-          </span>
-            <Container>
-              <Row>
-                <Col xs={24} md={16}>
-                  <h3 className={styles.x_title_no_margin_left}>Dịch vụ thiết kế website chuyên nghiệp, cấu trúc chuẩn SEO với nhiều tiện ích</h3>
-                    <div style={{maxWidth: '640px', margin: 'auto'}}>
+              </Swiper>
+          </Row>
+      </Container>
+    </section>
+    <section className={styles.x_form_contact_section}>
+      <Container>
+          <Row>
+              <Col xs={24} md={12}>
+                  <div data-aos="fade-left">
+                    <Image src="/home/form.webp" width={800} height={860} alt="Liên hệ Kanbox"/>
                   </div>
-                  <p className={styles.description}>Đáp ứng tối đa trải nghiệm của người dùng và tạo cảm giác thích thú và sáng tạo trong quá trình duyệt web
-Website có cấu trúc code HTML thân thiện chuẩn SEO. Dễ cập nhật thông tin lên các thẻ hình ảnh và Công cụ đo lường và kiểm soát nội dung hiệu quả.</p>
+              </Col>
+              <Col xs={24} md={12}>
+                <div className={styles.x_themes_testionimal}>
+                  <h3 className={styles.x_main_box_secondary} data-aos="fade-down">LIÊN HỆ CHÚNG TÔI</h3>
+                  <h2 className={styles.x_main_box_primary} data-aos="fade-up">Giúp chúng tôi cải thiện <br/>chất lượng dịch vụ</h2>
+                </div>
+                <div className={styles.x_form_contact} data-aos="fade-right">
+                  <FormLienHe />
+                </div>
+              </Col>
+          </Row>
+      </Container>
+    </section>
+    <Divider />
+    <section className={styles.x_blog_home}>
+      <Container>
+          <Row>
+              <Col xs={24}>
+                <div className={styles.x_blog_home_content}>
+                  <h3 className={styles.x_main_box_secondary} data-aos="fade-down">TIN TỨC MỚI</h3>
+                  <h2 className={styles.x_main_box_primary} data-aos="fade-up">Blog Kan Solution</h2>
+                </div>
+                <div className={styles.x_form_contact} data-aos="fade-right">
+                <Swiper
+                  spaceBetween={30}
+                  navigation={true}
+                  slidesPerView={1}
+                  pagination={{
+                    clickable: true,
+                  }}
+                  breakpoints={{
+                    552: {
+                      slidesPerView: 1,
+                    },
+                    768: {
+                      slidesPerView: 2,
+                    },
+                    992: {
+                      slidesPerView: 3,
+                    },
+                  }}
+                  modules={[EffectFade, Navigation]}
+                  className="postsSwiper"
+                  data-aos="fade-up"
+                >
+                  {
+                    posts.map((val, index) => {
+                      return (
+                        <SwiperSlide key={index}>
+                          <BlogStyleTwo data={val}/>
+                        </SwiperSlide>
+                      )
+                    })
+                  }
+                </Swiper>
+                </div>
+                <Col xs={24}>
+                    <Link href="/bai-viet">
+                          <a style={{textAlign: 'center', display: 'block'}}>
+                            <Button data-aos="fade-up" className={styles.x_focused_button} style={{marginTop: '15px', marginRight: '0px'}}>
+                                XEM TẤT CẢ
+                            </Button>
+                          </a>
+                    </Link>
                 </Col>
-                <Col xs={24} md={12}>
-                  <Link href={'/giao-dien'}>
-                  <a>
-                    <Button className={styles.x_black_button}>
-                      XEM GIAO DIỆN MẪU
-                    </Button>
-                  </a>
-                  </Link>
-                </Col>
-              </Row>
-            </Container>
-        </div>
-      </main>
-    </div>
-     <Modal open={open} onClose={handleClose} backdrop="static">
+              </Col>
+          </Row>
+      </Container>
+    </section>
+      <Modal open={open} onClose={handleClose} backdrop="static">
         <Modal.Header>
           <Modal.Title>Đăng ký dịch vụ thiết kế Website</Modal.Title>
         </Modal.Header>
@@ -237,4 +408,17 @@ Website có cấu trúc code HTML thân thiện chuẩn SEO. Dễ cập nhật t
       </Modal>
     </>
   )
+}
+
+export default HomeTwo
+
+export async function getServerSideProps(context) {
+
+  const response_blog = await axios.get(rootURL + 'tin-tuc/bai-viet?perpage=10').then((resonse) => resonse.data);
+  const response_gd = await axios.get(rootURL + 'giao-dien/giao-dien-mau?perpage=5').then((resonse) => resonse.data);
+  // Pass data to the page via props
+  return { props: { 
+    gd: response_gd.posts,
+    blog: response_blog.posts
+ }}
 }

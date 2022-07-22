@@ -18,6 +18,13 @@ import { GD_Box } from '../giao-dien'
 import ThemesSubmitForm from '../../components/handleSubmitTheme'
 import CommentsUI from '../../components/comment'
 import { QA } from '../api/Qa'
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from 'swiper';
+// import Swiper styles
+import "swiper/css";
+import "swiper/css/effect-fade";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON;
 
@@ -324,13 +331,13 @@ export const SingleTheme = ({data, link_theme}) => {
                         <a href={link_theme}>
                             <Button className={styles.x_create_button}>
                               <CopyIcon width={16} height={16}/>
-                                Tạo website
+                                Dùng thử miễn phí
                             </Button> 
                         </a> :  
                         <Link href={'/dang-nhap'}>
                             <Button className={styles.x_create_button}>
                               <CopyIcon width={16} height={16}/>
-                                Tạo website
+                                Dùng thử miễn phí
                             </Button> 
                         </Link>
                       }
@@ -356,6 +363,7 @@ export const SingleTheme = ({data, link_theme}) => {
                             <Price data={lastPrice}/>
                           </div> : ''
                       }
+                        <h5 style={{color: 'rgb(91 91 91)', fontSize: '14px', textAlign: 'center', marginBottom: 5}}>Kết hợp với dịch vụ</h5>
                         <CheckboxGroup name="checkboxList" onChange={(e) => {setListService(e)}}>
                           {
                             data.services.map((val, index) => {
@@ -386,7 +394,7 @@ export const SingleTheme = ({data, link_theme}) => {
                               <NenTang data={data.nen_tang} />
                           </div>
                         </> : ''
-                      }
+                      } 
                   <h2 className={styles.x_content_title}>Thông tin hỗ trợ</h2>
                    <FormTuVan title={'Đăng kỹ hỗ trợ giao diện ' + data.post_title}/>
                   </div>
@@ -396,15 +404,37 @@ export const SingleTheme = ({data, link_theme}) => {
                   data.related.length != 0  ? 
                   <Col xs={24}>
                     <h3 className={styles.x_related_gd_mau}>Giao diện mẫu tương tự</h3>
-                    {
-                      data.related.map((val) => {
-                        return(
-                            <Col xs={24} md={8} key={val.ID}>
-                                <GD_Box data={val} price={true}/>
-                            </Col>
-                          )
-                        })
-                    }
+                      <Swiper
+                          spaceBetween={30}
+                          navigation={true}
+                          slidesPerView={1}
+                          pagination={{
+                            clickable: true,
+                          }}
+                          breakpoints={{
+                            552: {
+                              slidesPerView: 1,
+                            },
+                            768: {
+                              slidesPerView: 2,
+                            },
+                            992: {
+                              slidesPerView: 3,
+                            },
+                          }}
+                          modules={[Navigation, Pagination]}
+                          className="layoutSwiper"
+                        >
+                        {
+                          data.related.map((val) => {
+                            return(
+                                <SwiperSlide key={val.ID}>
+                                    <GD_Box data={val} price={true}/>
+                                </SwiperSlide>
+                              )
+                            })
+                        }
+                      </Swiper>
                   </Col> : ''
                 }
               </Row>

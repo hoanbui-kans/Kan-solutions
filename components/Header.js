@@ -184,7 +184,8 @@ const Header = () => {
     const springBackground = useSpringRef()
 
     const BackGroundMenu = useSpring({
-        opacity: open ? 1 : 0,
+        opacity: 1,
+        height: open ? 485 : 0,
         y: open ? 0 : -280,
         ref: springBackground,
         config: config.slow,
@@ -298,18 +299,12 @@ const Header = () => {
                                         contact@kanbox.vn
                                     </a>
                                 </li>
+                                <li><Link href={'/tuyen-dung'}>Tuyển dụng</Link></li>
                                 {
                                     session ? 
-                                    <>
-                                        <li><Link href={'/quan-ly/tai-khoan'}><a className={styles.x_account_name}>{session.user.token.user_display_name}</a></Link></li>
-                                        <li><Link href={'/quan-ly/dang-xuat'}>Đăng xuất</Link></li>
-                                      </>
-                                    : <>
-                                        <li><Link href={'/dang-nhap'}>Đăng nhập</Link></li>
-                                        <li><Link href={'/dang-ky'}>Đăng ký</Link></li>
-                                    </>
+                                        <li><Link href={'/quan-ly/tai-khoan'}><a>{session.user.token.user_display_name}</a></Link></li>
+                                    : ''
                                 }
-                                
                             </ul>
                         </Col>
                     </Row>
@@ -319,7 +314,7 @@ const Header = () => {
           <div className={styles.x_header}>
                 <Container> 
                     <Row className={styles.headerMenu}>
-                        <Col xs={12} md={12} lg={3}>
+                        <Col xs={8} md={12} lg={3}>
                             <div className={styles.x_brand}>
                                 <Link href={'/'}>
                                     <a>
@@ -372,14 +367,43 @@ const Header = () => {
                                 </div>
                             </Nav>
                         </Col>
-                        <Col xs={12} md={12} lg={5}>
+                        <Col xs={16} md={12} lg={5}>
                             <div className={styles.x_header_button_list}>
-                                <Button className={styles.x_login_button}>
-                                   Đăng nhập
-                                </Button>
-                                <Button className={styles.x_login_register}>
-                                   Đăng ký
-                                </Button>
+                            {
+                                    session ? 
+                                        <>
+                                        <Link href="/quan-ly/tai-khoan">
+                                            <a> 
+                                                <Button className={styles.x_login_button}>
+                                                    Quản lý
+                                                </Button>
+                                            </a>
+                                        </Link>
+                                        <Link href="/quan-ly/dang-xuat">
+                                            <a> 
+                                                <Button className={styles.x_login_register}>
+                                                    Đăng xuất
+                                                </Button>
+                                            </a>
+                                        </Link>
+                                      </>
+                                    : <>
+                                    <Link href="/dang-nhap/">
+                                            <a> 
+                                                <Button className={styles.x_login_button}>
+                                                    Đăng nhập
+                                                </Button>
+                                            </a>
+                                        </Link>
+                                        <Link href="/dang-nhap/">
+                                            <a> 
+                                                <Button className={styles.x_login_register}>
+                                                    Đăng ký
+                                                </Button>
+                                            </a>
+                                        </Link>
+                                    </>
+                                }
                                 <div className={styles.x_mobile_display}>
                                     <button className={
                                         showingMobile ? 
@@ -442,11 +466,6 @@ const Header = () => {
             <div 
                 className={styles.x_dropdown_x3_menu}>
                     <div className={styles.x_search_modal}>
-                        <div className={styles.x_close_button}>
-                            <Button onClick={() => { setSearchForm(false) }}> 
-                                <CloseIcon color='#3d3d3d' width={22} height={22}/>  
-                            </Button>
-                        </div>
                         <div className={styles.x_search_section}>
                             <Form className={!focusSearch ? styles.x_searchHeader : styles.x_searchHeader_devide}>
                                 <div className={styles.x_searchController}>
@@ -462,6 +481,9 @@ const Header = () => {
                                     onFocus={() => { setFocus(true) }}
                                     onBlur={() => { !keySearch ? setFocus(false) : setFocus(true) }}
                                     className={styles.x_searchForm} value={keySearch} onChange={(e) => { setKeySearch(e.target.value)}} placeholder={ loadingSearch ? 'Đang tải...' : 'Tìm kiếm thông tin...' } />
+                                    <Button className={styles.x_close_button} onClick={() => { setSearchForm(false) }}> 
+                                        <CloseIcon color='#3d3d3d' width={22} height={22}/>  
+                                    </Button>
                                 </div>
                             </Form>
                             <div className={  loadingSearch ? styles.x_search_result  + ' ' + styles.x_search_result_loading : styles.x_search_result }>

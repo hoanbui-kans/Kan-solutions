@@ -314,8 +314,9 @@ export const MarketingTable = [
 export const HostingTable = [
     {
         name: 'Cơ bản',
-        price: '250.000đ',
+        price: '3.500.000đ',
         checklist: [
+            'Miễn phí tên miền: 0',
             'Server đặt tại: Việt Nam',
             'Dung lượng: 1 GB',
             'Băng thông: Không giới hạn',
@@ -329,32 +330,35 @@ export const HostingTable = [
         ]
     },{
         name: 'Kinh doanh',
-        price: '350.000đ',
+        price: '4.200.000đ',
         checklist: [
+            'Miễn phí 1 tên miền (.com, .net)',
             'Server đặt tại: Việt Nam',
             'Dung lượng: 2 GB',
             'Băng thông: Không giới hạn',
             'Email tự động: Có',
-            'Quản lý CRM: Có',
-            'Quản lý MobileApp: Cập nhật',
-            'Tùy chỉnh giao diện: 1 yêu cầu',
-            'Hỗ trợ cài đặt tính năng: 1 yêu cầu',
+            'Quản lý CRM: Không',
+            'Quản lý MobileApp: Không',
+            'Tùy chỉnh giao diện: 1 lần chỉnh sửa / Năm',
+            'Hỗ trợ cài đặt tính năng: 1 module yêu cầu / Năm',
             'Backup dữ liệu: Hàng tuần',
             'Giấy phép theme, plugin: Có',
             'Park domain: Không giới hạn',
         ]
     },{
         name: 'Nâng cao',
-        price: '500.000đ',
+        price: '5.500.000đ',
         checklist: [
+            'Miễn phí 1 tên miền (.com, .net, .vn)',
             'Server đặt tại: Việt Nam',
             'Dung lượng: 3 GB',
             'Băng thông: Không giới hạn',
             'Email tự động: Có',
             'Quản lý CRM: Có',
-            'Quản lý MobileApp: Cập nhật',
-            'Tùy chỉnh giao diện: 3 yêu cầu',
-            'Hỗ trợ cài đặt tính năng: 3 yêu cầu',
+            'Quản lý MobileApp: Có',
+            'Hỗ trợ tài khoản ads Tiktok',
+            'Tùy chỉnh giao diện: 3 lần chỉnh sửa/ Năm',
+            'Hỗ trợ cài đặt tính năng: 3 module yêu cầu/ Năm',
             'Backup dữ liệu: Hàng tuần',
             'Giấy phép theme, plugin: Có',
             'Park domain: Không giới hạn',
@@ -433,4 +437,29 @@ export const RateUser = [
         name: 'Kinh doanh',
         price: 500000
     }
+]
+
+export const Testionimal = [
+    {
+        title: 'Website bán hàng Mỹ nghệ việt',
+        rating: 5,
+        content: 'Với lĩnh vực kinh doanh đồ sản phẩm mỹ nghệ cao cấp, chúng tôi tin tưởng sử dụng dịch vụ thiết kế website trọn gói và quản trị của Kan Solution vì chi phí hợp lý, làm việc chuyên nghiệp',
+        image: '/testionimals/my-nghe-viet.webp',
+    },{
+        title: 'Kiến trúc xây dựng Thành Chung',
+        rating: 4.5,
+        content: 'Dịch vụ thiết kế Website công ty trọn gói của KanSolution khá tốt, dễ sử dụng, đầy đủ các chức năng về quản lý bài viết, khách hàng, quản lý từ xa bằng App',
+        image: '/testionimals/kien-truc-thanh-chung.webp',
+    },{
+        title: 'Nội thất cao cấp Plaza',
+        rating: 5,
+        content: 'Quảng bá thương hiệu là ưu tiên hàng đầu trong chiến lược kinh doanh, chúng tôi sử dụng dịch vụ thiết kế website để tạo gian bán hàng sản phẩm nội thất.',
+        image: '/testionimals/noi-that-plaza.webp',
+    },{
+        title: 'Xây dựng Hòa Thuận',
+        rating: 5,
+        content: 'Bắt từ con số không, chúng tôi đã xây dựng được công ty chuyên thi công công trình nhà ở tại TP. HCM, kênh chăm sóc khách hàng của Kan Solution khá hiệu quả và chuyên nghiệp',
+        image: '/testionimals/xay-dung-hoa-thuan.webp',
+    },
+
 ]

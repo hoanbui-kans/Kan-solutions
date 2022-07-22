@@ -9,10 +9,17 @@ import { HostingTable } from '../api/services'
 import { IoCheckmarkOutline, IoShapesSharp } from "react-icons/io5";
 import { useState } from 'react'
 import ServicesSubmitForm from '../../components/handleSubmitServices'
-import Carousel from "react-multi-carousel";
 import axios from 'axios'
 import { GD_Box } from '../giao-dien'
-import "react-multi-carousel/lib/styles.css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from 'swiper'; 
+// import Swiper styles
+import "swiper/css";
+import "swiper/css/effect-fade";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 const CreateWordpress = ({gd}) => {
@@ -26,27 +33,6 @@ const CreateWordpress = ({gd}) => {
  };
 
  const handleClose = () => setOpen(false);
-
- const responsive = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 3
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 1
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1
-    }
-  };
-
   return (
     <>
     <Head>
@@ -139,7 +125,7 @@ const CreateWordpress = ({gd}) => {
                                                 <div className={styles.x_hosting}>
                                                     <div className={styles.x_hosting_header}>
                                                         <h3>{val.name}</h3>
-                                                        <p>{val.price} /Tháng</p>
+                                                        <p>{val.price} /Năm</p>
                                                         <Button className={styles.x_hosting_button} onClick={() => { handleOpen('Dịch vụ hosting ' + val.name) }}>Đăng ký</Button>
                                                     </div>
                                                     <div className={styles.x_hosting_features}>
@@ -179,17 +165,37 @@ const CreateWordpress = ({gd}) => {
                             <h2 className={styles.x_primary_title}>Giao diện chuẩn - đa dạng - đầy đủ tính năng</h2>
                         </div>
                         <div className={styles.x_hosting_table_container}>
-                            <Carousel responsive={responsive}>
+                            <Swiper
+                                spaceBetween={30}
+                                navigation={true}
+                                slidesPerView={1}
+                                pagination={{
+                                    clickable: true,
+                                }}
+                                breakpoints={{
+                                    552: {
+                                    slidesPerView: 1,
+                                    },
+                                    768: {
+                                    slidesPerView: 2,
+                                    },
+                                    992: {
+                                    slidesPerView: 3,
+                                    },
+                                }}
+                                modules={[Navigation, Pagination]}
+                                className="layoutSwiper"
+                                >
                                 {
-                                    gd.map((val) => {
-                                        return (
-                                            <div style={{padding: '10px'}} key={val.ID}>
-                                                <GD_Box price={false} data={val} />
-                                            </div>
-                                        )
+                                gd.map((val) => {
+                                    return(
+                                        <SwiperSlide key={val.ID}>
+                                            <GD_Box data={val} price={true}/>
+                                        </SwiperSlide>
+                                    )
                                     })
                                 }
-                            </Carousel>
+                            </Swiper>
                         </div>
                     </Col>
                 </Row>

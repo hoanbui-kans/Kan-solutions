@@ -10,9 +10,8 @@ import HTMLReactParser from 'html-react-parser'
 import Head from 'next/head'
 const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON
 
-const Contact = () => {
-  
-  const contact_json = `${ROOT_URL}contact-form-7/v1/contact-forms/1701/feedback`;
+export const FormLienHe = () => {
+const contact_json = `${ROOT_URL}contact-form-7/v1/contact-forms/1701/feedback`;
   const [loading, setLoading] = useState(false);
   const [formValue, setFormvalue] = useState({
     text: '',
@@ -64,8 +63,6 @@ const Contact = () => {
           }, 1000);
         })
       }
-      
-      console.log(type)
       toaster.push(<Message showIcon type={type}>{response.message}</Message>);
     } else {
       toaster.push(<Message type='error'>Đã có lỗi xảy ra, xin vui lòng thử lại</Message>);
@@ -78,6 +75,42 @@ const Contact = () => {
       textarea: '',
     })
   }
+  return(
+    <Form 
+        fluid 
+        ref={formRef} 
+        onSubmit={handleSubmit}
+        model={model} 
+        onChange={setFormvalue}
+        formValue={formValue}
+      >
+          <Form.Group>
+            <Form.ControlLabel>Tên của bạn</Form.ControlLabel>
+            <Form.Control name='text' type='text' value={EventTarget.value} placeholder={'Nhập tên của bạn'}/>
+          </Form.Group>
+          <Form.Group>
+            <Form.ControlLabel>Số điện thoại</Form.ControlLabel>
+            <Form.Control name='tel' type='text' value={EventTarget.value} placeholder={'Nhập số điện thoại'}/>
+          </Form.Group>
+          <Form.Group>
+            <Form.ControlLabel>Địa chỉ Email</Form.ControlLabel>
+            <Form.Control name='email'  type='email' value={EventTarget.value} placeholder={'Nhập địa chỉ Email'}/>
+          </Form.Group>
+          <Form.Group>
+            <Form.ControlLabel>Nhập nội dung của bạn</Form.ControlLabel>
+            <Input name='textarea' as='textarea' value={formValue.textarea} placeholder={'Nhập nội dung cần tư vấn'} rows={8} onChange={(e) => setFormvalue( {...formValue, textarea: e})} />
+          </Form.Group>
+          <Form.Group>
+            <Button type='submit' className={styles.x_contact_form_button}>
+              {
+                loading ? <Loader size={22}/> : <IoPaperPlane size={22}/>
+              }
+              Gửi thông tin</Button>
+          </Form.Group>
+    </Form>
+  )
+}
+const Contact = () => {
 
   return (
     <>
@@ -165,38 +198,7 @@ const Contact = () => {
             </Col>
             <Col xs={24} md={12}>
               <div className={styles.x_form_wrapper}>
-                <Form 
-                  fluid 
-                  ref={formRef} 
-                  onSubmit={handleSubmit}
-                  model={model} 
-                  onChange={setFormvalue}
-                  formValue={formValue}
-                >
-                    <Form.Group>
-                      <Form.ControlLabel>Tên của bạn</Form.ControlLabel>
-                      <Form.Control name='text' type='text' value={EventTarget.value} placeholder={'Nhập tên của bạn'}/>
-                    </Form.Group>
-                    <Form.Group>
-                      <Form.ControlLabel>Số điện thoại</Form.ControlLabel>
-                      <Form.Control name='tel' type='text' value={EventTarget.value} placeholder={'Nhập số điện thoại'}/>
-                    </Form.Group>
-                    <Form.Group>
-                      <Form.ControlLabel>Địa chỉ Email</Form.ControlLabel>
-                      <Form.Control name='email'  type='email' value={EventTarget.value} placeholder={'Nhập địa chỉ Email'}/>
-                    </Form.Group>
-                    <Form.Group>
-                      <Form.ControlLabel>Nhập nội dung của bạn</Form.ControlLabel>
-                      <Input name='textarea' as='textarea' value={formValue.textarea} placeholder={'Nhập nội dung cần tư vấn'} rows={8} onChange={(e) => setFormvalue( {...formValue, textarea: e})} />
-                    </Form.Group>
-                    <Form.Group>
-                      <Button type='submit' className={styles.x_contact_form_button}>
-                        {
-                          loading ? <Loader size={22}/> : <IoPaperPlane size={22}/>
-                        }
-                        Gửi thông tin</Button>
-                    </Form.Group>
-                  </Form>
+                <FormLienHe />
               </div>
             </Col>
           </Row>

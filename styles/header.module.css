@@ -125,10 +125,11 @@
 }
 .x_close_button{
     position: absolute;
+    right: 5px;
+    top: 5px;
+    background: white !important;
     z-index: 2;
-    right: 10px;
-    top: 10px;
-  }
+}
 .x_search_modal{
     position: fixed;
     width: 100%;
@@ -138,7 +139,7 @@
     left: 0;
     bottom: 0;
     padding-top: 100px;
-    background: rgba(235, 235, 235, 0.85);
+    background: rgb(0 0 0 / 50%);
 }
 .x_search_section{
     display: flex;
@@ -159,7 +160,9 @@
     padding: 35px 0px;
 }
 .x_login_button{
-    background: #2d88e2;
+    background-color: rgba(255, 105, 141, 1);
+    box-shadow: 5px 9px 28px -15px #ff698d;
+    border: 2px solid #ff698d;
     color: white;
     border-radius: 35px;
     display: inline-block;
@@ -227,13 +230,13 @@
 }
 
 .mainMenuContainer ul li a {
-    font-weight: 400;
     font-size: 15px;
-    color: #000;
-    margin-right: 6px;
+    color: #282c4b;
+    margin-right: 5px;
     display: block;
     transition: all .3s ease-in-out;
     line-height: 36px;
+    font-weight: bold;
 }
 
 .mainMenuContainer ul li a:hover {
@@ -275,7 +278,7 @@
     will-change: transform, opacity;
   }
   .x_smaller_text{
-      font-size: 12px;
+      font-size: 13px;
   }
   .x_search_footer{
       padding-top: .5rem
@@ -301,15 +304,15 @@
   .x_iconImage{
      margin-right: 10px;
   }
-  .x_dropdown_inner_shadow {
+.x_dropdown_inner_shadow {
     position: absolute;
     left: 0;
     right: 0;
     bottom: 100%;
     z-index: 10;
     height: 200px;
-    background-image: linear-gradient(180deg,rgb(36 50 66 / 34%),transparent 30%);
-    box-shadow: 0 3px 185px 0 rgb(0 0 0 / 8%);
+    background-image: linear-gradient(180deg,rgb(36 50 66 / 15%),transparent 30%);
+    box-shadow: 35px 35px 50px 0 rgb(214 214 214 / 18%);
     pointer-events: none;
 }
 .x_menu_title{
@@ -317,15 +320,14 @@
     margin-bottom: 20px;
     padding-bottom: 8px;
     border-bottom: 1px solid #e0e6e8;
-    color: #9f9f9f;
+    color: #282c4b;
     font-size: 13px;
     letter-spacing: 3px;
     text-transform: uppercase;
+    font-weight: bold;
 }
 .x_account_name{
     max-width: 65px;
-    border-left: 1px solid #499cef;
-    border-right: 1px solid #499cef;
     padding: 0px 5px;
     font-weight: bold;
     text-transform: uppercase;
@@ -381,8 +383,8 @@
 .x_top_header{
     background: var( --x-primary-color );
     color: var(--x-white-color);
-    font-size: 85%;
-    padding: .25rem 0rem;
+    font-size: 12px !important;
+    padding: 0.25rem 0rem;
     position: relative;
     z-index: 99;
 }
@@ -441,6 +443,7 @@
     position: relative;
     z-index: 2;
     background-color: var(--x-white-color);
+    border-bottom: 1px solid #ededed;
 }
 
 .x_loading_container{
@@ -521,6 +524,7 @@
     background-color: transparent;
     border: 0;
     margin: 0;
+    margin-left: 10px;
     margin-bottom: -7px;
     overflow: visible; }
     .hamburger:hover {
@@ -646,8 +650,9 @@ transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }
           padding: .25rem 0rem;
       }
       .x_mobile_menu_list > li > a{
-         text-transform: uppercase;
-         font-weight: bold;
+        color: #282c4b;
+        font-size: 16px;
+        font-weight: bold;
      }
       .x_mobile_menu_list > li{
             padding: .55rem 0rem;

@@ -1,6 +1,6 @@
 .x_hero_banner{
   position: relative;
-  padding: 55px 0px;
+  padding: 95px 0px;
   overflow: hidden;
   background: url('../public/home/bg-hero.svg');
   background-size: cover;
@@ -12,12 +12,33 @@
 .x_happy_business{
   display: block;
 }
+.x_partner{
+  padding: 35px 0px
+}
+
+.x_partner_icon{
+  transition: var(--x-transition);
+  filter: grayscale(.8);
+  cursor: pointer;
+  text-align: center;
+  border-radius: 20px;
+  padding-top: 10px;
+}
+
+.x_partner_icon:hover{
+  transition: var(--x-transition);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  filter: grayscale(0);
+
+}
+
 .x_decoration_rating{
   position: absolute;
   bottom: 0px;
   right: 20px;
   width: 200px;
 }
+
 .x_hero_title{
   margin-bottom: 22px;
   color: var(--x-heading-color);
@@ -38,6 +59,7 @@
 .x_focused_button{
   padding: 14px 25px;
   background-color: rgba(255, 105, 141, 1);
+  box-shadow: 5px 9px 28px -15px #ff698d;
   color: white;
   border-radius: 35px;
   font-weight: bold;
@@ -50,21 +72,23 @@
 .x_nonFocused_button {
   padding: 14px 25px;
   background: unset;
-  color: rgb(48, 48, 48);
+  background: #272f51;
+  font-weight: bold;
+  color: white;
   border-radius: 35px;
   display: inline-flex;
   align-items: center;
   column-gap: 10px;
-  border: 2px solid rgb(206, 206, 206)
 }
 
 .x_our_service {
   padding: 55px 0px
 }
 .x_main_box_secondary{
-  color: #F17216;
+  color: #F17216 !important;
   font-size: 14px;
-  font-weight: 300;
+  font-weight: bold;
+  letter-spacing: 2px;
 }
 
 .x_main_box_primary{
@@ -83,15 +107,15 @@
   margin-top: 10px;
 }
 .x_features_box .x_main_box_primary{
-  color: rgb(236, 236, 236);
+  color: rgb(236, 236, 236) !important;
 }
 .x_secondary_box{
-  padding: 24px 32px;
+  padding: 24px 26px;
   border-radius: 20px;
   color: var(--x-black-color);
   transition: var(--x-transition);
   margin-bottom: var(--x-bottom-margin);
-  box-shadow: var(--x-neumorphic-dropdown);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .x_secondary_box_description{
@@ -103,7 +127,7 @@
 }
 
 .x_features{
-  padding: 55px 0px;
+  padding: 85px 0px;
   padding-top: 85px;
   background: url('../public/home/bg-hero.svg');
   background-size: cover;
@@ -135,6 +159,10 @@
   transition: var(--x-transition);
   margin-bottom: var(--x-bottom-margin);
   text-align: right;
+  border-radius: 24px;
+  height: 429px;
+  display: flex;
+  align-items: center;
 }
 
 .x_badge_theme{
@@ -145,5 +173,84 @@
 
 .x_themes_content{
   margin-bottom: 55px;
+  text-align: center;
+}
+
+.x_testionimal {
+  padding: 55px 0px;
+  background: url('/home/Testimonials.svg');
+  background-size: 240;
+  background-position: top right;
+  background-repeat: no-repeat;
+}
+
+.x_qoute{
+  display: block;
+}
+.x_themes_testionimal{
+  text-align: center;
+}
+.x_testionimal_thumbnail{
+  width: 444px;
+  height: 294px;
+  margin: auto;
+  background: url('/home/screen-desktop.svg');
+  background-size: cover;
+  padding: 12px;
+  position: relative;
+}
+.x_testionimal_container{
+  padding: 85px 0px;
+  position: relative;
+  background-color: white;
+}
+.x_testionimal_thumbnail:after{
+  content: "";
+  width: 555px;
+  height: 15px;
+  display: block;
+  margin: auto;
+  overflow: hidden;
+  background: url(/home/bottom-desktop.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.x_testionimal_content{
+  background-color: rgb(255 255 255 / 85%);
+  border: 2px solid white;
+  padding: 24px 26px;
+  border-radius: 20px;
+  color: var(--x-black-color);
+  transition: var(--x-transition);
+  box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;
+  margin: 0px 14px;
+}
+.x_form_contact{
+  margin-top: 20px;
+}
+.x_testionimal_title {
+  font-size: 24px;
+  color: #282c4b;
+}
+
+.x_testionimal_description{
+  font-size: 16px;
+  color: #898989;
+}
+
+.x_form_contact_section{
+  padding: 55px 0px;
+}
+
+.x_blog_home{
+  padding: 55px 0px
+}
+
+.x_blog_home_content {
   text-align: center;
 }

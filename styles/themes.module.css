@@ -121,7 +121,7 @@
     max-width: 900px;
     margin: auto;
     margin-bottom: 1.75rem;
-    box-shadow: 0px 0px 5px -3px;
+    border: 1px solid #fafafa;
     border-radius: 0.35rem;
     overflow: hidden;
   }

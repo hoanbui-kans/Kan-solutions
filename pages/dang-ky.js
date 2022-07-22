@@ -33,11 +33,7 @@ const Register = () => {
     repassword: '',
     autologin: false,
   }) 
-
-  useEffect(() => {
-    console.log(formValues)
-  }, [formValues])
-
+  
   const model = Schema.Model({
     username: StringType().isRequired('Bạn chưa nhập tên tài khoản.'),
     email: StringType().isEmail('Email nhập vào chưa chính xác.'),

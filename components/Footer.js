@@ -6,9 +6,26 @@ import Image from 'next/image'
 import Link from 'next/link'
 import ArrowRightIcon from '@rsuite/icons/ArrowRight';
 import EmailMarketing from './page-component/EmailMarketing';
+
 const Footer = () => {
   return (
     <>
+      <div className={styles.x_contact_list}>
+        <div 
+        style={{position: 'fixed', bottom: '170px', zIndex: '999', left: '-20px'}}
+        className="phonering-alo-phone phonering-alo-green phonering-alo-show" 
+        id="phonering-alo-phoneIcon">
+          <div className="phonering-alo-ph-circle"></div>
+          <div className="phonering-alo-ph-circle-fill"></div>
+          <a href="tel:0392193639" />
+          <div className="phonering-alo-ph-img-circle">
+            <a href="tel:0392193639" />
+            <a href="tel:0392193639" className="pps-btn-img " title="Liên hệ">
+              <Image src="/home/phone.svg" width={50} height={50} alt="Liên hệ" />
+            </a>
+          </div>
+        </div>
+      </div>
       <div className={styles.x_footer_container}>
           <Container>
             <Row className={styles.x_flex}>

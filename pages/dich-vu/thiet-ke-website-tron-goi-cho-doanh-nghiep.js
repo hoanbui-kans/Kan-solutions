@@ -11,8 +11,13 @@ import Link from 'next/link'
 import Head from 'next/head'
 import HTMLReactParser from 'html-react-parser'
 import axios from 'axios'
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from 'swiper'; 
+// import Swiper styles
+import "swiper/css";
+import "swiper/css/effect-fade";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
@@ -274,17 +279,37 @@ const DesignWebsite = ({bai_viet}) => {
                                 <h2 className={styles.x_primary_title}>Các dự án đã hoàn thiện</h2>
                             </div>
                             <div className={styles.x_hosting_table_container}>
-                                <Carousel responsive={responsive}>
+                                <Swiper
+                                    spaceBetween={30}
+                                    navigation={true}
+                                    slidesPerView={1}
+                                    pagination={{
+                                        clickable: true,
+                                    }}
+                                    breakpoints={{
+                                        552: {
+                                        slidesPerView: 1,
+                                        },
+                                        768: {
+                                        slidesPerView: 2,
+                                        },
+                                        992: {
+                                        slidesPerView: 3,
+                                        },
+                                    }}
+                                    modules={[Navigation, Pagination]}
+                                    className="layoutSwiper"
+                                    >
                                     {
-                                        bai_viet.map((val) => {
-                                            return (
-                                                <div style={{padding: '10px'}} key={val.id}>
-                                                    <SingleProject data={val} />
-                                                </div>
-                                            )
+                                    bai_viet.map((val) => {
+                                        return(
+                                            <SwiperSlide key={val.ID}>
+                                                <SingleProject data={val} price={true}/>
+                                            </SwiperSlide>
+                                        )
                                         })
                                     }
-                                </Carousel>
+                                </Swiper>
                             </div>
                         </Col>
                         <Col xs={24}>
