@@ -104,11 +104,10 @@ const HomeTwo = ({gd, blog}) => {
                     <div className={styles.x_banner_deccoration}>
                           <span data-aos="fade-left" className={styles.x_happy_business}>
                               <Image 
-                                src="/home/hero-banner.webp" 
+                                src="/home/hero-banner-2.webp" 
                                 alt="Quản lý web bán hàng hiệu quả" 
-                                width={413} 
-                                height={402}
-                                priority
+                                width={415} 
+                                height={436}
                               />
                           </span>
                     </div>
