@@ -4,7 +4,7 @@ import TypeAnimation from 'react-type-animation';
 import styles from '../styles/HomePage2.module.css';
 import Image from 'next/image';
 import aos from 'aos';
-import { IoCheckmarkCircle, IoPersonCircle, IoCall, IoCheckmarkOutline } from "react-icons/io5";
+import { IoCheckmarkCircle, IoPersonCircle, IoCall, IoCheckmarkOutline, IoCloseOutline } from "react-icons/io5";
 import { GD_Box } from './giao-dien';
 import { Navigation, Pagination, EffectFade } from 'swiper';
 import { BlogStyleTwo } from '../components/blog-templates/BlogContent';
@@ -26,13 +26,16 @@ import "aos/dist/aos.css";
 
 const HomeTwo = () => {
   const [open, setOpen] = useState(false);  
+  const [open_ads, setOpen_ads] = useState(false);  
   const [service, setService] = useState(''); 
  
   const handleOpen = (service) => {
      setService(service);
      setOpen(true)
   };
-  const handleClose = () => setOpen(false);
+
+ const handleClose = () => setOpen(false);
+ const handleClose_ads = () => setOpen_ads(false);
 
   useEffect(() => {
     aos.init({
@@ -42,7 +45,10 @@ const HomeTwo = () => {
       delay: 0,
       mirror: false
     });
-  }, [])
+    setTimeout(() => {
+      setOpen_ads(true);
+    } , 3000)
+  }, [true])
 
   return (
    <>
@@ -406,6 +412,14 @@ const HomeTwo = () => {
         </Modal.Header>
         <Modal.Body>
             <ServicesSubmitForm service={service}/>
+        </Modal.Body>
+      </Modal>
+      <Modal open={open_ads} onClose={handleClose_ads} overflow={false} backdrop="static" size={'sm'} className="ads_tiktok">
+        <Modal.Body>
+            <Button className="close_ads" onClick={handleClose_ads}><IoCloseOutline color={'#fff'} size={22}/></Button>
+            <Link href="/dang-ky">
+                  <a style={{paddingTop: '100%', display: 'block'}}></a>
+            </Link>
         </Modal.Body>
       </Modal>
     </>

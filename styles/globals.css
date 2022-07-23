@@ -691,3 +691,17 @@ a.pps-btn-img {
   }
 }
 
+.ads_tiktok .rs-modal-content {
+  background-image: url('../public/banner/campain_tiktok.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 0px;
+}
+
+.close_ads {
+  position: absolute !important;
+  right: 10px;
+  top: 10px;
+  z-index: 2;
+  background: #262c38 !important;
+}
