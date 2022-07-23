@@ -5,7 +5,6 @@ import styles from '../styles/HomePage2.module.css';
 import Image from 'next/image';
 import aos from 'aos';
 import { IoCheckmarkCircle, IoPersonCircle, IoCall, IoCheckmarkOutline } from "react-icons/io5";
-import axios from 'axios';
 import { GD_Box } from './giao-dien';
 import { Navigation, Pagination, EffectFade } from 'swiper';
 import { BlogStyleTwo } from '../components/blog-templates/BlogContent';
@@ -17,6 +16,7 @@ import { HomePageSeo } from './api/HeaderSeo'
 import HTMLReactParser from 'html-react-parser'
 import ServicesSubmitForm from '../components/handleSubmitServices'
 import Head from 'next/head';
+import { themesAPI, PostsAPI} from './api/HomeAPI';
 // import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-fade";
@@ -24,13 +24,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "aos/dist/aos.css";
 
-const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
-
-const HomeTwo = ({gd, blog}) => {
-
-  const [themes, setThemes] = useState(gd);
-  const [posts, setPosts] = useState(blog);
-
+const HomeTwo = () => {
   const [open, setOpen] = useState(false);  
   const [service, setService] = useState(''); 
  
@@ -65,11 +59,9 @@ const HomeTwo = ({gd, blog}) => {
                             style={{display: 'block'}}
                             cursor={true}
                             sequence={[
-                              'thương hiệu kinh doanh',
+                              ' cửa hàng trực tuyến',
                               4000,
-                              'cửa hàng trực tuyến',
-                              4000,
-                              'chiến lược tiếp thị',
+                              ' chiến lược tiếp thị',
                               4000,
                             ]}
                             className={styles.x_wrapper_text}
@@ -200,7 +192,9 @@ const HomeTwo = ({gd, blog}) => {
           <Container>
               <Row className="x_flex_center">
                 <Col xs={24} md={12}>
-                  <Image src="/home/features.svg" width={500} height={400} alt=""/>
+                  <div className={styles.x_features_image}>
+                    <Image src="/home/features.svg" data-aos="fade-down" width={500} height={400} alt=""/>
+                  </div>
                 </Col>
                 <Col xs={24} md={12}>
                    <div className={styles.x_features_box}>
@@ -238,11 +232,11 @@ const HomeTwo = ({gd, blog}) => {
             <Col xs={24}>
                   <div className={styles.x_themes_content}>
                     <h3 className={styles.x_main_box_secondary} data-aos="fade-down">GIAO DIỆN MẪU</h3>
-                    <h2 className={styles.x_main_box_primary} data-aos="fade-up">50+ Mẫu giao diện</h2>
+                    <h2 className={styles.x_main_box_primary} data-aos="fade-up">250+ Mẫu giao diện</h2>
                   </div>
             </Col>
               {
-                  themes.map((val) => {
+                  themesAPI.map((val) => {
                       return(
                         <Col xs={24} md={12} lg={8} key={val.ID} data-aos="fade-up">
                             <GD_Box data={val} price={false}/>
@@ -264,6 +258,15 @@ const HomeTwo = ({gd, blog}) => {
                         </Link>
                       </div>
                    </div>
+                </Col>
+                <Col xs={24}>
+                    <Link href="/bai-viet">
+                          <a style={{textAlign: 'center', display: 'block'}}>
+                            <Button data-aos="fade-up" className={styles.x_ViewAll_button} style={{marginBottom: '15px', marginTop: '5px', marginRight: '0px'}}>
+                                XEM TẤT CẢ
+                            </Button>
+                          </a>
+                    </Link>
                 </Col>
           </Row>
         </Container>
@@ -332,7 +335,7 @@ const HomeTwo = ({gd, blog}) => {
               <Col xs={24} md={12}>
                 <div className={styles.x_themes_testionimal}>
                   <h3 className={styles.x_main_box_secondary} data-aos="fade-down">LIÊN HỆ CHÚNG TÔI</h3>
-                  <h2 className={styles.x_main_box_primary} data-aos="fade-up">Giúp chúng tôi cải thiện <br/>chất lượng dịch vụ</h2>
+                  <h2 className={styles.x_main_box_primary} data-aos="fade-up">Giúp chúng tôi cải thiện chất lượng dịch vụ</h2>
                 </div>
                 <div className={styles.x_form_contact} data-aos="fade-right">
                   <FormLienHe />
@@ -374,7 +377,7 @@ const HomeTwo = ({gd, blog}) => {
                   data-aos="fade-up"
                 >
                   {
-                    posts.map((val, index) => {
+                    PostsAPI.map((val, index) => {
                       return (
                         <SwiperSlide key={index}>
                           <BlogStyleTwo data={val}/>
@@ -387,7 +390,7 @@ const HomeTwo = ({gd, blog}) => {
                 <Col xs={24}>
                     <Link href="/bai-viet">
                           <a style={{textAlign: 'center', display: 'block'}}>
-                            <Button data-aos="fade-up" className={styles.x_focused_button} style={{marginTop: '15px', marginRight: '0px'}}>
+                            <Button data-aos="fade-up" className={styles.x_ViewAll_button} style={{marginTop: '15px', marginRight: '0px'}}>
                                 XEM TẤT CẢ
                             </Button>
                           </a>
@@ -410,14 +413,3 @@ const HomeTwo = ({gd, blog}) => {
 }
 
 export default HomeTwo
-
-export async function getServerSideProps(context) {
-
-  const response_blog = await axios.get(rootURL + 'tin-tuc/bai-viet?perpage=10').then((resonse) => resonse.data);
-  const response_gd = await axios.get(rootURL + 'giao-dien/giao-dien-mau?perpage=5').then((resonse) => resonse.data);
-  // Pass data to the page via props
-  return { props: { 
-    gd: response_gd.posts,
-    blog: response_blog.posts
- }}
-}

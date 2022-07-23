@@ -9,7 +9,7 @@ import { HostingTable } from '../api/services'
 import { IoCheckmarkOutline, IoShapesSharp } from "react-icons/io5";
 import { useState } from 'react'
 import ServicesSubmitForm from '../../components/handleSubmitServices'
-import axios from 'axios'
+import { themesAPI } from '../api/HomeAPI'
 import { GD_Box } from '../giao-dien'
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from 'swiper'; 
@@ -22,7 +22,7 @@ import "swiper/css/pagination";
 
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
-const CreateWordpress = ({gd}) => {
+const CreateWordpress = () => {
  
  const [open, setOpen] = useState(false);  
  const [service, setService] = useState(''); 
@@ -187,7 +187,7 @@ const CreateWordpress = ({gd}) => {
                                 className="layoutSwiper"
                                 >
                                 {
-                                gd.map((val) => {
+                                themesAPI.map((val) => {
                                     return(
                                         <SwiperSlide key={val.ID}>
                                             <GD_Box data={val} price={true}/>
@@ -274,17 +274,3 @@ const CreateWordpress = ({gd}) => {
 }
 
 export default CreateWordpress
-
-export async function getServerSideProps(context) {
-
-    const page = context.query ? context.query.pages : 1;
-    const res = await axios.get(rootURL + 'giao-dien/giao-dien-mau?p=' + page).then((resonse) => resonse.data);
-  
-    // Pass data to the page via props
-    return { props: { 
-      gd: res.posts,
-      nganh: res.nganh,
-      danhmuc: res.danh_muc, 
-      max_pages: res.max_pages
-   }}
-}

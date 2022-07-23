@@ -15,6 +15,7 @@
 }
 .x_marketing_banner_title{
     margin-bottom: 15px;
+    color: white !important
  }
  .x_marketing_banner_description{
     margin-bottom: 15px;
@@ -22,8 +23,11 @@
  .x_adsButton{
     margin-top: 15px;
     padding: 15px 25px;
-    background: var(--x-black-color);
+    background: #cf5a48;
+    box-shadow: 5px 9px 28px -15px #cf5a48;
     color: var(--x-white-color);
+    border-radius: 35px;
+    font-weight: bold;
 }
 .x_webite_manager_featured_container{
     display: flex;
@@ -68,11 +72,13 @@
     margin: auto
 }
 .x_banner_web_mannager_button{
-    padding: .75rem 1.75rem;
-    border-radius: var(--x-border-radius);
-    background: var(--x-danger-color);
+    margin-top: 15px;
+    padding: 15px 25px;
+    background: #ff698d;
+    box-shadow: 5px 9px 28px -15px #ff698d;
     color: var(--x-white-color);
-    margin-top: 20px;
+    border-radius: 35px;
+    font-weight: bold;
 }
 .x_banner_web_mannager{
     margin-bottom: 35px;
@@ -83,6 +89,9 @@
     margin: auto;
     border-radius: var(--x-border-radius);
     color: var(--x-white-color);
+}
+.x_website_manager_title{
+    color: white !important;
 }
 @media ( max-width: 768px ){
     .x_website_manager_title{

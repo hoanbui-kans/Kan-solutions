@@ -31,7 +31,7 @@ const Marketing = () => {
               <Row className='x_flex_center'>
                 <Col xs={24} md={12}>
                   <div className={styles.x_margin_bottom}>
-                    <h1 className={styles.x_marketing_banner_title}>DỊCH VỤ QUẢNG CÁO</h1>
+                    <h1 className={styles.x_marketing_banner_title}>Dịch vụ quảng cáo</h1>
                     <p className={styles.x_marketing_banner_description}>Mỗi ngày, khách hàng đều tìm kiếm những doanh nghiệp giống như của bạn trên Google Tìm Kiếm. Tiếp cận với họ qua Google Ads, và chỉ trà phí cho mỗi lượt nhấp chuột vào rang web của bạn hoặc khi khách hàng gọi điện đến doanh nghiệp của bạn.</p>
                     <Button 
                       onClick={() => { handleOpen('Đăng ký tư vấn dịch vụ marketing') }}
@@ -61,19 +61,19 @@ const Marketing = () => {
                           <ul className={styles.x_webite_manager_featured_list_ul}>
                             <li>
                               <div className={styles.x_webite_manager_featured}>
-                                <h4><IoCheckmarkCircleSharp size={14} color={'#00cc88'}/> THÚC ĐẨY LƯỢT TRUY CẬP VÀO TRANG WEB</h4>
+                                <h4><IoCheckmarkCircleSharp size={14} color={'#00cc88'}/> Thúc đẩy lượt truy cập vào trang web</h4>
                                 <p>Tăng doanh số bán hàng trực tuyến, lượt đặt hàng hoặc lượt đăng ký vào danh sách gửi thư bằng cách sử dụng quảng cáo trực tuyến hướng mọi người đến trang web của bạn.</p>
                               </div>
                             </li>
                             <li>
                               <div className={styles.x_webite_manager_featured}>
-                                <h4><IoCheckmarkCircleSharp size={14} color={'#00cc88'}/> TĂNG SỐ LƯỢNG CUỘC GỌI ĐIỆN THOẠI</h4>
+                                <h4><IoCheckmarkCircleSharp size={14} color={'#00cc88'}/> Tăng số lượng cuộc gọi điện thoại</h4>
                                 <p>Tăng số lượng cuộc gọi điện thoại từ khách hàng bằng cách sử dụng quảng cáo có hiển thị số điện thoại của bạn và nút nhấp để gọi.</p>
                               </div>
                             </li>
                             <li>
                               <div className={styles.x_webite_manager_featured}>
-                                <h4><IoCheckmarkCircleSharp size={14} color={'#00cc88'}/> TĂNG SỐ LƯỢT GHÉ QUA CỬA HÀNG</h4>
+                                <h4><IoCheckmarkCircleSharp size={14} color={'#00cc88'}/> Tăng số lượt ghé qua cửa hàng</h4>
                                 <p>Thu hút nhiều khách hàng ghé đến cửa hàng hơn bằng cách sử dụng quảng cáo chỉ đường đến doanh nghiệp của bạn trên bản đồ.</p>
                               </div>
                             </li>
@@ -92,19 +92,19 @@ const Marketing = () => {
                           <ul className={styles.x_webite_manager_featured_list_ul}>
                             <li>
                               <div className={styles.x_webite_manager_featured}>
-                                <h4><IoCheckmarkCircleSharp size={14} color={'#00cc88'}/> THÚC ĐẨY LƯỢT TRUY CẬP VÀO TRANG WEB</h4>
+                                <h4><IoCheckmarkCircleSharp size={14} color={'#00cc88'}/> Tăng nhận diện thương hiệu, cạnh trang trên thị trường</h4>
                                 <p>Tăng doanh số bán hàng trực tuyến, lượt đặt hàng hoặc lượt đăng ký vào danh sách gửi thư bằng cách sử dụng quảng cáo trực tuyến hướng mọi người đến trang web của bạn.</p>
                               </div>
                             </li>
                             <li>
                               <div className={styles.x_webite_manager_featured}>
-                                <h4><IoCheckmarkCircleSharp size={14} color={'#00cc88'}/> TĂNG SỐ LƯỢNG CUỘC GỌI ĐIỆN THOẠI</h4>
+                                <h4><IoCheckmarkCircleSharp size={14} color={'#00cc88'}/> Ngay lập tức có lượt tương tác, đặt mua sản phẩm</h4>
                                 <p>Tăng số lượng cuộc gọi điện thoại từ khách hàng bằng cách sử dụng quảng cáo có hiển thị số điện thoại của bạn và nút nhấp để gọi.</p>
                               </div>
                             </li>
                             <li>
                               <div className={styles.x_webite_manager_featured}>
-                                <h4><IoCheckmarkCircleSharp size={14} color={'#00cc88'}/> TĂNG SỐ LƯỢT GHÉ QUA CỬA HÀNG</h4>
+                                <h4><IoCheckmarkCircleSharp size={14} color={'#00cc88'}/> Tiết kiệm tối đa thời gian, chi phí vận hành</h4>
                                 <p>Thu hút nhiều khách hàng ghé đến cửa hàng hơn bằng cách sử dụng quảng cáo chỉ đường đến doanh nghiệp của bạn trên bản đồ.</p>
                               </div>
                             </li>

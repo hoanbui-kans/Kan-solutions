@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Brand from '../public/logo.svg'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Row, Col, Nav, Container, Form, Button, Pagination, Loader  } from 'rsuite'
+import { Row, Col, Nav, Container, Form, Button, Pagination, Loader, Whisper, IconButton , Popover , Dropdown   } from 'rsuite'
 import { useSpring, animated, useChain, useSpringRef, useTransition, config } from "@react-spring/web"
 import { listServices } from '../pages/api/services'
 import { useSession } from "next-auth/react"
@@ -14,7 +14,8 @@ import EmailFillIcon from '@rsuite/icons/EmailFill'
 import PhoneFillIcon from '@rsuite/icons/PhoneFill'
 import axios from 'axios'
 import styles from '../styles/header.module.css'
-import { IoCaretForwardSharp, IoCloseCircleOutline } from 'react-icons/io5'
+import PlusIcon from '@rsuite/icons/Plus';
+import { IoCaretForwardSharp, IoCloseCircleOutline, IoPerson } from 'react-icons/io5'
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
@@ -277,23 +278,62 @@ const Header = () => {
         }
     }
 
+    const renderMenu = ({ onClose, left, top, className }, ref) => {
+        const handleSelect = eventKey => {
+          onClose();
+        };
+        return (
+          <Popover ref={ref} className={className} style={{ left, top }} full>
+            <Dropdown.Menu onSelect={handleSelect}>
+            {
+                session ? 
+                    <>
+                    <Dropdown.Item eventKey={1}>
+                        <Link href="/quan-ly/tai-khoan">
+                            Quản lý
+                        </Link>
+                    </Dropdown.Item>
+                    <Dropdown.Item eventKey={2}>
+                        <Link href="/quan-ly/dang-xuat">
+                            Đăng xuất
+                        </Link>
+                    </Dropdown.Item>
+                </>
+                : <>
+                    <Dropdown.Item eventKey={1}>
+                        <Link href="/dang-nhap/">
+                            Đăng nhập
+                        </Link>
+                    </Dropdown.Item>
+                    <Dropdown.Item eventKey={2}>
+                        <Link href="/dang-nhap/">
+                            Đăng ký
+                        </Link>
+                    </Dropdown.Item>
+                </>
+            }
+            </Dropdown.Menu>
+            </Popover>
+        );
+    };
+
     return (
       <>
       <div className={styles.x_top_header}>
             <Container> 
                     <Row className={styles.x_flex}>
-                        <Col xs={12} md={8} lg={8} className={styles.x_top_header_brand}>
+                        <Col xs={16} md={8} lg={8} className={styles.x_top_header_brand}>
                             <strong>CÔNG TY TNHH GIẢI PHÁP KAN</strong>
                         </Col>
-                        <Col xs={24} md={16} lg={16} className={styles.x_flex_end}>
+                        <Col xs={8} md={16} lg={16} className={styles.x_flex_end}>
                             <ul className={styles.x_top_header_menu}>
-                                <li className={styles.x_destop_display}>
+                                <li className={styles.x_desktop_display}>
                                     <a href={'tel:0392193639'}>
                                         <PhoneFillIcon  />
                                         039 219 3639
                                     </a>
                                 </li>
-                                <li className={styles.x_destop_display}>
+                                <li className={styles.x_desktop_display}>
                                     <a href={'mailto:contact@kanbox.vn'}>
                                         <EmailFillIcon  />
                                         contact@kanbox.vn
@@ -323,7 +363,7 @@ const Header = () => {
                                 </Link>
                             </div>
                         </Col>
-                        <Col xs={16} className={styles.x_destop_display}>
+                        <Col xs={16} className={styles.x_desktop_display}>
                             <Nav>
                                 <div className={styles.mainMenuContainer}>
                                     <ul>
@@ -373,14 +413,14 @@ const Header = () => {
                                     session ? 
                                         <>
                                         <Link href="/quan-ly/tai-khoan">
-                                            <a> 
+                                            <a className={styles.x_desktop_display}> 
                                                 <Button className={styles.x_login_button}>
                                                     Quản lý
                                                 </Button>
                                             </a>
                                         </Link>
                                         <Link href="/quan-ly/dang-xuat">
-                                            <a> 
+                                            <a className={styles.x_desktop_display}> 
                                                 <Button className={styles.x_login_register}>
                                                     Đăng xuất
                                                 </Button>
@@ -389,14 +429,14 @@ const Header = () => {
                                       </>
                                     : <>
                                     <Link href="/dang-nhap/">
-                                            <a> 
+                                            <a className={styles.x_desktop_display}> 
                                                 <Button className={styles.x_login_button}>
                                                     Đăng nhập
                                                 </Button>
                                             </a>
                                         </Link>
                                         <Link href="/dang-nhap/">
-                                            <a> 
+                                            <a className={styles.x_desktop_display}> 
                                                 <Button className={styles.x_login_register}>
                                                     Đăng ký
                                                 </Button>
@@ -404,6 +444,11 @@ const Header = () => {
                                         </Link>
                                     </>
                                 }
+                                <div className={styles.x_mobile_display}>
+                                    <Whisper placement="bottomEnd" trigger="click" speaker={renderMenu}>
+                                        <a className={styles.x_account_mobile_button}><IoPerson /> Tài Khoản</a>
+                                    </Whisper>
+                                </div>
                                 <div className={styles.x_mobile_display}>
                                     <button className={
                                         showingMobile ? 

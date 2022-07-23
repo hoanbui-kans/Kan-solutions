@@ -5,18 +5,26 @@
     .mainMenuContainer{
         display: none !important;
     }
-    .x_destop_display{
+    .x_desktop_display{
         display: none !important;
     }
     .x_mobile_display{
         display: block !important;
     }
-    .x_top_header_brand{
-        display: none;
-    }
 }
 .x_mobile_display{
     display: none;
+}
+
+.x_account_mobile_button{
+    color: #5e5e5e;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 2px solid;
+    border-radius: 0.35rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .headerMenu{
     width: 100%;
@@ -366,15 +374,26 @@
     box-shadow: 35px 35px 50px 0 rgb(36 50 66 / 15%);
 }
 .x_button_website_create{
-    border: 1px solid rgb(151, 151, 151);
     margin-bottom: 7px;
-    margin-right: 7px;
+    background-color: rgb(42 191 248);
+    box-shadow: 5px 9px 28px -15px #2abff8;
+    border: 2px solid #2abff8;
+    color: white;
+    border-radius: 35px;
+    display: inline-block;
+    margin-right: 5px;
+    font-weight: bold;
 }
 .x_button_website_doanh_nghiep{
-    background: var(--x-primary-color); 
-    color: white;
-    border: none;
     margin-bottom: 7px;
+    background-color: rgba(255, 105, 141, 1);
+    box-shadow: 5px 9px 28px -15px #ff698d;
+    border: 2px solid #ff698d;
+    color: white;
+    border-radius: 35px;
+    display: inline-block;
+    margin-right: 5px;
+    font-weight: bold;
 }
 .x_button_inline{
     display: inline-block !important;
@@ -693,6 +712,10 @@ transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }
       }
 
       @media (max-width: 640px){
+        .x_login_register
+        ,.x_login_button {
+            font-size: 12px;
+        }
         .x_search_section{
             max-width: 90%;
         }

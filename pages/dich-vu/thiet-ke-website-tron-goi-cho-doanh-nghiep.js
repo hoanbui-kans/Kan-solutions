@@ -12,7 +12,8 @@ import Head from 'next/head'
 import HTMLReactParser from 'html-react-parser'
 import axios from 'axios'
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from 'swiper'; 
+import { Navigation, Pagination } from 'swiper';
+import { ProjectAPI } from '../api/HomeAPI'; 
 // import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-fade";
@@ -21,7 +22,7 @@ import "swiper/css/pagination";
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
-const DesignWebsite = ({bai_viet}) => {
+const DesignWebsite = () => {
  
  const [open, setOpen] = useState(false);  
  const [service, setService] = useState(''); 
@@ -269,9 +270,7 @@ const DesignWebsite = ({bai_viet}) => {
             </Container>
         </section>
         <Divider/>
-        {
-            bai_viet ? <>
-            <section className={styles.x_project_section}>
+        <section className={styles.x_project_section}>
                 <Container>
                     <Row className={styles.x_centered}>
                         <Col xs={24}>
@@ -301,7 +300,7 @@ const DesignWebsite = ({bai_viet}) => {
                                     className="layoutSwiper"
                                     >
                                     {
-                                    bai_viet.map((val) => {
+                                    ProjectAPI.map((val) => {
                                         return(
                                             <SwiperSlide key={val.ID}>
                                                 <SingleProject data={val} price={true}/>
@@ -323,9 +322,7 @@ const DesignWebsite = ({bai_viet}) => {
                         </Col>
                     </Row>
                 </Container>
-            </section>
-        </> : ''
-        }
+        </section>
         <Divider/>
         <section className={styles.x_why_choose}>
             <Container>
@@ -484,18 +481,3 @@ const DesignWebsite = ({bai_viet}) => {
 }
 
 export default DesignWebsite
-
-export async function getServerSideProps({req, res}) {
-    res.setHeader(
-        'Cache-Control',
-        'public, s-maxage=10, stale-while-revalidate=59'
-    )
-
-    const response = await axios.get(rootURL + 'du-an/bai-viet?per_page=9').then((resonse) => resonse.data);
-  
-    // Pass data to the page via props
-    return { props: { 
-      bai_viet: response.posts,
-      max_num_pages: response.max_pages
-   }}
-  }

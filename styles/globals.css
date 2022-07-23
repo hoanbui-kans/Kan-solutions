@@ -685,5 +685,9 @@ a.pps-btn-img {
       padding-left: var(--x-padding-column) !important;
       padding-right: var(--x-padding-column) !important;
   }
+  div#phonering-alo-phoneIcon {
+      left: -40px !important;
+      bottom: 150px !important;
+  }
 }
 
