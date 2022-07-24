@@ -252,14 +252,14 @@
     margin-bottom: .35rem;
     color: #333;
 }
-.x_app_section{
-    background: #f7f7f7
-}
 .x_blog_flex_content p{
     font-size: 0.75rem;
     line-height: .75rem;
     margin-bottom: 0.35rem;
     margin-top: 0;
+}
+.x_app_section{
+    background: #f7f7f7
 }
 .x_blog_link{
     width: 32px;
@@ -274,7 +274,22 @@
     align-items: center;
     justify-content: center;
 }
-
+.x_blog_single_link{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.x_blog_single_link_button{
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    background: var(--x-primary-color);
+    color: white;
+}
 /* Trang Đăng nhập */
 .x_account_container{
     background: #f2f2f2;
@@ -394,6 +409,20 @@
     display: block;
     width: 100%;
 }
+.x_document_count{
+    display: inline-block;
+    border: 1px solid #d6d6d6;
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+    line-height: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+.x_account_nav > span, .x_account_nav a{
+    border-radius: 12px !important;
+}
 .x_back_home{
     top: 20px;
     display: flex;
@@ -415,9 +444,23 @@
 
 .x_guild_list_posts{
     list-style: none;
+    padding-left: 15px;
 }
-.x_guild_list_posts a, .x_guild_post_title{
+.x_guild_list_posts a, 
+.x_guild_post_title{
     color: var(--x-text-color);
+    padding: 10px;
+    border-radius: 5px;
+    background: whitesmoke;
+    margin-bottom: 12px;
+    display: block;
+}
+.x_breadcumb{
+    font-size: 16px;
+    font-weight: bold;
+}
+.x_guild_post_title svg{
+    margin-right: 10px;
 }
 .x_guild_post_title{
     color: var(--x-text-color);
@@ -433,11 +476,10 @@
 .x_guild_title{
     color: var(--x-primary-color);
     font-weight: bold;
-    margin-bottom: 12px;
+    margin-bottom: 5px;
     display: block;
-    padding-left: 12px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--x-border-color);
+    padding-left: 0px;
+    padding-bottom: 5px;
 }
 .x_social_login{
     display: flex;
@@ -464,24 +506,22 @@
 }
 
 .x_guilde_content{
-    padding: 35px;
-    background-color: white;
-    border: 1px solid rgb(224, 224, 224);
-    margin-top: 35px;
-    margin-bottom: 35px;
+    padding: 15px;
 }
 
 .x_guilde_content h2{
-    font-size: 28px;
-    line-height: 42px;
+    font-size: 24px;
+    line-height: 38px;
+    margin-bottom: 10px;
   }
   .x_guilde_content h3{
-    font-size: 24px;
-    line-height: 36px;
+    font-size: 20px;
+    line-height: 34px;
   }
   .x_guilde_content p{
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 16px;
+    line-height: 22px;
+    margin-bottom: 7px;
   }
   .x_guilde_content img{
     margin: 15px 0px;
@@ -490,3 +530,82 @@
   .x_guilde_content *{
     max-width: 100%;
   }
+
+  .x_packaged{
+    padding: 15px;
+    margin-bottom: 25px;
+    background-color: whitesmoke;
+    border-radius: 15px;
+  }
+
+  .x_change_doimain{
+    padding: 15px 0px
+  }
+
+  .x_blog_meta_single{
+    padding: 15px 0px;
+    margin-bottom: 15px;
+    display: block;
+  }
+  .x_blog_single_chart{
+    background: whitesmoke;
+    padding: 35px 0px;
+    border-radius: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+  .x_single_site_heading{
+    font-size: 22px;
+    border-bottom: 1px solid var(--x-border-color);
+    padding-bottom: 5px;
+    margin-bottom: 25px;
+  }
+.x_change_doimain_button{
+    background-color: var(--x-primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    padding: 12px 20px;
+}
+.x_upgrade_single_button,
+.x_extend_single_button{
+    padding: 15px 0px;
+    margin-bottom: 8px;
+}
+.x_board_doimain_change{
+    padding: 25px 0px
+}
+.x_current_doimain{
+    padding: 12px 20px;
+    background: whitesmoke;
+    border-radius: 5px;
+    border: 1px solid rgb(190, 190, 190);
+}
+.x_doimain_change_arrow{
+    padding: 0px 15px;
+}
+.x_replaced_doimain{
+    padding: 12px 20px;
+    background: #ff698d;
+    color: white;
+    border-radius: 5px;
+    border: 1px solid rgb(190, 190, 190);
+}
+.x_single_blog_flex_content{
+    width: calc(100% - 50px);
+}
+.x_single_blog_flex_content h3{
+    font-size: 1.25rem;
+    font-weight: bold;
+    line-height: 1.15rem;
+    margin-bottom: .35rem;
+    color: #333;
+}
+.x_single_blog_flex_content p{
+    font-size: 1rem;
+    line-height: 1rem;
+    margin-bottom: 0.35rem;
+    margin-top: 0;
+}

@@ -132,7 +132,7 @@ const BlogContent = ({data}) => {
     )
 }
 const Dashboard = ({blogInfor}) => {
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(true);
   return (
     <>
     <section className={styles.x_app_section}>

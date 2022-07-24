@@ -3,23 +3,15 @@ import {
     Container,
     Row,
     Col,
-    Form,
     Button,
     Modal,
     Sidenav,
     Pagination,
-    Schema,
     toaster,
-    Loader,
     Message,
     Table,
-    Checkbox,
     FlexboxGrid ,
     List,
-    IconButton ,
-    Divider  ,
-    Popover,
-    Dropdown 
 } from 'rsuite';
 import axios from 'axios';
 import Image from 'next/image'; 
@@ -27,10 +19,7 @@ import moment from 'moment';
 import { getSession, useSession } from 'next-auth/react';
 import styles from '../../styles/account.module.css';
 import UserNav from '../../components/user-manager/UserNav';
-import EditIcon from '@rsuite/icons/Edit';
 import CreditCardPlusIcon from '@rsuite/icons/CreditCardPlus';
-import { IoPaperPlane } from "react-icons/io5"
-import { RateUser } from '../api/services';
 import Router from 'next/router'
 import { Separator } from '../giao-dien/[slug]';
 import { locales } from '../api/locales';
@@ -39,8 +28,6 @@ import 'moment/locale/vi'
 const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON
 
 const PaymentInfo = ({posts}) => {
-    // Truy xuất dữ liệu
-    const formRef = useRef();
     const mservice_qr_uri = `${ROOT_URL}mservice/qr`;
     const mservice_atm_uri = `${ROOT_URL}mservice/atm`;
     const [loading_create, set_loading_create] = useState(false);
@@ -99,7 +86,7 @@ const PaymentInfo = ({posts}) => {
     }
     // Hiển thị
     const { data: session } = useSession();
-    const [expanded, setExpanded] = useState(false);
+    const [expanded, setExpanded] = useState(true);
     const [checkedKeys, setCheckedKeys] = useState([]);
     const [loading, setLoading] = useState(false);
     const [limit, setLimit] = useState(10);
@@ -199,7 +186,7 @@ const PaymentInfo = ({posts}) => {
                     <div>
                         <Sidenav expanded={expanded} defaultOpenKeys={['3', '4']}>
                             <Sidenav.Body>
-                            <UserNav expanded={expanded}/>
+                            <UserNav active={'thanh-toan'} expanded={expanded}/>
                             <Sidenav.Toggle expanded={expanded} onToggle={expanded => setExpanded(expanded)} />
                             </Sidenav.Body>
                         </Sidenav>

@@ -155,6 +155,18 @@ nav.rs-sidenav a {
   color: var(--rs-sidenav-default-text);
 }
 
+nav.rs-sidenav .rs-sidenav-item-active a {
+  color: white;
+}
+.rs-sidenav-item-active {
+  background:  var(--x-accent-color) !important;
+  border-radius: 12px !important;
+}
+
+.rs-sidenav-item-active {
+  color: white !important;
+}
+
 .x_breadcum_container {
   background: #f7f7f7;
   position: relative;

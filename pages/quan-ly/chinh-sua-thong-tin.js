@@ -13,7 +13,7 @@ import moment from 'moment'
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 const UserEditor = ({user_info, nonce}) => {
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(true);
   const [loadingPassword, setLoadingPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   
@@ -237,7 +237,7 @@ const UserEditor = ({user_info, nonce}) => {
                   <div>
                       <Sidenav expanded={expanded} defaultOpenKeys={['3', '4']}>
                           <Sidenav.Body>
-                          <UserNav expanded={expanded}/>
+                          <UserNav active={'chinh-sua-tai-khoan'} expanded={expanded}/>
                           <Sidenav.Toggle expanded={expanded} onToggle={expanded => setExpanded(expanded)} />
                           </Sidenav.Body>
                       </Sidenav>

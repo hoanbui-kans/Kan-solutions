@@ -16,9 +16,9 @@ import moment from 'moment';
 import 'moment/locale/vi'
 import dynamic from 'next/dynamic'
 import { getSession } from 'next-auth/react';
-import styles from '../../styles/account.module.css'
-import UserNav from '../../components/user-manager/UserNav';
-import { RateUser } from '../api/services';
+import styles from '../styles/account.module.css'
+import UserNav from '../components/user-manager/UserNav';
+import { RateUser } from './api/services';
 const Chart = dynamic(
   () => {
     return ( import('react-apexcharts') )
@@ -28,7 +28,7 @@ const Chart = dynamic(
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
-const BlogContent = ({data}) => {
+export const BlogContent = ({data}) => {
     const [LineStroke, setLineStroke] = useState({
         strokeColor : '',
         status: ''
@@ -145,15 +145,17 @@ const BlogContent = ({data}) => {
                                 <Image width={40} height={40} alt={data.blogname} src={ SiteIcon } />
                             </span>
                             <div className={styles.x_blog_flex_content}>
-                                <a target={'_blank'} rel="noreferrer" href={data.home}>
+                                <Link href={'/quan-ly/quan-ly-trang/site?id=' + data.blog_id}>
+                                    <a>
                                         <h3>{data.blogname}</h3>
-                                </a>
+                                    </a>
+                                </Link>
                                 <p style={{
                                     display: 'inline-block',
                                     padding: '3px',
                                     border: '1px solid #e5e5e5',
                                     borderRadius: '5px'
-                                }}><IoBookmark/> {site_lever.name} | {data.is_trial ? 'Dùng thử' : 'Thành viên'}</p>
+                                }}><IoBookmark/> {site_lever.name}</p>
                             </div>
                         </div>
                         
@@ -184,7 +186,7 @@ const BlogContent = ({data}) => {
                                 <span className={styles.x_date_badge}>{expiredDate}</span>
                             </div>
                         </div>
-                        <Progress.Line percent={percent} strokeColor={LineStroke.strokeColor} status={LineStroke.status} />
+                        <Progress.Line percent={percent} strokeColor={LineStroke.strokeColor}/>
                         <ButtonToolbar style={{marginBottom: 15}}>
                             <Link href={'/quan-ly/thanh-toan/nang-cap?site_id=' + data.blog_id}>
                                 <a>
@@ -214,7 +216,7 @@ const BlogContent = ({data}) => {
 }
 
 const UserManager = ({blogInfor}) => {
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(true);
   return (
     <>
     <section className={styles.x_app_section}>
@@ -224,7 +226,7 @@ const UserManager = ({blogInfor}) => {
                     <div>
                         <Sidenav expanded={expanded} defaultOpenKeys={['3', '4']}>
                             <Sidenav.Body>
-                            <UserNav expanded={expanded}/>
+                            <UserNav active={'quan-ly'} expanded={expanded}/>
                             <Sidenav.Toggle expanded={expanded} onToggle={expanded => setExpanded(expanded)} />
                             </Sidenav.Body>
                         </Sidenav>

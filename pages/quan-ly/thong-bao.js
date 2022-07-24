@@ -7,7 +7,7 @@ import UserNav from '../../components/user-manager/UserNav';
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 const Annoucement = ({bai_viet}) => {
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(true);
   return (
     <>
     <section className={styles.x_app_section}>
@@ -17,7 +17,7 @@ const Annoucement = ({bai_viet}) => {
                     <div>
                         <Sidenav expanded={expanded} defaultOpenKeys={['3', '4']}>
                             <Sidenav.Body>
-                                <UserNav expanded={expanded}/>
+                                <UserNav active={'thong-bao'} expanded={expanded}/>
                                 <Sidenav.Toggle expanded={expanded} onToggle={expanded => setExpanded(expanded)} />
                             </Sidenav.Body>
                         </Sidenav>

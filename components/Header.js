@@ -14,7 +14,6 @@ import EmailFillIcon from '@rsuite/icons/EmailFill'
 import PhoneFillIcon from '@rsuite/icons/PhoneFill'
 import axios from 'axios'
 import styles from '../styles/header.module.css'
-import PlusIcon from '@rsuite/icons/Plus';
 import { IoCaretForwardSharp, IoCloseCircleOutline, IoPerson } from 'react-icons/io5'
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
@@ -289,7 +288,7 @@ const Header = () => {
                 session ? 
                     <>
                     <Dropdown.Item eventKey={1}>
-                        <Link href="/quan-ly/tai-khoan">
+                        <Link href="/quan-ly">
                             Quản lý
                         </Link>
                     </Dropdown.Item>
@@ -342,7 +341,7 @@ const Header = () => {
                                 <li><Link href={'/tuyen-dung'}>Tuyển dụng</Link></li>
                                 {
                                     session ? 
-                                        <li><Link href={'/quan-ly/tai-khoan'}><a>{session.user.token.user_display_name}</a></Link></li>
+                                        <li><Link href={'/quan-ly'}><a>{session.user.token.user_display_name}</a></Link></li>
                                     : ''
                                 }
                             </ul>
@@ -412,7 +411,7 @@ const Header = () => {
                             {
                                     session ? 
                                         <>
-                                        <Link href="/quan-ly/tai-khoan">
+                                        <Link href="/quan-ly">
                                             <a className={styles.x_desktop_display}> 
                                                 <Button className={styles.x_login_button}>
                                                     Quản lý

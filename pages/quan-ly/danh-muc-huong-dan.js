@@ -8,7 +8,7 @@ import { IoCaretForwardSharp } from 'react-icons/io5';
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
-const Guile = ({category}) => {
+const GuileCategory = ({category}) => {
   const [expanded, setExpanded] = useState(true);
   return (
     <>
@@ -46,10 +46,7 @@ const Guile = ({category}) => {
                                                     <li key={term_id} index={index} collection={'annoument'}>
                                                         <Link href={'/quan-ly/danh-muc-huong-dan/' + slug}>
                                                             <a>
-                                                               <p> {name} 
-                                                                <span className={styles.x_document_count}>
-                                                                    {count}
-                                                                </span></p>
+                                                               <p>{name} <span className={styles.x_document_count}> {count} </span></p>
                                                             </a>
                                                         </Link>
                                                     </li>
@@ -69,7 +66,7 @@ const Guile = ({category}) => {
   )
 }
 
-export default Guile
+export default GuileCategory
 
 export async function getServerSideProps() {
     const res = await axios.get(rootURL + 'user/guilde?type=category').then((resonse) => {
