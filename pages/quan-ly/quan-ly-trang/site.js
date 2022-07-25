@@ -55,7 +55,6 @@ const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON
 const SERVER_IP = process.env.NEXT_PUBLIC_SERVER_ID
 
 const SiteEditor = ({site_content}) => {
-  console.log(site_content);
   const { data: session } = useSession();
   const [data, setSiteData] = useState(site_content);
   const [expanded, setExpanded] = useState(true);
