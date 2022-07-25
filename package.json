@@ -19,6 +19,7 @@
     "cookies-next": "^2.0.4",
     "google-auth-library": "^8.1.1",
     "html-react-parser": "^1.4.14",
+    "is-valid-domain": "^0.1.6",
     "md5": "^2.3.0",
     "moment": "^2.29.3",
     "next": "12.1.6",

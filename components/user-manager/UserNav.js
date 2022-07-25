@@ -10,6 +10,7 @@ import CreativeIcon from '@rsuite/icons/Creative';
 import SpeakerIcon from '@rsuite/icons/Speaker';
 import CreditCardPlusIcon from '@rsuite/icons/CreditCardPlus';
 import MessageIcon from '@rsuite/icons/Message';
+import GlobalIcon from '@rsuite/icons/Global';
 
 const UserNav = ({active}) => {
     return (
@@ -20,9 +21,14 @@ const UserNav = ({active}) => {
                             Tất cả các trang
                         </Link>
                  </Nav.Item>
+                 <Nav.Item as={'span'} eventKey="ten-mien" icon={<GlobalIcon />}>
+                        <Link href={'/quan-ly/ten-mien'}>
+                            Quản lý tên miền
+                        </Link>
+                 </Nav.Item>
                 <Nav.Item as={'span'} eventKey="thanh-toan" icon={<CreditCardPlusIcon />}>
                     <Link href={'/quan-ly/thanh-toan'}>
-                        Quản lý thanh toán
+                        Thông tin thanh toán
                     </Link>
                 </Nav.Item>
                 <Nav.Item as={'span'}  icon={<GearIcon/>} eventKey="chinh-sua-tai-khoan">

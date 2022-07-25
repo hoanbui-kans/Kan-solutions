@@ -167,6 +167,9 @@
     width: 48%;
     justify-content: center;
 }
+.x_annoucement{
+    font-size: 14px;
+}
 .x_blog_favicon{
     border-radius: 50%;
     overflow: hidden;
@@ -530,15 +533,37 @@
   .x_guilde_content *{
     max-width: 100%;
   }
-
+  .x_button_add_domain{
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    background: var(--x-primary-color)
+  }
+  .x_rm_domain{
+    display: flex;
+    align-items: center;
+    margin: auto;
+    column-gap: 8px;
+    color: white;
+    font-weight: bold;
+    background: #ff6a6a
+  }
+.x_domain_section{
+    margin-bottom: 35px;
+    background-color: white;
+    padding: 22px;
+    border: 1px solid #e9e9e9;
+    border-radius: 8px;
+}
   .x_packaged{
+    font-size: 14px;
     padding: 15px;
     margin-bottom: 25px;
     background-color: whitesmoke;
     border-radius: 15px;
   }
 
-  .x_change_doimain{
+  .x_change_domain{
     padding: 15px 0px
   }
 
@@ -546,6 +571,7 @@
     padding: 15px 0px;
     margin-bottom: 15px;
     display: block;
+    font-size: 14px;
   }
   .x_blog_single_chart{
     background: whitesmoke;
@@ -561,7 +587,7 @@
     padding-bottom: 5px;
     margin-bottom: 25px;
   }
-.x_change_doimain_button{
+.x_change_domain_button{
     background-color: var(--x-primary-color);
     color: white;
     display: flex;
@@ -574,19 +600,19 @@
     padding: 15px 0px;
     margin-bottom: 8px;
 }
-.x_board_doimain_change{
+.x_board_domain_change{
     padding: 25px 0px
 }
-.x_current_doimain{
-    padding: 12px 20px;
-    background: whitesmoke;
+.x_current_domain{
+    padding: 9px 20px;
+    background: white;
     border-radius: 5px;
-    border: 1px solid rgb(190, 190, 190);
+    border: 1px solid rgb(229 229 234);
 }
-.x_doimain_change_arrow{
+.x_domain_change_arrow{
     padding: 0px 15px;
 }
-.x_replaced_doimain{
+.x_replaced_domain{
     padding: 12px 20px;
     background: #ff698d;
     color: white;
