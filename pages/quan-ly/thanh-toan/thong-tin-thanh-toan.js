@@ -78,7 +78,7 @@ const qr = ({response}) => {
                                         Tình trạng thanh toán: {POST.message}
                                     </List.Item>
                                 </List>
-                                <Link href="/quan-ly/tai-khoan">
+                                <Link href="/quan-ly">
                                     <a>
                                         <Button className={styles.x_return_to_dashboard}>
                                             <IoHome />
@@ -92,7 +92,28 @@ const qr = ({response}) => {
                 </Container>
             </section>
         </>
-    : ''
+    : <>
+        <section className={styles.x_qr_pay_section}>
+            <Container>
+                <Row>
+                    <Col xs={24}>
+                        <Panel bordered className={styles.x_payment_infor}>
+                            <h3 style={{marginBottom: 35, textAlign: 'center'}}>Xin lỗi!! <br />Không có thông tin thanh toán</h3>
+                            <Link href="/quan-ly">
+                                <a>
+                                    <Button className={styles.x_return_to_dashboard}>
+                                        <IoHome />
+                                        Trở về quản lý tài khoản
+                                    </Button>
+                                </a>
+                            </Link>
+                            
+                        </Panel>
+                    </Col>
+                </Row>
+            </Container>
+        </section>
+    </>
   )
 }
 
@@ -135,4 +156,5 @@ export async function getServerSideProps(context) {
     return { props: { 
         response: response
    }}
+ 
   }
