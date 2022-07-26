@@ -9,7 +9,7 @@ const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 import { Separator } from '../../giao-dien/[slug]';
 
 const Header =({data}) => {
-    switch(data.errorCode){
+    switch(data.resultCode){
         case '0':
             return(
                 <div className={styles.x_order_header}>
@@ -33,35 +33,33 @@ const Header =({data}) => {
                         <span className={styles.x_order_icons}>
                         <IoTimeSharp size={50} color="#27ae60"/>
                     </span>
-                    <h1> 
-                        Đang chờ thanh toán
-                    </h1>
+                        <h1> 
+                            Đang chờ thanh toán
+                        </h1>
                     </div>
                 </div>
             );
         break;
-        case '6':
-            return(
-                <div className={styles.x_order_header}>
-                   <h3>Hóa đơn: {data.orderId}</h3>
-                    <div className={styles.x_order_message}>
-                        <span className={styles.x_order_icons}>
-                        <IoShieldHalf size={50} color="#34495e"/>
-                    </span>
-                    <h1> 
-                        Thanh toán thất bại
-                    </h1>
-                    </div>
+        default: 
+        return(
+            <div className={styles.x_order_header}>
+               <h3>Hóa đơn: {data.orderId}</h3>
+                <div className={styles.x_order_message}>
+                    <span className={styles.x_order_icons}>
+                    <IoShieldHalf size={50} color="#34495e"/>
+                </span>
+                <h1> 
+                    Thanh toán thất bại
+                </h1>
                 </div>
-            );
-        break;
-        default: return ''
+            </div>
+        );
     }
 }
 const qr = ({response}) => {
   const POST = response.post;
   return (
-    !response.error ? 
+    POST ? 
         <>
             <section className={styles.x_qr_pay_section}>
                 <Container>
@@ -77,7 +75,7 @@ const qr = ({response}) => {
                                         Tổng thanh toán: {Separator(POST.amount)}
                                     </List.Item>
                                     <List.Item key={3} index={3} className={styles.x_list}>
-                                        Tình trạng thanh toán: {POST.localMessage}
+                                        Tình trạng thanh toán: {POST.message}
                                     </List.Item>
                                 </List>
                                 <Link href="/quan-ly/tai-khoan">
@@ -118,7 +116,6 @@ export async function getServerSideProps(context) {
     for (const key in transaction) {
             if (Object.hasOwnProperty.call(transaction, key)) {
                 const element = transaction[key];
-                console.log(key, element)
                 fd.append(key, element);
             }
     }
@@ -134,10 +131,8 @@ export async function getServerSideProps(context) {
     }).catch(function (error) {
       console.log(error);
     });
-    
     // Pass data to the page via props
     return { props: { 
         response: response
-
    }}
   }
