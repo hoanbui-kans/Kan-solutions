@@ -8,6 +8,7 @@ import axios from 'axios'
 import styles from '../../styles/account.module.css'
 import UserNav from '../../components/user-manager/UserNav'
 import { getSession } from 'next-auth/react';
+import MenuIcon from '@rsuite/icons/Menu';
 import moment from 'moment'
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
@@ -21,6 +22,7 @@ const UserEditor = ({user_info, nonce}) => {
   const [facebook, setFacebook] = useState(user_info.facebook ? user_info.facebook : []);
   const user_login = user_info ? user_info.user_login : '';
   const nonce_key = nonce ? nonce : '';
+  const[showMobileNav, setShowMobileNav] = useState(true);
 
   const[formValue, setFormValue] = useState({
     firstname: user_info.firstname ? user_info.firstname : '',
@@ -234,14 +236,33 @@ const UserEditor = ({user_info, nonce}) => {
       <Container>
         <Row>
               <Col xs={24} md={!expanded ? 2 : 6}>
-                  <div className={styles.x_account_nav}>
-                      <Sidenav expanded={expanded} defaultOpenKeys={['3', '4']}>
-                          <Sidenav.Body>
-                          <UserNav active={'chinh-sua-tai-khoan'} expanded={expanded}/>
-                          <Sidenav.Toggle expanded={expanded} onToggle={expanded => setExpanded(expanded)} />
-                          </Sidenav.Body>
-                      </Sidenav>
-                  </div>
+                  <Button 
+                    onClick={() => {setShowMobileNav(!showMobileNav)}} 
+                    className={styles.x_mobile_menu_button} 
+                    style={{width: '100%'}}
+                  >   
+                  <MenuIcon />
+                        Menu quản lý
+                    </Button>
+                {
+                    showMobileNav ?
+                    <div className={styles.x_account_nav}>
+                        <Sidenav expanded={expanded}>
+                            <Sidenav.Body>
+                                <UserNav active={'chinh-sua-tai-khoan'} expanded={expanded}/>
+                                <Sidenav.Toggle expanded={expanded} onToggle={expanded => setExpanded(expanded)} />
+                                <Button 
+                                    className={styles.x_nav_mobile_close_button}
+                                    onClick={() => {setShowMobileNav(!showMobileNav)}} 
+                                    color={'primary'} 
+                                    style={{width: '100%'}}
+                                >
+                                    Đóng
+                                </Button>
+                            </Sidenav.Body>
+                        </Sidenav>
+                    </div> : ''
+                }
               </Col>
               <Col xs={24} md={!expanded ? 22 : 18}>
                 <Row>

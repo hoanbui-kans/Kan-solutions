@@ -15,7 +15,7 @@ import GlobalIcon from '@rsuite/icons/Global';
 const UserNav = ({active}) => {
     return (
         <>
-        <Nav className={styles.x_account_nav} activeKey={active}>
+        <Nav activeKey={active}>
                 <Nav.Item as={'span'} eventKey="quan-ly" icon={<DashboardIcon />}>
                         <Link href={'/quan-ly'}>
                             Tất cả các trang

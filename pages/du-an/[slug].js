@@ -12,7 +12,7 @@ import { getSession } from 'next-auth/react'
 import { SingleProject } from '../du-an'
 import ArrowRightIcon from '@rsuite/icons/ArrowRight';
 import ServicesSubmitForm from '../../components/handleSubmitServices'
-
+import CommentsUI from '../../components/comment'
 const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON;
 
 export const Layout = ({data}) => {
@@ -79,7 +79,7 @@ export const SinglePageProject = ({data}) => {
                         <Col xs={24}>
                           <Breadcrumb className={'x_breadcumb'}>
                             <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
-                            <Breadcrumb.Item as={Link} href="/giao-dien-mau/">Giao diện mẫu</Breadcrumb.Item>
+                            <Breadcrumb.Item as={Link} href="/du-an/">Dự án</Breadcrumb.Item>
                             <Breadcrumb.Item active>{data.post_title}</Breadcrumb.Item>
                           </Breadcrumb>
                         </Col>
@@ -126,6 +126,9 @@ export const SinglePageProject = ({data}) => {
                       </div>
                     </div> : ''
                   }
+                  <div className={styles.x_comment_form}>
+                    <CommentsUI data={data.comment} post_id={data.ID}/>
+                  </div>
                 </div>
               </Col>
               <Col xs={24} md={8} className={styles.x_padding}>

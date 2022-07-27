@@ -22,7 +22,7 @@ const AboutUs = () => {
     <>
        <Head>
         { HTMLReactParser(AboutUsSeo.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
-        <script type="application/ld+json">
+        {/* <script type="application/ld+json">
           {`{
             "@context": "https://schema.org",
             "@type": "FAQPage",
@@ -64,7 +64,7 @@ const AboutUs = () => {
               }
             ]
           }`}
-        </script>
+        </script> */}
       </Head>
       <div className={'x_breadcum_container'}>
         <section>
@@ -254,7 +254,7 @@ const AboutUs = () => {
                 <div className={styles.x_about_banner}>
                   <div className={styles.x_about_banner_content}>
                     <h2 className={styles.x_banner_title}>Thiết kế Website chuyên nghiệp cùng ưu đãi hàng trăm banner miễn phí</h2>
-                    <Link href="/giao-dien-mau">
+                    <Link href="/giao-dien">
                       <a>
                         <Button className={styles.x_black_button} style={{margin: 'auto'}}>
                           Thông tin chi tiết

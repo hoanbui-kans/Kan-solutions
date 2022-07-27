@@ -321,10 +321,10 @@ const Header = () => {
       <div className={styles.x_top_header}>
             <Container> 
                     <Row className={styles.x_flex}>
-                        <Col xs={16} md={8} lg={8} className={styles.x_top_header_brand}>
+                        <Col xs={14} md={8} lg={8} className={styles.x_top_header_brand}>
                             <strong>CÔNG TY TNHH GIẢI PHÁP KAN</strong>
                         </Col>
-                        <Col xs={8} md={16} lg={16} className={styles.x_flex_end}>
+                        <Col xs={10} md={16} lg={16} className={styles.x_flex_end}>
                             <ul className={styles.x_top_header_menu}>
                                 <li className={styles.x_desktop_display}>
                                     <a href={'tel:0392193639'}>

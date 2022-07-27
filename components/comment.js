@@ -302,7 +302,7 @@ const CommentsUI = ({data}) => {
 
   return (
     <>
-    <Head>
+    {/* <Head>
       <script type="application/ld+json">
           {data.price ? HTMLReactParser(`{
             "@context": "https://schema.org",
@@ -321,7 +321,7 @@ const CommentsUI = ({data}) => {
               "priceCurrency": "VND"
             }}`): ''}
       </script>
-    </Head>
+    </Head> */}
     {
         comments.length == 0 ? 
         <>

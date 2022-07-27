@@ -21,7 +21,7 @@ import styles from '../../styles/account.module.css';
 import isValidDomain from 'is-valid-domain';
 import { IoTrashOutline, IoGlobeOutline } from "react-icons/io5";
 import { useRouter } from 'next/router'
-
+import MenuIcon from '@rsuite/icons/Menu';
 const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON
 
 const Domain = ({posts, token}) => {
@@ -31,6 +31,7 @@ const Domain = ({posts, token}) => {
   const [loadingRmdomain, setRMdomain] = useState([]);
   const { data: session } = useSession();
   const router = useRouter();
+  const[showMobileNav, setShowMobileNav] = useState(true);
 
   const HandleRemoveDoimain = async (domain_id, status) => {
     
@@ -126,14 +127,32 @@ const Domain = ({posts, token}) => {
             <Container>
                 <Row>
                     <Col xs={24} md={!expanded ? 2 : 6}>
-                        <div className={styles.x_account_nav}>
-                            <Sidenav expanded={expanded} defaultOpenKeys={['3', '4']}>
-                                <Sidenav.Body>
-                                <UserNav active={'thanh-toan'} expanded={expanded}/>
-                                <Sidenav.Toggle expanded={expanded} onToggle={expanded => setExpanded(expanded)} />
-                                </Sidenav.Body>
-                            </Sidenav>
-                        </div>
+                        <Button 
+                            onClick={() => {setShowMobileNav(!showMobileNav)}} 
+                            className={styles.x_mobile_menu_button} 
+                            style={{width: '100%'}}
+                        >   <MenuIcon />
+                                Menu quản lý
+                            </Button>
+                        {
+                            showMobileNav ?
+                            <div className={styles.x_account_nav}>
+                                <Sidenav expanded={expanded}>
+                                    <Sidenav.Body>
+                                        <UserNav active={'ten-mien'} expanded={expanded}/>
+                                        <Sidenav.Toggle expanded={expanded} onToggle={expanded => setExpanded(expanded)} />
+                                        <Button 
+                                            className={styles.x_nav_mobile_close_button}
+                                            onClick={() => {setShowMobileNav(!showMobileNav)}} 
+                                            color={'primary'} 
+                                            style={{width: '100%'}}
+                                        >
+                                            Đóng
+                                        </Button>
+                                    </Sidenav.Body>
+                                </Sidenav>
+                            </div> : ''
+                        }
                     </Col>
                     <Col xs={24} md={!expanded ? 22 : 18}>
                         <div className={styles.x_domain_section}>

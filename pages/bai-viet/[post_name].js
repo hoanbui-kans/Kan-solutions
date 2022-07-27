@@ -61,7 +61,7 @@ const PostSingle = ({data}) => {
       <>
         <Head>
           {HTMLReactParser(data.yoast_head.html.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content"))}
-          <script type="application/ld+json">
+          {/* <script type="application/ld+json">
           {HTMLReactParser(`{
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
@@ -77,7 +77,7 @@ const PostSingle = ({data}) => {
               "item": "${site_url}/giao-dien/${data.post_name}"
             }]
           }`)}
-        </script>
+        </script> */}
         </Head>
         <div className={'x_breadcum_container'}>
           <Container>

@@ -10,7 +10,6 @@ import {
     toaster,
     Message,
     Table,
-    FlexboxGrid ,
     List,
 } from 'rsuite';
 import axios from 'axios';
@@ -23,8 +22,9 @@ import CreditCardPlusIcon from '@rsuite/icons/CreditCardPlus';
 import Router from 'next/router'
 import { Separator } from '../giao-dien/[slug]';
 import { locales } from '../api/locales';
-import 'moment/locale/vi'
+import MenuIcon from '@rsuite/icons/Menu';
 
+import 'moment/locale/vi'
 const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON
 
 const PaymentInfo = ({posts}) => {
@@ -34,7 +34,7 @@ const PaymentInfo = ({posts}) => {
     const [formValue, setFormvalue] = useState({
         order_id: ''
     });
-    const[showMobileNav, setShowMobileNav] = useState(false);
+    const[showMobileNav, setShowMobileNav] = useState(true);
 
     // Modal tạo dữ liệu 
     const [open, setOpen] = useState(false);  
@@ -121,15 +121,6 @@ const PaymentInfo = ({posts}) => {
         indeterminate = true;
     }
 
-    const handleCheckAll = (value, checked) => {
-        const keys = checked ? Site_data.map(item => item.id) : [];
-        setCheckedKeys(keys);
-    };
-
-    const handleCheck = (value, checked) => {
-        const keys = checked ? [...checkedKeys, value] : checkedKeys.filter(item => item !== value);
-        setCheckedKeys(keys);
-    };
     useEffect(() => {
         console.log(checkedKeys);
     }, [checkedKeys])
@@ -184,17 +175,33 @@ const PaymentInfo = ({posts}) => {
     <section className={styles.x_app_section}>
         <Container>
             <Row>
-                <Col xs={24} md={!expanded ? 2 : 6}>
-                    <Button onClick={() => {setShowMobileNav(!showMobileNav)}} color={'primary'} style={{width: '100%'}}>Menu</Button>
-                    <div className={showMobileNav ? styles.x_account_nav_show : styles.x_account_nav}>
-                        <Sidenav expanded={expanded} defaultOpenKeys={['3', '4']}>
-                            <Sidenav.Body>
-                                <UserNav active={'thanh-toan'} expanded={expanded}/>
-                                <Sidenav.Toggle expanded={expanded} onToggle={expanded => setExpanded(expanded)} />
-                            </Sidenav.Body>
-                            <Button onClick={() => {setShowMobileNav(!showMobileNav)}} color={'primary'} style={{width: '100%'}}>Menu</Button>
-                        </Sidenav>
-                    </div>
+                <Col xs={24} md={!expanded ? 2 : 6}> 
+                    <Button 
+                        onClick={() => {setShowMobileNav(!showMobileNav)}} 
+                        className={styles.x_mobile_menu_button} 
+                        style={{width: '100%'}}
+                    >   <MenuIcon />
+                            Menu quản lý
+                        </Button>
+                    {
+                        showMobileNav ?
+                        <div className={styles.x_account_nav}>
+                            <Sidenav expanded={expanded}>
+                                <Sidenav.Body>
+                                    <UserNav active={'thanh-toan'} expanded={expanded}/>
+                                    <Sidenav.Toggle expanded={expanded} onToggle={expanded => setExpanded(expanded)} />
+                                    <Button 
+                                        className={styles.x_nav_mobile_close_button}
+                                        onClick={() => {setShowMobileNav(!showMobileNav)}} 
+                                        color={'primary'} 
+                                        style={{width: '100%'}}
+                                    >
+                                        Đóng
+                                    </Button>
+                                </Sidenav.Body>
+                            </Sidenav>
+                        </div> : ''
+                    }
                 </Col>
                 <Col xs={24} md={!expanded ? 22 : 18}>
                 <Table 

@@ -163,7 +163,7 @@ const Dashboard = ({blogInfor}) => {
                         <Col xs={24} md={12} className={styles.x_padding}>
                             <div className={styles.x_flex}>
                                 <Col xs={12}>
-                                    <Link href={'/giao-dien-mau'}>
+                                    <Link href={'/giao-dien'}>
                                         <a className={styles.x_account_button}>
                                             <Button className={styles.x_outline_view}>
                                                 <IoAlbumsOutline size={20}/>
@@ -173,7 +173,7 @@ const Dashboard = ({blogInfor}) => {
                                     </Link>
                                 </Col>
                                 <Col xs={12}>
-                                    <Link href={'/giao-dien-mau'}>
+                                    <Link href={'/giao-dien'}>
                                         <a className={styles.x_account_button}>
                                             <Button className={styles.x_outline_create}>
                                                 <IoAddSharp size={20}/>

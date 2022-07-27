@@ -10,6 +10,7 @@ import { IoListSharp, IoGridOutline, IoCaretForwardSharp, IoFunnelOutline, IoClo
 import HTMLReactParser from 'html-react-parser';
 import Head from 'next/head';
 import { Themes } from './api/HeaderSeo';
+import { useSession } from 'next-auth/react';
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 export const Price = ({data}) => {
@@ -33,6 +34,7 @@ export const Price = ({data}) => {
 }
 
 export const GD_Box = ({data, price}) => {
+    const { data: session} = useSession();
     return (
         <div className={styles.x_gd_box}>
              {
@@ -49,7 +51,7 @@ export const GD_Box = ({data, price}) => {
                         <h3 className={styles.x_gd_box_tittle}>{data.post_title}</h3>
                     </a>
                 </Link>
-                { price ?                 
+                { price && !session ?                 
                 <div className={styles.x_gd_box_price}>
                     <Price data={data.price}/>
                 </div> : ''
@@ -76,6 +78,7 @@ export const GD_Box = ({data, price}) => {
 }
 
 export const GD_List = ({data}) => {
+    const { data: session} = useSession();
     return (
         <div className={styles.x_gd_box}>
             <Row>
@@ -97,9 +100,12 @@ export const GD_List = ({data}) => {
                         <p className={styles.x_gd_box_description}>
                             {HTMLReactParser(data.post_excerpt)}
                         </p>
-                        <div className={styles.x_gd_list_price}>
-                            <Price data={data.price}/>
-                        </div>
+                        {
+                            data.price && !session ? 
+                                <div className={styles.x_gd_list_price}>
+                                    <Price data={data.price}/>
+                                </div> : ''
+                        }
                         <div className={styles.x_gd_box_button}>
                             <Link href={`/giao-dien/xem-giao-dien/${data.post_name}`}>
                                 <a className={styles.x_gd_box_link}>
@@ -128,7 +134,6 @@ const Themes_GDMau = ({gd, nganh, danhmuc, max_pages}) => {
     const [posts, setPosts] = useState(gd);
     const [paged, setPaged] = useState(1);
     const [loading, setLoading] = useState(false);
-    const [max_paged, setMax_paged] = useState(max_pages);
     const [formvalue, setFormValue] = useState({
         s: '',
     })
@@ -155,27 +160,35 @@ const Themes_GDMau = ({gd, nganh, danhmuc, max_pages}) => {
     
     const[openFilter, setOpenFilter] = useState(false);
     const[displayGrid, setDisplayGrid] = useState(true);
-    const[filterNganh, setFilterNganh] = useState([]);
-    const[perPage, setPerPage] = useState(Paged[0].value);
-    const[keySearch, setKeySearch] = useState('');
+
+    const[softData, setSortData] = useState({
+        keySearch: '',
+        perPage: Paged[0].value,
+        filterNganh: [],
+        paged: 1,
+        max_paged: max_pages
+    });
 
     const handleChange = (e) => {
-        setFilterNganh(e);
-        handleUpdateGd();
+        handleUpdateGd({...softData, filterNganh: e, paged: 1});
     };
 
     const HandleSubmitSearch = () => {
-        setKeySearch(formvalue.s);
-        handleUpdateGd();
+        handleUpdateGd({...softData, keySearch: formvalue.s, paged: 1});
     }
 
-    const HandleChangePerpage = (e) => {
-        setPerPage(e)
-        handleUpdateGd();
+    const HandleChangePerpage =  (e) => {
+        handleUpdateGd({...softData, perPage: e ? e : 12, paged: 1});
     }
 
-    const handleUpdateGd = async () => {
-        const nganhTerms = filterNganh.join(',');
+    const Next_Pages = async(num) => {
+        handleUpdateGd({...softData, paged: num});
+    }
+
+    const handleUpdateGd = async (data) => {
+        const filterData = data;
+        setSortData(filterData);
+        const nganhTerms = filterData.filterNganh.join(',');
         // Pass data to the page via props
         setLoading(true);
         window.scrollTo({
@@ -183,10 +196,10 @@ const Themes_GDMau = ({gd, nganh, danhmuc, max_pages}) => {
             left: 0,
             behavior: "smooth"
         });
-        const response = await axios.get(`${rootURL}giao-dien/giao-dien-mau?p=${paged}&perpage=${perPage}&nganh=${nganhTerms}&s=${keySearch}`).then((resonse) => resonse.data);
+        const response = await axios.get(`${rootURL}giao-dien/giao-dien-mau?p=${filterData.paged}&perpage=${filterData.perPage}&nganh=${nganhTerms}&s=${filterData.keySearch}`).then((resonse) => resonse.data);
         if(!response.error){
             setPosts(response.posts);
-            setMax_paged(response.max_pages);
+            setSortData({...filterData, max_paged: response.max_pages});
         } else {
             toaster.push(<Message type='warning'>Không tìm thấy nội dung với bộ lọc tìm kiếm</Message>);
         }
@@ -215,7 +228,7 @@ const Themes_GDMau = ({gd, nganh, danhmuc, max_pages}) => {
     const SortByJobs = ({data}) => {
       return(
         <CheckboxGroup 
-            value={filterNganh}
+            value={softData.filterNganh}
             name="checkboxList" 
             onChange={(e) => {handleChange(e)}}>
             {data.map((val) => {
@@ -231,23 +244,6 @@ const Themes_GDMau = ({gd, nganh, danhmuc, max_pages}) => {
         </CheckboxGroup>
         )
     }
-
-    const Next_Pages = async(num) => {
-        const nganhTerms = filterNganh.join(',');
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: "smooth"
-        });
-        setLoading(true);
-        setPaged(num);
-        const response = await axios.get(`${rootURL}giao-dien/giao-dien-mau?p=${num}&perpage=${perPage}&nganh=${nganhTerms}&s=${keySearch}`).then((resonse) => resonse.data);
-        if(response){
-            setPosts(response.posts);
-            setMax_paged(response.max_pages);
-        }
-        setLoading(false);
- }
 
   return (
     <>
@@ -362,7 +358,7 @@ const Themes_GDMau = ({gd, nganh, danhmuc, max_pages}) => {
                                     max_pages >= 2 ? 
                                     <Col xs={24}>
                                         <div className={styles.x_pagination}>
-                                            <Pagination total={max_paged} limit={1} activePage={paged} onChangePage={(current) => { Next_Pages(current)}} />
+                                            <Pagination total={softData.max_paged} limit={1} activePage={softData.paged} onChangePage={(current) => { Next_Pages(current)}} />
                                         </div>
                                     </Col> : ''
                                 }

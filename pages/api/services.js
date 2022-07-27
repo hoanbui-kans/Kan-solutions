@@ -314,9 +314,10 @@ export const MarketingTable = [
 export const HostingTable = [
     {
         name: 'Cơ bản',
-        price: '3.500.000đ',
+        price: '250.000đ',
         checklist: [
             'Miễn phí tên miền: 0',
+            'Đăng ký tối thiểu 3 tháng',
             'Server đặt tại: Việt Nam',
             'Dung lượng: 1 GB',
             'Băng thông: Không giới hạn',
@@ -330,9 +331,10 @@ export const HostingTable = [
         ]
     },{
         name: 'Kinh doanh',
-        price: '4.200.000đ',
+        price: '450.000đ',
         checklist: [
             'Miễn phí 1 tên miền (.com, .net)',
+            'Đăng ký tối thiểu 6 tháng',
             'Server đặt tại: Việt Nam',
             'Dung lượng: 2 GB',
             'Băng thông: Không giới hạn',
@@ -347,15 +349,16 @@ export const HostingTable = [
         ]
     },{
         name: 'Nâng cao',
-        price: '5.500.000đ',
+        price: '550.000đ',
         checklist: [
             'Miễn phí 1 tên miền (.com, .net, .vn)',
+            'Đăng ký tối thiểu 6 tháng',
             'Server đặt tại: Việt Nam',
             'Dung lượng: 3 GB',
             'Băng thông: Không giới hạn',
             'Email tự động: Có',
             'Quản lý CRM: Có',
-            'Quản lý MobileApp: Có',
+            'Quản lý MobileApp: Không',
             'Hỗ trợ tài khoản ads Tiktok',
             'Tùy chỉnh giao diện: 3 lần chỉnh sửa/ Năm',
             'Hỗ trợ cài đặt tính năng: 3 module yêu cầu/ Năm',

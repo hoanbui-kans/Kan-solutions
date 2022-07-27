@@ -19,6 +19,8 @@ import { getSession } from 'next-auth/react';
 import styles from '../styles/account.module.css'
 import UserNav from '../components/user-manager/UserNav';
 import { RateUser } from './api/services';
+import MenuIcon from '@rsuite/icons/Menu';
+
 const Chart = dynamic(
   () => {
     return ( import('react-apexcharts') )
@@ -217,20 +219,41 @@ export const BlogContent = ({data}) => {
 
 const UserManager = ({blogInfor}) => {
   const [expanded, setExpanded] = useState(true);
+  const[showMobileNav, setShowMobileNav] = useState(true);
+
   return (
     <>
     <section className={styles.x_app_section}>
         <Container>
             <Row>
                 <Col xs={24} md={!expanded ? 2 : 6}>
-                    <div>
-                        <Sidenav expanded={expanded} defaultOpenKeys={['3', '4']}>
-                            <Sidenav.Body>
-                            <UserNav active={'quan-ly'} expanded={expanded}/>
-                            <Sidenav.Toggle expanded={expanded} onToggle={expanded => setExpanded(expanded)} />
-                            </Sidenav.Body>
-                        </Sidenav>
-                    </div>
+                    <Button 
+                        onClick={() => {setShowMobileNav(!showMobileNav)}} 
+                        className={styles.x_mobile_menu_button} 
+                        style={{width: '100%'}}
+                    >   
+                        <MenuIcon />
+                         Menu quản lý
+                    </Button>
+                    {
+                        showMobileNav ?
+                        <div className={styles.x_account_nav}>
+                            <Sidenav expanded={expanded}>
+                                <Sidenav.Body>
+                                    <UserNav active={'quan-ly'} expanded={expanded}/>
+                                    <Sidenav.Toggle expanded={expanded} onToggle={expanded => setExpanded(expanded)} />
+                                    <Button 
+                                        className={styles.x_nav_mobile_close_button}
+                                        onClick={() => {setShowMobileNav(!showMobileNav)}} 
+                                        color={'primary'} 
+                                        style={{width: '100%'}}
+                                        >
+                                        Đóng
+                                    </Button>
+                                </Sidenav.Body>
+                            </Sidenav> 
+                        </div> : ''
+                    }
                 </Col>
                 <Col xs={24} md={!expanded ? 22 : 18}>
                     <Row className={styles.x_create_section}>
@@ -245,7 +268,7 @@ const UserManager = ({blogInfor}) => {
                             </Form>
                         </Col>
                         <Col xs={24} md={12} className={styles.x_padding}>
-                            <div className={styles.x_flex}>
+                            <Row>
                                 <Col xs={12}>
                                     <Link href={'/giao-dien'}>
                                         <a className={styles.x_account_button}>
@@ -257,7 +280,7 @@ const UserManager = ({blogInfor}) => {
                                     </Link>
                                 </Col>
                                 <Col xs={12}>
-                                    <Link href={'/giao-dien-mau'}>
+                                    <Link href={'/giao-dien'}>
                                         <a className={styles.x_account_button}>
                                             <Button className={styles.x_outline_create}>
                                                 <IoAddSharp size={20}/>
@@ -266,7 +289,7 @@ const UserManager = ({blogInfor}) => {
                                         </a>
                                     </Link>
                                 </Col>
-                            </div>
+                            </Row>
                         </Col>
                     </Row>
                     <Row className={styles.x_flex}>

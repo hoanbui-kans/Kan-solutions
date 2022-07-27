@@ -38,7 +38,7 @@ const Upgrade = () => {
                                                     <div className={styles.x_hosting}>
                                                         <div className={styles.x_hosting_header}>
                                                             <h3>{val.name}</h3>
-                                                            <p>{val.price} /Năm</p>
+                                                            <p>{val.price} /Tháng</p>
                                                             <Button className={styles.x_hosting_button} onClick={() => { handleOpen('Dịch vụ hosting ' + val.name) }}>Đăng ký</Button>
                                                         </div>
                                                         <div className={styles.x_hosting_features}>

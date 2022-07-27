@@ -25,6 +25,7 @@
 }
 .x_form_search_container{
     position: relative;
+    margin-bottom: 15px;
     width: 100%;
 }
 .x_search_page_input{
@@ -32,6 +33,8 @@
 }
 .x_account_button{
     width: 100%;
+    display: block;
+    margin-bottom: 15px;
 }
 .x_date_button{
     font-weight: bold;
@@ -45,7 +48,7 @@
     column-gap: 10px;
 }
 .x_change_password_button{
-    background: rgb(240 81 67);
+    background: #2d88e2;
     color: white;
 }
 .x_badge{
@@ -89,7 +92,7 @@
     padding: .75rem .75rem .75rem 3.25rem;
 }
 .x_create_section{
-    margin-bottom: 2.75rem
+    margin-bottom: 25px
 }
 .x_search_page_button{
     position: absolute;
@@ -647,13 +650,36 @@
     .x_account_nav{
         position: fixed;
         z-index: 999;
-        width: 90%;
-        top: 15%;
-        left: 5%;
+        width: auto;
+        top: 5%;
+        left: 10px;
+        border-radius: 10px;
+        height: 90%;
         background: #f7f7fa;
+        box-shadow: 0px 0px 10px -3px;
         padding: 15px;
-        border-radius: 15px;
-        box-shadow: var(--x-box-shdow);
         color: var(--rs-sidenav-default-hover-text);
     }
+    .x_nav_mobile_close_button{
+        display: block !important;
+        background: unset;
+        font-weight: bold;
+        color: black;
+    }
+    .x_mobile_menu_button{
+        display: flex !important;
+        align-items: center;
+        column-gap: 10px;
+        background: #282c4b;
+        justify-items: center;
+        font-weight: bold;
+        color: white;
+        justify-content: center;
+        margin-bottom: 24px;
+    }
+    
+}
+.x_mobile_menu_button,
+.x_nav_mobile_close_button{
+    display: none;
 }
