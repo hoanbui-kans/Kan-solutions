@@ -54,7 +54,7 @@ const Extends = ({posts}) => {
         <Container>
             <Row>
                 <Col xs={24} md={!expanded ? 2 : 6}>
-                    <div>
+                    <div className={styles.x_account_nav}>
                         <Sidenav expanded={expanded} defaultOpenKeys={['3', '4']}>
                             <Sidenav.Body>
                             <UserNav expanded={expanded}/>

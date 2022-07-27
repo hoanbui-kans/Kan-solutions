@@ -635,3 +635,11 @@
     margin-bottom: 0.35rem;
     margin-top: 0;
 }
+.x_annoucement h3{
+    font-size: 22px;
+}
+.x_annoucement{
+    font-size: 14px;
+    background: whitesmoke;
+    padding-left: 15px;
+}

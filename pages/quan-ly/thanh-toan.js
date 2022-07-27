@@ -183,7 +183,7 @@ const PaymentInfo = ({posts}) => {
         <Container>
             <Row>
                 <Col xs={24} md={!expanded ? 2 : 6}>
-                    <div>
+                    <div className={styles.x_account_nav}>
                         <Sidenav expanded={expanded} defaultOpenKeys={['3', '4']}>
                             <Sidenav.Body>
                             <UserNav active={'thanh-toan'} expanded={expanded}/>
@@ -204,12 +204,12 @@ const PaymentInfo = ({posts}) => {
                     wordWrap= 'normal'
                     style={{wordBreak: 'normal'}}
                 >
-                            <Table.Column width={50} align="center" fixed resizable>
+                            <Table.Column width={50} align="center" resizable>
                                 <Table.HeaderCell>STT</Table.HeaderCell>
                                 <Table.Cell dataKey="counter" />
                             </Table.Column>
 
-                            <Table.Column width={200} fixed resizable>
+                            <Table.Column width={200} resizable>
                                 <Table.HeaderCell>Tên hóa đơn</Table.HeaderCell>
                                 <Table.Cell>{(rowData) => rowData.post_title }</Table.Cell>
                             </Table.Column>
@@ -275,116 +275,45 @@ const PaymentInfo = ({posts}) => {
         <Modal.Body>
                <List>
                 <List.Item key={'momo_banking'} index={1}>
-                    <FlexboxGrid>
-                        {/*icon*/}
-                        <FlexboxGrid.Item colspan={4} style={styleCenter}>
-                            <span style={{background: 'whitesmoke', padding: 8, borderRadius: '.35rem'}}>
+                    <Row height={200}>
+                        <Col xs={4}>
+                            <span style={{display: 'block', background: 'whitesmoke', padding: 8, borderRadius: '.35rem'}}>
                                 <Image src="/payment/qr/momo.svg" width={50} height={50} alt="Thanh toán momo"/>
                             </span>
-                        </FlexboxGrid.Item>
-                        {/*base info*/}
-                        <FlexboxGrid.Item
-                            colspan={12}
-                            style={{
-                            ...styleCenter,
-                            flexDirection: 'column',
-                            alignItems: 'flex-start',
-                            overflow: 'hidden',
-                            }}
-                        >
+                        </Col>
+                        <Col xs={12}>
                              <div>
-                                <h3 style={{fontSize: 18, lineHeight:'28px', margin: 0}}>Momo QR code</h3>
+                                <h3 style={{fontSize: 18, lineHeight:'28px', margin: 0}}>Thanh Toán bằng Ví MoMo</h3>
                                 <p>Thanh toán trực tuyến bằng ví điện tử Momo</p>
                             </div>
-                        </FlexboxGrid.Item>
-                        {/*uv data*/}
-                        <FlexboxGrid.Item
-                            colspan={8}
-                            style={{
-                            ...styleCenter,
-                            }}
-                        >
+                        </Col>
+                        <Col xs={8}>
                            <Button 
                                 onClick={() => {HandleRequestPaymentMomo('qr')}}
                                 color="primary" 
-                                style={loading_create == 'qr' ? {pointerEvents: 'none'} : {pointerEvents: 'all'}}>
-                                        {loading_create == 'qr' ? 'Đang tải' : 'Thanh toán'}
+                                style={loading_create == 'qr' ? {pointerEvents: 'none', margin: 'auto'} : {pointerEvents: 'all', margin: 'auto'}}>
+                                      {loading_create == 'qr' ? 'Đang tải' : 'Thanh toán'}
                             </Button>
-                        </FlexboxGrid.Item>
-                      </FlexboxGrid>
+                        </Col>
+                      </Row>
                     </List.Item>
                     <List.Item key={'atm_banking'} index={2}>
-                        <FlexboxGrid>
-                            {/*icon*/}
-                            <FlexboxGrid.Item colspan={4} style={styleCenter}>
-                                <span style={{background: 'whitesmoke', padding: 8, borderRadius: '.35rem'}}>
-                                    <Image src="/payment/qr/banking.svg" width={50} height={50} alt="Thanh toán ngân hàng"/>
-                                </span>
-                            </FlexboxGrid.Item>
-                            {/*base info*/}
-                            <FlexboxGrid.Item
-                                colspan={12}
-                                style={{
-                                ...styleCenter,
-                                flexDirection: 'column',
-                                alignItems: 'flex-start',
-                                overflow: 'hidden',
-                                }}
-                            >
-                                <div>
-                                    <h3 style={{fontSize: 18, lineHeight:'28px', margin: 0}}>Tài khoản ngân hàng</h3>
-                                    <p>Thanh toán trực tuyến bằng thẻ ATM</p>
-                                </div>
-                            </FlexboxGrid.Item>
-                            {/*uv data*/}
-                            <FlexboxGrid.Item
-                                colspan={8}
-                                style={{
-                                ...styleCenter,
-                                }}
-                            >
-                            <Button 
-                                onClick={() => {HandleRequestPaymentMomo('atm')}}
-                                color="primary" 
-                                style={loading_create == 'atm'  ? {pointerEvents: 'none'} : {pointerEvents: 'all'}}>
-                                        {loading_create == 'atm' ? 'Đang tải' : 'Thanh toán'}
-                            </Button>
-                            </FlexboxGrid.Item>
-                        </FlexboxGrid>
-                    </List.Item>
-                    <List.Item key={'atm_banking'} index={2}>
-                        <FlexboxGrid>
-                            {/*icon*/}
-                            <FlexboxGrid.Item colspan={4} style={styleCenter}>
-                                <span style={{background: 'whitesmoke', padding: 8, borderRadius: '.35rem'}}>
+                        <Row>
+                            <Col xs={4}>
+                                <span style={{display: 'block', background: 'whitesmoke', padding: 8, borderRadius: '.35rem'}}>
                                     <Image src="/payment/qr/banking-direct.svg" width={50} height={50} alt="Thanh toán ngân hàng"/>
                                 </span>
-                            </FlexboxGrid.Item>
-                            {/*base info*/}
-                            <FlexboxGrid.Item
-                                colspan={12}
-                                style={{
-                                ...styleCenter,
-                                flexDirection: 'column',
-                                alignItems: 'flex-start',
-                                overflow: 'hidden',
-                                }}
-                            >
+                            </Col>
+                            <Col xs={12}>
                                 <div>
                                     <h3 style={{fontSize: 18, lineHeight:'28px', margin: 0}}>Chuyển khoản ngân hàng</h3>
-                                    <p>Thanh toán trực tuyến bằng thẻ ATM</p>
+                                    <p>Thanh toán bằng chuyển khoản ngân hàng</p>
                                 </div>
-                            </FlexboxGrid.Item>
-                            {/*uv data*/}
-                            <FlexboxGrid.Item
-                                colspan={8}
-                                style={{
-                                ...styleCenter,
-                                }}
-                            >
-                            <Button color="primary">Thanh toán</Button>
-                            </FlexboxGrid.Item>
-                        </FlexboxGrid>
+                            </Col>
+                            <Col xs={8}>
+                            <Button color="primary" style={{margin: 'auto'}}>Thanh toán</Button>
+                            </Col>
+                        </Row>
                     </List.Item>
                </List>
         </Modal.Body>

@@ -134,7 +134,7 @@ const Contact = () => {
           <Row className={'x_flex_center'}>
             <Col xs={24}>
                 <div className={styles.x_content_map}>
-                  { HTMLReactParser('<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.268197538069!2d106.75064021473545!3d10.790759031546003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175278cfb60e4d1%3A0x2321e9b8bba9c98e!2sCentana%20Th%E1%BB%A7%20Thi%C3%AAm%20Apartment!5e0!3m2!1svi!2s!4v1655535718770!5m2!1svi!2s" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>')}
+                  { HTMLReactParser('<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1959.6356356326548!2d106.75116830005615!3d10.790523265860273!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752584ed10951d%3A0x6910ff7f48cc1f63!2zQ8OUTkcgVFkgVE5ISCBHSeG6okkgUEjDgVAgS0FO!5e0!3m2!1svi!2s!4v1658916516759!5m2!1svi!2s" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>')}
                 </div>
             </Col>
             <Col xs={24} md={12}>

@@ -45,9 +45,6 @@ const HomeTwo = () => {
       delay: 0,
       mirror: false
     });
-    setTimeout(() => {
-      setOpen_ads(true);
-    } , 3000)
   }, [true])
 
   return (
@@ -116,33 +113,64 @@ const HomeTwo = () => {
     <section className={styles.x_partner}>
         <Container>
           <Row>
-            <Col xs={12} md={6}>
-              <div className={styles.x_partner_content} data-aos="fade-left">
-                    <div className={styles.x_partner_icon}>
-                       <Image src="/home/WordPress.svg" width={200} height={80} alt="wordpress"/>
-                    </div>
-              </div>
-            </Col>
-            <Col xs={12} md={6}>
-              <div className={styles.x_partner_content} data-aos="fade-up">
-                    <div className={styles.x_partner_icon}>
-                       <Image src="/home/wpmu-dev.svg" width={200} height={80} alt="wpmu dev"/>
-                    </div>
-              </div>
-            </Col>
-            <Col xs={12} md={6}>
-              <div className={styles.x_partner_content} data-aos="fade-down">
-                    <div className={styles.x_partner_icon}>
-                       <Image src="/home/woocommerce.svg" width={200} height={80} alt="wordpress"/>
-                    </div>
-              </div>
-            </Col>
-            <Col xs={12} md={6}>
-              <div className={styles.x_partner_content} data-aos="fade-right">
-                    <div className={styles.x_partner_icon}>
-                       <Image src="/home/onepay.svg" width={160} height={80} alt="onepay"/>
-                    </div>
-              </div>
+            <Col xs={24}>
+            <Swiper
+                  spaceBetween={30}
+                  navigation={true}
+                  pagination={{
+                    clickable: true,
+                  }}
+                  breakpoints={{
+                    552: {
+                      slidesPerView: 2,
+                    },
+                    768: {
+                      slidesPerView: 3,
+                    },
+                    992: {
+                      slidesPerView: 4,
+                    },
+                  }}
+                  modules={[Navigation]}
+                  className="mySwiper"
+                  data-aos="fade-up"
+                >
+                   <SwiperSlide>
+                      <div className={styles.x_partner_content} data-aos="fade-left">
+                        <div className={styles.x_partner_icon}>
+                          <Image src="/home/WordPress.svg" width={200} height={80} alt="wordpress"/>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div className={styles.x_partner_content} data-aos="fade-up">
+                          <div className={styles.x_partner_icon}>
+                              <Image src="/home/wpmu-dev.svg" width={200} height={80} alt="wpmu dev"/>
+                          </div>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div className={styles.x_partner_content} data-aos="fade-down">
+                        <div className={styles.x_partner_icon}>
+                          <Image src="/home/woocommerce.svg" width={200} height={80} alt="wordpress"/>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div className={styles.x_partner_content} data-aos="fade-right">
+                        <div className={styles.x_partner_icon}>
+                          <Image src="/home/onepay.svg" width={160} height={80} alt="onepay"/>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div className={styles.x_partner_content} data-aos="fade-right">
+                        <div className={styles.x_partner_icon}>
+                          <Image src="/home/momo.svg" width={80} height={80} alt="momo"/>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+              </Swiper>
             </Col>
           </Row>
         </Container>
@@ -359,7 +387,7 @@ const HomeTwo = () => {
                   <h3 className={styles.x_main_box_secondary} data-aos="fade-down">TIN TỨC MỚI</h3>
                   <h2 className={styles.x_main_box_primary} data-aos="fade-up">Blog Kan Solution</h2>
                 </div>
-                <div className={styles.x_form_contact} data-aos="fade-right">
+                <div className={styles.x_form_contact}>
                 <Swiper
                   spaceBetween={30}
                   navigation={true}

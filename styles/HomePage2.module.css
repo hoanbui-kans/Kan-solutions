@@ -23,6 +23,7 @@
   text-align: center;
   border-radius: 20px;
   padding-top: 10px;
+  margin: 25px 0px;
 }
 
 .x_partner_icon:hover{
@@ -138,7 +139,7 @@
 
 .x_features{
   padding: 85px 0px;
-  padding-top: 85px;
+  padding-bottom: 115px;
   background: url('../public/home/bg-hero.svg');
   background-size: cover;
   background-repeat: no-repeat;

@@ -694,22 +694,32 @@ a.pps-btn-img {
 }
 @media (max-width: 768px){
   .rs-grid-container {
-      padding-left: var(--x-padding-column) !important;
-      padding-right: var(--x-padding-column) !important;
+    padding-left: var(--x-padding-column) !important;
+    padding-right: var(--x-padding-column) !important;
   }
   div#phonering-alo-phoneIcon {
-      left: -40px !important;
-      bottom: 150px !important;
+    left: -30px !important;
+    bottom: 120px !important;
+    transform: scale(.75);
   }
 }
 
-.ads_tiktok .rs-modal-content {
+/* .ads_tiktok .rs-modal-content {
   background-image: url('../public/banner/campain_tiktok.svg');
   background-size: cover;
   background-repeat: no-repeat;
   padding: 0px;
+} */
+.swiper-button-next:after, 
+.swiper-button-prev:after {
+  font-size: 24px !important;
 }
-
+.rs-progress, 
+.rs-progress-icon-fail, 
+.rs-progress-icon-success, 
+.rs-progress-info-status {
+  font-size: 12px !important;
+}
 .close_ads {
   position: absolute !important;
   right: 10px;

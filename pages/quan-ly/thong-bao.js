@@ -14,7 +14,7 @@ const Annoucement = ({bai_viet}) => {
         <Container>
             <Row className={styles.x_create_section}>
                 <Col xs={24} md={!expanded ? 2 : 6}>
-                    <div>
+                    <div className={styles.x_account_nav}>
                         <Sidenav expanded={expanded} defaultOpenKeys={['3', '4']}>
                             <Sidenav.Body>
                                 <UserNav active={'thong-bao'} expanded={expanded}/>
@@ -24,10 +24,10 @@ const Annoucement = ({bai_viet}) => {
                     </div>
                 </Col>
                 <Col xs={24} md={!expanded ? 22 : 18}>
-                    <Panel header="Thông báo" bordered style={{background: 'white'}}>
+                    <Panel header={<strong>Bảng tin Kansite</strong>} bordered style={{background: 'white'}}>
                         <List>
                             {bai_viet.map(({  ID, post_title, post_excerpt }, index) => (
-                                <List.Item key={ID} index={index} collection={'annoument'}>
+                                <List.Item className={styles.x_annoucement} key={ID} index={index} collection={'annoument'}>
                                     <h3>{post_title}</h3>
                                     <p>{post_excerpt}</p>
                                 </List.Item>

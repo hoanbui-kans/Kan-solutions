@@ -227,14 +227,14 @@ const UserEditor = ({user_info, nonce}) => {
       }
     }
   }
-
+  const birth = new Date(formValue.birth);
   return (
    <>
     <section className={styles.x_edit_profile_section}>
       <Container>
         <Row>
               <Col xs={24} md={!expanded ? 2 : 6}>
-                  <div>
+                  <div className={styles.x_account_nav}>
                       <Sidenav expanded={expanded} defaultOpenKeys={['3', '4']}>
                           <Sidenav.Body>
                           <UserNav active={'chinh-sua-tai-khoan'} expanded={expanded}/>
@@ -281,7 +281,7 @@ const UserEditor = ({user_info, nonce}) => {
                             <Col xs={24} md={12}>
                               <Form.Group className={styles.x_form_group}>
                                   <Form.ControlLabel>Ngày sinh</Form.ControlLabel>
-                                  <DatePicker name="birth" defaultValue={new Date(formValue.birth)} style={{width: '100%'}} onChange={(e) => {setFormValue({...formValue, birth: e})}}/>
+                                  <DatePicker name="birth" defaultValue={birth ? birth : ''} style={{width: '100%'}} onChange={(e) => {setFormValue({...formValue, birth: e})}}/>
                                 </Form.Group>
                             </Col>
                             <Col xs={24} md={12}>
