@@ -34,6 +34,7 @@ const PaymentInfo = ({posts}) => {
     const [formValue, setFormvalue] = useState({
         order_id: ''
     });
+    const[showMobileNav, setShowMobileNav] = useState(false);
 
     // Modal tạo dữ liệu 
     const [open, setOpen] = useState(false);  
@@ -170,25 +171,28 @@ const PaymentInfo = ({posts}) => {
         );
       };
 
-      const styleCenter = {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '60px',
-      };
-  let index = 1;
+    const styleCenter = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '60px',
+    };
+
+    let index = 1;
   return (
     <>
     <section className={styles.x_app_section}>
         <Container>
             <Row>
                 <Col xs={24} md={!expanded ? 2 : 6}>
-                    <div className={styles.x_account_nav}>
+                    <Button onClick={() => {setShowMobileNav(!showMobileNav)}} color={'primary'} style={{width: '100%'}}>Menu</Button>
+                    <div className={showMobileNav ? styles.x_account_nav_show : styles.x_account_nav}>
                         <Sidenav expanded={expanded} defaultOpenKeys={['3', '4']}>
                             <Sidenav.Body>
-                            <UserNav active={'thanh-toan'} expanded={expanded}/>
-                            <Sidenav.Toggle expanded={expanded} onToggle={expanded => setExpanded(expanded)} />
+                                <UserNav active={'thanh-toan'} expanded={expanded}/>
+                                <Sidenav.Toggle expanded={expanded} onToggle={expanded => setExpanded(expanded)} />
                             </Sidenav.Body>
+                            <Button onClick={() => {setShowMobileNav(!showMobileNav)}} color={'primary'} style={{width: '100%'}}>Menu</Button>
                         </Sidenav>
                     </div>
                 </Col>

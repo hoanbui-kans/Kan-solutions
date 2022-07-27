@@ -643,3 +643,17 @@
     background: whitesmoke;
     padding-left: 15px;
 }
+@media (max-width: 768px){
+    .x_account_nav{
+        position: fixed;
+        z-index: 999;
+        width: 90%;
+        top: 15%;
+        left: 5%;
+        background: #f7f7fa;
+        padding: 15px;
+        border-radius: 15px;
+        box-shadow: var(--x-box-shdow);
+        color: var(--rs-sidenav-default-hover-text);
+    }
+}
