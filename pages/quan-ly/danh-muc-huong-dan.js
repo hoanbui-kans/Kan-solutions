@@ -4,7 +4,6 @@ import { Container, Row, Col, List, Sidenav, Panel, Breadcrumb } from 'rsuite';
 import Link from 'next/link';
 import styles from '../../styles/account.module.css'
 import UserNav from '../../components/user-manager/UserNav';
-import { IoCaretForwardSharp } from 'react-icons/io5';
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 

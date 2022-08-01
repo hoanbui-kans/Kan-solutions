@@ -25,6 +25,7 @@ const Layout = ({ children }) => {
     });
 
     const { status } = useSession();
+    const { data: session } = useSession();
     const isSignedIn = status === 'authenticated';
     const { parentContainerId } =  {};
     const [isLoading, setIsLoading] = useState(false);
@@ -102,11 +103,12 @@ const Layout = ({ children }) => {
     <Script id="gsi" src="https://accounts.google.com/gsi/client" strategy="afterInteractive"/>
     <Script id="googletagmanager" async src="https://www.googletagmanager.com/gtag/js?id=G-DKCRMST66D" strategy="afterInteractive"/>
     <Script id="gtag" strategy="afterInteractive">{
-      HTMLReactParser(`window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-DKCRMST66D');`)
-    }</Script>
+        HTMLReactParser(`window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DKCRMST66D');`)
+    }
+    </Script>
     <Script id="gtagUri" async src="https://www.googletagmanager.com/gtag/js?id=UA-233414917-1" strategy="afterInteractive"/>
     <Script id="gtagTwo" strategy="afterInteractive">{
       HTMLReactParser(`window.dataLayer = window.dataLayer || [];
@@ -114,17 +116,19 @@ const Layout = ({ children }) => {
         gtag('js', new Date());
         gtag('config', 'UA-233414917-1');`)
     }</Script>
-    <Script id="Tawk_API" type="text/javascript" strategy="afterInteractive">
-      {HTMLReactParser(`var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-      (function(){
-        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-        s1.async=true;
-        s1.src='https://embed.tawk.to/62bebcf2b0d10b6f3e7a491b/1g6sh45mq';
-        s1.charset='UTF-8';
-        s1.setAttribute('crossorigin','*');
-        s0.parentNode.insertBefore(s1,s0);
-      })();`)}
-    </Script>
+    { !session ?
+        <Script id="Tawk_API" type="text/javascript" strategy="afterInteractive">
+        {HTMLReactParser(`var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+          var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+          s1.async=true;
+          s1.src='https://embed.tawk.to/62bebcf2b0d10b6f3e7a491b/1g6sh45mq';
+          s1.charset='UTF-8';
+          s1.setAttribute('crossorigin','*');
+          s0.parentNode.insertBefore(s1,s0);
+        })();`)}
+      </Script> : ''
+    }
     </>
   )
 }

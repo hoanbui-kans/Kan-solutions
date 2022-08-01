@@ -107,7 +107,6 @@ const qr = ({response}) => {
                                     </Button>
                                 </a>
                             </Link>
-                            
                         </Panel>
                     </Col>
                 </Row>

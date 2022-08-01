@@ -646,6 +646,13 @@
     background: whitesmoke;
     padding-left: 15px;
 }
+.x_payment_button{
+    width: 100%;
+}
+.x_billing_detail_form{
+    margin: 0px !important;
+    margin-bottom: 15px !important;
+}
 @media (max-width: 768px){
     .x_account_nav{
         position: fixed;
