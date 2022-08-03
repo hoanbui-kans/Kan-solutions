@@ -262,8 +262,15 @@ export async function getServerSideProps (context) {
       .catch(function (error) {
           console.log(error);
       });
+
+    if(response){
+        return { props: {
+            posts:  response.domains,
+            token: token
+        }};
+    }  
     return { props: {
-        posts:  response.domains ? response.domains : [],
+        posts: [],
         token: token
     }};
   }
