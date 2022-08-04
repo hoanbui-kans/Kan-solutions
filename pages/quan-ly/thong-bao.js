@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Row, Col, Button, List, Sidenav, Panel } from 'rsuite';
-import Link from 'next/link';
 import styles from '../../styles/account.module.css'
 import UserNav from '../../components/user-manager/UserNav';
 import MenuIcon from '@rsuite/icons/Menu';
@@ -9,7 +8,32 @@ const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 const Annoucement = ({bai_viet}) => {
   const [expanded, setExpanded] = useState(true);
-  const[showMobileNav, setShowMobileNav] = useState(true);
+  const [showMobileNav, setShowMobileNav] = useState(false);
+  const [dimensions, setDimensions] = useState({
+    width: 0,
+    height: 0,
+  });
+
+  const handleResize = () => {
+    setDimensions({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  }
+
+  useEffect(() => {
+    setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+    });
+    window.addEventListener("resize", handleResize, false);
+  }, [true]);
+
+  useEffect(() => {
+    dimensions.width <= 992 ? setShowMobileNav(false) : setShowMobileNav(true); 
+  }, [dimensions]);
+
+  
   return (
     <>
     <section className={styles.x_app_section}>
@@ -30,11 +54,11 @@ const Annoucement = ({bai_viet}) => {
                             <Sidenav expanded={expanded}>
                                 <Sidenav.Body>
                                     <UserNav active={'thong-bao'} expanded={expanded}/>
-                                    <Sidenav.Toggle expanded={expanded} onToggle={expanded => setExpanded(expanded)} />
+                                    <Sidenav.Toggle onToggle={expanded => setExpanded(expanded)} />
                                     <Button 
                                         className={styles.x_nav_mobile_close_button}
                                         onClick={() => {setShowMobileNav(!showMobileNav)}} 
-                                        color={'primary'} 
+                                        appearance="primary" 
                                         style={{width: '100%'}}
                                     >
                                         Đóng

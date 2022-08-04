@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container, Row, Col, Sidenav, Panel, Breadcrumb, Button } from 'rsuite';
 import axios from 'axios';
 import HTMLReactParser from 'html-react-parser';
@@ -13,8 +13,33 @@ import MenuIcon from '@rsuite/icons/Menu';
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 const SingleGuilde = ({data}) => {
-  const[showMobileNav, setShowMobileNav] = useState(true);
+
   const [expanded, setExpanded] = useState(true);
+  const[showMobileNav, setShowMobileNav] = useState(false);
+  const [dimensions, setDimensions] = useState({
+    width: 0,
+    height: 0,
+  });
+
+  const handleResize = () => {
+    setDimensions({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  }
+
+  useEffect(() => {
+    setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+    });
+    window.addEventListener("resize", handleResize, false);
+  }, [true]);
+
+  useEffect(() => {
+    dimensions.width <= 992 ? setShowMobileNav(false) : setShowMobileNav(true); 
+  }, [dimensions]);
+  
   return (
     <>
     <Head>
@@ -41,11 +66,11 @@ const SingleGuilde = ({data}) => {
                             <Sidenav expanded={expanded}>
                                 <Sidenav.Body>
                                     <UserNav active={'huong-dan'} expanded={expanded}/>
-                                    <Sidenav.Toggle expanded={expanded} onToggle={expanded => setExpanded(expanded)} />
+                                    <Sidenav.Toggle onToggle={expanded => setExpanded(expanded)} />
                                     <Button 
                                         className={styles.x_nav_mobile_close_button}
                                         onClick={() => {setShowMobileNav(!showMobileNav)}} 
-                                        color={'primary'} 
+                                        appearance="primary" 
                                         style={{width: '100%'}}
                                     >
                                         Đóng
@@ -68,7 +93,7 @@ const SingleGuilde = ({data}) => {
                           </div>
                           <div id="single-content" className={styles.x_single_guilde_content}>
                             {
-                              HTMLReactParser(data.post_content)
+                              HTMLReactParser(data.post_content ? data.post_content : 'Không có nội dung')
                             }
                           </div>
                         </div>
@@ -88,6 +113,6 @@ export async function getServerSideProps(context) {
     const res = await axios.get(`${rootURL}user/guilde/single?slug=${post_id}`).then((resonse) => resonse.data);
     // Pass data to the page via props
     return { props: { 
-      data: res,
+      data: res ? res : [],
    }}
 }

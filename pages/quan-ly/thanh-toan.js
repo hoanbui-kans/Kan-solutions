@@ -32,7 +32,30 @@ const PaymentInfo = ({posts}) => {
     const mservice_atm_uri = `${ROOT_URL}mservice/atm`;
     const [loading_create, set_loading_create] = useState(false);
     const [formValue, setFormvalue] = useState();
-    const[showMobileNav, setShowMobileNav] = useState(true);
+    const[showMobileNav, setShowMobileNav] = useState(false);
+    const [dimensions, setDimensions] = useState({
+      width: 0,
+      height: 0,
+    });
+  
+    const handleResize = () => {
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+  
+    useEffect(() => {
+      setDimensions({
+          width: window.innerWidth,
+          height: window.innerHeight,
+      });
+      window.addEventListener("resize", handleResize, false);
+    }, [true]);
+  
+    useEffect(() => {
+      dimensions.width <= 992 ? setShowMobileNav(false) : setShowMobileNav(true); 
+    }, [dimensions]);
 
     // Modal tạo dữ liệu 
     const [open, setOpen] = useState(false);  
@@ -88,7 +111,6 @@ const PaymentInfo = ({posts}) => {
     const [loading, setLoading] = useState(false);
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
-    const [countTable, setCountTable] = useState(1); 
 
     const handleChangeLimit = dataKey => {
         setPage(1);
@@ -162,7 +184,7 @@ const PaymentInfo = ({posts}) => {
     };
 
     let index = 1;
-  return (
+    return (
     <>
     <section className={styles.x_app_section}>
         <Container>
@@ -181,11 +203,11 @@ const PaymentInfo = ({posts}) => {
                             <Sidenav expanded={expanded}>
                                 <Sidenav.Body>
                                     <UserNav active={'thanh-toan'} expanded={expanded}/>
-                                    <Sidenav.Toggle expanded={expanded} onToggle={expanded => setExpanded(expanded)} />
+                                    <Sidenav.Toggle onToggle={expanded => setExpanded(expanded)} />
                                     <Button 
                                         className={styles.x_nav_mobile_close_button}
                                         onClick={() => {setShowMobileNav(!showMobileNav)}} 
-                                        color={'primary'} 
+                                        appearance="primary"
                                         style={{width: '100%'}}
                                     >
                                         Đóng
@@ -204,7 +226,7 @@ const PaymentInfo = ({posts}) => {
                     loading={loading}
                     bordered
                     cellBordered
-                    wordWrap= 'normal'
+                    wordWrap={true}
                     style={{wordBreak: 'normal'}}
                 >
                             <Table.Column width={50} align="center" resizable>
@@ -302,7 +324,7 @@ const PaymentInfo = ({posts}) => {
                              <Button 
                                 className={styles.x_payment_button}
                                 onClick={() => {HandleRequestPaymentMomo('qr')}}
-                                color="primary" 
+                                appearance="primary"
                                 style={loading_create == 'qr' ? {pointerEvents: 'none', margin: 'auto'} : {pointerEvents: 'all', margin: 'auto'}}>
                                         {loading_create == 'qr' ? 'Đang tải' : 'Thanh toán'}
                             </Button>          

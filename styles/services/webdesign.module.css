@@ -1,19 +1,16 @@
 .x_banner{
-    padding: 35px 0;
-    background-color: #5388ff;
-    max-width: calc(100% - 20px);
+    padding: 95px 0;
     margin: auto;
+    width: calc(100% - 30px);
     border-radius: var(--x-border-radius);
-    color: var(--x-white-color)
+    color: var(--x-white-color);
+    background: url(../../public/services-image/landing-background.svg);
+    background-size: cover;
 }
 .x_banner_thiet_ke{
-    padding: 35px 0;
-    background-color: #3670ee;
-    max-width: calc(100% - 20px);
     margin: auto;
-    border-radius: var(--x-border-radius);
-    color: var(--x-white-color)
 }
+
 .x_project_section{
     padding: 45px 0px;
 }
@@ -35,9 +32,6 @@
     padding: 12px 15px;
     border-radius: 50px;
 }
-.x_wordpress_section{
-    background-color: var(--x-light-color);
-}
 .x_thiet_ke_website_section{
     background-color: var(--x-light-color);
 }
@@ -48,6 +42,7 @@
     margin: auto;
     display: block;
 }
+
 .x_hosting{
     margin-bottom: var(--x-bottom-margin);
 }
@@ -56,8 +51,15 @@
     flex-wrap: wrap;
 }
 .x_banner_content h3{
-    font-size: 22px;
+    font-size: 18px;
+    color: white !important
 }
+
+.x_banner_content .x_primary_title{
+    color: white !important;
+    margin-bottom: 15px;
+}
+
 .x_hosting_header{
     padding: 25px 0px;
     margin-bottom: var(--x-bottom-margin);
@@ -134,9 +136,6 @@
     font-size: 12px;
     font-weight: bold;
 }
-.x_section_secondary_title{
-    font-size: var(--x-banner-content-size);
-}
 .x_features li{
     display: inline-block;
     margin: 10px 15px 5px 0px;
@@ -167,6 +166,27 @@
     margin-bottom: var(--x-bottom-margin);
 }
 
+.x_payment_list{
+    padding: 0px;
+    list-style: none;
+}
+
+.x_builer_content h3{
+    font-size: 18px;
+    color: #F17216 !important
+}
+
+.x_register_button{
+    background-color: rgba(255, 105, 141, 1);
+    box-shadow: 5px 9px 28px -15px #ff698d;
+    border: 2px solid #ff698d;
+    color: white;
+    border-radius: 35px;
+    display: inline-block;
+    margin-right: 5px;
+    font-weight: bold;
+}
+
 .x_services_content{
     min-height: 400px;
     padding: 30px;
@@ -176,13 +196,56 @@
     margin-bottom: var(--x-bottom-margin);
     background: var(--x-light-color);
     box-shadow: var(--x-neumorphic-darker-dropdown);
-    background: white
+}
+
+.x_builer_content h2{
+    font-size: 28px;
+}
+.x_features_page_builder_content,
+.x_builer_content{
+    margin-bottom: 35px;
+}
+
+.x_features_page_builder{
+    margin-top: 35px;
+}
+.x_page_builder{
+    padding: 75px 0px;
+}
+
+.x_features_page_builder_description h3{
+    font-size: 18px;
+}
+
+.x_features_page_builder_description p{
+    font-size: 14px;
+    line-height: 22px;
 }
 
 .x_primary_title{
     font-size: var(--x-title-size);
     margin-bottom: var(--x-bottom-margin);
     line-height: var(--x-title-line-height);
+}
+
+.webdesign_x_banner .x_section_secondary_title{
+    font-size: 18px !important;
+    color: white !important
+}
+
+.x_section_secondary_title{
+    font-size: 18px !important;
+    color: #F17216 !important;
+}
+
+.webdesign_x_banner .x_primary_title{
+    color: white !important
+} 
+
+.x_features_list{
+    margin-bottom: 35px;
+    list-style: none;
+    padding: 0px;
 }
 
 .x_wordpress_icon_service{

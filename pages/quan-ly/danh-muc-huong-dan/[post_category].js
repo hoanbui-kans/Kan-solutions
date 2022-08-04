@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Row, Col, List, Sidenav, Panel, Breadcrumb, Button } from 'rsuite';
 import Link from 'next/link';
@@ -12,7 +12,31 @@ const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 const GuilePosts = ({bai_viet, current_term}) => {
   const [expanded, setExpanded] = useState(true);
-  const[showMobileNav, setShowMobileNav] = useState(true);
+  const[showMobileNav, setShowMobileNav] = useState(false);
+  const [dimensions, setDimensions] = useState({
+    width: 0,
+    height: 0,
+  });
+
+  const handleResize = () => {
+    setDimensions({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  }
+
+  useEffect(() => {
+    setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+    });
+    window.addEventListener("resize", handleResize, false);
+  }, [true]);
+
+  useEffect(() => {
+    dimensions.width <= 992 ? setShowMobileNav(false) : setShowMobileNav(true); 
+  }, [dimensions]);
+  
   return (
     <>
     <section className={styles.x_app_section}>
@@ -33,11 +57,11 @@ const GuilePosts = ({bai_viet, current_term}) => {
                             <Sidenav expanded={expanded}>
                                 <Sidenav.Body>
                                     <UserNav active={'huong-dan'} expanded={expanded}/>
-                                    <Sidenav.Toggle expanded={expanded} onToggle={expanded => setExpanded(expanded)} />
+                                    <Sidenav.Toggle onToggle={expanded => setExpanded(expanded)} />
                                     <Button 
                                         className={styles.x_nav_mobile_close_button}
                                         onClick={() => {setShowMobileNav(!showMobileNav)}} 
-                                        color={'primary'} 
+                                        appearance="primary" 
                                         style={{width: '100%'}}
                                     >
                                         Đóng
@@ -55,7 +79,6 @@ const GuilePosts = ({bai_viet, current_term}) => {
                             {
                                 current_term.name ? <Breadcrumb.Item active>{current_term.name}</Breadcrumb.Item> : ''
                             }
-                            
                         </Breadcrumb> 
                         <List>
                             {bai_viet.map((val, index) => (
@@ -87,9 +110,10 @@ export async function getServerSideProps(context) {
     }).catch((error) => {
         console.log(error)
     });
+    console.log(res)
     // Pass data to the page via props
     return { props: { 
-        bai_viet: res.posts,
+        bai_viet: res.posts ? res.posts : [],
         current_term: res.current_term ? res.current_term : ''
     }}
 }

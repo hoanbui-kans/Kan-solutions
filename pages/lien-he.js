@@ -98,7 +98,7 @@ const contact_json = `${ROOT_URL}contact-form-7/v1/contact-forms/1701/feedback`;
           </Form.Group>
           <Form.Group>
             <Form.ControlLabel>Nhập nội dung của bạn</Form.ControlLabel>
-            <Input name='textarea' as='textarea' value={formValue.textarea} placeholder={'Nhập nội dung cần tư vấn'} rows={8} onChange={(e) => setFormvalue( {...formValue, textarea: e})} />
+            <Input name='textarea' as='textarea' value={formValue.textarea} placeholder={'Nhập nội dung cần hỗ trợ'} rows={8} onChange={(e) => setFormvalue( {...formValue, textarea: e})} />
           </Form.Group>
           <Form.Group>
             <Button type='submit' className={styles.x_contact_form_button}>

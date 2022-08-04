@@ -99,6 +99,7 @@ const HomeTwo = () => {
                     <div className={styles.x_banner_deccoration}>
                           <span data-aos="fade-left" className={styles.x_happy_business}>
                               <Image 
+                                placeholder='blurDataURL' 
                                 src="/home/hero-banner-2.webp" 
                                 alt="Quản lý web bán hàng hiệu quả" 
                                 width={415} 
@@ -138,35 +139,47 @@ const HomeTwo = () => {
                    <SwiperSlide>
                       <div className={styles.x_partner_content} data-aos="fade-left">
                         <div className={styles.x_partner_icon}>
-                          <Image src="/home/WordPress.svg" width={200} height={80} alt="wordpress"/>
+                          <Image 
+              placeholder='blurDataURL' src="/home/WordPress.svg" width={200} height={80} alt="wordpress"/>
                         </div>
                       </div>
                     </SwiperSlide>
                     <SwiperSlide>
                       <div className={styles.x_partner_content} data-aos="fade-up">
                           <div className={styles.x_partner_icon}>
-                              <Image src="/home/wpmu-dev.svg" width={200} height={80} alt="wpmu dev"/>
+                              <Image 
+                                placeholder='blurDataURL' 
+                                src="/home/wpmu-dev.svg" 
+                                width={200} height={80} 
+                                alt="wpmu dev"/>
                           </div>
                       </div>
                     </SwiperSlide>
                     <SwiperSlide>
                       <div className={styles.x_partner_content} data-aos="fade-down">
                         <div className={styles.x_partner_icon}>
-                          <Image src="/home/woocommerce.svg" width={200} height={80} alt="wordpress"/>
+                          <Image 
+                              placeholder='blurDataURL' 
+                              src="/home/woocommerce.svg" 
+                              width={200} height={80} alt="wordpress"/>
                         </div>
                       </div>
                     </SwiperSlide>
                     <SwiperSlide>
                       <div className={styles.x_partner_content} data-aos="fade-right">
                         <div className={styles.x_partner_icon}>
-                          <Image src="/home/onepay.svg" width={160} height={80} alt="onepay"/>
+                          <Image 
+                            placeholder='blurDataURL' 
+                            src="/home/onepay.svg" width={160} height={80} alt="onepay"/>
                         </div>
                       </div>
                     </SwiperSlide>
                     <SwiperSlide>
                       <div className={styles.x_partner_content} data-aos="fade-right">
                         <div className={styles.x_partner_icon}>
-                          <Image src="/home/momo.svg" width={80} height={80} alt="momo"/>
+                          <Image 
+                              placeholder='blurDataURL' 
+                              src="/home/momo.svg" width={80} height={80} alt="momo"/>
                         </div>
                       </div>
                     </SwiperSlide>
@@ -184,7 +197,7 @@ const HomeTwo = () => {
                       <h2 className={styles.x_main_box_primary} data-aos="fade-up">Giải pháp hàng đầu</h2>
                       <p className={styles.x_main_box_description} data-aos="fade-left">Chúng tôi sẽ cung cấp những giải pháp xây dựng Website thương hiệu để giúp bạn kinh doanh thành công trên nhiều lĩnh vực</p>
                       <span className={styles.x_vector} data-aos="fade-right">
-                        <Image src={'/home/Vector.svg'} width={80} height={130} alt=""/>
+                        <Image  placeholder='blurDataURL' src={'/home/Vector.svg'} width={80} height={130} alt=""/>
                       </span>
                   </div>
             </Col>
@@ -193,7 +206,7 @@ const HomeTwo = () => {
                   <Col xs={24} md={8}>
                       <div className={styles.x_secondary_box} data-aos="fade-down">
                           <span className={styles.x_secondary_box_icon}>
-                            <Image src="/home/shop.svg" alt="Website bán hàng" width={40} height={40} />
+                            <Image placeholder='blurDataURL' src="/home/shop.svg" alt="Website bán hàng" width={40} height={40} />
                           </span>
                           <h2 className={styles.x_secondary_box_title}>Website bán hàng</h2>
                           <p className={styles.x_secondary_box_description}>Giải pháp bán hàng online với website tích hợp đầy đủ tính năng bán hàng mạnh mẽ</p>
@@ -202,7 +215,7 @@ const HomeTwo = () => {
                 <Col xs={24} md={8}>
                       <div className={styles.x_secondary_box} data-aos="fade-up">
                           <span className={styles.x_secondary_box_icon}>
-                            <Image src="/home/cards.svg" alt="Quản lý thanh toán" width={40} height={40} />
+                            <Image placeholder='blurDataURL' src="/home/cards.svg" alt="Quản lý thanh toán" width={40} height={40} />
                           </span>
                           <h2 className={styles.x_secondary_box_title}>Quản lý thanh toán</h2>
                           <p className={styles.x_secondary_box_description}>Kết nối, quản lý thanh toán tự động, vận chuyển bảo mật cao phù hợp với thị trường Việt Nam</p>
@@ -211,7 +224,7 @@ const HomeTwo = () => {
                 <Col xs={24} md={8}>
                       <div className={styles.x_secondary_box} data-aos="fade-down">
                           <span className={styles.x_secondary_box_icon}>
-                            <Image src="/home/favorite-chart.svg" alt="Marketing online" width={40} height={40} />
+                            <Image placeholder='blurDataURL' src="/home/favorite-chart.svg" alt="Marketing online" width={40} height={40} />
                           </span>
                           <h2 className={styles.x_secondary_box_title}>Marketing online</h2>
                           <p className={styles.x_secondary_box_description}>Hỗ trợ mạnh mẽ liên kết mạng xã hội, quảng cáo sản phẩm, quản lý kho hàng hiệu quả</p>
@@ -227,7 +240,7 @@ const HomeTwo = () => {
               <Row className="x_flex_center">
                 <Col xs={24} md={12}>
                   <div className={styles.x_features_image}>
-                    <Image src="/home/features.svg" data-aos="fade-down" width={500} height={400} alt=""/>
+                    <Image placeholder='blurDataURL' src="/home/features.svg" data-aos="fade-down" width={500} height={400} alt=""/>
                   </div>
                 </Col>
                 <Col xs={24} md={12}>
@@ -334,14 +347,14 @@ const HomeTwo = () => {
                               <Col xs={24} md={12}>
                               <div className={styles.x_mockup}>
                                 <div className={styles.x_testionimal_thumbnail}>
-                                    <Image src={val.image} alt={val.title} width={554} height={346} />
+                                    <Image placeholder='blurDataURL' src={val.image} alt={val.title} width={554} height={346} />
                                 </div>
                               </div>
                               </Col>
                               <Col xs={24} md={12}>
                                 <div className={styles.x_testionimal_content}>
                                     <span className={styles.x_qoute}>
-                                        <Image src='/home/qoute.svg' width={34} height={34} alt=""/>
+                                        <Image placeholder='blurDataURL' src='/home/qoute.svg' width={34} height={34} alt=""/>
                                       </span>
                                     <Rate readOnly size="xs" defaultValue={val.rating} allowHalf />
                                     <h3 className={styles.x_testionimal_title}>{val.title}</h3>
@@ -363,7 +376,7 @@ const HomeTwo = () => {
           <Row>
               <Col xs={24} md={12}>
                   <div data-aos="fade-left">
-                    <Image src="/home/form.webp" width={800} height={860} alt="Liên hệ Kanbox"/>
+                    <Image placeholder='blurDataURL' src="/home/form.webp" width={800} height={860} alt="Liên hệ Kanbox"/>
                   </div>
               </Col>
               <Col xs={24} md={12}>

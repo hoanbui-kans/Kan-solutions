@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Container, Row, Col, Breadcrumb, Form, Pagination  } from 'rsuite'
 import Link from 'next/link'
 import styles from '../styles/blog.module.css'
@@ -15,11 +15,18 @@ const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 const News = ({bai_viet, danh_muc, max_num_pages}) => {
 
   const [keySearch, setKeySearch] = useState('');
-  const [posts, setPosts] = useState(bai_viet);
-  const [maxpage, setMaxPage] = useState(max_num_pages);
+  const [posts, setPosts] = useState([]);
+  const [postsCategory, setPostsCategory] = useState([]);
+  const [maxpage, setMaxPage] = useState(0);
   const [paged, setPaged] = useState(1);
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    setPosts(bai_viet);
+    setPostsCategory(danh_muc);
+    setMaxPage(max_num_pages);
+  } , [true]);
+  
   const Search_Page = async () => {
     setLoading(true);
     setPaged(1);
@@ -77,7 +84,7 @@ const News = ({bai_viet, danh_muc, max_num_pages}) => {
               <Row className={styles.x_meta_with_form}>
                 <Col xs={24} md={16}>
                   <ul className={styles.x_category_link}>
-                      { danh_muc.map((val) => {
+                      { postsCategory.map((val) => {
                           return (
                             <li key={val.term_id}>
                               <Link href={`/danh-muc/${val.slug}`}>

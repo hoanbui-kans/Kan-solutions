@@ -11,6 +11,7 @@ import HTMLReactParser from 'html-react-parser';
 import Head from 'next/head';
 import { Themes } from './api/HeaderSeo';
 import { useSession } from 'next-auth/react';
+
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 export const Price = ({data}) => {
@@ -41,7 +42,7 @@ export const GD_Box = ({data, price}) => {
                 data.thumbnail ?
                     <div className={styles.x_gd_box_thumbnail}>
                     <Link href={`/giao-dien/${data.post_name}`}>
-                        <Image alt={data.post_title} src={data.thumbnail[0]} width={data.thumbnail[1]} height={data.thumbnail[2]}/>
+                        <Image priority placeholder='blurDataURL' alt={data.post_title} src={data.thumbnail[0]} width={data.thumbnail[1]} height={data.thumbnail[2]}/>
                     </Link>
                 </div> : ''
             }
@@ -131,12 +132,16 @@ export const GD_List = ({data}) => {
 
 const Themes_GDMau = ({gd, nganh, danhmuc, max_pages}) => {
 
-    const [posts, setPosts] = useState(gd);
+    const [posts, setPosts] = useState([]);
     const [paged, setPaged] = useState(1);
     const [loading, setLoading] = useState(false);
     const [formvalue, setFormValue] = useState({
         s: '',
     })
+
+    useEffect(() => {
+        setPosts(gd);
+    } , [true]);
     
     const formRef = useRef();
 
@@ -177,11 +182,11 @@ const Themes_GDMau = ({gd, nganh, danhmuc, max_pages}) => {
         handleUpdateGd({...softData, keySearch: formvalue.s, paged: 1});
     }
 
-    const HandleChangePerpage =  (e) => {
+    const HandleChangePerpage = (e) => {
         handleUpdateGd({...softData, perPage: e ? e : 12, paged: 1});
     }
 
-    const Next_Pages = async(num) => {
+    const Next_Pages = (num) => {
         handleUpdateGd({...softData, paged: num});
     }
 

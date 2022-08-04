@@ -22,7 +22,30 @@ const UserEditor = ({user_info, nonce}) => {
   const [facebook, setFacebook] = useState(user_info.facebook ? user_info.facebook : []);
   const user_login = user_info ? user_info.user_login : '';
   const nonce_key = nonce ? nonce : '';
-  const[showMobileNav, setShowMobileNav] = useState(true);
+  const[showMobileNav, setShowMobileNav] = useState(false);
+  const [dimensions, setDimensions] = useState({
+    width: 0,
+    height: 0,
+  });
+
+  const handleResize = () => {
+    setDimensions({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  }
+
+  useEffect(() => {
+    setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+    });
+    window.addEventListener("resize", handleResize, false);
+  }, [true]);
+
+  useEffect(() => {
+    dimensions.width <= 992 ? setShowMobileNav(false) : setShowMobileNav(true); 
+  }, [dimensions]);
 
   const[formValue, setFormValue] = useState({
     firstname: user_info.firstname ? user_info.firstname : '',
@@ -250,11 +273,11 @@ const UserEditor = ({user_info, nonce}) => {
                         <Sidenav expanded={expanded}>
                             <Sidenav.Body>
                                 <UserNav active={'chinh-sua-tai-khoan'} expanded={expanded}/>
-                                <Sidenav.Toggle expanded={expanded} onToggle={expanded => setExpanded(expanded)} />
+                                <Sidenav.Toggle onToggle={expanded => setExpanded(expanded)} />
                                 <Button 
                                     className={styles.x_nav_mobile_close_button}
                                     onClick={() => {setShowMobileNav(!showMobileNav)}} 
-                                    color={'primary'} 
+                                    appearance="primary" 
                                     style={{width: '100%'}}
                                 >
                                     Đóng
@@ -292,7 +315,7 @@ const UserEditor = ({user_info, nonce}) => {
                             <Col xs={24} md={12}>
                               <Form.Group controlId="radioList" className={styles.x_form_group}>
                               <Form.ControlLabel>Giới tính</Form.ControlLabel>
-                                <RadioGroup name="gender" inline defaultValue={formValue.gender} onChange={(e) => { setFormValue({...formValue, gender: e})} }>
+                                <RadioGroup name="gender" inline value={formValue.gender} onChange={(e) => { setFormValue({...formValue, gender: e})} }>
                                   <Radio value="male">Nam</Radio>
                                   <Radio value="female">Nữ</Radio>
                                   <Radio value="orther">Khác</Radio>
@@ -302,19 +325,19 @@ const UserEditor = ({user_info, nonce}) => {
                             <Col xs={24} md={12}>
                               <Form.Group className={styles.x_form_group}>
                                   <Form.ControlLabel>Ngày sinh</Form.ControlLabel>
-                                  <DatePicker name="birth" defaultValue={birth ? birth : ''} style={{width: '100%'}} onChange={(e) => {setFormValue({...formValue, birth: e})}}/>
+                                  <DatePicker name="birth" value={birth ? birth : ''} style={{width: '100%'}} onChange={(e) => {setFormValue({...formValue, birth: e})}}/>
                                 </Form.Group>
                             </Col>
                             <Col xs={24} md={12}>
                               <Form.Group className={styles.x_form_group}>
                                 <Form.ControlLabel>Số điện thoại</Form.ControlLabel>
-                                <Form.Control name="phone" defaultValue={formValue.phone} placeholder='Nhập số điện thoại...'/>
+                                <Form.Control name="phone" value={formValue.phone} placeholder='Nhập số điện thoại...'/>
                               </Form.Group>
                             </Col>
                             <Col xs={24} md={12}>
                               <Form.Group className={styles.x_form_group}>
                                 <Form.ControlLabel>Địa chỉ Email</Form.ControlLabel>
-                                <Form.Control disabled name="email" defaultValue={formValue.email} placeholder='Nhập địa chỉ Email...'/>
+                                <Form.Control disabled name="email" value={formValue.email} placeholder='Nhập địa chỉ Email...'/>
                               </Form.Group>
                             </Col>
                             <Col xs={24} md={12}>
@@ -325,7 +348,7 @@ const UserEditor = ({user_info, nonce}) => {
                                   style={{width: '100%'}} 
                                   name="billing_city" 
                                   data={dataTinh} 
-                                  defaultValue={formValue.billing_city}
+                                  value={formValue.billing_city}
                                   placeholder='Nhập thành phố...' 
                                   onChange={HandleChangeCity}
                                 />
@@ -338,7 +361,7 @@ const UserEditor = ({user_info, nonce}) => {
                                   locale={locales.Picker} 
                                   style={{width: '100%'}} 
                                   name="billing_district" 
-                                  defaultValue={formValue.billing_district}
+                                  value={formValue.billing_district}
                                   data={dataHuyen} 
                                   placeholder='Nhập quận/ Huyện...' 
                                   onChange={HandleChangeDistrict}
@@ -352,7 +375,7 @@ const UserEditor = ({user_info, nonce}) => {
                                   locale={locales.Picker} 
                                   style={{width: '100%'}} 
                                   name="billing_ward" 
-                                  defaultValue={formValue.billing_ward}
+                                  value={formValue.billing_ward}
                                   data={dataXa} 
                                   placeholder='Nhập xã/ Phường/ Thị trấn...' 
                                   onChange={HandleChangeWard}
@@ -362,7 +385,7 @@ const UserEditor = ({user_info, nonce}) => {
                             <Col xs={24} md={12}>
                               <Form.Group className={styles.x_form_group}>
                                 <Form.ControlLabel>Địa chỉ chi tiết</Form.ControlLabel>
-                                <Form.Control name="billing_address" defaultValue={formValue.billing_address} placeholder='Nhập địa chỉ...'/>
+                                <Form.Control name="billing_address" value={formValue.billing_address} placeholder='Nhập địa chỉ...'/>
                               </Form.Group>
                             </Col>
                           </Row>
@@ -377,7 +400,7 @@ const UserEditor = ({user_info, nonce}) => {
                       </Form>
                       </Panel>
                       <Divider />
-                      <Panel header="thay đổi mật khẩu" bordered style={{background: 'white'}} className={'x_panel_account'}>
+                      <Panel header="thay đổi mật khẩu" bordered style={{background: 'white', marginBottom: 35}} className={'x_panel_account'}>
                         <Form
                             fluid
                             ref={passwordRef}

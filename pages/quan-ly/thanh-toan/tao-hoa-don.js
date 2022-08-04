@@ -32,6 +32,7 @@ import CreditCardPlusIcon from '@rsuite/icons/CreditCardPlus';
 import { IoPaperPlane } from "react-icons/io5"
 import { RateUser } from '../../api/services';
 import { locales } from '../../api/locales';
+import MenuIcon from '@rsuite/icons/Menu';
 
 const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON
 
@@ -343,6 +344,31 @@ const Create_Order = ({list_blog}) => {
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
 
+    const [showMobileNav, setShowMobileNav] = useState(false);
+    const [dimensions, setDimensions] = useState({
+      width: 0,
+      height: 0,
+    });
+  
+    const handleResize = () => {
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+  
+    useEffect(() => {
+      setDimensions({
+          width: window.innerWidth,
+          height: window.innerHeight,
+      });
+      window.addEventListener("resize", handleResize, false);
+    }, [true]);
+  
+    useEffect(() => {
+      dimensions.width <= 992 ? setShowMobileNav(false) : setShowMobileNav(true); 
+    }, [dimensions]);
+
     const handleChangeLimit = dataKey => {
         setPage(1);
         setLimit(dataKey);
@@ -487,14 +513,25 @@ const Create_Order = ({list_blog}) => {
         <Container>
             <Row>
                 <Col xs={24} md={!expanded ? 2 : 6}>
-                    <div className={styles.x_account_nav}>
-                        <Sidenav expanded={expanded} defaultOpenKeys={['3', '4']}>
-                            <Sidenav.Body>
-                            <UserNav expanded={expanded}/>
-                            <Sidenav.Toggle expanded={expanded} onToggle={expanded => setExpanded(expanded)} />
-                            </Sidenav.Body>
-                        </Sidenav>
-                    </div>
+                    <Button 
+                        onClick={() => {setShowMobileNav(!showMobileNav)}} 
+                        className={styles.x_mobile_menu_button} 
+                        style={{width: '100%'}}
+                    >   <MenuIcon />
+                            Menu quản lý
+                        </Button>
+                    {
+                        showMobileNav ?
+                            <div className={styles.x_account_nav}>
+                                <Sidenav expanded={expanded} defaultOpenKeys={['3', '4']}>
+                                    <Sidenav.Body>
+                                    <UserNav expanded={expanded}/>
+                                    <Sidenav.Toggle onToggle={expanded => setExpanded(expanded)} />
+                                    </Sidenav.Body>
+                                </Sidenav>
+                            </div>
+                            : ''
+                    }
                 </Col>
                 <Col xs={24} md={!expanded ? 22 : 18}>
                     <Row style={{marginBottom: 15}}>

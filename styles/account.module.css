@@ -644,7 +644,7 @@
 .x_annoucement{
     font-size: 14px;
     background: whitesmoke;
-    padding-left: 15px;
+    padding: 15px;
 }
 .x_payment_button{
     width: 100%;

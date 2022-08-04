@@ -31,7 +31,30 @@ const Domain = ({posts, token}) => {
   const [loadingRmdomain, setRMdomain] = useState([]);
   const { data: session } = useSession();
   const router = useRouter();
-  const[showMobileNav, setShowMobileNav] = useState(true);
+  const[showMobileNav, setShowMobileNav] = useState(false);
+  const [dimensions, setDimensions] = useState({
+    width: 0,
+    height: 0,
+  });
+
+  const handleResize = () => {
+    setDimensions({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  }
+
+  useEffect(() => {
+    setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+    });
+    window.addEventListener("resize", handleResize, false);
+  }, [true]);
+
+  useEffect(() => {
+    dimensions.width <= 992 ? setShowMobileNav(false) : setShowMobileNav(true); 
+  }, [dimensions]);
 
   const HandleRemoveDoimain = async (domain_id, status) => {
     
@@ -140,11 +163,11 @@ const Domain = ({posts, token}) => {
                                 <Sidenav expanded={expanded}>
                                     <Sidenav.Body>
                                         <UserNav active={'ten-mien'} expanded={expanded}/>
-                                        <Sidenav.Toggle expanded={expanded} onToggle={expanded => setExpanded(expanded)} />
+                                        <Sidenav.Toggle onToggle={expanded => setExpanded(expanded)} />
                                         <Button 
                                             className={styles.x_nav_mobile_close_button}
                                             onClick={() => {setShowMobileNav(!showMobileNav)}} 
-                                            color={'primary'} 
+                                            appearance="primary" 
                                             style={{width: '100%'}}
                                         >
                                             Đóng
@@ -164,7 +187,11 @@ const Domain = ({posts, token}) => {
                                     <Form.Control name="domain" onChange={(e) => setValueDomain(e)} value={domainValue} placeholder="tenmien.com"/>
                                 </Form.Group>
                                 <Form.Group>
-                                    <Button className={styles.x_button_add_domain} onClick={HandleCreateDomain} color="primary">
+                                    <Button 
+                                        className={styles.x_button_add_domain} 
+                                        onClick={HandleCreateDomain} 
+                                        appearance="primary" 
+                                    >
                                         {
                                          loading ? <Loader size={16}/> : <IoGlobeOutline size={16}/>
                                         }
@@ -265,7 +292,7 @@ export async function getServerSideProps (context) {
 
     if(response){
         return { props: {
-            posts:  response.domains,
+            posts:  response.domains ? response.domains : [],
             token: token
         }};
     }  

@@ -32,8 +32,8 @@ const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 export const BlogContent = ({data}) => {
     const [LineStroke, setLineStroke] = useState({
-        strokeColor : '',
-        status: ''
+        strokeColor: '#4caf50',
+        status: 'success'
     });
     const [percent, setPercent] = useState('');
     const SiteIcon = data.site_icon && data.site_icon != 'empty' ? data.site_icon : '/icons/favicon.png'
@@ -104,24 +104,26 @@ export const BlogContent = ({data}) => {
     })[0];
 
     useEffect(() => {
+
         let total = expired - registed;
         let progress = current - registed;
         let percentNumber =  Math.round(progress/ total * 100 );
-        setPercent(percentNumber);
-    }, [])
+        if(percentNumber > 100) {
+            percentNumber = 100;
+        }
+        
 
-    useEffect(() => {
-        if(percent >= 0 && percent <= 50){
+        if(percentNumber >= 0 && percentNumber <= 50){
             setLineStroke({
                 strokeColor: '#4caf50',
                 status: 'success'
             });
-        } else if(percent> 50 && percent <= 75){
+        } else if(percentNumber> 50 && percentNumber <= 75){
             setLineStroke({
-                strokeColor: '#ffc107',
+                strokeColor: '#ffd864',
                 status: 'active'
             });
-        } else if(percent > 75 && percent <= 100){
+        } else if(percentNumber > 75 && percentNumber <= 100){
             setLineStroke({
                 strokeColor: '#f44336',
                 status: 'fail'
@@ -132,6 +134,9 @@ export const BlogContent = ({data}) => {
                 status: 'fail'
             });
         }
+        
+        setPercent(percentNumber);
+
     }, [percent])
 
     return(
@@ -188,7 +193,7 @@ export const BlogContent = ({data}) => {
                                 <span className={styles.x_date_badge}>{expiredDate}</span>
                             </div>
                         </div>
-                        <Progress.Line percent={percent} strokeColor={LineStroke.strokeColor}/>
+                        <Progress.Line percent={parseInt(percent ? percent : 0)} strokeColor={LineStroke.strokeColor}/>
                         <ButtonToolbar style={{marginBottom: 15}}>
                             <Link href={'/quan-ly/thanh-toan/nang-cap?site_id=' + data.blog_id}>
                                 <a>
@@ -209,7 +214,7 @@ export const BlogContent = ({data}) => {
                 </Col>
                 <Col xs={24} md={12}>
                     <div className={styles.x_blog_chart}>
-                        <Chart options={chartValue.options} labels={chartValue.labels} series={chartValue.series} type="donut" width="180" />
+                        <Chart options={chartValue.options} labels={chartValue.labels} series={chartValue.series} type="donut" width={180} />
                     </div>
                 </Col>
             </Row>
@@ -219,7 +224,30 @@ export const BlogContent = ({data}) => {
 
 const UserManager = ({blogInfor}) => {
   const [expanded, setExpanded] = useState(true);
-  const[showMobileNav, setShowMobileNav] = useState(true);
+  const[showMobileNav, setShowMobileNav] = useState(false);
+  const [dimensions, setDimensions] = useState({
+    width: 0,
+    height: 0,
+  });
+
+  const handleResize = () => {
+    setDimensions({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  }
+
+  useEffect(() => {
+    setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+    });
+    window.addEventListener("resize", handleResize, false);
+  }, [true]);
+
+  useEffect(() => {
+    dimensions.width <= 992 ? setShowMobileNav(false) : setShowMobileNav(true); 
+  }, [dimensions]);
 
   return (
     <>
@@ -241,11 +269,11 @@ const UserManager = ({blogInfor}) => {
                             <Sidenav expanded={expanded}>
                                 <Sidenav.Body>
                                     <UserNav active={'quan-ly'} expanded={expanded}/>
-                                    <Sidenav.Toggle expanded={expanded} onToggle={expanded => setExpanded(expanded)} />
+                                    <Sidenav.Toggle onToggle={expanded => setExpanded(expanded)} />
                                     <Button 
                                         className={styles.x_nav_mobile_close_button}
                                         onClick={() => {setShowMobileNav(!showMobileNav)}} 
-                                        color={'primary'} 
+                                        appearance="primary" 
                                         style={{width: '100%'}}
                                         >
                                         Đóng

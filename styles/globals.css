@@ -159,8 +159,10 @@ nav.rs-sidenav .rs-sidenav-item-active a {
   color: white;
 }
 .rs-sidenav-item-active {
-  background:  var(--x-accent-color) !important;
+  box-shadow: 5px 9px 28px -15px var(--x-accent-color);
+  background: var(--x-accent-color) !important;
   border-radius: 12px !important;
+  z-index: 2;
 }
 
 .rs-sidenav-item-active {

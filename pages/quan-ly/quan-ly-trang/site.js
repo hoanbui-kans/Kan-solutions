@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {    
     Container,
     Row,
@@ -7,19 +7,10 @@ import {
     Button,
     Modal,
     Sidenav,
-    Pagination,
-    Schema,
     toaster,
     Loader,
     Message,
     Table,
-    Checkbox,
-    FlexboxGrid ,
-    List,
-    IconButton ,
-    Divider  ,
-    Popover,
-    Dropdown ,
     Progress,
     ButtonToolbar, 
     SelectPicker
@@ -60,8 +51,8 @@ const SiteEditor = ({site_content}) => {
   const [expanded, setExpanded] = useState(true);
   
   const [LineStroke, setLineStroke] = useState({
-    strokeColor : '',
-    status: ''
+    strokeColor: '#4caf50',
+    status: 'success'
   });
 
   const [percent, setPercent] = useState('');
@@ -132,14 +123,14 @@ const SiteEditor = ({site_content}) => {
       }
   })[0];
 
+
   useEffect(() => {
       let total = expired - registed;
       let progress = current - registed;
       let percentNumber =  Math.round(progress/ total * 100 );
-      setPercent(percentNumber);
-  }, [])
-
-  useEffect(() => {
+      if( percentNumber > 100 ){
+        percentNumber = 100;
+      }
       if(percent >= 0 && percent <= 50){
           setLineStroke({
               strokeColor: '#4caf50',
@@ -161,6 +152,9 @@ const SiteEditor = ({site_content}) => {
               status: 'fail'
           });
       }
+      
+      setPercent(percentNumber);
+
   }, [percent])
 
   // Handle Change Doimain
@@ -226,7 +220,7 @@ const SiteEditor = ({site_content}) => {
                         <Sidenav expanded={expanded} defaultOpenKeys={['3', '4']}>
                             <Sidenav.Body>
                             <UserNav expanded={expanded}/>
-                            <Sidenav.Toggle expanded={expanded} onToggle={expanded => setExpanded(expanded)} />
+                            <Sidenav.Toggle onToggle={expanded => setExpanded(expanded)} />
                             </Sidenav.Body>
                         </Sidenav>
                     </div>
@@ -267,7 +261,10 @@ const SiteEditor = ({site_content}) => {
                                           <Form.Control disabled name="domain" type="text" defaultValue={domain} onChange={(e) => {setDoimain(e)}} />
                                         </Form.Group>
                                         <Form.Group>
-                                          <Button color="primary" onClick={relaceDoimain}>Thay đổi tên miền</Button>
+                                          <Button 
+                                            appearance="primary"  
+                                            onClick={relaceDoimain}>Thay đổi tên miền
+                                          </Button>
                                         </Form.Group>
                                       </Form>
                                       <p style={{margin: '15px 0px'}}>Vui lòng trỏ tên miền về <strong>{SERVER_IP}</strong></p>
@@ -275,7 +272,7 @@ const SiteEditor = ({site_content}) => {
                                 </Col>
                                 <Col xs={24}>
                                   <h3 className={styles.x_single_site_heading}>Thời gian sử dụng</h3>
-                                  <Progress.Line percent={percent} strokeColor={LineStroke.strokeColor}/>
+                                  <Progress.Line percent={parseInt(percent ? percent : 0)} strokeColor={LineStroke.strokeColor}/>
                                </Col>
                             </Row>
                         </div>
@@ -437,8 +434,6 @@ const SiteEditor = ({site_content}) => {
 export default SiteEditor
 
 export async function getServerSideProps (context) {
-  
-  console.log(context.query.id);
   const session = await getSession(context);
   const token = session ? session.user.token.token : '';
   let fd = new FormData();

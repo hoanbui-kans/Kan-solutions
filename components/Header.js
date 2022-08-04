@@ -305,7 +305,7 @@ const Header = () => {
                         </Link>
                     </Dropdown.Item>
                     <Dropdown.Item eventKey={2}>
-                        <Link href="/dang-nhap/">
+                        <Link href="/dang-ky/">
                             Đăng ký
                         </Link>
                     </Dropdown.Item>
@@ -434,7 +434,7 @@ const Header = () => {
                                                 </Button>
                                             </a>
                                         </Link>
-                                        <Link href="/dang-nhap/">
+                                        <Link href="/dang-ky/">
                                             <a className={styles.x_desktop_display}> 
                                                 <Button className={styles.x_login_register}>
                                                     Đăng ký

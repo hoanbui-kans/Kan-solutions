@@ -46,7 +46,7 @@ const UserNav = ({active}) => {
                         Hướng dẫn sử dụng
                     </Link>
                 </Nav.Item>
-                <Nav.Item as={'span'} icon={<MessageIcon />} eventKey="ho-tro">
+                <Nav.Item as={'span'} icon={<MessageIcon />} eventKey="ho-tro-truc-tuyen">
                     <Link href={'/quan-ly/ho-tro-truc-tuyen'}>
                         Hỗ trợ trực tuyến
                     </Link>
