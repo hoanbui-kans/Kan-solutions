@@ -105,6 +105,10 @@ const config = {
             "https://kansite.com.vn/giao-dien/mau-website-ban-hang-noi-that-kafu01",
             "https://kansite.com.vn/giao-dien/mau-website-ban-hang-cao-cap-ks868",
             "https://kansite.com.vn/giao-dien/landing-website-noi-that-kan",
+            "https://kansite.com.vn/giao-dien/giao-dien-website-cong-ty-luat",
+            "https://kansite.com.vn/giao-dien/giao-dien-bio-link-by-anne",
+            "https://kansite.com.vn/giao-dien/mau-bio-link-moe",
+            "https://kansite.com.vn/giao-dien/giao-dien-bio-link",
             // Danh mục giao diện mẫu
             "https://kansite.com.vn/danh-muc-giao-dien/dich-vu",
             "https://kansite.com.vn/danh-muc-giao-dien/khac",
