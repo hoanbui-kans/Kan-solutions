@@ -6,6 +6,7 @@
     background-color: #282c4b;
     background-size: cover;
     background-repeat: no-repeat;
+    z-index: 1;
 }
 
 .x_newsletter_button{

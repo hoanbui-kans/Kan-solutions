@@ -321,10 +321,31 @@
     position: relative;
     z-index: 2;
 }
+
+.x_user_fill_info{
+    max-width: 660px !important;
+}
+
+.x_privacy_description{
+    font-size: 12px;
+    line-height: 14px;
+    color: #636363;
+}
+
 .x_account_title{
     font-size: 28px;
     text-align: center;
 }
+
+.x_account_update_title{
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 24px;
+    text-align: center;
+    margin-top: 22px;
+    margin-bottom: 32px;
+}
+
 .x_login{
     padding: 35px;
     display: block;

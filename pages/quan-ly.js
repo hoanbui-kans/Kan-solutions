@@ -15,11 +15,12 @@ import Image from 'next/image';
 import moment from 'moment';
 import 'moment/locale/vi'
 import dynamic from 'next/dynamic'
-import { getSession } from 'next-auth/react';
+import { getSession, useSession } from 'next-auth/react';
 import styles from '../styles/account.module.css'
 import UserNav from '../components/user-manager/UserNav';
 import { RateUser } from './api/services';
 import MenuIcon from '@rsuite/icons/Menu';
+import Router from 'next/router'
 
 const Chart = dynamic(
   () => {
@@ -31,6 +32,7 @@ const Chart = dynamic(
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 export const BlogContent = ({data}) => {
+
     const [LineStroke, setLineStroke] = useState({
         strokeColor: '#4caf50',
         status: 'success'
@@ -222,20 +224,36 @@ export const BlogContent = ({data}) => {
     )
 }
 
-const UserManager = ({blogInfor}) => {
-  const [expanded, setExpanded] = useState(true);
-  const[showMobileNav, setShowMobileNav] = useState(false);
-  const [dimensions, setDimensions] = useState({
-    width: 0,
-    height: 0,
-  });
+const UserManager = ({blogInfor, user}) => {
 
-  const handleResize = () => {
-    setDimensions({
-      width: window.innerWidth,
-      height: window.innerHeight,
+    let countEmpty = 0;
+    for (const key in user) {
+        if (Object.hasOwnProperty.call(user, key)) {
+            const element = user[key];
+            if(element == ''){
+                countEmpty++;
+            }
+        }
+    }
+
+
+    if( countEmpty > 4 ){
+        Router.push('/quan-ly/cap-nhat-thong-tin')
+    }
+
+    const [expanded, setExpanded] = useState(true);
+    const[showMobileNav, setShowMobileNav] = useState(false);
+    const [dimensions, setDimensions] = useState({
+        width: 0,
+        height: 0,
     });
-  }
+
+    const handleResize = () => {
+        setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+        });
+    }
 
   useEffect(() => {
     setDimensions({
@@ -347,6 +365,18 @@ export default UserManager
 export async function getServerSideProps (context) {
   const session = await getSession(context);
   const token = session ? session.user.token.token : '';
+
+  const config_user = {
+      headers: {
+        'Authorization':  `Bearer ${token}`
+      }
+    }
+  
+  const response_user = await axios.post( rootURL + 'user-info/detail', false , config_user ).then((res) => {
+      return res.data
+     }).catch(function (error) {
+  });
+
   const config = {
     headers: { 
       'Authorization':  `Bearer ${token}`
@@ -365,6 +395,6 @@ export async function getServerSideProps (context) {
 
   return { props: {
       blogInfor:  response ? response : [],
-      role: token ? token : 'Không có'
+      user: response_user ? response_user.user : '',
   }};
 }

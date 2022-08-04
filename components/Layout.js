@@ -88,7 +88,11 @@ const Layout = ({ children }) => {
     </Head>
     <Component />
     {
-      pathname != '/dang-nhap' && pathname != '/dang-ky' && pathname != '/quan-ly/dang-xuat' && !pathname.includes('/giao-dien/xem-giao-dien/')? 
+      !pathname.includes('/dang-nhap')  
+      && !pathname.includes('/dang-ky') 
+      && !pathname.includes('/quan-ly/dang-xuat')
+      && !pathname.includes('/quan-ly/cap-nhat-thong-tin')
+      && !pathname.includes('/giao-dien/xem-giao-dien/') ? 
       <>
         <Header />
           {

@@ -1,5 +1,19 @@
 import { useState, useRef, useEffect } from 'react'
-import { Panel, Container, Row, Col, Button, Form, Schema, Loader, toaster, Message, SelectPicker, RadioGroup, Radio, DatePicker, Divider, Sidenav  } from 'rsuite'
+import { Panel,
+   Container,
+   Row,
+   Col,
+   Button,
+   Form,
+   Schema,
+   Loader,
+   toaster,
+   Message,
+   SelectPicker,
+   RadioGroup,
+   Radio,
+   Divider,
+   Sidenav  } from 'rsuite'
 import { DVHCVN } from '../api/Dvhcvn'
 import { locales } from '../api/locales'
 import { signIn } from 'next-auth/react'
@@ -9,7 +23,6 @@ import styles from '../../styles/account.module.css'
 import UserNav from '../../components/user-manager/UserNav'
 import { getSession } from 'next-auth/react';
 import MenuIcon from '@rsuite/icons/Menu';
-import moment from 'moment'
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
@@ -52,7 +65,6 @@ const UserEditor = ({user_info, nonce}) => {
     lastname: user_info.lastname ? user_info.lastname : '',
     phone: user_info.phone ? user_info.phone : '',
     email: user_info.email ? user_info.email : '',
-    birth: user_info.birth ? user_info.birth : '',
     gender: user_info.gender ? user_info.gender : '',
     billing_city: user_info.billing_city ? user_info.billing_city : '',
     billing_district: user_info.billing_district ? user_info.billing_district : '',
@@ -221,7 +233,6 @@ const UserEditor = ({user_info, nonce}) => {
     formData.append('nonce', nonce_key);
     formData.append('firstname', formValue.firstname);
     formData.append('lastname', formValue.lastname);
-    formData.append('birth', moment(formValue.birth).format('L'));
     formData.append('phone', formValue.phone);
     formData.append('email', formValue.email);
     formData.append('gender', formValue.gender);
@@ -252,7 +263,7 @@ const UserEditor = ({user_info, nonce}) => {
       }
     }
   }
-  const birth = new Date(formValue.birth);
+
   return (
    <>
     <section className={styles.x_edit_profile_section}>
@@ -324,12 +335,6 @@ const UserEditor = ({user_info, nonce}) => {
                             </Col>
                             <Col xs={24} md={12}>
                               <Form.Group className={styles.x_form_group}>
-                                  <Form.ControlLabel>Ngày sinh</Form.ControlLabel>
-                                  <DatePicker name="birth" value={birth ? birth : ''} style={{width: '100%'}} onChange={(e) => {setFormValue({...formValue, birth: e})}}/>
-                                </Form.Group>
-                            </Col>
-                            <Col xs={24} md={12}>
-                              <Form.Group className={styles.x_form_group}>
                                 <Form.ControlLabel>Số điện thoại</Form.ControlLabel>
                                 <Form.Control name="phone" value={formValue.phone} placeholder='Nhập số điện thoại...'/>
                               </Form.Group>
@@ -382,7 +387,7 @@ const UserEditor = ({user_info, nonce}) => {
                                 />
                               </Form.Group>
                             </Col>
-                            <Col xs={24} md={12}>
+                            <Col xs={24}>
                               <Form.Group className={styles.x_form_group}>
                                 <Form.ControlLabel>Địa chỉ chi tiết</Form.ControlLabel>
                                 <Form.Control name="billing_address" value={formValue.billing_address} placeholder='Nhập địa chỉ...'/>
