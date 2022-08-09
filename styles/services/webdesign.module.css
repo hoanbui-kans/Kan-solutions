@@ -8,7 +8,12 @@
     background-size: cover;
 }
 .x_banner_thiet_ke{
+    padding: 95px 0;
     margin: auto;
+    width: calc(100% - 30px);
+    border-radius: var(--x-border-radius);
+    background: url(../../public/services-image/landing-background.svg);
+    color: var(--x-white-color);
 }
 
 .x_project_section{
