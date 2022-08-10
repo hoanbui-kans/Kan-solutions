@@ -6,14 +6,15 @@ import Image from 'next/image';
 import axios from 'axios'
 import { IoHomeOutline } from "react-icons/io5";
 import { locales } from '../api/locales'
-import { getSession } from 'next-auth/react';
+import { getSession, useSession } from 'next-auth/react';
 import { IoPaperPlane } from "react-icons/io5";
 import { DVHCVN } from '../api/Dvhcvn'
+import Router from 'next/router';
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 const Login = ({user_info, nonce}) => {
-
+  const { data: session } = useSession();
   const [loading, setLoading] = useState(false);
   const [formValue, setFormValue] = useState({
     firstname: user_info.firstname ? user_info.firstname : '',

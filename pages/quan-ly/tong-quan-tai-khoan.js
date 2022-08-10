@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Container, Row, Col, Navbar, Nav, Form, Button, ButtonToolbar, Toggle, Sidenav } from 'rsuite'
-import { IoLogOutOutline, IoSearchOutline, IoAlbumsOutline, IoAddSharp, IoLinkOutline, IoBookmarkOutline, IoCalendarClearOutline, IoCalendarOutline } from "react-icons/io5";
+import { IoSearchOutline, IoAlbumsOutline, IoAddSharp, IoLinkOutline, IoBookmarkOutline, IoCalendarClearOutline, IoCalendarOutline } from "react-icons/io5";
 import axios from 'axios'
 import Link from 'next/link'
 import Image from 'next/image';

@@ -310,9 +310,6 @@ export const SingleTheme = ({data, link_theme}) => {
                               }) : '' 
                             }
                       </div>
-                      <div className={styles.x_comment_form}>
-                        <CommentsUI data={data}/>
-                      </div>
                     </div>
                 </div>
               </Col>
@@ -331,13 +328,13 @@ export const SingleTheme = ({data, link_theme}) => {
                         <a href={link_theme}>
                             <Button className={styles.x_create_button}>
                               <CopyIcon width={16} height={16}/>
-                                Dùng thử miễn phí
+                                Sử dụng mẫu này
                             </Button> 
                         </a> :  
                         <Link href={'/dang-nhap'}>
                             <Button className={styles.x_create_button}>
                               <CopyIcon width={16} height={16}/>
-                                Dùng thử miễn phí
+                                Đăng nhập tài khoản
                             </Button> 
                         </Link>
                       }
@@ -353,10 +350,12 @@ export const SingleTheme = ({data, link_theme}) => {
                     <div className={styles.x_seperator_booking}>
                       <span>Hoặc</span>
                     </div>
+                    <p style={{fontSize: 14}}>Triển khai sử dụng dịch vụ thiết kế Website trọn gói dành cho doanh nghiệp</p>
                     <div className={styles.x_controler_services}>
                       <Button className={styles.x_booking_theme} onClick={() => {handleOpen('Đăng ký tư vấn mẫu giao diện' + data.post_title)}}>
                         Đặt mua mẫu này
-                        </Button>
+                      </Button>
+                        <strong>Tổng chi phí giao diện</strong>
                       {
                         lastPrice ? 
                           <div className={styles.x_price_section}>
@@ -364,11 +363,16 @@ export const SingleTheme = ({data, link_theme}) => {
                           </div> : ''
                       }
                         <h5 style={{color: 'rgb(91 91 91)', fontSize: '14px', textAlign: 'center', marginBottom: 5}}>Kết hợp với dịch vụ</h5>
+                        <Panel bordered style={{marginBottom: 25}}>
                         <CheckboxGroup name="checkboxList" onChange={(e) => {setListService(e)}}>
                           {
-                            data.services.map((val, index) => {
+                            listServices.map((val, index) => {
                               return (
-                                <Checkbox value={val.service} key={index} style={{borderBottom: '1px dotted #e8e8e8'}}>
+                                <Checkbox 
+                                  value={val.service} 
+                                  key={index} 
+                                  style={{borderBottom: index < listServices.length - 1 ? '1px dotted #e8e8e8' : ""}}
+                                >
                                   <Row>
                                     <Col xs={16}>
                                       {val.service}
@@ -384,6 +388,7 @@ export const SingleTheme = ({data, link_theme}) => {
                             })
                           }
                         </CheckboxGroup>
+                        </Panel>
                     </div>
                    <div className={styles.x_single_theme_section}>
                       {
@@ -398,6 +403,11 @@ export const SingleTheme = ({data, link_theme}) => {
                   <h2 className={styles.x_content_title}>Thông tin hỗ trợ</h2>
                    <FormTuVan title={'Đăng kỹ hỗ trợ giao diện ' + data.post_title}/>
                   </div>
+                </div>
+              </Col>
+              <Col xs={24}>
+                <div className={styles.x_comment_form}>
+                  <CommentsUI data={data}/>
                 </div>
               </Col>
                 {

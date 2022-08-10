@@ -33,6 +33,7 @@ import { RateUser } from '../../api/services';
 import { locales } from '../../api/locales';
 import dynamic from 'next/dynamic'
 import HTMLReactParser from 'html-react-parser';
+import Router from 'next/router';
 
 const Chart = dynamic(
   () => {
@@ -63,10 +64,10 @@ const SiteEditor = ({site_content}) => {
   const DisplayUploaded = Uploaded < 1000 ? Uploaded + 'mb' : (Uploaded/100) + 'gb'
   const Remain = StoreAvaiable - Uploaded;
   const registed = new Date(data.registered);
-  const expired = new Date(parseInt(data.get_expire, 10) * 1000);
   const current = new Date();
   const DateRegisted = moment(registed).format('LL');
-  const expiredDate = moment(expired).format('LL');
+  const expired = data.get_expire ? new Date(parseInt(data.get_expire, 10) * 1000) : "";
+  const expiredDate = expired ? moment(expired).format('LL') : "";
   
   const expiredClass = current <= expired ? styles.x_danger : styles.x_success;
   const chartValue = {
@@ -123,7 +124,6 @@ const SiteEditor = ({site_content}) => {
       }
   })[0];
 
-
   useEffect(() => {
       let total = expired - registed;
       let progress = current - registed;
@@ -172,7 +172,7 @@ const SiteEditor = ({site_content}) => {
 
 
   let avaiable_domains = [];
-
+  data.avaiable_domain ? 
   data.avaiable_domain.map((value) => {
       if(value.status == 'khoi-tao' && value.doimain != data.domain){
         avaiable_domains.push({
@@ -181,7 +181,7 @@ const SiteEditor = ({site_content}) => {
           "role": "Master"
         })
       }
-  });
+  }) : "";
 
   const HandleReplaceDomain = async() => {
     setLoadingReplace(true);
@@ -261,13 +261,29 @@ const SiteEditor = ({site_content}) => {
                                           <Form.Control disabled name="domain" type="text" defaultValue={domain} onChange={(e) => {setDoimain(e)}} />
                                         </Form.Group>
                                         <Form.Group>
-                                          <Button 
-                                            appearance="primary"  
-                                            onClick={relaceDoimain}>Thay đổi tên miền
-                                          </Button>
+                                          {
+                                            site_lever && site_lever.lever > 0 ?
+                                              <Button 
+                                                appearance="primary"  
+                                                onClick={relaceDoimain}>Thay đổi tên miền
+                                              </Button>
+                                            : <Link href={'/quan-ly/thanh-toan/nang-cap?site_id=' + data.blog_id}>
+                                                <a>
+                                                  <Button 
+                                                    appearance="primary"  
+                                                    onClick={relaceDoimain}>Nâng cấp website
+                                                  </Button>
+                                                </a>
+                                              </Link>
+                                          }
                                         </Form.Group>
                                       </Form>
-                                      <p style={{margin: '15px 0px'}}>Vui lòng trỏ tên miền về <strong>{SERVER_IP}</strong></p>
+                                      {
+                                        site_lever && site_lever.lever > 0 ?
+                                        <p style={{margin: '15px 0px'}}>Vui lòng trỏ tên miền về <strong>{SERVER_IP}</strong></p>
+                                        : 
+                                        <p style={{margin: '15px 0px', fontSize: 14}}>Bạn hãy đăng ký thành viên để thực hiện tính năng này</p>
+                                      }
                                     </div>
                                 </Col>
                                 <Col xs={24}>
@@ -295,7 +311,7 @@ const SiteEditor = ({site_content}) => {
                                               <Col xs={12} md={12}>
                                                 <div className={expiredClass}>
                                                     <p className={styles.x_blog_meta_single_title}><IoCalendarOutline /> Sử dụng đến:</p>
-                                                    <span className={styles.x_date_single_badge}>{expiredDate}</span>
+                                                    <span className={styles.x_date_single_badge}>{expiredDate ? expiredDate : "Không giới hạn"}</span>
                                                 </div>
                                               </Col>
                                         </Row>
@@ -307,7 +323,7 @@ const SiteEditor = ({site_content}) => {
                                           <Col xs={12} md={12}>
                                             <div className={styles.x_single_qouta_info}>
                                                 <p>Gói dịch vụ:</p>
-                                                <strong>{site_lever.name}</strong>
+                                                <strong>{ site_lever ? site_lever.name : ""}</strong>
                                             </div>
                                           </Col>
                                           <Col xs={12} md={12}>
@@ -397,35 +413,38 @@ const SiteEditor = ({site_content}) => {
             </Row>
           </Container>
       </section>
-
-      <Modal open={openReplaced} onClose={handleCloseReplaced} backdrop="static">
-        <Modal.Header>
-          <Modal.Title><strong>Thay đổi tên miền</strong></Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <h5><span style={{color: "red"}}>Cảnh báo:</span> Thay đổi tên miền</h5>
-          <p>Thông tin tên miền của bạn sẽ được thay đổi</p>
-          <div className={styles.x_board_domain_change}>
-              <span className={styles.x_current_domain}>
-                  { data.domain }
-              </span>
-              <span className={styles.x_domain_change_arrow}>
-                <IoArrowForwardSharp />
-              </span>
-              <SelectPicker onChange={(e) => setDoimainReplaced(e)} style={{width: 200}} placeholder="Lựa chọn tên miền" data={avaiable_domains} locale={locales.Picker}>
-              </SelectPicker>
-          </div>
-          <p style={{lineHeight: '18px', marginBottom: 20}}>
-            <small>
-            <span style={{color: "red"}}>*</span>
-            Thông tin tên miền của bạn có thể mất vài tiếng để chạy bình thường sau khi trỏ thành công, xin vui lòng nhấp vào <Link href="/quan-ly/ho-tro">hỗ trợ</Link> để nhận trợ giúp nhanh nhất</small>
-          </p>
-          <Button onClick={HandleReplaceDomain} disabled={domainReplaced ? false : true} type="submit" className={styles.x_change_domain_button}>
-              { loadingReplace ? <Loader size={22}/> : <IoPaperPlane size={16}/> }
-              Thay đổi tên miền
-          </Button>
-        </Modal.Body>
-    </Modal>
+      {
+        
+        site_lever && site_lever.lever > 0 ?      
+          <Modal open={openReplaced} onClose={handleCloseReplaced} backdrop="static">
+            <Modal.Header>
+              <Modal.Title><strong>Thay đổi tên miền</strong></Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <h5><span style={{color: "red"}}>Cảnh báo:</span> Thay đổi tên miền</h5>
+              <p>Thông tin tên miền của bạn sẽ được thay đổi</p>
+              <div className={styles.x_board_domain_change}>
+                  <span className={styles.x_current_domain}>
+                      { data.domain }
+                  </span>
+                  <span className={styles.x_domain_change_arrow}>
+                    <IoArrowForwardSharp />
+                  </span>
+                  <SelectPicker onChange={(e) => setDoimainReplaced(e)} style={{width: 200}} placeholder="Lựa chọn tên miền" data={avaiable_domains} locale={locales.Picker}>
+                  </SelectPicker>
+              </div>
+              <p style={{lineHeight: '18px', marginBottom: 20}}>
+                <small>
+                <span style={{color: "red"}}>*</span>
+                Thông tin tên miền của bạn có thể mất vài tiếng để chạy bình thường sau khi trỏ thành công, xin vui lòng nhấp vào <Link href="/quan-ly/ho-tro">hỗ trợ</Link> để nhận trợ giúp nhanh nhất</small>
+              </p>
+              <Button onClick={HandleReplaceDomain} disabled={domainReplaced ? false : true} type="submit" className={styles.x_change_domain_button}>
+                  { loadingReplace ? <Loader size={22}/> : <IoPaperPlane size={16}/> }
+                  Thay đổi tên miền
+              </Button>
+            </Modal.Body>
+        </Modal> : ""
+    }  
 
     </>
   )
@@ -458,6 +477,6 @@ export async function getServerSideProps (context) {
     });
 
   return { props: {
-      site_content:  response ? response : [],
+      site_content:  !response.error ? response : [],
   }};
 }

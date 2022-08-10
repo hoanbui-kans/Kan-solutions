@@ -4,35 +4,37 @@ import { Container, Row, Col, List, Sidenav, Panel, Breadcrumb } from 'rsuite';
 import Link from 'next/link';
 import styles from '../../styles/account.module.css'
 import UserNav from '../../components/user-manager/UserNav';
+import { useSession } from 'next-auth/react';
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 const GuileCategory = ({category}) => {
-  const [expanded, setExpanded] = useState(true);
-  const [showMobileNav, setShowMobileNav] = useState(false);
-  const [dimensions, setDimensions] = useState({
-    width: 0,
-    height: 0,
-  });
-
-  const handleResize = () => {
-    setDimensions({
-      width: window.innerWidth,
-      height: window.innerHeight,
+    const { data: session } = useSession();
+    const [expanded, setExpanded] = useState(true);
+    const [showMobileNav, setShowMobileNav] = useState(false);
+    const [dimensions, setDimensions] = useState({
+        width: 0,
+        height: 0,
     });
-  }
 
-  useEffect(() => {
-    setDimensions({
+    const handleResize = () => {
+        setDimensions({
         width: window.innerWidth,
         height: window.innerHeight,
-    });
-    window.addEventListener("resize", handleResize, false);
-  }, [true]);
+        });
+    }
 
-  useEffect(() => {
-    dimensions.width <= 992 ? setShowMobileNav(false) : setShowMobileNav(true); 
-  }, [dimensions]);
+    useEffect(() => {
+        setDimensions({
+            width: window.innerWidth,
+            height: window.innerHeight,
+        });
+        window.addEventListener("resize", handleResize, false);
+    }, [true]);
+
+    useEffect(() => {
+        dimensions.width <= 992 ? setShowMobileNav(false) : setShowMobileNav(true); 
+    }, [dimensions]);
 
   return (
     <>

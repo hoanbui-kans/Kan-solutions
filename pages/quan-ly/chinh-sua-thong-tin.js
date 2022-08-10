@@ -21,12 +21,12 @@ import { IoLogoFacebook, IoLogoGoogle, IoPaperPlane } from "react-icons/io5";
 import axios from 'axios'
 import styles from '../../styles/account.module.css'
 import UserNav from '../../components/user-manager/UserNav'
-import { getSession } from 'next-auth/react';
+import { getSession, useSession } from 'next-auth/react';
 import MenuIcon from '@rsuite/icons/Menu';
-
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 const UserEditor = ({user_info, nonce}) => {
+  const { data: session } = useSession();
   const [expanded, setExpanded] = useState(true);
   const [loadingPassword, setLoadingPassword] = useState(false);
   const [loading, setLoading] = useState(false);

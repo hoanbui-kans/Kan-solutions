@@ -1,6 +1,19 @@
 import { useEffect, useState } from 'react'
-import { Container, Row, Col, Form, Button, ButtonToolbar, Sidenav, Progress, Badge } from 'rsuite'
-import { IoSearchOutline, 
+import 
+{ 
+    Container,
+     Row,
+     Col,
+     Form,
+     Button,
+     ButtonToolbar,
+     Sidenav,
+     Progress,
+     Pagination,
+     SelectPicker
+} from 'rsuite'
+import 
+{ 
     IoAlbumsOutline, 
     IoAddSharp, 
     IoLinkOutline, 
@@ -8,19 +21,20 @@ import { IoSearchOutline,
     IoBuild,
     IoCafeSharp, 
     IoBookmark,
-    IoCalendarOutline } from "react-icons/io5";
+    IoCalendarOutline 
+} from "react-icons/io5";
 import axios from 'axios'
 import Link from 'next/link'
 import Image from 'next/image'; 
 import moment from 'moment';
-import 'moment/locale/vi'
-import dynamic from 'next/dynamic'
-import { getSession, useSession } from 'next-auth/react';
+import { getSession } from 'next-auth/react';
 import styles from '../styles/account.module.css'
 import UserNav from '../components/user-manager/UserNav';
 import { RateUser } from './api/services';
 import MenuIcon from '@rsuite/icons/Menu';
-import Router from 'next/router'
+import { locales } from './api/locales';
+import dynamic from 'next/dynamic'
+import 'moment/locale/vi'
 
 const Chart = dynamic(
   () => {
@@ -45,10 +59,11 @@ export const BlogContent = ({data}) => {
     const DisplayUploaded = Uploaded < 1000 ? Uploaded + 'mb' : (Uploaded/100) + 'gb'
     const Remain = StoreAvaiable - Uploaded;
     const registed = new Date(data.registered);
-    const expired = new Date(parseInt(data.get_expire, 10) * 1000);
+    const expired = data.get_expire ? new Date(parseInt(data.get_expire, 10) * 1000) : '';
     const current = new Date();
     const DateRegisted = moment(registed).format('LL');
-    const expiredDate = moment(expired).format('LL');
+
+    const expiredDate = expired ? moment(expired).format('LL') : '';
 
     const expiredClass = current <= expired ? styles.x_danger : styles.x_success;
     const chartValue = {
@@ -159,12 +174,17 @@ export const BlogContent = ({data}) => {
                                         <h3>{data.blogname}</h3>
                                     </a>
                                 </Link>
-                                <p style={{
-                                    display: 'inline-block',
-                                    padding: '3px',
-                                    border: '1px solid #e5e5e5',
-                                    borderRadius: '5px'
-                                }}><IoBookmark/> {site_lever.name}</p>
+                                {site_lever ?
+                                    <p style={{
+                                        display: 'inline-block',
+                                        padding: '3px',
+                                        border: '1px solid #e5e5e5',
+                                        borderRadius: '5px'
+                                    }}><IoBookmark/>  
+                                    {site_lever.name}
+                                </p> : 
+                                ''
+                                }
                             </div>
                         </div>
                         
@@ -192,7 +212,7 @@ export const BlogContent = ({data}) => {
                             </div>
                             <div className={expiredClass}>
                                 <p className={styles.x_blog_meta_title}><IoCalendarOutline /> Sử dụng đến:</p>
-                                <span className={styles.x_date_badge}>{expiredDate}</span>
+                                <span className={styles.x_date_badge}>{expiredDate ? expiredDate : "Không giới hạn"}</span>
                             </div>
                         </div>
                         <Progress.Line percent={parseInt(percent ? percent : 0)} strokeColor={LineStroke.strokeColor}/>
@@ -225,6 +245,25 @@ export const BlogContent = ({data}) => {
 }
 
 const UserManager = ({blogInfor, user}) => {
+
+    const [ limit, setLimit ] = useState(10);
+    const [ page, setPaged ] = useState(1);
+    const [ selectedSite, setSectedSite ] = useState([]);
+
+    const Next_Pages = async (num) => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth"
+        });
+        setPaged(num);
+    }
+
+    const sites = blogInfor.filter((v, i) => {
+        const start = limit * (page - 1);
+        const end = start + limit;
+        return i >= start && i < end;
+    });
 
     let countEmpty = 0;
     for (const key in user) {
@@ -267,6 +306,44 @@ const UserManager = ({blogInfor, user}) => {
     dimensions.width <= 992 ? setShowMobileNav(false) : setShowMobileNav(true); 
   }, [dimensions]);
 
+
+    // Title picker
+    let selectDataTitle = [{
+        "label": 'Chọn tất cả trang web',
+        "value": 'all',
+        "role": "Master"
+    }];
+
+    let newDataTitle = [];
+
+    blogInfor.map((val) => {
+        newDataTitle.push({
+            name: val.blogname ? val.blogname : 'Chưa có tiêu đề' + ' - ' + val.blog_id,
+            id: val.blog_id,
+        });
+    })
+
+    newDataTitle.map((val) => {
+        selectDataTitle.push({
+            "label": val.name,
+            "value": val.id,
+            "role": "Master"
+        })
+    })
+
+    const handleSelectBlogName = (blog_id) => {
+        if(blog_id == 'all' || blog_id == null){
+            setSectedSite('');
+            return;
+        }
+        const selectedSite = blogInfor.filter((val) => {
+            if(val.blog_id == blog_id){
+                return val;
+            }
+        });
+        setSectedSite(selectedSite);
+    }
+
   return (
     <>
     <section className={styles.x_app_section}>
@@ -306,10 +383,7 @@ const UserManager = ({blogInfor, user}) => {
                         <Col xs={24} md={12} className={styles.x_padding}>
                             <Form>
                                 <Form.Group className={styles.x_form_search_container}>
-                                    <Form.Control className={styles.x_search_page_input} name='s' value={EventTarget.value} placeholder='Tìm kiếm trang...'></Form.Control>
-                                    <Button className={styles.x_search_page_button}>
-                                        <IoSearchOutline size={20}/>
-                                    </Button>
+                                    <SelectPicker locale={locales.Picker} className={styles.x_custom_picker} onChange={handleSelectBlogName} data={selectDataTitle} style={{ width: '100%' }} />
                                 </Form.Group>
                             </Form>
                         </Col>
@@ -340,16 +414,55 @@ const UserManager = ({blogInfor, user}) => {
                     </Row>
                     <Row className={styles.x_flex}>
                         {
-                        blogInfor .length > 0 ? 
-                            blogInfor.map((val, index) => {
-                            return (
-                                <Col key={index} xs={24} md={12} lg={24} className={styles.x_padding}>
-                                    <BlogContent data={val} /> 
-                                </Col>  
-                            )
-                            }) : <p style={{textAlign: 'center', width: '100%', padding: '35px 0px'}}>
+                        blogInfor.length > 0 ? 
+                            <>
+                                {
+                                    selectedSite.length == 0 ?
+                                    <>
+                                        {  
+                                            sites.map((val, index) => {
+                                                return (
+                                                    <Col key={index} xs={24} md={12} lg={24} className={styles.x_padding}>
+                                                        <BlogContent data={val} /> 
+                                                    </Col>  
+                                                )
+                                            })
+                                        }
+                                        <div style={{ padding: 20, margin: 'auto' }}>
+                                            <Pagination
+                                                prev
+                                                next
+                                                first
+                                                last
+                                                ellipsis
+                                                boundaryLinks
+                                                locale={locales.Pagination}
+                                                maxButtons={5}
+                                                total={blogInfor.length}
+                                                limitOptions={[10, 20, 30, 40, 50]}
+                                                limit={limit}
+                                                activePage={page}
+                                                onChangePage={Next_Pages}
+                                            />
+                                        </div>
+                                    </>
+                                    : 
+                                    <>
+                                        {  
+                                            selectedSite.map((val, index) => {
+                                                return (
+                                                    <Col key={index} xs={24} md={12} lg={24} className={styles.x_padding}>
+                                                        <BlogContent data={val} /> 
+                                                    </Col>  
+                                                )
+                                            })
+                                        }
+                                    </>
+                                }
+                            </>
+                            : <p style={{textAlign: 'center', width: '100%', padding: '35px 0px'}}>
                                     Bạn chưa có trang nào, vui lòng tạo mới
-                                </p>
+                             </p>
                         }
                     </Row>
                 </Col>

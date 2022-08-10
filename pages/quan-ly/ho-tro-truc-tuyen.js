@@ -5,8 +5,10 @@ import styles from '../../styles/account.module.css'
 import UserNav from '../../components/user-manager/UserNav';
 import MenuIcon from '@rsuite/icons/Menu';
 import { FormLienHe } from '../lien-he';
+import { useSession } from 'next-auth/react';
 
 const Supporter = () => {
+  const { data: session } = useSession();
   const [expanded, setExpanded] = useState(true);
   const[showMobileNav, setShowMobileNav] = useState(false);
   const [dimensions, setDimensions] = useState({

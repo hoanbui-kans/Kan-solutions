@@ -4,10 +4,12 @@ import { Container, Row, Col, List, Sidenav, Panel, Breadcrumb, Button } from 'r
 import Link from 'next/link';
 import styles from '../../styles/account.module.css'
 import UserNav from '../../components/user-manager/UserNav';
+import { useSession } from 'next-auth/react';
 import MenuIcon from '@rsuite/icons/Menu';
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 const Guile = ({category}) => {
+  const { data: session } = useSession();
   const [expanded, setExpanded] = useState(true);
   const[showMobileNav, setShowMobileNav] = useState(false);
   const [dimensions, setDimensions] = useState({

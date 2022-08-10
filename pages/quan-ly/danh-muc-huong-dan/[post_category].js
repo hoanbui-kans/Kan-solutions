@@ -8,8 +8,6 @@ import { IoCaretForwardSharp } from 'react-icons/io5';
 import MenuIcon from '@rsuite/icons/Menu';
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
-
-
 const GuilePosts = ({bai_viet, current_term}) => {
   const [expanded, setExpanded] = useState(true);
   const[showMobileNav, setShowMobileNav] = useState(false);

@@ -1,16 +1,13 @@
 import React, { useState } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import Head from 'next/head'
-import HTMLReactParser from 'html-react-parser'
-import { IoCheckmarkOutline, IoStorefront } from "react-icons/io5";
-import { ServicesCreateWebsite } from '../../api/HeaderSeo'
+import { IoCheckmarkOutline } from "react-icons/io5";
 import { Container, Row, Col, Button, Divider, Modal  } from 'rsuite'
 import styles from '../../../styles/services/webdesign.module.css'
 import { HostingTable, WebsiteDesignTable } from '../../api/services'
 import ServicesSubmitForm from '../../../components/handleSubmitServices'
+import { useSession } from 'next-auth/react';
 
 const Upgrade = () => {
+    const { data: session } = useSession();
     const [open, setOpen] = useState(false);  
     const [service, setService] = useState(''); 
 
@@ -33,8 +30,11 @@ const Upgrade = () => {
                                 <Row>
                                     {
                                         HostingTable.map((val, index) => {
+                                            if(index == 0){
+                                                return "";
+                                            }
                                             return(
-                                                <Col xs={24} md={12} lg={8} key={index}>
+                                                <Col xs={24} md={12} lg={12} key={index}>
                                                     <div className={styles.x_hosting}>
                                                         <div className={styles.x_hosting_header}>
                                                             <h3>{val.name}</h3>

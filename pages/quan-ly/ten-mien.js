@@ -1,18 +1,15 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {    
     Container,
     Row,
     Col,
     Button,
-    Modal,
     Sidenav,
     Form,
     Loader ,
     toaster,
     Message,
     Table,
-    FlexboxGrid ,
-    List,
 } from 'rsuite';
 import { getSession, useSession } from 'next-auth/react';
 import axios from 'axios';
@@ -22,39 +19,40 @@ import isValidDomain from 'is-valid-domain';
 import { IoTrashOutline, IoGlobeOutline } from "react-icons/io5";
 import { useRouter } from 'next/router'
 import MenuIcon from '@rsuite/icons/Menu';
+
 const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON
 
 const Domain = ({posts, token}) => {
-  const [domainValue, setValueDomain] = useState('');
-  const [expanded, setExpanded] = useState(true);
-  const [loading, setLoading] = useState(false);
-  const [loadingRmdomain, setRMdomain] = useState([]);
-  const { data: session } = useSession();
-  const router = useRouter();
-  const[showMobileNav, setShowMobileNav] = useState(false);
-  const [dimensions, setDimensions] = useState({
-    width: 0,
-    height: 0,
-  });
-
-  const handleResize = () => {
-    setDimensions({
-      width: window.innerWidth,
-      height: window.innerHeight,
+    const { data: session } = useSession();
+    const [domainValue, setValueDomain] = useState('');
+    const [expanded, setExpanded] = useState(true);
+    const [loading, setLoading] = useState(false);
+    const [loadingRmdomain, setRMdomain] = useState([]);
+    const router = useRouter();
+    const [showMobileNav, setShowMobileNav] = useState(false);
+    const [dimensions, setDimensions] = useState({
+        width: 0,
+        height: 0,
     });
-  }
 
-  useEffect(() => {
-    setDimensions({
+    const handleResize = () => {
+        setDimensions({
         width: window.innerWidth,
         height: window.innerHeight,
-    });
-    window.addEventListener("resize", handleResize, false);
-  }, [true]);
+        });
+    }
 
-  useEffect(() => {
-    dimensions.width <= 992 ? setShowMobileNav(false) : setShowMobileNav(true); 
-  }, [dimensions]);
+    useEffect(() => {
+        setDimensions({
+            width: window.innerWidth,
+            height: window.innerHeight,
+        });
+        window.addEventListener("resize", handleResize, false);
+    }, [true]);
+
+    useEffect(() => {
+        dimensions.width <= 992 ? setShowMobileNav(false) : setShowMobileNav(true); 
+    }, [dimensions]);
 
   const HandleRemoveDoimain = async (domain_id, status) => {
     

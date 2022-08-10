@@ -4,7 +4,14 @@ import TypeAnimation from 'react-type-animation';
 import styles from '../styles/HomePage2.module.css';
 import Image from 'next/image';
 import aos from 'aos';
-import { IoCheckmarkCircle, IoPersonCircle, IoCall, IoCheckmarkOutline, IoCloseOutline } from "react-icons/io5";
+import 
+{ 
+  IoCheckmarkCircle,
+  IoStorefront,
+  IoCall,
+  IoCheckmarkOutline,
+  IoCloseOutline 
+} from "react-icons/io5";
 import { GD_Box } from './giao-dien';
 import { Navigation, Pagination, EffectFade } from 'swiper';
 import { BlogStyleTwo } from '../components/blog-templates/BlogContent';
@@ -16,7 +23,7 @@ import { HomePageSeo } from './api/HeaderSeo'
 import HTMLReactParser from 'html-react-parser'
 import ServicesSubmitForm from '../components/handleSubmitServices'
 import Head from 'next/head';
-import { themesAPI, PostsAPI} from './api/HomeAPI';
+import { BioThemes ,themesAPI, PostsAPI} from './api/HomeAPI';
 // import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-fade";
@@ -74,15 +81,15 @@ const HomeTwo = () => {
                       </h1>
                       <ul className={styles.x_hero_banner_feature}>
                             <li data-aos="fade-right"> <p><IoCheckmarkOutline size={16}/> Xây dựng kênh bán hàng chủ động, đầy đủ tính năng</p></li>
-                            <li data-aos="fade-left"> <p><IoCheckmarkOutline size={16}/> Kênh tiếp thị đa dạng</p></li>
+                            <li data-aos="fade-left"> <p><IoCheckmarkOutline size={16}/> Đa dạng hóa kênh tiếp thị của bạn</p></li>
                             <li data-aos="fade-right"> <p><IoCheckmarkOutline size={16}/> Quản lý xuất nhập kho, chăm sóc khách hàng</p></li>
                             <li data-aos="fade-left"> <p><IoCheckmarkOutline size={16}/> Chủ động quản lý dòng tiền</p></li>
                       </ul>
                       <div className={styles.x_call_out_hero}>
-                          <Link href="/dang-ky">
+                          <Link href="/dang-ky/dich-vu/tao-website-lading-page-tu-dong">
                             <a>
                               <Button data-aos="fade-up" className={styles.x_focused_button}>
-                                  <IoPersonCircle size={22}/>  ĐĂNG KÝ MIỄN PHÍ
+                                  <IoStorefront size={22}/>  TẠO GIAN HÀNG MIỄN PHÍ
                               </Button>
                             </a>
                           </Link>
@@ -208,8 +215,8 @@ const HomeTwo = () => {
                           <span className={styles.x_secondary_box_icon}>
                             <Image placeholder='blurDataURL' src="/home/shop.svg" alt="Website bán hàng" width={40} height={40} />
                           </span>
-                          <h2 className={styles.x_secondary_box_title}>Website bán hàng</h2>
-                          <p className={styles.x_secondary_box_description}>Giải pháp bán hàng online với website tích hợp đầy đủ tính năng bán hàng mạnh mẽ</p>
+                          <h2 className={styles.x_secondary_box_title}>Gian hàng miễn phí</h2>
+                          <p className={styles.x_secondary_box_description}>Giải pháp bán hàng online với website miễn phí tích hợp đầy đủ tính năng bán hàng mạnh mẽ</p>
                       </div>
                 </Col>
                 <Col xs={24} md={8}>
@@ -246,7 +253,7 @@ const HomeTwo = () => {
                 <Col xs={24} md={12}>
                    <div className={styles.x_features_box}>
                       <h3 className={styles.x_main_box_secondary} data-aos="fade-down">TẠI SAO CHỌN CHÚNG TÔI</h3>
-                      <h2 className={styles.x_main_box_primary} data-aos="fade-up">Chúng tôi mang lại cho bạn trải nghiệm tốt nhất</h2>
+                      <h2 className={styles.x_main_box_primary} data-aos="fade-up">Chúng tôi mang lại cho bạn trải nghiệm tốt nhất và hoàn toàn miễn phí</h2>
                       <ul className={styles.x_features_icon_list}>
                         <li data-aos="fade-left">
                             <p><IoCheckmarkCircle color="#2ecc71" size={22}/>Website với nhiều tính năng, tốc độ mạnh mẽ</p>
@@ -260,14 +267,25 @@ const HomeTwo = () => {
                         <li data-aos="fade-left">
                             <p><IoCheckmarkCircle color="#2ecc71" size={22}/>Di chuyển, nâng cấp, tạo website riêng nhanh chóng</p>
                         </li>
+                        <li data-aos="fade-left">
+                            <p><IoCheckmarkCircle color="#2ecc71" size={22}/>Giải pháp xây dựng thương hiệu riêng dành cho doanh nghiệp</p>
+                        </li>
+                        <li data-aos="fade-left">
+                            <p><IoCheckmarkCircle color="#2ecc71" size={22}/>Cộng đồng sử dụng rộng lớn</p>
+                        </li>
                       </ul>
                       <Link href="/dang-ky">
                             <a>
-                              <Button data-aos="fade-up" className={styles.x_focused_button} style={{marginTop: '15px', marginRight: '0px'}}>
+                              <Button data-aos="fade-up" className={styles.x_focused_button} style={{marginTop: '15px', marginRight: '15px'}}>
                                   ĐĂNG KÝ NGAY
                               </Button>
                             </a>
                       </Link>
+                      <a href="tel:0392193639">
+                        <Button data-aos="fade-up" className={styles.x_ViewAll_button} style={{marginTop: '15px', marginRight: '0px'}}>
+                           TƯ VẤN DOANH NGHIỆP
+                        </Button>
+                      </a>
                     </div>         
                 </Col>
               </Row>
@@ -279,7 +297,8 @@ const HomeTwo = () => {
             <Col xs={24}>
                   <div className={styles.x_themes_content}>
                     <h3 className={styles.x_main_box_secondary} data-aos="fade-down">GIAO DIỆN MẪU</h3>
-                    <h2 className={styles.x_main_box_primary} data-aos="fade-up">250+ Mẫu giao diện</h2>
+                    <h2 className={styles.x_main_box_primary} data-aos="fade-up">250+ Mẫu giao diện bán hàng tiêu chuẩn</h2>
+                    <p>Mẫu giao diện bán hàng miễn phí đầy đủ chức năng cập nhật thường xuyên</p>
                   </div>
             </Col>
               {
@@ -294,8 +313,8 @@ const HomeTwo = () => {
                <Col xs={24} md={12} lg={8}>
                    <div className={styles.x_themes_banner}>
                       <div className={styles.x_themes_banner_content}>
-                        <h3 className={styles.x_main_box_secondary} data-aos="fade-down">DÙNG THỬ MIỄN PHÍ</h3>
-                        <h2 className={styles.x_main_box_primary} data-aos="fade-up">Xây dựng website miễn phí 3 tháng</h2>
+                        <h3 className={styles.x_main_box_secondary} data-aos="fade-down">Miễn phí khởi tạo</h3>
+                        <h2 className={styles.x_main_box_primary} data-aos="fade-up">Xây dựng website bán hàng đầy đủ chức năng <span className={styles.x_hightlight_badge}>miễn phí</span></h2>
                         <Link href="/dang-ky">
                             <a>
                               <Button data-aos="fade-up" className={styles.x_focused_button} style={{marginTop: '15px', marginRight: '0px'}}>
@@ -307,7 +326,7 @@ const HomeTwo = () => {
                    </div>
                 </Col>
                 <Col xs={24}>
-                    <Link href="/bai-viet">
+                    <Link href="/giao-dien">
                           <a style={{textAlign: 'center', display: 'block'}}>
                             <Button data-aos="fade-up" className={styles.x_ViewAll_button} style={{marginBottom: '15px', marginTop: '5px', marginRight: '0px'}}>
                                 XEM TẤT CẢ
@@ -315,6 +334,38 @@ const HomeTwo = () => {
                           </a>
                     </Link>
                 </Col>
+          </Row>
+        </Container>
+    </section>
+    <Divider />
+    <section className={styles.x_themes_section}>
+        <Container>
+          <Row>
+            <Col xs={24}>
+                  <div className={styles.x_themes_content}>
+                    <h3 className={styles.x_main_box_secondary} data-aos="fade-down">Bio link kênh bán hàng</h3>
+                    <h2 className={styles.x_main_box_primary} data-aos="fade-up">150+ Mẫu bán hàng dành cho cá nhân - KOL</h2>
+                    <p>Tạo Bio website bán hàng miễn phí cho KOL, fanpage facebook, Instagram,...</p>
+                  </div>
+            </Col>
+              {
+                  BioThemes.map((val) => {
+                      return(
+                        <Col xs={24} md={12} lg={8} key={val.ID} data-aos="fade-up">
+                            <GD_Box data={val} price={false}/>
+                        </Col>
+                      )
+                  })
+              }
+              <Col xs={24}>
+                  <Link href="/giao-dien">
+                        <a style={{textAlign: 'center', display: 'block'}}>
+                          <Button data-aos="fade-up" className={styles.x_ViewAll_button} style={{marginBottom: '15px', marginTop: '5px', marginRight: '0px'}}>
+                              XEM TẤT CẢ
+                          </Button>
+                        </a>
+                  </Link>
+              </Col>
           </Row>
         </Container>
     </section>
@@ -383,6 +434,7 @@ const HomeTwo = () => {
                 <div className={styles.x_themes_testionimal}>
                   <h3 className={styles.x_main_box_secondary} data-aos="fade-down">LIÊN HỆ CHÚNG TÔI</h3>
                   <h2 className={styles.x_main_box_primary} data-aos="fade-up">Giúp chúng tôi cải thiện chất lượng dịch vụ</h2>
+                  <p>Chúng tôi dành phần lớn thời gian để chăm sóc khách hàng và cải thiện dịch vụ</p>
                 </div>
                 <div className={styles.x_form_contact} data-aos="fade-right">
                   <FormLienHe />

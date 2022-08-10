@@ -19,7 +19,6 @@ import { getSession, useSession } from 'next-auth/react';
 import styles from '../../styles/account.module.css';
 import UserNav from '../../components/user-manager/UserNav';
 import CreditCardPlusIcon from '@rsuite/icons/CreditCardPlus';
-import Router from 'next/router'
 import { Separator } from '../giao-dien/[slug]';
 import { locales } from '../api/locales';
 import MenuIcon from '@rsuite/icons/Menu';
@@ -28,6 +27,7 @@ import 'moment/locale/vi'
 const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON
 
 const PaymentInfo = ({posts}) => {
+    const { data: session } = useSession();
     const mservice_qr_uri = `${ROOT_URL}mservice/qr`;
     const mservice_atm_uri = `${ROOT_URL}mservice/atm`;
     const [loading_create, set_loading_create] = useState(false);
@@ -105,7 +105,6 @@ const PaymentInfo = ({posts}) => {
         }
     }
     // Hiển thị
-    const { data: session } = useSession();
     const [expanded, setExpanded] = useState(true);
     const [checkedKeys, setCheckedKeys] = useState([]);
     const [loading, setLoading] = useState(false);

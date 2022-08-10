@@ -66,7 +66,9 @@ const CreateWordpress = () => {
                             style={{marginBottom: 25}}>Chúng tôi cung cấp cho bạn giải pháp xây dựng Website bán hàng nhanh chóng với đầy đủ tính năng nâng cao phù hợp với thị trường Việt Nam, giúp cửa hàng, hộ kinh doanh có thể tiếp làm quen với công nghệ web để tạo một kênh tiếp thị sản phẩm của mình đến khách hàng</p>
                             <Link href="/giao-dien">
                                 <a>
-                                    <Button data-aos="fade-up" className={styles.x_register_button}>DÙNG THỬ MIỄN PHÍ</Button>
+                                    <Button data-aos="fade-up" className={styles.x_register_button}>
+                                        XEM GIAO DIỆN MẪU
+                                    </Button>
                                 </a>
                             </Link>
                         </div>

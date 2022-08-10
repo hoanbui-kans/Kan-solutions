@@ -23,7 +23,7 @@ import {
 import axios from 'axios';
 import Image from 'next/image'; 
 import moment from 'moment';
-import { getSession, useSession } from 'next-auth/react';
+import { getSession } from 'next-auth/react';
 import styles from '../../../styles/account.module.css';
 import UserNav from '../../../components/user-manager/UserNav';
 import EditIcon from '@rsuite/icons/Edit';
@@ -337,8 +337,7 @@ const Create_Order = ({list_blog}) => {
         }
     }
     // Hiển thị
-    const { data: session } = useSession();
-    const [expanded, setExpanded] = useState(false);
+    const [expanded, setExpanded] = useState(true);
     const [checkedKeys, setCheckedKeys] = useState([]);
     const [loading, setLoading] = useState(false);
     const [limit, setLimit] = useState(10);
@@ -424,7 +423,7 @@ const Create_Order = ({list_blog}) => {
               <a>{rowData[dataKey].toLocaleString()}</a>
             </Whisper> */}
             <span className={styles.x_badge}>
-                {site_lever[0].name}
+                {site_lever[0].name ? site_lever[0].name : 'Không có thông tin'}
             </span>
           </Table.Cell>
         );
@@ -512,7 +511,7 @@ const Create_Order = ({list_blog}) => {
     <section className={styles.x_app_section}>
         <Container>
             <Row>
-                <Col xs={24} md={!expanded ? 2 : 6}>
+                <Col xs={24} md={!expanded ? 2 : 6}> 
                     <Button 
                         onClick={() => {setShowMobileNav(!showMobileNav)}} 
                         className={styles.x_mobile_menu_button} 
@@ -522,15 +521,22 @@ const Create_Order = ({list_blog}) => {
                         </Button>
                     {
                         showMobileNav ?
-                            <div className={styles.x_account_nav}>
-                                <Sidenav expanded={expanded} defaultOpenKeys={['3', '4']}>
-                                    <Sidenav.Body>
-                                    <UserNav expanded={expanded}/>
+                        <div className={styles.x_account_nav}>
+                            <Sidenav expanded={expanded}>
+                                <Sidenav.Body>
+                                    <UserNav active={'thanh-toan'} expanded={expanded}/>
                                     <Sidenav.Toggle onToggle={expanded => setExpanded(expanded)} />
-                                    </Sidenav.Body>
-                                </Sidenav>
-                            </div>
-                            : ''
+                                    <Button 
+                                        className={styles.x_nav_mobile_close_button}
+                                        onClick={() => {setShowMobileNav(!showMobileNav)}} 
+                                        appearance="primary"
+                                        style={{width: '100%'}}
+                                    >
+                                        Đóng
+                                    </Button>
+                                </Sidenav.Body>
+                            </Sidenav>
+                        </div> : ''
                     }
                 </Col>
                 <Col xs={24} md={!expanded ? 22 : 18}>
@@ -569,7 +575,7 @@ const Create_Order = ({list_blog}) => {
                                 <CheckCell dataKey="id" checkedKeys={checkedKeys} onChange={handleCheck} />
                             </Table.Column>
                             <Table.Column width={80} align="center">
-                                <Table.HeaderCell>Site</Table.HeaderCell>
+                                <Table.HeaderCell>Sites</Table.HeaderCell>
                                 <ImageCell dataKey="site_icon" />
                             </Table.Column>
 
@@ -596,10 +602,10 @@ const Create_Order = ({list_blog}) => {
                             <Table.Column width={140}>
                                 <Table.HeaderCell>Ngày hết hạn</Table.HeaderCell>
                                 <Table.Cell>{(rowData) =>  { 
-                                    const expired = new Date(parseInt(rowData.get_expire, 10) * 1000);
-                                    const expiredDate = moment(expired).format('L');
+                                    const expired = rowData.get_expire ? new Date(parseInt(rowData.get_expire, 10) * 1000) : "";
+                                    const expiredDate = expired ? moment(expired).format('L'): "";
                                     return (
-                                        <Button className={styles.x_date_button}>{expiredDate}</Button>
+                                        <Button className={styles.x_date_button}>{expiredDate ? expiredDate : "Không giới hạn"}</Button>
                                     ) }}
                                 </Table.Cell>
                             </Table.Column>
@@ -607,11 +613,11 @@ const Create_Order = ({list_blog}) => {
                             <Table.Column width={140}>
                                 <Table.HeaderCell>Tình trạng</Table.HeaderCell>
                                 <Table.Cell>{(rowData) =>  { 
-                                    const expired = new Date(parseInt(rowData.get_expire, 10) * 1000);
-                                    const expiredDate = moment(expired).format('L');
+                                    const expired = rowData.get_expire ? new Date(parseInt(rowData.get_expire, 10) * 1000) : '';
+                                    const expiredDate = expired ? moment(expired).format('L') : '';
                                     const current = new Date();
                                     return (
-                                        <Button appearance="primary" color={current > expired ? 'red' : 'green'} className={styles.x_date_button}>{current > expired ? 'Hết hạn' : 'Sử dụng'}</Button>
+                                        <Button appearance="primary" color={current > expired && rowData.get_expire ? 'red' : 'green'} className={styles.x_date_button}>{current > expired && rowData.get_expire ? 'Hết hạn' : 'Sử dụng'}</Button>
                                     ) }}
                                 </Table.Cell>
                             </Table.Column>
@@ -626,7 +632,7 @@ const Create_Order = ({list_blog}) => {
                                 <Table.Cell>{rowData => <a href={`mailto:${rowData.email}`}>{rowData.email}</a>}</Table.Cell>
                             </Table.Column>
                             <Table.Column width={120} fixed="right" align="center">
-                                <Table.HeaderCell>Action</Table.HeaderCell>
+                                <Table.HeaderCell>Hành động</Table.HeaderCell>
                                 <ActionCell dataKey="id" />
                             </Table.Column>
                         </Table>

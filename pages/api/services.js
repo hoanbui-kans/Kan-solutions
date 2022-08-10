@@ -313,10 +313,32 @@ export const MarketingTable = [
 
 export const HostingTable = [
     {
-        name: 'Cơ bản',
+        name: 'Bắt đầu',
+        price: '0đ',
+        checklist: [
+            'Miễn phí tên miền: 0',
+            'Giới hạn website: 1',
+            'Tên miền riêng: không',
+            'Server đặt tại: Việt Nam',
+            'Dung lượng: 250 MB',
+            'Băng thông: Không giới hạn',
+            'Email tự động: Có',
+            'Quản lý CRM: Không',
+            'Quản lý MobileApp: Không',
+            'Tùy chỉnh giao diện: Không',
+            'Chuyển sang hosting riêng: không',
+            'Backup dữ liệu: Hàng tuần',
+            'Giấy phép theme, plugin: Có',
+            'Park domain: 1',
+        ]
+    },
+    {
+        name: 'Thành viên',
         price: '250.000đ',
         checklist: [
             'Miễn phí tên miền: 0',
+            'Giới hạn website: 3',
+            'Tên miền riêng: có',
             'Đăng ký tối thiểu 3 tháng',
             'Server đặt tại: Việt Nam',
             'Dung lượng: 1 GB',
@@ -324,7 +346,8 @@ export const HostingTable = [
             'Email tự động: Có',
             'Quản lý CRM: Không',
             'Quản lý MobileApp: Không',
-            'Tùy chỉnh giao diện: Không',
+            'Hỗ trợ cài đặt tính năng: Không',
+            'Chuyển sang hosting riêng: Không',
             'Backup dữ liệu: Hàng tuần',
             'Giấy phép theme, plugin: Có',
             'Park domain: 1',
@@ -334,6 +357,8 @@ export const HostingTable = [
         price: '450.000đ',
         checklist: [
             'Miễn phí 1 tên miền (.com, .net)',
+            'Giới hạn website: 5',
+            'Tên miền riêng: có',
             'Đăng ký tối thiểu 6 tháng',
             'Server đặt tại: Việt Nam',
             'Dung lượng: 2 GB',
@@ -341,27 +366,8 @@ export const HostingTable = [
             'Email tự động: Có',
             'Quản lý CRM: Không',
             'Quản lý MobileApp: Không',
-            'Tùy chỉnh giao diện: 1 lần chỉnh sửa / Năm',
-            'Hỗ trợ cài đặt tính năng: 1 module yêu cầu / Năm',
-            'Backup dữ liệu: Hàng tuần',
-            'Giấy phép theme, plugin: Có',
-            'Park domain: Không giới hạn',
-        ]
-    },{
-        name: 'Nâng cao',
-        price: '550.000đ',
-        checklist: [
-            'Miễn phí 1 tên miền (.com, .net, .vn)',
-            'Đăng ký tối thiểu 6 tháng',
-            'Server đặt tại: Việt Nam',
-            'Dung lượng: 3 GB',
-            'Băng thông: Không giới hạn',
-            'Email tự động: Có',
-            'Quản lý CRM: Có',
-            'Quản lý MobileApp: Không',
-            'Hỗ trợ tài khoản ads Tiktok',
-            'Tùy chỉnh giao diện: 3 lần chỉnh sửa/ Năm',
-            'Hỗ trợ cài đặt tính năng: 3 module yêu cầu/ Năm',
+            'Hỗ trợ cài đặt tính năng: vận chuyển, thanh toán',
+            'Chuyển sang hosting riêng: có',
             'Backup dữ liệu: Hàng tuần',
             'Giấy phép theme, plugin: Có',
             'Park domain: Không giới hạn',
@@ -426,19 +432,24 @@ export const WebsiteDesignTable = [
 
 export const RateUser = [
     {
+        lever: 0,
+        name: 'Miễn phí',
+        price: 0
+    },
+    {
         lever: 1,
-        name: 'Cá nhân',
+        name: 'Thành viên',
         price: 250000
     },
     {
         lever: 2,
-        name: 'Nâng cao',
-        price: 350000
+        name: 'Kinh doanh',
+        price: 450000
     },
     {
         lever: 3,
-        name: 'Kinh doanh',
-        price: 500000
+        name: 'Nâng cao',
+        price: 550000
     }
 ]
 

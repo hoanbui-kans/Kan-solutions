@@ -15,7 +15,7 @@ const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 const SingleGuilde = ({data}) => {
 
   const [expanded, setExpanded] = useState(true);
-  const[showMobileNav, setShowMobileNav] = useState(false);
+  const [showMobileNav, setShowMobileNav] = useState(false);
   const [dimensions, setDimensions] = useState({
     width: 0,
     height: 0,

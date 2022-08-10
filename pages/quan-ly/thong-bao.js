@@ -4,9 +4,15 @@ import { Container, Row, Col, Button, List, Sidenav, Panel } from 'rsuite';
 import styles from '../../styles/account.module.css'
 import UserNav from '../../components/user-manager/UserNav';
 import MenuIcon from '@rsuite/icons/Menu';
+import { useSession } from 'next-auth/react';
+
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 const Annoucement = ({bai_viet}) => {
+    const { data: session } = useSession();
+    if(!session){
+        Router.push('/dang-nhap/');
+    }
   const [expanded, setExpanded] = useState(true);
   const [showMobileNav, setShowMobileNav] = useState(false);
   const [dimensions, setDimensions] = useState({

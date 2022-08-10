@@ -53,6 +53,7 @@
   padding: 0px;
   font-size: 18px;
   line-height: 32px;
+  margin-bottom: 20px;
 }
 .x_ViewAll_button{
   padding: 14px 25px;
@@ -104,8 +105,21 @@
 
 .x_main_box_primary{
   color: var(--x-heading-color);
+  font-size: 28px;
+  line-height: 36px;
 }
 
+.x_hightlight_badge{
+  border: 2px solid #27ae60;
+  color: #27ae60;
+  padding: 11px 20px;
+  display: inline-block;
+  margin: 6px 0px;
+  border-radius: 0.55rem;
+  text-transform: uppercase;
+  font-size: 18px;
+  line-height: 18px;
+}
 .x_main_box_description{
   font-size: 18px;
 }
@@ -353,9 +367,10 @@
     padding: 0px;
     font-size: 16px;
     line-height: 28px;
+    margin-bottom: 20px
   }
   .x_main_box_primary{
-    font-size: 26px !important;
-    line-height: 38px;
+    font-size: 24px !important;
+    line-height: 36px;
   }
 }

@@ -8,7 +8,6 @@ import SocialButton from '../../components/SocialButton';
 import Image from 'next/image';
 
 const Loggout = () => {
-
   const {data: session} = useSession();
   if(!session){
     return (
