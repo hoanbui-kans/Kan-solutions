@@ -22,6 +22,7 @@ import CreditCardPlusIcon from '@rsuite/icons/CreditCardPlus';
 import { Separator } from '../giao-dien/[slug]';
 import { locales } from '../api/locales';
 import MenuIcon from '@rsuite/icons/Menu';
+import Router from 'next/router';
 
 import 'moment/locale/vi'
 const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON
