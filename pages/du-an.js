@@ -27,10 +27,10 @@ export const SingleProject = ({data}) => {
             <div className={styles.x_project_content}>
                 <Link href={"/du-an/" + data.post_name}>
                     <a>
-                        <h3 className={styles.x_project_title}>{data.post_title}</h3>
+                        <h3 className={styles.x_project_title}>{HTMLReactParser(data.post_title)}</h3>
                     </a>
                 </Link>
-                <p>{data.post_excerpt}</p>
+                <p>{HTMLReactParser(data.post_excerpt)}</p>
                 <a href={data.project_view} target="_blank" rel="noreferrer">
                     <Button className={styles.x_project_view_button}>Xem dự án</Button>
                 </a>
