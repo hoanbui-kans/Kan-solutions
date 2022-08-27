@@ -9,10 +9,7 @@ import { useSession } from 'next-auth/react';
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 const Annoucement = ({bai_viet}) => {
-    const { data: session } = useSession();
-    if(!session){
-        Router.push('/dang-nhap/');
-    }
+  const { data: session } = useSession();
   const [expanded, setExpanded] = useState(true);
   const [showMobileNav, setShowMobileNav] = useState(false);
   const [dimensions, setDimensions] = useState({
@@ -96,7 +93,6 @@ const Annoucement = ({bai_viet}) => {
 export default Annoucement
 
 export async function getServerSideProps() {
-    console.log(rootURL + 'user/annoucement?paged=1');
     const res = await axios.get(rootURL + 'user/annoucement?paged=1').then((resonse) => {
         return resonse.data
     }).catch((error) => {

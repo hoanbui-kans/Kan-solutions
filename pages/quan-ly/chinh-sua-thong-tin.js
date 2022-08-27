@@ -353,7 +353,7 @@ const UserEditor = ({user_info, nonce}) => {
                                   style={{width: '100%'}} 
                                   name="billing_city" 
                                   data={dataTinh} 
-                                  value={formValue.billing_city}
+                                  defaultValue={formValue.billing_city}
                                   placeholder='Nhập thành phố...' 
                                   onChange={HandleChangeCity}
                                 />
@@ -366,7 +366,7 @@ const UserEditor = ({user_info, nonce}) => {
                                   locale={locales.Picker} 
                                   style={{width: '100%'}} 
                                   name="billing_district" 
-                                  value={formValue.billing_district}
+                                  defaultValue={formValue.billing_district}
                                   data={dataHuyen} 
                                   placeholder='Nhập quận/ Huyện...' 
                                   onChange={HandleChangeDistrict}
@@ -380,7 +380,7 @@ const UserEditor = ({user_info, nonce}) => {
                                   locale={locales.Picker} 
                                   style={{width: '100%'}} 
                                   name="billing_ward" 
-                                  value={formValue.billing_ward}
+                                  defaultValue={formValue.billing_ward}
                                   data={dataXa} 
                                   placeholder='Nhập xã/ Phường/ Thị trấn...' 
                                   onChange={HandleChangeWard}
@@ -390,7 +390,7 @@ const UserEditor = ({user_info, nonce}) => {
                             <Col xs={24}>
                               <Form.Group className={styles.x_form_group}>
                                 <Form.ControlLabel>Địa chỉ chi tiết</Form.ControlLabel>
-                                <Form.Control name="billing_address" value={formValue.billing_address} placeholder='Nhập địa chỉ...'/>
+                                <Form.Control name="billing_address" defaultValue={formValue.billing_address} placeholder='Nhập địa chỉ...'/>
                               </Form.Group>
                             </Col>
                           </Row>

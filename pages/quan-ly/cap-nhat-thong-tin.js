@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react'
-import { Container, Row, Col, Button, Form, Schema, Loader, toaster, Message, SelectPicker, RadioGroup, Radio, DatePicker, Divider, Sidenav  } from 'rsuite'
+import { Container, Row, Col, Button, Form, Schema, Loader, toaster, Message, SelectPicker, RadioGroup, Radio } from 'rsuite'
 import Link from 'next/link'
 import styles from '../../styles/account.module.css';
 import Image from 'next/image';
@@ -163,6 +163,7 @@ const Login = ({user_info, nonce}) => {
         toaster.push(<Message showIcon type={'warning'}>{response.message}</Message>);
       } else {
         toaster.push(<Message showIcon type={'success'}>{response.message}</Message>);
+        Router.push('/quan-ly');
       }
     }
   }
@@ -235,7 +236,7 @@ const Login = ({user_info, nonce}) => {
                           style={{width: '100%'}} 
                           name="billing_city" 
                           data={dataTinh} 
-                          value={formValue.billing_city}
+                          defaultValue={formValue.billing_city}
                           placeholder='Nhập thành phố...' 
                           onChange={HandleChangeCity}
                         />
@@ -248,7 +249,7 @@ const Login = ({user_info, nonce}) => {
                           locale={locales.Picker} 
                           style={{width: '100%'}} 
                           name="billing_district" 
-                          value={formValue.billing_district}
+                          defaultValue={formValue.billing_district}
                           data={dataHuyen} 
                           placeholder='Nhập quận/ Huyện...' 
                           onChange={HandleChangeDistrict}
@@ -262,7 +263,7 @@ const Login = ({user_info, nonce}) => {
                           locale={locales.Picker} 
                           style={{width: '100%'}} 
                           name="billing_ward" 
-                          value={formValue.billing_ward}
+                          defaultValue={formValue.billing_ward}
                           data={dataXa} 
                           placeholder='Nhập xã/ Phường/ Thị trấn...' 
                           onChange={HandleChangeWard}
