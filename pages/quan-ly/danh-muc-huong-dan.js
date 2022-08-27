@@ -5,6 +5,9 @@ import Link from 'next/link';
 import styles from '../../styles/account.module.css'
 import UserNav from '../../components/user-manager/UserNav';
 import { useSession } from 'next-auth/react';
+import Head from 'next/head';
+import HTMLReactParser from 'html-react-parser';
+import { HomePageSeo } from '../api/HeaderSeo';
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
@@ -38,6 +41,9 @@ const GuileCategory = ({category}) => {
 
   return (
     <>
+    <Head>
+        { HTMLReactParser(HomePageSeo.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
+    </Head>
     <section className={styles.x_app_section}>
         <Container>
             <Row className={styles.x_create_section}>

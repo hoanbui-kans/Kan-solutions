@@ -23,6 +23,9 @@ import { Separator } from '../giao-dien/[slug]';
 import { locales } from '../api/locales';
 import MenuIcon from '@rsuite/icons/Menu';
 import Router from 'next/router';
+import Head from 'next/head';
+import HTMLReactParser from 'html-react-parser';
+import { HomePageSeo } from '../api/HeaderSeo';
 
 import 'moment/locale/vi'
 const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON
@@ -186,6 +189,9 @@ const PaymentInfo = ({posts}) => {
     let index = 1;
     return (
     <>
+    <Head>
+      { HTMLReactParser(HomePageSeo.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
+    </Head>
     <section className={styles.x_app_section}>
         <Container>
             <Row>

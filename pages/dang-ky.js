@@ -8,6 +8,9 @@ import styles from '../styles/account.module.css';
 import SocialButton from '../components/SocialButton';
 import Image from 'next/image';
 import axios from 'axios';
+import Head from 'next/head';
+import HTMLReactParser from 'html-react-parser';
+import { HomePageSeo } from './api/HeaderSeo';
 
 const Register = () => {
 
@@ -143,6 +146,9 @@ const Register = () => {
   
       return (
         <>
+        <Head>
+          { HTMLReactParser(HomePageSeo.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
+        </Head>
          <section className={styles.x_account_container}>
             <span className={styles.x_neumorphic}>
                 <Image alt='layout' src={'/layout/decorations-01.svg'} width={800} height={800}/>
@@ -175,6 +181,10 @@ const Register = () => {
     }
 
   return (
+    <>
+        <Head>
+      { HTMLReactParser(HomePageSeo.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
+    </Head>
     <section className={styles.x_account_container}>
       <span className={styles.x_neumorphic}>
           <Image alt='layout' src={'/layout/decorations-01.svg'} width={800} height={800}/>
@@ -256,6 +266,7 @@ const Register = () => {
         </Row>
       </Container>
     </section>
+    </>
   )
 }
 

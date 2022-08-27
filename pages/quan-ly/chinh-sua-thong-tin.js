@@ -23,6 +23,10 @@ import styles from '../../styles/account.module.css'
 import UserNav from '../../components/user-manager/UserNav'
 import { getSession, useSession } from 'next-auth/react';
 import MenuIcon from '@rsuite/icons/Menu';
+import Head from 'next/head';
+import HTMLReactParser from 'html-react-parser';
+import { HomePageSeo } from '../api/HeaderSeo';
+
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 const UserEditor = ({user_info, nonce}) => {
@@ -266,6 +270,9 @@ const UserEditor = ({user_info, nonce}) => {
 
   return (
    <>
+    <Head>
+      { HTMLReactParser(HomePageSeo.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
+    </Head>
     <section className={styles.x_edit_profile_section}>
       <Container>
         <Row>

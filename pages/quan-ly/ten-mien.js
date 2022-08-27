@@ -19,6 +19,9 @@ import isValidDomain from 'is-valid-domain';
 import { IoTrashOutline, IoGlobeOutline } from "react-icons/io5";
 import { useRouter } from 'next/router'
 import MenuIcon from '@rsuite/icons/Menu';
+import Head from 'next/head';
+import HTMLReactParser from 'html-react-parser';
+import { HomePageSeo } from '../api/HeaderSeo';
 
 const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON
 
@@ -144,6 +147,9 @@ const Domain = ({posts, token}) => {
 
   return (
     <>
+        <Head>
+            { HTMLReactParser(HomePageSeo.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
+        </Head>
         <section className={styles.x_app_section}>
             <Container>
                 <Row>

@@ -6,6 +6,9 @@ import UserNav from '../../components/user-manager/UserNav';
 import MenuIcon from '@rsuite/icons/Menu';
 import { FormLienHe } from '../lien-he';
 import { useSession } from 'next-auth/react';
+import Head from 'next/head';
+import HTMLReactParser from 'html-react-parser';
+import { HomePageSeo } from '../api/HeaderSeo';
 
 const Supporter = () => {
   const { data: session } = useSession();
@@ -37,6 +40,9 @@ const Supporter = () => {
 
   return (
     <>
+    <Head>
+        { HTMLReactParser(HomePageSeo.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
+    </Head>
     <section className={styles.x_app_section}>
         <Container>
             <Row className={styles.x_create_section}>
