@@ -23,8 +23,8 @@ import
     IoBookmark,
     IoCalendarOutline 
 } from "react-icons/io5";
-import axios from 'axios'
-import Link from 'next/link'
+import axios from 'axios';
+import Link from 'next/link';
 import Image from 'next/image'; 
 import moment from 'moment';
 import { getSession } from 'next-auth/react';
@@ -33,8 +33,9 @@ import UserNav from '../components/user-manager/UserNav';
 import { RateUser } from './api/services';
 import MenuIcon from '@rsuite/icons/Menu';
 import { locales } from './api/locales';
-import dynamic from 'next/dynamic'
-import 'moment/locale/vi'
+import dynamic from 'next/dynamic';
+import Router from 'next/router';
+import 'moment/locale/vi';
 
 const Chart = dynamic(
   () => {
@@ -275,11 +276,6 @@ const UserManager = ({blogInfor, user}) => {
         }
     }
 
-
-    if( countEmpty > 4 ){
-        Router.push('/quan-ly/cap-nhat-thong-tin')
-    }
-
     const [expanded, setExpanded] = useState(true);
     const[showMobileNav, setShowMobileNav] = useState(false);
     const [dimensions, setDimensions] = useState({
@@ -300,6 +296,9 @@ const UserManager = ({blogInfor, user}) => {
         height: window.innerHeight,
     });
     window.addEventListener("resize", handleResize, false);
+    if( countEmpty > 4 ){
+        Router.push('/quan-ly/cap-nhat-thong-tin')
+    }
   }, [true]);
 
   useEffect(() => {
