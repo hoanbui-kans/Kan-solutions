@@ -90,6 +90,20 @@ const Right = () => {
     )
 }
 
+const Theme_categories = () => {
+    return(
+        <>
+            <ul className={styles.x_list_theme_categories}>
+                <li className={styles.x_dropbox}>Website Dịch vụ</li>
+                <li className={styles.x_dropbox}>Website ladingpage</li>
+                <li className={styles.x_dropbox}>Website bán hàng</li>
+                <li className={styles.x_dropbox}>Website công ty</li>
+                <li className={styles.x_dropbox}>Website giới thiệu</li>
+            </ul>
+        </>
+    )
+}
+
 const MobileMenu = ({showing}) => {
     return(
         <div 
@@ -154,6 +168,7 @@ const MobileMenu = ({showing}) => {
 const Header = () => {
     const { data: session } = useSession();
     const [open, setOpen] = useState(false);
+    const [openThemesMenu, setOpenThemesMenu] = useState(false);
     const [search, setSearchForm] = useState(false);
     const [fixed, setFixed] = useState(false);
     const [showingMobile, setShowingMobile] = useState(false);
@@ -173,10 +188,21 @@ const Header = () => {
     const y = useSpring({
         transform: open ? "rotate(180deg)" : "rotate(0deg)",
         config: config.stiff,
+    });
+
+    const y_categories = useSpring({
+        transform: openThemesMenu ? "rotate(180deg)" : "rotate(0deg)",
+        config: config.stiff,
     })
+
 
     const opacity = useSpring({
         opacity: open ? 1 : 0,
+        config: config.stiff,
+    })
+
+    const opacity_themes = useSpring({
+        opacity: openThemesMenu ? 1 : 0,
         config: config.stiff,
     })
 
@@ -187,6 +213,14 @@ const Header = () => {
         opacity: 1,
         height: open ? 485 : 0,
         y: open ? 0 : -280,
+        ref: springBackground,
+        config: config.slow,
+    })
+
+    const BackGroundMenu_themes = useSpring({
+        opacity: 1,
+        height: openThemesMenu ? 485 : 0,
+        y: openThemesMenu ? 0 : -280,
         ref: springBackground,
         config: config.slow,
     })
@@ -206,6 +240,20 @@ const Header = () => {
             transform: open ? 'translateY(-40px)' :  'translateY(0px)'
         },
     })
+
+    const transit_themes = useSpring({
+        ref: springApi,
+        config: config.slow,
+        from: { 
+            opacity: 0,
+            transform: 'translateY(0px)' 
+        },
+        to: {
+            opacity: openThemesMenu ? 1 : 0,
+            transform: openThemesMenu ? 'translateY(-40px)' :  'translateY(0px)'
+        },
+    })
+
 
     // Build a transition and catch its ref
     const transApi = useSpringRef();
@@ -227,7 +275,13 @@ const Header = () => {
     ])
 
     const showDropdown = () => {
-        setOpen(open => !open)
+        setOpen(open => !open);
+        setOpenThemesMenu(false);
+    }
+
+    const showDropdownThemes = () => {
+        setOpenThemesMenu(openThemesMenu => !openThemesMenu)
+        setOpen(false);
     }
 
     Router.events.on('routeChangeStart', () => {
@@ -367,13 +421,20 @@ const Header = () => {
                                 <div className={styles.mainMenuContainer}>
                                     <ul>
                                         <li>
-                                            <Link href={'/'}>Trang chủ</Link>
+                                            <Link href={'/ve-chung-toi'}>Giới thiệu</Link>
                                         </li>
                                         <li>
-                                            <Link href={'/ve-chung-toi'}>Về chúng tôi</Link>
-                                        </li>
-                                        <li>
-                                            <Link href={'/giao-dien'}>Giao diện mẫu</Link>
+                                            <a onClick={showDropdownThemes}>
+                                                <span>
+                                                    Giao diện mẫu
+                                                    <animated.div 
+                                                    style={y_categories}
+                                                    className={styles.arrow}
+                                                    >
+                                                        <ArrowDownLineIcon  width={14} height={14}/>
+                                                    </animated.div>
+                                                </span>
+                                            </a>
                                         </li>
                                         <li>
                                             <a onClick={showDropdown}>
@@ -465,6 +526,7 @@ const Header = () => {
                 </Row>
             </Container>
     </div>
+    {/* Dropdown service menu */}
     <div className={open ? styles.animationHeader : styles.animationHeaderNone}>    
       <div className={styles.x_menu_container}>
             <Container> 
@@ -490,6 +552,27 @@ const Header = () => {
             </Container> 
         </div>
     </div>
+    {/* EndDropdown Service menu */}
+    {/* Dropdown list Categories */}
+    <div className={openThemesMenu ? styles.animationHeader : styles.animationHeaderNone}>    
+      <div className={styles.x_menu_container}>
+            <Container> 
+                <animated.div 
+                    style={opacity_themes} 
+                    className={styles.x_dropdown_inner_shadow}>
+                </animated.div>
+                <animated.div 
+                    style={BackGroundMenu_themes} 
+                    className={styles.x_dropdown_bg_menu}>
+                        <div className={styles.x_dropdown_bg_full} />
+                </animated.div>
+                <animated.div className={styles.x_dropdownMenu} style={transit_themes}>
+                    <Theme_categories />   
+                </animated.div>
+            </Container> 
+        </div>
+    </div>
+    {/* End Dropdown list Categories */}
     </div>
     <div 
         onClick={() => {setShowingMobile(false)}}

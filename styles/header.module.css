@@ -12,8 +12,18 @@
         display: block !important;
     }
 }
+
 .x_mobile_display{
     display: none;
+}
+
+.x_list_theme_categories{
+    list-style: none;
+    padding: 0px;
+}
+
+.x_list_theme_categories li{
+    padding: 15px;
 }
 
 .x_account_mobile_button{

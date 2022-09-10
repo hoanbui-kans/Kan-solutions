@@ -7,9 +7,9 @@ import aos from 'aos';
 import 
 { 
   IoCheckmarkCircle,
-  IoStorefront,
+  IoBrowsersOutline,
   IoCall,
-  IoCheckmarkOutline,
+  IoCheckmarkCircleSharp,
   IoCloseOutline 
 } from "react-icons/io5";
 import { GD_Box } from './giao-dien';
@@ -69,6 +69,8 @@ const HomeTwo = () => {
                             style={{display: 'block'}}
                             cursor={true}
                             sequence={[
+                              ' website cá nhân',
+                              4000,
                               ' cửa hàng trực tuyến',
                               4000,
                               ' chiến lược tiếp thị',
@@ -80,16 +82,16 @@ const HomeTwo = () => {
                           />
                       </h1>
                       <ul className={styles.x_hero_banner_feature}>
-                            <li data-aos="fade-right"> <p><IoCheckmarkOutline size={16}/> Xây dựng kênh bán hàng chủ động, đầy đủ tính năng</p></li>
-                            <li data-aos="fade-left"> <p><IoCheckmarkOutline size={16}/> Đa dạng hóa kênh tiếp thị của bạn</p></li>
-                            <li data-aos="fade-right"> <p><IoCheckmarkOutline size={16}/> Quản lý xuất nhập kho, chăm sóc khách hàng</p></li>
-                            <li data-aos="fade-left"> <p><IoCheckmarkOutline size={16}/> Chủ động quản lý dòng tiền</p></li>
+                            <li data-aos="fade-right"> <p><IoCheckmarkCircleSharp color={'#2ecc71'} size={16}/> Xây dựng kênh bán hàng chủ động, đầy đủ tính năng</p></li>
+                            <li data-aos="fade-left"> <p><IoCheckmarkCircleSharp color={'#2ecc71'} size={16}/> Đa dạng hóa kênh tiếp thị của bạn</p></li>
+                            <li data-aos="fade-right"> <p><IoCheckmarkCircleSharp color={'#2ecc71'} size={16}/> Quản lý xuất nhập kho, chăm sóc khách hàng</p></li>
+                            <li data-aos="fade-left"> <p><IoCheckmarkCircleSharp color={'#2ecc71'} size={16}/> Chủ động quản lý dòng tiền</p></li>
                       </ul>
                       <div className={styles.x_call_out_hero}>
-                          <Link href="/dang-ky/dich-vu/tao-website-lading-page-tu-dong">
+                          <Link href="/dich-vu/tao-website-lading-page-tu-dong">
                             <a>
                               <Button data-aos="fade-up" className={styles.x_focused_button}>
-                                  <IoStorefront size={22}/>  TẠO GIAN HÀNG MIỄN PHÍ
+                                  <IoBrowsersOutline size={22}/> TẠO WEBSITE MIỄN PHÍ
                               </Button>
                             </a>
                           </Link>
@@ -118,83 +120,6 @@ const HomeTwo = () => {
             </Row>
         </Container>
     </section>
-    <section className={styles.x_partner}>
-        <Container>
-          <Row>
-            <Col xs={24}>
-            <Swiper
-                  spaceBetween={30}
-                  navigation={true}
-                  pagination={{
-                    clickable: true,
-                  }}
-                  breakpoints={{
-                    552: {
-                      slidesPerView: 2,
-                    },
-                    768: {
-                      slidesPerView: 3,
-                    },
-                    992: {
-                      slidesPerView: 4,
-                    },
-                  }}
-                  modules={[Navigation]}
-                  className="mySwiper"
-                  data-aos="fade-up"
-                >
-                   <SwiperSlide>
-                      <div className={styles.x_partner_content} data-aos="fade-left">
-                        <div className={styles.x_partner_icon}>
-                          <Image 
-              placeholder='blurDataURL' src="/home/WordPress.svg" width={200} height={80} alt="wordpress"/>
-                        </div>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <div className={styles.x_partner_content} data-aos="fade-up">
-                          <div className={styles.x_partner_icon}>
-                              <Image 
-                                placeholder='blurDataURL' 
-                                src="/home/wpmu-dev.svg" 
-                                width={200} height={80} 
-                                alt="wpmu dev"/>
-                          </div>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <div className={styles.x_partner_content} data-aos="fade-down">
-                        <div className={styles.x_partner_icon}>
-                          <Image 
-                              placeholder='blurDataURL' 
-                              src="/home/woocommerce.svg" 
-                              width={200} height={80} alt="wordpress"/>
-                        </div>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <div className={styles.x_partner_content} data-aos="fade-right">
-                        <div className={styles.x_partner_icon}>
-                          <Image 
-                            placeholder='blurDataURL' 
-                            src="/home/onepay.svg" width={160} height={80} alt="onepay"/>
-                        </div>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <div className={styles.x_partner_content} data-aos="fade-right">
-                        <div className={styles.x_partner_icon}>
-                          <Image 
-                              placeholder='blurDataURL' 
-                              src="/home/momo.svg" width={80} height={80} alt="momo"/>
-                        </div>
-                      </div>
-                    </SwiperSlide>
-              </Swiper>
-            </Col>
-          </Row>
-        </Container>
-    </section>
     <section className={styles.x_our_service}>
         <Container>
           <Row>
@@ -215,7 +140,7 @@ const HomeTwo = () => {
                           <span className={styles.x_secondary_box_icon}>
                             <Image placeholder='blurDataURL' src="/home/shop.svg" alt="Website bán hàng" width={40} height={40} />
                           </span>
-                          <h2 className={styles.x_secondary_box_title}>Gian hàng miễn phí</h2>
+                          <h2 className={styles.x_secondary_box_title}>Website miễn phí</h2>
                           <p className={styles.x_secondary_box_description}>Giải pháp bán hàng online với website miễn phí tích hợp đầy đủ tính năng bán hàng mạnh mẽ</p>
                       </div>
                 </Col>
@@ -421,6 +346,83 @@ const HomeTwo = () => {
               </Swiper>
           </Row>
       </Container>
+    </section>
+    <section className={styles.x_partner}>
+        <Container>
+          <Row>
+            <Col xs={24}>
+            <Swiper
+                  spaceBetween={30}
+                  navigation={true}
+                  pagination={{
+                    clickable: true,
+                  }}
+                  breakpoints={{
+                    552: {
+                      slidesPerView: 2,
+                    },
+                    768: {
+                      slidesPerView: 3,
+                    },
+                    992: {
+                      slidesPerView: 4,
+                    },
+                  }}
+                  modules={[Navigation]}
+                  className="mySwiper"
+                  data-aos="fade-up"
+                >
+                   <SwiperSlide>
+                      <div className={styles.x_partner_content} data-aos="fade-left">
+                        <div className={styles.x_partner_icon}>
+                          <Image 
+              placeholder='blurDataURL' src="/home/WordPress.svg" width={200} height={80} alt="wordpress"/>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div className={styles.x_partner_content} data-aos="fade-up">
+                          <div className={styles.x_partner_icon}>
+                              <Image 
+                                placeholder='blurDataURL' 
+                                src="/home/wpmu-dev.svg" 
+                                width={200} height={80} 
+                                alt="wpmu dev"/>
+                          </div>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div className={styles.x_partner_content} data-aos="fade-down">
+                        <div className={styles.x_partner_icon}>
+                          <Image 
+                              placeholder='blurDataURL' 
+                              src="/home/woocommerce.svg" 
+                              width={200} height={80} alt="wordpress"/>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div className={styles.x_partner_content} data-aos="fade-right">
+                        <div className={styles.x_partner_icon}>
+                          <Image 
+                            placeholder='blurDataURL' 
+                            src="/home/onepay.svg" width={160} height={80} alt="onepay"/>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div className={styles.x_partner_content} data-aos="fade-right">
+                        <div className={styles.x_partner_icon}>
+                          <Image 
+                              placeholder='blurDataURL' 
+                              src="/home/momo.svg" width={80} height={80} alt="momo"/>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+              </Swiper>
+            </Col>
+          </Row>
+        </Container>
     </section>
     <section className={styles.x_form_contact_section}>
       <Container>
