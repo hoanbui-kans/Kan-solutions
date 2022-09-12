@@ -580,13 +580,16 @@ const Header = () => {
                             transtionThemeCategories((style, Item) => 
                                <Col xs={4}>
                                     <animated.div className={styles.x_dropbox} style={{...style}}>
-                                            <Theme_categories category_api={Item} />
+                                        <Theme_categories category_api={Item} />
                                     </animated.div>
                                 </Col>
                             )
                         }  
                     </Row>
                 </animated.div>
+                <Row>
+                            
+                </Row>
             </Container> 
         </div>
     </div>
