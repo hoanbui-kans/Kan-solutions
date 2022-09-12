@@ -344,6 +344,24 @@
     text-transform: uppercase;
     font-weight: bold;
 }
+.x_categories_card{
+    border: 2px solid whitesmoke;
+    text-align: center;
+    font-weight: bold;
+    transition: var(--x-transition);
+}
+.x_categories_card:hover{
+    
+}
+.x_categories_card_title{
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.x_categories_card_title:hover{
+    color: var(--x-primary-color)
+}
+
 .x_account_name{
     max-width: 65px;
     padding: 0px 5px;
@@ -382,6 +400,7 @@
     right: 0;
     background-color: #ffffff;
     box-shadow: 35px 35px 50px 0 rgb(36 50 66 / 15%);
+    pointer-events: none;
 }
 .x_button_website_create{
     margin-bottom: 7px;
@@ -389,7 +408,6 @@
     box-shadow: 5px 9px 28px -15px #2abff8;
     border: 2px solid #2abff8;
     color: white;
-    border-radius: 35px;
     display: inline-block;
     margin-right: 5px;
     font-weight: bold;
@@ -400,7 +418,6 @@
     box-shadow: 5px 9px 28px -15px #ff698d;
     border: 2px solid #ff698d;
     color: white;
-    border-radius: 35px;
     display: inline-block;
     margin-right: 5px;
     font-weight: bold;

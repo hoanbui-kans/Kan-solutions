@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Grid, Row, Col, Breadcrumb, Container, Button, Modal } from 'rsuite'
+import { Row, Col, Breadcrumb, Container, Button, Modal } from 'rsuite'
 import Image from 'next/image'
 import styles from '../styles/about.module.css'
 import EmailFillIcon from '@rsuite/icons/EmailFill'
@@ -18,54 +18,57 @@ const AboutUs = () => {
       setOpen(true)
   };
   const handleClose = () => setOpen(false);
+  const QuestionSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{
+        "@type": "Question",
+        "name": "Phân tích yêu cầu",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "<p>Yêu cầu của khách hàng bắt đầu từ vấn đề cần giải pháp. Chúng tôi hướng đến giải quyết vấn đề của khách hàng</p>"
+        }
+      },{
+        "@type": "Question",
+        "name": "Thống nhất hợp đồng dịch vụ",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "<p>Một giải pháp hợp lý khi giải quyết được vấn đề trong nguồn lực hợp lý, hiệu quả, đảm bảo tiến độ và ngân sách phù hợp</p>"
+        }
+      },{
+        "@type": "Question",
+        "name": "Triển khai thực hiện dịch vụ",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "<p>Đội ngũ Kan Solutions làm việc dựa trên giải pháp và sự sáng tạo. Làm việc chuyên nghiệp, tận tậm để đảm bảo tiến độ.</p>"
+        }
+      },{
+        "@type": "Question",
+        "name": "Khách hàng phản hồi và chỉnh sửa",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "<p>Phản hồi và điều chỉnh trên cơ sở sự hài lòng của khách hàng Ba thành phần phản hồi: Cấu trúc, thiết kế, nội dung</p>"
+        }
+      },{
+        "@type": "Question",
+        "name": "Hướng dẫn bàn giao sản phẩm",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "<p>Bàn giao sản phẩm sau khi khách hàng hài lòng và thanh lý hợp đồng. Hướng dẫn và đào tạo sử dụng, quản trị hiệu quả</p>"
+        }
+      }
+    ]
+  };
+
   return (
     <>
        <Head>
         { HTMLReactParser(AboutUsSeo.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
-        {/* <script type="application/ld+json">
-          {`{
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [{
-                "@type": "Question",
-                "name": "Phân tích yêu cầu",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "<p>Yêu cầu của khách hàng bắt đầu từ vấn đề cần giải pháp. Chúng tôi hướng đến giải quyết vấn đề của khách hàng</p>"
-                }
-              },{
-                "@type": "Question",
-                "name": "Thống nhất hợp đồng dịch vụ",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "<p>Một giải pháp hợp lý khi giải quyết được vấn đề trong nguồn lực hợp lý, hiệu quả, đảm bảo tiến độ và ngân sách phù hợp</p>"
-                }
-              },{
-                "@type": "Question",
-                "name": "Triển khai thực hiện dịch vụ",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "<p>Đội ngũ Kan Solutions làm việc dựa trên giải pháp và sự sáng tạo. Làm việc chuyên nghiệp, tận tậm để đảm bảo tiến độ.</p>"
-                }
-              },{
-                "@type": "Question",
-                "name": "Khách hàng phản hồi và chỉnh sửa",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "<p>Phản hồi và điều chỉnh trên cơ sở sự hài lòng của khách hàng Ba thành phần phản hồi: Cấu trúc, thiết kế, nội dung</p>"
-                }
-              },{
-                "@type": "Question",
-                "name": "Hướng dẫn bàn giao sản phẩm",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "<p>Bàn giao sản phẩm sau khi khách hàng hài lòng và thanh lý hợp đồng. Hướng dẫn và đào tạo sử dụng, quản trị hiệu quả</p>"
-                }
-              }
-            ]
-          }`}
-        </script> */}
+        <script type="application/ld+json">
+            { JSON.stringify(QuestionSchema) }
+        </script>
       </Head>
+     
       <div className={'x_breadcum_container'}>
         <section>
             <Container>

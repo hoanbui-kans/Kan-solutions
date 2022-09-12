@@ -60,9 +60,9 @@ export const BlogContent = ({data}) => {
     const [percent, setPercent] = useState('');
     const SiteIcon = data.site_icon && data.site_icon != 'empty' ? data.site_icon : '/icons/favicon.png'
     const StoreAvaiable = parseInt(data.quota);
-    const DisplayAvaiableUpload = StoreAvaiable < 1000 ? StoreAvaiable + 'mb' : (StoreAvaiable/1000) + 'gb';
+    const DisplayAvaiableUpload = StoreAvaiable < 1024 ? StoreAvaiable + 'mb' : (StoreAvaiable/1024) + 'gb';
     const Uploaded = parseInt(data.upload);
-    const DisplayUploaded = Uploaded < 1000 ? Uploaded + 'mb' : (Uploaded/100) + 'gb'
+    const DisplayUploaded = Uploaded < 1024 ? Uploaded + 'mb' : (Uploaded/100) + 'gb'
     const Remain = StoreAvaiable - Uploaded;
     const registed = new Date(data.registered);
     const expired = data.get_expire ? new Date(parseInt(data.get_expire, 10) * 1000) : '';
@@ -127,15 +127,13 @@ export const BlogContent = ({data}) => {
     })[0];
 
     useEffect(() => {
-
         let total = expired - registed;
         let progress = current - registed;
         let percentNumber =  Math.round(progress/ total * 100 );
         if(percentNumber > 100) {
             percentNumber = 100;
         }
-        
-
+    
         if(percentNumber >= 0 && percentNumber <= 50){
             setLineStroke({
                 strokeColor: '#4caf50',
@@ -250,12 +248,11 @@ export const BlogContent = ({data}) => {
     )
 }
 
-const UserManager = ({blogInfor, user}) => {
+const UserManager = ({blogInfor, user, Themes}) => {
 
     const [ limit, setLimit ] = useState(10);
     const [ page, setPaged ] = useState(1);
     const [ selectedSite, setSectedSite ] = useState([]);
-    const [ listThemes, setListThemes ] = useState([]);
 
     const Next_Pages = async (num) => {
         window.scrollTo({
@@ -296,7 +293,7 @@ const UserManager = ({blogInfor, user}) => {
         });
     }
 
-  useEffect( async () => {
+  useEffect(() => {
     setDimensions({
         width: window.innerWidth,
         height: window.innerHeight,
@@ -348,15 +345,6 @@ const UserManager = ({blogInfor, user}) => {
         });
         setSectedSite(selectedSite);
     }
-
-    const NewThemes = async () => {
-        return (
-            <>
-               
-            </>
-        )
-  } 
-
   return (
     <>
     <Head>
@@ -478,10 +466,17 @@ const UserManager = ({blogInfor, user}) => {
                             </>
                             : 
                             <>
-                                <p style={{textAlign: 'center', width: '100%', padding: '35px 0px'}}>
-                                        Bạn chưa có trang nào, vui lòng tạo mới
-                                </p>
-                                <NewThemes />
+                                <Row>
+                                    {
+                                        Themes.map((val, index) => {
+                                            return(
+                                                <Col xs={12} md={8} key={index}>
+                                                    <GD_Box data={val} price={false}/>
+                                                </Col>
+                                            )
+                                        })
+                                    }
+                                </Row>
                             </>
                         }
                     </Row>
@@ -526,8 +521,14 @@ export async function getServerSideProps (context) {
         console.log(error);
     });
 
+  let Themes = [];  
+  if(response == []){
+    const res = await axios.get(rootURL + 'giao-dien/giao-dien-mau?p=1').then((resonse) => resonse.data);
+    Themes = res.posts;
+  }
   return { props: {
       blogInfor:  response ? response : [],
+      Themes: Themes ? Themes : [],
       user: response_user ? response_user.user : '',
   }};
 }

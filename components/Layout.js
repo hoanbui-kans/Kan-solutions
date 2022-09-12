@@ -95,6 +95,30 @@ const Layout = ({ children }) => {
         <Head>
           <meta name="google-site-verification" content="rrhzRHk7SR7nSIFPU8TAfwRLuGUDedgPiC0nccSlKgA" />
           <link rel="alternate" href={hreflangURI} hrefLang="vi-vn" />
+          <script id="gtagTwo" strategy="afterInteractive">{
+            HTMLReactParser(`window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'UA-233414917-1');`)
+          }</script>
+          <script id="googletagmanager" async src="https://www.googletagmanager.com/gtag/js?id=G-DKCRMST66D" strategy="afterInteractive"/>
+          <script id="gtag" strategy="afterInteractive">{
+              HTMLReactParser(`window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-DKCRMST66D');`)
+          }
+          </script>
+          <script id="gtagUri" async src="https://www.googletagmanager.com/gtag/js?id=UA-233414917-1" strategy="afterInteractive"/>
+          <script id="gtagThree" strategy="afterInteractive">
+          {
+            HTMLReactParser(`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-MJLSWJG');`)
+          }
+          </script>
         </Head>
         {
           HTMLReactParser(`<!-- Google Tag Manager (noscript) -->
@@ -122,32 +146,6 @@ const Layout = ({ children }) => {
         :  <main>{children}</main>
         }
         <Script id="gsi" src="https://accounts.google.com/gsi/client" strategy="afterInteractive"/>
-        <Script id="googletagmanager" async src="https://www.googletagmanager.com/gtag/js?id=G-DKCRMST66D" strategy="afterInteractive"/>
-        <Script id="gtag" strategy="afterInteractive">{
-            HTMLReactParser(`window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-DKCRMST66D');`)
-        }
-        </Script>
-        <Script id="gtagUri" async src="https://www.googletagmanager.com/gtag/js?id=UA-233414917-1" strategy="afterInteractive"/>
-        <Script id="gtagTwo" strategy="afterInteractive">{
-          HTMLReactParser(`window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'UA-233414917-1');`)
-        }</Script>
-
-        <Script id="gtagThree" strategy="afterInteractive">
-        {
-          HTMLReactParser(`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','GTM-MJLSWJG');`)
-        }
-        </Script>
-
         { !session ?
             <Script id="Tawk_API" type="text/javascript" strategy="afterInteractive">
             {HTMLReactParser(`var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();

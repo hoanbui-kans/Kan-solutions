@@ -137,25 +137,25 @@ export const SingleTheme = ({data, link_theme}) => {
   const QA_List = QA(data.post_title)
   const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 
-  let QA_schema = '';
+  let QA_schema = [];
   QA_List.map((val, index) => {
     index == 0 ? 
-    QA_schema += `{
+    QA_schema.push({
       "@type": "Question",
-      "name": "${val.question}",
+      "name": val.question,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "<p>${val.answer}</p>"
+        "text": val.answer
       }
-    }`: 
-    QA_schema += `,{
+    }): 
+    QA_schema.push({
       "@type": "Question",
-      "name": "${val.question}",
+      "name": val.question,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "<p>${val.answer}</p>"
+        "text": val.answer
       }
-    }`;
+    });
   })
 
   const handleOpen = (title) => {
@@ -210,34 +210,40 @@ export const SingleTheme = ({data, link_theme}) => {
     return listkeywords
   }
 
+  const FAQSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      QA_schema
+    ]
+  };
+
+  const BreadCumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Giao diện mẫu",
+      "item": site_url + "/giao-dien"
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "name": data.post_title,
+      "item": site_url + "/giao-dien/${data.post_name}"
+    }]
+  }
+
   return (
     <>
       <Head>
         { HTMLReactParser(data.yoast_head.html.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
-        {/* <script type="application/ld+json">
-          {HTMLReactParser(`{
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [${QA_schema}]
-          }`)}
+        <script type="application/ld+json">
+            { JSON.stringify(FAQSchema) }
         </script>
         <script type="application/ld+json">
-          {HTMLReactParser(`{
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [{
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Giao diện mẫu",
-              "item": "${site_url}/giao-dien"
-            },{
-              "@type": "ListItem",
-              "position": 2,
-              "name": "${data.post_title}",
-              "item": "${site_url}/giao-dien/${data.post_name}"
-            }]
-          }`)}
-        </script> */}
+            { JSON.stringify(BreadCumbSchema) }
+        </script>
         <meta name="keywords" content={KeywordsMeta(data.keywords)}></meta>
       </Head>
       <div className={'x_breadcum_container'}>

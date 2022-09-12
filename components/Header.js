@@ -22,7 +22,7 @@ const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 const Left = () => {
     return (
         <>
-            <h3 className={styles.x_menu_title}>DEVELOPERS</h3>
+            <h3 className={styles.x_menu_title}>ỨNG DỤNG WEB</h3>
                 {
                     listServices.map((val, index) => {
                         return(
@@ -46,7 +46,7 @@ const Right = () => {
         <>
             <h3 className={styles.x_menu_title}>DỊCH VỤ PHÁT TRIỂN WEB</h3>
             <div className={styles.x_dropbox}>
-                    <p><strong><IoCaretForwardSharp size={10}/> Thiết kế website</strong></p>
+                    <Link href="/dich-vu/thiet-ke-website-tron-goi-cho-doanh-nghiep"><a><p><strong><IoCaretForwardSharp size={10}/> Thiết kế website</strong></p></a></Link>
                     <p className={styles.x_smaller_text}>
                         Dịch vụ tạo website nhanh theo mẫu, thiết kế website cho doanh nghiệp quản trị nội dung bằng website có sẵn, tối ưu chi phí thiết lập ban đầu.
                     </p>
@@ -54,7 +54,7 @@ const Right = () => {
                         <Link href="/dich-vu/tao-website-lading-page-tu-dong">
                             <a className={styles.x_button_inline}>
                                 <Button className={styles.x_button_website_create}>
-                                    Tạo Website
+                                    Tạo Website miễn phí
                                 </Button>
                             </a>
                         </Link>
@@ -95,8 +95,12 @@ const Theme_categories = ( {category_api} ) => {
     return(
         <>
             <div className={styles.x_categories_card}>
-                <Image src={category_api.image} width={300} height={200}/>
-                <p>{category_api.title}</p>
+               <Link href={category_api.link}>
+                    <a>
+                        <Image src={category_api.image} width={300} height={200}/>
+                        <h4 className={styles.x_categories_card_title}>{category_api.title}</h4>
+                    </a>
+               </Link>
             </div>
         </>
     )
@@ -205,8 +209,9 @@ const Header = () => {
     })
 
    // Build a spring and catch its ref
-    const springBackground = useSpringRef()
-
+    const springBackground = useSpringRef();
+    const springBGThemeCategories = useSpringRef();
+    
     const BackGroundMenu = useSpring({
         opacity: 1,
         height: open ? 485 : 0,
@@ -225,26 +230,29 @@ const Header = () => {
 
     // Build a spring and catch its ref
     const springApi = useSpringRef()
-
+    const springApiThemeCategories = useSpringRef()
+    
     const transit = useSpring({
         ref: springApi,
         config: config.slow,
         from: { 
             opacity: 0,
-            transform: 'translateY(0px)' 
+            transform: 'translateY(0px)',
+            delay: 200 
         },
         to: {
             opacity: open ? 1 : 0,
-            transform: open ? 'translateY(-40px)' :  'translateY(0px)'
+            transform: open ? 'translateY(-50px)' :  'translateY(0px)'
         },
     })
 
     const transit_themes = useSpring({
-        ref: springApi,
+        ref: springApiThemeCategories,
         config: config.slow,
         from: { 
             opacity: 0,
-            transform: 'translateY(0px)' 
+            transform: 'translateY(0px)',
+            delay: 200 
         },
         to: {
             opacity: openThemesMenu ? 1 : 0,
@@ -253,33 +261,16 @@ const Header = () => {
     })
 
 
-    // Build a transition and catch its ref
-    const transApi = useSpringRef();
-
-    const transition = useTransition( open ? dropdownMenu : [] , {
-        ref: transApi,
-        trail: 300/dropdownMenu.length,
-        from: { opacity: 0 , y: -60, PointerEvent: 'none'}, 
-        enter: { opacity: 1, y: 0, PointerEvent: 'all' },
-        leave: { opacity: 0, y: -60, PointerEvent: 'none'},
-        config: config.slow,
-        key: item => item.key,
-    });
-
-    const transtionThemeCategories = useTransition( openThemesMenu ? ThemeCategories : [], {
-        ref: transApi,
-        trail: 300/ThemeCategories.length,
-        from: { opacity: 0 , y: -60, PointerEvent: 'none'}, 
-        enter: { opacity: 1, y: 0, PointerEvent: 'all' },
-        leave: { opacity: 0, y: -60, PointerEvent: 'none'},
-        config: config.slow,
-        key: item => item.key,
-    })
-
      // This will orchestrate the two animations above, comment the last arg and it creates a sequence
-     useChain(open ? [springBackground, springApi, transApi] : [transApi, springApi, springBackground], [
+     useChain(open ? [springBackground, springApi] : [springApi, springBackground], [
         0,
-        open ? 0.095 : 0.105,
+        open ? 0.42 : 0.205,
+    ])
+
+    // This will orchestrate the two animations above, comment the last arg and it creates a sequence
+    useChain(openThemesMenu ? [springBGThemeCategories, springApiThemeCategories] : [ springApiThemeCategories, springBGThemeCategories], [
+        0,
+        openThemesMenu ? 0.42 : 0.205,
     ])
 
     const showDropdown = () => {
@@ -294,6 +285,7 @@ const Header = () => {
 
     Router.events.on('routeChangeStart', () => {
         setOpen(false);
+        setOpenThemesMenu(false);
         setShowingMobile(false);
         setFixed(false);
     })
@@ -549,12 +541,11 @@ const Header = () => {
                 </animated.div>
                 <animated.div className={styles.x_dropdownMenu} style={transit}>
                     {
-                        transition((style, Item) => 
-                            <animated.div className={styles.x_dropdown_x3_menu}
-                                        style={{...style}}>
-                                    <Item />
-                            </animated.div>
-                            )
+                        dropdownMenu.map((Item, index) =>
+                            <div key={index} className={styles.x_dropdown_x3_menu}>
+                                <Item />
+                            </div>
+                        )
                     }   
                 </animated.div>
             </Container> 
@@ -576,15 +567,31 @@ const Header = () => {
                 </animated.div>
                 <animated.div className={styles.x_dropdownMenu} style={transit_themes}>
                     <Row>
+                        <Col xs={24}>
+                            <h3 style={{fontSize: 20, lineHeight: '20px', marginBottom: 0}}>Giao diện mẫu website miễn phí</h3>
+                            <hr/>
+                            <p style={{marginBottom: 12}}>
+                                Chúng tôi cung cấp cho bạn giải pháp xây dựng website miễn phí dựa trên nền tảng Wordpress <br/>
+                                Giải pháp xây dựng website tự động đầy đủ chức năng chỉ với 1 click, quản lý bằng nền tảng<br/>
+                                Tìm hiểu thêm các mẫu giao diện cơ bản:
+                            </p>
+                        </Col>
                         {
-                            transtionThemeCategories((style, Item) => 
-                               <Col xs={4}>
-                                    <animated.div className={styles.x_dropbox} style={{...style}}>
-                                        <Theme_categories category_api={Item} />
-                                    </animated.div>
+                            ThemeCategories.map((val, index) => 
+                               <Col xs={4} key={index}>
+                                    <Theme_categories category_api={val} />
                                 </Col>
                             )
                         }  
+                         <Col xs={24}>
+                            <Link href="/dich-vu/tao-website-lading-page-tu-dong">
+                                <a className={styles.x_button_inline}>
+                                    <Button className={styles.x_button_website_create}>
+                                        Tạo Website miễn phí
+                                    </Button>
+                                </a>
+                            </Link>
+                        </Col>
                     </Row>
                 </animated.div>
                 <Row>

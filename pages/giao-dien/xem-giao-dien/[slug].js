@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Navbar, Nav, Modal, Row, Col  } from 'rsuite'
+import { Navbar, Nav, Modal, Col  } from 'rsuite'
 import Link from 'next/link'
 import styles from '../../../styles/themepreview.module.css'
 import { getSession } from 'next-auth/react'
