@@ -38,6 +38,8 @@ import Router from 'next/router';
 import Head from 'next/head';
 import HTMLReactParser from 'html-react-parser';
 import { HomePageSeo } from './api/HeaderSeo';
+import { GD_Box } from './giao-dien';
+
 import 'moment/locale/vi';
 
 const Chart = dynamic(
@@ -253,6 +255,7 @@ const UserManager = ({blogInfor, user}) => {
     const [ limit, setLimit ] = useState(10);
     const [ page, setPaged ] = useState(1);
     const [ selectedSite, setSectedSite ] = useState([]);
+    const [ listThemes, setListThemes ] = useState([]);
 
     const Next_Pages = async (num) => {
         window.scrollTo({
@@ -293,7 +296,7 @@ const UserManager = ({blogInfor, user}) => {
         });
     }
 
-  useEffect(() => {
+  useEffect( async () => {
     setDimensions({
         width: window.innerWidth,
         height: window.innerHeight,
@@ -345,6 +348,14 @@ const UserManager = ({blogInfor, user}) => {
         });
         setSectedSite(selectedSite);
     }
+
+    const NewThemes = async () => {
+        return (
+            <>
+               
+            </>
+        )
+  } 
 
   return (
     <>
@@ -465,9 +476,13 @@ const UserManager = ({blogInfor, user}) => {
                                     </>
                                 }
                             </>
-                            : <p style={{textAlign: 'center', width: '100%', padding: '35px 0px'}}>
-                                    Bạn chưa có trang nào, vui lòng tạo mới
-                             </p>
+                            : 
+                            <>
+                                <p style={{textAlign: 'center', width: '100%', padding: '35px 0px'}}>
+                                        Bạn chưa có trang nào, vui lòng tạo mới
+                                </p>
+                                <NewThemes />
+                            </>
                         }
                     </Row>
                 </Col>
