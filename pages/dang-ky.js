@@ -163,13 +163,20 @@ const Register = () => {
                         Trở về trang chủ
                       </a>
                     </Link>
-                    <h1 className={styles.x_account_title}>Xin chào {userName}</h1>
+                    <h1 className={styles.x_account_title}>Xin chào <span style={{color: '#398af3'}}>{userName}</span></h1>
                     <small>({userEmail})</small>
-                    <p className={styles.x_greeting}>Bạn đã đăng nhập vào hệ thống của chúng tôi, hãy bắt đầu tạo website của bạn</p>
-                    <small className={styles.x_account_navigate}>Vào trang <Link href="/quan-ly/tai-khoan">quản lý tài khoản</Link></small>
-                      <Button className={styles.x_login_button + ' ' + styles.x_margin_bottom} appearance="primary" onClick={() => signOut()}>
-                          Đăng xuất
-                      </Button>
+                    <p className={styles.x_greeting}>
+                      <small>
+                      Bạn đã đăng nhập vào hệ thống của chúng tôi, hãy bắt đầu tạo website của bạn, nếu bạn không phải <strong>{userName}</strong>, xin vui lòng <a href="#" onClick={() => signOut()}>Đăng xuất</a>
+                      </small>
+                    </p>
+                    <Link href="/quan-ly">
+                      <a> 
+                        <Button style={{background: '#398af3'}} className={styles.x_login_button + ' ' + styles.x_margin_bottom} appearance="primary" >
+                            Quản lý tài khoản
+                        </Button>
+                      </a>
+                    </Link>
                     <SocialButton />
                   </div>
                 </Col>
