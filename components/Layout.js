@@ -106,6 +106,7 @@ const Layout = ({ children }) => {
         {
           !pathname.includes('/dang-nhap')  
           && !pathname.includes('/dang-ky') 
+          && !pathname.includes('/admin') 
           && !pathname.includes('/quan-ly/dang-xuat')
           && !pathname.includes('/quan-ly/cap-nhat-thong-tin')
           && !pathname.includes('/giao-dien/xem-giao-dien/') ? 

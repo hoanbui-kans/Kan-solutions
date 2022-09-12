@@ -7,7 +7,7 @@ import Head from 'next/head'
 import HTMLReactParser from 'html-react-parser'
 import { ServicesCreateWebsite } from '../api/HeaderSeo'
 import { HostingTable } from '../api/services'
-import { IoCheckmarkOutline, IoShapesSharp, IoCheckmarkCircle } from "react-icons/io5";
+import { IoCheckmarkOutline, IoShapesSharp, IoCheckmarkCircleSharp  } from "react-icons/io5";
 import { useState } from 'react'
 import ServicesSubmitForm from '../../components/handleSubmitServices'
 import { themesAPI } from '../api/HomeAPI'
@@ -57,17 +57,18 @@ const CreateWordpress = () => {
                         <div className={styles.x_banner_content}>
                             <h3 
                             data-aos="fade-up"
+                            style={{marginBottom: 15}}
                             className={styles.x_section_secondary_title}>Miễn phí xây dựng thương hiệu của bạn</h3>
                             <h1 
                             data-aos="fade-up"
-                            className={styles.x_primary_title}>Tiếp cận các khách hàng tiềm năng của bạn trên internet</h1>
+                            className={styles.x_buider_title}>Tiếp cận các khách hàng tiềm năng của bạn trên internet</h1>
                             <p 
                             data-aos="fade-up"
                             style={{marginBottom: 25}}>Chúng tôi cung cấp cho bạn giải pháp xây dựng Website bán hàng nhanh chóng với đầy đủ tính năng nâng cao phù hợp với thị trường Việt Nam, giúp cửa hàng, hộ kinh doanh có thể tiếp làm quen với công nghệ web để tạo một kênh tiếp thị sản phẩm của mình đến khách hàng</p>
                             <Link href="/giao-dien">
                                 <a>
                                     <Button data-aos="fade-up" className={styles.x_register_button}>
-                                        XEM GIAO DIỆN MẪU
+                                        TẠO WEBSITE MIỄN PHÍ
                                     </Button>
                                 </a>
                             </Link>
@@ -84,6 +85,9 @@ const CreateWordpress = () => {
         <section className={styles.x_page_builder}>
             <Container>
                 <Row>
+                    <Col xs={24}>
+                        <h2 className={styles.x_buider_title} data-aos="fade-up">Tạo website nhanh chóng</h2>
+                    </Col>
                     <Col xs={24} md={10}>
                         <div className={styles.x_builer_image} data-aos="fade-right">
                             <Image src={'/services-image/page-builder.webp'} height={482} width={716} alt="Pagebuild tạo website"/>
@@ -91,9 +95,8 @@ const CreateWordpress = () => {
                     </Col>
                     <Col xs={24} md={14}>
                         <div className={styles.x_builer_content}>
-                           <h3 data-aos="fade-up">Tạo website nhanh chóng</h3>
-                           <h2 data-aos="fade-up">Website kéo thả dễ dàng</h2>
-                           <p data-aos="fade-up">Chúng tôi mang đến cho bạn hệ thống tạo website với tính năng tạo trang kéo thả nhanh chóng và tối ưu nhất</p>
+                           <h3 data-aos="fade-up">Tạo website đầy đủ chức năng với 1 click</h3>
+                           <p data-aos="fade-up">Chúng tôi mang đến cho bạn giải pháp tạo website với đầy đủ tính năng có thể tạo trang kéo thả nhanh chóng và tối ưu nhất</p>
                             <div className={styles.x_features_page_builder}>
                                 <Row>
                                     <Col xs={24} md={8}>
@@ -104,7 +107,7 @@ const CreateWordpress = () => {
                                                 <Image src={'/services-image/pieces.svg'} height={40} width={40} alt="" />
                                             </div>
                                             <div className={styles.x_features_page_builder_description}>
-                                                <h3>Không giới hạn trang</h3>
+                                                <h4>Không giới hạn</h4>
                                                 <p>Khả năng tích hợp tạo website, landing page, online Bio mạnh mẽ, không giới hạn</p>
                                             </div>
                                         </div>
@@ -117,7 +120,7 @@ const CreateWordpress = () => {
                                                 <Image src={'/services-image/editor.svg'} height={40} width={40} alt="" />
                                             </div>
                                             <div className={styles.x_features_page_builder_description}>
-                                                <h3>Cập nhật thường xuyên</h3>
+                                                <h4>Cập nhật thường xuyên</h4>
                                                 <p>Thường xuyên cập nhật, tích hợp nhiều module cho website của bạn</p>
                                             </div>
                                         </div>
@@ -130,7 +133,7 @@ const CreateWordpress = () => {
                                                 <Image src={'/services-image/payment-builder.svg'} height={40} width={40} alt="" />
                                             </div>
                                             <div className={styles.x_features_page_builder_description}>
-                                                <h3>Tối ưu chi phí</h3>
+                                                <h4>Tối ưu chi phí</h4>
                                                 <p>Giải pháp bán hàng online với website tích hợp đầy đủ tính năng giúp tối ưu tối đa chi phí</p>
                                             </div>
                                         </div>
@@ -142,18 +145,20 @@ const CreateWordpress = () => {
                 </Row>
             </Container>
         </section>
-        <section className={styles.x_page_builder}>
+        <section className={styles.x_page_builder} style={{background: '#e4f1ff'}}>
             <Container>
                 <Row className={styles.x_centered}>
+                    <Col xs={24}>
+                        <h2 className={styles.x_buider_title} data-aos="fade-up">Giao diện sản phẩm tối ưu đẹp mắt</h2>
+                    </Col>
                     <Col xs={24} md={12}>
                         <div className={styles.x_builer_content}>
-                            <h3 data-aos="fade-up">Bộ lọc sản phẩm đa dạng</h3>
-                            <h2 data-aos="fade-up">Giao diện sản phẩm tối ưu đẹp mắt</h2>
-                            <p data-aos="fade-up">Giao diện bán hàng đẹp mắt, chuyên nghiệp, phù hợp với thị hiếu mua hàng của người Việt Nam</p>
+                            <h3 data-aos="fade-up">Giao diện tối ưu Website thương mại điện tử</h3>
+                            <p data-aos="fade-up">Giao diện bán hàng đẹp mắt, chuyên nghiệp, nhiều tính năng tiêu chuẩn và nâng cao phù hợp với thị hiếu mua hàng của thị trường Việt Nam: </p>
                             <ul className={styles.x_payment_list}>
-                                <li data-aos="fade-up"><p>Hệ thống bộ lọc chi tiết theo nhóm hàng</p></li>
-                                <li data-aos="fade-up"><p>Giao diện hiển thị chuyên nghiệp</p></li>
-                                <li data-aos="fade-up"><p>Quản lý tồn kho đơn giản</p></li>
+                                <li data-aos="fade-up"><p><IoCheckmarkCircleSharp color={'#2ecc71'} size={16}/> Hệ thống bộ lọc chi tiết theo nhóm hàng</p></li>
+                                <li data-aos="fade-up"><p><IoCheckmarkCircleSharp color={'#2ecc71'} size={16}/> Giao diện hiển thị chuyên nghiệp</p></li>
+                                <li data-aos="fade-up"><p><IoCheckmarkCircleSharp color={'#2ecc71'} size={16}/> Quản lý tồn kho đơn giản</p></li>
                             </ul>
                             <Link href="/dang-ky">
                                 <a>
@@ -174,6 +179,9 @@ const CreateWordpress = () => {
         <section className={styles.x_page_builder}>
             <Container>
                 <Row className={styles.x_centered}>
+                    <Col xs={24}>
+                        <h2 className={styles.x_buider_title} data-aos="fade-up">Thanh toán dễ dàng cho khách hàng của bạn</h2>
+                    </Col>
                     <Col xs={24} md={12}>
                         <div 
                         data-aos="fade-right"
@@ -184,12 +192,11 @@ const CreateWordpress = () => {
                     <Col xs={24} md={12}>
                         <div className={styles.x_builer_content}>
                             <h3 data-aos="fade-up">Tối ưu vận chuyển, thanh toán</h3>
-                            <h2 data-aos="fade-up">Thanh toán dễ dàng cho khách hàng của bạn</h2>
                             <p data-aos="fade-up">Chúng tôi mang đến cho bạn hệ thống tạo website với tính năng tạo trang kéo thả nhanh chóng và tối ưu nhất</p>
                             <ul className={styles.x_payment_list}>
-                                <li data-aos="fade-up"><p>Hệ thống tự tính toán giá giao hàng theo tùy chỉnh</p></li>
-                                <li data-aos="fade-up"><p>Thanh toán online nhanh chóng qua đối tác</p></li>
-                                <li data-aos="fade-up"><p>Quản lý đơn hàng dễ dàng</p></li>
+                                <li data-aos="fade-up"><p><IoCheckmarkCircleSharp color={'#2ecc71'} size={16}/> Hệ thống tự tính toán giá giao hàng theo tùy chỉnh</p></li>
+                                <li data-aos="fade-up"><p><IoCheckmarkCircleSharp color={'#2ecc71'} size={16}/> Thanh toán online nhanh chóng qua đối tác</p></li>
+                                <li data-aos="fade-up"><p><IoCheckmarkCircleSharp color={'#2ecc71'} size={16}/> Quản lý đơn hàng dễ dàng</p></li>
                             </ul>
                             <Link href="/dang-ky">
                                 <a>
@@ -205,18 +212,21 @@ const CreateWordpress = () => {
           </Container>
         </section>
 
-        <section className={styles.x_page_builder}>
+        <section className={styles.x_page_builder} style={{background: '#e4f1ff'}}>
             <Container>
                 <Row className={styles.x_centered}>
+                    <Col xs={24}>
+                        <h2 className={styles.x_buider_title} data-aos="fade-up">Tối ưu tốc độ tự động</h2>
+                    </Col>
                     <Col xs={24} md={12}>
                         <div className={styles.x_builer_content}>
-                            <h3 data-aos="fade-up">Tối ưu tốc độ</h3>
-                            <h2 data-aos="fade-up">Tối ưu tốc độ tự động</h2>
-                            <p data-aos="fade-up">Trang web được tối ưu tốc độ tự động trên hệ thống của Kanbox mà không cầ sử dụng cache dữ liệu, thuận tiện sử dụng cho người dùng</p>
+                            <h3 data-aos="fade-up">Tối ưu tốc độ tải trang</h3>
+                            <p data-aos="fade-up">Trang web được tối ưu tốc độ tự động trên hệ thống của Kanbox mà không cần sử dụng cache dữ liệu, thuận tiện sử dụng cho người dùng</p>
                             <ul className={styles.x_payment_list}>
-                                <li data-aos="fade-up"><p>Code được nén tự động</p></li>
-                                <li data-aos="fade-up"><p>Hình ảnh tự động nén với khung hình và định dạng</p></li>
-                                <li data-aos="fade-up"><p>Tiết kiệm tối đa thời gian tải trang, chuẩn seo</p></li>
+                                <li data-aos="fade-up"><p><IoCheckmarkCircleSharp color={'#2ecc71'} size={16}/> Code được nén tự động</p></li>
+                                <li data-aos="fade-up"><p><IoCheckmarkCircleSharp color={'#2ecc71'} size={16}/> Hình ảnh tự động nén với khung hình và định dạng</p></li>
+                                <li data-aos="fade-up"><p><IoCheckmarkCircleSharp color={'#2ecc71'} size={16}/> Tiết kiệm tối đa thời gian tải trang</p></li>
+                                <li data-aos="fade-up"><p><IoCheckmarkCircleSharp color={'#2ecc71'} size={16}/> Hệ thống quản trị nội dung chuẩn SEO</p></li>
                             </ul>
                             <Link href="/dang-ky">
                                 <a>
@@ -236,13 +246,13 @@ const CreateWordpress = () => {
           </Container>
         </section>
 
-        <section className={styles.x_hosting_section}>
+        <section className={styles.x_page_builder}>
             <Container>
                 <Row className={styles.x_centered}>
                     <Col xs={24}>
                         <div className={styles.x_hosting_title}>
-                            <h3 data-aos="fade-up" className={styles.x_section_secondary_title}>Gói dịch vụ</h3>
-                            <h2 data-aos="fade-up" className={styles.x_primary_title}>Dành cho thành viên</h2>
+                            <h3 data-aos="fade-up" className={styles.x_section_secondary_title}>Gói dịch vụ thiết lập</h3>
+                            <h2 data-aos="fade-up" className={styles.x_buider_title}>Dành cho thành viên</h2>
                         </div>
                         <div className={styles.x_hosting_table_container}>
                             <Row>
@@ -284,13 +294,13 @@ const CreateWordpress = () => {
             </Container>
         </section>
 
-        <section className={styles.x_services_container}>
+        <section className={styles.x_page_builder} style={{background: '#e4f1ff'}}>
             <Container>
                 <Row className={styles.x_centered}>
                     <Col xs={24}>
                         <div className={styles.x_hosting_title} >
                             <h3 className={styles.x_section_secondary_title} data-aos="fade-up">Mẫu website đa dạng ngành nghề</h3>
-                            <h2 className={styles.x_primary_title} data-aos="fade-up">Giao diện chuẩn - đa dạng - đầy đủ tính năng</h2>
+                            <h2 className={styles.x_buider_title} data-aos="fade-up">Giao diện chuẩn - đa dạng - đầy đủ tính năng</h2>
                         </div>
                         <div 
                         data-aos="fade-up"
@@ -332,17 +342,18 @@ const CreateWordpress = () => {
             </Container>
         </section>
 
-        <section className={styles.x_services_container}>
+        <section className={styles.x_page_builder}>
             <Container>
                 <Row>
                     <Col xs={24}>
                         <div className={styles.x_supporter}>
                             <h3 
                             data-aos="fade-up"
+                            style={{textAlign: "center"}}
                             className={styles.x_section_secondary_title}>Lựa chọn dịch vụ</h3>
                             <h2 
                             data-aos="fade-up"
-                            className={styles.x_primary_title}>Xây dựng thương hiệu riêng cho bạn</h2>
+                            className={styles.x_buider_title}>Xây dựng thương hiệu riêng cho bạn</h2>
                             <div className={styles.services}>
                                 <Row>
                                     <Col xs={24} md={12} lg={8} className={styles.x_padding}>

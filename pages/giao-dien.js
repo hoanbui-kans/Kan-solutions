@@ -41,9 +41,13 @@ export const GD_Box = ({data, price}) => {
              {
                 data.thumbnail ?
                     <div className={styles.x_gd_box_thumbnail}>
-                    <Link href={`/giao-dien/${data.post_name}`}>
-                        <Image priority placeholder='blurDataURL' alt={data.post_title} src={data.thumbnail[0]} width={data.thumbnail[1]} height={data.thumbnail[2]}/>
-                    </Link>
+                        <Link href={`/giao-dien/${data.post_name}`}>
+                            <a>
+                                <div className={styles.x_image_thumbnail}>
+                                    <Image priority placeholder='blurDataURL' alt={data.post_title} src={data.thumbnail[0]} width={data.thumbnail[1]} height={data.thumbnail[2]}/>
+                                </div>
+                            </a>
+                        </Link>
                 </div> : ''
             }
             <div className={styles.x_gd_box_content}>
@@ -87,7 +91,13 @@ export const GD_List = ({data}) => {
                     data.thumbnail ?
                     <Col xs={24} md={12}>
                         <div className={styles.x_gd_box_thumbnail}>
-                            <Image alt={data.post_title} src={data.thumbnail[0]} width={data.thumbnail[1]} height={data.thumbnail[2]}/>
+                            <Link href={`/giao-dien/${data.post_name}`}>
+                                <a>
+                                    <div className={styles.x_image_thumbnail}>
+                                        <Image priority placeholder='blurDataURL' alt={data.post_title} src={data.thumbnail[0]} width={data.thumbnail[1]} height={data.thumbnail[2]}/>
+                                    </div>
+                                </a>
+                            </Link>
                         </div>
                     </Col> : ''
                 }
@@ -267,6 +277,19 @@ const Themes_GDMau = ({gd, nganh, danhmuc, max_pages}) => {
             </Row>
         </Container>
     </div>
+    <div className={styles.x_website_banner}>
+        <Container>
+            <Row>
+                <Col xs={24}>
+                    <Link href="/dang-ky">
+                        <a>
+                            <Image style={{borderRadius: '.75rem'}} src="/banner/free-banner.webp" width={1800} height={549} alt="Đăng ký thành viên"/>
+                        </a>
+                    </Link>
+                </Col>
+            </Row>
+        </Container>
+    </div>
     <div className={styles.x_gd_section}>
                 <div className={ openFilter ? styles.x_fixed_filter + ' ' + styles.x_fixed_filter_open : styles.x_fixed_filter}>
                     <div className={styles.x_sidebar}>
@@ -299,7 +322,7 @@ const Themes_GDMau = ({gd, nganh, danhmuc, max_pages}) => {
                                                 <IoGridOutline /> Lưới
                                             </Button>
                                             <Button className={styles.x_fillter_button + ' ' + styles.x_filter_button_change} onClick={() => { setOpenFilter(true) }}>
-                                                <IoFunnelOutline /> Lọc
+                                                <IoFunnelOutline /> Lọc danh mục
                                             </Button>
                                         </ButtonToolbar>
                                     </Col>
@@ -350,12 +373,12 @@ const Themes_GDMau = ({gd, nganh, danhmuc, max_pages}) => {
                                 {
                                     posts.map((val) => {
                                         return  displayGrid ? 
-                                        <Col xs={24} md={12} lg={8} key={val.ID}>
+                                        <Col xs={12} md={12} lg={8} key={val.ID}>
                                             <GD_Box data={val} price={true}/>
                                         </Col>
                                         :
                                         <Col xs={24} key={val.ID}>
-                                                <GD_List data={val}/>
+                                            <GD_List data={val}/>
                                         </Col>
                                     })
                                 }

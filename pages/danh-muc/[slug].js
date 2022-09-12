@@ -25,7 +25,7 @@ const NewsCategory = ({bai_viet, danh_muc, max_num_pages}) => {
   const Search_Page = async () => {
     setLoading(true);
     setPaged(1);
-    const { data } = await axios.get(rootURL + 'tin-tuc/bai-viet?perpage=10&s=' + keySearch).then((res) => res);
+    const { data } = await axios.get(rootURL + 'tin-tuc/bai-viet?perpage=13&s=' + keySearch).then((res) => res);
     if(data){
       setPosts(data.posts);
       setMaxPage(data.max_num_pages)
@@ -142,7 +142,7 @@ export default NewsCategory
 
 export async function getServerSideProps(context) {
   const Slug = context.query.slug;
-  const res = await axios.get(rootURL + 'tin-tuc/bai-viet?perpage=10&category=' + Slug).then((resonse) => resonse.data);
+  const res = await axios.get(rootURL + 'tin-tuc/bai-viet?perpage=13&category=' + Slug).then((resonse) => resonse.data);
 
   // Pass data to the page via props
   return { props: { 

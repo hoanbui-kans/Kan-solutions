@@ -313,11 +313,11 @@ export const MarketingTable = [
 
 export const HostingTable = [
     {
-        name: 'Bắt đầu',
+        name: 'Miễn phí',
         price: '0đ',
         checklist: [
             'Miễn phí tên miền: 0',
-            'Giới hạn website: 1',
+            'Giới hạn website: 3',
             'Tên miền riêng: không',
             'Server đặt tại: Việt Nam',
             'Dung lượng: 250 MB',
@@ -329,7 +329,7 @@ export const HostingTable = [
             'Chuyển sang hosting riêng: không',
             'Backup dữ liệu: Hàng tuần',
             'Giấy phép theme, plugin: Có',
-            'Park domain: 1',
+            'Park domain: 0',
         ]
     },
     {
@@ -350,7 +350,7 @@ export const HostingTable = [
             'Chuyển sang hosting riêng: Không',
             'Backup dữ liệu: Hàng tuần',
             'Giấy phép theme, plugin: Có',
-            'Park domain: 1',
+            'Park domain: 3',
         ]
     },{
         name: 'Kinh doanh',
@@ -370,7 +370,7 @@ export const HostingTable = [
             'Chuyển sang hosting riêng: có',
             'Backup dữ liệu: Hàng tuần',
             'Giấy phép theme, plugin: Có',
-            'Park domain: Không giới hạn',
+            'Park domain: 5',
         ]
     }
 ]
@@ -382,7 +382,7 @@ export const WebsiteDesignTable = [
         checklist: [
             '2GB Hosting',
             'Xây dựng Website đầy đủ tính năng',
-            'quản lý vận chuyển tính giá tự động',
+            'Quản lý vận chuyển tính giá tự động',
             'Kết nối thanh toán trực tuyến',
             'Kết nối bán hàng mạng xã hội',
             'Đồng bộ sản phẩm Google shopping',
@@ -475,5 +475,33 @@ export const Testionimal = [
         content: 'Bắt từ con số không, chúng tôi đã xây dựng được công ty chuyên thi công công trình nhà ở tại TP. HCM, kênh chăm sóc khách hàng của Kan Solution khá hiệu quả và chuyên nghiệp',
         image: '/testionimals/xay-dung-hoa-thuan.webp',
     },
+];
 
+
+export const ThemeCategories = [
+    {
+        title: "Website công ty",
+        image: "/layout/website-cong-ty.webp",
+        link: "/danh-muc-giao-dien/web-cong-ty"
+    },
+    {
+        title: "Website bán hàng",
+        image: "/layout/website-ban-hang.webp",
+        link: "/danh-muc-giao-dien/web-ban-hang"
+    },
+    {
+        title: "Website landingpage",
+        image: "/layout/website-ladingpage.webp",
+        link: "/danh-muc-giao-dien/landing-page"
+    },
+    {
+        title: "Website dịch vụ",
+        image: "/layout/website-dich-vu.webp",
+        link: "/layout/danh-muc-giao-dien/dich-vu"
+    },
+    {
+        title: "Website giới thiệu",
+        image: "/layout/website-gioi-thieu.webp",
+        link: "/danh-muc-giao-dien/khac"
+    },
 ]

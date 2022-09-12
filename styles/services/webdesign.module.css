@@ -99,9 +99,9 @@
 .x_hosting{
     padding: 15px;
     display: block;
-    border-radius: var(--x-border-radius);
     background-color: var(--x-white-color);
     box-shadow: var(--x-neumorphic-darker-dropdown);
+    border: 2px solid #d7d7d7;
 }
 .x_hosting_table_container{
     margin-bottom: var(--x-bottom-margin);
@@ -172,13 +172,18 @@
 }
 
 .x_payment_list{
+    margin-top: 12px;
     padding: 0px;
     list-style: none;
 }
 
+.x_payment_list li {
+    padding: 5px 0px;
+}
+
 .x_builer_content h3{
-    font-size: 18px;
-    color: #F17216 !important
+    font-size: 22px;
+    color: #F17216 !important;
 }
 
 .x_register_button{
@@ -186,14 +191,14 @@
     box-shadow: 5px 9px 28px -15px #ff698d;
     border: 2px solid #ff698d;
     color: white;
-    border-radius: 35px;
     display: inline-block;
     margin-right: 5px;
     font-weight: bold;
+    padding: 12px 26px;
 }
 
 .x_services_content{
-    min-height: 400px;
+    min-height: 350px;
     padding: 30px;
     display: block;
     border-radius: var(--x-border-radius);
@@ -201,12 +206,24 @@
     margin-bottom: var(--x-bottom-margin);
     background: var(--x-light-color);
     box-shadow: var(--x-neumorphic-darker-dropdown);
+    border: 2px solid #e3e3e3;
 }
-
-.x_builer_content h2{
-    font-size: 28px;
+h1.x_buider_title{
+    font-size: 34px;
+    line-height: 1.45;
+    font-weight: 600;
+    text-align: left;
+    color: white !important;
+    margin-bottom: 7px;
+}
+.x_buider_title{
+    font-size: 24px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 35px;
 }
 .x_features_page_builder_content,
+
 .x_builer_content{
     margin-bottom: 35px;
 }
@@ -215,10 +232,10 @@
     margin-top: 35px;
 }
 .x_page_builder{
-    padding: 75px 0px;
+    padding: 35px 0px 50px 0px;
 }
 
-.x_features_page_builder_description h3{
+.x_features_page_builder_description h4{
     font-size: 18px;
 }
 
@@ -239,8 +256,11 @@
 }
 
 .x_section_secondary_title{
-    font-size: 18px !important;
-    color: #F17216 !important;
+    font-size: 16px !important;
+    color: #2d88e2 !important;
+    font-weight: 400;
+    margin: 0px;
+    line-height: 24px;
 }
 
 .webdesign_x_banner .x_primary_title{

@@ -15,6 +15,7 @@ import PhoneFillIcon from '@rsuite/icons/PhoneFill'
 import axios from 'axios'
 import styles from '../styles/header.module.css'
 import { IoCaretForwardSharp, IoCloseCircleOutline, IoPerson } from 'react-icons/io5'
+import { ThemeCategories } from '../pages/api/services'
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
@@ -90,16 +91,13 @@ const Right = () => {
     )
 }
 
-const Theme_categories = () => {
+const Theme_categories = ( {category_api} ) => {
     return(
         <>
-            <ul className={styles.x_list_theme_categories}>
-                <li className={styles.x_dropbox}>Website Dịch vụ</li>
-                <li className={styles.x_dropbox}>Website ladingpage</li>
-                <li className={styles.x_dropbox}>Website bán hàng</li>
-                <li className={styles.x_dropbox}>Website công ty</li>
-                <li className={styles.x_dropbox}>Website giới thiệu</li>
-            </ul>
+            <div className={styles.x_categories_card}>
+                <Image src={category_api.image} width={300} height={200}/>
+                <p>{category_api.title}</p>
+            </div>
         </>
     )
 }
@@ -261,6 +259,16 @@ const Header = () => {
     const transition = useTransition( open ? dropdownMenu : [] , {
         ref: transApi,
         trail: 300/dropdownMenu.length,
+        from: { opacity: 0 , y: -60, PointerEvent: 'none'}, 
+        enter: { opacity: 1, y: 0, PointerEvent: 'all' },
+        leave: { opacity: 0, y: -60, PointerEvent: 'none'},
+        config: config.slow,
+        key: item => item.key,
+    });
+
+    const transtionThemeCategories = useTransition( openThemesMenu ? ThemeCategories : [], {
+        ref: transApi,
+        trail: 300/ThemeCategories.length,
         from: { opacity: 0 , y: -60, PointerEvent: 'none'}, 
         enter: { opacity: 1, y: 0, PointerEvent: 'all' },
         leave: { opacity: 0, y: -60, PointerEvent: 'none'},
@@ -567,7 +575,17 @@ const Header = () => {
                         <div className={styles.x_dropdown_bg_full} />
                 </animated.div>
                 <animated.div className={styles.x_dropdownMenu} style={transit_themes}>
-                    <Theme_categories />   
+                    <Row>
+                        {
+                            transtionThemeCategories((style, Item) => 
+                               <Col xs={4}>
+                                    <animated.div className={styles.x_dropbox} style={{...style}}>
+                                            <Theme_categories category_api={Item} />
+                                    </animated.div>
+                                </Col>
+                            )
+                        }  
+                    </Row>
                 </animated.div>
             </Container> 
         </div>
