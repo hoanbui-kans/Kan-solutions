@@ -93,38 +93,30 @@ const Layout = ({ children }) => {
     return (
         <>
         <Head>
-          <meta name="google-site-verification" content="rrhzRHk7SR7nSIFPU8TAfwRLuGUDedgPiC0nccSlKgA" />
-          <link rel="alternate" href={hreflangURI} hrefLang="vi-vn" />
-          <script id="gtagTwo" strategy="afterInteractive">{
-            HTMLReactParser(`window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'UA-233414917-1');`)
-          }</script>
-          <script id="googletagmanager" async src="https://www.googletagmanager.com/gtag/js?id=G-DKCRMST66D" strategy="afterInteractive"/>
-          <script id="gtag" strategy="afterInteractive">{
-              HTMLReactParser(`window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-DKCRMST66D');`)
-          }
-          </script>
-          <script id="gtagUri" async src="https://www.googletagmanager.com/gtag/js?id=UA-233414917-1" strategy="afterInteractive"/>
-          <script id="gtagThree" strategy="afterInteractive">
-          {
-            HTMLReactParser(`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-MJLSWJG');`)
-          }
-          </script>
+        <meta name="google-site-verification" content="rrhzRHk7SR7nSIFPU8TAfwRLuGUDedgPiC0nccSlKgA" />
+        <link rel="alternate" href={hreflangURI} hrefLang="vi-vn" />
         </Head>
+
+        <Script id="Kansite_Analytics" async src="https://www.googletagmanager.com/gtag/js?id=G-Y0ZHL4GN97"></Script>
+        <Script>
+          {
+            `window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-Y0ZHL4GN97');`
+          }
+        </Script>
+        <Script>{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PQ9SVQ4');`}</Script>
         {
-          HTMLReactParser(`<!-- Google Tag Manager (noscript) -->
-          <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MJLSWJG"
-          height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-          <!-- End Google Tag Manager (noscript) -->`)
+         HTMLReactParser(`<!-- Google Tag Manager (noscript) -->
+         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQ9SVQ4"
+         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+         <!-- End Google Tag Manager (noscript) -->`)
         }
         <Component />
         {
@@ -148,15 +140,17 @@ const Layout = ({ children }) => {
         <Script id="gsi" src="https://accounts.google.com/gsi/client" strategy="afterInteractive"/>
         { !session ?
             <Script id="Tawk_API" type="text/javascript" strategy="afterInteractive">
-            {HTMLReactParser(`var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-            (function(){
-              var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-              s1.async=true;
-              s1.src='https://embed.tawk.to/62bebcf2b0d10b6f3e7a491b/1g6sh45mq';
-              s1.charset='UTF-8';
-              s1.setAttribute('crossorigin','*');
-              s0.parentNode.insertBefore(s1,s0);
-            })();`)}
+            {
+              `var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+                (function(){
+                  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+                  s1.async=true;
+                  s1.src='https://embed.tawk.to/62bebcf2b0d10b6f3e7a491b/1g6sh45mq';
+                  s1.charset='UTF-8';
+                  s1.setAttribute('crossorigin','*');
+                  s0.parentNode.insertBefore(s1,s0);
+                })();`
+            }
           </Script> : ''
         }
     </>

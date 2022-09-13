@@ -249,7 +249,6 @@ export const BlogContent = ({data}) => {
 }
 
 const UserManager = ({blogInfor, user, Themes}) => {
-
     const [ limit, setLimit ] = useState(10);
     const [ page, setPaged ] = useState(1);
     const [ selectedSite, setSectedSite ] = useState([]);
@@ -262,6 +261,7 @@ const UserManager = ({blogInfor, user, Themes}) => {
         });
         setPaged(num);
     }
+    console.log(blogInfor);
 
     const sites = blogInfor.filter((v, i) => {
         const start = limit * (page - 1);
@@ -280,7 +280,7 @@ const UserManager = ({blogInfor, user, Themes}) => {
     }
 
     const [expanded, setExpanded] = useState(true);
-    const[showMobileNav, setShowMobileNav] = useState(false);
+    const [showMobileNav, setShowMobileNav] = useState(false);
     const [dimensions, setDimensions] = useState({
         width: 0,
         height: 0,
@@ -522,8 +522,10 @@ export async function getServerSideProps (context) {
     });
 
   let Themes = [];  
-  if(response == []){
+  console.log(response);
+  if(response.length == 0){
     const res = await axios.get(rootURL + 'giao-dien/giao-dien-mau?p=1').then((resonse) => resonse.data);
+    console.log(res.posts);
     Themes = res.posts;
   }
   return { props: {
