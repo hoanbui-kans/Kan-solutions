@@ -713,12 +713,12 @@ a.pps-btn-img {
   }
 }
 
-/* .ads_tiktok .rs-modal-content {
-  background-image: url('../public/banner/campain_tiktok.svg');
+.ads_tiktok .rs-modal-content {
+  background-image: url('../public/banner/modal-banner.webp');
   background-size: cover;
   background-repeat: no-repeat;
   padding: 0px;
-} */
+} 
 .swiper-button-next:after, 
 .swiper-button-prev:after {
   font-size: 24px !important;

@@ -52,6 +52,10 @@ const HomeTwo = () => {
       delay: 0,
       mirror: false
     });
+
+    setTimeout(() => {
+      setOpen_ads(true);
+    }, 3000);
   }, [true])
 
   return (
@@ -510,7 +514,7 @@ const HomeTwo = () => {
         </Modal.Body>
       </Modal>
       <Modal open={open_ads} onClose={handleClose_ads} overflow={false} backdrop="static" size={'sm'} className="ads_tiktok">
-        <Modal.Body>
+        <Modal.Body style={{padding: 0}}>
             <Button className="close_ads" onClick={handleClose_ads}><IoCloseOutline color={'#fff'} size={22}/></Button>
             <Link href="/dang-ky">
                   <a style={{paddingTop: '100%', display: 'block'}}></a>

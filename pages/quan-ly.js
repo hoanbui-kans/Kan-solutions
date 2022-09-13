@@ -261,7 +261,6 @@ const UserManager = ({blogInfor, user, Themes}) => {
         });
         setPaged(num);
     }
-    console.log(blogInfor);
 
     const sites = blogInfor.filter((v, i) => {
         const start = limit * (page - 1);
@@ -522,10 +521,8 @@ export async function getServerSideProps (context) {
     });
 
   let Themes = [];  
-  console.log(response);
   if(response.length == 0){
     const res = await axios.get(rootURL + 'giao-dien/giao-dien-mau?p=1').then((resonse) => resonse.data);
-    console.log(res.posts);
     Themes = res.posts;
   }
   return { props: {
