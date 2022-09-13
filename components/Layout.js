@@ -96,9 +96,8 @@ const Layout = ({ children }) => {
         <meta name="google-site-verification" content="rrhzRHk7SR7nSIFPU8TAfwRLuGUDedgPiC0nccSlKgA" />
         <link rel="alternate" href={hreflangURI} hrefLang="vi-vn" />
         </Head>
-
         <Script id="Kansite_Analytics" async src="https://www.googletagmanager.com/gtag/js?id=G-Y0ZHL4GN97"></Script>
-        <Script>
+        <Script id="analytic-config">
           {
             `window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -107,7 +106,7 @@ const Layout = ({ children }) => {
             gtag('config', 'G-Y0ZHL4GN97');`
           }
         </Script>
-        <Script>{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        <Script id="gtag-config">{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
