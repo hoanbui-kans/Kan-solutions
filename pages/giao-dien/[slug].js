@@ -232,18 +232,14 @@ export const SingleTheme = ({data, link_theme}) => {
       "name": data.post_title,
       "item": site_url + "/giao-dien/${data.post_name}"
     }]
-  }
+  } 
 
   return (
     <>
       <Head>
         { HTMLReactParser(data.yoast_head.html.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
-        <script type="application/ld+json">
-            { JSON.stringify(FAQSchema) }
-        </script>
-        <script type="application/ld+json">
-            { JSON.stringify(BreadCumbSchema) }
-        </script>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQSchema)}}/>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BreadCumbSchema)}} />
         <meta name="keywords" content={KeywordsMeta(data.keywords)}></meta>
       </Head>
       <div className={'x_breadcum_container'}>

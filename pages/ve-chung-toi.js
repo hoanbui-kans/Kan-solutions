@@ -64,11 +64,8 @@ const AboutUs = () => {
     <>
        <Head>
         { HTMLReactParser(AboutUsSeo.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
-        <script type="application/ld+json">
-            { JSON.stringify(QuestionSchema) }
-        </script>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(QuestionSchema)}} />
       </Head>
-     
       <div className={'x_breadcum_container'}>
         <section>
             <Container>

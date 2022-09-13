@@ -54,30 +54,34 @@ const SocialLink = ({ title, description, media, url}) => {
   )
 }
 
+
 const PostSingle = ({data}) => {
+
   if(data == undefined) return '';
+
   let miscValue =  data.yoast_head.json.twitter_misc ? Object.values(data.yoast_head.json.twitter_misc) : '';
+
+  const BreadCumbSchemas = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Tin tức",
+        "item": site_url + "/tin-tuc"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": data.post_title,
+        "item": site_url + "/bai-viet/" + data.post_name
+      }]
+    }
+
     return (
       <>
         <Head>
           {HTMLReactParser(data.yoast_head.html.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content"))}
-          {/* <script type="application/ld+json">
-          {HTMLReactParser(`{
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [{
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Tin tức",
-              "item": "${site_url}/tin-tuc"
-            },{
-              "@type": "ListItem",
-              "position": 2,
-              "name": "${data.post_title}",
-              "item": "${site_url}/giao-dien/${data.post_name}"
-            }]
-          }`)}
-        </script> */}
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BreadCumbSchemas)}} />
         </Head>
         <div className={'x_breadcum_container'}>
           <Container>
