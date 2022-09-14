@@ -313,17 +313,15 @@ export const MarketingTable = [
 
 export const HostingTable = [
     {
-        name: 'Miễn phí',
+        name: 'Free Site',
         price: '0đ',
         checklist: [
             'Miễn phí tên miền: 0',
-            'Giới hạn website: 3',
             'Tên miền riêng: không',
             'Server đặt tại: Việt Nam',
             'Dung lượng: 250 MB',
             'Băng thông: Không giới hạn',
             'Email tự động: Có',
-            'Quản lý CRM: Không',
             'Quản lý MobileApp: Không',
             'Tùy chỉnh giao diện: Không',
             'Chuyển sang hosting riêng: không',
@@ -333,18 +331,16 @@ export const HostingTable = [
         ]
     },
     {
-        name: 'Thành viên',
+        name: 'Pro Site',
         price: '250.000đ',
         checklist: [
             'Miễn phí tên miền: 0',
-            'Giới hạn website: 3',
             'Tên miền riêng: có',
             'Đăng ký tối thiểu 3 tháng',
             'Server đặt tại: Việt Nam',
             'Dung lượng: 1 GB',
             'Băng thông: Không giới hạn',
             'Email tự động: Có',
-            'Quản lý CRM: Không',
             'Quản lý MobileApp: Không',
             'Hỗ trợ cài đặt tính năng: Không',
             'Chuyển sang hosting riêng: Không',
@@ -353,18 +349,16 @@ export const HostingTable = [
             'Park domain: 3',
         ]
     },{
-        name: 'Kinh doanh',
+        name: 'Business Site',
         price: '450.000đ',
         checklist: [
             'Miễn phí 1 tên miền (.com, .net)',
-            'Giới hạn website: 5',
             'Tên miền riêng: có',
             'Đăng ký tối thiểu 6 tháng',
             'Server đặt tại: Việt Nam',
             'Dung lượng: 2 GB',
             'Băng thông: Không giới hạn',
             'Email tự động: Có',
-            'Quản lý CRM: Không',
             'Quản lý MobileApp: Không',
             'Hỗ trợ cài đặt tính năng: vận chuyển, thanh toán',
             'Chuyển sang hosting riêng: có',
