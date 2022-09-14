@@ -10,6 +10,7 @@ import { IoHome,
    IoTabletLandscapeOutline,
    IoPersonCircleOutline,
    IoCopyOutline,
+   IoEarthSharp,
    IoReaderOutline }  from "react-icons/io5";
 import HTMLReactParser from 'html-react-parser'
 import ServicesSubmitForm from '../../../components/handleSubmitServices'
@@ -118,8 +119,14 @@ const ThemeViews = ({data, link_theme}) => {
                   onClick={() => {handleOpen('Đăng ký tư vấn mẫu giao diện' + data.post_title)}}
                   >
                   <IoReaderOutline size={16}/>
-                  Đăng ký tư vấn
+                  Tư vấn mẫu
                 </Nav.Item>
+                <Nav.Item as={'span'}>
+                    <a href={data.themeinfor.link} className={styles.x_centered}>
+                      <IoEarthSharp size={16}/>
+                      Xem trực tiếp
+                    </a>
+                  </Nav.Item>
               </Nav>
               <Nav className={styles.x_nav_centered + ' ' + styles.x_showin_mobile}>
                 <Nav.Menu title="Chọn mẫu">
@@ -146,6 +153,12 @@ const ThemeViews = ({data, link_theme}) => {
                       >
                       <IoReaderOutline size={16}/>
                       Đăng ký tư vấn
+                    </Nav.Item>
+                     <Nav.Item as={'span'}>
+                        <a href={data.themeinfor.link} className={styles.x_centered}>
+                          <IoEarthSharp size={16}/>
+                          Xem trực tiếp
+                        </a>
                     </Nav.Item>
                   </Nav.Menu>
               </Nav>
