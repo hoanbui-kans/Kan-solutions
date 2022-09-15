@@ -13,6 +13,11 @@ const config = {
           "https://kansite.com.vn/danh-muc/quang-cao-online",
           "https://kansite.com.vn/danh-muc/lap-trinh-nextjs",
           // Bài viết
+          "https://kansite.com.vn/bai-viet/phat-trien-website-la-gi-luu-y-gi-khi-phat-trien-website",
+          "https://kansite.com.vn/bai-viet/thiet-ke-website-logistics-van-tai-xuat-nhap-khau",
+          "https://kansite.com.vn/bai-viet/nhung-luu-y-khi-ky-ket-hop-dong-quan-tri-website",
+          "https://kansite.com.vn/bai-viet/portfolio-bang-website-co-that-su-can-thiet",
+          "https://kansite.com.vn/bai-viet/tu-thiet-ke-website-cung-kan-solution",
           "https://kansite.com.vn/bai-viet/layout-website-chuyen-nghiep-hoan-hao",
           "https://kansite.com.vn/bai-viet/ten-mien-website-cach-giai-quyet-tranh-chap-ten-mien",
           "https://kansite.com.vn/bai-viet/xay-dung-website-nhung-diem-can-luu-y-khi-xac-lap-hop-dong",
@@ -62,6 +67,7 @@ const config = {
           "https://kansite.com.vn/bai-viet/top-5-nuoc-hoa-nam-chinh-hang-duoc-ua-chuong-nhat-hien-nay",
           "https://kansite.com.vn/bai-viet/top-10-nuoc-hoa-nam-duoc-ua-chuong-nhat-tren-the-gioi-ban-nen-biet",
           // Dự án
+          "https://kansite.com.vn/du-an/website-peter-trans",
           "https://kansite.com.vn/du-an/website-lasertek3",
           "https://kansite.com.vn/du-an/website-ananas-clinic-spa",
           "https://kansite.com.vn/du-an/website-tap-chi-my-nghe-viet",
@@ -84,6 +90,7 @@ const config = {
           "https://kansite.com.vn/du-an/landing-page-gioi-thieu-my-nghe-viet",
           "https://kansite.com.vn/du-an/website-qua-tang-doanh-nghiep-my-nghe-viet",
           // Giao diện mẫu 
+          "https://kansite.com.vn/giao-dien/website-nha-nghi-homestay-dreamo",
           "https://kansite.com.vn/giao-dien/website-thuc-pham-organic",
           "https://kansite.com.vn/giao-dien/website-trung-tam-cuu-tro-cho-meo",
           "https://kansite.com.vn/giao-dien/website-do-gom-workshop-lam-gom-clayttery",
