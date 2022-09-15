@@ -3,6 +3,21 @@
 const config = {
     siteUrl: process.env.SITE_URL || 'https://kansite.com.vn',
     generateRobotsTxt: true, // (optional)
+    exclude: [
+      '/quan-ly', 
+    ],
+    robotsTxtOptions: {
+      policies: [
+        {
+          userAgent: '*',
+          allow: '/',
+        },
+        {
+          userAgent: 'black-listed-bot',
+          disallow: ['/quan-ly'],
+        },
+      ]
+    },
     additionalPaths: async (config) => {
         const additionalSlug = [
           // Danh mục bài viết
