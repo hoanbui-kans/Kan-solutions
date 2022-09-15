@@ -62,7 +62,7 @@ export const BlogContent = ({data}) => {
     const StoreAvaiable = parseInt(data.quota);
     const DisplayAvaiableUpload = StoreAvaiable < 1024 ? StoreAvaiable + 'mb' : (StoreAvaiable/1024) + 'gb';
     const Uploaded = parseInt(data.upload);
-    const DisplayUploaded = Uploaded < 1024 ? Uploaded + 'mb' : (Uploaded/100) + 'gb'
+    const DisplayUploaded = Uploaded < 1024 ? Uploaded + 'mb' : (Uploaded/1000) + 'gb'
     const Remain = StoreAvaiable - Uploaded;
     const registed = new Date(data.registered);
     const expired = data.get_expire ? new Date(parseInt(data.get_expire, 10) * 1000) : '';
@@ -504,30 +504,29 @@ export async function getServerSideProps (context) {
      }).catch(function (error) {
   });
 
+  let response = [];
   const config = {
     headers: { 
       'Authorization':  `Bearer ${token}`
     }
   };
-  const URL =  rootURL + 'quan-ly/tai-khoan';
-  let response = '';
 
-  response = await axios.post(URL, false, config)
+  response = await axios.post(rootURL + 'quan-ly/tai-khoan', false, config)
     .then(function (response) {
         return response.data
     })
     .catch(function (error) {
         console.log(error);
-    });
+  });
 
   let Themes = [];  
-  if(response.length == 0){
-    const res = await axios.get(rootURL + 'giao-dien/giao-dien-mau?p=1').then((resonse) => resonse.data);
-    Themes = res.posts;
+  if(!response){
+     Themes = await axios.get(rootURL + 'giao-dien/giao-dien-mau?p=1').then((res) => res.data ? res.data : []);
   }
+
   return { props: {
-      blogInfor:  response ? response : [],
-      Themes: Themes ? Themes : [],
-      user: response_user ? response_user.user : '',
+    blogInfor:  response ? response : [],
+    Themes: Themes ? Themes : [],
+    user: response_user ? response_user.user : '',
   }};
 }

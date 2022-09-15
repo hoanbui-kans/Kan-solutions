@@ -4,14 +4,18 @@ import { Container, Row, Col, Button, Divider, Modal  } from 'rsuite'
 import styles from '../../../styles/services/webdesign.module.css'
 import { HostingTable, WebsiteDesignTable } from '../../api/services'
 import ServicesSubmitForm from '../../../components/handleSubmitServices'
-import { useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 
 const Upgrade = () => {
     const { data: session } = useSession();
     const [open, setOpen] = useState(false);  
     const [service, setService] = useState(''); 
+    const router = useRouter()
+    const { site_id } = router.query
 
     const handleOpen = (service) => {
+        console.log( service );
         setService(service);
         setOpen(true)
     };
@@ -39,7 +43,7 @@ const Upgrade = () => {
                                                         <div className={styles.x_hosting_header}>
                                                             <h3>{val.name}</h3>
                                                             <p>{val.price} /Tháng</p>
-                                                            <Button className={styles.x_hosting_button} onClick={() => { handleOpen('Dịch vụ hosting ' + val.name) }}>Đăng ký</Button>
+                                                            <Button className={styles.x_hosting_button} onClick={() => { handleOpen('Đăng ký gói dịch vụ: ' + val.name + ' - site id: ' + site_id) }}>Đăng ký</Button>
                                                         </div>
                                                         <div className={styles.x_hosting_features}>
                                                             <ul>

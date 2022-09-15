@@ -627,10 +627,11 @@ const Create_Order = ({list_blog}) => {
                                 <NameCell dataKey="lever" />
                             </Table.Column>
 
-                            <Table.Column width={300}>
+                            {/* <Table.Column width={300}>
                                 <Table.HeaderCell>email</Table.HeaderCell>
                                 <Table.Cell>{rowData => <a href={`mailto:${rowData.email}`}>{rowData.email}</a>}</Table.Cell>
-                            </Table.Column>
+                            </Table.Column> */}
+                            
                             <Table.Column width={120} fixed="right" align="center">
                                 <Table.HeaderCell>Hành động</Table.HeaderCell>
                                 <ActionCell dataKey="id" />

@@ -136,7 +136,9 @@ const Domain = ({posts, token}) => {
             }
             const response = await axios(config).then((res) => res.data).catch((error) => { console.log(error)});
             let status = 'warning';
-            if(!response.error) { status = 'success'; }
+            if(!response.error) { 
+                status = 'success'; 
+            }
             toaster.push(<Message showIcon={true} type={status}>{response.message}</Message>);
             setLoading(false);
             setTimeout(() => {

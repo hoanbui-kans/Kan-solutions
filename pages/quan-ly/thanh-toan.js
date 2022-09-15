@@ -366,7 +366,7 @@ export async function getServerSideProps (context) {
     .catch(function (error) {
         console.log(error);
     });
-
+    
   return { props: {
       posts:  response ? response : [],
   }};

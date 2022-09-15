@@ -9,8 +9,10 @@ import {
     Sidenav,
     toaster,
     Loader,
+    InputGroup,
     Message,
     Table,
+    Input,
     Progress,
     ButtonToolbar, 
     SelectPicker
@@ -33,7 +35,6 @@ import { RateUser } from '../../api/services';
 import { locales } from '../../api/locales';
 import dynamic from 'next/dynamic'
 import HTMLReactParser from 'html-react-parser';
-import Router from 'next/router';
 
 const Chart = dynamic(
   () => {
@@ -59,9 +60,9 @@ const SiteEditor = ({site_content}) => {
   const [percent, setPercent] = useState('');
   const SiteIcon = data.site_icon && data.site_icon != 'empty' ? data.site_icon : '/icons/favicon.png'
   const StoreAvaiable = parseInt(data.quota);
-  const DisplayAvaiableUpload = StoreAvaiable < 1000 ? StoreAvaiable + 'mb' : (StoreAvaiable/1000) + 'gb';
+  const DisplayAvaiableUpload = StoreAvaiable < 1024 ? StoreAvaiable + 'mb' : (StoreAvaiable/1024) + 'gb';
   const Uploaded = parseInt(data.upload);
-  const DisplayUploaded = Uploaded < 1000 ? Uploaded + 'mb' : (Uploaded/100) + 'gb'
+  const DisplayUploaded = Uploaded < 1024 ? Uploaded + 'mb' : (Uploaded/1024) + 'gb'
   const Remain = StoreAvaiable - Uploaded;
   const registed = new Date(data.registered);
   const current = new Date();
@@ -69,6 +70,18 @@ const SiteEditor = ({site_content}) => {
   const expired = data.get_expire ? new Date(parseInt(data.get_expire, 10) * 1000) : "";
   const expiredDate = expired ? moment(expired).format('LL') : "";
   
+  function convertToSlug(Text){
+    if(Text.length > 30){
+      toaster.push(<Message showIcon={true} type={'warning'}>Chỉ được phép tối đa 30 ký tự</Message>);
+    } else {
+      let path = Text
+      .toLowerCase()
+      .replace(/ /g,'-')
+      .replace(/[^\w-]+/g,'');
+      setPathName(path);
+    }
+  }
+
   const expiredClass = current <= expired ? styles.x_danger : styles.x_success;
   const chartValue = {
       options: { 
@@ -162,6 +175,7 @@ const SiteEditor = ({site_content}) => {
   const [loadingReplace, setLoadingReplace] = useState(false);
   const [domainReplaced, setDoimainReplaced] = useState('');
   const [domain, setDoimain] = useState(data.domain);
+  const [pathName, setPathName] = useState('');
 
   const handleCloseReplaced = () => {
     setOpenReplaced(false);
@@ -171,7 +185,12 @@ const SiteEditor = ({site_content}) => {
   }
 
 
-  let avaiable_domains = [];
+  let avaiable_domains = [{
+    "label": 'kanbox.vn',
+    "value": 'master',
+    "role": "Master"
+  }];
+
   data.avaiable_domain ? 
   data.avaiable_domain.map((value) => {
       if(value.status == 'khoi-tao' && value.doimain != data.domain){
@@ -185,12 +204,21 @@ const SiteEditor = ({site_content}) => {
 
   const HandleReplaceDomain = async() => {
     setLoadingReplace(true);
+    // Validate doimain master
+    if(domainReplaced == 'master'){
+      if(pathName.length == 0){
+        toaster.push(<Message showIcon={true} type={'warning'}>Đường dẫn không hợp lệ</Message>);
+        setLoadingReplace(false);
+        return;
+      }
+    } 
+
     const WP_JSON_URL = ROOT_URL + 'domain/add_website';
     let fd = new FormData();
     fd.append('site_id', data.blog_id);
     fd.append('domain_id', domainReplaced);
     fd.append('user_email', session.user.token.user_email);
-
+    fd.append('path_name', pathName);
     const config = {
         method: 'POST',
         data: fd,
@@ -205,9 +233,9 @@ const SiteEditor = ({site_content}) => {
     if(!response.error) { type = 'success'; }
     toaster.push(<Message showIcon={true} type={type}>{response.message}</Message>);
     setLoadingReplace(false);
-    // setTimeout(() => {
-    //     location.reload();
-    // }, 1000);
+    setTimeout(() => {
+         location.reload();
+    }, 1000);
   }
 
   return (
@@ -246,7 +274,7 @@ const SiteEditor = ({site_content}) => {
                                                   <Link href={'/quan-ly/quan-ly-trang/site?id=' + data.blog_id}>
                                                       <a>
                                                           <h3>{data.blogname}</h3>
-                                                          <p>{data.domain}</p>
+                                                          <p>{data.home}</p>
                                                       </a>
                                                   </Link>
                                               </div>
@@ -421,9 +449,9 @@ const SiteEditor = ({site_content}) => {
               <Modal.Title><strong>Thay đổi tên miền</strong></Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <h5><span style={{color: "red"}}>Cảnh báo:</span> Thay đổi tên miền</h5>
-              <p>Thông tin tên miền của bạn sẽ được thay đổi</p>
+              <h5><span style={{color: "red"}}>LƯU Ý:</span> Thay đổi tên miền</h5>
               <div className={styles.x_board_domain_change}>
+                  <p style={{margin: '7px 0px'}}><small>Thông tin tên miền của bạn sẽ được thay đổi</small></p>
                   <span className={styles.x_current_domain}>
                       { data.domain }
                   </span>
@@ -432,6 +460,18 @@ const SiteEditor = ({site_content}) => {
                   </span>
                   <SelectPicker onChange={(e) => setDoimainReplaced(e)} style={{width: 200}} placeholder="Lựa chọn tên miền" data={avaiable_domains} locale={locales.Picker}>
                   </SelectPicker>
+                  {
+                    domainReplaced == 'master' ?
+                    <>
+                      <p style={{margin: '7px 0px'}}><small>Sử dụng đường dẫn mặc định vd: kansite</small></p>
+                      <InputGroup style={{maxWidth: 410}}>
+                        <InputGroup.Addon>
+                          <span>kanbox.vn/</span>
+                        </InputGroup.Addon>
+                        <Input value={pathName} onChange={(e) => convertToSlug(e)}/>
+                      </InputGroup>
+                    </> : ""
+                  }
               </div>
               <p style={{lineHeight: '18px', marginBottom: 20}}>
                 <small>

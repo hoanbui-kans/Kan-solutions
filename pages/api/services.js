@@ -491,7 +491,7 @@ export const ThemeCategories = [
     {
         title: "Website dịch vụ",
         image: "/layout/website-dich-vu.webp",
-        link: "/layout/danh-muc-giao-dien/dich-vu"
+        link: "/danh-muc-giao-dien/dich-vu"
     },
     {
         title: "Website giới thiệu",
