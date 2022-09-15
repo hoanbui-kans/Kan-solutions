@@ -520,13 +520,13 @@ export async function getServerSideProps (context) {
   });
 
   let Themes = [];  
-  if(!response){
+  if(typeof response != undefined && response.length == 0){
      Themes = await axios.get(rootURL + 'giao-dien/giao-dien-mau?p=1').then((res) => res.data ? res.data : []);
   }
 
   return { props: {
     blogInfor:  response ? response : [],
-    Themes: Themes ? Themes : [],
+    Themes: Themes ? Themes.posts : [],
     user: response_user ? response_user.user : '',
   }};
 }
