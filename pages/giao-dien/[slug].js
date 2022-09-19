@@ -257,7 +257,7 @@ export const SingleTheme = ({data, link_theme}) => {
     </div>
       <div className={styles.single_content}>
           <Container className={styles.x_theme_container}>
-            <Row className={styles.x_flex + ' ' + styles.x_theme_thumbnail_section}>
+            <Row className={styles.x_theme_thumbnail_section}>
               <Col xs={24} md={16} className={styles.x_padding}>
                 <div className={styles.x_theme_content}>
                     {
@@ -266,52 +266,54 @@ export const SingleTheme = ({data, link_theme}) => {
                         <Image src={data.thumbnail[0]} width={data.thumbnail[1]} height={data.thumbnail[2]} alt={data.post_title}/>
                       </div>: ''
                     }
-                    {
-                        DanhMucNganh.length > 0 ? 
-                        DanhMucNganh[0].layout ?
-                        <div className={styles.x_single_theme_section}>
-                          <h2 className={styles.x_content_title}>Cấu trúc layout</h2>
-                            {
-                              DanhMucNganh.map((val) => {
-                                return(
-                                  <div key={val.term_id} className={styles.x_nganh_section}>
-                                    <Nganh data={val.layout}/>
-                                  </div>
-                                ) 
-                              })
-                            }
-                        </div>
-                        : ''
-                        : ''
-                  }
-                    <div className={styles.x_single_theme_section}>
-                      {
-                      data.post_content ? 
-                        <>
-                          <h2 className={styles.x_content_title}>Giới thiệu</h2>
-                          <div className={styles.x_sing_theme_content}>
-                            {HTMLReactParser(data.post_content)}
-                          </div>
-                        </>
-                        : ''
+                    <div className={styles.x_hide_mobile}>
+                        {
+                            DanhMucNganh.length > 0 ? 
+                            DanhMucNganh[0].layout ?
+                            <div className={styles.x_single_theme_section}>
+                              <h2 className={styles.x_content_title}>Cấu trúc layout</h2>
+                                {
+                                  DanhMucNganh.map((val) => {
+                                    return(
+                                      <div key={val.term_id} className={styles.x_nganh_section}>
+                                        <Nganh data={val.layout}/>
+                                      </div>
+                                    ) 
+                                  })
+                                }
+                            </div>
+                            : ''
+                            : ''
                       }
-                      <div className={styles.x_Qa_section}>
-                        <h2 className={styles.x_content_title}>Thông tin tư vấn</h2>
+                        <div className={styles.x_single_theme_section}>
                           {
-                              QA_List ? QA_List.map((val, index) => {
-                                  return(
-                                    <Panel 
-                                    style={{width: '100%', marginBottom: 15}} 
-                                    key={index} 
-                                    header={<h3 className={styles.x_Qa_section_title}><HelpOutlineIcon /> {val.question}</h3>} 
-                                    collapsible 
-                                    bordered>
-                                      <p>{val.answer}</p>
-                                    </Panel>
-                                  )
-                              }) : '' 
-                            }
-                      </div>
+                          data.post_content ? 
+                            <>
+                              <h2 className={styles.x_content_title}>Giới thiệu</h2>
+                              <div className={styles.x_sing_theme_content}>
+                                {HTMLReactParser(data.post_content)}
+                              </div>
+                            </>
+                            : ''
+                          }
+                          <div className={styles.x_Qa_section}>
+                            <h2 className={styles.x_content_title}>Thông tin tư vấn</h2>
+                              {
+                                  QA_List ? QA_List.map((val, index) => {
+                                      return(
+                                        <Panel 
+                                        style={{width: '100%', marginBottom: 15}} 
+                                        key={index} 
+                                        header={<h3 className={styles.x_Qa_section_title}><HelpOutlineIcon /> {val.question}</h3>} 
+                                        collapsible 
+                                        bordered>
+                                          <p>{val.answer}</p>
+                                        </Panel>
+                                      )
+                                  }) : '' 
+                                }
+                          </div>
+                        </div>
                     </div>
                 </div>
               </Col>
@@ -405,6 +407,55 @@ export const SingleTheme = ({data, link_theme}) => {
                   <h2 className={styles.x_content_title}>Thông tin hỗ trợ</h2>
                    <FormTuVan title={'Đăng kỹ hỗ trợ giao diện ' + data.post_title}/>
                   </div>
+                  <div className={styles.x_hide_desktop}>
+                        {
+                            DanhMucNganh.length > 0 ? 
+                            DanhMucNganh[0].layout ?
+                            <div className={styles.x_single_theme_section}>
+                              <h2 className={styles.x_content_title}>Cấu trúc layout</h2>
+                                {
+                                  DanhMucNganh.map((val) => {
+                                    return(
+                                      <div key={val.term_id} className={styles.x_nganh_section}>
+                                        <Nganh data={val.layout}/>
+                                      </div>
+                                    ) 
+                                  })
+                                }
+                            </div>
+                            : ''
+                            : ''
+                      }
+                        <div className={styles.x_single_theme_section}>
+                          {
+                          data.post_content ? 
+                            <>
+                              <h2 className={styles.x_content_title}>Giới thiệu</h2>
+                              <div className={styles.x_sing_theme_content}>
+                                {HTMLReactParser(data.post_content)}
+                              </div>
+                            </>
+                            : ''
+                          }
+                          <div className={styles.x_Qa_section}>
+                            <h2 className={styles.x_content_title}>Thông tin tư vấn</h2>
+                              {
+                                  QA_List ? QA_List.map((val, index) => {
+                                      return(
+                                        <Panel 
+                                        style={{width: '100%', marginBottom: 15}} 
+                                        key={index} 
+                                        header={<h3 className={styles.x_Qa_section_title}><HelpOutlineIcon /> {val.question}</h3>} 
+                                        collapsible 
+                                        bordered>
+                                          <p>{val.answer}</p>
+                                        </Panel>
+                                      )
+                                  }) : '' 
+                                }
+                          </div>
+                        </div>
+                    </div>
                 </div>
               </Col>
               <Col xs={24}>

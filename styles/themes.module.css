@@ -96,6 +96,7 @@
     margin-bottom: 24px;
     
   }
+
   .x_gd_title{
     border-bottom: 1px solid #e5e5ea;
     font-size: 16px;
@@ -285,6 +286,7 @@
     height: 100%;
     transition: var(--x-transition)
   }
+
   @media (max-width: 992px){
     .x_filter_group{
       position: fixed;
