@@ -265,26 +265,28 @@
     background: #f7f7f7
 }
 .x_blog_link{
-    width: 32px;
     height: 32px;
     position: absolute;
     top: 15px;
     right: 15px;
     z-index: 2;
-    border: 3px solid #eaeaea;
-    border-radius: 50%;
+    border: 2px solid #eaeaea;
+    border-radius: 5px;
+    padding: 0px 10px;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 12px;
+    color: black;
 }
 .x_blog_single_link{
-    position: absolute;
     top: 15px;
     right: 15px;
     z-index: 2;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: absolute;
 }
 .x_blog_single_link_button{
     display: flex;

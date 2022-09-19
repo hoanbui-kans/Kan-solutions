@@ -240,7 +240,7 @@ export const SingleTheme = ({data, link_theme}) => {
         { HTMLReactParser(data.yoast_head.html.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQSchema)}}/>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BreadCumbSchema)}} />
-        <meta name="keywords" content={KeywordsMeta(data.keywords)}></meta>
+
       </Head>
       <div className={'x_breadcum_container'}>
         <Container>
@@ -471,12 +471,11 @@ export async function getServerSideProps(context) {
   const session = await getSession(context);
   const slug = context.params.slug;
   const res = await axios.get(ROOT_URL + 'giao-dien/single?slug=' + slug).then((resonse) => resonse.data);
-  console.log(session);
   // Create API
   let CreateURI = '';
   if(session){
     const user_email = session.user.token.user_email;
-    const SITE_URL = process.env.ORIGINAL_URL;
+    const SITE_URL = process.env.NEXT_PUBLIC_ORIGINAL_URL;
     const API_KEY = res.ID + user_email;
     const HASH_API_KEY = md5(API_KEY);
     CreateURI = session ? SITE_URL + '/?theme_id=' + res.ID + '&user_email='+ user_email +'&public_key=' + HASH_API_KEY : '';

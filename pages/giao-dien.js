@@ -373,7 +373,7 @@ const Themes_GDMau = ({gd, nganh, danhmuc, max_pages}) => {
                                 {
                                     posts.map((val) => {
                                         return  displayGrid ? 
-                                        <Col xs={12} md={12} lg={8} key={val.ID}>
+                                        <Col xs={24} md={12} lg={8} key={val.ID}>
                                             <GD_Box data={val} price={true}/>
                                         </Col>
                                         :

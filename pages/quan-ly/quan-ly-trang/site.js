@@ -22,6 +22,7 @@ import axios from 'axios';
 import Image from 'next/image'; 
 import UserNav from '../../../components/user-manager/UserNav';
 import styles from '../../../styles/account.module.css';
+import MenuIcon from '@rsuite/icons/Menu';
 import {
   IoLinkOutline, 
   IoCalendarClearOutline,
@@ -51,7 +52,7 @@ const SiteEditor = ({site_content}) => {
   const { data: session } = useSession();
   const [data, setSiteData] = useState(site_content);
   const [expanded, setExpanded] = useState(true);
-  
+  const [showMobileNav, setShowMobileNav] = useState(false);
   const [LineStroke, setLineStroke] = useState({
     strokeColor: '#4caf50',
     status: 'success'
@@ -243,26 +244,45 @@ const SiteEditor = ({site_content}) => {
       <section className={styles.x_app_section}>
           <Container>
             <Row>
-              <Col xs={24} md={!expanded ? 2 : 6}>
-                    <div className={styles.x_account_nav}>
-                        <Sidenav expanded={expanded} defaultOpenKeys={['3', '4']}>
-                            <Sidenav.Body>
-                            <UserNav expanded={expanded}/>
-                            <Sidenav.Toggle onToggle={expanded => setExpanded(expanded)} />
-                            </Sidenav.Body>
-                        </Sidenav>
-                    </div>
+            <Col xs={24} md={!expanded ? 2 : 6}>
+                    <Button 
+                        onClick={() => {setShowMobileNav(!showMobileNav)}} 
+                        className={styles.x_mobile_menu_button} 
+                        style={{width: '100%'}}
+                    >   
+                        <MenuIcon />
+                         Menu quản lý
+                    </Button>
+                    {
+                        showMobileNav ?
+                        <div className={styles.x_account_nav}>
+                            <Sidenav expanded={expanded}>
+                                <Sidenav.Body>
+                                    <UserNav active={'quan-ly'} expanded={expanded}/>
+                                    <Sidenav.Toggle onToggle={expanded => setExpanded(expanded)} />
+                                    <Button 
+                                        className={styles.x_nav_mobile_close_button}
+                                        onClick={() => {setShowMobileNav(!showMobileNav)}} 
+                                        appearance="primary" 
+                                        style={{width: '100%'}}
+                                        >
+                                        Đóng
+                                    </Button>
+                                </Sidenav.Body>
+                            </Sidenav> 
+                        </div> : ''
+                    }
                 </Col>
                 <Col xs={24} md={!expanded ? 22 : 18}>
                     <Row>
-                      <Col xs={12}>
+                      <Col xs={24} md={12}>
                         <div className={styles.x_blog}>
                             <Row>
                                 <Col xs={24}>
                                     <a className={styles.x_blog_single_link} target={'_blank'} rel="noreferrer" href={data.home}>
                                       <Button className={styles.x_blog_single_link_button}> 
                                           <IoLinkOutline size={18} color='#999'/>
-                                          Xem trang
+                                          Xem
                                       </Button>
                                     </a>
                                     <div className={styles.x_blog_content}>
@@ -321,7 +341,7 @@ const SiteEditor = ({site_content}) => {
                             </Row>
                         </div>
                       </Col>
-                      <Col xs={12}>
+                      <Col xs={24} md={12}>
                           <div className={styles.x_blog}>
                               <Row>
                                 <Col xs={24}>
@@ -386,7 +406,7 @@ const SiteEditor = ({site_content}) => {
                                               </Link>
                                               <Link href={'/quan-ly/thanh-toan/gia-han?site_id=' + data.blog_id}>
                                                   <Button className={styles.x_extend_single_button + ' ' + styles.x_extend_button}>
-                                                      Gia hạn
+                                                      Quản trị website
                                                   </Button>
                                               </Link>
                                         </ButtonToolbar>

@@ -165,7 +165,8 @@ export const BlogContent = ({data}) => {
             <Row>
                 <Col xs={24} md={12}>
                     <a className={styles.x_blog_link} target={'_blank'} rel="noreferrer" href={data.home}>
-                        <IoLinkOutline size={18} color='#999'/>
+                        <IoLinkOutline size={18} color='#999'/> 
+                        Xem trang
                     </a>
                     <div className={styles.x_blog_content}>
                         <div className={styles.x_flex_blog_image}>
@@ -229,11 +230,11 @@ export const BlogContent = ({data}) => {
                                     </Button>
                                 </a>
                             </Link>
-                            <Link href={'/quan-ly/thanh-toan/gia-han?site_id=' + data.blog_id}>
-                            <Button className={styles.x_extend_button}>
-                                <IoCafeSharp />
-                                Gia hạn
-                            </Button>
+                            <Link href={'/quan-ly/quan-ly-trang/site?id=' + data.blog_id}>
+                                <Button className={styles.x_extend_button}>
+                                    <IoCafeSharp />
+                                    Quản lý trang
+                                </Button>
                             </Link>
                         </ButtonToolbar>
                     </div>
@@ -520,7 +521,7 @@ export async function getServerSideProps (context) {
   });
 
   let Themes = [];  
-  if(typeof response != undefined && response.length == 0){
+  if(typeof response != undefined){
      Themes = await axios.get(rootURL + 'giao-dien/giao-dien-mau?p=1').then((res) => res.data ? res.data : []);
   }
 
