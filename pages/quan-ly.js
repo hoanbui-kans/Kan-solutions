@@ -40,6 +40,11 @@ import HTMLReactParser from 'html-react-parser';
 import { HomePageSeo } from './api/HeaderSeo';
 import { GD_Box } from './giao-dien';
 
+const JoyRideNoSSR = dynamic(
+    () => import('react-joyride'),
+    { ssr: false }
+)
+
 import 'moment/locale/vi';
 
 const Chart = dynamic(
@@ -345,11 +350,33 @@ const UserManager = ({blogInfor, user, Themes}) => {
         });
         setSectedSite(selectedSite);
     }
+
+    const state = {
+        steps: [
+                {
+                    target: '#my-first-step',
+                    content: 'This is my awesome feature!',
+                },
+                {
+                    target: '#my-other-step',
+                    content: 'This another awesome feature!',
+                },
+            ]
+        };
+
+  const { steps } = state;
+
   return (
     <>
     <Head>
       { HTMLReactParser(HomePageSeo.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
     </Head>
+    <JoyRideNoSSR
+        steps={steps}
+        showProgress
+        showSkipButton
+        continuous
+    />
     <section className={styles.x_app_section}>
         <Container>
             <Row>
@@ -383,7 +410,7 @@ const UserManager = ({blogInfor, user, Themes}) => {
                     }
                 </Col>
                 <Col xs={24} md={!expanded ? 22 : 18}>
-                    <Row className={styles.x_create_section}>
+                    <Row id="my-first-step" className={styles.x_create_section}>
                         <Col xs={24} md={12} className={styles.x_padding}>
                             <Form>
                                 <Form.Group className={styles.x_form_search_container}>
@@ -392,7 +419,7 @@ const UserManager = ({blogInfor, user, Themes}) => {
                             </Form>
                         </Col>
                         <Col xs={24} md={12} className={styles.x_padding}>
-                            <Row>
+                            <Row id="my-other-step">
                                 <Col xs={12}>
                                     <Link href={'/giao-dien'}>
                                         <a className={styles.x_account_button}>

@@ -53,7 +53,7 @@ export const GD_Box = ({data, price}) => {
             <div className={styles.x_gd_box_content}>
                 <Link href={`/giao-dien/${data.post_name}`}>
                     <a className={styles.x_gd_box_link}>
-                        <h3 className={styles.x_gd_box_tittle}>{data.post_title}</h3>
+                        <h3 className={styles.x_gd_box_tittle}>{HTMLReactParser(data.post_title)}</h3>
                     </a>
                 </Link>
                 { price && !session ?                 
@@ -94,7 +94,7 @@ export const GD_List = ({data}) => {
                             <Link href={`/giao-dien/${data.post_name}`}>
                                 <a>
                                     <div className={styles.x_image_thumbnail}>
-                                        <Image priority placeholder='blurDataURL' alt={data.post_title} src={data.thumbnail[0]} width={data.thumbnail[1]} height={data.thumbnail[2]}/>
+                                        <Image priority placeholder='blurDataURL' alt={HTMLReactParser(data.post_title)} src={data.thumbnail[0]} width={data.thumbnail[1]} height={data.thumbnail[2]}/>
                                     </div>
                                 </a>
                             </Link>
@@ -105,7 +105,7 @@ export const GD_List = ({data}) => {
                     <div className={styles.x_gd_list_content}>
                         <Link href={`/giao-dien/${data.post_name}`}>
                                 <a className={styles.x_gd_box_link}>
-                            <h3 className={styles.x_gd_box_tittle}>{data.post_title}</h3>
+                            <h3 className={styles.x_gd_box_tittle}>{HTMLReactParser(data.post_title)}</h3>
                             </a>
                         </Link>
                         <p className={styles.x_gd_box_description}>
