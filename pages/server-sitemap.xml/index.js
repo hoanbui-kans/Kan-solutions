@@ -1,8 +1,8 @@
-import { getServerSideSitemap } from 'next-sitemap'
+import { getServerSideSitemap, ISitemapField } from 'next-sitemap'
 
 import axios from 'axios'
 
-export const GetServerSideProps = async (ctx) => {
+export const getServerSideProps = async (ctx) => {
   // Method to source urls from cms
   const urls = await axios.get('https://kanbox.vn/wp-json/sitemap/api').then((res) => res.data);
   const fields = urls.map( val => ({
@@ -15,4 +15,4 @@ export const GetServerSideProps = async (ctx) => {
   return getServerSideSitemap(ctx, fields);
 }
 
-export default function Sitemap(){}
+export default function Site() { }
