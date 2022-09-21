@@ -1,23 +1,18 @@
-import { getServerSideSitemapIndex } from 'next-sitemap'
+import { getServerSideSitemap } from 'next-sitemap'
 import { GetServerSideProps } from 'next'
 import axios from 'axios'
 
-export const getServerSideProps = async (ctx) => {
+export const GetServerSideProps = async (ctx) => {
   // Method to source urls from cms
-  const urls = await axios.get('https://kanbox.vn/wp-json/sitemap/api').then((resonse) => resonse.data);
+  const urls = await axios.get('https://kanbox.vn/wp-json/sitemap/api').then((res) => res.data);
+  const fields = urls.map( val => ({
+    loc: val,
+    changefreq: 'daily',
+    priority: 0.7,
+    lastmod: new Date().toISOString(),
+  }))
 
-  let fields = [];
-  urls.map((val) => {
-    // all possible values
-    fields.push({
-        loc: val,
-        changefreq: 'daily',
-        priority: 0.7,
-        lastmod: new Date().toISOString(),
-      })
-    })
-
-  return getServerSideSitemapIndex(ctx, fields);
+  return getServerSideSitemap(ctx, fields);
 }
 
 export default function Sitemap() {}
