@@ -18,7 +18,7 @@ const config = {
         },
       ],
       additionalSitemaps: [
-        'https://kansite.com.vn/server-sitemap-index.xml',
+        'https://kansite.com.vn/server-sitemap.xml',
       ],
     },
 }
