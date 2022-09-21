@@ -1,5 +1,4 @@
 import { getServerSideSitemap } from 'next-sitemap'
-import { GetServerSideProps } from 'next'
 
 import axios from 'axios'
 
