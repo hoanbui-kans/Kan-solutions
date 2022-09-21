@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Container, Row, Col, List, Sidenav, Panel, Breadcrumb } from 'rsuite';
+import { Container, Row, Col, List, Sidenav, Panel, Breadcrumb, Button, } from 'rsuite';
+import MenuIcon from '@rsuite/icons/Menu';
 import Link from 'next/link';
 import styles from '../../styles/account.module.css'
 import UserNav from '../../components/user-manager/UserNav';
@@ -8,7 +9,6 @@ import { useSession } from 'next-auth/react';
 import Head from 'next/head';
 import HTMLReactParser from 'html-react-parser';
 import { HomePageSeo } from '../api/HeaderSeo';
-
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 const GuileCategory = ({category}) => {
