@@ -16,4 +16,4 @@ export const GetServerSideProps = async (ctx) => {
   return getServerSideSitemap(ctx, fields);
 }
 
-export default function Sitemap() {}
+export default function Sitemap()
