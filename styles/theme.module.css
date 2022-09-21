@@ -37,7 +37,7 @@
     font-size: 22px;
 }
 .x_title{
-    font-size: 1.55rem;
+    font-size: 1.25rem;
     line-height: 1.45;
     margin-bottom: .95rem;
     display: block;
@@ -169,8 +169,6 @@
 .x_single_theme_content{
     height: 100%;
     background: white;
-    padding: .55rem .75rem;
-    border-radius: .35rem;
     display: block;
 }
 .x_theme_thumbnail_section{
@@ -304,9 +302,6 @@
     width: 100% !important;
     height: auto;
 }
-.x_single_content{
-    padding: 35px 0px
-}
 
 .x_hide_mobile{
     display: block;
@@ -314,13 +309,6 @@
 
 .x_hide_desktop{
     display: none;
-}
-
-@media (min-width: 768px){
-    .x_theme_content{
-        border-right: 1px solid var(--x-border-color);
-        padding: 0px 35px !important;
-    }
 }
 
 @media (max-width: 768px){

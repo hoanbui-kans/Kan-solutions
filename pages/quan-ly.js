@@ -39,13 +39,12 @@ import Head from 'next/head';
 import HTMLReactParser from 'html-react-parser';
 import { HomePageSeo } from './api/HeaderSeo';
 import { GD_Box } from './giao-dien';
+import 'moment/locale/vi';
 
 const JoyRideNoSSR = dynamic(
     () => import('react-joyride'),
     { ssr: false }
 )
-
-import 'moment/locale/vi';
 
 const Chart = dynamic(
   () => {
@@ -353,16 +352,29 @@ const UserManager = ({blogInfor, user, Themes}) => {
 
     const state = {
         steps: [
-                {
-                    target: '#my-first-step',
-                    content: 'This is my awesome feature!',
-                },
-                {
-                    target: '#my-other-step',
-                    content: 'This another awesome feature!',
-                },
-            ]
-        };
+            {
+                target: '#full-table',
+                content: 'Danh sách các mục quản lý thông tin giao diện!',
+            },
+            {
+                target: '#search_bar',
+                content: 'Bộ lọc website có sẵn của bạn!',
+            },
+            {
+                target: '#view_themes',
+                content: 'Xem tất cả giao diện có sẵn',
+            },
+            {
+                target: '#list_themes',
+                content: 'Danh sách giao diện miễn phí mới nhất dành cho bạn!',
+            },
+            {
+                target: '#create_themes',
+                content: 'Được rồi, hãy bắt đầu một website mới miễn phí!',
+            },
+            
+        ]
+    };
 
   const { steps } = state;
 
@@ -371,12 +383,6 @@ const UserManager = ({blogInfor, user, Themes}) => {
     <Head>
       { HTMLReactParser(HomePageSeo.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
     </Head>
-    <JoyRideNoSSR
-        steps={steps}
-        showProgress
-        showSkipButton
-        continuous
-    />
     <section className={styles.x_app_section}>
         <Container>
             <Row>
@@ -391,7 +397,8 @@ const UserManager = ({blogInfor, user, Themes}) => {
                     </Button>
                     {
                         showMobileNav ?
-                        <div className={styles.x_account_nav}>
+                        <>
+                        <div className={styles.x_account_nav}  id="full-table">
                             <Sidenav expanded={expanded}>
                                 <Sidenav.Body>
                                     <UserNav active={'quan-ly'} expanded={expanded}/>
@@ -406,13 +413,15 @@ const UserManager = ({blogInfor, user, Themes}) => {
                                     </Button>
                                 </Sidenav.Body>
                             </Sidenav> 
-                        </div> : ''
+                        </div>
+                        <div className={styles.x_overlay}></div>
+                        </> : ''
                     }
                 </Col>
                 <Col xs={24} md={!expanded ? 22 : 18}>
                     <Row id="my-first-step" className={styles.x_create_section}>
                         <Col xs={24} md={12} className={styles.x_padding}>
-                            <Form>
+                            <Form id="search_bar">
                                 <Form.Group className={styles.x_form_search_container}>
                                     <SelectPicker locale={locales.Picker} className={styles.x_custom_picker} onChange={handleSelectBlogName} data={selectDataTitle} style={{ width: '100%' }} />
                                 </Form.Group>
@@ -422,7 +431,7 @@ const UserManager = ({blogInfor, user, Themes}) => {
                             <Row id="my-other-step">
                                 <Col xs={12}>
                                     <Link href={'/giao-dien'}>
-                                        <a className={styles.x_account_button}>
+                                        <a id="view_themes" className={styles.x_account_button}>
                                             <Button className={styles.x_outline_view}>
                                                 <IoAlbumsOutline size={20}/>
                                                 Xem mẫu giao diện
@@ -432,7 +441,7 @@ const UserManager = ({blogInfor, user, Themes}) => {
                                 </Col>
                                 <Col xs={12}>
                                     <Link href={'/giao-dien'}>
-                                        <a className={styles.x_account_button}>
+                                        <a id="create_themes" className={styles.x_account_button}>
                                             <Button className={styles.x_outline_create}>
                                                 <IoAddSharp size={20}/>
                                                 Tạo trang mới
@@ -493,7 +502,24 @@ const UserManager = ({blogInfor, user, Themes}) => {
                             </>
                             : 
                             <>
-                                <Row>
+                                <JoyRideNoSSR
+                                    steps={steps}
+                                    showProgress
+                                    showSkipButton
+                                    continuous
+                                    styles={{
+                                    options: {
+                                            arrowColor: '#ffffff',
+                                            backgroundColor: '#ffffff',
+                                            overlayColor: 'rgb(0 0 0 / 40%)',
+                                            primaryColor: '#2d88e2',
+                                            textColor: '#000000',
+                                            width: 400,
+                                            zIndex: 1000,
+                                        }
+                                    }}
+                                />
+                                <Row id="list_themes">
                                     {
                                         Themes.map((val, index) => {
                                             return(

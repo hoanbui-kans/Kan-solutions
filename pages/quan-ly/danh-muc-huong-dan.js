@@ -48,14 +48,34 @@ const GuileCategory = ({category}) => {
         <Container>
             <Row className={styles.x_create_section}>
                 <Col xs={24} md={!expanded ? 2 : 6}>
-                    <div className={styles.x_account_nav}>
-                        <Sidenav expanded={expanded} defaultOpenKeys={['3', '4']}>
-                            <Sidenav.Body>
-                            <UserNav active={'huong-dan'} expanded={expanded}/>
-                            <Sidenav.Toggle onToggle={expanded => setExpanded(expanded)} />
-                            </Sidenav.Body>
-                        </Sidenav>
-                    </div>
+                    <Button 
+                        onClick={() => {setShowMobileNav(!showMobileNav)}} 
+                        className={styles.x_mobile_menu_button} 
+                        style={{width: '100%'}}
+                    >   
+                    {
+                        showMobileNav ?
+                        <>
+                            <div className={styles.x_account_nav}>
+                                <Sidenav expanded={expanded} defaultOpenKeys={['3', '4']}>
+                                    <Sidenav.Body>
+                                    <UserNav active={'huong-dan'} expanded={expanded}/>
+                                    <Sidenav.Toggle onToggle={expanded => setExpanded(expanded)} />
+                                    </Sidenav.Body>
+                                    <Button 
+                                            className={styles.x_nav_mobile_close_button}
+                                            onClick={() => {setShowMobileNav(!showMobileNav)}} 
+                                            appearance="primary" 
+                                            style={{width: '100%'}}
+                                        >
+                                            Đóng
+                                    </Button>
+                                </Sidenav>
+                            </div> 
+                            <div className={styles.x_overlay}></div>
+                        </>
+                        : ''
+                    }
                 </Col>
                 <Col xs={24} md={!expanded ? 22 : 18}>
                     <Panel bordered style={{background: 'white'}}>

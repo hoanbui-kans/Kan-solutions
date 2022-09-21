@@ -91,7 +91,7 @@ const AboutUs = () => {
                 <Image alt='layout' src={'/layout/real-mockup.png'} width={800} height={395}/>
               </Col>
               <Col xs={24} md={12}>
-                <h3 className={styles.x_about_title}>Về Kan Solution</h3>
+                <h1 className={styles.x_about_title}>Về Kan Solution</h1>
                 <p>
                   Bạn thắc mắc vì sao website bạn đầu tư thiết kế website rất nhiều tiền, cũng đổ tiền quảng cáo với ngân sách khủng nhưng hiệu quả bán hàng không được như ý, thậm chí không bằng các website nhìn rất xấu
                 </p>

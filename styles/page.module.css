@@ -169,6 +169,10 @@
     column-gap: 10px;
     color: var(--x-title-color);
 }
+.x_iconImage{
+    width: 24px !important;
+    max-width: 24px !important;
+}
 .x_service_form_group{
     margin-bottom: 14px;
 }

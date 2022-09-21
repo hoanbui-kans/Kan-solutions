@@ -60,22 +60,26 @@ const Annoucement = ({bai_viet}) => {
                         </Button>
                     {
                         showMobileNav ?
-                        <div className={styles.x_account_nav}>
-                            <Sidenav expanded={expanded}>
-                                <Sidenav.Body>
-                                    <UserNav active={'thong-bao'} expanded={expanded}/>
-                                    <Sidenav.Toggle onToggle={expanded => setExpanded(expanded)} />
-                                    <Button 
-                                        className={styles.x_nav_mobile_close_button}
-                                        onClick={() => {setShowMobileNav(!showMobileNav)}} 
-                                        appearance="primary" 
-                                        style={{width: '100%'}}
-                                    >
-                                        Đóng
-                                    </Button>
-                                </Sidenav.Body>
-                            </Sidenav>
-                        </div> : ''
+                        <>
+                            <div className={styles.x_account_nav}>
+                                <Sidenav expanded={expanded}>
+                                    <Sidenav.Body>
+                                        <UserNav active={'thong-bao'} expanded={expanded}/>
+                                        <Sidenav.Toggle onToggle={expanded => setExpanded(expanded)} />
+                                        <Button 
+                                            className={styles.x_nav_mobile_close_button}
+                                            onClick={() => {setShowMobileNav(!showMobileNav)}} 
+                                            appearance="primary" 
+                                            style={{width: '100%'}}
+                                        >
+                                            Đóng
+                                        </Button>
+                                    </Sidenav.Body>
+                                </Sidenav>
+                            </div>
+                            <div className={styles.x_overlay}></div>
+                         </>
+                          : ''
                     }
                 </Col>
                 <Col xs={24} md={!expanded ? 22 : 18}>

@@ -12,7 +12,16 @@
         display: block !important;
     }
 }
-
+.x_closing_dropdown{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: all;
+    z-index: 1;
+    cursor: pointer;
+}
 .x_mobile_display{
     display: none;
 }
@@ -75,6 +84,13 @@
     padding: 10px 8px;
     cursor: pointer;
 }
+.x_search_wrapper{
+    padding: 35px 0px;
+    background: whitesmoke;
+}
+.x_search_input{
+    margin-bottom: 35px;
+}
 .x_search_button{
     position: absolute;
     left: 10px;
@@ -121,7 +137,6 @@
     padding: .25rem;
     transition: all .45s ease-in-out;
     display: block;
-    background: var(--x-light-color);
 }
 .x_search_result_showing{
     max-height: 999px;
@@ -312,13 +327,18 @@
 
   .animationHeader{
       position: relative;
-      z-index: 1;
+      z-index: 2;
   }
+  .animationHeader .x_menu_container{
+    z-index: 1;
+  }
+
   .animationHeaderNone{
      pointer-events: none;
      position: relative;
-     z-index: 1;
+     z-index: 2;
    }
+
   .x_iconImage{
      margin-right: 10px;
   }
@@ -487,7 +507,7 @@
 }
 .x_header{
     position: relative;
-    z-index: 2;
+    z-index: 5;
     background-color: var(--x-white-color);
     border-bottom: 1px solid #ededed;
 }
@@ -498,14 +518,14 @@
 }
 .x_search_result_thumbnail{
     display: block;
-    width: 100px;
+    width: 240px;
 }
 .x_search_result_thumbnail img{
     border-radius: 5px;
 }
 .x_search_result_content{
     display: block;
-    width: calc(100% - 100px);
+    width: calc(100% - 240px);
     padding-left: 15px;
 }
 .x_search_result_post{
@@ -518,7 +538,7 @@
     cursor: pointer;
 }
 .x_search_result_title{
-    font-size: 1rem;
+    font-size: 1.25rem;
     line-height: 1.25;
     font-weight: 400;
     margin-bottom: .25rem;
@@ -526,38 +546,12 @@
 }
 
 .x_search_result_excerpt{
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 300;
 }
 
-.x_search_result_section{
-    padding: .25rem 1.25rem;
-    max-height: 400px;
-    overflow-y: scroll;
-}
 
-/* width */
-.x_search_result_section::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  /* Track */
-  .x_search_result_section::-webkit-scrollbar-track {
-    background: #f1f1f1; 
-  }
-   
-  /* Handle */
-  .x_search_result_section::-webkit-scrollbar-thumb {
-    background: #888; 
-    border-radius: 6px;
-  }
-  
-  /* Handle on hover */
-  .x_search_result_section::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-  }
-
-  .hamburger {
+.hamburger {
     padding: 10px 0px;
     display: inline-block;
     cursor: pointer;

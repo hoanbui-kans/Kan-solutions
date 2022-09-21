@@ -5,7 +5,6 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { Grid, Container, Row, Col, Button, Breadcrumb, Modal } from 'rsuite'
 import Image from 'next/image'
-import styles from '../../styles/theme.module.css'
 import CheckRoundIcon from '@rsuite/icons/CheckRound'
 import FormTuVan from '../../components/FormTuVan'
 import { getSession } from 'next-auth/react'
@@ -13,6 +12,10 @@ import { SingleProject } from '../du-an'
 import ArrowRightIcon from '@rsuite/icons/ArrowRight';
 import ServicesSubmitForm from '../../components/handleSubmitServices'
 import CommentsUI from '../../components/comment'
+import styles from '../../styles/theme.module.css'
+import stylesPage from '../../styles/page.module.css'
+import { listServices } from '../../pages/api/services'
+
 const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON;
 
 export const Layout = ({data}) => {
@@ -119,16 +122,20 @@ export const SinglePageProject = ({data}) => {
                   }
                   {
                     data.post_content ? 
-                    <div className={styles.x_single_theme_section}>
+                    <>
+                    <div className={styles.x_single_theme_section + ' ' + styles.x_hide_mobile}>
                       <h2 className={styles.x_content_title}>Giới thiệu</h2>
                       <div className={styles.x_sing_theme_content}>
                         {HTMLReactParser(data.post_content)}
                       </div>
-                    </div> : ''
+                      <div className={styles.x_comment_form}>
+                        <CommentsUI data={data.comment} post_id={data.ID}/>
+                      </div>
+                    </div> 
+                    </>
+                    : ''
                   }
-                  <div className={styles.x_comment_form}>
-                    <CommentsUI data={data.comment} post_id={data.ID}/>
-                  </div>
+                  
                 </div>
               </Col>
               <Col xs={24} md={8} className={styles.x_padding}>
@@ -138,7 +145,7 @@ export const SinglePageProject = ({data}) => {
                     <div className={styles.x_toolbar_button}>
                     <Button 
                         className={styles.x_create_button}
-                        onClick={() => { handleOpen('Dịch vụ hosting thiết kế webiste ' + data.post_title) }}
+                        onClick={() => { handleOpen('Dịch vụ thiết kế website: ' + data.post_title) }}
                       >
                         Đăng ký tư vấn
                       </Button> 
@@ -147,11 +154,40 @@ export const SinglePageProject = ({data}) => {
                             Xem dự án này
                           </Button>
                       </a>
-                    </div>  
+                  </div>  
+                  {
+                    data.post_content ? 
+                    <>
+                    <div className={styles.x_single_theme_section + ' ' + styles.x_hide_desktop}>
+                      <h2 className={styles.x_content_title}>Giới thiệu</h2>
+                      <div className={styles.x_sing_theme_content}>
+                        {HTMLReactParser(data.post_content)}
+                      </div>
+                      <div className={styles.x_comment_form}>
+                        <CommentsUI data={data.comment} post_id={data.ID}/>
+                      </div>
+                    </div> 
+                    </>
+                    : ''
+                  }
+                  <h3 className={stylesPage.x_service_list_title}> Danh sách dịch vụ </h3>
+                    {
+                        listServices.map((val, index) => {
+                            return(
+                                <div className={stylesPage.x_dropbox} key={index}>
+                                    <Link href={val.link} >
+                                        <a className={stylesPage.x_iconLink}>
+                                        <span className={stylesPage.x_iconImage}><Image alt='layout' src={val.image} width={24} height={24} /> </span> 
+                                        {val.name}</a>
+                                    </Link>
+                                </div>
+                            )
+                        })
+                    }
                   <div className={styles.x_single_theme_section}>
                     <h2 className={styles.x_content_title}>Thông tin hỗ trợ</h2>
                     <FormTuVan title={'Đăng kỹ hỗ trợ giao diện ' + data.post_title}/>
-                    </div>
+                  </div>
                 </div>
               </Col>
                 {

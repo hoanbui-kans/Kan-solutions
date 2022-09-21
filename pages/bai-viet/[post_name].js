@@ -9,6 +9,7 @@ import Head from 'next/head';
 import { IoPersonCircleOutline, IoTimeOutline } from "react-icons/io5";
 import { BlogStyleTwo } from '../../components/blog-templates/BlogContent';
 import CommentsUI from '../../components/comment';
+import ServicesSiderbar from '../../components/ServicesSiderbar';
 
 import {
   PinterestShareButton,
@@ -98,16 +99,16 @@ const PostSingle = ({data}) => {
          <div className={styles.x_container_x}>
                   <Container>
                     <Row>
-                        <Col xs={24} md={20}>
+                        <Col xs={24} md={18}>
                             <div className={styles.x_blog_content}>
                               {
                                 data.thumbnail ?
                                 <span className={styles.x_single_blog_thumbnail}>
-                                  <Image alt={data.post_title} src={data.thumbnail[0]} width={data.thumbnail[1]} height={data.thumbnail[2]}/>
+                                  <Image alt={HTMLReactParser(data.post_title)} src={data.thumbnail[0]} width={data.thumbnail[1]} height={data.thumbnail[2]}/>
                                 </span> : '' 
                               }
                               <div className={styles.x_single_blog_meta}>
-                                <h1 className={styles.x_post_title}>{data.post_title}</h1>
+                                <h1 className={styles.x_post_title}>{HTMLReactParser(data.post_title)}</h1>
                                 <ul className={styles.x_single_post_data}>
                                   <li><span><IoPersonCircleOutline size={16}/> Được viết bởi: </span> { miscValue[0] }</li>
                                   <li><span><IoTimeOutline size={16}/> Ước tính thời gian đọc: </span> { miscValue[1] }</li>
@@ -118,17 +119,21 @@ const PostSingle = ({data}) => {
                                   HTMLReactParser(data.post_content)
                                 }
                               </div>
+                              <div className={styles.x_sharing}>
+                                <strong>Chia sẻ lên</strong>
+                                <SocialLink 
+                                  title={data.post_title ? data.post_title : ''} 
+                                  description={data.post_excerpt ? data.post_excerpt : ''} 
+                                  media={data.thumbnail ? data.thumbnail : ''}
+                                />
+                              </div>
                               <div className={styles.x_comment_form}>
                                 <CommentsUI data={data.comment} post_id={data.ID}/>
                               </div>
                             </div>
                         </Col>
-                        <Col xs={24} md={4}>
-                            <SocialLink 
-                                title={data.post_title ? data.post_title : ''} 
-                                description={data.post_excerpt ? data.post_excerpt : ''} 
-                                media={data.thumbnail ? data.thumbnail : ''}
-                              />
+                        <Col xs={24} md={6}>
+                            <ServicesSiderbar title={'Đăng kỹ hỗ trợ giao diện trang dự án'} />
                         </Col>
                     </Row>
                       {

@@ -7,88 +7,70 @@ function strip(html) {
   return two;
 }
 
-const SchemaSite = ({ post }) => {
-  const {
-    title,
-    blurb,
-    featuredImage,
-    date,
-    modified,
-    slug,
-    commentCount,
-    author,
-    ratingCount,
-    ratingAverage,
-    citations
-  } = post;
-  const published = new Date(date);
-  const copyrightYear = published.getFullYear();
+const LocalBusiness = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Công Ty TNHH Giải Pháp Kan",
+  "image": "https://kanbox.vn/wp-content/themes/kanbox/img/logo/logo.svg",
+  "@id": "",
+  "url": "https://kansite.com.vn/",
+  "telephone": "039 219 3639",
+  "priceRange": "1500000",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Tầng 4 Block A Centana Thủ Thiêm, P. An Phú",
+    "addressLocality": "Hồ Chí Minh",
+    "postalCode": "700000",
+    "addressCountry": "VN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 10.7906183,
+    "longitude": 106.7521082
+  } ,
+  "sameAs": [
+    "https://www.youtube.com/channel/UCiBP5UCeRahpOCjZ1fxRKKQ",
+    "https://kansite.com.vn/",
+    "https://www.facebook.com/KanS-100553286127651"
+  ] 
+};
 
-  let mediaDetails, sourceUrl;
+const Organization  = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "CÔNG TY TNHH GIẢI PHÁP KAN",
+  "alternateName": "Kan Solution",
+  "url": "https://kansite.com.vn/",
+  "logo": "https://kanbox.vn/wp-content/themes/kanbox/img/logo/logo.svg",
+  "contactPoint": [{
+    "@type": "ContactPoint",
+    "telephone": "0903 888 781",
+    "contactType": "technical support",
+    "contactOption": "HearingImpairedSupported",
+    "areaServed": "VN",
+    "availableLanguage": "Vietnamese"
+  },{
+    "@type": "ContactPoint",
+    "telephone": "039 219 3639",
+    "contactType": "customer service",
+    "contactOption": "HearingImpairedSupported",
+    "areaServed": "VN",
+    "availableLanguage": "Vietnamese"
+  }],
+  "sameAs": [
+    "https://www.facebook.com/KanS-100553286127651",
+    "https://www.youtube.com/channel/UCiBP5UCeRahpOCjZ1fxRKKQ",
+    "https://kansite.com.vn/"
+  ]
+};
 
-  if (featuredImage) {
-    sourceUrl = featuredImage.sourceUrl;
-  }
-
-  const citationsList = citations.map((citation, i) => {
-    return `{ "@type": "CreativeWork", "citation": ${JSON.stringify(
-      citation
-    )} }${i === citations.length - 1 ? "" : ","}\n`;
-  });
-  const citationsText = citationsList.join("");
-
-  const org = `{ "@id": "${site}#organization", "type": "Organization", "name":"${siteTitle}", "logo": {
-    "@type": "ImageObject",
-    "name": "${siteTitle} Logo",
-    "width": "230",
-    "height": "67",
-    "url": "${site}images/logo.png"
-} }`;
-
+const SchemaSite = () => {
   return (
     <Head>
-      <script type="application/ld+json">{`
-    {
-      "@context":"https://schema.org/",
-      "@type":"Article",
-      "name":"${title}",
-      ${
-        ratingAverage > 4
-          ? `"aggregateRating": {
-        "@type":"AggregateRating",
-        "ratingValue":${ratingAverage},
-        "reviewCount":${ratingCount}
-      },`
-          : ""
-      }
-      "about": "${blurb}",
-      "author": { "@type": "Person", "@id": "${site}author/${
-        author.slug
-      }", "name": "${author.name}" },
-      ${
-        citationsText.length
-          ? `"citation": [
-        ${citationsText}
-      ],`
-          : ""
-      }
-      "commentCount": ${commentCount},
-      "copyrightHolder": { "@id": "${site}#organization" },
-      "copyrightYear": ${copyrightYear},
-      "datePublished": "${date}",
-      "dateModified": "${modified}",
-      "description": "${blurb}",
-      "discussionUrl": "${site}articles/${slug}#comments",
-      "editor": { "@id": "${site}author/${author.slug}#author" },
-      "headline": "${title}",
-      ${sourceUrl ? `"image": "${sourceUrl}",` : ""}
-      "inLanguage": "English",
-      "mainEntityOfPage": "${site}articles/${slug}",
-      "publisher": { "@id": "${site}#organization" },
-      "sourceOrganization": ${org},
-      "url": "${site}articles/${slug}"
-
-    }
-    `}</script> </Head> );
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(LocalBusiness)}} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(Organization)}} />
+    </Head> 
+  );
 };
+
 export default SchemaSite;

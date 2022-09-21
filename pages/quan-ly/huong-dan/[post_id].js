@@ -62,6 +62,7 @@ const SingleGuilde = ({data}) => {
                         </Button>
                     {
                         showMobileNav ?
+                        <>
                         <div className={styles.x_account_nav}>
                             <Sidenav expanded={expanded}>
                                 <Sidenav.Body>
@@ -77,7 +78,10 @@ const SingleGuilde = ({data}) => {
                                     </Button>
                                 </Sidenav.Body>
                             </Sidenav>
-                        </div> : ''
+                        </div> 
+                        <div className={styles.x_overlay}></div>
+                        </>
+                        : ''
                     }
                 </Col>
                 <Col xs={24} md={!expanded ? 22 : 18}>

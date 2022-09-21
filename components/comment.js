@@ -300,28 +300,37 @@ const CommentsUI = ({data}) => {
     )
   }
 
+  let CommentSchema = '';
+  if(data.price){
+    CommentSchema = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": data.post_title,
+        "operatingSystem": "WEB",
+        "applicationCategory": "WebApplication",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": average,
+          "ratingCount": total_rating
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": data.price.sale_price ? data.price.sale_price : data.price.regular_price,
+          "priceCurrency": "VND"
+      }
+    };
+  }
+
   return (
     <>
-    {/* <Head>
-      <script type="application/ld+json">
-          {data.price ? HTMLReactParser(`{
-            "@context": "https://schema.org",
-            "@type": "SoftwareApplication",
-            "name": "${data.post_title}",
-            "operatingSystem": "WEB",
-            "applicationCategory": "WebApplication",
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": "${average}",
-              "ratingCount": "${total_rating}"
-            },
-            "offers": {
-              "@type": "Offer",
-              "price": "${data.price.sale_price ? data.price.sale_price : data.price.regular_price}",
-              "priceCurrency": "VND"
-            }}`): ''}
-      </script>
-    </Head> */}
+    <Head>
+      { 
+      CommentSchema != '' ? 
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(CommentSchema)}} /> : 
+      ""
+    }
+     
+    </Head>
     {
         comments.length == 0 ? 
         <>

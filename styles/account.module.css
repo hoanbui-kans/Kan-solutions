@@ -8,7 +8,8 @@
     background: #398af3;
 }
 .x_app_section{
-    padding: 35px 0px
+    padding: 35px 0px;
+    background: #ebebeb
 }
 .x_app_nav{
     background: #398af3
@@ -261,9 +262,6 @@
     margin-bottom: 0.35rem;
     margin-top: 0;
 }
-.x_app_section{
-    background: #f7f7f7
-}
 .x_blog_link{
     height: 32px;
     position: absolute;
@@ -300,13 +298,13 @@
     background: #f2f2f2;
     background-size: cover;
     background-repeat: no-repeat;
-    min-height: 100vh;
+    padding: 75px 0px;
 }
 .x_account_background_sections{
     background: #f2f2f2;
     background-size: cover;
     background-repeat: no-repeat;
-    height: 100vh;
+    padding: 75px 0px;
 }
 .x_neumorphic{
     position: fixed;
@@ -350,10 +348,10 @@
     display: block;
     position: relative;
     z-index: 2;
-    max-width: 540px;
-    margin: 35px auto;
-    border-radius: 20px;
+    max-width: 680px;
+    margin: auto;
     background-color: white;
+    border-bottom: 2px solid #d5d5d5;
 }
 .x_login_form{
     margin: 35px auto;
@@ -445,6 +443,9 @@
     font-size: 12px;
     font-weight: bold;
     margin-left: 10px;
+}
+.x_account_nav{
+    border-radius: 8px;
 }
 .x_account_nav > span, .x_account_nav a{
     border-radius: 12px !important;
@@ -680,7 +681,7 @@
 @media (max-width: 768px){
     .x_account_nav{
         position: fixed;
-        z-index: 999;
+        z-index: 9999;
         width: auto;
         top: 5%;
         left: 10px;
@@ -690,6 +691,16 @@
         box-shadow: 0px 0px 10px -3px;
         padding: 15px;
         color: var(--rs-sidenav-default-hover-text);
+    }
+    .x_overlay{
+        height: 100%;
+        position: fixed;
+        z-index: 999;
+        background: rgb(0 0 0 / 55%);
+        backdrop-filter: blur(10px);
+        width: 100%;
+        top: 0;
+        left: 0;
     }
     .x_nav_mobile_close_button{
         display: block !important;

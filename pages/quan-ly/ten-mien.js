@@ -22,6 +22,31 @@ import MenuIcon from '@rsuite/icons/Menu';
 import Head from 'next/head';
 import HTMLReactParser from 'html-react-parser';
 import { HomePageSeo } from '../api/HeaderSeo';
+import dynamic from 'next/dynamic';
+
+const JoyRideNoSSR = dynamic(
+    () => import('react-joyride'),
+    { ssr: false }
+)
+
+const state = {
+    steps: [
+        {
+            target: '#full-table',
+            content: 'Xin chào đây là thông tin quản lý tên miền của bạn!',
+        },
+        {
+            target: '#domain_input',
+            content: 'Thêm tên miền riêng của bạn và nhấn vào "Thêm tên miền", xin vui lòng đợi ít phút để yêu cầu được khởi tạo!',
+        },
+        {
+            target: '#avaiable_domain',
+            content: 'Thông tin tên miền của bạn sẽ được hiển thị tại đây',
+        }
+    ]
+};
+
+const { steps } = state;
 
 const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON
 
@@ -154,6 +179,23 @@ const Domain = ({posts, token}) => {
         </Head>
         <section className={styles.x_app_section}>
             <Container>
+                <JoyRideNoSSR
+                    steps={steps}
+                    showProgress
+                    showSkipButton
+                    continuous
+                    styles={{
+                    options: {
+                            arrowColor: '#ffffff',
+                            backgroundColor: '#ffffff',
+                            overlayColor: 'rgb(0 0 0 / 40%)',
+                            primaryColor: '#2d88e2',
+                            textColor: '#000000',
+                            width: 400,
+                            zIndex: 1000,
+                        }
+                    }}
+                />
                 <Row>
                     <Col xs={24} md={!expanded ? 2 : 6}>
                         <Button 
@@ -165,102 +207,111 @@ const Domain = ({posts, token}) => {
                             </Button>
                         {
                             showMobileNav ?
-                            <div className={styles.x_account_nav}>
-                                <Sidenav expanded={expanded}>
-                                    <Sidenav.Body>
-                                        <UserNav active={'ten-mien'} expanded={expanded}/>
-                                        <Sidenav.Toggle onToggle={expanded => setExpanded(expanded)} />
-                                        <Button 
-                                            className={styles.x_nav_mobile_close_button}
-                                            onClick={() => {setShowMobileNav(!showMobileNav)}} 
-                                            appearance="primary" 
-                                            style={{width: '100%'}}
-                                        >
-                                            Đóng
-                                        </Button>
-                                    </Sidenav.Body>
-                                </Sidenav>
-                            </div> : ''
+                            <>
+                                <div className={styles.x_account_nav}>
+                                    <Sidenav expanded={expanded}>
+                                        <Sidenav.Body>
+                                            <UserNav active={'ten-mien'} expanded={expanded}/>
+                                            <Sidenav.Toggle onToggle={expanded => setExpanded(expanded)} />
+                                            <Button 
+                                                className={styles.x_nav_mobile_close_button}
+                                                onClick={() => {setShowMobileNav(!showMobileNav)}} 
+                                                appearance="primary" 
+                                                style={{width: '100%'}}
+                                            >
+                                                Đóng
+                                            </Button>
+                                        </Sidenav.Body>
+                                    </Sidenav>
+                                </div> 
+                                <div className={styles.x_overlay}></div>
+                            </>
+                            : ''
                         }
                     </Col>
                     <Col xs={24} md={!expanded ? 22 : 18}>
-                        <div className={styles.x_domain_section}>
-                            <Form 
-                                fluid
-                            >
-                                <Form.Group>
-                                    <Form.ControlLabel>Thêm tên miền</Form.ControlLabel>
-                                    <Form.Control name="domain" onChange={(e) => setValueDomain(e)} value={domainValue} placeholder="tenmien.com"/>
-                                </Form.Group>
-                                <Form.Group>
-                                    <Button 
-                                        className={styles.x_button_add_domain} 
-                                        onClick={HandleCreateDomain} 
-                                        appearance="primary" 
-                                    >
-                                        {
-                                         loading ? <Loader size={16}/> : <IoGlobeOutline size={16}/>
-                                        }
-                                        Thêm tên miền
-                                        </Button>
-                                </Form.Group>
-                            </Form>
-                        </div>
-                        <Table
-                            height={400}
-                            data={posts}
-                            rowHeight={65}
-                            >
-                                <Table.Column width={70} align="center" sortable>
-                                    <Table.HeaderCell><strong>STT</strong></Table.HeaderCell>
-                                    <Table.Cell dataKey="log">
-                                        {rowData => rowData.key}
-                                    </Table.Cell>
-                                </Table.Column>
-                                <Table.Column flexGrow={1}>
-                                    <Table.HeaderCell><strong>Tên miền</strong></Table.HeaderCell>
-                                    <Table.Cell dataKey="log">
-                                        {rowData => rowData.domain}
-                                    </Table.Cell>
-                                </Table.Column>
-                                <Table.Column flexGrow={2}>
-                                    <Table.HeaderCell><strong>Trình trạng</strong></Table.HeaderCell>
-                                    <Table.Cell dataKey="log">
-                                        {rowData => {
-                                            switch(rowData.status){
-                                                case 'xoa':  
-                                                    return <span style={{
-                                                        padding: '4px 12px', 
-                                                        borderRadius: '5px', 
-                                                        backgroundColor: '#ff6a6a', 
-                                                        fontSize: '12px',
-                                                        color: 'white'}}>Vô hiệu hóa</span>;
-                                                break;
-                                                case 'su-dung':  
-                                                    return <span style={{
-                                                        padding: '4px 12px', 
-                                                        borderRadius: '5px', 
-                                                        backgroundColor: '#03a84e', 
-                                                        fontSize: '12px',
-                                                        color: 'white'}}>Đang sử dụng</span>;
-                                                    break;
-                                                case 'khoi-tao':  
-                                                return <span style={{
-                                                        padding: '4px 12px', 
-                                                        borderRadius: '5px', 
-                                                        backgroundColor: '#6f6f6f', 
-                                                        fontSize: '12px',
-                                                        color: 'white'}}>Chưa sử dụng</span>;
-                                                    break;
+                        <div id="full-table">
+                            <div className={styles.x_domain_section}>
+                                <Form 
+                                    fluid
+                                    id="domain_input"
+                                >
+                                    <Form.Group>
+                                        <Form.ControlLabel>Thêm tên miền</Form.ControlLabel>
+                                        <Form.Control name="domain" onChange={(e) => setValueDomain(e)} value={domainValue} placeholder="tenmien.com"/>
+                                    </Form.Group>
+                                    <Form.Group>
+                                        <Button 
+                                            className={styles.x_button_add_domain} 
+                                            onClick={HandleCreateDomain} 
+                                            appearance="primary" 
+                                        >
+                                            {
+                                            loading ? <Loader size={16}/> : <IoGlobeOutline size={16}/>
                                             }
-                                        }}
-                                    </Table.Cell>
-                                </Table.Column>
-                                <Table.Column width={200} fixed="right" align='center'>
-                                    <Table.HeaderCell>Hành động</Table.HeaderCell>
-                                    <ActionCell dataKey="id" />
-                                </Table.Column>
-                        </Table>
+                                            Thêm tên miền
+                                            </Button>
+                                    </Form.Group>
+                                </Form>
+                            </div>
+                            <div id="avaiable_domain">
+                                <Table
+                                    height={400}
+                                    data={posts}
+                                    rowHeight={65}
+                                    >
+                                        <Table.Column width={70} align="center" sortable>
+                                            <Table.HeaderCell><strong>STT</strong></Table.HeaderCell>
+                                            <Table.Cell dataKey="log">
+                                                {rowData => rowData.key}
+                                            </Table.Cell>
+                                        </Table.Column>
+                                        <Table.Column flexGrow={1}>
+                                            <Table.HeaderCell><strong>Tên miền</strong></Table.HeaderCell>
+                                            <Table.Cell dataKey="log">
+                                                {rowData => rowData.domain}
+                                            </Table.Cell>
+                                        </Table.Column>
+                                        <Table.Column flexGrow={2}>
+                                            <Table.HeaderCell><strong>Trình trạng</strong></Table.HeaderCell>
+                                            <Table.Cell dataKey="log">
+                                                {rowData => {
+                                                    switch(rowData.status){
+                                                        case 'xoa':  
+                                                            return <span style={{
+                                                                padding: '4px 12px', 
+                                                                borderRadius: '5px', 
+                                                                backgroundColor: '#ff6a6a', 
+                                                                fontSize: '12px',
+                                                                color: 'white'}}>Vô hiệu hóa</span>;
+                                                        break;
+                                                        case 'su-dung':  
+                                                            return <span style={{
+                                                                padding: '4px 12px', 
+                                                                borderRadius: '5px', 
+                                                                backgroundColor: '#03a84e', 
+                                                                fontSize: '12px',
+                                                                color: 'white'}}>Đang sử dụng</span>;
+                                                            break;
+                                                        case 'khoi-tao':  
+                                                        return <span style={{
+                                                                padding: '4px 12px', 
+                                                                borderRadius: '5px', 
+                                                                backgroundColor: '#6f6f6f', 
+                                                                fontSize: '12px',
+                                                                color: 'white'}}>Chưa sử dụng</span>;
+                                                            break;
+                                                    }
+                                                }}
+                                            </Table.Cell>
+                                        </Table.Column>
+                                        <Table.Column width={200} fixed="right" align='center'>
+                                            <Table.HeaderCell>Hành động</Table.HeaderCell>
+                                            <ActionCell dataKey="id" />
+                                        </Table.Column>
+                                </Table>
+                            </div>
+                        </div>
                     </Col>
                 </Row>
             </Container>

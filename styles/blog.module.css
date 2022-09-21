@@ -314,7 +314,22 @@
 .x_social_group{
   list-style: none;
   padding: 0;
+  display: flex;
+  column-gap: 10px;
+  margin: 0px;
 }
+
+.x_sharing{
+  padding: 15px;
+  background: whitesmoke;
+  border-bottom: 2px solid #2d88e2;
+  margin-bottom: 15px;
+}
+.x_sharing strong{
+  margin-bottom: 10px;
+  display: block;
+}
+
 .x_social_group li {
   margin-bottom: 8px;
 }

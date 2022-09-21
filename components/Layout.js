@@ -8,19 +8,23 @@ import { useSession } from "next-auth/react"
 import Head from 'next/head';
 import Script from 'next/script'
 import HTMLReactParser from 'html-react-parser';
+import SchemaSite from '../components/Schema';
 
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 
 const Layout = ({ children }) => {
     const router = useRouter();
     const pathname = router.pathname;
+
     const [hreflangURI, sethreflangURI] = useState('');
     const [loading, setLoading] = useState(false);
-        Router.events.on('routeChangeStart', () => {
-          setLoading(true);
-          window.scrollTo(0, 0)
-        })
-        Router.events.on('routeChangeComplete', () => {
+
+    Router.events.on('routeChangeStart', () => {
+      setLoading(true);
+      window.scrollTo(0, 0)
+    })
+
+    Router.events.on('routeChangeComplete', () => {
         setLoading(false);
     });
 
@@ -82,6 +86,7 @@ const Layout = ({ children }) => {
       }, [isLoading, isSignedIn, parentContainerId]);
     
     let off = false;
+
     useEffect(() => {
       if(!off){
         console.log('%cKAN SOLUTION', 'color: #2d88e2; font-size: 34px; line-height: 38px; font-weight: 900;');
@@ -90,12 +95,28 @@ const Layout = ({ children }) => {
       off = true;
     }, [off])
 
+    const SearchBoxSchema = {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "url": site_url,
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": site_url + "/tim-kiem?s={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+
     return (
         <>
         <Head>
-        <meta name="google-site-verification" content="rrhzRHk7SR7nSIFPU8TAfwRLuGUDedgPiC0nccSlKgA" />
-        <link rel="alternate" href={hreflangURI} hrefLang="vi-vn" />
+          <meta name="google-site-verification" content="rrhzRHk7SR7nSIFPU8TAfwRLuGUDedgPiC0nccSlKgA" />
+          <link rel="alternate" href={hreflangURI} hrefLang="vi-vn" />
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SearchBoxSchema)}} />
         </Head>
+        <SchemaSite />
         <Script id="Kansite_Analytics" async src="https://www.googletagmanager.com/gtag/js?id=G-Y0ZHL4GN97"></Script>
         <Script id="analytic-config">
           {
@@ -118,24 +139,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
          <!-- End Google Tag Manager (noscript) -->`)
         }
         <Component />
-        {
-          !pathname.includes('/dang-nhap')  
-          && !pathname.includes('/dang-ky') 
-          && !pathname.includes('/admin') 
-          && !pathname.includes('/quan-ly/dang-xuat')
-          && !pathname.includes('/quan-ly/cap-nhat-thong-tin')
-          && !pathname.includes('/giao-dien/xem-giao-dien/') ? 
-          <>
-            <Header />
-              {
-                  loading ? 
-                  <Loading /> :
-                  <main>{children}</main>
-              }
-            <Footer />
-          </>
-        :  <main>{children}</main>
-        }
+        <Header />
+          {
+              loading ? 
+              <Loading /> :
+              <main>
+                { children }
+              </main>
+          }
+        <Footer />
         <Script id="gsi" src="https://accounts.google.com/gsi/client" strategy="afterInteractive"/>
         { !session ?
             <Script id="Tawk_API" type="text/javascript" strategy="afterInteractive">

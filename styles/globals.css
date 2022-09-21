@@ -736,3 +736,8 @@ a.pps-btn-img {
   z-index: 2;
   background: #262c38 !important;
 }
+
+td, th {
+  border: 1px solid #ebebeb;
+  padding: 10px;
+}
