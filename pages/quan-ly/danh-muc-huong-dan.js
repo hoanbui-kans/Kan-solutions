@@ -53,6 +53,9 @@ const GuileCategory = ({category}) => {
                         className={styles.x_mobile_menu_button} 
                         style={{width: '100%'}}
                     >   
+                        <MenuIcon />
+                        Menu quản lý
+                    </Button>
                     {
                         showMobileNav ?
                         <>
