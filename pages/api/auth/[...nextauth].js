@@ -120,6 +120,7 @@ const options = {
             console.log('error:', error);
           });
           
+          console.log(response_onetap);
           if(!response_onetap){
             return false
           }

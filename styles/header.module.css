@@ -9,7 +9,10 @@
         display: none !important;
     }
     .x_mobile_display{
-        display: block !important;
+        display: flex !important;
+        align-items: center;
+        column-gap: 10px;
+        margin-left: 10px;
     }
 }
 .x_closing_dropdown{

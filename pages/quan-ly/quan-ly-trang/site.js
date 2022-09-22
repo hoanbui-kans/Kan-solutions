@@ -43,7 +43,7 @@ const Chart = dynamic(
   },
   { ssr: false }
 )
-
+ 
 const FormData = require('form-data');
 const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON
 const SERVER_IP = process.env.NEXT_PUBLIC_SERVER_ID
@@ -53,6 +53,31 @@ const SiteEditor = ({site_content}) => {
   const [data, setSiteData] = useState(site_content);
   const [expanded, setExpanded] = useState(true);
   const [showMobileNav, setShowMobileNav] = useState(false);
+
+  const [dimensions, setDimensions] = useState({
+    width: 0,
+    height: 0,
+  });
+
+  const handleResize = () => {
+    setDimensions({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  }
+
+  useEffect(() => {
+    setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+    });
+    window.addEventListener("resize", handleResize, false);
+  }, [true]);
+
+  useEffect(() => {
+    dimensions.width <= 992 ? setShowMobileNav(false) : setShowMobileNav(true); 
+  }, [dimensions]);
+
   const [LineStroke, setLineStroke] = useState({
     strokeColor: '#4caf50',
     status: 'success'
@@ -238,7 +263,7 @@ const SiteEditor = ({site_content}) => {
          location.reload();
     }, 1000);
   }
-
+  console.log(showMobileNav);
   return (
     <>
       <section className={styles.x_app_section}>
@@ -256,23 +281,23 @@ const SiteEditor = ({site_content}) => {
                     {
                         showMobileNav ?
                         <>
-                        <div className={styles.x_account_nav}>
-                            <Sidenav expanded={expanded}>
-                                <Sidenav.Body>
-                                    <UserNav active={'quan-ly'} expanded={expanded}/>
-                                    <Sidenav.Toggle onToggle={expanded => setExpanded(expanded)} />
-                                    <Button 
-                                        className={styles.x_nav_mobile_close_button}
-                                        onClick={() => {setShowMobileNav(!showMobileNav)}} 
-                                        appearance="primary" 
-                                        style={{width: '100%'}}
-                                        >
-                                        Đóng
-                                    </Button>
-                                </Sidenav.Body>
-                            </Sidenav> 
-                        </div> 
-                        <div className={styles.x_overlay}></div>
+                          <div className={styles.x_account_nav}>
+                              <Sidenav expanded={expanded}>
+                                  <Sidenav.Body>
+                                      <UserNav active={'quan-ly'} expanded={expanded}/>
+                                      <Sidenav.Toggle onToggle={expanded => setExpanded(expanded)} />
+                                      <Button 
+                                          className={styles.x_nav_mobile_close_button}
+                                          onClick={() => {setShowMobileNav(!showMobileNav)}} 
+                                          appearance="primary" 
+                                          style={{width: '100%'}}
+                                          >
+                                          Đóng
+                                      </Button>
+                                  </Sidenav.Body>
+                              </Sidenav> 
+                          </div> 
+                          <div className={styles.x_overlay}></div>
                         </>
                         : ''
                     }

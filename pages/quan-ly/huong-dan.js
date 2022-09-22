@@ -16,6 +16,7 @@ const Guile = ({category}) => {
   const { data: session } = useSession();
   const [expanded, setExpanded] = useState(true);
   const[showMobileNav, setShowMobileNav] = useState(false);
+
   const [dimensions, setDimensions] = useState({
     width: 0,
     height: 0,

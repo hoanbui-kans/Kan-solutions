@@ -310,7 +310,12 @@ const Header = () => {
                     <>
                     <Dropdown.Item eventKey={1}>
                         <Link href="/quan-ly">
-                            Quản lý
+                            Quản lý tài khoản
+                        </Link>
+                    </Dropdown.Item>
+                    <Dropdown.Item eventKey={1}>
+                        <Link href="/giao-dien">
+                            Xem giao diện mẫu
                         </Link>
                     </Dropdown.Item>
                     <Dropdown.Item eventKey={2}>
@@ -481,6 +486,13 @@ const Header = () => {
                                     </Whisper>
                                 </div>
                                 <div className={styles.x_mobile_display}>
+                                    <Link href="/tim-kiem">
+                                        <a>
+                                            <Button className={styles.x_non_background_button}>
+                                                <SearchIcon width={22} height={22}/> 
+                                            </Button>
+                                        </a>
+                                    </Link>
                                     <button className={
                                         showingMobile ? 
                                         styles.hamburger + ' ' + styles.hamburger__spin + ' ' + styles.is_active

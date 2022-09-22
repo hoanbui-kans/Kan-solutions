@@ -242,8 +242,7 @@ const HomeTwo = () => {
                <Col xs={24} md={12} lg={8}>
                    <div className={styles.x_themes_banner}>
                       <div className={styles.x_themes_banner_content}>
-                        <h3 className={styles.x_main_box_secondary} data-aos="fade-down">Miễn phí khởi tạo</h3>
-                        <h2 className={styles.x_main_box_primary} data-aos="fade-up">Xây dựng website bán hàng đầy đủ chức năng <span className={styles.x_hightlight_badge}>miễn phí</span></h2>
+                        <h2 className={styles.x_main_box_primary} data-aos="fade-up">Xây dựng website bán hàng đầy đủ chức năng</h2>
                         <Link href="/dang-ky">
                             <a>
                               <Button data-aos="fade-up" className={styles.x_focused_button} style={{marginTop: '15px', marginRight: '0px'}}>

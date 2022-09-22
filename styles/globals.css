@@ -723,6 +723,20 @@ a.pps-btn-img {
 .swiper-button-prev:after {
   font-size: 24px !important;
 }
+
+.rs-modal-wrapper {
+  position: fixed;
+  overflow: auto;
+  z-index: 1050;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .rs-progress, 
 .rs-progress-icon-fail, 
 .rs-progress-icon-success, 

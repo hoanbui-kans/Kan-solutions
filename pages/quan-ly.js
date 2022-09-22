@@ -523,7 +523,7 @@ const UserManager = ({blogInfor, user, Themes}) => {
                                     {
                                         Themes.map((val, index) => {
                                             return(
-                                                <Col xs={12} md={8} key={index}>
+                                                <Col xs={24} md={8} key={index}>
                                                     <GD_Box data={val} price={false}/>
                                                 </Col>
                                             )
