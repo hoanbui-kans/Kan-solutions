@@ -734,6 +734,15 @@ transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }
       }
 
       @media (max-width: 640px){
+        .x_search_result_content{
+            display: block;
+            width: calc(100%);
+            padding-left: 15px;
+        }
+        .x_search_result_thumbnail{
+            display: block;
+            width: 100%;
+        }
         .x_login_register
         ,.x_login_button {
             font-size: 12px;
