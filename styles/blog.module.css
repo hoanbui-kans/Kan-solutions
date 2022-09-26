@@ -16,8 +16,8 @@
   border-radius: 30px;
   color: #000;
   display: inline-flex;
-  font-size: .8rem;
-  font-weight: 500;
+  font-size: .95rem;
+  font-weight: 600;
   justify-content: center;
   line-height: 1.5;
   padding: 0.45rem 1.5rem;
@@ -59,20 +59,30 @@
   font-weight: 300;
   font-size: 16px;
 }
+
 .x_custom_button_group button {
   background: #ffffff;
   color: rgb(56, 56, 56);
   border-radius: 0px;
 }
+
 .x_filter_option:hover{
   background-color: #1071ff;
   color: white;
 }
+
 .x_meta_with_form{
   border-bottom: 2px solid #f6f8fb;
   margin-bottom: 2rem;
   padding-bottom: 2rem;
 }
+
+.x_comment_form{
+  background: white;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
 .x_comment_form_button{
   display: flex;
   align-items: center;
@@ -144,20 +154,46 @@
   height: 420px;
 }
 
+.x_blog_thumbnail_meta{
+  position: relative;
+  margin-bottom: 25px;
+}
+.x_blog_thumbnail_meta h1{
+  color: white !important;
+}
+.x_blog_thumbnail_meta ul{
+  border: unset;
+  margin: 0px;
+}
+.x_blog_thumbnail_meta ul li{
+  color: white !important;
+}
+
+.x_blog_thumbnail_meta .x_single_blog_meta{
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  color: white;
+  padding: 20px;
+  background: linear-gradient(0deg, black, transparent);
+}
+
+.x_blog_meta_content{
+  max-width: 992px;
+  margin: auto;
+}
 .x_single_post_data{
   list-style: none;
-  padding: 14px;
-  padding-top: 8px;
-  border-bottom: 1px solid whitesmoke
+  padding: 0px;
+  border-bottom: 1px solid #c9c9c9;
 }
+
 .x_single_post_data li{
   display: inline-block;
   margin-right: 7px;
   margin-bottom: 10px;
-  background: #2d88e2;
-  color: white;
-  padding: 4px 6px;
-  border-radius: 10px;
+  color: rgb(0, 0, 0);
+  font-size: 14px;
 }
 .x_pagination{
   text-align: center;
@@ -279,32 +315,30 @@
 }
 .x_post_title{
   font-size: 24px;
-  padding: 10px 14px;
+  padding: 10px 0px;
   margin: 0px;
   line-height: 32px;
 }
+
 .x_container_x{
   background-color: var(--x-light-color);
-  padding: 35px 0px;
 }
+
 .x_single_blog_thumbnail img{
-  border-radius: 12px;
-  box-shadow: 5px 5px 10px #ededed, -5px -5px 10px #ffffff;
   overflow: hidden;
   display: block;
   width: 100%;
   max-height: unset !important;
   height: auto !important;
 }
+
 .x_single_blog_thumbnail span{
   min-width: 100% !important;
 }
 .x_blog_content{
-  background: white;
-  padding: 16px;
-  box-shadow: 5px 5px 10px #ededed, -5px -5px 10px #ffffff;
-  border-radius: 20px;
   margin-bottom: 35px;
+  max-width: 992px;
+  margin: auto;
 }
 .x_related_title{
   font-size: 22px;
@@ -321,9 +355,9 @@
 
 .x_sharing{
   padding: 15px;
-  background: whitesmoke;
+  background: white;
   border-bottom: 2px solid #2d88e2;
-  margin-bottom: 15px;
+  margin: 15px 0px;
 }
 .x_sharing strong{
   margin-bottom: 10px;
@@ -333,11 +367,7 @@
 .x_social_group li {
   margin-bottom: 8px;
 }
-.x_single_content{
-  font-size: 14px;
-  line-height: 24px;
-  padding: 10px;
-}
+
 .x_single_content h1{
   font-size: 32px;
   line-height: 48px;
@@ -356,12 +386,25 @@
   line-height: 32px;
   margin-bottom: 5px;
 }
+
+.x_single_content h4{
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.x_single_content h5{
+  font-size: 20px;
+  line-height: 28px;
+  margin-bottom: 5px;
+}
+
+
 .x_single_content p {
   margin-bottom: 5px;
 }
 .x_single_content{
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 18px;
+  line-height: 1.756;
 }
 .x_single_content img{
   margin: 15px 0px;

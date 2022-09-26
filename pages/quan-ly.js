@@ -564,13 +564,13 @@ export async function getServerSideProps (context) {
       'Authorization':  `Bearer ${token}`
     }
   };
-
+  
   response = await axios.post(rootURL + 'quan-ly/tai-khoan', false, config)
     .then(function (response) {
         return response.data
     })
     .catch(function (error) {
-        console.log(error);
+        console.log('error');
   });
 
   let Themes = [];  
