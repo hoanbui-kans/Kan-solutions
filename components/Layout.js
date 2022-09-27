@@ -139,15 +139,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
          <!-- End Google Tag Manager (noscript) -->`)
         }
         <Component />
-        <Header />
-          {
-              loading ? 
-              <Loading /> :
-              <main>
-                { children }
-              </main>
-          }
-        <Footer />
+        {
+          // !pathname.includes('/dang-nhap')  
+          // && !pathname.includes('/dang-ky') 
+          // && !pathname.includes('/quan-ly/dang-xuat')
+          // && !pathname.includes('/quan-ly/cap-nhat-thong-tin')
+          // && 
+          !pathname.includes('/giao-dien/xem-giao-dien/') ? 
+          <>
+            <Header />
+              {
+                  loading ? 
+                  <Loading /> :
+                  <main>{children}</main>
+              }
+            <Footer />
+          </>
+        :  <main>{children}</main>
+        }
         <Script id="gsi" src="https://accounts.google.com/gsi/client" strategy="afterInteractive"/>
         { !session ?
             <Script id="Tawk_API" type="text/javascript" strategy="afterInteractive">

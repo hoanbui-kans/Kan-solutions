@@ -12,7 +12,7 @@
         display: flex !important;
         align-items: center;
     }
-}
+} 
 .x_closing_dropdown{
     position: fixed;
     top: 0;
@@ -383,7 +383,8 @@
 }
 
 .x_account_name{
-    max-width: 65px;
+    width: 90px;
+    height: 18px;
     padding: 0px 5px;
     font-weight: bold;
     text-transform: uppercase;
