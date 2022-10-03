@@ -166,12 +166,14 @@ const MobileMenu = ({showing}) => {
 }
 
 const Header = () => {
+
     const { data: session } = useSession();
     const [open, setOpen] = useState(false);
     const [openDropdown, setOpenDropdown] = useState(false);
     const [openThemesMenu, setOpenThemesMenu] = useState(false);
     const [fixed, setFixed] = useState(false);
     const [showingMobile, setShowingMobile] = useState(false);
+    const [stateClick, setStateClick] = useState(0);
 
     const dropdownMenu = [Left, Right];
 
@@ -198,20 +200,11 @@ const Header = () => {
 
    // Build a spring and catch its ref
     const springBackground = useSpringRef();
-    const springBGThemeCategories = useSpringRef();
     
     const BackGroundMenu = useSpring({
         opacity: 1,
-        height: open ? 485 : 0,
-        y: open ? 0 : -280,
-        ref: springBackground,
-        config: config.slow,
-    })
-
-    const BackGroundMenu_themes = useSpring({
-        opacity: 1,
-        height: openThemesMenu ? 485 : 0,
-        y: openThemesMenu ? 0 : -280,
+        height: stateClick != 0 ? 520 : 0,
+        y: stateClick != 0 ? 0 : -280,
         ref: springBackground,
         config: config.slow,
     })
@@ -225,12 +218,13 @@ const Header = () => {
         config: config.slow,
         from: { 
             opacity: 0,
-            transform: 'translateY(0px)',
-            delay: 200 
+            pointerEvents: "none",
+            transform: stateClick > 0 ? 'translateX(-50px)' : 'translateX(50px)',
         },
         to: {
             opacity: open ? 1 : 0,
-            transform: open ? 'translateY(-50px)' :  'translateY(0px)'
+            pointerEvents: open ? "all" : 'none',
+            transform: open ?  'translateX(0px)' : stateClick > 0 ? 'translateX(-50px)' : 'translateX(50px)'
         },
     })
 
@@ -239,12 +233,13 @@ const Header = () => {
         config: config.slow,
         from: { 
             opacity: 0,
-            transform: 'translateY(0px)',
-            delay: 200 
+            pointerEvents: "none",
+            transform: 'translate(0px)',
         },
         to: {
+            pointerEvents: openThemesMenu ? "all": "none",
             opacity: openThemesMenu ? 1 : 0,
-            transform: openThemesMenu ? 'translateY(-40px)' :  'translateY(0px)'
+            transform: openThemesMenu ? 'translateX(0px)' : stateClick > 2 ? 'translateX(-50px)' : 'translateX(50px)'
         },
     })
 
@@ -256,18 +251,20 @@ const Header = () => {
     ])
 
     // This will orchestrate the two animations above, comment the last arg and it creates a sequence
-    useChain(openThemesMenu ? [springBGThemeCategories, springApiThemeCategories] : [ springApiThemeCategories, springBGThemeCategories], [
+    useChain(openThemesMenu ? [springBackground, springApiThemeCategories] : [ springApiThemeCategories, springBackground], [
         0,
         openThemesMenu ? 0.42 : 0.205,
     ])
 
-    const showDropdown = () => {
+    const showDropdownServices = () => {
+        setStateClick(2);
         setOpen(open => !open);
         setOpenDropdown(!open);
         setOpenThemesMenu(false);
     }
 
     const showDropdownThemes = () => {
+        setStateClick(1);
         setOpenThemesMenu(openThemesMenu => !openThemesMenu)
         setOpenDropdown(!openThemesMenu);
         setOpen(false);
@@ -278,6 +275,12 @@ const Header = () => {
         setOpenThemesMenu(false);
         setOpen(false);
     }
+
+    useEffect(() => {
+        if(!open && !openThemesMenu){
+            setStateClick(0)
+        }
+    }, [open, openThemesMenu])
 
     Router.events.on('routeChangeStart', () => {
         setOpen(false);
@@ -409,7 +412,7 @@ const Header = () => {
                                             </a>
                                         </li>
                                         <li>
-                                            <a onClick={showDropdown}>
+                                            <a onClick={showDropdownServices}>
                                                 <span>
                                                     Dịch vụ
                                                     <animated.div 
@@ -511,8 +514,8 @@ const Header = () => {
     </div>
     {/* Dropdown service menu */}
     <div className={open ? styles.animationHeader : styles.animationHeaderNone}>    
-      <div className={styles.x_menu_container}>
-            <Container> 
+    <div className={styles.x_menu_container}>
+
                 <animated.div 
                     style={opacity} 
                     className={styles.x_dropdown_inner_shadow}>
@@ -520,73 +523,61 @@ const Header = () => {
                 <animated.div 
                     style={BackGroundMenu} 
                     className={styles.x_dropdown_bg_menu}>
-                        <div className={styles.x_dropdown_bg_full} />
+                        <div className={styles.x_dropdown_bg_full}>
+                            <span className={styles.x_bg_content}>
+                            KAN SOLUTIONS COMPANY LIMITED ®
+                            </span>
+                        </div>
                 </animated.div>
-                <animated.div className={styles.x_dropdownMenu} style={transit}>
-                    {
-                        dropdownMenu.map((Item, index) =>
-                            <div key={index} className={styles.x_dropdown_x3_menu}>
-                                <Item />
-                            </div>
-                        )
-                    }   
-                </animated.div>
-            </Container> 
+
+                <Container className={styles.x_relative}>
+                    <animated.div className={styles.x_dropdownMenu} style={transit}>
+                        {
+                            dropdownMenu.map((Item, index) =>
+                                <div key={index} className={styles.x_dropdown_x3_menu}>
+                                    <Item />
+                                </div>
+                            )
+                        }   
+                    </animated.div>
+
+                    <animated.div className={styles.x_dropdownMenu} style={transit_themes}>
+                        <Row>
+                            <Col xs={24}>
+                                <h3 className={styles.x_menu_title}>GIAO DIỆN MẪU MIỄN PHÍ</h3>
+                                <p style={{marginBottom: 12}}>
+                                    Chúng tôi cung cấp cho bạn giải pháp xây dựng website miễn phí dựa trên nền tảng Wordpress <br/>
+                                    Giải pháp xây dựng website tự động đầy đủ chức năng chỉ với 1 click, quản lý bằng nền tảng<br/>
+                                    Tìm hiểu thêm các mẫu giao diện cơ bản:
+                                </p>
+                            </Col>
+                            {
+                                ThemeCategories.map((val, index) => 
+                                <Col xs={4} key={index}>
+                                    <Theme_categories category_api={val} />
+                                </Col>
+                                )
+                            }  
+                            <Col xs={24}>
+                                <Link href="/dich-vu/tao-website-lading-page-tu-dong">
+                                    <a className={styles.x_button_inline}>
+                                        <Button className={styles.x_button_website_create}>
+                                            XEM TẤT CẢ GIAO DIỆN
+                                        </Button>
+                                    </a>
+                                </Link>
+                            </Col>
+                        </Row>
+                    </animated.div>
+                </Container>
+
         </div>
     </div>
     {/* EndDropdown Service menu */}
-    {/* Dropdown list Categories */}
-    <div className={openThemesMenu ? styles.animationHeader : styles.animationHeaderNone}>    
-      <div className={styles.x_menu_container}>
-            <Container> 
-                <animated.div 
-                    style={opacity_themes} 
-                    className={styles.x_dropdown_inner_shadow}>
-                </animated.div>
-                <animated.div 
-                    style={BackGroundMenu_themes} 
-                    className={styles.x_dropdown_bg_menu}>
-                        <div className={styles.x_dropdown_bg_full} />
-                </animated.div>
-                <animated.div className={styles.x_dropdownMenu} style={transit_themes}>
-                    <Row>
-                        <Col xs={24}>
-                            <h3 style={{fontSize: 20, lineHeight: '20px', marginBottom: 0}}>Giao diện mẫu website miễn phí</h3>
-                            <hr/>
-                            <p style={{marginBottom: 12}}>
-                                Chúng tôi cung cấp cho bạn giải pháp xây dựng website miễn phí dựa trên nền tảng Wordpress <br/>
-                                Giải pháp xây dựng website tự động đầy đủ chức năng chỉ với 1 click, quản lý bằng nền tảng<br/>
-                                Tìm hiểu thêm các mẫu giao diện cơ bản:
-                            </p>
-                        </Col>
-                        {
-                            ThemeCategories.map((val, index) => 
-                               <Col xs={4} key={index}>
-                                    <Theme_categories category_api={val} />
-                                </Col>
-                            )
-                        }  
-                         <Col xs={24}>
-                            <Link href="/dich-vu/tao-website-lading-page-tu-dong">
-                                <a className={styles.x_button_inline}>
-                                    <Button className={styles.x_button_website_create}>
-                                        XEM TẤT CẢ GIAO DIỆN
-                                    </Button>
-                                </a>
-                            </Link>
-                        </Col>
-                    </Row>
-                </animated.div>
-                <Row>
-                            
-                </Row>
-            </Container> 
-        </div>
-    </div>
 
-        {
-            openDropdown ? <div className={styles.x_closing_dropdown} onClick={closeAllDropdown}></div> : ""
-        }
+    {
+        openDropdown ? <div className={styles.x_closing_dropdown} onClick={closeAllDropdown}></div> : ""
+    }
         {/* End Dropdown list Categories */}
         </div>
         <div 

@@ -13,6 +13,18 @@
         align-items: center;
     }
 } 
+
+.x_bg_content{
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    font-size: 12px;
+    display: block;
+    width: 100%;
+    background-color: rgb(241 241 241);
+    color: #282c4b;
+}
+
 .x_closing_dropdown{
     position: fixed;
     top: 0;
@@ -184,14 +196,19 @@
     background: var(--x-white-color);;
     box-shadow: 0px 30px 25px -2px rgb(0 0 0 / 4%);
 }
+
 .x_dropdownMenu {
-    position: relative;
+    position: absolute;
     width: 100%;
-    top: 40px;
     display: flex;
     flex-wrap: wrap;
     padding: 35px 0px;
 }
+
+.x_relative{
+    position: relative;
+}
+
 .x_login_button{
     background-color: rgba(255, 105, 141, 1);
     box-shadow: 5px 9px 28px -15px #ff698d;
@@ -242,7 +259,7 @@
     position: absolute;
     border-radius: 5px;
     transform: scale(1.01) translateX(-10px);
-    transition: all .1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    transition: all .3s ease-in-out;
     opacity: 0;
     z-index: -1;
     top: 0;
@@ -253,7 +270,6 @@
     z-index: 1;
 }
 .x_dropbox:hover:before {
-    transition: all .3s ease-in-out;
     transform: scale(1) translateX(0px);
     opacity: 1;
 }
@@ -364,15 +380,22 @@
     text-transform: uppercase;
     font-weight: bold;
 }
+
 .x_categories_card{
     border: 2px solid whitesmoke;
     text-align: center;
     font-weight: bold;
     transition: var(--x-transition);
 }
+
+.x_categories_card a{
+    padding: 0px;
+}
+
 .x_categories_card:hover{
     
 }
+
 .x_categories_card_title{
     font-size: 14px;
     font-weight: 400;
