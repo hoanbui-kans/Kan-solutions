@@ -534,3 +534,30 @@
   }
 }
 
+@media (max-width: 768px){
+  .x_mobile_table_of_content_overlay{
+    display: block;
+    background: rgba(0, 0, 0, 0.75);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 98;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: all .3s ease-in-out;
+  }
+  .x_mobile_table_of_content_overlay_actived{
+    opacity: 1;
+    pointer-events: all;
+  }
+  .x_toc_nav_button{
+    opacity: .15;
+  }
+  .x_toc_nav_button:hover{
+    opacity: 1;
+  }
+}
+

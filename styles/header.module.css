@@ -683,20 +683,6 @@ transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }
         pointer-events: all;
         transition: var(--x-transition);
     }
-    .x_backdrop_mobile_closing{
-        position: absolute;
-        top: 50%;
-        right: 10px;
-        display: flex;
-        align-items: center;
-        column-gap: 5px;
-        color: white;
-        background: black;
-        border-radius: 15px;
-        padding: 0px 6px;
-        cursor: pointer;
-        font-size: 12px;
-    }
     .x_mobile_menu.x_showing_mobile{
         transform: translateX(0%);
     }

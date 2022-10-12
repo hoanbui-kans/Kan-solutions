@@ -96,34 +96,40 @@ const TableOfContent = () => {
 
     if(headings) {
       return (
-        <nav className={ activedNav ? styles.x_toc_nav + ' ' + styles.x_toc_nav_actived : styles.x_toc_nav}>
-            <Button 
-            className={styles.x_toc_nav_button} 
-            color='primary'
-            onClick={() => { setActivedNav(!activedNav) }}
-            >
-              <IoListOutline color='black' size={'18px'}/>
-              Nội dung chính
-            </Button>
-            <h3 className={styles.x_table_of_content_title}>Nội dung chính</h3>
-            <div className={styles.x_table_content_section}>
-              <div className={styles.x_table_content_wrapper}>
-                <ul  className={styles.x_table_of_content_list}>
-                  {headings.map((heading, index) => {
-                    return(
-                      <li className={activeId === heading.id ? styles.x_table_of_content_list_item_actived + ' ' + styles.x_table_of_content_list_item : styles.x_table_of_content_list_item} key={index} style={{ marginLeft: `${heading.level - 2}em` }}>
-                          <a  
-                            href={`#x-title-${index}`}
-                          >
-                          {heading.text}
-                        </a>
-                      </li>
-                    )
-                  })}
-                </ul>
+
+        <>
+          <div 
+          onClick={() => { setActivedNav(!activedNav) }}
+          className={ activedNav ?  styles.x_mobile_table_of_content_overlay + ' ' +  styles.x_mobile_table_of_content_overlay_actived : styles.x_mobile_table_of_content_overlay }></div>
+          <nav className={ activedNav ? styles.x_toc_nav + ' ' + styles.x_toc_nav_actived : styles.x_toc_nav}>
+              <Button 
+              className={styles.x_toc_nav_button} 
+              color='primary'
+              onClick={() => { setActivedNav(!activedNav) }}
+              >
+                <IoListOutline color='black' size={'18px'}/>
+                Nội dung chính
+              </Button>
+              <h3 className={styles.x_table_of_content_title}>Nội dung chính</h3>
+              <div className={styles.x_table_content_section}>
+                <div className={styles.x_table_content_wrapper}>
+                  <ul  className={styles.x_table_of_content_list}>
+                    {headings.map((heading, index) => {
+                      return(
+                        <li className={activeId === heading.id ? styles.x_table_of_content_list_item_actived + ' ' + styles.x_table_of_content_list_item : styles.x_table_of_content_list_item} key={index} style={{ marginLeft: `${heading.level - 2}em` }}>
+                            <a  
+                              href={`#x-title-${index}`}
+                            >
+                            {heading.text}
+                          </a>
+                        </li>
+                      )
+                    })}
+                  </ul>
+                </div>
               </div>
-            </div>
           </nav>
+        </>
         );
     } else {
       return ""

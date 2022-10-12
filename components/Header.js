@@ -586,10 +586,6 @@ const Header = () => {
             styles.x_backdrop_mobile + ' ' + styles.x_backdrop_mobile_showing 
             : styles.x_backdrop_mobile}
         >
-            <span className={styles.x_backdrop_mobile_closing}>
-                Đóng
-                <IoCloseCircleOutline color={'white'} size={24}/>
-            </span>
         </div>                
         <div className={styles.x_mobile_display}>
             <MobileMenu showing={showingMobile}/>
