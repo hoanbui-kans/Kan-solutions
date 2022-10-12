@@ -9,7 +9,7 @@ import Head from 'next/head';
 import { IoPersonCircleOutline, IoTimeOutline } from "react-icons/io5";
 import { BlogStyleTwo } from '../../components/blog-templates/BlogContent';
 import CommentsUI from '../../components/comment';
-
+import dynamic from 'next/dynamic';
 import {
   PinterestShareButton,
   PinterestIcon,
@@ -18,6 +18,13 @@ import {
   FacebookShareButton,
   FacebookIcon,
 } from 'next-share'
+
+const TableOfContent = dynamic(
+  () => {
+    return ( import('../../components/tableOfContent') )
+  },
+  { ssr: false }
+)
 
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
@@ -103,7 +110,7 @@ const PostSingle = ({data}) => {
                             data.thumbnail ?
                             <div className={styles.x_blog_thumbnail_meta}>
                                 <div className={styles.x_single_blog_thumbnail}>
-                                  <Image alt={HTMLReactParser(data.post_title)} src={data.thumbnail[0]} width={data.thumbnail[1]} height={data.thumbnail[2]}/>
+                                  <Image alt={HTMLReactParser(data.post_title)} src={data.thumbnail[0]} layout='fill' objectFit="cover" quality={100}/>
                                 </div> 
                                 <div className={styles.x_single_blog_meta}>
                                   <div className={styles.x_blog_meta_content}>
@@ -126,8 +133,9 @@ const PostSingle = ({data}) => {
                           }
                         </Col>
                         <Col xs={24}>
+                          <TableOfContent />
                           <div className={styles.x_blog_content}>
-                              <div className={styles.x_single_content}>
+                              <div id="single-content" className={styles.x_single_content}>
                                 {
                                   HTMLReactParser(data.post_content)
                                 }

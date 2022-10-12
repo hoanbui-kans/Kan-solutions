@@ -274,7 +274,7 @@ const Themes = ({gd, nganh, danhmuc, max_pages, slug, current}) => {
                 <Col xs={24}>
                     <Link href="/dang-ky">
                         <a>
-                            <Image style={{borderRadius: '.75rem'}} src="/banner/free-banner.webp" width={1800} height={549} alt="Đăng ký thành viên"/>
+                            <Image style={{borderRadius: '.75rem'}} src="/banner/free-banner.webp" quality={100} width={1800} height={549} alt="Đăng ký thành viên"/>
                         </a>
                     </Link>
                 </Col>

@@ -36,8 +36,8 @@ const CommentsUI = ({data}) => {
         }
     })
   } else {
-    total_score = 50;
-    total_rating = 10;
+    total_score = 1630;
+    total_rating = 326;
   }
   
   average = Math.round(total_score / total_rating , 1);

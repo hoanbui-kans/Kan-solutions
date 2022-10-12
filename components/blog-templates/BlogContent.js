@@ -34,7 +34,11 @@ export const BlogStyleOne = ({data}) => {
           {
             data.thumbnail ?  
             <div className={styles.x_blog_one_thumbnail}>
-                <Image alt='layout' src={ data.thumbnail[0] } width={600} height={360} layout={'fill'}/>
+                <Link href={'/bai-viet/' + data.post_name}>
+                  <a>
+                    <Image alt='layout' src={ data.thumbnail[0] }  layout='fill' objectFit="cover" quality={100}/>
+                  </a>
+              </Link>
             </div> : ''
           }
          
@@ -63,11 +67,15 @@ export const BlogStyleTwo = ({data}) => {
     <div className={styles.x_blog_two_section}>
       {
         data.thumbnail ? <div className={styles.x_blog_two_thumbnail}>
-          <Image alt='layout' src={ data.thumbnail[0] } width={400} height={240} />
+          <Link href={'/bai-viet/' + data.post_name}>
+            <a style={{ height: 280, width: '100%', display: 'block'}}>
+              <Image alt='layout' src={ data.thumbnail[0] } layout='fill' objectFit="cover" quality={100}/>
+            </a>
+          </Link>
+          <TermList data={data.terms} />
         </div> : ''
       }
       <div className={styles.x_blog_two_content}>
-        <TermList data={data.terms} />
         <Link href={'/bai-viet/' + data.post_name}>
           <a>
             <h3 className={styles.x_blog_two_title}>{data.post_title}</h3>
