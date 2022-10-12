@@ -77,9 +77,12 @@ const TableOfContent = () => {
       headings.map(({id}) => id), 50
     );
 
+    const listHeading = useHeadings();
+
     useEffect(() => {
-      const listHeading = useHeadings();
-      setHeadings(listHeading);
+      if(listHeading){
+        setHeadings(listHeading);
+      }
     },[]);
 
     useEffect(() => {
