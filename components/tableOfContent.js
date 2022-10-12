@@ -53,32 +53,35 @@ const useScrollspy = (ids, offset) => {
   return activeId;
 };
 
-const useHeadings = () => {
-  const elements = Array.from(document.getElementById('single-content').querySelectorAll("h2, h3, h4, h5, h6"))
-  .map((element, index) => {
-    element.setAttribute('id', 'title-' + index);
-    return ({
-      id: 'title-' + index,
-      text: element.textContent ?? "",
-      level: Number(element.tagName.substring(1))
-    })
-  });
-  return elements;
-}
-
 const TableOfContent = () => {
 
     const [activeId, setActiveId] = useState();
     const [headings, setHeadings] = useState([]);
     const [activedNav, setActivedNav] = useState(false);
-    
+  
+
     const active = useScrollspy(
       headings.map(({id}) => id), 50
     );
 
     useEffect(() => {
+
+      const useHeadings = () => {
+        const elements = Array.from(document.getElementById('single-content').querySelectorAll("h2, h3, h4, h5, h6"))
+        .map((element, index) => {
+          element.setAttribute('id', 'title-' + index);
+          return ({
+            id: 'title-' + index,
+            text: element.textContent ?? "",
+            level: Number(element.tagName.substring(1))
+          })
+        });
+        return elements;
+      }
+
       const listHeading = useHeadings();
       setHeadings(listHeading);
+      
     },[]);
 
     useEffect(() => {
