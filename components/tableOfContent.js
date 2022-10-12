@@ -53,7 +53,7 @@ const useScrollspy = (ids, offset) => {
   return activeId;
 };
 
-const useHeadings = () => {
+function useHeadings (){
   const elements = Array.from(document.getElementById('single-content').querySelectorAll("h2, h3, h4, h5, h6"))
   .map((element, index) => {
     element.setAttribute('id', 'title-' + index);
