@@ -78,11 +78,8 @@ const TableOfContent = () => {
     );
 
     useEffect(() => {
-      function setHeadingsState(){
-        const listHeading = useHeadings();
-        setHeadings(listHeading);
-      }
-      setHeadingsState();
+      const listHeading = useHeadings();
+      setHeadings(listHeading);
     },[]);
 
     useEffect(() => {
