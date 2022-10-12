@@ -133,7 +133,6 @@ const PostSingle = ({data}) => {
                           }
                         </Col>
                         <Col xs={24}>
-                          <TableOfContent />
                           <div className={styles.x_blog_content}>
                               <div id="single-content" className={styles.x_single_content}>
                                 {
@@ -152,6 +151,7 @@ const PostSingle = ({data}) => {
                                 <CommentsUI data={data.comment} post_id={data.ID}/>
                               </div>
                           </div>
+                          <TableOfContent />
                         </Col>
                       </Row>
                       {
