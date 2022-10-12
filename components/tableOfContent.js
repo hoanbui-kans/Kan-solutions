@@ -53,7 +53,7 @@ const useScrollspy = (ids, offset) => {
   return activeId;
 };
 
-function useHeadings (){
+function getHeadings (){
 
   const elements = Array.from(document.getElementById('single-content').querySelectorAll("h2, h3, h4, h5, h6"))
   .map((element, index) => {
@@ -82,7 +82,7 @@ const TableOfContent = () => {
     );
 
     useEffect(() => {
-      const listHeading = useHeadings();
+      const listHeading = getHeadings();
       if(listHeading){
         setHeadings(listHeading);
       }
