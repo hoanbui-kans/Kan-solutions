@@ -54,16 +54,20 @@ const useScrollspy = (ids, offset) => {
 };
 
 function useHeadings (){
+
   const elements = Array.from(document.getElementById('single-content').querySelectorAll("h2, h3, h4, h5, h6"))
   .map((element, index) => {
-    element.setAttribute('id', 'title-' + index);
+    element.setAttribute('id', 'x-title-' + index);
+    element.setAttribute('style', `padding-top: 70px; margin-top: -70px !important; display: block`);
     return ({
-      id: 'title-' + index,
+      id: 'x-title-' + index,
       text: element.textContent ?? "",
       level: Number(element.tagName.substring(1))
     })
   });
+
   return elements;
+  
 }
 
 const TableOfContent = () => {
@@ -74,12 +78,11 @@ const TableOfContent = () => {
   
 
     const active = useScrollspy(
-      headings.map(({id}) => id), 50
+      headings.map(({id}) => id), 70
     );
 
-    const listHeading = useHeadings();
-
     useEffect(() => {
+      const listHeading = useHeadings();
       if(listHeading){
         setHeadings(listHeading);
       }
@@ -91,9 +94,7 @@ const TableOfContent = () => {
       }
     },[active])
 
-    if(headings.length > 0) {
-
-
+    if(headings) {
       return (
         <nav className={ activedNav ? styles.x_toc_nav + ' ' + styles.x_toc_nav_actived : styles.x_toc_nav}>
             <Button 
@@ -102,6 +103,7 @@ const TableOfContent = () => {
             onClick={() => { setActivedNav(!activedNav) }}
             >
               <IoListOutline color='black' size={'18px'}/>
+              Nội dung chính
             </Button>
             <h3 className={styles.x_table_of_content_title}>Nội dung chính</h3>
             <div className={styles.x_table_content_section}>
@@ -109,10 +111,9 @@ const TableOfContent = () => {
                 <ul  className={styles.x_table_of_content_list}>
                   {headings.map((heading, index) => {
                     return(
-                      <li className={activeId === heading.id ? styles.x_table_of_content_list_item_actived + ' ' + styles.x_table_of_content_list_item : styles.x_table_of_content_list_item} key={index} style={{ marginLeft: `${heading.level - 1}em` }}>
+                      <li className={activeId === heading.id ? styles.x_table_of_content_list_item_actived + ' ' + styles.x_table_of_content_list_item : styles.x_table_of_content_list_item} key={index} style={{ marginLeft: `${heading.level - 2}em` }}>
                           <a  
-                            id={'text-to-' + index}
-                            href={`#title-${index}`}
+                            href={`#x-title-${index}`}
                           >
                           {heading.text}
                         </a>

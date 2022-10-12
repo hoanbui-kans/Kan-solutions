@@ -10,6 +10,7 @@ import { IoPersonCircleOutline, IoTimeOutline } from "react-icons/io5";
 import { BlogStyleTwo } from '../../components/blog-templates/BlogContent';
 import CommentsUI from '../../components/comment';
 import dynamic from 'next/dynamic';
+import TableOfContent from '../../components/tableOfContent';
 import {
   PinterestShareButton,
   PinterestIcon,
@@ -19,12 +20,6 @@ import {
   FacebookIcon,
 } from 'next-share'
 
-const TableOfContent = dynamic(
-  () => {
-    return ( import('../../components/tableOfContent') )
-  },
-  { ssr: false }
-)
 
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
