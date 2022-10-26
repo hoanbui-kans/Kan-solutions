@@ -36,7 +36,7 @@ export const BlogStyleOne = ({data}) => {
             <div className={styles.x_blog_one_thumbnail}>
                 <Link href={'/bai-viet/' + data.post_name}>
                   <a>
-                    <Image alt='layout' src={ data.thumbnail[0] }  layout='fill' objectFit="cover" quality={100}/>
+                    <Image alt='layout' src={ data.thumbnail[0] }  layout='fill' objectFit="cover" quality={90}/>
                   </a>
               </Link>
             </div> : ''

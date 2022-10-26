@@ -307,40 +307,40 @@ const Header = () => {
         };
         return (
           <Popover ref={ref} className={className} style={{ left, top }} full>
-            <Dropdown.Menu onSelect={handleSelect}>
-            {
-                session ? 
-                    <>
-                    <Dropdown.Item eventKey={1}>
-                        <Link href="/quan-ly">
-                            Quản lý tài khoản
-                        </Link>
-                    </Dropdown.Item>
-                    <Dropdown.Item eventKey={1}>
-                        <Link href="/giao-dien">
-                            Xem giao diện mẫu
-                        </Link>
-                    </Dropdown.Item>
-                    <Dropdown.Item eventKey={2}>
-                        <Link href="/quan-ly/dang-xuat">
-                            Đăng xuất
-                        </Link>
-                    </Dropdown.Item>
-                </>
-                : <>
-                    <Dropdown.Item eventKey={1}>
-                        <Link href="/dang-nhap/">
-                            Đăng nhập
-                        </Link>
-                    </Dropdown.Item>
-                    <Dropdown.Item eventKey={2}>
-                        <Link href="/dang-ky/">
-                            Đăng ký
-                        </Link>
-                    </Dropdown.Item>
-                </>
-            }
-            </Dropdown.Menu>
+                <Dropdown.Menu onSelect={handleSelect}>
+                {
+                    session ? 
+                        <>
+                        <Dropdown.Item eventKey={1}>
+                            <Link href="/quan-ly">
+                                Quản lý tài khoản
+                            </Link>
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey={1}>
+                            <Link href="/giao-dien">
+                                Xem giao diện mẫu
+                            </Link>
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey={2}>
+                            <Link href="/quan-ly/dang-xuat">
+                                Đăng xuất
+                            </Link>
+                        </Dropdown.Item>
+                    </>
+                    : <>
+                        <Dropdown.Item eventKey={1}>
+                            <Link href="/dang-nhap/">
+                                Đăng nhập
+                            </Link>
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey={2}>
+                            <Link href="/dang-ky/">
+                                Đăng ký
+                            </Link>
+                        </Dropdown.Item>
+                    </>
+                }
+                </Dropdown.Menu>
             </Popover>
         );
     };
@@ -524,9 +524,6 @@ const Header = () => {
                     style={BackGroundMenu} 
                     className={styles.x_dropdown_bg_menu}>
                         <div className={styles.x_dropdown_bg_full}>
-                            <span className={styles.x_bg_content}>
-                            KAN SOLUTIONS COMPANY LIMITED ®
-                            </span>
                         </div>
                 </animated.div>
 

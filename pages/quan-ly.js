@@ -565,7 +565,7 @@ export async function getServerSideProps (context) {
     }
   };
   
-  response = await axios.post(rootURL + 'quan-ly/tai-khoan', false, config)
+  response = await axios.get(rootURL + 'quan-ly/tai-khoan', config)
     .then(function (response) {
         return response.data
     })
