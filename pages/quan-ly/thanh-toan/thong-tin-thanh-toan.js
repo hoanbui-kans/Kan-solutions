@@ -1,12 +1,14 @@
 import React from 'react'
 import axios from 'axios'
 import { Container, Row, Col, Panel, Button, List } from 'rsuite';
-import { IoCheckmarkOutline, IoHome, IoShieldCheckmarkSharp, IoTimeSharp, IoShieldHalf } from "react-icons/io5";
+import { getSession } from 'next-auth/react';
+import { IoHome, IoShieldCheckmarkSharp, IoTimeSharp, IoShieldHalf } from "react-icons/io5";
 import styles from '../../../styles/account.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
-const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 import { Separator } from '../../giao-dien/[slug]';
+
+const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 const Header =({data}) => {
     switch(data.resultCode){
@@ -56,6 +58,7 @@ const Header =({data}) => {
         );
     }
 }
+
 const qr = ({response}) => {
   const POST = response.post;
   return (
@@ -118,10 +121,12 @@ const qr = ({response}) => {
 
 export default qr
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps (context) {
+    const session = await getSession(context);
+    const token = session ? session.user.token.token : '';
     const FormData = require('form-data');
     let fd = new FormData();
-    const update_transaction_json = rootURL + 'mservice/update-transaction'
+    const update_transaction_json = rootURL + 'mservice/v1/update-transaction'
     const transaction = context.query;
 
     if(!transaction){
@@ -144,6 +149,9 @@ export async function getServerSideProps(context) {
       method: 'POST',
       url: update_transaction_json,
       data : fd,
+      headers: { 
+        'Authorization':  `Bearer ${token}`
+      }
     };
 
     const response = await axios(config).then((res) => {

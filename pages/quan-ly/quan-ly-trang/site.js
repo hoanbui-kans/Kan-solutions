@@ -201,6 +201,7 @@ const SiteEditor = ({site_content}) => {
   const [loadingReplace, setLoadingReplace] = useState(false);
   const [domainReplaced, setDoimainReplaced] = useState('');
   const [domain, setDoimain] = useState(data.domain);
+  const [dataDomain, setDataDomain] = useState(data.avaiable_domain ? data.avaiable_domain : []);
   const [pathName, setPathName] = useState('');
 
   const handleCloseReplaced = () => {
@@ -217,16 +218,17 @@ const SiteEditor = ({site_content}) => {
     "role": "Master"
   }];
 
-  data.avaiable_domain ? 
-  data.avaiable_domain.map((value) => {
-      if(value.status == 'khoi-tao' && value.doimain != data.domain){
-        avaiable_domains.push({
-          "label": value.domain,
-          "value": value.ID,
-          "role": "Master"
-        })
-      }
-  }) : "";
+  if( dataDomain.length > 0 ){
+    data.avaiable_domain.map((value) => {
+        if(value.status == 'khoi-tao' && value.doimain != data.domain){
+          avaiable_domains.push({
+            "label": value.domain,
+            "value": value.ID,
+            "role": "Master"
+          })
+        }
+    })
+  }
 
   const HandleReplaceDomain = async() => {
     setLoadingReplace(true);

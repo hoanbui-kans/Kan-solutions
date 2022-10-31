@@ -164,9 +164,9 @@ const Create_Order = ({list_blog}) => {
     };
     // Truy xuất dữ liệu
     const formRef = useRef();
-    const Create_Order_Json = `${ROOT_URL}mservice/create-order`;
-    const Update_Order_Json = `${ROOT_URL}mservice/update-order`;
-    const Delete_Order_Json = `${ROOT_URL}mservice/delete-order`;
+    const Create_Order_Json = `${ROOT_URL}mservice/v1/create-order`;
+    const Update_Order_Json = `${ROOT_URL}mservice/v1/update-order`;
+    const Delete_Order_Json = `${ROOT_URL}mservice/v1/delete-order`;
 
     const [loading_create, set_loading_create] = useState(false);
     const [formValue, setFormvalue] = useState({
@@ -419,9 +419,6 @@ const Create_Order = ({list_blog}) => {
         })
         return (
           <Table.Cell {...props}>
-            {/* <Whisper placement="top" speaker={speaker}>
-              <a>{rowData[dataKey].toLocaleString()}</a>
-            </Whisper> */}
             <span className={styles.x_badge}>
                 {site_lever[0].name ? site_lever[0].name : 'Không có thông tin'}
             </span>

@@ -32,12 +32,14 @@ const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON
 
 const PaymentInfo = ({posts}) => {
     const { data: session } = useSession();
-    const mservice_qr_uri = `${ROOT_URL}mservice/qr`;
-    const mservice_atm_uri = `${ROOT_URL}mservice/atm`;
-    const [loading_create, set_loading_create] = useState(false);
-    const [formValue, setFormvalue] = useState();
+    const token = session ? session.user.token.token : '';
+
+    const mservice_qr_uri = `${ROOT_URL}mservice/v1/qr/`;
+
+    const[loading_create, set_loading_create] = useState(false);
+    const[formValue, setFormvalue] = useState();
     const[showMobileNav, setShowMobileNav] = useState(false);
-    const [dimensions, setDimensions] = useState({
+    const[dimensions, setDimensions] = useState({
       width: 0,
       height: 0,
     });
@@ -73,16 +75,10 @@ const PaymentInfo = ({posts}) => {
 
     const HandleRequestPaymentMomo = async (type) => {
             set_loading_create(type);
-            let request_uri = mservice_qr_uri;
-            if(type == 'atm'){
-                request_uri = mservice_atm_uri;
-            }
-            let fd = new FormData();
-            fd.append('order_id', formValue.ID);
+
             const config = {
-                method: 'post',
-                url: request_uri,
-                data : fd,
+                method: 'get',
+                url: mservice_qr_uri + formValue.ID,
             };
             
             const response = await axios(config).then((res) => {
@@ -145,9 +141,6 @@ const PaymentInfo = ({posts}) => {
     const NameCell = ({ rowData, dataKey, ...props }) => {
         return (
           <Table.Cell {...props}>
-            {/* <Whisper placement="top" speaker={speaker}>
-              <a>{rowData[dataKey].toLocaleString()}</a>
-            </Whisper> */}
             <span className={styles.x_badge}>
                 { rowData[dataKey].services ? rowData[dataKey].services : 'Chưa có thông tin'}
             </span>
@@ -178,15 +171,6 @@ const PaymentInfo = ({posts}) => {
           </Table.Cell>
         );
       };
-
-    const styleCenter = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '60px',
-    };
-
-    let index = 1;
     return (
     <>
     <Head>
@@ -360,10 +344,10 @@ export async function getServerSideProps (context) {
       'Authorization':  `Bearer ${token}`
     }
   };
-  const URL =  ROOT_URL + 'mservice/get-order-info';
+  const URL =  ROOT_URL + 'mservice/v1/get-order-info';
   let response = '';
 
-  response = await axios.post(URL, false, config)
+  response = await axios.get(URL, config)
     .then(function (response) {
         return response.data
     })

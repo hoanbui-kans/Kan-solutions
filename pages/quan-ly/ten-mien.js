@@ -123,7 +123,6 @@ const Domain = ({posts, token}) => {
     }
 
     const ActionCell = ({ rowData, dataKey, ...props }) => {
-        console.log(rowData);
         return (
         <Table.Cell {...props} className="link-group">
             <Button disabled={ rowData.status == 'su-dung' ? true : false } className={styles.x_rm_domain} onClick={() => HandleRemoveDoimain(rowData.ID, rowData.status)}>
@@ -339,6 +338,7 @@ export async function getServerSideProps (context) {
     const URL =  ROOT_URL + 'quan-ly/ten-mien';
     let response = '';
   
+
     response = await axios.post(URL, false, config)
       .then(function (response) {
           return response.data
