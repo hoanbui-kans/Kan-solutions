@@ -542,14 +542,14 @@
 }
 .x_search_result_thumbnail{
     display: block;
-    width: 240px;
+    width: 100px;
 }
 .x_search_result_thumbnail img{
     border-radius: 5px;
 }
 .x_search_result_content{
     display: block;
-    width: calc(100% - 240px);
+    width: calc(100% - 100px);
     padding-left: 15px;
 }
 .x_search_result_post{
@@ -562,18 +562,23 @@
     cursor: pointer;
 }
 .x_search_result_title{
-    font-size: 1.25rem;
+    font-size: 1rem;
     line-height: 1.25;
     font-weight: 400;
-    margin-bottom: .25rem;
+    margin: 0.15rem !important;
     color: #333333;
 }
 
 .x_search_result_excerpt{
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 300;
 }
 
+.x_search_result_section{
+    padding: .25rem 1.25rem;
+    max-height: 400px;
+    overflow-y: scroll;
+}
 
 .hamburger {
     padding: 10px 0px;

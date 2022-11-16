@@ -96,12 +96,17 @@ export const SinglePageProject = ({data}) => {
             <Row className={styles.x_flex + ' ' + styles.x_theme_thumbnail_section}>
               <Col xs={24} md={16} className={styles.x_padding}>
                 <div className={styles.x_theme_content}>
-                    {
-                      data.thumbnail ?  
-                      <div className={styles.x_single_theme_thumbnail}>
-                        <Image src={data.thumbnail[0]} width={data.thumbnail[1]} height={data.thumbnail[2]} alt={data.post_title}/>
-                      </div>: ''
-                    }
+                    <div className={styles.x_single_theme_section}>
+                      <h1 className={styles.x_title}>{data.post_title}</h1>
+                      <p className={styles.x_single_theme_excerpt}>{data.post_excerpt}</p>
+                        {
+                          data.thumbnail ?  
+                          <div className={styles.x_single_theme_thumbnail}>
+                            <Image src={data.thumbnail[0]} width={data.thumbnail[1]} height={data.thumbnail[2]} alt={data.post_title}/>
+                          </div>: ''
+                        }
+                    </div>
+                  
                     {
                         DanhMucNganh.length > 0 ? 
                           DanhMucNganh[0].layout ?
@@ -140,9 +145,7 @@ export const SinglePageProject = ({data}) => {
               </Col>
               <Col xs={24} md={8} className={styles.x_padding}>
                 <div className={styles.x_single_theme_content}>
-                  <h1 className={styles.x_title}>{data.post_title}</h1>
-                  <p className={styles.x_single_theme_excerpt}>{data.post_excerpt}</p>
-                    <div className={styles.x_toolbar_button}>
+                  <div className={styles.x_toolbar_button}>
                     <Button 
                         className={styles.x_create_button}
                         onClick={() => { handleOpen('Dịch vụ thiết kế website: ' + data.post_title) }}

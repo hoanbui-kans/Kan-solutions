@@ -10,127 +10,9 @@ import { IoListSharp, IoGridOutline, IoCaretForwardSharp, IoFunnelOutline, IoClo
 import Head from 'next/head';
 import { ThemeCategory } from '../api/HeaderSeo';
 import HTMLReactParser from 'html-react-parser';
+import { Price, GD_Box, GD_List } from '../giao-dien';
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
-
-export const Price = ({data}) => {
-    if(data.sale_price){
-        let salePercent; 
-        salePercent = Math.round(100 - (parseInt(data.sale_price)/parseInt(data.regular_price)*100));
-        return (
-          <div className={styles.x_styles_price}>
-            <span className={styles.x_old_price}>{Separator(data.regular_price)}đ</span>
-            <span className={styles.x_newPrice}>{Separator(data.sale_price)}đ</span>
-            <span className={styles.x_sale_badge}>-{salePercent}%</span>
-          </div>
-        )
-    };
-   
-    return(
-      <div className={styles.x_styles_price}>
-        <span className={styles.simple}>{Separator(data.regular_price)}đ</span>
-      </div>
-    )
-}
-
-export const GD_Box = ({data}) => {
-    return (
-        <div className={styles.x_gd_box}>
-             {
-                data.thumbnail ?
-                    <div className={styles.x_gd_box_thumbnail}>
-                    <Link href={`/giao-dien/${data.post_name}`}>
-                        <a>
-                            <div className={styles.x_image_thumbnail}>
-                                <Image priority placeholder='blurDataURL' alt={data.post_title} src={data.thumbnail[0]} width={data.thumbnail[1]} height={data.thumbnail[2]}/>
-                            </div>
-                        </a>
-                    </Link>
-                </div> : ''
-            }
-            <div className={styles.x_gd_box_content}>
-                <Link href={`/giao-dien/${data.post_name}`}>
-                    <a className={styles.x_gd_box_link}>
-                        <h3 className={styles.x_gd_box_tittle}>{data.post_title}</h3>
-                    </a>
-                </Link>
-                <div className={styles.x_gd_box_price}>
-                    <Price data={data.price}/>
-                </div>
-                <div className={styles.x_gd_box_button}>
-                    <Link href={`/giao-dien/${data.post_name}`}>
-                        <a className={styles.x_gd_box_link}>
-                            <Button className={styles.x_gd_create_button_box}>
-                                Sử dụng mẫu
-                           </Button>
-                        </a>
-                    </Link>
-                    <Link href={`/giao-dien/xem-giao-dien/${data.post_name}`}>
-                        <a className={styles.x_gd_box_link}>
-                           <Button className={styles.x_gd_view_button_box}>
-                                Xem giao diện
-                           </Button>
-                        </a>
-                    </Link>
-                </div>
-            </div>
-        </div>
-    )
-}
-
-export const GD_List = ({data}) => {
-    return (
-        <div className={styles.x_gd_box}>
-            <Row>
-                {
-                    data.thumbnail ?
-                    <Col xs={24} md={12}>
-                        <div className={styles.x_gd_box_thumbnail}>
-                            <Link href={`/giao-dien/${data.post_name}`}>
-                                <a>
-                                    <div className={styles.x_image_thumbnail}>
-                                        <Image priority placeholder='blurDataURL' alt={data.post_title} src={data.thumbnail[0]} width={data.thumbnail[1]} height={data.thumbnail[2]}/>
-                                    </div>
-                                </a>
-                            </Link>
-                        </div>
-                    </Col> : ''
-                }
-                <Col xs={24} md={12}>
-                    <div className={styles.x_gd_list_content}>
-                        <Link href={`/giao-dien/${data.post_name}`}>
-                                <a className={styles.x_gd_box_link}>
-                            <h3 className={styles.x_gd_box_tittle}>{data.post_title}</h3>
-                            </a>
-                        </Link>
-                        <p className={styles.x_gd_box_description}>
-                            {HTMLReactParser(data.post_excerpt)}
-                        </p>
-                        <div className={styles.x_gd_list_price}>
-                            <Price data={data.price}/>
-                        </div>
-                        <div className={styles.x_gd_box_button}>
-                            <Link href={`/giao-dien/xem-giao-dien/${data.post_name}`}>
-                                <a className={styles.x_gd_box_link}>
-                                <Button className={styles.x_gd_view_button}>
-                                        Xem giao diện
-                                </Button>
-                                </a>
-                            </Link>
-                            <Link href={`/giao-dien/${data.post_name}`}>
-                                <a className={styles.x_gd_box_link}>
-                                    <Button className={styles.x_gd_create_button}>
-                                        Sử dụng mẫu
-                                    </Button>
-                                </a> 
-                            </Link>
-                        </div>
-                    </div>
-                </Col>
-            </Row>
-        </div>
-    )
-}
 
 const Themes = ({gd, nganh, danhmuc, max_pages, slug, current}) => {
 
@@ -215,18 +97,20 @@ const Themes = ({gd, nganh, danhmuc, max_pages, slug, current}) => {
     const SortByCategory = ({data}) => {
         return(
             <List className={styles.x_filter_category_list} hover>
-                {data.map((val) => {
-                    return (
-                        <List.Item key={val.term_id} index={val.term_id}>
-                            <Link href={'/danh-muc-giao-dien/' + val.slug}>
-                                <a className={styles.x_filter_category}>
-                                    <IoCaretForwardSharp size={12}/> {val.name}
-                                    <span className={styles.x_count}>{val.count}</span>
-                                </a>
-                            </Link>
-                        </List.Item>
-                    )
-                })}
+                {
+                    data.map((val) => {
+                        return (
+                            <List.Item key={val.term_id} index={val.term_id}>
+                                <Link href={'/danh-muc-giao-dien/' + val.slug}>
+                                    <a className={styles.x_filter_category}>
+                                        <IoCaretForwardSharp size={12}/> {val.name}
+                                        <span className={styles.x_count}>{val.count}</span>
+                                    </a>
+                                </Link>
+                            </List.Item>
+                        )
+                    })
+                }
             </List>
         )
     }

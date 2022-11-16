@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Brand from '../public/logo.svg'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Row, Col, Nav, Container, Button, Whisper , Popover , Dropdown   } from 'rsuite'
+import { Row, Col, Nav, Container, Button, Whisper , Popover , Dropdown, Form, Loader, Pagination } from 'rsuite'
 import { useSpring, animated, useChain, useSpringRef, config } from "@react-spring/web"
 import { listServices } from '../pages/api/services'
 import { useSession } from "next-auth/react"
@@ -12,8 +12,10 @@ import ArrowDownLineIcon from '@rsuite/icons/ArrowDownLine'
 import EmailFillIcon from '@rsuite/icons/EmailFill'
 import PhoneFillIcon from '@rsuite/icons/PhoneFill'
 import styles from '../styles/header.module.css'
-import { IoCaretForwardSharp, IoCloseCircleOutline, IoPerson } from 'react-icons/io5'
+import CloseIcon from '@rsuite/icons/Close';
+import { IoCaretForwardSharp, IoPerson  } from 'react-icons/io5'
 import { ThemeCategories } from '../pages/api/services'
+import axios from 'axios'
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
@@ -174,6 +176,18 @@ const Header = () => {
     const [fixed, setFixed] = useState(false);
     const [showingMobile, setShowingMobile] = useState(false);
     const [stateClick, setStateClick] = useState(0);
+    const [search, setSearchForm] = useState(false);
+
+    // Search Form 
+    const [resultSearch, setResultSearch] = useState('');
+    const [focusSearch, setFocus] = useState(false);
+    const [keySearch, setKeySearch] = useState('');
+    const [loadingSearch, setLoadingSearch] = useState(false);
+
+    const [paged, setPaged] = useState({
+        current: 1,
+        max:0
+    });
 
     const dropdownMenu = [Left, Right];
 
@@ -345,9 +359,41 @@ const Header = () => {
         );
     };
 
+
+    // Search functions
+
+    const Navigation = () => {
+        return (
+            <div className={styles.x_pagination}>
+                <Pagination total={paged.max} limit={1} activePage={paged.current} onChangePage={(current) => { Next_Pages(current)}} />
+            </div>
+        )
+    }
+
+    const searchPosts = async (query) => {
+        setLoadingSearch(true);
+        const response = await axios.get(`${rootURL}tim-kiem/bai-viet?query=${query}&p=1`).then((res) => res.data);
+        if(!response.error){
+            setPaged({current:1, max:response.max_num_pages});
+            setResultSearch(response);
+        } 
+        setLoadingSearch(false);
+    }
+
+    const Next_Pages = async (num) => {
+        setLoadingSearch(true);
+        setPaged({...paged, current: num});
+        const resonse = await axios.get(`${rootURL}tim-kiem/bai-viet?query=${keySearch}&p=${num}`).then((res) => res.data);
+        if(resonse){
+          setResultSearch(resonse);
+          setLoadingSearch(false);
+        }
+    }
+
     return (
-      <>
-      <div className={styles.x_top_header}>
+    <>
+        <header>
+        <div className={styles.x_top_header}>
             <Container> 
                     <Row className={styles.x_flex}>
                         <Col xs={14} md={8} lg={8} className={styles.x_top_header_brand}>
@@ -434,13 +480,9 @@ const Header = () => {
                                             <Link href={'/lien-he'}>Liên hệ</Link>
                                         </li>
                                         <li>
-                                           <Link href="/tim-kiem">
-                                                <a>
-                                                    <Button className={styles.x_non_background_button}>
-                                                        <SearchIcon width={22} height={22}/> 
-                                                    </Button>
-                                                </a>
-                                            </Link>
+                                            <Button className={styles.x_non_background_button} onClick={() => { setSearchForm(true); setOpen(false) }}>
+                                                <SearchIcon width={22} height={22}/> 
+                                            </Button>
                                         </li>
                                     </ul>
                                 </div>
@@ -489,13 +531,9 @@ const Header = () => {
                                     </Whisper>
                                 </div>
                                 <div className={styles.x_mobile_display}>
-                                    <Link href="/tim-kiem">
-                                        <a>
-                                            <Button className={styles.x_non_background_button}>
-                                                <SearchIcon width={22} height={22}/> 
-                                            </Button>
-                                        </a>
-                                    </Link>
+                                    <Button className={styles.x_non_background_button} onClick={() => { setSearchForm(true); setOpen(false) }}>
+                                        <SearchIcon width={22} height={22}/> 
+                                    </Button>
                                     <button className={
                                         showingMobile ? 
                                         styles.hamburger + ' ' + styles.hamburger__spin + ' ' + styles.is_active
@@ -587,6 +625,80 @@ const Header = () => {
         <div className={styles.x_mobile_display}>
             <MobileMenu showing={showingMobile}/>
         </div>
+
+        { 
+        search ?
+            <div 
+                className={styles.x_dropdown_x3_menu}>
+                    <div className={styles.x_search_modal}>
+                        <div className={styles.x_search_section}>
+                            <Form className={!focusSearch ? styles.x_searchHeader : styles.x_searchHeader_devide}>
+                                <div className={styles.x_searchController}>
+                                    {
+                                        loadingSearch ? 
+                                        <button onClick={() => {searchPosts(keySearch)}} className={styles.x_searchButton}><Loader width={24} height={24}/></button>
+                                        : 
+                                        <button onClick={() => {searchPosts(keySearch)}} className={styles.x_searchButton}><SearchIcon color="#a4a4a4" width={24} height={24} /></button>
+                                    }
+                                    
+                                    <input 
+                                    name='seach'
+                                    onFocus={() => { setFocus(true) }}
+                                    onBlur={() => { !keySearch ? setFocus(false) : setFocus(true) }}
+                                    className={styles.x_searchForm} value={keySearch} onChange={(e) => { setKeySearch(e.target.value)}} placeholder={ loadingSearch ? 'Đang tải...' : 'Tìm kiếm thông tin...' } />
+                                    <Button className={styles.x_close_button} onClick={() => { setSearchForm(false) }}> 
+                                        <CloseIcon color='#3d3d3d' width={22} height={22}/>  
+                                    </Button>
+                                </div>
+                            </Form>
+                            <div className={  loadingSearch ? styles.x_search_result  + ' ' + styles.x_search_result_loading : styles.x_search_result }>
+                                    {
+                                    resultSearch.posts != undefined ? 
+                                    <div className={styles.x_search_result_section}>
+                                        {
+                                            resultSearch.posts.map((val, index) => {
+                                                return(
+                                                <div key={index} className={styles.x_search_result_post + ' ' + styles.x_dropbox}>
+                                                    {
+                                                        val.thumbnail ? 
+                                                        <div className={styles.x_search_result_thumbnail}>
+                                                            <Image alt={val.post_name} src={val.thumbnail[0]} width={val.thumbnail[1]} height={val.thumbnail[2]}/>
+                                                        </div> : ''
+                                                    }
+                                                    <div className={styles.x_search_result_content}>
+                                                    <Link href={'/bai-viet/' + val.post_name}>
+                                                        <a onClick={() => {setSearchForm(false)}}>
+                                                        <h3 className={styles.x_search_result_title}>{val.post_title}</h3>
+                                                        </a>
+                                                    </Link>
+                                                    <p className={styles.x_search_result_excerpt}>{val.post_excerpt}</p>
+                                                    </div>
+                                                </div>
+                                                )
+                                            }) 
+                                        }
+                                    </div>
+                                        : ''
+                                    }
+                                <div className={styles.x_search_footer}>
+                                    {
+                                        paged.current <= paged.max ? 
+                                        <Navigation curent={paged.current} max={paged.max} />
+                                        : ''
+                                    }
+                                    <h3 className={styles.x_search_quest_title}>
+                                        {
+                                            keySearch ? 
+                                            `Bấm enter để nhận kết quả tìm kiếm cho: "${keySearch}"`:
+                                            `Bạn đang tìm gì?`
+                                        }</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div> : ''
+         }
+        </header> 
     </>
   )
 }

@@ -1,7 +1,6 @@
 import Wordpress from '../../public/icons/wordpress.svg';
 import ReactIcons from '../../public/icons/react.svg';
 import NextJs from '../../public/icons/nextjs.svg';
-import API from '../../public/icons/api.svg';
 import NativeApp from '../../public/icons/nativeapp.svg';
 import CRM from '../../public/icons/crm.svg';
 

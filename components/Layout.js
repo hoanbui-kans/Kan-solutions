@@ -95,26 +95,11 @@ const Layout = ({ children }) => {
       off = true;
     }, [off])
 
-    const SearchBoxSchema = {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "url": site_url,
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": site_url + "/tim-kiem?s={search_term_string}"
-        },
-        "query-input": "required name=search_term_string"
-      }
-    }
-
     return (
         <>
         <Head>
           <meta name="google-site-verification" content="rrhzRHk7SR7nSIFPU8TAfwRLuGUDedgPiC0nccSlKgA" />
           <link rel="alternate" href={hreflangURI} hrefLang="vi-vn" />
-          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SearchBoxSchema)}} />
         </Head>
         <SchemaSite />
         <Script id="Kansite_Analytics" async src="https://www.googletagmanager.com/gtag/js?id=G-Y0ZHL4GN97"></Script>
@@ -155,7 +140,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               }
             <Footer />
           </>
-        :  <main>{children}</main>
+        :  <main className='x_site_main'>{children}</main>
         }
         <Script id="gsi" src="https://accounts.google.com/gsi/client" strategy="afterInteractive"/>
         { !session ?
