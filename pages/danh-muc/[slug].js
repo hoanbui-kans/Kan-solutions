@@ -25,7 +25,7 @@ const NewsCategory = ({bai_viet, danh_muc, max_num_pages}) => {
   const Search_Page = async () => {
     setLoading(true);
     setPaged(1);
-    const { data } = await axios.get(rootURL + 'tin-tuc/bai-viet?perpage=13&s=' + keySearch).then((res) => res);
+    const { data } = await axios.get(rootURL + 'tin-tuc/bai-viet?perpage=12&s=' + keySearch).then((res) => res);
     if(data){
       setPosts(data.posts);
       setMaxPage(data.max_num_pages)
@@ -41,7 +41,7 @@ const NewsCategory = ({bai_viet, danh_muc, max_num_pages}) => {
       left: 0,
       behavior: "smooth"
   });
-    const { data } = await axios.get(rootURL + 'tin-tuc/bai-viet?perpage=7&p=' + num).then((res) => res);
+    const { data } = await axios.get(rootURL + 'tin-tuc/bai-viet?perpage=12&p=' + num).then((res) => res);
     if(data){
       setPosts(data.posts);
       setLoading(false);
@@ -109,11 +109,6 @@ const NewsCategory = ({bai_viet, danh_muc, max_num_pages}) => {
                           {
                             posts.map((val, index) => {
                                 return(
-                                  index == 0 ? 
-                                  <Col xs={24} key={val.ID}>
-                                    <BlogStyleOne data={val} />
-                                  </Col>
-                                  :
                                   <Col xs={24} md={12} lg={8} key={val.ID}>
                                     <BlogStyleTwo data={val} />
                                   </Col>
@@ -142,7 +137,7 @@ export default NewsCategory
 
 export async function getServerSideProps(context) {
   const Slug = context.query.slug;
-  const res = await axios.get(rootURL + 'tin-tuc/bai-viet?perpage=13&category=' + Slug).then((resonse) => resonse.data);
+  const res = await axios.get(rootURL + 'tin-tuc/bai-viet?perpage=12&category=' + Slug).then((resonse) => resonse.data);
 
   // Pass data to the page via props
   return { props: { 

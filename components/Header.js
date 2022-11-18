@@ -16,6 +16,7 @@ import CloseIcon from '@rsuite/icons/Close';
 import { IoCaretForwardSharp, IoPerson  } from 'react-icons/io5'
 import { ThemeCategories } from '../pages/api/services'
 import axios from 'axios'
+import HTMLReactParser from 'html-react-parser'
 
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
@@ -46,10 +47,14 @@ const Right = () => {
         <>
             <h3 className={styles.x_menu_title}>DỊCH VỤ PHÁT TRIỂN WEB</h3>
             <div className={styles.x_dropbox}>
-                    <Link href="/dich-vu/thiet-ke-website-tron-goi-cho-doanh-nghiep"><a><p><strong><IoCaretForwardSharp size={10}/> Thiết kế website</strong></p></a></Link>
-                    <p className={styles.x_smaller_text}>
-                        Dịch vụ tạo website nhanh theo mẫu, thiết kế website cho doanh nghiệp quản trị nội dung bằng website có sẵn, tối ưu chi phí thiết lập ban đầu.
-                    </p>
+                    <Link href="/dich-vu/thiet-ke-website-tron-goi-cho-doanh-nghiep">
+                        <a>
+                            <p style={{marginBottom: 5}}><strong><IoCaretForwardSharp size={10}/> Thiết kế website</strong></p>
+                            <p style={{marginBottom: 5}} className={styles.x_smaller_text}>
+                                Dịch vụ tạo website nhanh theo mẫu, thiết kế website cho doanh nghiệp quản trị nội dung bằng website có sẵn, tối ưu chi phí thiết lập ban đầu.
+                            </p>
+                        </a>
+                    </Link>
                     <div>
                         <Link href="/dich-vu/tao-website-lading-page-tu-dong">
                             <a className={styles.x_button_inline}>
@@ -70,8 +75,9 @@ const Right = () => {
             <div className={styles.x_dropbox}>
                     <Link href="/dich-vu/giai-phap-quan-tri-noi-dung-website-cho-doanh-nghiep">
                         <a>
-                            <p><strong><IoCaretForwardSharp size={10}/> Quản trị website</strong></p>
-                            <p className={styles.x_smaller_text}>
+                            <p style={{marginBottom: 5}}><strong><IoCaretForwardSharp size={10}/> Quản trị website</strong></p>
+                            <p style={{marginBottom: 5}} 
+                                className={styles.x_smaller_text}>
                                 Dịch vụ quản trị, quản lý, vận hành, sản xuất nội dung cho website, tối ưu chi phí quản lý, nâng cao hiệu quả chiến dịch.
                             </p>
                         </a>
@@ -80,8 +86,8 @@ const Right = () => {
             <div className={styles.x_dropbox}>
                     <Link href="/dich-vu/giai-phap-marketing-online-cho-doanh-nghiep">
                         <a>
-                            <p><strong><IoCaretForwardSharp size={10}/> Giải pháp marketing Online</strong></p>
-                            <p className={styles.x_smaller_text}>
+                            <p style={{marginBottom: 5}}><strong><IoCaretForwardSharp size={10}/> Giải pháp marketing Online</strong></p>
+                            <p style={{marginBottom: 5}}  className={styles.x_smaller_text}>
                                 Hỗ trợ xây dựng các chiến dịch quảng cáo, quảng bá thương hiệu, nghiên cứu, phân tích, tư vấn hỗ trợ.
                             </p>
                         </a>
@@ -689,7 +695,7 @@ const Header = () => {
                                     <h3 className={styles.x_search_quest_title}>
                                         {
                                             keySearch ? 
-                                            `Bấm enter để nhận kết quả tìm kiếm cho: "${keySearch}"`:
+                                            HTMLReactParser( `Bấm <mark>enter</mark> để nhận kết quả tìm kiếm cho: "${keySearch}"`):
                                             `Bạn đang tìm gì?`
                                         }</h3>
                                 </div>

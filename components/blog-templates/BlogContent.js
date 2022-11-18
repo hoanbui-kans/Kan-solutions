@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import styles from '../../styles/blog.module.css'
 import ArowBackIcon from '@rsuite/icons/ArowBack';
+import HTMLReactParser from 'html-react-parser'
 
 const TermList = ({data}) => {
   if(data == undefined ) return '';
@@ -29,14 +30,14 @@ const TermList = ({data}) => {
 export const BlogStyleOne = ({data}) => {
   return (
     <div className={styles.x_blog_one_section}>
-      <Row>
+      <Row> 
         <Col xs={24} md={12}>
           {
             data.thumbnail ?  
             <div className={styles.x_blog_one_thumbnail}>
                 <Link href={'/bai-viet/' + data.post_name}>
                   <a>
-                    <Image alt='layout' src={ data.thumbnail[0] }  layout='fill' objectFit="cover" quality={90}/>
+                    <Image alt='layout' src={ data.thumbnail[0] } width={ data.thumbnail[1] } height={ data.thumbnail[2]}  layout='fill' objectFit="cover" quality={80}/>
                   </a>
               </Link>
             </div> : ''
@@ -48,10 +49,10 @@ export const BlogStyleOne = ({data}) => {
             <TermList data={data.terms} />
             <Link href={'/bai-viet/' + data.post_name}>
               <a>
-                <h3 className={styles.x_blog_one_title}>{data.post_title}</h3>
+                <h3 className={styles.x_blog_one_title}>{HTMLReactParser(data.post_title)}</h3>
               </a>
             </Link>
-            <p className={styles.x_blog_one_description}>{data.post_excerpt}</p>
+            <p className={styles.x_blog_one_description}>{HTMLReactParser(data.post_excerpt)}</p>
             <Link href={'/bai-viet/' + data.post_name}>
               <a><Button className={styles.x_blog_one_button}>Xem thêm</Button></a>
             </Link>
@@ -68,20 +69,22 @@ export const BlogStyleTwo = ({data}) => {
       {
         data.thumbnail ? <div className={styles.x_blog_two_thumbnail}>
           <Link href={'/bai-viet/' + data.post_name}>
-            <a style={{ height: 280, width: '100%', display: 'block'}}>
-              <Image alt='layout' src={ data.thumbnail[0] } layout='fill' objectFit="cover" quality={100}/>
+            <a style={{ paddingTop: '60%', width: '100%', display: 'block'}}>
+              <Image alt='layout' src={ data.thumbnail[0] } layout='fill' objectFit="cover" quality={90}/>
             </a>
           </Link>
-          <TermList data={data.terms} />
         </div> : ''
       }
       <div className={styles.x_blog_two_content}>
+        {
+           <TermList data={data.terms} />
+        }
         <Link href={'/bai-viet/' + data.post_name}>
           <a>
-            <h3 className={styles.x_blog_two_title}>{data.post_title}</h3>
+            <h3 className={styles.x_blog_two_title}>{HTMLReactParser(data.post_title)}</h3>
           </a>
         </Link>
-        <p className={styles.x_blog_two_description}>{data.post_excerpt}</p>
+        <p className={styles.x_blog_two_description}>{HTMLReactParser(data.post_excerpt)}</p>
         <Link href={'/bai-viet/' + data.post_name}>
           <a className={styles.x_blog_two_link}>
             <span>Xem thêm</span>

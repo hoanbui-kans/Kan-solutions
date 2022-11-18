@@ -36,9 +36,7 @@
     font-size: 22px;
 }
 .x_title{
-    font-size: 1.25rem;
-    line-height: 1.45;
-    margin-bottom: .95rem;
+    font-size: 1.55rem;
     display: block;
 }
 .x_feature_icon{
@@ -293,9 +291,7 @@
     line-height: 26px;
     font-size: 16px;
 }
-.x_sing_theme_content h2{
-    font-size: 28px;
-}
+
 .x_Qa_section_title{
     font-weight: normal;
     font-size: 14px;
@@ -308,6 +304,11 @@
     margin-bottom: 15px;
     padding-bottom: 6px;
 }
+
+.x_sing_theme_content h2{
+    font-size: 1.35rem;
+}
+
 .x_sing_theme_content h4 {
     font-size: 18px;
     line-height: 24px;
@@ -326,14 +327,11 @@
     font-size: 10px;
 }
 .x_single_theme_section{
-    padding: .55rem .75rem;
     border-radius: .35rem;
     margin-bottom: 1.55rem;
     display: block;
 }
-.x_single_content span{
-    width: 100% !important;
-}
+
 .x_single_content img{
     max-width: 100%;
     width: 100% !important;

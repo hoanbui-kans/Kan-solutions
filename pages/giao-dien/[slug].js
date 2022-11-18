@@ -245,18 +245,18 @@ export const SingleTheme = ({data, link_theme}) => {
             <Row className={styles.x_theme_thumbnail_section}>
               <Col xs={24} md={16}>
                 <div className={styles.x_theme_content}>
-                    <div className={styles.x_single_theme_section}>
-                      <h1 className={styles.x_title}>{HTMLReactParser(data.post_title)}</h1>
-                        {
-                          data.post_excerpt ? <><p>{data.post_excerpt}</p><hr /></>: '' 
-                        }
-                    </div>
                     {
                       data.thumbnail ?  
                       <div className={styles.x_single_theme_thumbnail}>
                         <Image src={data.thumbnail[0]} width={data.thumbnail[1]} height={data.thumbnail[2]} alt={data.post_title}/>
                       </div>: ''
                     }
+                    <div className={styles.x_single_theme_section}>
+                      <h1 className={styles.x_title}>{HTMLReactParser(data.post_title)}</h1>
+                        {
+                          data.post_excerpt ? <><p>{data.post_excerpt}</p><hr /></>: '' 
+                        }
+                    </div>
                     <div className={styles.x_hide_mobile}>
                         {
                             DanhMucNganh.length > 0 ? 

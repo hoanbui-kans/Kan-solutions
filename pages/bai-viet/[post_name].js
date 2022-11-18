@@ -63,27 +63,10 @@ const PostSingle = ({data}) => {
 
   let miscValue =  data.yoast_head.json.twitter_misc ? Object.values(data.yoast_head.json.twitter_misc) : '';
 
-  const BreadCumbSchemas = {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Tin tức",
-        "item": site_url + "/tin-tuc"
-      },{
-        "@type": "ListItem",
-        "position": 2,
-        "name": data.post_title,
-        "item": site_url + "/bai-viet/" + data.post_name
-      }]
-    }
-
     return (
       <>
         <Head>
           {HTMLReactParser(data.yoast_head.html.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content"))}
-          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BreadCumbSchemas)}} />
         </Head>
         <div className={'x_breadcum_container'}>
           <Container>
@@ -105,7 +88,7 @@ const PostSingle = ({data}) => {
                             data.thumbnail ?
                             <div className={styles.x_blog_thumbnail_meta}>
                                 <div className={styles.x_single_blog_thumbnail}>
-                                  <Image alt={HTMLReactParser(data.post_title)} src={data.thumbnail[0]} layout='fill' objectFit="cover" quality={100}/>
+                                  <Image alt={HTMLReactParser(data.post_title)} src={data.thumbnail[0]} width={data.thumbnail[1]} height={data.thumbnail[2]}  quality={100}/>
                                 </div> 
                                 <div className={styles.x_single_blog_meta}>
                                   <div className={styles.x_blog_meta_content}>
@@ -133,7 +116,9 @@ const PostSingle = ({data}) => {
                                 {
                                   HTMLReactParser(data.post_content)
                                 }
+                                
                               </div>
+                              <TableOfContent />
                               <div className={styles.x_sharing}>
                                 <strong>Chia sẻ lên</strong>
                                 <SocialLink 
@@ -146,7 +131,6 @@ const PostSingle = ({data}) => {
                                 <CommentsUI data={data.comment} post_id={data.ID}/>
                               </div>
                           </div>
-                          <TableOfContent />
                         </Col>
                       </Row>
                       {

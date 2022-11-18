@@ -88,9 +88,9 @@
 .x_step_working_icon{
     font-size: 100px;
     position: absolute;
-    bottom: 50px;
+    bottom: -50px;
     right: 10px;
-    color: #b7dbff;
+    color: #e3e3e3;
     font-weight: bolder;
 }
 .x_step_title{

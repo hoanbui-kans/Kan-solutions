@@ -1,5 +1,5 @@
-import '../styles/globals.css'
 import 'rsuite/dist/rsuite.min.css'; // or 'rsuite/dist/rsuite.min.css'
+import '../styles/globals.css'
 import { SessionProvider } from "next-auth/react"
 import Layout from '../components/Layout';
 

@@ -83,17 +83,7 @@ const Layout = ({ children }) => {
             });
           }
         }
-      }, [isLoading, isSignedIn, parentContainerId]);
-    
-    let off = false;
-
-    useEffect(() => {
-      if(!off){
-        console.log('%cKAN SOLUTION', 'color: #2d88e2; font-size: 34px; line-height: 38px; font-weight: 900;');
-        console.log('https://kansite.com.vn/');
-      }
-      off = true;
-    }, [off])
+    }, [isLoading, isSignedIn, parentContainerId]);
 
     return (
         <>
