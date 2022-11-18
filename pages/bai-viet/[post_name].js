@@ -18,6 +18,8 @@ import {
   LinkedinIcon,
   FacebookShareButton,
   FacebookIcon,
+  TwitterShareButton,
+  TwitterIcon,
 } from 'next-share'
 
 
@@ -28,6 +30,14 @@ const SocialLink = ({ title, description, media, url}) => {
   return(
     <>
     <ul className={styles.x_social_group}>
+      <li>
+          <TwitterShareButton
+            url={title}
+            quote={description}
+          >
+          <TwitterIcon size={38} round />
+        </TwitterShareButton>
+      </li>
       <li>
           <FacebookShareButton
             url={title}
@@ -122,9 +132,9 @@ const PostSingle = ({data}) => {
                               <div className={styles.x_sharing}>
                                 <strong>Chia sẻ lên</strong>
                                 <SocialLink 
-                                  title={data.post_title ? data.post_title : ''} 
-                                  description={data.post_excerpt ? data.post_excerpt : ''} 
-                                  media={data.thumbnail ? data.thumbnail : ''}
+                                  title={data.post_title ? HTMLReactParser(data.post_title) : ''} 
+                                  description={data.post_excerpt ? HTMLReactParser(data.post_excerpt) : ''} 
+                                  media={data.thumbnail ? data.thumbnail[0] : ''}
                                 />
                               </div>
                               <div className={styles.x_comment_form}>
