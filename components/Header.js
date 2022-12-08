@@ -421,7 +421,7 @@ const Header = () => {
                                 </li>
                                 <li className={styles.x_desktop_display}><Link href={'/tuyen-dung'}>Tuyển dụng</Link></li>
                                 {
-                                    session ? 
+                                    session && session.user ? 
                                         <li><Link href={'/quan-ly'}><a><span className={styles.x_account_name}>{session.user.token.user_display_name}</span></a></Link></li>
                                     : ''
                                 }

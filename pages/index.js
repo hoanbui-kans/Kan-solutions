@@ -53,9 +53,9 @@ const HomeTwo = () => {
       mirror: false
     });
 
-    setTimeout(() => {
-      setOpen_ads(true);
-    }, 3000);
+    // setTimeout(() => {
+    //   setOpen_ads(true);
+    // }, 3000);
   }, [true])
 
   return (
@@ -504,7 +504,7 @@ const HomeTwo = () => {
           </Row>
       </Container>
     </section>
-      <Modal open={open} onClose={handleClose} backdrop="static">
+      {/* <Modal open={open} onClose={handleClose} backdrop="static">
         <Modal.Header>
           <Modal.Title>Đăng ký dịch vụ thiết kế Website</Modal.Title>
         </Modal.Header>
@@ -519,7 +519,7 @@ const HomeTwo = () => {
                   <a style={{paddingTop: '100%', display: 'block'}}></a>
             </Link>
         </Modal.Body>
-      </Modal>
+      </Modal> */}
     </>
   )
 }

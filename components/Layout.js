@@ -113,7 +113,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
          height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
          <!-- End Google Tag Manager (noscript) -->`)
         }
-        <Component />
+        {/* <Component /> */}
         {
           // !pathname.includes('/dang-nhap')  
           // && !pathname.includes('/dang-ky') 
@@ -132,7 +132,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </>
         :  <main className='x_site_main'>{children}</main>
         }
-        <Script id="gsi" src="https://accounts.google.com/gsi/client" strategy="afterInteractive"/>
+        {/* <Script id="gsi" src="https://accounts.google.com/gsi/client" strategy="afterInteractive"/> */}
         { !session ?
             <Script id="Tawk_API" type="text/javascript" strategy="afterInteractive">
             {

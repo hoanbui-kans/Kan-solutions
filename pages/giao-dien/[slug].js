@@ -322,7 +322,7 @@ export const SingleTheme = ({data, link_theme}) => {
                     </div>
 
                     <div className={styles.x_toolbar_button}>
-                      {
+                      {/* {
                         link_theme ? 
                         <a href={link_theme}>
                             <Button className={styles.x_create_button}>
@@ -336,7 +336,7 @@ export const SingleTheme = ({data, link_theme}) => {
                                 Đăng nhập tài khoản
                             </Button> 
                         </Link>
-                      }
+                      } */}
                       <Link href={'/giao-dien/xem-giao-dien/' + data.post_name}>
                         <a>
                           <Button className={styles.x_view_button}>
