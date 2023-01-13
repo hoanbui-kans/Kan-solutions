@@ -210,9 +210,9 @@
 }
 
 .x_login_button{
-    background-color: rgba(255, 105, 141, 1);
-    box-shadow: 5px 9px 28px -15px #ff698d;
-    border: 2px solid #ff698d;
+    background-color: var(--x-brand-color);
+    box-shadow: 5px 9px 28px -15px var(--x-brand-color);
+    border: 2px solid var(--x-brand-color);
     color: white;
     border-radius: 35px;
     display: inline-block;

@@ -17,7 +17,6 @@ import {
   toaster  } from 'rsuite'
 import styles from '../styles/page.module.css'
 import { IoPaperPlaneSharp } from "react-icons/io5";
-import { RecruitmentSeo } from './api/HeaderSeo';
 import HTMLReactParser from 'html-react-parser';
 import axios from 'axios';
 import Link from 'next/link';
@@ -174,9 +173,6 @@ const Recruitment = () => {
 
   return (
     <>
-      <Head>
-        { HTMLReactParser(RecruitmentSeo.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
-      </Head>
       <div className={'x_breadcum_container'}>
           <Container>
               <Row>

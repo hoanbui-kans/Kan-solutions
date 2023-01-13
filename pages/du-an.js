@@ -26,22 +26,22 @@ export const SingleProject = ({data}) => {
             </div>
             <div className={styles.x_project_content}>
                 <Link href={"/du-an/" + data.post_name}>
-                    <a>
-                        <h3 className={styles.x_project_title}>{HTMLReactParser(data.post_title)}</h3>
-                    </a>
+
+                    <h3 className={styles.x_project_title}>{HTMLReactParser(data.post_title)}</h3>
+
                 </Link>
                 <p>{HTMLReactParser(data.post_excerpt)}</p>
                 <a href={data.project_view} target="_blank" rel="noreferrer">
                     <Button className={styles.x_project_view_button}>Xem dự án</Button>
                 </a>
                 <Link href={"/du-an/" + data.post_name}>
-                    <a>
-                        <Button className={styles.x_project_button}>Xem chi tiết</Button>
-                    </a>
+
+                    <Button className={styles.x_project_button}>Xem chi tiết</Button>
+
                 </Link>
             </div>
         </div>
-    )
+    );
 }
 
 const Projects = ({bai_viet, max_num_pages}) => {

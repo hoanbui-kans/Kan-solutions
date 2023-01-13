@@ -5,9 +5,7 @@ import styles from '../styles/page.module.css'
 import axios from 'axios'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ContactUsSeo } from './api/HeaderSeo'
 import HTMLReactParser from 'html-react-parser'
-import Head from 'next/head'
 const ROOT_URL = process.env.NEXT_PUBLIC_WP_JSON
 
 export const FormLienHe = () => {
@@ -114,9 +112,6 @@ const Contact = () => {
 
   return (
     <>
-      <Head>
-        {HTMLReactParser(ContactUsSeo.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content"))}
-      </Head>
       <div className={'x_breadcum_container'}>
         <Container>
             <Row>

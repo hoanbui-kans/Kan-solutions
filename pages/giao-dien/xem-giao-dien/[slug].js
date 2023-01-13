@@ -49,149 +49,143 @@ const ThemeViews = ({data, link_theme}) => {
 
   const [screen, setScreen] = useState(ViewScreen.desktop);
 
-  return (
-   <>
-   <Head>
-    { HTMLReactParser(data.yoast_head.html.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
-   </Head>
-   <div className={styles.x_preview_container}>
-      <Navbar className={styles.x_nav_flex}>
-          <Col xs={8}>
-              <Navbar.Brand className={styles.x_preview_brand} as={'div'}>
-                <Link href="/giao-dien"> 
-                    <a className={styles.x_centered}>
-                      <IoHome size={18}/>
-                    </a>
-                </Link>
-              </Navbar.Brand>
-            </Col>
-          <Col xs={8}>
-            <Nav className={styles.x_nav_centered + ' ' + styles.x_showin_desktop}>
-              <Nav.Item className={styles.x_centered} onClick={ () =>{ setScreen(ViewScreen.desktop) } }>
-                <IoDesktopOutline size={16}/> 
-                Desktop
-              </Nav.Item>
-              <Nav.Item className={styles.x_centered} onClick={ () =>{ setScreen(ViewScreen.tablet) } }>
-                <IoTabletLandscapeOutline size={16}/>
-                Tablet
-              </Nav.Item>
-              <Nav.Item className={styles.x_centered} onClick={ () =>{ setScreen(ViewScreen.mobile) } }>
-                <IoPhonePortraitOutline size={16}/>
-                Mobile
-              </Nav.Item>
-            </Nav>
-            <Nav className={styles.x_nav_centered + ' ' + styles.x_showin_mobile}>
-              <Nav.Menu title="Thiết bị" icon={<IoTabletLandscapeOutline size={16}/>}>
-                <Nav.Item className={styles.x_centered} onClick={ () =>{ setScreen(ViewScreen.desktop) } }>
-                    <IoDesktopOutline size={16}/> 
-                    Desktop
-                  </Nav.Item>
-                  <Nav.Item className={styles.x_centered} onClick={ () =>{ setScreen(ViewScreen.tablet) } }>
-                    <IoTabletLandscapeOutline size={16}/>
-                    Tablet
-                  </Nav.Item>
-                  <Nav.Item className={styles.x_centered} onClick={ () =>{ setScreen(ViewScreen.mobile) } }>
-                    <IoPhonePortraitOutline size={16}/>
-                    Mobile
-                  </Nav.Item>
-              </Nav.Menu>
-            </Nav>
-          </Col>
-          <Col xs={8}>
-              <Nav className={styles.x_nav_end + ' ' + styles.x_showin_desktop}>
-                {
-                  link_theme ? 
-                  <Nav.Item className={styles.x_centered} href={link_theme}>
-                  <IoCopyOutline size={16}/>
-                  Chọn mẫu này
-                </Nav.Item> :
-                <Nav.Item as={'span'}>
-                    <Link href="/dang-nhap/">
-                      <a className={styles.x_centered}>
-                        <IoPersonCircleOutline size={16}/>
-                        Đăng nhập
-                      </a>
-                    </Link>
-                </Nav.Item>
-                }
-                <Nav.Item 
-                  className={styles.x_centered} 
-                  onClick={() => {handleOpen('Đăng ký tư vấn mẫu giao diện' + data.post_title)}}
-                  >
-                  <IoReaderOutline size={16}/>
-                  Tư vấn mẫu
-                </Nav.Item>
-                <Nav.Item as={'span'}>
-                    <a href={data.themeinfor.link} className={styles.x_centered}>
-                      <IoEarthSharp size={16}/>
-                      Xem trực tiếp
-                    </a>
-                  </Nav.Item>
-              </Nav>
-              <Nav className={styles.x_nav_centered + ' ' + styles.x_showin_mobile}>
-                <Nav.Menu title="Chọn mẫu">
-                  {
-                    link_theme ? 
+  return <>
+  <Head>
+   { HTMLReactParser(data.yoast_head.html.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
+  </Head>
+  <div className={styles.x_preview_container}>
+     <Navbar className={styles.x_nav_flex}>
+         <Col xs={8}>
+             <Navbar.Brand className={styles.x_preview_brand} as={'div'}>
+               <Link href="/giao-dien" className={styles.x_centered}>
+
+                 <IoHome size={18}/>
+
+               </Link>
+             </Navbar.Brand>
+           </Col>
+         <Col xs={8}>
+           <Nav className={styles.x_nav_centered + ' ' + styles.x_showin_desktop}>
+             <Nav.Item className={styles.x_centered} onClick={ () =>{ setScreen(ViewScreen.desktop) } }>
+               <IoDesktopOutline size={16}/> 
+               Desktop
+             </Nav.Item>
+             <Nav.Item className={styles.x_centered} onClick={ () =>{ setScreen(ViewScreen.tablet) } }>
+               <IoTabletLandscapeOutline size={16}/>
+               Tablet
+             </Nav.Item>
+             <Nav.Item className={styles.x_centered} onClick={ () =>{ setScreen(ViewScreen.mobile) } }>
+               <IoPhonePortraitOutline size={16}/>
+               Mobile
+             </Nav.Item>
+           </Nav>
+           <Nav className={styles.x_nav_centered + ' ' + styles.x_showin_mobile}>
+             <Nav.Menu title="Thiết bị" icon={<IoTabletLandscapeOutline size={16}/>}>
+               <Nav.Item className={styles.x_centered} onClick={ () =>{ setScreen(ViewScreen.desktop) } }>
+                   <IoDesktopOutline size={16}/> 
+                   Desktop
+                 </Nav.Item>
+                 <Nav.Item className={styles.x_centered} onClick={ () =>{ setScreen(ViewScreen.tablet) } }>
+                   <IoTabletLandscapeOutline size={16}/>
+                   Tablet
+                 </Nav.Item>
+                 <Nav.Item className={styles.x_centered} onClick={ () =>{ setScreen(ViewScreen.mobile) } }>
+                   <IoPhonePortraitOutline size={16}/>
+                   Mobile
+                 </Nav.Item>
+             </Nav.Menu>
+           </Nav>
+         </Col>
+         <Col xs={8}>
+             <Nav className={styles.x_nav_end + ' ' + styles.x_showin_desktop}>
+               {
+                 link_theme ? 
+                 <Nav.Item className={styles.x_centered} href={link_theme}>
+                 <IoCopyOutline size={16}/>
+                 Chọn mẫu này
+               </Nav.Item> :
+               <Nav.Item as={'span'}>
+                   <Link href="/dang-nhap/" className={styles.x_centered}>
+
+                     <IoPersonCircleOutline size={16}/>Đăng nhập
+                   </Link>
+               </Nav.Item>
+               }
+               <Nav.Item 
+                 className={styles.x_centered} 
+                 onClick={() => {handleOpen('Đăng ký tư vấn mẫu giao diện' + data.post_title)}}
+                 >
+                 <IoReaderOutline size={16}/>
+                 Tư vấn mẫu
+               </Nav.Item>
+               <Nav.Item as={'span'}>
+                   <a href={data.themeinfor.link} className={styles.x_centered}>
+                     <IoEarthSharp size={16}/>
+                     Xem trực tiếp
+                   </a>
+                 </Nav.Item>
+             </Nav>
+             <Nav className={styles.x_nav_centered + ' ' + styles.x_showin_mobile}>
+               <Nav.Menu title="Chọn mẫu">
+                 {
+                   link_theme ? 
+                   <Nav.Item as={'span'}>
+                     <a className={styles.x_centered} href={link_theme} style={{color: '#575757'}}>
+                       <IoCopyOutline size={16}/>
+                       Chọn mẫu này
+                     </a>
+                   </Nav.Item> :
+                   <Nav.Item as={'span'}>
+                       <Link href="/dang-nhap/" className={styles.x_centered}>
+
+                         <IoPersonCircleOutline size={16}/>Đăng nhập
+                       </Link>
+                   </Nav.Item>
+                   }
+                   <Nav.Item 
+                     className={styles.x_centered} 
+                     onClick={() => {handleOpen('Đăng ký tư vấn mẫu giao diện' + data.post_title)}}
+                     >
+                     <IoReaderOutline size={16}/>
+                     Đăng ký tư vấn
+                   </Nav.Item>
                     <Nav.Item as={'span'}>
-                      <a className={styles.x_centered} href={link_theme} style={{color: '#575757'}}>
-                        <IoCopyOutline size={16}/>
-                        Chọn mẫu này
-                      </a>
-                    </Nav.Item> :
-                    <Nav.Item as={'span'}>
-                        <Link href="/dang-nhap/">
-                          <a className={styles.x_centered}>
-                            <IoPersonCircleOutline size={16}/>
-                            Đăng nhập
-                          </a>
-                        </Link>
-                    </Nav.Item>
-                    }
-                    <Nav.Item 
-                      className={styles.x_centered} 
-                      onClick={() => {handleOpen('Đăng ký tư vấn mẫu giao diện' + data.post_title)}}
-                      >
-                      <IoReaderOutline size={16}/>
-                      Đăng ký tư vấn
-                    </Nav.Item>
-                     <Nav.Item as={'span'}>
-                        <a href={data.themeinfor.link} className={styles.x_centered}>
-                          <IoEarthSharp size={16}/>
-                          Xem trực tiếp
-                        </a>
-                    </Nav.Item>
-                  </Nav.Menu>
-              </Nav>
-          </Col>
-      </Navbar>
-      <div 
-        className={styles.x_preview_screen_container} 
-        style={{
-          width: screen.width, 
-          height: screen.height, 
-          marginTop: screen.marginTop, 
-          maxHeight: 'calc(100vh - 56px)',
-          maxWidth: '100%'
-        }}>
-        <iframe width="100%" 
-          height={'100%'} 
-          src={data.themeinfor.link} 
-          frameBorder="0" 
-          noresize="noresize" 
-          data-view="fullScreenPreview">
-        </iframe>
-      </div>
-    </div>
-    <Modal open={open} onClose={handleClose} backdrop="static">
-        <Modal.Header>
-          <Modal.Title>Đăng ký tư vấn giao diện mẫu</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-            <ServicesSubmitForm service={service}/>
-        </Modal.Body>
-      </Modal>
-  </>
-  )
+                       <a href={data.themeinfor.link} className={styles.x_centered}>
+                         <IoEarthSharp size={16}/>
+                         Xem trực tiếp
+                       </a>
+                   </Nav.Item>
+                 </Nav.Menu>
+             </Nav>
+         </Col>
+     </Navbar>
+     <div 
+       className={styles.x_preview_screen_container} 
+       style={{
+         width: screen.width, 
+         height: screen.height, 
+         marginTop: screen.marginTop, 
+         maxHeight: 'calc(100vh - 56px)',
+         maxWidth: '100%'
+       }}>
+       <iframe width="100%" 
+         height={'100%'} 
+         src={data.themeinfor.link} 
+         frameBorder="0" 
+         noresize="noresize" 
+         data-view="fullScreenPreview">
+       </iframe>
+     </div>
+   </div>
+   <Modal open={open} onClose={handleClose} backdrop="static">
+       <Modal.Header>
+         <Modal.Title>Đăng ký tư vấn giao diện mẫu</Modal.Title>
+       </Modal.Header>
+       <Modal.Body>
+           <ServicesSubmitForm service={service}/>
+       </Modal.Body>
+     </Modal>
+ </>;
 }
 
 export default ThemeViews

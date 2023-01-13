@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Row, Col, Button, Modal, Rate, Divider } from 'rsuite';
-import TypeAnimation from 'react-type-animation';
-import styles from '../styles/HomePage2.module.css';
+import styles from '../styles/home.module.css';
 import Image from 'next/image';
-import aos from 'aos';
 import 
 { 
   IoCheckmarkCircle,
   IoBrowsersOutline,
   IoCall,
   IoCheckmarkCircleSharp,
-  IoCloseOutline 
 } from "react-icons/io5";
 import { GD_Box } from './giao-dien';
 import { Navigation, Pagination, EffectFade } from 'swiper';
@@ -19,21 +16,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Testionimal } from './api/services';
 import { FormLienHe } from './lien-he';
 import Link from 'next/link';
-import { HomePageSeo } from './api/HeaderSeo'
-import HTMLReactParser from 'html-react-parser'
-import ServicesSubmitForm from '../components/handleSubmitServices'
-import Head from 'next/head';
-import { BioThemes ,themesAPI, PostsAPI} from './api/HomeAPI';
+
 // import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "aos/dist/aos.css";
 
 const HomeTwo = () => {
   const [open, setOpen] = useState(false);  
-  const [open_ads, setOpen_ads] = useState(false);  
   const [service, setService] = useState(''); 
  
   const handleOpen = (service) => {
@@ -41,68 +32,33 @@ const HomeTwo = () => {
      setOpen(true)
   };
 
- const handleClose = () => setOpen(false);
- const handleClose_ads = () => setOpen_ads(false);
-
-  useEffect(() => {
-    aos.init({
-      offset: 100,
-      duration: 800,
-      easing: 'ease-in-out-sine',
-      delay: 0,
-      mirror: false
-    });
-
-    // setTimeout(() => {
-    //   setOpen_ads(true);
-    // }, 3000);
-  }, [true])
-
   return (
    <>
-    <Head>
-      { HTMLReactParser(HomePageSeo.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
-    </Head>
     <section className={styles.x_hero_banner}>
         <Container className={styles.x_container}>
             <Row>
               <Col xs={24} md={12}>
                   <div className={styles.x_hero_banner_content}>
-                      <h1 className={styles.x_hero_title} data-aos="fade-right">Giải pháp quản lý xây dựng <br />
-                          <TypeAnimation
-                            style={{display: 'block'}}
-                            cursor={true}
-                            sequence={[
-                              ' website cá nhân',
-                              4000,
-                              ' cửa hàng trực tuyến',
-                              4000,
-                              ' chiến lược tiếp thị',
-                              4000,
-                            ]}
-                            className={styles.x_wrapper_text}
-                            wrapper="span"
-                            repeat={Infinity}
-                          />
+                      <h1 className={styles.x_hero_title}>
+                        Giải pháp quản lý xây dựng website cá nhâ<nav></nav>
                       </h1>
                       <ul className={styles.x_hero_banner_feature}>
-                            <li data-aos="fade-right"> <p><IoCheckmarkCircleSharp color={'#2ecc71'} size={16}/> Xây dựng kênh bán hàng chủ động, đầy đủ tính năng</p></li>
-                            <li data-aos="fade-left"> <p><IoCheckmarkCircleSharp color={'#2ecc71'} size={16}/> Đa dạng hóa kênh tiếp thị của bạn</p></li>
-                            <li data-aos="fade-right"> <p><IoCheckmarkCircleSharp color={'#2ecc71'} size={16}/> Quản lý xuất nhập kho, chăm sóc khách hàng</p></li>
-                            <li data-aos="fade-left"> <p><IoCheckmarkCircleSharp color={'#2ecc71'} size={16}/> Chủ động quản lý dòng tiền</p></li>
+                            <li> <p><IoCheckmarkCircleSharp color={'#2ecc71'} size={16}/> Xây dựng kênh bán hàng chủ động, đầy đủ tính năng</p></li>
+                            <li> <p><IoCheckmarkCircleSharp color={'#2ecc71'} size={16}/> Đa dạng hóa kênh tiếp thị của bạn</p></li>
+                            <li> <p><IoCheckmarkCircleSharp color={'#2ecc71'} size={16}/> Quản lý xuất nhập kho, chăm sóc khách hàng</p></li>
+                            <li> <p><IoCheckmarkCircleSharp color={'#2ecc71'} size={16}/> Chủ động quản lý dòng tiền</p></li>
                       </ul>
                       <div className={styles.x_call_out_hero}>
-                          <Link href="/dich-vu/tao-website-lading-page-tu-dong">
+                          <Link legacyBehavior href="/dich-vu/tao-website-lading-page-tu-dong">
                             <a>
-                              <Button data-aos="fade-up" className={styles.x_focused_button}>
+                              <Button className={styles.x_focused_button}>
                                   <IoBrowsersOutline size={22}/> TẠO WEBSITE MIỄN PHÍ
                               </Button>
                             </a>
                           </Link>
                           <Button 
-                          data-aos="fade-up" 
-                          onClick={() => { handleOpen('Đăng ký thiết kế website - Trang chủ') }}
-                          className={styles.x_nonFocused_button}>
+                            onClick={() => { handleOpen('Đăng ký thiết kế website - Trang chủ') }}
+                            className={styles.x_nonFocused_button}>
                               <IoCall size={22}/>TƯ VẤN
                           </Button> 
                       </div>
@@ -110,13 +66,12 @@ const HomeTwo = () => {
               </Col>
               <Col xs={24} md={12}>
                     <div className={styles.x_banner_deccoration}>
-                          <span data-aos="fade-left" className={styles.x_happy_business}>
+                          <span className={styles.x_happy_business}>
                               <Image 
-                                placeholder='blurDataURL' 
-                                src="/home/hero-banner-2.webp" 
+                                src="/design.svg" 
                                 alt="Quản lý web bán hàng hiệu quả" 
-                                width={415} 
-                                height={436}
+                                width={575} 
+                                height={391}
                               />
                           </span>
                     </div>
@@ -129,10 +84,10 @@ const HomeTwo = () => {
           <Row>
             <Col xs={24} md={8}>
                   <div className={styles.x_main_box}>
-                      <h3 className={styles.x_main_box_secondary} data-aos="fade-down">DỊCH VỤ</h3>
-                      <h2 className={styles.x_main_box_primary} data-aos="fade-up">Giải pháp hàng đầu</h2>
-                      <p className={styles.x_main_box_description} data-aos="fade-left">Chúng tôi sẽ cung cấp những giải pháp xây dựng Website thương hiệu để giúp bạn kinh doanh thành công trên nhiều lĩnh vực</p>
-                      <span className={styles.x_vector} data-aos="fade-right">
+                      <h3 className={styles.x_main_box_secondary}>DỊCH VỤ</h3>
+                      <h2 className={styles.x_main_box_primary}>Giải pháp hàng đầu</h2>
+                      <p className={styles.x_main_box_description}>Chúng tôi sẽ cung cấp những giải pháp xây dựng Website thương hiệu để giúp bạn kinh doanh thành công trên nhiều lĩnh vực</p>
+                      <span className={styles.x_vector}>
                         <Image  placeholder='blurDataURL' src={'/home/Vector.svg'} width={80} height={130} alt=""/>
                       </span>
                   </div>
@@ -140,7 +95,7 @@ const HomeTwo = () => {
             <Col xs={24} md={16}>
                <Row>
                   <Col xs={24} md={8}>
-                      <div className={styles.x_secondary_box} data-aos="fade-down">
+                      <div className={styles.x_secondary_box}>
                           <span className={styles.x_secondary_box_icon}>
                             <Image placeholder='blurDataURL' src="/home/shop.svg" alt="Website bán hàng" width={40} height={40} />
                           </span>
@@ -149,7 +104,7 @@ const HomeTwo = () => {
                       </div>
                 </Col>
                 <Col xs={24} md={8}>
-                      <div className={styles.x_secondary_box} data-aos="fade-up">
+                      <div className={styles.x_secondary_box}>
                           <span className={styles.x_secondary_box_icon}>
                             <Image placeholder='blurDataURL' src="/home/cards.svg" alt="Quản lý thanh toán" width={40} height={40} />
                           </span>
@@ -158,7 +113,7 @@ const HomeTwo = () => {
                       </div>
                 </Col>
                 <Col xs={24} md={8}>
-                      <div className={styles.x_secondary_box} data-aos="fade-down">
+                      <div className={styles.x_secondary_box}>
                           <span className={styles.x_secondary_box_icon}>
                             <Image placeholder='blurDataURL' src="/home/favorite-chart.svg" alt="Marketing online" width={40} height={40} />
                           </span>
@@ -176,42 +131,42 @@ const HomeTwo = () => {
               <Row className="x_flex_center">
                 <Col xs={24} md={12}>
                   <div className={styles.x_features_image}>
-                    <Image placeholder='blurDataURL' src="/home/features.svg" data-aos="fade-down" width={500} height={400} alt=""/>
+                    <Image placeholder='blurDataURL' src="/home/features.svg" width={500} height={400} alt=""/>
                   </div>
                 </Col>
                 <Col xs={24} md={12}>
                    <div className={styles.x_features_box}>
-                      <h3 className={styles.x_main_box_secondary} data-aos="fade-down">TẠI SAO CHỌN CHÚNG TÔI</h3>
-                      <h2 className={styles.x_main_box_primary} data-aos="fade-up">Chúng tôi mang lại cho bạn trải nghiệm tốt nhất và hoàn toàn miễn phí</h2>
+                      <h3 className={styles.x_main_box_secondary}>TẠI SAO CHỌN CHÚNG TÔI</h3>
+                      <h2 className={styles.x_main_box_primary}>Chúng tôi mang lại cho bạn trải nghiệm tốt nhất và hoàn toàn miễn phí</h2>
                       <ul className={styles.x_features_icon_list}>
-                        <li data-aos="fade-left">
+                        <li>
                             <p><IoCheckmarkCircle color="#2ecc71" size={22}/>Website với nhiều tính năng, tốc độ mạnh mẽ</p>
                         </li>
-                        <li data-aos="fade-right">
+                        <li>
                             <p><IoCheckmarkCircle color="#2ecc71" size={22}/>Quản lý dễ dàng, xây dựng nội dung tùy biến theo nhiều chủ đề</p>
                         </li>
-                        <li data-aos="fade-left">
+                        <li>
                             <p><IoCheckmarkCircle color="#2ecc71" size={22}/>Chi phí hợp lý, đạt hiệu quả ngay lần đầu sử dụng tiết kiệm thời gian</p>
                         </li>
-                        <li data-aos="fade-left">
+                        <li>
                             <p><IoCheckmarkCircle color="#2ecc71" size={22}/>Di chuyển, nâng cấp, tạo website riêng nhanh chóng</p>
                         </li>
-                        <li data-aos="fade-left">
+                        <li>
                             <p><IoCheckmarkCircle color="#2ecc71" size={22}/>Giải pháp xây dựng thương hiệu riêng dành cho doanh nghiệp</p>
                         </li>
-                        <li data-aos="fade-left">
+                        <li>
                             <p><IoCheckmarkCircle color="#2ecc71" size={22}/>Cộng đồng sử dụng rộng lớn</p>
                         </li>
                       </ul>
-                      <Link href="/dang-ky">
+                      <Link legacyBehavior href="/dang-ky">
                             <a>
-                              <Button data-aos="fade-up" className={styles.x_focused_button} style={{marginTop: '15px', marginRight: '15px'}}>
+                              <Button className={styles.x_focused_button} style={{marginTop: '15px', marginRight: '15px'}}>
                                   ĐĂNG KÝ NGAY
                               </Button>
                             </a>
                       </Link>
                       <a href="tel:0392193639">
-                        <Button data-aos="fade-up" className={styles.x_ViewAll_button} style={{marginTop: '15px', marginRight: '0px'}}>
+                        <Button className={styles.x_ViewAll_button} style={{marginTop: '15px', marginRight: '0px'}}>
                            TƯ VẤN DOANH NGHIỆP
                         </Button>
                       </a>
@@ -225,27 +180,18 @@ const HomeTwo = () => {
           <Row>
             <Col xs={24}>
                   <div className={styles.x_themes_content}>
-                    <h3 className={styles.x_main_box_secondary} data-aos="fade-down">GIAO DIỆN MẪU</h3>
-                    <h2 className={styles.x_main_box_primary} data-aos="fade-up">250+ Mẫu giao diện bán hàng tiêu chuẩn</h2>
+                    <h3 className={styles.x_main_box_secondary}>GIAO DIỆN MẪU</h3>
+                    <h2 className={styles.x_main_box_primary}>250+ Mẫu giao diện bán hàng tiêu chuẩn</h2>
                     <p>Mẫu giao diện bán hàng miễn phí đầy đủ chức năng cập nhật thường xuyên</p>
                   </div>
             </Col>
-              {
-                  themesAPI.map((val) => {
-                      return(
-                        <Col xs={24} md={12} lg={8} key={val.ID} data-aos="fade-up">
-                            <GD_Box data={val} price={false}/>
-                        </Col>
-                      )
-                  })
-              }
                <Col xs={24} md={12} lg={8}>
                    <div className={styles.x_themes_banner}>
                       <div className={styles.x_themes_banner_content}>
-                        <h2 className={styles.x_main_box_primary} data-aos="fade-up">Xây dựng website bán hàng đầy đủ chức năng</h2>
-                        <Link href="/dang-ky">
+                        <h2 className={styles.x_main_box_primary}>Xây dựng website bán hàng đầy đủ chức năng</h2>
+                        <Link legacyBehavior href="/dang-ky">
                             <a>
-                              <Button data-aos="fade-up" className={styles.x_focused_button} style={{marginTop: '15px', marginRight: '0px'}}>
+                              <Button className={styles.x_focused_button} style={{marginTop: '15px', marginRight: '0px'}}>
                                   ĐĂNG KÝ NGAY
                               </Button>
                             </a>
@@ -254,9 +200,9 @@ const HomeTwo = () => {
                    </div>
                 </Col>
                 <Col xs={24}>
-                    <Link href="/giao-dien">
+                    <Link legacyBehavior href="/giao-dien">
                           <a style={{textAlign: 'center', display: 'block'}}>
-                            <Button data-aos="fade-up" className={styles.x_ViewAll_button} style={{marginBottom: '15px', marginTop: '5px', marginRight: '0px'}}>
+                            <Button className={styles.x_ViewAll_button} style={{marginBottom: '15px', marginTop: '5px', marginRight: '0px'}}>
                                 XEM TẤT CẢ
                             </Button>
                           </a>
@@ -271,24 +217,15 @@ const HomeTwo = () => {
           <Row>
             <Col xs={24}>
                   <div className={styles.x_themes_content}>
-                    <h3 className={styles.x_main_box_secondary} data-aos="fade-down">Bio link kênh bán hàng</h3>
-                    <h2 className={styles.x_main_box_primary} data-aos="fade-up">150+ Mẫu bán hàng dành cho cá nhân - KOL</h2>
+                    <h3 className={styles.x_main_box_secondary}>Bio link kênh bán hàng</h3>
+                    <h2 className={styles.x_main_box_primary}>150+ Mẫu bán hàng dành cho cá nhân - KOL</h2>
                     <p>Tạo Bio website bán hàng miễn phí cho KOL, fanpage facebook, Instagram,...</p>
                   </div>
             </Col>
-              {
-                  BioThemes.map((val) => {
-                      return(
-                        <Col xs={24} md={12} lg={8} key={val.ID} data-aos="fade-up">
-                            <GD_Box data={val} price={false}/>
-                        </Col>
-                      )
-                  })
-              }
               <Col xs={24}>
-                  <Link href="/giao-dien">
+                  <Link legacyBehavior href="/giao-dien">
                         <a style={{textAlign: 'center', display: 'block'}}>
-                          <Button data-aos="fade-up" className={styles.x_ViewAll_button} style={{marginBottom: '15px', marginTop: '5px', marginRight: '0px'}}>
+                          <Button className={styles.x_ViewAll_button} style={{marginBottom: '15px', marginTop: '5px', marginRight: '0px'}}>
                               XEM TẤT CẢ
                           </Button>
                         </a>
@@ -302,8 +239,8 @@ const HomeTwo = () => {
           <Row>
               <Col xs={24}>
                 <div className={styles.x_themes_testionimal}>
-                  <h3 className={styles.x_main_box_secondary} data-aos="fade-down">TESTIMONIAL</h3>
-                  <h2 className={styles.x_main_box_primary} data-aos="fade-left">Nhận xét từ khách hàng</h2>
+                  <h3 className={styles.x_main_box_secondary}>TESTIMONIAL</h3>
+                  <h2 className={styles.x_main_box_primary}>Nhận xét từ khách hàng</h2>
                 </div>
               </Col>
               <Swiper
@@ -315,7 +252,7 @@ const HomeTwo = () => {
                 }}
                 modules={[EffectFade, Navigation, Pagination]}
                 className="mySwiper"
-                data-aos="fade-up"
+              
               >
                 {
                   Testionimal.map((val, index) => {
@@ -373,10 +310,10 @@ const HomeTwo = () => {
                   }}
                   modules={[Navigation]}
                   className="mySwiper"
-                  data-aos="fade-up"
+                
                 >
                    <SwiperSlide>
-                      <div className={styles.x_partner_content} data-aos="fade-left">
+                      <div className={styles.x_partner_content}>
                         <div className={styles.x_partner_icon}>
                           <Image 
               placeholder='blurDataURL' src="/home/WordPress.svg" width={200} height={80} alt="wordpress"/>
@@ -384,7 +321,7 @@ const HomeTwo = () => {
                       </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                      <div className={styles.x_partner_content} data-aos="fade-up">
+                      <div className={styles.x_partner_content}>
                           <div className={styles.x_partner_icon}>
                               <Image 
                                 placeholder='blurDataURL' 
@@ -395,7 +332,7 @@ const HomeTwo = () => {
                       </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                      <div className={styles.x_partner_content} data-aos="fade-down">
+                      <div className={styles.x_partner_content}>
                         <div className={styles.x_partner_icon}>
                           <Image 
                               placeholder='blurDataURL' 
@@ -405,7 +342,7 @@ const HomeTwo = () => {
                       </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                      <div className={styles.x_partner_content} data-aos="fade-right">
+                      <div className={styles.x_partner_content}>
                         <div className={styles.x_partner_icon}>
                           <Image 
                             placeholder='blurDataURL' 
@@ -414,7 +351,7 @@ const HomeTwo = () => {
                       </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                      <div className={styles.x_partner_content} data-aos="fade-right">
+                      <div className={styles.x_partner_content}>
                         <div className={styles.x_partner_icon}>
                           <Image 
                               placeholder='blurDataURL' 
@@ -431,17 +368,17 @@ const HomeTwo = () => {
       <Container>
           <Row>
               <Col xs={24} md={12}>
-                  <div data-aos="fade-left">
+                  <div>
                     <Image placeholder='blurDataURL' src="/home/form.webp" width={800} height={860} alt="Liên hệ Kanbox"/>
                   </div>
               </Col>
               <Col xs={24} md={12}>
                 <div className={styles.x_themes_testionimal}>
-                  <h3 className={styles.x_main_box_secondary} data-aos="fade-down">LIÊN HỆ CHÚNG TÔI</h3>
-                  <h2 className={styles.x_main_box_primary} data-aos="fade-up">Giúp chúng tôi cải thiện chất lượng dịch vụ</h2>
+                  <h3 className={styles.x_main_box_secondary}>LIÊN HỆ CHÚNG TÔI</h3>
+                  <h2 className={styles.x_main_box_primary}>Giúp chúng tôi cải thiện chất lượng dịch vụ</h2>
                   <p>Chúng tôi dành phần lớn thời gian để chăm sóc khách hàng và cải thiện dịch vụ</p>
                 </div>
-                <div className={styles.x_form_contact} data-aos="fade-right">
+                <div className={styles.x_form_contact}>
                   <FormLienHe />
                 </div>
               </Col>
@@ -454,8 +391,8 @@ const HomeTwo = () => {
           <Row>
               <Col xs={24}>
                 <div className={styles.x_blog_home_content}>
-                  <h3 className={styles.x_main_box_secondary} data-aos="fade-down">TIN TỨC MỚI</h3>
-                  <h2 className={styles.x_main_box_primary} data-aos="fade-up">Blog Kan Solution</h2>
+                  <h3 className={styles.x_main_box_secondary}>TIN TỨC MỚI</h3>
+                  <h2 className={styles.x_main_box_primary}>Blog Kan Solution</h2>
                 </div>
                 <div className={styles.x_form_contact}>
                 <Swiper
@@ -478,9 +415,9 @@ const HomeTwo = () => {
                   }}
                   modules={[EffectFade, Navigation]}
                   className="postsSwiper"
-                  data-aos="fade-up"
+                
                 >
-                  {
+                  {/* {
                     PostsAPI.map((val, index) => {
                       return (
                         <SwiperSlide key={index}>
@@ -488,13 +425,13 @@ const HomeTwo = () => {
                         </SwiperSlide>
                       )
                     })
-                  }
+                  } */}
                 </Swiper>
                 </div>
                 <Col xs={24}>
-                    <Link href="/bai-viet">
+                    <Link legacyBehavior href="/bai-viet">
                           <a style={{textAlign: 'center', display: 'block'}}>
-                            <Button data-aos="fade-up" className={styles.x_ViewAll_button} style={{marginTop: '15px', marginRight: '0px'}}>
+                            <Button className={styles.x_ViewAll_button} style={{marginTop: '15px', marginRight: '0px'}}>
                                 XEM TẤT CẢ
                             </Button>
                           </a>

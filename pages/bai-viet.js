@@ -54,99 +54,97 @@ const News = ({bai_viet, danh_muc, max_num_pages}) => {
   }
 
   if(bai_viet == undefined) return '';
-    return (
-      <>
-      <Head>
-        { HTMLReactParser(NewsSeo.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
-      </Head>
-      <div className={'x_breadcum_container'}>
+    return <>
+    <Head>
+      { HTMLReactParser(NewsSeo.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
+    </Head>
+    <div className={'x_breadcum_container'}>
+      <Container>
+          <Row>
+              <Col xs={24}>
+                <Breadcrumb className={'x_breadcumb'}>
+                  <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
+                  <Breadcrumb.Item active>Tin tức</Breadcrumb.Item>
+                </Breadcrumb>
+              </Col>
+          </Row>
+      </Container>
+    </div>  
+    <section className={styles.x_newsSection}>
         <Container>
             <Row>
-                <Col xs={24}>
-                  <Breadcrumb className={'x_breadcumb'}>
-                    <Breadcrumb.Item as={Link} href="/">Trang chủ</Breadcrumb.Item>
-                    <Breadcrumb.Item active>Tin tức</Breadcrumb.Item>
-                  </Breadcrumb>
-                </Col>
+              <Col xs={24}>
+                <h1 className={styles.x_wellcome_title}>
+                  Cung cấp thông tin thương mại điện tử 
+                  <span className={styles.x_highlight}> hiện tại và tương lai</span>
+                </h1>
+              </Col>
             </Row>
-        </Container>
-      </div>  
-      <section className={styles.x_newsSection}>
-          <Container>
-              <Row>
-                <Col xs={24}>
-                  <h1 className={styles.x_wellcome_title}>
-                    Cung cấp thông tin thương mại điện tử 
-                    <span className={styles.x_highlight}> hiện tại và tương lai</span>
-                  </h1>
-                </Col>
-              </Row>
-              <Row className={styles.x_meta_with_form}>
-                <Col xs={24} md={16}>
-                  <ul className={styles.x_category_link}>
-                      { postsCategory.map((val) => {
-                          return (
-                            <li key={val.term_id}>
-                              <Link href={`/danh-muc/${val.slug}`}>
-                                  <a className={styles.x_filter_option}>
-                                    {val.name}
-                                  </a>
-                              </Link>
-                            </li>
-                          )
-                        })
-                      }
-                    </ul>
-                </Col>
-                <Col xs={24} md={8}>
-                      <Form onSubmit={(event) => Search_Page(event)}>
-                        <Form.Group className={styles.x_form_search_group}>
-                          <Form.Control 
-                            type="text"
-                            value={keySearch}
-                            name='s'
-                            onChange={(value) => setKeySearch(value)}
-                            placeholder={'Tìm kiếm bài viết...'}
-                            className={styles.x_form_search_posts}
-                          />
-                          <button className={styles.x_search_posts_button}>
-                            <SearchIcon width={22} height={22} />
-                          </button>
-                        </Form.Group>
-                      </Form>
-                </Col>
-              </Row>
-              <Row>
-                  {
-                    loading ?  <Col xs={24}><Loading /></Col> :
-                    <>
-                      {
-                        posts != '' ?
-                        <>
-                          {
-                            posts.map((val, index) => {
-                                return(
-                                  <Col xs={24} md={12} lg={8} key={val.ID}>
-                                    <BlogStyleTwo data={val} />
-                                  </Col>
-                                )
-                            })
-                        } 
-                        <Col xs={24}>
-                          <div className={styles.x_pagination}>
-                              <Pagination total={maxpage} limit={1} activePage={paged} onChangePage={(current) => { Next_Pages(current)}} />
-                          </div>
-                        </Col>
-                        </>
-                        : 'Không có bài viết'
-                      }
-                    </>
-                }
-              </Row>
-            </Container>
-        </section>
-        </>
-    )
+            <Row className={styles.x_meta_with_form}>
+              <Col xs={24} md={16}>
+                <ul className={styles.x_category_link}>
+                    { postsCategory.map((val) => {
+                        return (
+                          <li key={val.term_id}>
+                            <Link href={`/danh-muc/${val.slug}`} className={styles.x_filter_option}>
+
+                              {val.name}
+
+                            </Link>
+                          </li>
+                        );
+                      })
+                    }
+                  </ul>
+              </Col>
+              <Col xs={24} md={8}>
+                    <Form onSubmit={(event) => Search_Page(event)}>
+                      <Form.Group className={styles.x_form_search_group}>
+                        <Form.Control 
+                          type="text"
+                          value={keySearch}
+                          name='s'
+                          onChange={(value) => setKeySearch(value)}
+                          placeholder={'Tìm kiếm bài viết...'}
+                          className={styles.x_form_search_posts}
+                        />
+                        <button className={styles.x_search_posts_button}>
+                          <SearchIcon width={22} height={22} />
+                        </button>
+                      </Form.Group>
+                    </Form>
+              </Col>
+            </Row>
+            <Row>
+                {
+                  loading ?  <Col xs={24}><Loading /></Col> :
+                  <>
+                    {
+                      posts != '' ?
+                      <>
+                        {
+                          posts.map((val, index) => {
+                              return(
+                                <Col xs={24} md={12} lg={8} key={val.ID}>
+                                  <BlogStyleTwo data={val} />
+                                </Col>
+                              )
+                          })
+                      } 
+                      <Col xs={24}>
+                        <div className={styles.x_pagination}>
+                            <Pagination total={maxpage} limit={1} activePage={paged} onChangePage={(current) => { Next_Pages(current)}} />
+                        </div>
+                      </Col>
+                      </>
+                      : 'Không có bài viết'
+                    }
+                  </>
+              }
+            </Row>
+          </Container>
+      </section>
+      </>;
 }
 
 export default News

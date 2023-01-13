@@ -143,341 +143,339 @@ const DesignWebsite = () => {
     }
   };
 
-  return (
-    <>
-    <Head>
-        { HTMLReactParser(ServiceWordpress.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
-    </Head>
-    <div className={styles.x_thiet_ke_website_section}>
-        <section className={styles.x_banner_thiet_ke}>
-            <Container>
-                <Row className={styles.x_centered}>
-                    <Col xs={24} md={12}>
-                        <div className={styles.x_banner_content}>
-                            <h3 className={styles.x_section_secondary_title}>Xây dựng website doanh nghiệp</h3>
-                            <h1 className={styles.x_primary_title}>Thiết kế webiste trọn gói cho doanh nghiệp</h1>
-                            <Button 
-                                className={styles.x_call_to_action_thiet_ke}
-                                onClick={() => { handleOpen('Đăng ký dịch vụ thiết kế Website trọn gói cho doanh nghiệp') }}>
-                            Tư vấn miễn phí
-                        </Button>
-                        </div>
-                    </Col>
-                    <Col xs={24} md={12}>
-                        <div className={styles.x_banner_image}>
-                            <Image alt="Thiết kế webiste trọn gói cho doanh nghiệp" src={'/layout/thiet-ke-website/decoration_1.svg'} width={500} height={500}/>
-                        </div>
-                    </Col>
-                </Row>
-            </Container>
-        </section>
-        <section className={styles.x_why_choose}>
-            <Container>
-                <Row className={styles.x_centered}>
-                    <Col xs={24}>
-                        <div className={styles.x_why_choose_content}>
-                            <h2 className={styles.x_primary_title}>Tại sao doanh nghiệp nên có website?</h2>
-                            <Row>
-                                {
-                                    why_choose.map((val, index) => {
-                                        return(
-                                            <Col xs={24} md={12} key={index}>
-                                                <Panel className={styles.x_panel_thietke} header={val.title} collapsible bordered>
-                                                    <p>{val.content}</p>
-                                                </Panel>
-                                            </Col>
-                                        )
-                                    })
-                                }
-                            </Row>
-                        </div>
-                    </Col>
-                </Row>
-            </Container>
-        </section>
-        <Divider/>
-        <section className={styles.x_why_choose}>
-            <Container>
-                <Row className={styles.x_centered}>
-                    <Col xs={24} md={24}>
-                        <div className={styles.x_supporter}>
-                            <div className={styles.x_thiet_ke_banner_title_1}>
-                                <Row className={styles.x_centered}>
-                                    <Col xs={24} md={12}>
-                                        <h2 className={styles.x_primary_title}>Doanh nghiệp cần website như thế nào để nâng cao khả năng cạnh tranh trên thị trường</h2>
-                                        <p>Với thị trường và lợi ích website mang lại, không khó hiểu khi hiện nay hầu như doanh nghiệp, tổ chức hay cá nhân nào cũng trang bị một website. Việc có một website gần như là việc không những cần thiết mà còn là cấp bách trong thời đại kinh doanh số hiện nay. Vấn đề là làm sao website có thể hỗ trợ bạn cạnh tranh với vô vàn đối thủ cũng có website ngoài thị trường. Bạn cần chú ý những đặc điểm của website như sau:</p>
-                                    </Col>
-                                    <Col xs={24} md={12}>
-                                        <div className={styles.x_banner_image}>
-                                            <Image alt="Doanh nghiệp cần website như thế nào để nâng cao khả năng cạnh tranh" src={'/layout/thiet-ke-website/decoration_2.svg'} width={500} height={300}/>
-                                        </div>
-                                    </Col>
-                                </Row>
-                            </div>
-                            <Row>
-                                {
-                                    Needed.map((val, index) => {
-                                        return(
-                                            <Col xs={24} md={12} key={index}>
-                                                 <Panel className={styles.x_panel_thietke} header={val.title} collapsible bordered>
-                                                    <p>{val.content}</p>
-                                                </Panel>
-                                            </Col>
-                                        )
-                                    })
-                                }
-                            </Row>
-                        </div>
-                    </Col>
-                </Row>
-            </Container>
-        </section>
-        <Divider/>
-        <section className={styles.x_why_choose}>
-            <Container>
-                <Row className={styles.x_centered}>
-                    <Col xs={24} md={24}>
-                        <div className={styles.x_supporter}>
-                            <div className={styles.x_thiet_ke_banner_title_2}>
-                                <Row className={styles.x_centered}>
-                                    <Col xs={24} md={12}>
-                                        <h2 className={styles.x_primary_title}>Đơn vị xây dựng và phát triển website chuyên nghiệp và uy tín</h2>
-                                        <p>Với những đặc điểm nêu trên cho một website hiệu quả, một đơn vị xây dựng và phát triển website chuyên nghiệp và uy tín sẽ giúp bạn thực hiện những điều trên. Tại đây, chúng tôi có đầy đủ năng lực, kinh nghiệm, đội ngũ và công nghệ để đảm bảo xây dựng và vận hành website tối ưu cho doanh nghiệp:</p>
-                                    </Col>
-                                    <Col xs={24} md={12}>
-                                        <div className={styles.x_banner_image}>
-                                            <Image alt="Đơn vị xây dựng và phát triển website chuyên nghiệp và uy tín" src={'/layout/thiet-ke-website/decoration_3.svg'} width={500} height={300}/>
-                                        </div>
-                                    </Col>
-                                </Row>
-                            </div>
-                            <Row>
-                                {
-                                    Team.map((val, index) => {
-                                        return(
-                                            <Col xs={24} md={12} key={index}>
-                                                <Panel className={styles.x_panel_thietke} header={val.title} collapsible bordered>
-                                                    <p>{val.content}</p>
-                                                </Panel>
-                                            </Col>
-                                        )
-                                    })
-                                }
-                            </Row>
-                        </div>
-                    </Col>
-                </Row>
-            </Container>
-        </section>
-        <Divider/>
-        <section className={styles.x_project_section}>
-                <Container>
-                    <Row className={styles.x_centered}>
-                        <Col xs={24}>
-                            <div className={styles.x_hosting_title}>
-                                <h2 className={styles.x_primary_title}>Các dự án đã hoàn thiện</h2>
-                            </div>
-                            <div className={styles.x_hosting_table_container}>
-                                <Swiper
-                                    spaceBetween={30}
-                                    navigation={true}
-                                    slidesPerView={1}
-                                    pagination={{
-                                        clickable: true,
-                                    }}
-                                    breakpoints={{
-                                        552: {
-                                        slidesPerView: 1,
-                                        },
-                                        768: {
-                                        slidesPerView: 2,
-                                        },
-                                        992: {
-                                        slidesPerView: 3,
-                                        },
-                                    }}
-                                    modules={[Navigation, Pagination]}
-                                    className="layoutSwiper"
-                                    >
-                                    {
-                                    ProjectAPI.map((val) => {
-                                        return(
-                                            <SwiperSlide key={val.ID}>
-                                                <SingleProject data={val} price={true}/>
-                                            </SwiperSlide>
-                                        )
-                                        })
-                                    }
-                                </Swiper>
-                            </div>
-                        </Col>
-                        <Col xs={24}>
-                            <Link href="/du-an/">
-                                <a>
-                                    <Button className={styles.x_to_du_an}>
-                                        Xem tất cả dự án »
-                                </Button>
-                                </a>
-                            </Link>
-                        </Col>
-                    </Row>
-                </Container>
-        </section>
-        <Divider/>
-        <section className={styles.x_why_choose}>
-            <Container>
-                <Row className={styles.x_centered}>
-                    <Col xs={24} md={24}>
-                        <div className={styles.x_supporter}>
-                            <div className={styles.x_thiet_ke_banner_title_3}>
-                                <Row className={styles.x_centered}>
-                                    <Col xs={24} md={12}>
-                                        <h2 className={styles.x_primary_title}>Quy trình thực hiện một dự án website hiệu quả</h2>
-                                        <p>Quy trình từ lên kế hoạch đến triển khai và vận hành dự án, một dự án website tốt cần đạt được những yêu cầu về mặt thiết kế, nội dung và những tính năng để phục vụ cho trải nghiệm của khách hàng:</p>
-                                    </Col>
-                                    <Col xs={24} md={12}>
-                                        <div className={styles.x_banner_image}>
-                                            <Image alt={'Quy trình thực hiện một dự án website hiệu quả'} src={'/layout/thiet-ke-website/decoration_4.svg'} width={500} height={300}/>
-                                        </div>
-                                    </Col>
-                                </Row>
-                            </div>
-                            <Row>
-                                {
-                                    QuyTrinh.map((val, index) => {
-                                        return(
-                                            <Col xs={24} md={12} key={index}>
-                                                <Panel className={styles.x_panel_thietke} header={val.title} collapsible bordered>
-                                                    <p>{val.content}</p>
-                                                </Panel>
-                                            </Col>
-                                        )
-                                    })
-                                }
-                            </Row>
-                        </div>
-                    </Col>
-                </Row>
-            </Container>
-        </section>
-        <Divider/>
-        <section className={styles.x_hosting_section}>
-            <Container>
-                <Row className={styles.x_centered}>
-                    <Col xs={24}>
-                        <div className={styles.x_hosting_title}>
-                            <h3 className={styles.x_section_secondary_title}>Xây dựng nhanh chóng</h3>
-                            <h2 className={styles.x_primary_title}>Bảng giá thiết kế website</h2>
-                        </div>
-                        <div className={styles.x_hosting_table_container}>
-                            <Row>
-                                 {
-                                    WebsiteDesignTable.map((val, index) => {
-                                        return(
-                                            <Col xs={24} md={12} lg={8} key={index}>
-                                                <div className={styles.x_hosting}>
-                                                    <div className={styles.x_hosting_header}>
-                                                        <h3>{val.name}</h3>
-                                                        <p>{val.price}</p>
-                                                        <Button className={styles.x_hosting_button} onClick={() => { handleOpen('Dịch vụ hosting ' + val.name) }}>Đăng ký</Button>
-                                                    </div>
-                                                    <div className={styles.x_hosting_features}>
-                                                        <ul>
-                                                            {
-                                                                val.checklist.map((val, index) => {
-                                                                    return(
-                                                                        <li key={index}>
-                                                                            <span className={styles.x_hosting_check}>
-                                                                                <IoCheckmarkOutline color='white'/>
-                                                                            </span>
-                                                                            {val}
-                                                                        </li>
-                                                                    )
-                                                                })    
-                                                            }
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </Col>
-                                        )
-                                    })
-                                 }       
-                            </Row>
-                        </div>
-                    </Col>
-                </Row>
-            </Container>
-        </section>
-        <Divider/>
-        <section className={styles.x_services_container}>
-            <Container>
-                <Row>
-                    <Col xs={24}>
-                        <div className={styles.x_supporter}>
-                            <h3 className={styles.x_section_secondary_title}>Lựa chọn dịch vụ</h3>
-                            <h2 className={styles.x_primary_title}>Xây dựng thương hiệu riêng cho bạn</h2>
-                            <div className={styles.services}>
-                                <Row>
-                                    <Col xs={24} md={12} lg={8} className={styles.x_padding}>
-                                        <div className={styles.x_services_content}>
-                                            <div className={styles.x_wordpress_icon_service}>
-                                             <Image alt="Website Landing Page" src={'/icons/landing-page.png'} height={50} width={50}/>
-                                            </div>
-                                            <h3 className={styles.x_services_content_title}>Website Landing Page</h3>
-                                            <h2 className={styles.x_services_content_main_title}>Xây dựng kênh quảng bá sản phẩm nhanh</h2>
-                                            <Button 
-                                            className={styles.x_services_button}
-                                            onClick={() => { handleOpen('Đăng ký dịch vụ thiết kế Website Landing Page') }}>
-                                                Đăng ký tư vấn
-                                            </Button>
-                                        </div>
-                                    </Col>
-                                    <Col xs={24} md={12} lg={8} className={styles.x_padding}>
-                                        <div className={styles.x_services_content}>
-                                            <div className={styles.x_wordpress_icon_service}>
-                                             <Image alt="xây dựng thương hiệu doanh nghiệp" src={'/icons/content.png'} height={50} width={50}/>
-                                            </div>
-                                            <h3 className={styles.x_services_content_title}>Website Doanh Nghiệp</h3>
-                                            <h2 className={styles.x_services_content_main_title}>Xây dựng thương hiệu doanh nghiệp</h2>
-                                            <Button 
-                                                className={styles.x_services_button}
-                                                onClick={() => { handleOpen('Đăng ký dịch vụ thiết kế Website Doanh nghiệp') }}>
-                                                Đăng ký tư vấn
-                                            </Button>
-                                        </div>
-                                    </Col>
-                                    <Col xs={24} md={12} lg={8} className={styles.x_padding}>
-                                        <div className={styles.x_services_content}>
-                                            <div className={styles.x_wordpress_icon_service}>
-                                             <Image alt="Website Thương Mại" src={'/icons/laptop.png'} height={50} width={50}/>
-                                            </div>
-                                            <h3 className={styles.x_services_content_title}>Website Thương Mại</h3>
-                                            <h2 className={styles.x_services_content_main_title}>Mở rộng quy mô phân phối sản phẩm</h2>
-                                            <Button 
-                                                className={styles.x_services_button}
-                                                onClick={() => { handleOpen('Đăng ký dịch vụ thiết kế Website Thương Mại') }}>
-                                                Đăng ký tư vấn
-                                            </Button>
-                                        </div>
-                                    </Col>
-                                </Row>
-                            </div>
-                        </div>
-                    </Col>
-                </Row>
-            </Container>
-        </section>
-    </div>
-    <Modal open={open} onClose={handleClose} backdrop="static">
-        <Modal.Header>
-          <Modal.Title>Đăng ký dịch vụ thiết kế Website</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-            <ServicesSubmitForm service={service}/>
-        </Modal.Body>
-      </Modal>
-    </>
-  )
+  return <>
+  <Head>
+      { HTMLReactParser(ServiceWordpress.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
+  </Head>
+  <div className={styles.x_thiet_ke_website_section}>
+      <section className={styles.x_banner_thiet_ke}>
+          <Container>
+              <Row className={styles.x_centered}>
+                  <Col xs={24} md={12}>
+                      <div className={styles.x_banner_content}>
+                          <h3 className={styles.x_section_secondary_title}>Xây dựng website doanh nghiệp</h3>
+                          <h1 className={styles.x_primary_title}>Thiết kế webiste trọn gói cho doanh nghiệp</h1>
+                          <Button 
+                              className={styles.x_call_to_action_thiet_ke}
+                              onClick={() => { handleOpen('Đăng ký dịch vụ thiết kế Website trọn gói cho doanh nghiệp') }}>
+                          Tư vấn miễn phí
+                      </Button>
+                      </div>
+                  </Col>
+                  <Col xs={24} md={12}>
+                      <div className={styles.x_banner_image}>
+                          <Image alt="Thiết kế webiste trọn gói cho doanh nghiệp" src={'/layout/thiet-ke-website/decoration_1.svg'} width={500} height={500}/>
+                      </div>
+                  </Col>
+              </Row>
+          </Container>
+      </section>
+      <section className={styles.x_why_choose}>
+          <Container>
+              <Row className={styles.x_centered}>
+                  <Col xs={24}>
+                      <div className={styles.x_why_choose_content}>
+                          <h2 className={styles.x_primary_title}>Tại sao doanh nghiệp nên có website?</h2>
+                          <Row>
+                              {
+                                  why_choose.map((val, index) => {
+                                      return(
+                                          <Col xs={24} md={12} key={index}>
+                                              <Panel className={styles.x_panel_thietke} header={val.title} collapsible bordered>
+                                                  <p>{val.content}</p>
+                                              </Panel>
+                                          </Col>
+                                      )
+                                  })
+                              }
+                          </Row>
+                      </div>
+                  </Col>
+              </Row>
+          </Container>
+      </section>
+      <Divider/>
+      <section className={styles.x_why_choose}>
+          <Container>
+              <Row className={styles.x_centered}>
+                  <Col xs={24} md={24}>
+                      <div className={styles.x_supporter}>
+                          <div className={styles.x_thiet_ke_banner_title_1}>
+                              <Row className={styles.x_centered}>
+                                  <Col xs={24} md={12}>
+                                      <h2 className={styles.x_primary_title}>Doanh nghiệp cần website như thế nào để nâng cao khả năng cạnh tranh trên thị trường</h2>
+                                      <p>Với thị trường và lợi ích website mang lại, không khó hiểu khi hiện nay hầu như doanh nghiệp, tổ chức hay cá nhân nào cũng trang bị một website. Việc có một website gần như là việc không những cần thiết mà còn là cấp bách trong thời đại kinh doanh số hiện nay. Vấn đề là làm sao website có thể hỗ trợ bạn cạnh tranh với vô vàn đối thủ cũng có website ngoài thị trường. Bạn cần chú ý những đặc điểm của website như sau:</p>
+                                  </Col>
+                                  <Col xs={24} md={12}>
+                                      <div className={styles.x_banner_image}>
+                                          <Image alt="Doanh nghiệp cần website như thế nào để nâng cao khả năng cạnh tranh" src={'/layout/thiet-ke-website/decoration_2.svg'} width={500} height={300}/>
+                                      </div>
+                                  </Col>
+                              </Row>
+                          </div>
+                          <Row>
+                              {
+                                  Needed.map((val, index) => {
+                                      return(
+                                          <Col xs={24} md={12} key={index}>
+                                               <Panel className={styles.x_panel_thietke} header={val.title} collapsible bordered>
+                                                  <p>{val.content}</p>
+                                              </Panel>
+                                          </Col>
+                                      )
+                                  })
+                              }
+                          </Row>
+                      </div>
+                  </Col>
+              </Row>
+          </Container>
+      </section>
+      <Divider/>
+      <section className={styles.x_why_choose}>
+          <Container>
+              <Row className={styles.x_centered}>
+                  <Col xs={24} md={24}>
+                      <div className={styles.x_supporter}>
+                          <div className={styles.x_thiet_ke_banner_title_2}>
+                              <Row className={styles.x_centered}>
+                                  <Col xs={24} md={12}>
+                                      <h2 className={styles.x_primary_title}>Đơn vị xây dựng và phát triển website chuyên nghiệp và uy tín</h2>
+                                      <p>Với những đặc điểm nêu trên cho một website hiệu quả, một đơn vị xây dựng và phát triển website chuyên nghiệp và uy tín sẽ giúp bạn thực hiện những điều trên. Tại đây, chúng tôi có đầy đủ năng lực, kinh nghiệm, đội ngũ và công nghệ để đảm bảo xây dựng và vận hành website tối ưu cho doanh nghiệp:</p>
+                                  </Col>
+                                  <Col xs={24} md={12}>
+                                      <div className={styles.x_banner_image}>
+                                          <Image alt="Đơn vị xây dựng và phát triển website chuyên nghiệp và uy tín" src={'/layout/thiet-ke-website/decoration_3.svg'} width={500} height={300}/>
+                                      </div>
+                                  </Col>
+                              </Row>
+                          </div>
+                          <Row>
+                              {
+                                  Team.map((val, index) => {
+                                      return(
+                                          <Col xs={24} md={12} key={index}>
+                                              <Panel className={styles.x_panel_thietke} header={val.title} collapsible bordered>
+                                                  <p>{val.content}</p>
+                                              </Panel>
+                                          </Col>
+                                      )
+                                  })
+                              }
+                          </Row>
+                      </div>
+                  </Col>
+              </Row>
+          </Container>
+      </section>
+      <Divider/>
+      <section className={styles.x_project_section}>
+              <Container>
+                  <Row className={styles.x_centered}>
+                      <Col xs={24}>
+                          <div className={styles.x_hosting_title}>
+                              <h2 className={styles.x_primary_title}>Các dự án đã hoàn thiện</h2>
+                          </div>
+                          <div className={styles.x_hosting_table_container}>
+                              <Swiper
+                                  spaceBetween={30}
+                                  navigation={true}
+                                  slidesPerView={1}
+                                  pagination={{
+                                      clickable: true,
+                                  }}
+                                  breakpoints={{
+                                      552: {
+                                      slidesPerView: 1,
+                                      },
+                                      768: {
+                                      slidesPerView: 2,
+                                      },
+                                      992: {
+                                      slidesPerView: 3,
+                                      },
+                                  }}
+                                  modules={[Navigation, Pagination]}
+                                  className="layoutSwiper"
+                                  >
+                                  {
+                                  ProjectAPI.map((val) => {
+                                      return(
+                                          <SwiperSlide key={val.ID}>
+                                              <SingleProject data={val} price={true}/>
+                                          </SwiperSlide>
+                                      )
+                                      })
+                                  }
+                              </Swiper>
+                          </div>
+                      </Col>
+                      <Col xs={24}>
+                          <Link href="/du-an/">
+
+                              <Button className={styles.x_to_du_an}>
+                                  Xem tất cả dự án »
+                          </Button>
+
+                          </Link>
+                      </Col>
+                  </Row>
+              </Container>
+      </section>
+      <Divider/>
+      <section className={styles.x_why_choose}>
+          <Container>
+              <Row className={styles.x_centered}>
+                  <Col xs={24} md={24}>
+                      <div className={styles.x_supporter}>
+                          <div className={styles.x_thiet_ke_banner_title_3}>
+                              <Row className={styles.x_centered}>
+                                  <Col xs={24} md={12}>
+                                      <h2 className={styles.x_primary_title}>Quy trình thực hiện một dự án website hiệu quả</h2>
+                                      <p>Quy trình từ lên kế hoạch đến triển khai và vận hành dự án, một dự án website tốt cần đạt được những yêu cầu về mặt thiết kế, nội dung và những tính năng để phục vụ cho trải nghiệm của khách hàng:</p>
+                                  </Col>
+                                  <Col xs={24} md={12}>
+                                      <div className={styles.x_banner_image}>
+                                          <Image alt={'Quy trình thực hiện một dự án website hiệu quả'} src={'/layout/thiet-ke-website/decoration_4.svg'} width={500} height={300}/>
+                                      </div>
+                                  </Col>
+                              </Row>
+                          </div>
+                          <Row>
+                              {
+                                  QuyTrinh.map((val, index) => {
+                                      return(
+                                          <Col xs={24} md={12} key={index}>
+                                              <Panel className={styles.x_panel_thietke} header={val.title} collapsible bordered>
+                                                  <p>{val.content}</p>
+                                              </Panel>
+                                          </Col>
+                                      )
+                                  })
+                              }
+                          </Row>
+                      </div>
+                  </Col>
+              </Row>
+          </Container>
+      </section>
+      <Divider/>
+      <section className={styles.x_hosting_section}>
+          <Container>
+              <Row className={styles.x_centered}>
+                  <Col xs={24}>
+                      <div className={styles.x_hosting_title}>
+                          <h3 className={styles.x_section_secondary_title}>Xây dựng nhanh chóng</h3>
+                          <h2 className={styles.x_primary_title}>Bảng giá thiết kế website</h2>
+                      </div>
+                      <div className={styles.x_hosting_table_container}>
+                          <Row>
+                               {
+                                  WebsiteDesignTable.map((val, index) => {
+                                      return(
+                                          <Col xs={24} md={12} lg={8} key={index}>
+                                              <div className={styles.x_hosting}>
+                                                  <div className={styles.x_hosting_header}>
+                                                      <h3>{val.name}</h3>
+                                                      <p>{val.price}</p>
+                                                      <Button className={styles.x_hosting_button} onClick={() => { handleOpen('Dịch vụ hosting ' + val.name) }}>Đăng ký</Button>
+                                                  </div>
+                                                  <div className={styles.x_hosting_features}>
+                                                      <ul>
+                                                          {
+                                                              val.checklist.map((val, index) => {
+                                                                  return(
+                                                                      <li key={index}>
+                                                                          <span className={styles.x_hosting_check}>
+                                                                              <IoCheckmarkOutline color='white'/>
+                                                                          </span>
+                                                                          {val}
+                                                                      </li>
+                                                                  )
+                                                              })    
+                                                          }
+                                                      </ul>
+                                                  </div>
+                                              </div>
+                                          </Col>
+                                      )
+                                  })
+                               }       
+                          </Row>
+                      </div>
+                  </Col>
+              </Row>
+          </Container>
+      </section>
+      <Divider/>
+      <section className={styles.x_services_container}>
+          <Container>
+              <Row>
+                  <Col xs={24}>
+                      <div className={styles.x_supporter}>
+                          <h3 className={styles.x_section_secondary_title}>Lựa chọn dịch vụ</h3>
+                          <h2 className={styles.x_primary_title}>Xây dựng thương hiệu riêng cho bạn</h2>
+                          <div className={styles.services}>
+                              <Row>
+                                  <Col xs={24} md={12} lg={8} className={styles.x_padding}>
+                                      <div className={styles.x_services_content}>
+                                          <div className={styles.x_wordpress_icon_service}>
+                                           <Image alt="Website Landing Page" src={'/icons/landing-page.png'} height={50} width={50}/>
+                                          </div>
+                                          <h3 className={styles.x_services_content_title}>Website Landing Page</h3>
+                                          <h2 className={styles.x_services_content_main_title}>Xây dựng kênh quảng bá sản phẩm nhanh</h2>
+                                          <Button 
+                                          className={styles.x_services_button}
+                                          onClick={() => { handleOpen('Đăng ký dịch vụ thiết kế Website Landing Page') }}>
+                                              Đăng ký tư vấn
+                                          </Button>
+                                      </div>
+                                  </Col>
+                                  <Col xs={24} md={12} lg={8} className={styles.x_padding}>
+                                      <div className={styles.x_services_content}>
+                                          <div className={styles.x_wordpress_icon_service}>
+                                           <Image alt="xây dựng thương hiệu doanh nghiệp" src={'/icons/content.png'} height={50} width={50}/>
+                                          </div>
+                                          <h3 className={styles.x_services_content_title}>Website Doanh Nghiệp</h3>
+                                          <h2 className={styles.x_services_content_main_title}>Xây dựng thương hiệu doanh nghiệp</h2>
+                                          <Button 
+                                              className={styles.x_services_button}
+                                              onClick={() => { handleOpen('Đăng ký dịch vụ thiết kế Website Doanh nghiệp') }}>
+                                              Đăng ký tư vấn
+                                          </Button>
+                                      </div>
+                                  </Col>
+                                  <Col xs={24} md={12} lg={8} className={styles.x_padding}>
+                                      <div className={styles.x_services_content}>
+                                          <div className={styles.x_wordpress_icon_service}>
+                                           <Image alt="Website Thương Mại" src={'/icons/laptop.png'} height={50} width={50}/>
+                                          </div>
+                                          <h3 className={styles.x_services_content_title}>Website Thương Mại</h3>
+                                          <h2 className={styles.x_services_content_main_title}>Mở rộng quy mô phân phối sản phẩm</h2>
+                                          <Button 
+                                              className={styles.x_services_button}
+                                              onClick={() => { handleOpen('Đăng ký dịch vụ thiết kế Website Thương Mại') }}>
+                                              Đăng ký tư vấn
+                                          </Button>
+                                      </div>
+                                  </Col>
+                              </Row>
+                          </div>
+                      </div>
+                  </Col>
+              </Row>
+          </Container>
+      </section>
+  </div>
+  <Modal open={open} onClose={handleClose} backdrop="static">
+      <Modal.Header>
+        <Modal.Title>Đăng ký dịch vụ thiết kế Website</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+          <ServicesSubmitForm service={service}/>
+      </Modal.Body>
+    </Modal>
+  </>;
 }
 
 export default DesignWebsite

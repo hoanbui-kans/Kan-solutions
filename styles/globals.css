@@ -1,5 +1,5 @@
 :root{
-  --x-text-primary: rgb(62 62 62) !important;
+  --x-text-primary: #000033;
   --x-text-secondary: rgb(56, 56, 56) !important;;
   --x-title-color: rgb(56, 56, 56) !important;
   --x-title-size: 34px;
@@ -10,19 +10,20 @@
   --x-banner-content-size: 16px;
   --x-banner-content-height: 1.55;
 
-  --x-brand-color: #2d88e2;
-  --x-primary-color: #282C4B;
-  --x-accent-color: #616cf0;
+  --x-brand-color: #0033CC;
+  --x-primary-color: #3366FF;
+  --x-accent-color: #3399FF;
   --x-greenlight-color: #24cbc6;
   --x-pupple-color: #909cff;
-  --x-success-color: #27ae60;
-  --x-danger-color: #e74c3c;
+  --x-success-color: #66CC66;
+  --x-danger-color: #FF3333;
+  --x-warning-color: #FFCC00;
   --x-light-color:#fafafa;
   --x-white-color:#ffffff;
-  --x-gray-color: #dddddd;
-  --x-secondary-color: #333333;
+  --x-gray-color: #CCCCCC;
+  --x-secondary-color: #000033;
+  --x-border-color:#CCCCCC;
   --x-black-color:#000000;
-  --x-border-color:#dddddd;
   --x-darkgradient-color: linear-gradient(to right, #29323c, #485563); 
   --x-neumorphic-color: linear-gradient(145deg, #dedede, #ffffff);
   --x-neumorphic-dropdown: 5px 5px 10px #ededed, -5px -5px 10px #ffffff;

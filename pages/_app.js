@@ -1,19 +1,12 @@
 import 'rsuite/dist/rsuite.min.css'; // or 'rsuite/dist/rsuite.min.css'
 import '../styles/globals.css'
-import { SessionProvider } from "next-auth/react"
-import Layout from '../components/Layout';
+import Layout from '../layout';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
-    <SessionProvider 
-      session={session}
-      refetchInterval={5 * 60}
-        // Re-fetches session when window is focused
-      refetchOnWindowFocus={true}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </SessionProvider>
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
   )
 }
  

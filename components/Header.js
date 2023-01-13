@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { Row, Col, Nav, Container, Button, Whisper , Popover , Dropdown, Form, Loader, Pagination } from 'rsuite'
 import { useSpring, animated, useChain, useSpringRef, config } from "@react-spring/web"
 import { listServices } from '../pages/api/services'
-import { useSession } from "next-auth/react"
 import Router from 'next/router'
 import SearchIcon from '@rsuite/icons/Search'
 import ArrowDownLineIcon from '@rsuite/icons/ArrowDownLine'
@@ -21,99 +20,97 @@ import HTMLReactParser from 'html-react-parser'
 const rootURL = process.env.NEXT_PUBLIC_WP_JSON;
 
 const Left = () => {
-    return (
-        <>
-            <h3 className={styles.x_menu_title}>ỨNG DỤNG WEB</h3>
-                {
-                    listServices.map((val, index) => {
-                        return(
-                            <div className={styles.x_dropbox} key={index}>
-                                <Link href={val.link}>
-                                    <a className={styles.x_iconLink}>
-                                    <span className={styles.x_iconImage}><Image alt={val.name} src={val.image} width={24} height={24} /> </span> 
-                                    {val.name}</a>
-                                </Link>
-                            </div>
-                        )
-                    })
-                }
-        </>
-    )
+    return <>
+        <h3 className={styles.x_menu_title}>ỨNG DỤNG WEB</h3>
+            {
+                listServices.map((val, index) => {
+                    return (
+                        <div className={styles.x_dropbox} key={index}>
+                            <Link href={val.link} className={styles.x_iconLink}>
+
+                                <span className={styles.x_iconImage}><Image alt={val.name} src={val.image} width={24} height={24} /> </span>
+                                {val.name}
+                            </Link>
+                        </div>
+                    );
+                })
+            }
+    </>;
 }
 
 
 const Right = () => {
-    return (
-        <>
-            <h3 className={styles.x_menu_title}>DỊCH VỤ PHÁT TRIỂN WEB</h3>
-            <div className={styles.x_dropbox}>
-                    <Link href="/dich-vu/thiet-ke-website-tron-goi-cho-doanh-nghiep">
-                        <a>
-                            <p style={{marginBottom: 5}}><strong><IoCaretForwardSharp size={10}/> Thiết kế website</strong></p>
-                            <p style={{marginBottom: 5}} className={styles.x_smaller_text}>
-                                Dịch vụ tạo website nhanh theo mẫu, thiết kế website cho doanh nghiệp quản trị nội dung bằng website có sẵn, tối ưu chi phí thiết lập ban đầu.
-                            </p>
-                        </a>
+    return <>
+        <h3 className={styles.x_menu_title}>DỊCH VỤ PHÁT TRIỂN WEB</h3>
+        <div className={styles.x_dropbox}>
+                <Link href="/dich-vu/thiet-ke-website-tron-goi-cho-doanh-nghiep">
+
+                    <p style={{marginBottom: 5}}><strong><IoCaretForwardSharp size={10}/> Thiết kế website</strong></p>
+                    <p style={{marginBottom: 5}} className={styles.x_smaller_text}>
+                        Dịch vụ tạo website nhanh theo mẫu, thiết kế website cho doanh nghiệp quản trị nội dung bằng website có sẵn, tối ưu chi phí thiết lập ban đầu.
+                    </p>
+
+                </Link>
+                <div>
+                    <Link
+                        href="/dich-vu/tao-website-lading-page-tu-dong"
+                        className={styles.x_button_inline}>
+
+                        <Button className={styles.x_button_website_create}>
+                            Tạo Website miễn phí
+                        </Button>
+
                     </Link>
-                    <div>
-                        <Link href="/dich-vu/tao-website-lading-page-tu-dong">
-                            <a className={styles.x_button_inline}>
-                                <Button className={styles.x_button_website_create}>
-                                    Tạo Website miễn phí
-                                </Button>
-                            </a>
-                        </Link>
-                        <Link href="/dich-vu/thiet-ke-website-tron-goi-cho-doanh-nghiep">
-                            <a className={styles.x_button_inline}>
-                                <Button className={styles.x_button_website_doanh_nghiep}>
-                                    Thiết kế website trọn gói
-                                </Button>
-                            </a>
-                        </Link>
-                    </div>
-            </div>
-            <div className={styles.x_dropbox}>
-                    <Link href="/dich-vu/giai-phap-quan-tri-noi-dung-website-cho-doanh-nghiep">
-                        <a>
-                            <p style={{marginBottom: 5}}><strong><IoCaretForwardSharp size={10}/> Quản trị website</strong></p>
-                            <p style={{marginBottom: 5}} 
-                                className={styles.x_smaller_text}>
-                                Dịch vụ quản trị, quản lý, vận hành, sản xuất nội dung cho website, tối ưu chi phí quản lý, nâng cao hiệu quả chiến dịch.
-                            </p>
-                        </a>
+                    <Link
+                        href="/dich-vu/thiet-ke-website-tron-goi-cho-doanh-nghiep"
+                        className={styles.x_button_inline}>
+
+                        <Button className={styles.x_button_website_doanh_nghiep}>
+                            Thiết kế website trọn gói
+                        </Button>
+
                     </Link>
-            </div>
-            <div className={styles.x_dropbox}>
-                    <Link href="/dich-vu/giai-phap-marketing-online-cho-doanh-nghiep">
-                        <a>
-                            <p style={{marginBottom: 5}}><strong><IoCaretForwardSharp size={10}/> Giải pháp marketing Online</strong></p>
-                            <p style={{marginBottom: 5}}  className={styles.x_smaller_text}>
-                                Hỗ trợ xây dựng các chiến dịch quảng cáo, quảng bá thương hiệu, nghiên cứu, phân tích, tư vấn hỗ trợ.
-                            </p>
-                        </a>
-                    </Link>
-            </div>
-        </>
-    )
+                </div>
+        </div>
+        <div className={styles.x_dropbox}>
+                <Link href="/dich-vu/giai-phap-quan-tri-noi-dung-website-cho-doanh-nghiep">
+
+                    <p style={{marginBottom: 5}}><strong><IoCaretForwardSharp size={10}/> Quản trị website</strong></p>
+                    <p style={{marginBottom: 5}} 
+                        className={styles.x_smaller_text}>
+                        Dịch vụ quản trị, quản lý, vận hành, sản xuất nội dung cho website, tối ưu chi phí quản lý, nâng cao hiệu quả chiến dịch.
+                    </p>
+
+                </Link>
+        </div>
+        <div className={styles.x_dropbox}>
+                <Link href="/dich-vu/giai-phap-marketing-online-cho-doanh-nghiep">
+
+                    <p style={{marginBottom: 5}}><strong><IoCaretForwardSharp size={10}/> Giải pháp marketing Online</strong></p>
+                    <p style={{marginBottom: 5}}  className={styles.x_smaller_text}>
+                        Hỗ trợ xây dựng các chiến dịch quảng cáo, quảng bá thương hiệu, nghiên cứu, phân tích, tư vấn hỗ trợ.
+                    </p>
+
+                </Link>
+        </div>
+    </>;
 }
 
 const Theme_categories = ( {category_api} ) => {
-    return(
-        <>
-            <div className={styles.x_categories_card}>
-               <Link href={category_api.link}>
-                    <a>
-                        <Image src={category_api.image} width={300} height={200}/>
-                        <h4 className={styles.x_categories_card_title}>{category_api.title}</h4>
-                    </a>
-               </Link>
-            </div>
-        </>
-    )
+    return <>
+        <div className={styles.x_categories_card}>
+           <Link href={category_api.link}>
+
+               <Image src={category_api.image} width={300} height={200}/>
+               <h4 className={styles.x_categories_card_title}>{category_api.title}</h4>
+
+           </Link>
+        </div>
+    </>;
 }
 
 const MobileMenu = ({showing}) => {
-    return(
+    return (
         <div 
             className={ showing ? styles.x_mobile_menu + ' ' + styles.x_showing_mobile 
             : styles.x_mobile_menu}
@@ -122,16 +119,16 @@ const MobileMenu = ({showing}) => {
                 <ul className={styles.x_mobile_menu_list}>
                     <li>
                         <Link href={'/'}>
-                            <a>
+                            
                               Trang chủ
-                            </a>
+                            
                         </Link>
                     </li>
                     <li>
                         <Link href={'/ve-chung-toi'}>
-                            <a>
+                            
                               Về chúng tôi
-                            </a>
+                            
                         </Link>
                     </li>
                     <li>
@@ -139,9 +136,9 @@ const MobileMenu = ({showing}) => {
                     </li>
                     <li>
                         <Link href={'/bai-viet'}>
-                            <a>
+                            
                               Blog
-                            </a>
+                            
                         </Link>
                     </li>
                     <li>
@@ -149,16 +146,16 @@ const MobileMenu = ({showing}) => {
                     </li>
                     <li>
                         <Link href={'/tuyen-dung'}>
-                            <a>
+                            
                               Tuyển dụng
-                            </a>
+                            
                         </Link>
                     </li>
                     <li>
                         <Link href={'/lien-he'}>
-                            <a>
+                            
                               Liên hệ
-                            </a>
+                            
                         </Link>
                     </li>
                     <li>
@@ -170,12 +167,11 @@ const MobileMenu = ({showing}) => {
                 </ul>
             </div>
         </div>
-    )
+    );
 }
 
 const Header = () => {
 
-    const { data: session } = useSession();
     const [open, setOpen] = useState(false);
     const [openDropdown, setOpenDropdown] = useState(false);
     const [openThemesMenu, setOpenThemesMenu] = useState(false);
@@ -321,51 +317,6 @@ const Header = () => {
         };
     });
 
-    const renderMenu = ({ onClose, left, top, className }, ref) => {
-        const handleSelect = eventKey => {
-          onClose();
-        };
-        return (
-          <Popover ref={ref} className={className} style={{ left, top }} full>
-                <Dropdown.Menu onSelect={handleSelect}>
-                {
-                    session ? 
-                        <>
-                        <Dropdown.Item eventKey={1}>
-                            <Link href="/quan-ly">
-                                Quản lý tài khoản
-                            </Link>
-                        </Dropdown.Item>
-                        <Dropdown.Item eventKey={1}>
-                            <Link href="/giao-dien">
-                                Xem giao diện mẫu
-                            </Link>
-                        </Dropdown.Item>
-                        <Dropdown.Item eventKey={2}>
-                            <Link href="/quan-ly/dang-xuat">
-                                Đăng xuất
-                            </Link>
-                        </Dropdown.Item>
-                    </>
-                    : <>
-                        <Dropdown.Item eventKey={1}>
-                            <Link href="/dang-nhap/">
-                                Đăng nhập
-                            </Link>
-                        </Dropdown.Item>
-                        <Dropdown.Item eventKey={2}>
-                            <Link href="/dang-ky/">
-                                Đăng ký
-                            </Link>
-                        </Dropdown.Item>
-                    </>
-                }
-                </Dropdown.Menu>
-            </Popover>
-        );
-    };
-
-
     // Search functions
 
     const Navigation = () => {
@@ -396,8 +347,7 @@ const Header = () => {
         }
     }
 
-    return (
-    <>
+    return <>
         <header>
         <div className={styles.x_top_header}>
             <Container> 
@@ -420,11 +370,6 @@ const Header = () => {
                                     </a>
                                 </li>
                                 <li className={styles.x_desktop_display}><Link href={'/tuyen-dung'}>Tuyển dụng</Link></li>
-                                {
-                                    session && session.user ? 
-                                        <li><Link href={'/quan-ly'}><a><span className={styles.x_account_name}>{session.user.token.user_display_name}</span></a></Link></li>
-                                    : ''
-                                }
                             </ul>
                         </Col>
                     </Row>
@@ -436,10 +381,8 @@ const Header = () => {
                     <Row className={styles.headerMenu}>
                         <Col xs={8} md={12} lg={3}>
                             <div className={styles.x_brand}>
-                                <Link href={'/'}>
-                                    <a>
+                                <Link href={'/'} legacyBehavior>
                                     <Image alt='Kansite.com.vn' src={Brand} width={140} height={62} />
-                                    </a>
                                 </Link>
                             </div>
                         </Col>
@@ -496,46 +439,6 @@ const Header = () => {
                         </Col>
                         <Col xs={16} md={12} lg={5}>
                             <div className={styles.x_header_button_list}>
-                            {
-                                    session ? 
-                                        <>
-                                        <Link href="/quan-ly">
-                                            <a className={styles.x_desktop_display}> 
-                                                <Button className={styles.x_login_button}>
-                                                    Quản lý
-                                                </Button>
-                                            </a>
-                                        </Link>
-                                        <Link href="/quan-ly/dang-xuat">
-                                            <a className={styles.x_desktop_display}> 
-                                                <Button className={styles.x_login_register}>
-                                                    Đăng xuất
-                                                </Button>
-                                            </a>
-                                        </Link>
-                                      </>
-                                    : <>
-                                    <Link href="/dang-nhap/">
-                                            <a className={styles.x_desktop_display}> 
-                                                <Button className={styles.x_login_button}>
-                                                    Đăng nhập
-                                                </Button>
-                                            </a>
-                                        </Link>
-                                        <Link href="/dang-ky/">
-                                            <a className={styles.x_desktop_display}> 
-                                                <Button className={styles.x_login_register}>
-                                                    Đăng ký
-                                                </Button>
-                                            </a>
-                                        </Link>
-                                    </>
-                                }
-                                <div className={styles.x_mobile_display}>
-                                    <Whisper placement="bottomEnd" trigger="click" speaker={renderMenu}>
-                                        <a className={styles.x_account_mobile_button}><IoPerson /> Tài Khoản</a>
-                                    </Whisper>
-                                </div>
                                 <div className={styles.x_mobile_display}>
                                     <Button className={styles.x_non_background_button} onClick={() => { setSearchForm(true); setOpen(false) }}>
                                         <SearchIcon width={22} height={22}/> 
@@ -600,7 +503,7 @@ const Header = () => {
                                 )
                             }  
                             <Col xs={24}>
-                                <Link href="/dich-vu/tao-website-lading-page-tu-dong">
+                                <Link legacyBehavior href="/dich-vu/tao-website-lading-page-tu-dong">
                                     <a className={styles.x_button_inline}>
                                         <Button className={styles.x_button_website_create}>
                                             XEM TẤT CẢ GIAO DIỆN
@@ -672,9 +575,9 @@ const Header = () => {
                                                         </div> : ''
                                                     }
                                                     <div className={styles.x_search_result_content}>
-                                                    <Link href={'/bai-viet/' + val.post_name}>
+                                                    <Link legacyBehavior href={'/bai-viet/' + val.post_name}>
                                                         <a onClick={() => {setSearchForm(false)}}>
-                                                        <h3 className={styles.x_search_result_title}>{val.post_title}</h3>
+                                                            <h3 className={styles.x_search_result_title}>{val.post_title}</h3>
                                                         </a>
                                                     </Link>
                                                     <p className={styles.x_search_result_excerpt}>{val.post_excerpt}</p>
@@ -705,8 +608,7 @@ const Header = () => {
             </div> : ''
          }
         </header> 
-    </>
-  )
+    </>;
 }
 
 export default Header
