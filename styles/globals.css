@@ -88,6 +88,11 @@ a {
   text-decoration: none;
 }
 
+img{
+  max-width: 100%;
+  height: auto;
+}
+
 span.swiper-pagination-bullet {
   width: 12px;
   height: 12px;
