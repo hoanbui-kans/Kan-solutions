@@ -5,7 +5,7 @@ import { listServices } from '../pages/api/services'
 import Image from 'next/image'
 import Link from 'next/link'
 import ArrowRightIcon from '@rsuite/icons/ArrowRight';
-import EmailMarketing from './page-component/EmailMarketing';
+import EmailMarketing from '../components/page-component/EmailMarketing';
 
 const Footer = () => {
   return (

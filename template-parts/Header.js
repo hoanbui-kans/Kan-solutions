@@ -44,53 +44,43 @@ const Right = () => {
         <h3 className={styles.x_menu_title}>DỊCH VỤ PHÁT TRIỂN WEB</h3>
         <div className={styles.x_dropbox}>
                 <Link href="/dich-vu/thiet-ke-website-tron-goi-cho-doanh-nghiep">
-
                     <p style={{marginBottom: 5}}><strong><IoCaretForwardSharp size={10}/> Thiết kế website</strong></p>
                     <p style={{marginBottom: 5}} className={styles.x_smaller_text}>
                         Dịch vụ tạo website nhanh theo mẫu, thiết kế website cho doanh nghiệp quản trị nội dung bằng website có sẵn, tối ưu chi phí thiết lập ban đầu.
                     </p>
-
                 </Link>
                 <div>
                     <Link
                         href="/dich-vu/tao-website-lading-page-tu-dong"
                         className={styles.x_button_inline}>
-
                         <Button className={styles.x_button_website_create}>
                             Tạo Website miễn phí
                         </Button>
-
                     </Link>
                     <Link
                         href="/dich-vu/thiet-ke-website-tron-goi-cho-doanh-nghiep"
                         className={styles.x_button_inline}>
-
                         <Button className={styles.x_button_website_doanh_nghiep}>
                             Thiết kế website trọn gói
                         </Button>
-
                     </Link>
                 </div>
         </div>
         <div className={styles.x_dropbox}>
                 <Link href="/dich-vu/giai-phap-quan-tri-noi-dung-website-cho-doanh-nghiep">
-
                     <p style={{marginBottom: 5}}><strong><IoCaretForwardSharp size={10}/> Quản trị website</strong></p>
                     <p style={{marginBottom: 5}} 
                         className={styles.x_smaller_text}>
                         Dịch vụ quản trị, quản lý, vận hành, sản xuất nội dung cho website, tối ưu chi phí quản lý, nâng cao hiệu quả chiến dịch.
                     </p>
-
                 </Link>
         </div>
         <div className={styles.x_dropbox}>
                 <Link href="/dich-vu/giai-phap-marketing-online-cho-doanh-nghiep">
-
                     <p style={{marginBottom: 5}}><strong><IoCaretForwardSharp size={10}/> Giải pháp marketing Online</strong></p>
                     <p style={{marginBottom: 5}}  className={styles.x_smaller_text}>
                         Hỗ trợ xây dựng các chiến dịch quảng cáo, quảng bá thương hiệu, nghiên cứu, phân tích, tư vấn hỗ trợ.
                     </p>
-
                 </Link>
         </div>
     </>;
@@ -100,10 +90,8 @@ const Theme_categories = ( {category_api} ) => {
     return <>
         <div className={styles.x_categories_card}>
            <Link href={category_api.link}>
-
-               <Image src={category_api.image} width={300} height={200}/>
+               <Image src={category_api.image} width={300} height={200} alt=""/>
                <h4 className={styles.x_categories_card_title}>{category_api.title}</h4>
-
            </Link>
         </div>
     </>;
@@ -119,16 +107,12 @@ const MobileMenu = ({showing}) => {
                 <ul className={styles.x_mobile_menu_list}>
                     <li>
                         <Link href={'/'}>
-                            
                               Trang chủ
-                            
                         </Link>
                     </li>
                     <li>
                         <Link href={'/ve-chung-toi'}>
-                            
                               Về chúng tôi
-                            
                         </Link>
                     </li>
                     <li>
@@ -136,26 +120,15 @@ const MobileMenu = ({showing}) => {
                     </li>
                     <li>
                         <Link href={'/bai-viet'}>
-                            
                               Blog
-                            
                         </Link>
                     </li>
                     <li>
                         <Link href={'/du-an'}>Dự án</Link>
                     </li>
                     <li>
-                        <Link href={'/tuyen-dung'}>
-                            
-                              Tuyển dụng
-                            
-                        </Link>
-                    </li>
-                    <li>
                         <Link href={'/lien-he'}>
-                            
                               Liên hệ
-                            
                         </Link>
                     </li>
                     <li>

@@ -15,7 +15,7 @@ import Link from 'next/link'
 import { Container, Row, Col, Button, Breadcrumb, Checkbox, CheckboxGroup, Modal, Panel, AutoComplete } from 'rsuite'
 import FormTuVan from '../../components/FormTuVan'
 import { GD_Box } from '../giao-dien'
-import ThemesSubmitForm from '../../components/handleSubmitTheme'
+import ThemesSubmitForm from '../../template-parts/handleSubmitTheme'
 import CommentsUI from '../../components/comment'
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from 'swiper';

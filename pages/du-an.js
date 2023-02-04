@@ -6,7 +6,6 @@ import Image from 'next/image'
 import Loading from '../components/Loading'
 import styles from '../styles/project.module.css'
 import ServicesSiderbar from '../components/ServicesSiderbar'
-import { ProjectPage } from './api/HeaderSeo'
 import HTMLReactParser from 'html-react-parser'
 import Head from 'next/head'
 
@@ -66,9 +65,6 @@ const Projects = ({bai_viet, max_num_pages}) => {
 
     return (
         <>
-        <Head>
-            { HTMLReactParser(ProjectPage.replaceAll("kanbox", "kansite.com").replaceAll("giao_dien", "giao-dien").replaceAll("kansite.com.vn/wp-content", "kanbox.vn/wp-content")) }
-        </Head>
         <div className={'x_breadcum_container'}>
             <Container>
                 <Row>
@@ -132,4 +128,4 @@ export async function getServerSideProps({req, res}) {
       bai_viet: response.posts,
       max_num_pages: response.max_pages
    }}
-  }
+}
