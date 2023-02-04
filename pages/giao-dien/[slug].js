@@ -13,10 +13,10 @@ import { IoQrCodeOutline } from "react-icons/io5";
 
 import Link from 'next/link'
 import { Container, Row, Col, Button, Breadcrumb, Checkbox, CheckboxGroup, Modal, Panel, AutoComplete } from 'rsuite'
-import FormTuVan from '../../components/FormTuVan'
+import FormTuVan from '../../template-parts/FormTuVan'
 import { GD_Box } from '../giao-dien'
 import ThemesSubmitForm from '../../template-parts/handleSubmitTheme'
-import CommentsUI from '../../components/comment'
+import CommentsUI from '../../template-parts/comment'
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from 'swiper';
 import { QRCode } from 'react-qrcode-logo';

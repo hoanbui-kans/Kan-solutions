@@ -4,7 +4,7 @@ export const ErrorAsync = {
     },
     onNoMatch: (req, res) => {
         const { method } = req
-        res.setHeader('Allow', ['POST', 'GET', 'DELETE'])
+        res.setHeader('Allow', ['POST','PUT', 'GET', 'DELETE'])
         res.status(405).end(`Method ${method} Not Allowed`)
     },
 }

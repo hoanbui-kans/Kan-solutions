@@ -1,25 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import moment from 'moment/moment';
 import { Breadcrumb } from 'rsuite'
-import { Container, Row, Col, Form, Schema, ButtonToolbar, Button, Input } from 'rsuite';
+import { Container, Row, Col, FlexboxGrid,  Form, Schema, ButtonToolbar, Button, Input } from 'rsuite';
 import slugify from 'slugify';
+import ThumbnailImage from '../../../components/dashboard-components/ThumbnailImage';
+import GalleryImage from '../../../components/dashboard-components/GalleryImages';
 import styles from '../../../styles/dashboard.module.css';
 import dynamic from "next/dynamic";
 
 const Editor = dynamic(() => import("../../../components/Editor"), { ssr: false });
 
 const addPosts = () => {
+
     const Textarea = React.forwardRef((props, ref) => <Input {...props} as="textarea" ref={ref} />);
     const [content, setContent] = useState( '' );
+    const [open, setOpen] = useState(false);
     const [post, setPost] = useState({
         title: "",
         name: "",
-        content: "",
         thumbnail: ""
     });
 
-    const { Types } = Schema;
+    const handleClose = () => {
+        setOpen(false)
+    }
 
+    const { Types } = Schema;
     const model = Schema.Model({
         title: Types.StringType().isRequired('Trường tiêu đề không được để trống.'),
     });
@@ -51,13 +57,12 @@ const addPosts = () => {
             </Breadcrumb>
             <div>
             <Form 
-                                model={model}
-                                onChange={setPost}
-                                fluid
-                            >
-                <Container>
+                model={model}
+                onChange={setPost}
+                fluid
+                >
                     <Row>
-                        <Col xs={24} md={16}>
+                        <Col xs={24} md={14}>
                                 <Form.Group controlId="name">
                                     <Form.ControlLabel>Username</Form.ControlLabel>
                                     <Form.Control name="title" />
@@ -81,18 +86,25 @@ const addPosts = () => {
                                     <Editor value={content} onChange={(v) => setContent(v)}/>
                                 </Form.Group>
                         </Col>
-                        <Col xs={24} md={8}>
+                        <Col xs={24} md={10}>
                             <Form.Group>
-                                <ButtonToolbar>
-                                    <Button appearance="primary">Submit</Button>
-                                    <Button appearance="default">Cancel</Button>
-                                </ButtonToolbar>
+                                <ThumbnailImage openMedia={setOpen}/>
+                            </Form.Group>
+                            <Form.Group>
+                                <FlexboxGrid>
+                                    <FlexboxGrid.Item colspan={12}>
+                                    <Button appearance="default" block>Hủy</Button>
+                                    </FlexboxGrid.Item>
+                                    <FlexboxGrid.Item colspan={12}>
+                                        <Button appearance="primary" block>Lưu</Button>
+                                    </FlexboxGrid.Item>
+                                </FlexboxGrid>
                             </Form.Group>
                         </Col>
                     </Row>
-                </Container>
                 </Form>
             </div>
+            <GalleryImage open={open} handleClose={handleClose}/>
         </>
     )
 }

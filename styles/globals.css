@@ -54,6 +54,10 @@ body {
   scroll-behavior: smooth;
 }
 
+.ck-content {
+  min-height: 500px;
+}
+
 .layoutSwiper {
   padding-bottom: 35px !important;
 }

@@ -2,8 +2,8 @@ import multer from "multer"
 import moment from 'moment'
 import fs from 'fs';
 import nc from 'next-connect';
-import { ErrorAsync } from "../../../api/ErrorAsync";
-import { connection } from "../helper/database";
+import { ErrorAsync } from "../helper/ErrorAsync";
+import connection from "../helper/connection";
 
 export const config = {
   api: {
@@ -12,7 +12,7 @@ export const config = {
 }
 
 const date = new Date().getTime();
-const UploadImageDir = 'public/uploads/images/';
+const UploadImageDir = 'public/uploads/';
 const path = UploadImageDir + moment(date).format('YYYY/M');
 
 const storage = multer.diskStorage({
@@ -28,9 +28,9 @@ const storage = multer.diskStorage({
 const fileFilter = (req, file, callback) => {    
     // Check mime
     const mimetype = file.mimetype;
-  
    if(  mimetype === 'image/png' ||
         mimetype === 'image/jpg' ||
+        mimetype === 'mage/webp' || 
         mimetype === 'image/jpeg'){
        return callback(null,true);
    } else {
@@ -50,16 +50,14 @@ let UploadFile = uploader.single('file');
 handler.use(UploadFile);
 
 handler.get( async (req, res) => {
-    try {
-        let result = await connection.promise().query('SELECT * FROM `media`;', 
-        [ fileName, path + fileName ],
-        function(err, response) {
-          if(err){
-            console.log(err);
-          }
-            return res.send(response)
-        });
-        return res.send(result)
+    try { 
+        let response = await connection.promise().query('SELECT * FROM `media`');
+        if(Array.isArray(response) && response.length){
+          return res.status(200).send(response[0]);
+        } else {
+          return res.status(201).send([]);
+        }
+        
       } catch (error) {
         console.log(error)
       }
@@ -73,7 +71,7 @@ handler.post( async (req, res) => {
       } else {
         let fileName = req.file.filename;
         try {
-          let result = await connection.promise().query('INSERT INTO `media` (`title`, `name`) VALUES ( ?, ? );', 
+          let result = await connection.promise().query('INSERT INTO `media` (`title`, `file_name`) VALUES ( ?, ? );', 
           [ fileName, path + fileName ],
           function(err, response) {
             if(err){
@@ -83,41 +81,41 @@ handler.post( async (req, res) => {
           });
           return res.send(result)
         } catch (error) {
-          console.log(error)
+          return res.status(500).send(error)
         }
     }
 });
 
-handler.put( async( req, res) => {
-    try {
-        let result = await connection.promise().query('UPDATE `media` SET `title` = ?, `name` = ? WHERE `id` = ?;', 
-        [ fileName, path + fileName ],
-        function(err, response) {
-          if(err){
-            console.log(err);
-          }
-            return res.send(response)
-        });
-        return res.send(result)
-      } catch (error) {
-        console.log(error)
-     }
-})
+// handler.put( async( req, res) => {
+//     try {
+//         let result = await connection.promise().query('UPDATE `media` SET `title` = ?, `name` = ? WHERE `id` = ?;', 
+//         [ fileName, path + fileName ],
+//         function(err, response) {
+//           if(err){
+//             console.log(err);
+//           }
+//             return res.send(response)
+//         });
+//         return res.send(result)
+//       } catch (error) {
+//         console.log(error)
+//      }
+// })
 
-handler.delete( async(req, res) => {
-    try {
-        let result = await connection.promise().query('DELETE FROM media WHERE `id` = ?', 
-        [ req.id ],
-        function(err, response) {
-          if(err){
-            console.log(err);
-          }
-            return res.send(response)
-        });
-        return res.send(result)
-      } catch (error) {
-        console.log(error)
-     }
-})
+// handler.delete( async(req, res) => {
+//     try {
+//         let result = await connection.promise().query('DELETE FROM media WHERE `id` = ?', 
+//         [ req.id ],
+//         function(err, response) {
+//           if(err){
+//             console.log(err);
+//           }
+//             return res.send(response)
+//         });
+//         return res.send(result)
+//       } catch (error) {
+//         console.log(error)
+//      }
+// })
 
 export default handler
